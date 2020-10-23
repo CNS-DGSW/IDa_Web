@@ -1,5 +1,5 @@
 import DefaultTemplate from "components/common/Template/DefaultTemplate";
-import FnaContainer from "containers/Fna/FnaContainer";
+import FaqContainer from "containers/Faq/FaqContainer";
 import React from "react";
 
 const FaqPage = () => {
