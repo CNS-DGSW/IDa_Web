@@ -1,0 +1,19 @@
+@import "util/colors.scss";
+
+.Content {
+  color: $white;
+  display: flex;
+  flex-direction: column;
+  &-Title {
+    width: 100%;
+    border-left: 2px solid $white;
+    font-size: 25px;
+    height: auto;
+    padding-left: 0.8rem;
+    font-weight: 600;
+  }
+  &-Text {
+    width: 100%;
+    margin-left: 2rem;
+  }
+}
