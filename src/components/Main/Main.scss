@@ -1,0 +1,87 @@
+@import "util/colors.scss";
+
+.Main {
+  width: 100%;
+  height: auto;
+  min-height: 80vh;
+  background-image: url("../../assets/images/background.svg");
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &-box {
+    width: 100%;
+    max-width: 1100px;
+  }
+  &-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 10rem;
+    align-items: flex-start;
+    color: $white;
+    &-Title {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      &-Sub {
+        font-size: 1.4rem;
+      }
+      &-Main {
+        font-size: 2rem;
+        font-weight: 600;
+      }
+    }
+    &-btn {
+      width: 8rem;
+      height: 2.6rem;
+      border: 2px solid $white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 2rem;
+      font-weight: 600;
+    }
+  }
+}
+
+.Content {
+  width: 100%;
+  height: auto;
+  background-color: $Main-color;
+  display: flex;
+  align-items: center;
+  &-box {
+    width: 100%;
+    max-width: 1100px;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    &-area {
+      margin-top: 8rem;
+      display: flex;
+      &-bold {
+        font-weight: 600;
+      }
+      &-small {
+        font-size: 15px;
+      }
+      &-btn {
+        display: flex;
+        &-style {
+          width: 8rem;
+          height: 2.6rem;
+          border: 2px solid $white;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-top: 0.8rem;
+          margin-right: 1.5rem;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
