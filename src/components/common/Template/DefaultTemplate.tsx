@@ -8,11 +8,11 @@ interface DefaultTemplateProps {
 
 const DefaultTemplate = ({ children }: DefaultTemplateProps) => {
   return (
-    <>
+    <div className="default-template">
       <HeaderContainer />
       {children}
       <Footer />
-    </>
+    </div>
   );
 };
 
