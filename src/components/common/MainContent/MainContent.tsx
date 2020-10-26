@@ -9,9 +9,9 @@ interface MainContentProps {
 const MainContent = ({ title, children }: MainContentProps) => {
   return (
     <>
-      <div className="Content">
-        <div className="Content-Title">{title}</div>
-        <div className="Content-Text">{children}</div>
+      <div className="Card">
+        <div className="Card-Title">{title}</div>
+        <div className="Card-Text">{children}</div>
       </div>
     </>
   );

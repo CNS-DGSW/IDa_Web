@@ -24,9 +24,9 @@ const Main = ({}: MainProps) => {
           <div className="Content-box-area">
             <MainContent title="원서 접수 일정">
               <div>
-                <p>특별/일반전형 원서접수</p>
+                <p className="Content-box-area-small">특별/일반전형 원서접수</p>
                 <p className="Content-box-area-bold">2020. 10. 19.(월) 09:00 ~ 2020. 10. 22.(목) 17:00</p>
-                <p>원서 및 서류제출</p>
+                <p className="Content-box-area-small">원서 및 서류제출</p>
                 <p className="Content-box-area-bold">2020. 10. 19.(월) 09:00 ~ 2020. 10. 22.(목) 17:00</p>
                 <p className="Content-box-area-small">우편접수는 원서접수 마감 시간 이내에 도착해야 합니다.</p>
               </div>
@@ -53,7 +53,7 @@ const Main = ({}: MainProps) => {
 
             <MainContent title="최종결과 확인">
               <div>
-                <p>최종결과 발표</p>
+                <p className="Content-box-area-small">최종결과 발표</p>
                 <p className="Content-box-area-bold">2020. 10. 19.(월) 09:00</p>
                 <div className="Content-box-area-btn-style">최종결과확인</div>
               </div>

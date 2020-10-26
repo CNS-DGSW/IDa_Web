@@ -3,7 +3,7 @@
 .Main {
   width: 100%;
   height: auto;
-  min-height: 80vh;
+  min-height: 60vh;
   background-image: url("../../assets/images/background.svg");
   background-position: center;
   background-size: cover;
@@ -20,6 +20,9 @@
     justify-content: space-between;
     height: 10rem;
     align-items: flex-start;
+    @media screen and (max-width: 767px) {
+      align-items: center;
+    }
     color: $white;
     &-Title {
       display: flex;
@@ -38,35 +41,51 @@
       width: 8rem;
       height: 2.6rem;
       border: 2px solid $white;
+      border-radius: 2px;
       display: flex;
       justify-content: center;
       align-items: center;
       margin-top: 2rem;
       font-weight: 600;
+      transition: all 0.2s;
+    }
+    &-btn:hover {
+      background-color: $white;
+      color: $Main-color;
     }
   }
 }
 
 .Content {
   width: 100%;
-  height: auto;
+  height: 100%;
   background-color: $Main-color;
   display: flex;
-  align-items: center;
+  justify-content: center;
   &-box {
     width: 100%;
     max-width: 1100px;
-    height: 60vh;
+    height: auto;
     display: flex;
     flex-direction: column;
     &-area {
-      margin-top: 8rem;
+      margin: 4rem 0;
       display: flex;
+      @media screen and (max-width: 767px) {
+        flex-direction: column;
+        margin: 0 1rem;
+      }
+      p {
+        @media screen and (max-width: 767px) {
+          font-size: 11.5px;
+        }
+      }
       &-bold {
         font-weight: 600;
       }
       &-small {
-        font-size: 15px;
+        font-weight: 300;
+        font-size: 16px;
       }
       &-btn {
         display: flex;
@@ -74,12 +93,19 @@
           width: 8rem;
           height: 2.6rem;
           border: 2px solid $white;
+          border-radius: 2px;
           display: flex;
           justify-content: center;
           align-items: center;
           margin-top: 0.8rem;
           margin-right: 1.5rem;
           font-weight: 600;
+          transition: all 0.2s;
+        }
+
+        &-style:hover {
+          background-color: $white;
+          color: $Main-color;
         }
       }
     }
