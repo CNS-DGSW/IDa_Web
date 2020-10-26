@@ -41,11 +41,17 @@
       width: 8rem;
       height: 2.6rem;
       border: 2px solid $white;
+      border-radius: 2px;
       display: flex;
       justify-content: center;
       align-items: center;
       margin-top: 2rem;
       font-weight: 600;
+      transition: all 0.2s;
+    }
+    &-btn:hover {
+      background-color: $white;
+      color: $Main-color;
     }
   }
 }
@@ -78,7 +84,8 @@
         font-weight: 600;
       }
       &-small {
-        font-size: 15px;
+        font-weight: 300;
+        font-size: 16px;
       }
       &-btn {
         display: flex;
@@ -86,12 +93,19 @@
           width: 8rem;
           height: 2.6rem;
           border: 2px solid $white;
+          border-radius: 2px;
           display: flex;
           justify-content: center;
           align-items: center;
           margin-top: 0.8rem;
           margin-right: 1.5rem;
           font-weight: 600;
+          transition: all 0.2s;
+        }
+
+        &-style:hover {
+          background-color: $white;
+          color: $Main-color;
         }
       }
     }
