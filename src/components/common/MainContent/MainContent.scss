@@ -1,9 +1,14 @@
 @import "util/colors.scss";
 
-.Content {
+.Card {
+  //min-width: 30rem;
   color: $white;
   display: flex;
   flex-direction: column;
+  word-break: break-all;
+  @media screen and (max-width: 767px) {
+    margin-bottom: 2rem;
+  }
   &-Title {
     width: 100%;
     border-left: 2px solid $white;
@@ -11,9 +16,12 @@
     height: auto;
     padding-left: 0.8rem;
     font-weight: 600;
+    @media screen and (max-width: 767px) {
+      font-size: 20px;
+    }
   }
   &-Text {
     width: 100%;
-    margin-left: 2rem;
+    padding-left: 1rem;
   }
 }
