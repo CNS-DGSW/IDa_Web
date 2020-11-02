@@ -42,6 +42,7 @@
       height: 2.6rem;
       border: 2px solid $white;
       border-radius: 2px;
+      cursor: pointer;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -101,6 +102,7 @@
           margin-right: 1.5rem;
           font-weight: 600;
           transition: all 0.2s;
+          cursor: pointer;
         }
 
         &-style:hover {
