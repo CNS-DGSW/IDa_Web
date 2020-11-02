@@ -1,5 +1,5 @@
 {
-  "name": "create-react-app-mobx-typescript",
+  "name": "ida_web",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -14,10 +14,10 @@
     "@types/react-router-dom": "^5.1.5",
     "axios": "^0.19.2",
     "mobx": "4.7.0",
-    "mobx-react": "5.4.3",
+    "mobx-react": "6.0.0",
     "node-sass": "^4.14.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "react": "17.0",
+    "react-dom": "^17.0",
     "react-icons": "^3.10.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
