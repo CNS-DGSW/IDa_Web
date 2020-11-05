@@ -1,9 +1,13 @@
+import CheckBox from "components/common/CheckBox";
 import React from "react";
 import "./Login.scss";
 
-interface LoginProps {}
+interface LoginProps {
+  value: boolean;
+  setValue: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-const Login = ({}: LoginProps) => {
+const Login = ({ value, setValue }: LoginProps) => {
   return (
     <>
       <div className="Login">
@@ -16,11 +20,7 @@ const Login = ({}: LoginProps) => {
           <div className="Login-box-form">
             <input type="text" placeholder="이메일" />
             <input type="password" placeholder="비밀번호" />
-            <div className="Login-box-save">
-              <input id="save_id" type="checkbox" className="Login-box-save-checkBox" />
-              <label htmlFor="save_id" />
-              <span>아이디 저장</span>
-            </div>
+            <CheckBox id="save_id" content={"아이디 저장"} value={value} setValue={setValue} />
           </div>
           <div className="Login-box-button">
             <div>

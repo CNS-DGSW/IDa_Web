@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { inject, observer } from "mobx-react";
 import Register from "components/Register";
 
-const RegisterContainer = ({}) => {
+const RegisterContainer = () => {
+  const [value, setValue] = useState<boolean>(false);
+
   return (
     <div>
-      <Register />
+      <Register value={value} setValue={setValue} />
     </div>
   );
 };
