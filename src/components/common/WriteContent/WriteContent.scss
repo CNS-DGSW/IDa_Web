@@ -1,0 +1,21 @@
+@import "util/colors.scss";
+
+.title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  p {
+    color: $ft-gray;
+    font-size: 1rem;
+    padding-top: 0.2rem;
+    font-weight: 500;
+  }
+  &-border {
+    color: $ft-darkgray;
+    font-size: 1.4rem;
+    border-right: 3px solid $bd-blue;
+    padding-right: 0.4rem;
+    margin-right: 0.4rem;
+  }
+}

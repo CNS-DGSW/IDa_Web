@@ -1,0 +1,55 @@
+@import "util/colors.scss";
+
+.School {
+  width: 100%;
+  height: auto;
+
+  &-box {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+
+    &-inputgroup {
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+
+      label {
+        display: inline-block;
+        width: 5rem;
+      }
+
+      input {
+        width: 12rem;
+        height: 2rem;
+        border: 1px solid $bd-line;
+        border-radius: 0.2rem;
+      }
+      &-comment {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        p {
+          display: block;
+          width: 12rem;
+          font-size: 0.7rem;
+          color: $ft-blue;
+        }
+      }
+
+      &-Graduation {
+        display: flex;
+
+        div {
+          display: flex;
+          flex-direction: column;
+        }
+
+        input {
+          margin-bottom: 1rem;
+        }
+      }
+    }
+  }
+}

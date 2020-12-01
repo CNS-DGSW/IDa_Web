@@ -8,18 +8,33 @@ $sd-black: #0000002c;
  * background-color
  ** $bg- 로 시작
 */
-$bg-blue: #1c32c5;
-$bg-light-bule: #465ae1;
 
+$bg-white: #ffffff;
+$bg-Main-color: #071b50;
+$bg-writeback: #fbfcff;
+$bg-line: #e2e2e2;
+$bg-blue: #1c32c5;
+$bg-blue-100: #eff1fc;
+$bg-light-bule: #465ae1;
 /*
  * font
  ** $ft- 로 시작
 */
-$white: #ffffff;
-$Main-color: #071b50;
+
+$ft-white: #ffffff;
+$ft-Main-color: #071b50;
+$ft-gray: #7d7d7d;
+$ft-darkgray: #545454;
+$ft-blue: #1c32c5;
+$ft-line: #e2e2e2;
 
 /*
  * border
  ** $bd- 로 시작
 */
+
+$bd-white: #ffffff;
+$bd-line: #e2e2e2;
+$bd-blue: #1c32c5;
+$bd-skyblue: #808de5;
 $bd-gray: #7d7d7d;
