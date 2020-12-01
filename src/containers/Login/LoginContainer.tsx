@@ -3,12 +3,12 @@ import { inject, observer } from "mobx-react";
 import Login from "components/Login";
 
 const LoginContainer = () => {
-  const [value, setValue] = useState<boolean>(false);
+  const [check, setCheck] = useState<boolean>(false);
 
   return (
     <>
       <div>
-        <Login value={value} setValue={setValue} />
+        <Login check={check} setCheck={setCheck} />
       </div>
     </>
   );

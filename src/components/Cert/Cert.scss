@@ -1,0 +1,108 @@
+/* your css code */
+/* your css code */
+.Cert {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  background-repeat: no-repeat;
+  background-image: url("../../assets/images/Login.png");
+  height: 100vh;
+  background-size: 100% 40%;
+  &-text {
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    &-Welcome {
+      font-size: 2.5rem;
+    }
+    &-content {
+      font-size: 1.3rem;
+    }
+  }
+  &-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 95%;
+    max-width: 37rem;
+    height: 40rem;
+    background: white;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.16);
+    margin-bottom: 4rem;
+    &-text {
+      margin-top: 1.4rem;
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: #0b1b4c;
+    }
+    &-center {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      height: 14rem;
+      &-select {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        &-span {
+          display: flex;
+          align-items: flex-start;
+          justify-content: flex-start;
+        }
+        &-CheckBox {
+          display: flex;
+          justify-content: space-between;
+          position: relative;
+          width: 85%;
+          padding-top: 1rem;
+        }
+      }
+      &-content {
+        width: 85%;
+        padding: 1.5rem;
+        color: #545454;
+        border: 1px solid #7d7d7d;
+        border-radius: 2px;
+      }
+    }
+
+    &-button {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #1c32c5;
+      color: white;
+      max-width: 11.3rem;
+      width: 100%;
+      height: 2.5rem;
+      transition: 0.2s;
+      & span {
+        font-size: 1rem;
+      }
+      &:hover {
+        background-color: #465ae1;
+      }
+    }
+  }
+}
+.border-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  padding-left: 0.8rem;
+  border: 1px solid black;
+  border-radius: 2px;
+  width: 32%;
+  font-size: 0.9rem;
+}
