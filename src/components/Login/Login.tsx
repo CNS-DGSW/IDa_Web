@@ -3,11 +3,11 @@ import React from "react";
 import "./Login.scss";
 
 interface LoginProps {
-  value: boolean;
-  setValue: React.Dispatch<React.SetStateAction<boolean>>;
+  check: boolean;
+  setCheck: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Login = ({ value, setValue }: LoginProps) => {
+const Login = ({ check, setCheck }: LoginProps) => {
   return (
     <>
       <div className="Login">
@@ -20,7 +20,7 @@ const Login = ({ value, setValue }: LoginProps) => {
           <div className="Login-box-form">
             <input type="text" placeholder="이메일" />
             <input type="password" placeholder="비밀번호" />
-            <CheckBox id="save_id" content={"아이디 저장"} value={value} setValue={setValue} />
+            {/* <CheckBox id="save_id" content={"아이디 저장"} check={check} setCheck={setCheck} /> */}
           </div>
           <div className="Login-box-button">
             <div>

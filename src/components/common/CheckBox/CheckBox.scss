@@ -1,57 +1,41 @@
-/* your css code */
-.Login-box {
-  &-form {
-    display: flex;
-    flex-direction: column;
-    padding: 0.8rem 0.5rem;
+.CheckBox {
+  z-index: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+
+  label {
     position: relative;
-    width: 70%;
-    input[type="text"],
-    input[type="password"] {
-      font-size: 1.2rem;
-      width: 100%;
-      margin: 0.5rem 0;
-      padding: 0.9rem 1.2rem;
-      border-radius: 2px;
-      border: 1px solid #7d7d7d;
+    border-radius: 50%;
+    width: 1rem;
+    height: 1rem;
+    border: 1px solid black;
+    cursor: pointer;
+    &::before {
+      content: "";
     }
   }
-  &-save {
-    display: flex;
-    align-items: center;
-    font-size: 1rem;
-    label {
-      position: relative;
-      border-radius: 50%;
-      width: 1rem;
-      height: 1rem;
-      border: 1px solid black;
-      cursor: pointer;
-      &::before {
-        content: "";
-      }
+  input {
+    position: relative;
+    display: none;
+    width: 0.9rem;
+    height: 0.9rem;
+  }
+  input:checked ~ label {
+    background-color: #1c32c5;
+    border: none;
+    &::before {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 7px;
+      color: white;
+      content: "\2713";
     }
-    input {
-      position: relative;
-      display: none;
-      width: 0.9rem;
-      height: 0.9rem;
-    }
-    input:checked ~ label {
-      background-color: #1c32c5;
-      border: none;
-      &::before {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 7px;
-        color: white;
-        content: "\2713";
-      }
-    }
-    & span {
-      padding-left: 0.5rem;
-    }
+  }
+  & span {
+    padding-left: 0.5rem;
   }
 }
