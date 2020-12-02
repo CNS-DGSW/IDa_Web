@@ -4,7 +4,10 @@
   align-items: center;
   justify-content: center;
   background: #1c32c5;
-  transition: 0.2s;
+  color: white;
+  transition: 0.3s;
+  border-radius: 3px;
+  cursor: pointer;
   &:hover {
     background: #465ae1;
   }

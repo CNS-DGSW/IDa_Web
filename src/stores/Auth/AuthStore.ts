@@ -2,6 +2,7 @@ import { action, observable } from "mobx";
 import { autobind } from "core-decorators";
 import AuthApi from "../../assets/api/AuthApi";
 import { LoginResponse, Response } from "../../util/types/Response";
+import { sha256 } from "js-sha256";
 
 @autobind
 class AuthStore {
@@ -16,7 +17,7 @@ class AuthStore {
   @action
   tryLogin = async (email: string, password: string): Promise<LoginResponse> => {
     try {
-      const response = await AuthApi.Login(email, password);
+      const response = await AuthApi.Login(email, sha256(password));
 
       if (response.status === 200) {
         this.login = true;
@@ -33,9 +34,9 @@ class AuthStore {
   };
 
   @action
-  tryRegister = async (email: string, password: string): Promise<Response> => {
+  tryRegister = async (name: string, email: string, password: string): Promise<Response> => {
     try {
-      const response = await AuthApi.Login(email, password);
+      const response = await AuthApi.Register(name, email, sha256(password));
 
       return new Promise((resolve: (response: Response) => void, reject) => {
         resolve(response);

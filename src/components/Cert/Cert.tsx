@@ -1,5 +1,5 @@
-import CheckBox from "components/common/CheckBox";
 import React from "react";
+import CheckBox from "components/common/CheckBox";
 import "./Cert.scss";
 
 interface CertProps {
@@ -26,22 +26,43 @@ const Cert = ({ ip, setIp, phone, setPhone, noCert, setNoCert, changePage }: Cer
             <div className="Cert-box-center-select">
               <div className="Cert-box-center-select-span">인증 방법</div>
               <div className="Cert-box-center-select-CheckBox">
-                <div className="Cert-box-center-select-CheckBox border-div">
+                <div
+                  className="Cert-box-center-select-CheckBox border-div"
+                  onClick={() => {
+                    setPhone(true);
+                    setIp(false);
+                    setNoCert(false);
+                  }}
+                >
                   <span>휴대전화 인증</span>
-                  <CheckBox id="phone" content={""} value={phone} setValue={setPhone} />
+                  <CheckBox id="phone" content={""} value={phone} />
                 </div>
-                <div className="Cert-box-center-select-CheckBox border-div">
+                <div
+                  className="Cert-box-center-select-CheckBox border-div"
+                  onClick={() => {
+                    setPhone(false);
+                    setIp(true);
+                    setNoCert(false);
+                  }}
+                >
                   <span>공공아이핀 인증</span>
-                  <CheckBox id="ip" content={""} value={ip} setValue={setIp} />
+                  <CheckBox id="ip" content={""} value={ip} />
                 </div>
-                <div className="Cert-box-center-select-CheckBox border-div">
+                <div
+                  className="Cert-box-center-select-CheckBox border-div"
+                  onClick={() => {
+                    setIp(false);
+                    setPhone(false);
+                    setNoCert(true);
+                  }}
+                >
                   <span>인증없이 진행</span>
-                  <CheckBox id="noCert" content={""} value={noCert} setValue={setNoCert} />
+                  <CheckBox id="noCert" content={""} value={noCert} />
                 </div>
               </div>
             </div>
             <div className="Cert-box-center-content">
-              {/* <span>
+              <span>
                 {phone ? (
                   <span>
                     실명 인증 후 가입하고, 원서를 작성할 수 있습니다. 실명인증을 하였으니 바로 원서 작성 후 제출을 하시면 됩니다.
@@ -67,7 +88,7 @@ const Cert = ({ ip, setIp, phone, setPhone, noCert, setNoCert, changePage }: Cer
                     )}
                   </>
                 )}
-              </span> */}
+              </span>
             </div>
           </div>
           <div className="Cert-box-button" onClick={() => changePage()}>

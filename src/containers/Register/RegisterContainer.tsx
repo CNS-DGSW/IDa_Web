@@ -5,35 +5,38 @@ import Cert from "components/Cert";
 import store from "../../stores/index";
 
 const RegisterContainer = () => {
+  const { tryRegister, cert, changePage } = store.AuthStore;
+
+  // RegisterComponents checkBox
   const [allCheck, setAllCheck] = useState<boolean>(false);
   const [privacy, setPrivacy] = useState<boolean>(false);
   const [use, setUse] = useState<boolean>(false);
   const [background, setBackground] = useState<boolean>(false);
 
+  // RegisterComponents input
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [pw, setPw] = useState<string>("");
   const [checkPw, setCheckPw] = useState<string>("");
 
-  const { tryRegister, cert, changePage } = store.AuthStore;
-
+  // certComponent CheckBox
+  const [phone, setPhone] = useState<boolean>(true);
   const [ip, setIp] = useState<boolean>(false);
-  const [phone, setPhone] = useState<boolean>(false);
   const [noCert, setNoCert] = useState<boolean>(false);
 
   const handleRegister = useCallback(async () => {
     if (!email || !pw || !checkPw || !name) {
-      console.log("");
+      console.log("빈칸이 있습니다.");
     } else if (pw !== checkPw) {
-      console.log("비밀번호가 제대로 입력되지 않았습니다.");
-    } else if (allCheck === false) {
+      console.log("비밀번호가 일치하지 않습니다..");
+    } else if (!allCheck) {
       console.log("모두 동의를 체크해 주세요");
     } else {
-      await tryRegister(email, pw)
+      await tryRegister(name, email, pw)
         .then((res) => {})
         .catch((err) => {});
     }
-  }, [name, email, pw, checkPw]);
+  }, [name, email, pw, checkPw, allCheck]);
 
   useEffect(() => {
     setPrivacy(allCheck);
@@ -42,26 +45,13 @@ const RegisterContainer = () => {
   }, [allCheck]);
 
   useEffect(() => {
+    // Register 체크박스 모두 동의
     if (privacy && use && background) {
       setAllCheck(true);
     } else if (!privacy || !use || !background) {
       setAllCheck(false);
     }
   }, [privacy, use, background]);
-
-  useEffect(() => {
-    // cert에
-    if (phone) {
-      setIp(false);
-      setNoCert(false);
-    } else if (ip) {
-      setPhone(false);
-      setNoCert(false);
-    } else {
-      setPhone(false);
-      setIp(false);
-    }
-  }, [phone, ip, noCert]);
 
   return (
     <div>

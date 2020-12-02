@@ -1,3 +1,4 @@
+import Button from "components/common/Button";
 import CheckBox from "components/common/CheckBox";
 import React from "react";
 import "./Register.scss";
@@ -51,6 +52,13 @@ const Register = ({
         <div className="Register-box">
           <div className="Register-box-text">회원가입</div>
           <div className="Register-box-form">
+            <input
+              placeholder="이름"
+              type="text"
+              className="Register-box-form-input"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
             <div className="Register-box-form-email">
               <input
                 type="text"
@@ -60,9 +68,7 @@ const Register = ({
                   setEmail(e.target.value);
                 }}
               />
-              <div>
-                <span> 인증 </span>
-              </div>
+              <Button content={"인증"}></Button>
             </div>
             <input
               type="password"
@@ -86,9 +92,7 @@ const Register = ({
             <CheckBox id="agree-3" content={"바탕 개인정보 취급방침 동의"} value={background} setValue={setBackground} />
           </div>
           <div className="Register-box-button">
-            <div onClick={() => handleRegister()}>
-              <span> 회원가입 </span>
-            </div>
+            <Button content={"회원가입"} onClick={() => handleRegister()}></Button>
             <span> 이미 회원이신가요? </span>
           </div>
         </div>

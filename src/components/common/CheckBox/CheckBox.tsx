@@ -5,19 +5,13 @@ interface CheckBoxProps {
   content: string;
   id: string;
   value: boolean;
-  setValue: React.Dispatch<React.SetStateAction<boolean>>;
+  setValue?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const CheckBox = ({ content, id, value, setValue }: CheckBoxProps) => {
   return (
-    <div className="Login-box-save">
-      <input
-        id={id}
-        type="checkbox"
-        className="Login-box-save-checkBox"
-        checked={value}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.checked)}
-      />
+    <div className="CheckBox" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue && setValue(e.target.checked)}>
+      <input id={id} type="checkbox" className="CheckBox-checkBox" checked={value} />
       <label htmlFor={id} />
       <span>{content}</span>
     </div>

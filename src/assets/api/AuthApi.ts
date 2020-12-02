@@ -17,11 +17,12 @@ class AuthApi {
       throw new Error(`${error}`);
     }
   }
-  async Register(email: string, pw: string) {
+  async Register(name: string, email: string, pw: string) {
     try {
       const url = `${server}/member/signup`;
 
       const body = {
+        name,
         email,
         pw,
       };
