@@ -1,10 +1,13 @@
 import React from "react";
 import MainContent from "components/common/MainContent";
 import "./Main.scss";
+import { useHistory, withRouter } from "react-router-dom";
 
 interface MainProps {}
 
 const Main = ({}: MainProps) => {
+  const history = useHistory();
+
   return (
     <>
       <div className="Main">
@@ -13,7 +16,9 @@ const Main = ({}: MainProps) => {
             <div className="Main-content-Title">
               <p className="Main-content-Title-Sub">대구소프트웨어고등학교</p>
               <p className="Main-content-Title-Main">2021 입학원서 접수</p>
-              <div className="Main-content-btn">원서 접수</div>
+              <div className="Main-content-btn" onClick={() => history.push("/Write")}>
+                원서 접수
+              </div>
             </div>
           </div>
         </div>
@@ -65,4 +70,4 @@ const Main = ({}: MainProps) => {
   );
 };
 
-export default Main;
+export default withRouter(Main);

@@ -2,7 +2,7 @@
 
 .Card {
   min-width: 50%;
-  color: $white;
+  color: $ft-white;
   display: flex;
   flex-direction: column;
   word-break: break-all;
@@ -11,7 +11,7 @@
   }
   &-Title {
     width: 100%;
-    border-left: 2px solid $white;
+    border-left: 2px solid $bd-white;
     font-size: 25px;
     height: auto;
     padding-left: 0.8rem;
