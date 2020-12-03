@@ -10,10 +10,16 @@ interface CheckBoxProps {
 
 const CheckBox = ({ content, id, value, setValue }: CheckBoxProps) => {
   return (
-    <div className="CheckBox" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue && setValue(e.target.checked)}>
-      <input id={id} type="checkbox" className="CheckBox-checkBox" checked={value} />
+    <div className="CheckBox">
+      <input
+        id={id}
+        type="checkbox"
+        className="CheckBox-checkBox"
+        checked={value}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue && setValue(e.target.checked)}
+      />
       <label htmlFor={id} />
-      <span>{content}</span>
+      <span onClick={() => setValue && setValue(!value)}>{content}</span>
     </div>
   );
 };
