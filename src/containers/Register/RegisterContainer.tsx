@@ -4,10 +4,13 @@ import Register from "components/Register";
 import Cert from "components/Cert";
 import { Response } from "../../util/types/Response";
 import useStore from "../../util/lib/hooks/useStore";
+import { useHistory, withRouter } from "react-router-dom";
 
 const RegisterContainer = () => {
   const { store } = useStore();
   const { tryRegister, cert, changePage, trySendEmail } = store.AuthStore;
+
+  const history = useHistory();
 
   // RegisterComponents checkBox
   const [allCheck, setAllCheck] = useState<boolean>(false);
@@ -55,7 +58,9 @@ const RegisterContainer = () => {
       console.log("모두 동의를 체크해 주세요");
     } else {
       await tryRegister(name, email, pw)
-        .then((res: Response) => {})
+        .then((res: Response) => {
+          history.push("login");
+        })
         .catch((Error: Error) => {
           if (Error.message === "Error: Request failed with status code 409") {
             console.log("메일 인증이 안되었습니다.");
@@ -120,4 +125,4 @@ const RegisterContainer = () => {
   );
 };
 
-export default inject("store")(observer(RegisterContainer));
+export default withRouter(inject("store")(observer(RegisterContainer)));

@@ -13,7 +13,15 @@ interface LoginProps {
   handleLogin: () => Promise<void>;
 }
 
-const Login = ({ check, setCheck, id, setId, password, setPassword, handleLogin }: LoginProps) => {
+const Login = ({
+  check,
+  setCheck,
+  id,
+  setId,
+  password,
+  setPassword,
+  handleLogin,
+}: LoginProps) => {
   return (
     <>
       <div className="Login">
@@ -36,11 +44,18 @@ const Login = ({ check, setCheck, id, setId, password, setPassword, handleLogin 
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <CheckBox id="save_id" content={"아이디 저장"} value={check} setValue={setCheck} />
+            <CheckBox
+              id="save_id"
+              content={"아이디 저장"}
+              value={check}
+              setValue={setCheck}
+            />
           </div>
           <div className="Login-box-button">
             <Button content="로그인" onClick={() => handleLogin()}></Button>
-            <span> 아이디 혹은 비밀번호를 잊으셨나요? </span>
+            <span className="Login-box-button-find">
+              아이디 혹은 비밀번호를 잊으셨나요?
+            </span>
           </div>
         </div>
       </div>
