@@ -3,15 +3,20 @@ import "./Button.scss";
 
 interface ButtonProps {
   style?: React.CSSProperties;
-  fontSize?: number;
   content: string;
+  className?: string;
   onClick?: ((event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void) | undefined;
 }
 
-const Button = ({ style, fontSize, content, onClick }: ButtonProps) => {
+const Button = ({ style, content, className, onClick }: ButtonProps) => {
   return (
-    <div style={style} onClick={(e) => onClick && onClick(e)} className="Button">
-      <span className="Button-content">{content}</span>
+    <div
+      className={className}
+      style={style}
+      onClick={(e) => onClick && onClick(e)}
+      id="Button"
+    >
+      <span id="Button-content">{content}</span>
     </div>
   );
 };

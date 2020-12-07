@@ -11,16 +11,43 @@
   padding: 0.5rem;
   position: absolute;
   &-container {
+    display: flex;
+    justify-content: space-between;
     width: 100%;
     max-width: 1100px;
     display: flex;
     align-items: center;
     &-logo {
       width: 70px;
+      cursor: pointer;
       path {
         fill: black;
       }
     }
+    &-profile {
+      height: 2rem;
+    }
+    &-button {
+      display: flex;
+      width: 50%;
+      max-width: 17rem;
+    }
+  }
+}
+.headerButton {
+  width: 40%;
+  height: 2.3rem;
+  border-radius: 3px;
+  background: none;
+  color: white;
+  border: 1px solid white;
+  font-size: 1rem;
+  transition: 0.2s;
+  cursor: pointer;
+  &:hover {
+    border: none;
+    color: #15216b;
+    background: white;
   }
 }
 

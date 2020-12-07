@@ -42,37 +42,31 @@
       flex-direction: column;
       padding: 0.8rem 0.5rem;
       position: relative;
-      width: 70%;
+      width: 90%;
+      max-width: 24rem;
       input[type="text"],
       input[type="password"] {
-        font-size: 1.2rem;
-        width: 100%;
         margin: 0.3rem 0;
-        padding: 0.9rem 1.2rem;
-        border-radius: 2px;
-        border: 1.2px solid #7d7d7d;
-        &:focus {
-          outline: none;
-          border: 1.2px solid blue;
-        }
       }
       &-email {
         display: flex;
-        justify-content: space-between;
         align-items: center;
         height: 52.5px;
-        width: 100%;
+        margin: 0.3rem 0;
         & div {
-          max-width: 5rem;
           margin-left: 0.3rem;
-          width: 80%;
-          height: 100%;
         }
       }
     }
     &-button {
       display: flex;
       flex-direction: column;
+      align-items: center;
+      &-find {
+        &:hover {
+          color: gray;
+        }
+      }
       & div {
         max-width: 11.3rem;
         width: 100%;
@@ -83,9 +77,6 @@
         font-size: 0.9rem;
         cursor: pointer;
         transition: 0.2s;
-        &:hover {
-          color: gray;
-        }
       }
     }
   }
