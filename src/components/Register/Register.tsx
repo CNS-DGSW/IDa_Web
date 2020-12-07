@@ -21,6 +21,8 @@ interface RegisterProps {
   checkPw: string;
   setCheckPw: React.Dispatch<React.SetStateAction<string>>;
   handleRegister: () => Promise<void>;
+  emailLoading: boolean;
+  handleEmailSend: () => Promise<void>;
 }
 
 const Register = ({
@@ -41,6 +43,8 @@ const Register = ({
   checkPw,
   setCheckPw,
   handleRegister,
+  emailLoading,
+  handleEmailSend,
 }: RegisterProps) => {
   return (
     <>
@@ -50,51 +54,77 @@ const Register = ({
           <span className="Register-text-content">아아디 비번 똑띠 적어라^^</span>
         </div>
         <div className="Register-box">
-          <div className="Register-box-text">회원가입</div>
-          <div className="Register-box-form">
-            <input
-              placeholder="이름"
-              type="text"
-              className="Register-box-form-input"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            <div className="Register-box-form-email">
-              <input
-                type="text"
-                placeholder="이메일"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
-              />
-              <Button content={"인증"}></Button>
-            </div>
-            <input
-              type="password"
-              placeholder="비밀번호"
-              value={pw}
-              onChange={(e) => {
-                setPw(e.target.value);
-              }}
-            />
-            <input
-              type="password"
-              placeholder="비밀번호 확인"
-              value={checkPw}
-              onChange={(e) => {
-                setCheckPw(e.target.value);
-              }}
-            />
-            <CheckBox id="agree-all" content={"모두 동의"} value={allCheck} setValue={setAllCheck} />
-            <CheckBox id="agree-1" content={"개인정보 처리 및 개인정보 활용 동의"} value={privacy} setValue={setPrivacy} />
-            <CheckBox id="agree-2" content={"입학원서 접수 사이트 이용약관 동의"} value={use} setValue={setUse} />
-            <CheckBox id="agree-3" content={"바탕 개인정보 취급방침 동의"} value={background} setValue={setBackground} />
-          </div>
-          <div className="Register-box-button">
-            <Button content={"회원가입"} onClick={() => handleRegister()}></Button>
-            <span> 이미 회원이신가요? </span>
-          </div>
+          {emailLoading ? (
+            <span>...Loading</span>
+          ) : (
+            <>
+              <div className="Register-box-text">회원가입</div>
+              <div className="Register-box-form">
+                <input
+                  placeholder="이름"
+                  type="text"
+                  className="Register-box-form-input"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+                <div className="Register-box-form-email">
+                  <input
+                    type="text"
+                    placeholder="이메일"
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                    }}
+                  />
+                  <Button content={"인증"} onClick={() => handleEmailSend()}></Button>
+                </div>
+                <input
+                  type="password"
+                  placeholder="비밀번호"
+                  value={pw}
+                  onChange={(e) => {
+                    setPw(e.target.value);
+                  }}
+                />
+                <input
+                  type="password"
+                  placeholder="비밀번호 확인"
+                  value={checkPw}
+                  onChange={(e) => {
+                    setCheckPw(e.target.value);
+                  }}
+                />
+                <CheckBox
+                  id="agree-all"
+                  content={"모두 동의"}
+                  value={allCheck}
+                  setValue={setAllCheck}
+                />
+                <CheckBox
+                  id="agree-1"
+                  content={"개인정보 처리 및 개인정보 활용 동의"}
+                  value={privacy}
+                  setValue={setPrivacy}
+                />
+                <CheckBox
+                  id="agree-2"
+                  content={"입학원서 접수 사이트 이용약관 동의"}
+                  value={use}
+                  setValue={setUse}
+                />
+                <CheckBox
+                  id="agree-3"
+                  content={"바탕 개인정보 취급방침 동의"}
+                  value={background}
+                  setValue={setBackground}
+                />
+              </div>
+              <div className="Register-box-button">
+                <Button content={"회원가입"} onClick={() => handleRegister()}></Button>
+                <span> 이미 회원이신가요? </span>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </>

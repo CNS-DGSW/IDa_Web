@@ -2,10 +2,12 @@ import React, { useCallback, useEffect, useState } from "react";
 import { inject, observer } from "mobx-react";
 import Register from "components/Register";
 import Cert from "components/Cert";
-import store from "../../stores/index";
+import { Response } from "../../util/types/Response";
+import useStore from "../../util/lib/hooks/useStore";
 
 const RegisterContainer = () => {
-  const { tryRegister, cert, changePage } = store.AuthStore;
+  const { store } = useStore();
+  const { tryRegister, cert, changePage, trySendEmail } = store.AuthStore;
 
   // RegisterComponents checkBox
   const [allCheck, setAllCheck] = useState<boolean>(false);
@@ -24,6 +26,26 @@ const RegisterContainer = () => {
   const [ip, setIp] = useState<boolean>(false);
   const [noCert, setNoCert] = useState<boolean>(false);
 
+  // 로딩
+  const [emailLoading, setEmailLoading] = useState<boolean>(false);
+
+  const handleEmailSend = useCallback(async () => {
+    setEmailLoading(true);
+    if (!email) {
+      setEmailLoading(false);
+      console.log("이메일을 입력해 주세요");
+    } else {
+      await trySendEmail(email)
+        .then((res: Response) => {
+          setEmailLoading(false);
+        })
+        .catch((err: Error) => {
+          setEmailLoading(false);
+          console.log(err);
+        });
+    }
+  }, [email, emailLoading]);
+
   const handleRegister = useCallback(async () => {
     if (!email || !pw || !checkPw || !name) {
       console.log("빈칸이 있습니다.");
@@ -33,8 +55,14 @@ const RegisterContainer = () => {
       console.log("모두 동의를 체크해 주세요");
     } else {
       await tryRegister(name, email, pw)
-        .then((res) => {})
-        .catch((err) => {});
+        .then((res: Response) => {})
+        .catch((Error: Error) => {
+          if (Error.message === "Error: Request failed with status code 409") {
+            console.log("메일 인증이 안되었습니다.");
+          } else {
+            console.log(Error.message);
+          }
+        });
     }
   }, [name, email, pw, checkPw, allCheck]);
 
@@ -74,6 +102,8 @@ const RegisterContainer = () => {
           checkPw={checkPw}
           setCheckPw={setCheckPw}
           handleRegister={handleRegister}
+          emailLoading={emailLoading}
+          handleEmailSend={handleEmailSend}
         />
       ) : (
         <Cert
