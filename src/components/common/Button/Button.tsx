@@ -10,7 +10,7 @@ interface ButtonProps {
 
 const Button = ({ style, fontSize, content, onClick }: ButtonProps) => {
   return (
-    <div onClick={(e) => onClick && onClick(e)} className="Button">
+    <div style={style} onClick={(e) => onClick && onClick(e)} className="Button">
       <span className="Button-content">{content}</span>
     </div>
   );

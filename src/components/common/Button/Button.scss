@@ -7,7 +7,13 @@
   color: white;
   transition: 0.3s;
   border-radius: 3px;
+  max-width: 11.3rem;
+  width: 11rem;
+  height: 2.5rem;
   cursor: pointer;
+  & span {
+    font-size: 1rem;
+  }
   &:hover {
     background: #465ae1;
   }

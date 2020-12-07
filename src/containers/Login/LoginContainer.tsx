@@ -3,6 +3,7 @@ import { inject, observer } from "mobx-react";
 import Login from "components/Login";
 import { LoginResponse } from "../../util/types/Response";
 import useStore from "../../util/lib/hooks/useStore";
+import { useHistory, withRouter } from "react-router-dom";
 
 const LoginContainer = () => {
   const [check, setCheck] = useState<boolean>(false);
@@ -10,18 +11,20 @@ const LoginContainer = () => {
   const [password, setPassword] = useState<string>("");
 
   const { store } = useStore();
+  const history = useHistory();
 
-  const { tryLogin, login } = store.AuthStore;
+  const { tryLogin } = store.AuthStore;
 
   const handleLogin = async () => {
     if (!id || !password) {
+      console.log("아이디 또는 비밀번호를 입력해 주세요");
     } else {
       await tryLogin(id, password)
         .then((res: LoginResponse) => {
-          console.log("로그인 성공");
+          history.push("/");
         })
         .catch((err: Error) => {
-          console.log(`${err}`);
+          console.log("서버 오류입니다.");
         });
     }
   };
@@ -41,4 +44,4 @@ const LoginContainer = () => {
   );
 };
 
-export default inject("store")(observer(LoginContainer));
+export default withRouter(inject("store")(observer(LoginContainer)));

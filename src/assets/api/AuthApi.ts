@@ -39,7 +39,7 @@ class AuthApi {
 
   async EmailCode(email: string) {
     try {
-      const url = `${server}/code`;
+      const url = `${server}/auth/code`;
 
       const body = {
         email,
