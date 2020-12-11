@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { inject, observer } from "mobx-react";
 import Login from "components/Login";
 import { LoginResponse } from "../../util/types/Response";
-import useStore from "../../util/lib/hooks/useStore";
+import useStore from "util/lib/hooks/useStore";
 import { useHistory, withRouter } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
@@ -44,6 +44,7 @@ const LoginContainer = () => {
         password={password}
         setPassword={setPassword}
         handleLogin={handleLogin}
+        history={history}
       />
     </>
   );

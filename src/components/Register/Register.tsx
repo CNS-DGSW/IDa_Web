@@ -1,5 +1,6 @@
 import Button from "components/common/Button";
 import CheckBox from "components/common/CheckBox";
+import CustomInput from "components/common/CustomInput";
 import React from "react";
 import "./Register.scss";
 
@@ -60,41 +61,39 @@ const Register = ({
             <>
               <div className="Register-box-text">회원가입</div>
               <div className="Register-box-form">
-                <input
+                <CustomInput
                   placeholder="이름"
                   type="text"
-                  className="Register-box-form-input"
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  setValue={setName}
                 />
                 <div className="Register-box-form-email">
-                  <input
+                  <CustomInput
                     type="text"
                     placeholder="이메일"
                     value={email}
-                    onChange={(e) => {
-                      setEmail(e.target.value);
-                    }}
+                    setValue={setEmail}
                   />
-                  <Button content={"인증"} onClick={() => handleEmailSend()}></Button>
+                  <Button
+                    style={{ height: "100%", width: "30%" }}
+                    content={"인증"}
+                    onClick={() => handleEmailSend()}
+                  ></Button>
                 </div>
-                <input
+                <CustomInput
                   type="password"
                   placeholder="비밀번호"
                   value={pw}
-                  onChange={(e) => {
-                    setPw(e.target.value);
-                  }}
+                  setValue={setPw}
                 />
-                <input
+                <CustomInput
                   type="password"
                   placeholder="비밀번호 확인"
                   value={checkPw}
-                  onChange={(e) => {
-                    setCheckPw(e.target.value);
-                  }}
+                  setValue={setCheckPw}
                 />
                 <CheckBox
+                  style={{ marginTop: "1rem" }}
                   id="agree-all"
                   content={"모두 동의"}
                   value={allCheck}
@@ -121,7 +120,7 @@ const Register = ({
               </div>
               <div className="Register-box-button">
                 <Button content={"회원가입"} onClick={() => handleRegister()}></Button>
-                <span> 이미 회원이신가요? </span>
+                <span className="Register-box-button-find"> 이미 회원이신가요? </span>
               </div>
             </>
           )}

@@ -1,5 +1,6 @@
 import Button from "components/common/Button";
 import CheckBox from "components/common/CheckBox";
+import CustomInput from "components/common/CustomInput";
 import React from "react";
 import "./Login.scss";
 
@@ -11,6 +12,9 @@ interface LoginProps {
   password: string;
   setPassword: React.Dispatch<React.SetStateAction<string>>;
   handleLogin: () => Promise<void>;
+  history: {
+    push(url: string): void;
+  };
 }
 
 const Login = ({
@@ -21,6 +25,7 @@ const Login = ({
   password,
   setPassword,
   handleLogin,
+  history,
 }: LoginProps) => {
   return (
     <>
@@ -32,17 +37,12 @@ const Login = ({
         <div className="Login-box">
           <div className="Login-box-text">로그인</div>
           <div className="Login-box-form">
-            <input
-              type="text"
-              placeholder="이메일"
-              value={id}
-              onChange={(e) => setId(e.target.value)}
-            />
-            <input
-              type="password"
+            <CustomInput placeholder="이메일" type="text" value={id} setValue={setId} />
+            <CustomInput
               placeholder="비밀번호"
+              type="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              setValue={setPassword}
             />
             <CheckBox
               id="save_id"
@@ -53,7 +53,7 @@ const Login = ({
           </div>
           <div className="Login-box-button">
             <Button content="로그인" onClick={() => handleLogin()}></Button>
-            <span className="Login-box-button-find">
+            <span className="Login-box-button-find" onClick={() => history.push("")}>
               아이디 혹은 비밀번호를 잊으셨나요?
             </span>
           </div>

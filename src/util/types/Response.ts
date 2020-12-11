@@ -9,3 +9,8 @@ export interface LoginResponse extends Response {
     refreshToken: string;
   };
 }
+export interface RefreshTokenResponse extends Response {
+  data: {
+    accessToken: string;
+  };
+}

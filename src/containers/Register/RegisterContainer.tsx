@@ -1,14 +1,13 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { inject, observer } from "mobx-react";
 import Register from "components/Register";
-import Cert from "components/Cert";
 import { Response } from "../../util/types/Response";
 import useStore from "../../util/lib/hooks/useStore";
 import { useHistory, withRouter } from "react-router-dom";
 
 const RegisterContainer = () => {
   const { store } = useStore();
-  const { tryRegister, cert, changePage, trySendEmail } = store.AuthStore;
+  const { tryRegister, trySendEmail } = store.AuthStore;
 
   const history = useHistory();
 
@@ -72,12 +71,6 @@ const RegisterContainer = () => {
   }, [name, email, pw, checkPw, allCheck]);
 
   useEffect(() => {
-    setPrivacy(allCheck);
-    setUse(allCheck);
-    setBackground(allCheck);
-  }, [allCheck]);
-
-  useEffect(() => {
     // Register 체크박스 모두 동의
     if (privacy && use && background) {
       setAllCheck(true);
@@ -85,42 +78,41 @@ const RegisterContainer = () => {
       setAllCheck(false);
     }
   }, [privacy, use, background]);
+  useEffect(() => {
+    if (!privacy || !use || !background) {
+      setPrivacy(privacy);
+      setUse(use);
+      setBackground(background);
+    } else if (allCheck) {
+      setPrivacy(allCheck);
+      setUse(allCheck);
+      setBackground(allCheck);
+    }
+  }, [allCheck, privacy, use, background]);
 
   return (
     <div>
-      {cert ? (
-        <Register
-          allCheck={allCheck}
-          setAllCheck={setAllCheck}
-          privacy={privacy}
-          setPrivacy={setPrivacy}
-          use={use}
-          setUse={setUse}
-          background={background}
-          setBackground={setBackground}
-          name={name}
-          setName={setName}
-          email={email}
-          setEmail={setEmail}
-          pw={pw}
-          setPw={setPw}
-          checkPw={checkPw}
-          setCheckPw={setCheckPw}
-          handleRegister={handleRegister}
-          emailLoading={emailLoading}
-          handleEmailSend={handleEmailSend}
-        />
-      ) : (
-        <Cert
-          ip={ip}
-          setIp={setIp}
-          phone={phone}
-          setPhone={setPhone}
-          noCert={noCert}
-          setNoCert={setNoCert}
-          changePage={changePage}
-        />
-      )}
+      <Register
+        allCheck={allCheck}
+        setAllCheck={setAllCheck}
+        privacy={privacy}
+        setPrivacy={setPrivacy}
+        use={use}
+        setUse={setUse}
+        background={background}
+        setBackground={setBackground}
+        name={name}
+        setName={setName}
+        email={email}
+        setEmail={setEmail}
+        pw={pw}
+        setPw={setPw}
+        checkPw={checkPw}
+        setCheckPw={setCheckPw}
+        handleRegister={handleRegister}
+        emailLoading={emailLoading}
+        handleEmailSend={handleEmailSend}
+      />
     </div>
   );
 };

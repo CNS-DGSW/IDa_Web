@@ -7,12 +7,6 @@ import { sha256 } from "js-sha256";
 @autobind
 class AuthStore {
   @observable login: boolean = false;
-  @observable cert: boolean = false;
-
-  @action
-  changePage = () => {
-    this.cert = true;
-  };
 
   @action
   tryLogin = async (email: string, password: string): Promise<LoginResponse> => {
@@ -34,7 +28,11 @@ class AuthStore {
   };
 
   @action
-  tryRegister = async (name: string, email: string, password: string): Promise<Response> => {
+  tryRegister = async (
+    name: string,
+    email: string,
+    password: string
+  ): Promise<Response> => {
     try {
       const response = await AuthApi.Register(name, email, sha256(password));
 
@@ -52,6 +50,25 @@ class AuthStore {
   trySendEmail = async (email: string): Promise<Response> => {
     try {
       const response = await AuthApi.EmailCode(email);
+
+      return new Promise((resolve: (response: Response) => void, reject) => {
+        resolve(response);
+      });
+    } catch (error) {
+      return new Promise((resolve, reject: (error: Error) => void) => {
+        reject(error);
+      });
+    }
+  };
+
+  @action
+  getInfo = async () => {
+    try {
+      const response = await AuthApi.GetInfo();
+
+      if (response.status === 200) {
+        this.login = true;
+      }
 
       return new Promise((resolve: (response: Response) => void, reject) => {
         resolve(response);
