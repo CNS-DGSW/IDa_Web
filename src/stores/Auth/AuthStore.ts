@@ -7,6 +7,12 @@ import { sha256 } from "js-sha256";
 @autobind
 class AuthStore {
   @observable login: boolean = false;
+  @observable profileBox: boolean = false;
+
+  @action
+  tryProfileBox = () => {
+    this.profileBox = !this.profileBox;
+  };
 
   @action
   tryLogin = async (email: string, password: string): Promise<LoginResponse> => {
