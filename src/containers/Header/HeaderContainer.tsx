@@ -10,7 +10,7 @@ const HeaderContainer = ({}) => {
   const { store } = useStore();
   const history = useHistory();
 
-  const { getInfo, login } = store.AuthStore;
+  const { getInfo, login, profileBox, tryProfileBox } = store.AuthStore;
 
   const getInfoCallback = useCallback(() => {
     if (!login && localStorage.getItem("accessToken")) {
@@ -36,7 +36,12 @@ const HeaderContainer = ({}) => {
 
   return (
     <>
-      <Header login={login} history={history} />
+      <Header
+        login={login}
+        history={history}
+        profileBox={profileBox}
+        tryProfileBox={tryProfileBox}
+      />
     </>
   );
 };

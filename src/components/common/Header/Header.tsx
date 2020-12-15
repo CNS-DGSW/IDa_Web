@@ -2,15 +2,18 @@ import React, { useCallback, useEffect, useState } from "react";
 import { ReactComponent as Logo } from "assets/images/logo.svg";
 import "./Header.scss";
 import Profile from "assets/images/profile.png";
+import ProfileModalBox from "components/Profile/ProfileModalBox";
 
 interface HeaderProps {
   login: boolean;
   history: {
     push(url: string): void;
   };
+  profileBox: boolean;
+  tryProfileBox: () => void;
 }
 
-const Header = ({ login, history }: HeaderProps) => {
+const Header = ({ login, history, profileBox, tryProfileBox }: HeaderProps) => {
   const [lastKnownScroll, setLastKnownScroll] = useState<number>(0);
   const [currentScroll, setCurrentScroll] = useState<number>(0);
   const [scrolling, setScrolling] = useState<boolean>(false);
@@ -149,7 +152,13 @@ const Header = ({ login, history }: HeaderProps) => {
                 src={Profile}
                 alt="프로필 아이콘"
                 className="header-container-profile"
+                onClick={() => tryProfileBox()}
               />
+              {profileBox ? (
+                <ProfileModalBox handleOnClick={() => tryProfileBox()} />
+              ) : (
+                <></>
+              )}
             </>
           ) : (
             <div className="header-container-button">

@@ -1,1 +1,107 @@
 /* your css code */
+.ProfileModalBox {
+  display: flex;
+  z-index: 100;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  right: 0%;
+  background: white;
+  font-size: 15px;
+  &-name {
+    display: flex;
+    flex-direction: column;
+    padding: 0.6rem 3rem 0.6rem 1rem;
+  }
+  &-pencil {
+    &-img {
+      background-image: url("../../../assets/images/pencil-gray.png");
+      background-repeat: no-repeat;
+      width: 1.7rem;
+      height: 1.7rem;
+      background-size: 1.7rem 1.7rem;
+    }
+    &:hover {
+      .ProfileModalBox-pencil-img {
+        background-image: url("../../../assets/images/pencil.png");
+      }
+    }
+  }
+  &-status {
+    &-img {
+      background-image: url("../../../assets/images/paper-gray.png");
+      background-repeat: no-repeat;
+      width: 1.7rem;
+      height: 1.7rem;
+      background-size: 1.7rem 1.7rem;
+    }
+    &:hover {
+      .ProfileModalBox-status-img {
+        background-image: url("../../../assets/images/paper.png");
+      }
+    }
+  }
+  &-modify {
+    &-img {
+      background-image: url("../../../assets/images/password-gray.png");
+      background-repeat: no-repeat;
+      width: 1.7rem;
+      height: 1.7rem;
+      background-size: 1.7rem 1.7rem;
+    }
+    &:hover {
+      .ProfileModalBox-modify-img {
+        background-image: url("../../../assets/images/password@2x.png");
+      }
+    }
+  }
+  &-check {
+    &-img {
+      background-image: url("../../../assets/images/auth-gray.png");
+      background-repeat: no-repeat;
+      width: 1.7rem;
+      height: 1.7rem;
+      background-size: 1.7rem 1.7rem;
+    }
+    &:hover {
+      .ProfileModalBox-check-img {
+        background-image: url("../../../assets/images/auth.png");
+      }
+    }
+  }
+  &-logout {
+    &-img {
+      background-image: url("../../../assets/images/logout-gray.png");
+      background-repeat: no-repeat;
+      width: 1.7rem;
+      height: 1.7rem;
+      background-size: 1.7rem 1.7rem;
+    }
+    &:hover {
+      .ProfileModalBox-logout-img {
+        background-image: url("../../../assets/images/logout.png");
+      }
+    }
+  }
+  &-background {
+    z-index: 99;
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+  }
+}
+.box {
+  display: flex;
+  padding: 0.6rem 1rem;
+  transition: 0.2s;
+  &-text {
+    margin-left: 1rem;
+  }
+  &:hover {
+    color: #0e1f91;
+    background: #eff1fc;
+  }
+}
+img {
+  width: 1.5rem;
+}
