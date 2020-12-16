@@ -14,3 +14,14 @@ export interface RefreshTokenResponse extends Response {
     accessToken: string;
   };
 }
+
+export interface UserInfoResponse extends Response {
+  data: {
+    birth: string;
+    email: string;
+    name: string;
+    profileImage: string;
+    sex: string;
+    studentTel: string;
+  };
+}

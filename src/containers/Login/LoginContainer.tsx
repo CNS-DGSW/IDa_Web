@@ -32,6 +32,7 @@ const LoginContainer = () => {
           history.push("/");
         })
         .catch((err: Error) => {
+          console.log(err);
           console.log("서버 오류입니다.");
         });
     }
@@ -43,6 +44,7 @@ const LoginContainer = () => {
       localStorage.setItem("id", id);
     } else {
       localStorage.setItem("loginSave", "false");
+      localStorage.removeItem("id");
     }
   };
 
@@ -57,11 +59,11 @@ const LoginContainer = () => {
         setCheck(false);
       }
     }
-  }, [id, setId, check, setCheck, loginSave]);
+  }, [id, setId, loginSave]);
 
   useEffect(() => {
     getLoginSave();
-  }, [id, check, getLoginSave]);
+  }, [loginSave]);
 
   return (
     <>

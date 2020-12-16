@@ -11,9 +11,20 @@ interface HeaderProps {
   };
   profileBox: boolean;
   tryProfileBox: () => void;
+  name: string | undefined;
+  email: string | undefined;
+  HandleLogout: () => void;
 }
 
-const Header = ({ login, history, profileBox, tryProfileBox }: HeaderProps) => {
+const Header = ({
+  login,
+  history,
+  profileBox,
+  tryProfileBox,
+  name,
+  email,
+  HandleLogout,
+}: HeaderProps) => {
   const [lastKnownScroll, setLastKnownScroll] = useState<number>(0);
   const [currentScroll, setCurrentScroll] = useState<number>(0);
   const [scrolling, setScrolling] = useState<boolean>(false);
@@ -155,7 +166,12 @@ const Header = ({ login, history, profileBox, tryProfileBox }: HeaderProps) => {
                 onClick={() => tryProfileBox()}
               />
               {profileBox ? (
-                <ProfileModalBox handleOnClick={() => tryProfileBox()} />
+                <ProfileModalBox
+                  handleOnClick={() => tryProfileBox()}
+                  name={name}
+                  email={email}
+                  HandleLogout={HandleLogout}
+                />
               ) : (
                 <></>
               )}

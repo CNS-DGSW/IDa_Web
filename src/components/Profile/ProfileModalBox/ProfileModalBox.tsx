@@ -2,15 +2,23 @@ import React from "react";
 import "./ProfileModalBox.scss";
 interface ProfileModalBoxProps {
   handleOnClick: () => void;
+  name: string | undefined;
+  email: string | undefined;
+  HandleLogout: () => void;
 }
 
-const ProfileModalBox = ({ handleOnClick }: ProfileModalBoxProps) => {
+const ProfileModalBox = ({
+  handleOnClick,
+  name,
+  email,
+  HandleLogout,
+}: ProfileModalBoxProps) => {
   return (
     <>
       <div className="ProfileModalBox">
-        <div className="ProfileModalBox-name">
-          <span>대소고님</span>
-          <span>dgsw123@gmail.com</span>
+        <div className="ProfileModalBox-title">
+          <span className="ProfileModalBox-title-name">{name}</span>
+          <span className="ProfileModalBox-title-email">{email}</span>
         </div>
         <div className="ProfileModalBox-pencil box">
           <div className="ProfileModalBox-pencil-img"></div>
@@ -28,7 +36,13 @@ const ProfileModalBox = ({ handleOnClick }: ProfileModalBoxProps) => {
           <div className="ProfileModalBox-check-img"></div>
           <span className="box-text">본인 인증</span>
         </div>
-        <div className="ProfileModalBox-logout box">
+        <div
+          className="ProfileModalBox-logout box"
+          style={{ paddingBottom: "1rem" }}
+          onClick={() => {
+            HandleLogout();
+          }}
+        >
           <div className="ProfileModalBox-logout-img"></div>
           <span className="box-text">로그아웃</span>
         </div>
