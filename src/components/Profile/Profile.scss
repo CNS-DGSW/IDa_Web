@@ -23,13 +23,15 @@
       font-size: 1.9rem;
       font-weight: 700;
       color: #0b1b4c;
+      margin-top: 1rem;
     }
     &-form {
       display: flex;
       flex-direction: column;
       padding: 0.8rem 0.5rem;
       position: relative;
-      width: 70%;
+      max-width: 25rem;
+      width: 90%;
     }
   }
 }

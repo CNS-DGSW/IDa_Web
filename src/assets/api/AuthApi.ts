@@ -1,4 +1,5 @@
 import axios from "axios";
+import { config } from "process";
 import { server } from "../../config/config.json";
 
 class AuthApi {
@@ -45,6 +46,43 @@ class AuthApi {
         email,
       };
       const { data } = await axios.post(url, body);
+
+      return data;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
+
+  async RefreshToken(refreshToken: string) {
+    try {
+      const url = `${server}/auth/token`;
+
+      const body = {
+        refreshToken,
+      };
+      const { data } = await axios.post(url, body);
+
+      return data;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
+
+  async GetInfo() {
+    try {
+      const url = `${server}/auth/info`;
+
+      let config = {};
+
+      if (localStorage.getItem("accessToken")) {
+        config = {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        };
+      }
+
+      const { data } = await axios.post(url, config);
 
       return data;
     } catch (error) {

@@ -1,10 +1,19 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { ReactComponent as Logo } from "assets/images/logo.svg";
 import "./Header.scss";
+import Profile from "assets/images/profile.png";
+import ProfileModalBox from "components/Profile/ProfileModalBox";
 
-interface HeaderProps {}
+interface HeaderProps {
+  login: boolean;
+  history: {
+    push(url: string): void;
+  };
+  profileBox: boolean;
+  tryProfileBox: () => void;
+}
 
-const Header = ({}: HeaderProps) => {
+const Header = ({ login, history, profileBox, tryProfileBox }: HeaderProps) => {
   const [lastKnownScroll, setLastKnownScroll] = useState<number>(0);
   const [currentScroll, setCurrentScroll] = useState<number>(0);
   const [scrolling, setScrolling] = useState<boolean>(false);
@@ -15,14 +24,18 @@ const Header = ({}: HeaderProps) => {
     if (window.pageYOffset !== undefined) {
       return window.pageYOffset;
     } else {
-      return (document.documentElement || document.body.parentNode || document.body).scrollTop;
+      return (document.documentElement || document.body.parentNode || document.body)
+        .scrollTop;
     }
   };
 
   const isOutOfBound = (scrollY: number) => {
     const pastTop = scrollY < 100;
 
-    const scrollerPhysicalHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    const scrollerPhysicalHeight =
+      window.innerHeight ||
+      document.documentElement.clientHeight ||
+      document.body.clientHeight;
     const scrollerHeight = Math.max(
       document.body.scrollHeight,
       document.documentElement.scrollHeight,
@@ -50,7 +63,10 @@ const Header = ({}: HeaderProps) => {
       setHeaderState("unpinned");
     } else if (scrollDirection === "up" && distanceScrolled > 3) {
       setHeaderState("pinned");
-    } else if (scrollDirection === "up" && currentScroll <= document.getElementById("header")!.offsetHeight) {
+    } else if (
+      scrollDirection === "up" &&
+      currentScroll <= document.getElementById("header")!.offsetHeight
+    ) {
       setHeaderState("pinned");
     }
   };
@@ -128,7 +144,37 @@ const Header = ({}: HeaderProps) => {
   return (
     <header className="header" id="header" style={headerStyle}>
       <div className="header-container">
-        <Logo className="header-container-logo" />
+        <Logo className="header-container-logo" onClick={() => history.push("/")} />
+        <>
+          {login ? (
+            <>
+              <img
+                src={Profile}
+                alt="프로필 아이콘"
+                className="header-container-profile"
+                onClick={() => tryProfileBox()}
+              />
+              {profileBox ? (
+                <ProfileModalBox handleOnClick={() => tryProfileBox()} />
+              ) : (
+                <></>
+              )}
+            </>
+          ) : (
+            <div className="header-container-button">
+              <button className="headerButton" onClick={() => history.push("/login")}>
+                로그인
+              </button>
+              <button
+                className="headerButton"
+                onClick={() => history.push("/register")}
+                style={{ marginLeft: "1rem" }}
+              >
+                회원가입
+              </button>
+            </div>
+          )}
+        </>
       </div>
     </header>
   );

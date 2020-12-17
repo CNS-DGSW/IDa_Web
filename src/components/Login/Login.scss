@@ -42,7 +42,8 @@
       flex-direction: column;
       padding: 0.8rem 0.5rem;
       position: relative;
-      width: 70%;
+      width: 90%;
+      max-width: 24rem;
       input[type="text"],
       input[type="password"] {
         font-size: 1.2rem;
@@ -57,10 +58,15 @@
       display: flex;
       align-items: center;
       flex-direction: column;
-    }
-    &-find {
-      margin: 5px;
-      font-size: 0.9rem;
+      &-find {
+        margin: 5px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: 0.2s;
+        &:hover {
+          color: #7d7d7d;
+        }
+      }
     }
   }
 }
