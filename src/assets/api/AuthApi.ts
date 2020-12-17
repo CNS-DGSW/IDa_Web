@@ -70,7 +70,7 @@ class AuthApi {
 
   async GetInfo() {
     try {
-      const url = `${server}/auth/info`;
+      const url = `${server}/user/getInfo`;
 
       let config = {};
 
@@ -82,7 +82,7 @@ class AuthApi {
         };
       }
 
-      const { data } = await axios.post(url, config);
+      const { data } = await axios.get(url, config);
 
       return data;
     } catch (error) {

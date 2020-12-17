@@ -1,4 +1,5 @@
 /* your css code */
+@import "util/colors.scss";
 .ProfileModalBox {
   display: flex;
   z-index: 100;
@@ -8,18 +9,29 @@
   right: 0%;
   background: white;
   font-size: 15px;
-  &-name {
+  &-title {
     display: flex;
     flex-direction: column;
-    padding: 0.6rem 3rem 0.6rem 1rem;
+    padding: 0.7rem 3rem 0.6rem 1.3rem;
+    &-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    &-email {
+      width: 9rem;
+      font-size: 0.9rem;
+      color: $ft-gray;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
   &-pencil {
     &-img {
       background-image: url("../../../assets/images/pencil-gray.png");
       background-repeat: no-repeat;
-      width: 1.7rem;
-      height: 1.7rem;
-      background-size: 1.7rem 1.7rem;
+      width: 1.4rem;
+      height: 1.4rem;
+      background-size: 1.4rem 1.4rem;
     }
     &:hover {
       .ProfileModalBox-pencil-img {
@@ -31,9 +43,9 @@
     &-img {
       background-image: url("../../../assets/images/paper-gray.png");
       background-repeat: no-repeat;
-      width: 1.7rem;
-      height: 1.7rem;
-      background-size: 1.7rem 1.7rem;
+      width: 1.4rem;
+      height: 1.4rem;
+      background-size: 1.4rem 1.4rem;
     }
     &:hover {
       .ProfileModalBox-status-img {
@@ -45,9 +57,9 @@
     &-img {
       background-image: url("../../../assets/images/password-gray.png");
       background-repeat: no-repeat;
-      width: 1.7rem;
-      height: 1.7rem;
-      background-size: 1.7rem 1.7rem;
+      width: 1.4rem;
+      height: 1.4rem;
+      background-size: 1.4rem 1.4rem;
     }
     &:hover {
       .ProfileModalBox-modify-img {
@@ -59,9 +71,9 @@
     &-img {
       background-image: url("../../../assets/images/auth-gray.png");
       background-repeat: no-repeat;
-      width: 1.7rem;
-      height: 1.7rem;
-      background-size: 1.7rem 1.7rem;
+      width: 1.4rem;
+      height: 1.4rem;
+      background-size: 1.4rem 1.4rem;
     }
     &:hover {
       .ProfileModalBox-check-img {
@@ -73,9 +85,9 @@
     &-img {
       background-image: url("../../../assets/images/logout-gray.png");
       background-repeat: no-repeat;
-      width: 1.7rem;
-      height: 1.7rem;
-      background-size: 1.7rem 1.7rem;
+      width: 1.4rem;
+      height: 1.4rem;
+      background-size: 1.4rem 1.4rem;
     }
     &:hover {
       .ProfileModalBox-logout-img {
@@ -92,16 +104,14 @@
 }
 .box {
   display: flex;
-  padding: 0.6rem 1rem;
+  padding: 0.7rem 1.3rem;
   transition: 0.2s;
   &-text {
     margin-left: 1rem;
+    font-weight: 600;
   }
   &:hover {
     color: #0e1f91;
     background: #eff1fc;
   }
-}
-img {
-  width: 1.5rem;
 }

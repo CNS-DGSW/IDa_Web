@@ -1,7 +1,7 @@
 import { action, observable } from "mobx";
 import { autobind } from "core-decorators";
 import AuthApi from "../../assets/api/AuthApi";
-import { LoginResponse, Response } from "../../util/types/Response";
+import { LoginResponse, Response, UserInfoResponse } from "../../util/types/Response";
 import { sha256 } from "js-sha256";
 
 @autobind
@@ -12,6 +12,11 @@ class AuthStore {
   @action
   tryProfileBox = () => {
     this.profileBox = !this.profileBox;
+  };
+
+  tryLogout = () => {
+    this.login = false;
+    this.profileBox = false;
   };
 
   @action
@@ -68,7 +73,7 @@ class AuthStore {
   };
 
   @action
-  getInfo = async () => {
+  getInfo = async (): Promise<UserInfoResponse> => {
     try {
       const response = await AuthApi.GetInfo();
 
@@ -76,7 +81,7 @@ class AuthStore {
         this.login = true;
       }
 
-      return new Promise((resolve: (response: Response) => void, reject) => {
+      return new Promise((resolve: (response: UserInfoResponse) => void, reject) => {
         resolve(response);
       });
     } catch (error) {
