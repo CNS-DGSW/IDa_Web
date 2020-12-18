@@ -3,6 +3,8 @@
 .student {
   padding: 2rem;
   background-color: #f6f6fc;
+  color: $ft-darkgray;
+
   &-text {
     display: flex;
     flex-direction: column;
@@ -44,6 +46,7 @@
       &-area {
         display: flex;
         justify-content: space-between;
+
         &-Input7 {
           width: 7rem;
           height: 2.6rem;
