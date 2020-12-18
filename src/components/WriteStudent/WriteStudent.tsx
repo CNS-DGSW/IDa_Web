@@ -7,7 +7,7 @@ interface WriteStudentProps {}
 const WriteStudent = ({}: WriteStudentProps) => {
   return (
     <>
-      <WriteContent title="지원자 정보를 입력해 주세요">
+      <WriteContent title="지원자 정보를 입력해 주세요" idx="1">
         <div className="student">
           <div className="student-text">
             <label>성명</label>
@@ -25,8 +25,22 @@ const WriteStudent = ({}: WriteStudentProps) => {
             <div className="student-select-box">
               <label>성별</label>
               <div className="student-select-box-area">
-                <input type="text" className="student-select-box-area-sexinput" />
-                <input type="text" className="student-select-box-area-sexinput" />
+                <label className="student-select-box-area-sex">
+                  남자
+                  <input
+                    type="radio"
+                    name="studentSex"
+                    className="student-select-box-area-sex-sexinput"
+                  />
+                </label>
+                <label className="student-select-box-area-sex">
+                  여자
+                  <input
+                    type="radio"
+                    name="studentSex"
+                    className="student-select-box-area-sex-sexinput"
+                  />
+                </label>
               </div>
             </div>
           </div>
