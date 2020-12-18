@@ -7,9 +7,17 @@ interface CheckBoxProps {
   style?: React.CSSProperties;
   value: boolean;
   setValue?: React.Dispatch<React.SetStateAction<boolean>>;
+  handleAllCheck?: () => void;
 }
 
-const CheckBox = ({ content, id, style, value, setValue }: CheckBoxProps) => {
+const CheckBox = ({
+  content,
+  id,
+  style,
+  value,
+  setValue,
+  handleAllCheck,
+}: CheckBoxProps) => {
   return (
     <div className="CheckBox" style={style}>
       <input
@@ -20,9 +28,19 @@ const CheckBox = ({ content, id, style, value, setValue }: CheckBoxProps) => {
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           setValue && setValue(e.target.checked)
         }
+        onClick={() => {
+          handleAllCheck && handleAllCheck();
+        }}
       />
       <label htmlFor={id} />
-      <span onClick={() => setValue && setValue(!value)}>{content}</span>
+      <span
+        onClick={() => {
+          setValue && setValue(!value);
+          handleAllCheck && handleAllCheck();
+        }}
+      >
+        {content}
+      </span>
     </div>
   );
 };

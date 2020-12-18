@@ -20,6 +20,7 @@ const ProfileModalBox = ({
           <span className="ProfileModalBox-title-name">{name}</span>
           <span className="ProfileModalBox-title-email">{email}</span>
         </div>
+        <hr />
         <div className="ProfileModalBox-pencil box">
           <div className="ProfileModalBox-pencil-img"></div>
           <span className="box-text">정보 수정</span>
@@ -38,7 +39,6 @@ const ProfileModalBox = ({
         </div>
         <div
           className="ProfileModalBox-logout box"
-          style={{ paddingBottom: "1rem" }}
           onClick={() => {
             HandleLogout();
           }}

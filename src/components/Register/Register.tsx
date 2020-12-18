@@ -24,6 +24,7 @@ interface RegisterProps {
   handleRegister: () => Promise<void>;
   emailLoading: boolean;
   handleEmailSend: () => Promise<void>;
+  handleAllCheck: () => void;
 }
 
 const Register = ({
@@ -46,6 +47,7 @@ const Register = ({
   handleRegister,
   emailLoading,
   handleEmailSend,
+  handleAllCheck,
 }: RegisterProps) => {
   return (
     <>
@@ -98,6 +100,7 @@ const Register = ({
                   content={"모두 동의"}
                   value={allCheck}
                   setValue={setAllCheck}
+                  handleAllCheck={handleAllCheck}
                 />
                 <CheckBox
                   id="agree-1"

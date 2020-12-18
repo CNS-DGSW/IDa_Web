@@ -20,7 +20,6 @@ const HeaderContainer = ({}) => {
   const [cookie, setCookie, removeCookie] = useCookies(["refreshToken"]);
 
   const HandleLogout = () => {
-    console.log("asd");
     tryLogout();
     removeCookie("refreshToken");
     localStorage.removeItem("accessToken");
@@ -51,7 +50,7 @@ const HeaderContainer = ({}) => {
 
   useEffect(() => {
     getInfoCallback();
-  }, [getInfoCallback]);
+  }, [login, getInfoCallback]);
 
   return (
     <>

@@ -11,7 +11,6 @@ const LoginContainer = () => {
   const [loginSave, setLoginSave] = useState<string | null>("");
   const [id, setId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [getId, setGetId] = useState<string | null>("");
 
   const { store } = useStore();
   const history = useHistory();
