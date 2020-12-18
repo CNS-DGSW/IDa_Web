@@ -1,6 +1,7 @@
 import React from "react";
 import WriteStudent from "../WriteStudent";
 import WriteParent from "../WriteParents";
+import WritePhoto from "../WritePhoto";
 import StepProgressBar from "react-step-progress";
 import "react-step-progress/dist/index.css";
 import "./Write.scss";
@@ -10,6 +11,7 @@ interface WriteProps {}
 const Write = ({}: WriteProps) => {
   const writeStudent = <WriteStudent></WriteStudent>;
   const writeParent = <WriteParent></WriteParent>;
+  const writePhoto = <WritePhoto></WritePhoto>;
 
   function onFormSubmit() {
     // handle the submit logic here
@@ -40,7 +42,7 @@ const Write = ({}: WriteProps) => {
                 label: "3단계",
                 subtitle: "",
                 name: "step 3",
-                content: "",
+                content: writePhoto,
               },
               {
                 label: "4단계",
