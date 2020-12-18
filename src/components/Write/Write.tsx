@@ -1,40 +1,73 @@
 import React from "react";
-import WriteTitle from "components/common/WriteTitle";
-import WriteContent from "components/common/WriteContent";
-import WriteMember from "components/WriteMember";
-import WriteSchool from "components/WriteSchool";
-import WriteAdmission from "components/WriteAdmission";
-import WriteChoose from "components/WriteChoose";
-
+import WriteStudent from "../WriteStudent";
+import WriteParent from "../WriteParents";
+import StepProgressBar from "react-step-progress";
+import "react-step-progress/dist/index.css";
 import "./Write.scss";
 
 interface WriteProps {}
 
 const Write = ({}: WriteProps) => {
+  const writeStudent = <WriteStudent></WriteStudent>;
+  const writeParent = <WriteParent></WriteParent>;
+
+  function onFormSubmit() {
+    // handle the submit logic here
+    // This function will be executed at the last step
+    // when the submit button (next button in the previous steps) is pressed
+  }
   return (
     <>
       <div className="write">
         <div className="write-box">
-          <WriteTitle />
-          <div className="write-formbox">
-            <WriteContent title="원서작성" children="원서 및 성적 입력" />
-            <div className="write-formbox-form">
-              <div className="write-formbox-form-menu">
-                <div>입학원서</div>
-                <div>성적알림표</div>
-                <div>자기소개서 및 학업계획서</div>
-              </div>
-              <div className="write-formbox-form-area">
-                <WriteMember />
-                <WriteSchool />
-                <WriteAdmission />
-                <WriteChoose />
-                <div className="write-formbox-form-btnarea">
-                  <div className="write-formbox-form-btnarea-btn">원서저장</div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <StepProgressBar
+            startingStep={0}
+            onSubmit={onFormSubmit}
+            steps={[
+              {
+                label: "1단계",
+                subtitle: "",
+                name: "step 1",
+                content: writeStudent,
+              },
+              {
+                label: "2단계",
+                subtitle: "",
+                name: "step 2",
+                content: writeParent,
+              },
+              {
+                label: "3단계",
+                subtitle: "",
+                name: "step 3",
+                content: "",
+              },
+              {
+                label: "4단계",
+                subtitle: "",
+                name: "step 4",
+                content: "",
+              },
+              {
+                label: "5단계",
+                subtitle: "",
+                name: "step 5",
+                content: "",
+              },
+              {
+                label: "6단계",
+                subtitle: "",
+                name: "step 6",
+                content: "",
+              },
+              {
+                label: "7단계",
+                subtitle: "",
+                name: "step 7",
+                content: "",
+              },
+            ]}
+          />
         </div>
       </div>
     </>
