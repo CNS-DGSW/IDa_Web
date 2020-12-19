@@ -1,56 +1,28 @@
 @import "util/colors.scss";
 
-.Admission {
-  width: 100%;
-  height: auto;
-  margin-top: 4rem;
+.admission {
+  padding: 2rem;
+  background-color: #f6f6fc;
+  &-text {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.2rem;
 
-  &-box {
-    width: 100%;
-    margin-top: 2rem;
-    height: auto;
-    &-content {
+    label {
       width: 100%;
-      height: auto;
-      display: flex;
+      margin-bottom: 0.6rem;
+    }
 
-      &-inputgroup {
-        width: 16rem;
-        height: auto;
-
-        &-check {
-          width: 16rem;
-          height: 2.8rem;
-          border: 1px solid $bd-line;
-          border-radius: 0.2rem;
-          margin-top: 1rem;
-          display: flex;
-          align-items: center;
-          padding-left: 1rem;
-          color: $ft-gray;
-        }
-      }
-
-      &-select {
-        width: 30rem;
-        height: 2.8rem;
-        border: 1px solid $bd-line;
-        border-radius: 0.2rem;
-        margin-top: 1rem;
-        margin-left: 6rem;
-        display: flex;
-        align-items: center;
-        padding-left: 1rem;
-        color: $ft-gray;
-      }
-
-      &-info {
-        width: 30rem;
-        height: 10.4rem;
-        background-color: $bg-blue-100;
-        margin-top: 1rem;
-        border-radius: 0.2rem;
-        margin-left: 6rem;
+    &-textInput {
+      width: 100%;
+      height: 2.6rem;
+      padding-left: 1rem;
+      border: none;
+      border: 1px solid $bd-gray-700;
+      border-radius: 2px;
+      &:focus {
+        border: 1px solid $bd-blue;
+        outline: none;
       }
     }
   }

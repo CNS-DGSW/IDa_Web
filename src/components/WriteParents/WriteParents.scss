@@ -3,6 +3,8 @@
 .parent {
   padding: 2rem;
   background-color: #f6f6fc;
+  color: $ft-darkgray;
+
   &-text {
     display: flex;
     flex-direction: column;
@@ -71,7 +73,7 @@
         }
 
         &-Input5 {
-          width: 5rem;
+          width: 4.8rem;
           height: 2.6rem;
           padding-left: 1rem;
           border: none;
