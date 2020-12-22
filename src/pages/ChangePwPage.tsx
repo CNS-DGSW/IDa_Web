@@ -1,11 +1,11 @@
 import React from "react";
 import DefaultTemplate from "components/common/Template/DefaultTemplate";
-import ProfileContainer from "containers/Profile/ProfileContainer";
+import ChangePwContainer from "containers/ChangePw/ChangePwContainer";
 
 const MainPage = () => {
   return (
     <DefaultTemplate>
-      <ProfileContainer />
+      <ChangePwContainer />
     </DefaultTemplate>
   );
 };

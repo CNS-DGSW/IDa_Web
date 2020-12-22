@@ -14,8 +14,14 @@ class AuthStore {
     this.profileBox = !this.profileBox;
   };
 
+  @action
   tryLogout = () => {
     this.login = false;
+    this.profileBox = false;
+  };
+
+  @action
+  tryCloseModal = () => {
     this.profileBox = false;
   };
 
@@ -80,6 +86,8 @@ class AuthStore {
       if (response.status === 200) {
         this.login = true;
       }
+
+      console.log(this.login);
 
       return new Promise((resolve: (response: UserInfoResponse) => void, reject) => {
         resolve(response);

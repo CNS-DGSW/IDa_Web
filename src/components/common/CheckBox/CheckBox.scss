@@ -3,8 +3,7 @@
   display: flex;
   align-items: center;
   font-size: 1rem;
-
-  label {
+  &:read-only label {
     position: relative;
     border-radius: 50%;
     width: 1rem;

@@ -4,7 +4,7 @@ import WritePage from "pages/WritePage";
 import { Route, Switch } from "react-router-dom";
 import MainPage from "../pages/MainPage";
 import RegisterPage from "pages/RegisterPage";
-import ProfilePage from "pages/ProfilePage";
+import ChangePwPage from "pages/ChangePwPage";
 
 const App = () => {
   return (
@@ -15,7 +15,7 @@ const App = () => {
         <Route exact path="/write" component={WritePage} />
         <Route exact path="/register" component={RegisterPage} />
         <Route exact path="/register" component={RegisterPage} />
-        <Route exact path="/profile" component={ProfilePage} />
+        <Route exact path="/changepw" component={ChangePwPage} />
       </Switch>
     </div>
   );

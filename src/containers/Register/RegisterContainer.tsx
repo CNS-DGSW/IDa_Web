@@ -56,7 +56,7 @@ const RegisterContainer = () => {
           history.push("login");
         })
         .catch((Error: Error) => {
-          if (Error.message === "Error: Request failed with status code 409") {
+          if (Error.message.includes("409")) {
             console.log("메일 인증이 안되었습니다.");
           } else {
             console.log(Error.message);
@@ -75,43 +75,38 @@ const RegisterContainer = () => {
     handleAllCheck();
   }, [allCheck, handleAllCheck]);
 
-  // useEffect(() => {
-  //   if (!privacy || !use || !background) {
-  //     setPrivacy(privacy);
-  //     setUse(use);
-  //     setBackground(background);
-  //   } else if (allCheck) {
-  //     setPrivacy(allCheck);
-  //     setUse(allCheck);
-  //     setBackground(allCheck);
-  //   }
-  // }, [allCheck, privacy, use, background]);
+  useEffect(() => {
+    if (privacy && use && background) {
+      setAllCheck(true);
+    } else if (!privacy || !use || !background) {
+      setAllCheck(false);
+    }
+  }, [privacy, use, background]);
 
   return (
-    <div>
-      <Register
-        allCheck={allCheck}
-        setAllCheck={setAllCheck}
-        privacy={privacy}
-        setPrivacy={setPrivacy}
-        use={use}
-        setUse={setUse}
-        background={background}
-        setBackground={setBackground}
-        name={name}
-        setName={setName}
-        email={email}
-        setEmail={setEmail}
-        pw={pw}
-        setPw={setPw}
-        checkPw={checkPw}
-        setCheckPw={setCheckPw}
-        handleRegister={handleRegister}
-        emailLoading={emailLoading}
-        handleEmailSend={handleEmailSend}
-        handleAllCheck={handleAllCheck}
-      />
-    </div>
+    <Register
+      allCheck={allCheck}
+      setAllCheck={setAllCheck}
+      privacy={privacy}
+      setPrivacy={setPrivacy}
+      use={use}
+      setUse={setUse}
+      background={background}
+      setBackground={setBackground}
+      name={name}
+      setName={setName}
+      email={email}
+      setEmail={setEmail}
+      pw={pw}
+      setPw={setPw}
+      checkPw={checkPw}
+      setCheckPw={setCheckPw}
+      handleRegister={handleRegister}
+      emailLoading={emailLoading}
+      handleEmailSend={handleEmailSend}
+      handleAllCheck={handleAllCheck}
+      history={history}
+    />
   );
 };
 

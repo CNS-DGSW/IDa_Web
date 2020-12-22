@@ -172,6 +172,7 @@ const Header = ({
                     name={name}
                     email={email}
                     HandleLogout={HandleLogout}
+                    history={history}
                   />
                 </>
               ) : (
