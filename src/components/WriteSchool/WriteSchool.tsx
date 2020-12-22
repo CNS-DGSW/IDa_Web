@@ -10,7 +10,7 @@ const WriteSchool = ({}: WriteSchoolProps) => {
       <WriteContent title="출신학교 및 학력을 입력해 주세요" idx="4">
         <div className="school">
           <div className="school-area">
-            <label>졸업구분</label>
+            <label className="school-area-label">졸업구분</label>
             <div className="school-area-select">
               <label className="school-area-select-box">
                 졸업예정
@@ -146,7 +146,7 @@ const WriteSchool = ({}: WriteSchoolProps) => {
 
         <div className="school">
           <div className="school-area">
-            <label>졸업년도</label>
+            <label className="school-area-label">졸업년도</label>
             <input type="text" className="school-area-textInput" />
           </div>
         </div>
