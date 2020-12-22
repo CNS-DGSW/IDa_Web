@@ -24,6 +24,10 @@ interface RegisterProps {
   handleRegister: () => Promise<void>;
   emailLoading: boolean;
   handleEmailSend: () => Promise<void>;
+  handleAllCheck: () => void;
+  history: {
+    push(url: string): void;
+  };
 }
 
 const Register = ({
@@ -46,6 +50,8 @@ const Register = ({
   handleRegister,
   emailLoading,
   handleEmailSend,
+  handleAllCheck,
+  history,
 }: RegisterProps) => {
   return (
     <>
@@ -98,6 +104,7 @@ const Register = ({
                   content={"모두 동의"}
                   value={allCheck}
                   setValue={setAllCheck}
+                  handleAllCheck={handleAllCheck}
                 />
                 <CheckBox
                   id="agree-1"
@@ -120,7 +127,12 @@ const Register = ({
               </div>
               <div className="Register-box-button">
                 <Button content={"회원가입"} onClick={() => handleRegister()}></Button>
-                <span className="Register-box-button-find"> 이미 회원이신가요? </span>
+                <span
+                  className="Register-box-button-find"
+                  onClick={() => history.push("/login")}
+                >
+                  이미 회원이신가요?
+                </span>
               </div>
             </>
           )}

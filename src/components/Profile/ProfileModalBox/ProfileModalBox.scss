@@ -5,7 +5,7 @@
   z-index: 100;
   flex-direction: column;
   position: absolute;
-  top: 100%;
+  top: 110%;
   right: 0%;
   background: white;
   font-size: 15px;
@@ -26,6 +26,7 @@
     }
   }
   &-pencil {
+    margin-top: 3px;
     &-img {
       background-image: url("../../../assets/images/pencil-gray.png");
       background-repeat: no-repeat;
@@ -82,6 +83,7 @@
     }
   }
   &-logout {
+    margin-bottom: 4px;
     &-img {
       background-image: url("../../../assets/images/logout-gray.png");
       background-repeat: no-repeat;
@@ -98,6 +100,8 @@
   &-background {
     z-index: 99;
     position: fixed;
+    top: 0%;
+    left: 0%;
     height: 100vh;
     width: 100%;
   }

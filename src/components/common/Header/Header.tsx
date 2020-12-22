@@ -166,12 +166,15 @@ const Header = ({
                 onClick={() => tryProfileBox()}
               />
               {profileBox ? (
-                <ProfileModalBox
-                  handleOnClick={() => tryProfileBox()}
-                  name={name}
-                  email={email}
-                  HandleLogout={HandleLogout}
-                />
+                <>
+                  <ProfileModalBox
+                    handleOnClick={() => tryProfileBox()}
+                    name={name}
+                    email={email}
+                    HandleLogout={HandleLogout}
+                    history={history}
+                  />
+                </>
               ) : (
                 <></>
               )}

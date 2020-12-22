@@ -15,19 +15,26 @@ const HeaderContainer = ({}) => {
   const [name, setName] = useState<string>();
   const [email, setEmail] = useState<string>();
 
-  const { getInfo, login, profileBox, tryProfileBox, tryLogout } = store.AuthStore;
+  const {
+    getInfo,
+    login,
+    profileBox,
+    tryProfileBox,
+    tryLogout,
+    tryCloseModal,
+  } = store.AuthStore;
 
   const [cookie, setCookie, removeCookie] = useCookies(["refreshToken"]);
 
   const HandleLogout = () => {
-    console.log("asd");
     tryLogout();
     removeCookie("refreshToken");
     localStorage.removeItem("accessToken");
+    history.push("/");
   };
 
   const getInfoCallback = useCallback(() => {
-    if (!login && localStorage.getItem("accessToken")) {
+    if (localStorage.getItem("accessToken")) {
       axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem(
         "accessToken"
       )}`;
@@ -47,11 +54,15 @@ const HeaderContainer = ({}) => {
           }
         });
     }
-  }, [login]);
+  }, [login, getInfo]);
 
   useEffect(() => {
     getInfoCallback();
-  }, [getInfoCallback]);
+  }, [login, getInfoCallback]);
+
+  useEffect(() => {
+    tryCloseModal();
+  }, [window.location.href]);
 
   return (
     <>

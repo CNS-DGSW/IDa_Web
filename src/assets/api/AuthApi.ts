@@ -40,7 +40,7 @@ class AuthApi {
 
   async EmailCode(email: string) {
     try {
-      const url = `${server}/auth/code`;
+      const url = `${server}/auth/authCode`;
 
       const body = {
         email,
@@ -69,6 +69,28 @@ class AuthApi {
   }
 
   async GetInfo() {
+    try {
+      const url = `${server}/user/getInfo`;
+
+      let config = {};
+
+      if (localStorage.getItem("accessToken")) {
+        config = {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        };
+      }
+
+      const { data } = await axios.get(url, config);
+
+      return data;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
+
+  async changePw() {
     try {
       const url = `${server}/user/getInfo`;
 

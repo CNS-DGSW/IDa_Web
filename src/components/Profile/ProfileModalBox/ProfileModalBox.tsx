@@ -5,6 +5,9 @@ interface ProfileModalBoxProps {
   name: string | undefined;
   email: string | undefined;
   HandleLogout: () => void;
+  history: {
+    push(url: string): void;
+  };
 }
 
 const ProfileModalBox = ({
@@ -12,6 +15,7 @@ const ProfileModalBox = ({
   name,
   email,
   HandleLogout,
+  history,
 }: ProfileModalBoxProps) => {
   return (
     <>
@@ -20,6 +24,7 @@ const ProfileModalBox = ({
           <span className="ProfileModalBox-title-name">{name}</span>
           <span className="ProfileModalBox-title-email">{email}</span>
         </div>
+        <hr />
         <div className="ProfileModalBox-pencil box">
           <div className="ProfileModalBox-pencil-img"></div>
           <span className="box-text">정보 수정</span>
@@ -28,7 +33,10 @@ const ProfileModalBox = ({
           <div className="ProfileModalBox-status-img"></div>
           <span className="box-text">원서접수 현황</span>
         </div>
-        <div className="ProfileModalBox-modify box">
+        <div
+          onClick={() => history.push("/changepw")}
+          className="ProfileModalBox-modify box"
+        >
           <div className="ProfileModalBox-modify-img"></div>
           <span className="box-text">비밀번호 수정</span>
         </div>
@@ -38,7 +46,6 @@ const ProfileModalBox = ({
         </div>
         <div
           className="ProfileModalBox-logout box"
-          style={{ paddingBottom: "1rem" }}
           onClick={() => {
             HandleLogout();
           }}
