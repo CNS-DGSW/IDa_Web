@@ -1,0 +1,64 @@
+@import "util/colors.scss";
+.FindEmail {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 65%;
+  max-width: 37rem;
+  height: 40rem;
+  &-text {
+    font-size: 2rem;
+    font-weight: bold;
+    color: $bd-darkblue;
+  }
+  &-form {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    margin-bottom: 5rem;
+    &-button {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      &-id {
+        border: none;
+        background: $ft-blue;
+        color: white;
+      }
+      &-pw {
+        border: 1px solid $bd-gray-700;
+        color: $bd-gray-700;
+        background: none;
+      }
+    }
+    &-hr {
+      margin-top: 0.8rem;
+      width: 100%;
+    }
+    &-input {
+      margin-top: 1rem;
+      &-text {
+        color: $ft-darklightblue;
+        font-weight: 600;
+      }
+    }
+  }
+}
+.button {
+  font-size: 1rem;
+  width: 49%;
+  height: 2.8rem;
+  border-radius: 3px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    background: $bg-light-bule;
+    color: white;
+    border: none;
+  }
+}

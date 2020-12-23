@@ -111,6 +111,12 @@ class AuthApi {
       throw new Error(`${error}`);
     }
   }
+
+  async changePwByEmail() {
+    try {
+      const url = `${server}/auth/changePwByEmail`;
+    } catch {}
+  }
 }
 
 export default new AuthApi();

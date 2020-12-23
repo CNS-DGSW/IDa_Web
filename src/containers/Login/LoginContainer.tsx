@@ -31,8 +31,11 @@ const LoginContainer = () => {
           history.push("/");
         })
         .catch((err: Error) => {
-          console.log(err);
-          console.log("서버 오류입니다.");
+          if (err.message.indexOf("401")) {
+            console.log("이메일이나 비밀번호가 다릅니다");
+          } else {
+            console.log("서버 오류입니다.");
+          }
         });
     }
   };

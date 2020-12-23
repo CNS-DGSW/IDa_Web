@@ -38,7 +38,13 @@ const RegisterContainer = () => {
         })
         .catch((err: Error) => {
           setEmailLoading(false);
-          console.log(err);
+          if (err.message.includes("400")) {
+            console.log("메일 형식이 아닙니다.");
+          } else if (err.message.includes("409")) {
+            console.log("이미 사용중인 메일입니다.");
+          } else {
+            console.log("서버 오류입니다");
+          }
         });
     }
   }, [email, emailLoading]);
@@ -47,7 +53,7 @@ const RegisterContainer = () => {
     if (!email || !pw || !checkPw || !name) {
       console.log("빈칸이 있습니다.");
     } else if (pw !== checkPw) {
-      console.log("비밀번호가 일치하지 않습니다..");
+      console.log("비밀번호가 일치하지 않습니다.");
     } else if (!allCheck) {
       console.log("모두 동의를 체크해 주세요");
     } else {
@@ -78,9 +84,10 @@ const RegisterContainer = () => {
   useEffect(() => {
     if (privacy && use && background) {
       setAllCheck(true);
-    } else if (!privacy || !use || !background) {
-      setAllCheck(false);
     }
+    //  else if (!privacy || !use || !background) {
+    //   setAllCheck(false);
+    // }
   }, [privacy, use, background]);
 
   return (
