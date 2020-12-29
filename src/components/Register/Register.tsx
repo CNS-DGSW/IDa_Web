@@ -28,6 +28,8 @@ interface RegisterProps {
   history: {
     push(url: string): void;
   };
+  birth: string;
+  setBirth: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const Register = ({
@@ -52,6 +54,8 @@ const Register = ({
   handleEmailSend,
   handleAllCheck,
   history,
+  birth,
+  setBirth,
 }: RegisterProps) => {
   return (
     <>
@@ -67,12 +71,23 @@ const Register = ({
             <>
               <div className="Register-box-text">회원가입</div>
               <div className="Register-box-form">
-                <CustomInput
-                  placeholder="이름"
-                  type="text"
-                  value={name}
-                  setValue={setName}
-                />
+                <div className="Register-box-form-info">
+                  <CustomInput
+                    placeholder="이름"
+                    type="text"
+                    value={name}
+                    setValue={setName}
+                    style={{ width: "65%", height: "80%" }}
+                  />
+                  <input
+                    className="Register-box-form-info-birth"
+                    type="date"
+                    value={birth}
+                    onChange={(e) => {
+                      setBirth(e.target.value);
+                    }}
+                  />
+                </div>
                 <div className="Register-box-form-email">
                   <CustomInput
                     type="text"

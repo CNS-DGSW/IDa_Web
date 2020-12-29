@@ -53,7 +53,7 @@ const Login = ({
           </div>
           <div className="Login-box-button">
             <Button content="로그인" onClick={() => handleLogin()}></Button>
-            <span className="Login-box-button-find" onClick={() => history.push("")}>
+            <span className="Login-box-button-find" onClick={() => history.push("/find")}>
               아이디 혹은 비밀번호를 잊으셨나요?
             </span>
           </div>

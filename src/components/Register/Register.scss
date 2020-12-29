@@ -48,6 +48,15 @@
       input[type="password"] {
         margin: 0.3rem 0;
       }
+      &-info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &-birth {
+          height: 78%;
+          width: 33%;
+        }
+      }
       &-email {
         display: flex;
         align-items: center;

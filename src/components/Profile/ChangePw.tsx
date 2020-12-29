@@ -24,8 +24,12 @@ const ChangePw = ({
 }: ChangePwProps) => {
   return (
     <div className="Profile">
+      <div className="Profile-title">
+        <span className="Profile-title-Welcome">Welcome</span>
+        <span className="Profile-title-content">아이디 비번 똑띠 적어라 ^^</span>
+      </div>
       <div className="Profile-box">
-        <div className="Profile-box-text">정보수정</div>
+        <div className="Profile-box-text">비밀번호 변경</div>
         <div className="Profile-box-form">
           <CustomInput
             placeholder={"현재 비밀번호"}

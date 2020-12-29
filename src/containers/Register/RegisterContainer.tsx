@@ -22,6 +22,7 @@ const RegisterContainer = () => {
   const [email, setEmail] = useState<string>("");
   const [pw, setPw] = useState<string>("");
   const [checkPw, setCheckPw] = useState<string>("");
+  const [birth, setBirth] = useState<string>("2003-01-28");
 
   // 로딩
   const [emailLoading, setEmailLoading] = useState<boolean>(false);
@@ -38,20 +39,26 @@ const RegisterContainer = () => {
         })
         .catch((err: Error) => {
           setEmailLoading(false);
-          console.log(err);
+          if (err.message.includes("400")) {
+            console.log("메일 형식이 아닙니다.");
+          } else if (err.message.includes("409")) {
+            console.log("이미 사용중인 메일입니다.");
+          } else {
+            console.log("서버 오류입니다");
+          }
         });
     }
   }, [email, emailLoading]);
 
   const handleRegister = useCallback(async () => {
-    if (!email || !pw || !checkPw || !name) {
+    if (!email || !pw || !checkPw || !name || !birth) {
       console.log("빈칸이 있습니다.");
     } else if (pw !== checkPw) {
-      console.log("비밀번호가 일치하지 않습니다..");
+      console.log("비밀번호가 일치하지 않습니다.");
     } else if (!allCheck) {
       console.log("모두 동의를 체크해 주세요");
     } else {
-      await tryRegister(name, email, pw)
+      await tryRegister(name, email, pw, birth)
         .then((res: Response) => {
           history.push("login");
         })
@@ -78,9 +85,10 @@ const RegisterContainer = () => {
   useEffect(() => {
     if (privacy && use && background) {
       setAllCheck(true);
-    } else if (!privacy || !use || !background) {
-      setAllCheck(false);
     }
+    //  else if (!privacy || !use || !background) {
+    //   setAllCheck(false);
+    // }
   }, [privacy, use, background]);
 
   return (
@@ -106,6 +114,8 @@ const RegisterContainer = () => {
       handleEmailSend={handleEmailSend}
       handleAllCheck={handleAllCheck}
       history={history}
+      birth={birth}
+      setBirth={setBirth}
     />
   );
 };
