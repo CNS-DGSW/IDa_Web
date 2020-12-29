@@ -48,10 +48,11 @@ class AuthStore {
   tryRegister = async (
     name: string,
     email: string,
-    password: string
+    password: string,
+    birth: string
   ): Promise<Response> => {
     try {
-      const response = await AuthApi.Register(name, email, sha256(password));
+      const response = await AuthApi.Register(name, email, sha256(password), birth);
 
       return new Promise((resolve: (response: Response) => void, reject) => {
         resolve(response);
@@ -90,6 +91,36 @@ class AuthStore {
       console.log(this.login);
 
       return new Promise((resolve: (response: UserInfoResponse) => void, reject) => {
+        resolve(response);
+      });
+    } catch (error) {
+      return new Promise((resolve, reject: (error: Error) => void) => {
+        reject(error);
+      });
+    }
+  };
+
+  @action
+  tryPwCode = async (email: string): Promise<Response> => {
+    try {
+      const response = await AuthApi.pwCode(email);
+
+      return new Promise((resolve: (response: Response) => void, reject) => {
+        resolve(response);
+      });
+    } catch (error) {
+      return new Promise((resolve, reject: (error: Error) => void) => {
+        reject(error);
+      });
+    }
+  };
+
+  @action
+  tryChangePwByEmail = async (code: string, pw: string): Promise<Response> => {
+    try {
+      const response = await AuthApi.changePwByEmail(code, sha256(pw));
+
+      return new Promise((resolve: (response: Response) => void, reject) => {
         resolve(response);
       });
     } catch (error) {

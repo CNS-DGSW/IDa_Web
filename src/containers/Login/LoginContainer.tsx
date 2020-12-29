@@ -5,6 +5,8 @@ import { LoginResponse } from "../../util/types/Response";
 import useStore from "util/lib/hooks/useStore";
 import { useHistory, withRouter } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const LoginContainer = () => {
   const [check, setCheck] = useState<boolean>(false);
@@ -21,20 +23,21 @@ const LoginContainer = () => {
 
   const handleLogin = async () => {
     if (!id || !password) {
-      console.log("아이디 또는 비밀번호를 입력해 주세요");
+      toast("아이디 또는 비밀번호를 입력해 주세요");
     } else {
       await tryLogin(id, password)
         .then((res: LoginResponse) => {
+          toast("로그인 되었습니다");
           localStorage.setItem("accessToken", res.data.accessToken);
           setCookie("refreshToken", res.data.refreshToken, { path: "/" });
           setLoginCheck();
           history.push("/");
         })
         .catch((err: Error) => {
-          if (err.message.indexOf("401")) {
-            console.log("이메일이나 비밀번호가 다릅니다");
+          if (err.message.includes("401")) {
+            toast("이메일이나 비밀번호가 다릅니다");
           } else {
-            console.log("서버 오류입니다.");
+            toast("서버 오류입니다");
           }
         });
     }
@@ -79,6 +82,7 @@ const LoginContainer = () => {
         handleLogin={handleLogin}
         history={history}
       />
+      <ToastContainer />
     </>
   );
 };

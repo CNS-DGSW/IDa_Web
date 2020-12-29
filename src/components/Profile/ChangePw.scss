@@ -3,7 +3,7 @@
   display: flex;
   height: 100vh;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   flex-direction: column;
   background-repeat: no-repeat;
   background-image: url("../../assets/images/profileBack.png");
@@ -14,6 +14,7 @@
     justify-content: center;
     flex-direction: column;
     color: white;
+    margin-top: 1rem;
     &-Welcome {
       font-size: 3rem;
     }
@@ -23,7 +24,6 @@
     }
   }
   &-box {
-    margin-top: 8rem;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -33,7 +33,6 @@
     height: 40rem;
     background: white;
     box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.16);
-    margin-bottom: 4rem;
     &-text {
       font-size: 1.9rem;
       font-weight: 700;

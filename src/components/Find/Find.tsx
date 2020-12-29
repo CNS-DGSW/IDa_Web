@@ -16,6 +16,11 @@ interface FindProps {
   setNewPw: React.Dispatch<React.SetStateAction<string>>;
   checkPw: string;
   setCheckPw: React.Dispatch<React.SetStateAction<string>>;
+  code: string;
+  setCode: React.Dispatch<React.SetStateAction<string>>;
+  emailLoading: boolean;
+  handlePwCode: () => void;
+  handleChangePw: () => void;
 }
 
 const Find = ({
@@ -31,6 +36,11 @@ const Find = ({
   setNewPw,
   checkPw,
   setCheckPw,
+  handlePwCode,
+  handleChangePw,
+  code,
+  setCode,
+  emailLoading,
 }: FindProps) => {
   return (
     <div className="Find">
@@ -42,16 +52,17 @@ const Find = ({
         {changePage ? (
           <FindPw
             setChangePage={setChangePage}
-            name={name}
-            setName={setName}
             email={email}
             setEmail={setEmail}
-            birth={birth}
-            setBirth={setBirth}
             newPw={newPw}
             setNewPw={setNewPw}
             checkPw={checkPw}
             setCheckPw={setCheckPw}
+            handlePwCode={handlePwCode}
+            handleChangePw={handleChangePw}
+            code={code}
+            setCode={setCode}
+            emailLoading={emailLoading}
           />
         ) : (
           <FindEmail

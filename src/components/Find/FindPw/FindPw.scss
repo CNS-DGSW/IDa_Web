@@ -14,10 +14,11 @@
     font-weight: bold;
     color: $bd-darkblue;
   }
-  &-form {
+  &-buttons {
     display: flex;
     width: 100%;
     flex-direction: column;
+    margin-bottom: 2rem;
     &-button {
       display: flex;
       width: 100%;
@@ -43,6 +44,12 @@
     &-text {
       color: $ft-darklightblue;
       font-weight: 600;
+    }
+    &-email {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      justify-content: space-between;
     }
   }
 }

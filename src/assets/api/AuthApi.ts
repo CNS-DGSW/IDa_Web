@@ -18,11 +18,9 @@ class AuthApi {
       throw new Error(`${error}`);
     }
   }
-  async Register(name: string, email: string, pw: string) {
+  async Register(name: string, email: string, pw: string, birth: string) {
     try {
       const url = `${server}/auth/register`;
-
-      const birth = "2020-12-03T10:51:59.084Z";
 
       const body = {
         birth,
@@ -112,10 +110,37 @@ class AuthApi {
     }
   }
 
-  async changePwByEmail() {
+  async pwCode(email: string) {
+    try {
+      const url = `${server}/auth/pwCode`;
+
+      const body = {
+        email,
+      };
+
+      const { data } = await axios.post(url, body);
+
+      return data;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
+
+  async changePwByEmail(code: string, pw: string) {
     try {
       const url = `${server}/auth/changePwByEmail`;
-    } catch {}
+
+      const body = {
+        code,
+        pw,
+      };
+
+      const { data } = await axios.patch(url, body);
+
+      return data;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
   }
 }
 
