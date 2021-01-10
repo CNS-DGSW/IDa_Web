@@ -35,16 +35,19 @@ const ChangePw = ({
             placeholder={"현재 비밀번호"}
             value={originPw}
             setValue={setOriginPw}
+            type="password"
           />
           <CustomInput
             placeholder={"새로운 비밀번호"}
             value={changePw}
             setValue={setChangePw}
+            type="password"
           />
           <CustomInput
             placeholder={"새로운 비밀번호 확인"}
             value={checkPw}
             setValue={setCheckPw}
+            type="password"
           />
         </div>
         <div className="Profile-box-button">

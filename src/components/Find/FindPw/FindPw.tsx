@@ -4,7 +4,6 @@ import React from "react";
 import "./FindPw.scss";
 
 interface FindPwProps {
-  setChangePage: React.Dispatch<React.SetStateAction<boolean>>;
   email: string;
   setEmail: React.Dispatch<React.SetStateAction<string>>;
   newPw: string;
@@ -19,7 +18,6 @@ interface FindPwProps {
 }
 
 const FindPw = ({
-  setChangePage,
   email,
   setEmail,
   newPw,
@@ -37,24 +35,10 @@ const FindPw = ({
       <span className="FindPw-text">아이디/비밀번호 찾기</span>
       <div>
         {emailLoading ? (
-          <></>
+          <>...Loading</>
         ) : (
           <>
             <div className="FindPw-buttons">
-              <div className="FindPw-buttons-button">
-                <button
-                  className="FindPw-buttons-button-id button"
-                  onClick={() => setChangePage(false)}
-                >
-                  아이디찾기
-                </button>
-                <button
-                  className="FindPw-buttons-button-pw button"
-                  onClick={() => setChangePage(true)}
-                >
-                  비밀번호변경
-                </button>
-              </div>
               <hr className="FindPw-buttons-hr" />
             </div>
             <div className="FindPw-form">
