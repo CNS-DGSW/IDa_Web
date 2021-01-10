@@ -2,12 +2,21 @@ import React from "react";
 import WriteContent from "../common/WriteContent";
 import "./WriteStudent.scss";
 
-interface WriteStudentProps {}
+interface WriteStudentProps {
+  page: number;
+  nextPage: () => void;
+  prevPage: () => void;
+}
 
-const WriteStudent = ({}: WriteStudentProps) => {
+const WriteStudent = ({ page, nextPage, prevPage }: WriteStudentProps) => {
   return (
     <>
-      <WriteContent title="지원자 정보를 입력해 주세요" idx="1">
+      <WriteContent
+        title="지원자 정보를 입력해 주세요"
+        page={page}
+        nextPage={nextPage}
+        prevPage={prevPage}
+      >
         <div className="student">
           <div className="student-text">
             <label className="student-text-label">성명</label>
