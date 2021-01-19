@@ -4,10 +4,18 @@ import "./WriteContent.scss";
 interface WriteContentProps {
   title: string;
   children: React.ReactNode;
-  idx: string;
+  page: number;
+  nextPage: () => void;
+  prevPage: () => void;
 }
 
-const WriteContent = ({ title, children, idx }: WriteContentProps) => {
+const WriteContent = ({
+  title,
+  children,
+  page,
+  nextPage,
+  prevPage,
+}: WriteContentProps) => {
   return (
     <>
       <div className="writecontent">
@@ -18,11 +26,16 @@ const WriteContent = ({ title, children, idx }: WriteContentProps) => {
             <div className="writecontent-children-area-btn save">원서저장</div>
             <div className="writecontent-children-area-btn preview">원서 미리보기</div>
             <div className="writecontent-children-area-hr"></div>
-            <div className="writecontent-children-area-btn next">다음</div>
-            {idx === "1" ? (
-              ""
-            ) : (
-              <div className="writecontent-children-area-btn prev">이전</div>
+
+            {page !== 6 && (
+              <div className="writecontent-children-area-btn next" onClick={nextPage}>
+                다음
+              </div>
+            )}
+            {page !== 0 && (
+              <div className="writecontent-children-area-btn prev" onClick={prevPage}>
+                이전
+              </div>
             )}
           </div>
         </div>
