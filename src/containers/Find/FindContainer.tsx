@@ -4,12 +4,11 @@ import Find from "components/Find";
 import useStore from "util/lib/hooks/useStore";
 import { useHistory } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const FindContainer = ({}) => {
-  const [changePage, setChangePage] = useState<boolean>(false);
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
-  const [birth, setBirth] = useState<string>("");
   const [newPw, setNewPw] = useState<string>("");
   const [checkPw, setCheckPw] = useState<string>("");
   const [code, setCode] = useState<string>("");
@@ -22,19 +21,26 @@ const FindContainer = ({}) => {
 
   const handlePwCode = () => {
     setEmailLoading(true);
+    toast("메일 전송중입니다.");
     tryPwCode(email)
       .then((res) => {
         setEmailLoading(false);
       })
       .catch((err) => {
         setEmailLoading(false);
-        console.log(err);
+        if (err.message.includes("400")) {
+          toast("메일 형식이 아닙니다.");
+        } else if (err.message.includes("404")) {
+          toast("존재하지 않는 메일입니다.");
+        } else {
+          console.log(err);
+        }
       });
   };
 
   const handleChangePw = () => {
     if (newPw !== checkPw) {
-      console.log("비밀번호가 일치하지 않습니다.");
+      toast("Wow so easy !");
     } else {
       tryChangePwByEmail(code, newPw)
         .then((res) => {
@@ -52,25 +58,24 @@ const FindContainer = ({}) => {
   };
 
   return (
-    <Find
-      changePage={changePage}
-      setChangePage={setChangePage}
-      name={name}
-      setName={setName}
-      email={email}
-      setEmail={setEmail}
-      birth={birth}
-      setBirth={setBirth}
-      newPw={newPw}
-      setNewPw={setNewPw}
-      checkPw={checkPw}
-      setCheckPw={setCheckPw}
-      code={code}
-      setCode={setCode}
-      emailLoading={emailLoading}
-      handlePwCode={handlePwCode}
-      handleChangePw={handleChangePw}
-    />
+    <>
+      <Find
+        name={name}
+        setName={setName}
+        email={email}
+        setEmail={setEmail}
+        newPw={newPw}
+        setNewPw={setNewPw}
+        checkPw={checkPw}
+        setCheckPw={setCheckPw}
+        code={code}
+        setCode={setCode}
+        emailLoading={emailLoading}
+        handlePwCode={handlePwCode}
+        handleChangePw={handleChangePw}
+      />
+      <ToastContainer />
+    </>
   );
 };
 

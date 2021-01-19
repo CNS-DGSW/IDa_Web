@@ -1,0 +1,44 @@
+/* your css code */
+.ApplyStatus {
+  display: flex;
+  flex-direction: column;
+  &-excel {
+    display: flex;
+    flex-direction: column;
+  }
+  &-status {
+    display: flex;
+    flex-direction: column;
+    &-table {
+      width: 100%;
+      border: 1px solid black;
+      & th {
+        border: 1px solid black;
+        width: 30%;
+        & tr {
+          display: flex;
+          justify-content: space-around;
+        }
+      }
+      & tr {
+        width: 100%;
+        border: 1px solid black;
+        & td td {
+          border: none;
+        }
+      }
+    }
+    & td {
+      border: 1px solid black;
+    }
+  }
+  &-info {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.tableCount {
+  display: flex;
+  justify-content: space-around;
+}

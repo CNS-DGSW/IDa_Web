@@ -6,6 +6,7 @@ import MainPage from "../pages/MainPage";
 import RegisterPage from "pages/RegisterPage";
 import ChangePwPage from "pages/ChangePwPage";
 import FindPage from "pages/FindPage";
+import ApplyStatusPage from "pages/AdminPage/ApplyStatusPage";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Route exact path="/register" component={RegisterPage} />
         <Route exact path="/register" component={RegisterPage} />
         <Route exact path="/changepw" component={ChangePwPage} />
+        <Route exact path="/admin/applystatus" component={ApplyStatusPage} />
         <Route exact path="/find" component={FindPage} />
       </Switch>
     </div>
