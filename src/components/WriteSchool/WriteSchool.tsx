@@ -6,25 +6,14 @@ import { useEffect } from "react";
 interface WriteSchoolProps {
   school: string;
   setSchool: React.Dispatch<React.SetStateAction<string>>;
-  page: number;
-  nextPage: () => void;
-  prevPage: () => void;
 }
 
-const WriteSchool = ({
-  school,
-  setSchool,
-  page,
-  nextPage,
-  prevPage,
-}: WriteSchoolProps) => {
+const WriteSchool = ({ school, setSchool }: WriteSchoolProps) => {
   return (
     <>
       <WriteContent
         title="출신학교 및 학력을 입력해 주세요"
-        page={page}
-        nextPage={nextPage}
-        prevPage={prevPage}
+        onSave={() => console.log(1)}
       >
         <div className="school">
           <div className="school-area">

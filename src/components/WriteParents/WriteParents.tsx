@@ -2,21 +2,12 @@ import React from "react";
 import WriteContent from "../common/WriteContent";
 import "./WriteParents.scss";
 
-interface WriteParentsProps {
-  page: number;
-  nextPage: () => void;
-  prevPage: () => void;
-}
+interface WriteParentsProps {}
 
-const WriteParents = ({ page, nextPage, prevPage }: WriteParentsProps) => {
+const WriteParents = ({}: WriteParentsProps) => {
   return (
     <>
-      <WriteContent
-        title="보호자 정보를 입력해 주세요"
-        page={page}
-        nextPage={nextPage}
-        prevPage={prevPage}
-      >
+      <WriteContent title="보호자 정보를 입력해 주세요" onSave={() => console.log(1)}>
         <div className="parent">
           <div className="parent-select">
             <div className="parent-select-box">

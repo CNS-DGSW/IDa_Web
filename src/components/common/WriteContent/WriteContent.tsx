@@ -1,21 +1,31 @@
-import React from "react";
+import { observer } from "mobx-react";
+import React, { useCallback } from "react";
+import useStore from "util/lib/hooks/useStore";
 import "./WriteContent.scss";
 
 interface WriteContentProps {
   title: string;
   children: React.ReactNode;
-  page: number;
-  nextPage: () => void;
-  prevPage: () => void;
+  onSave: () => void | boolean;
+  isChanged?: boolean;
 }
 
-const WriteContent = ({
-  title,
-  children,
-  page,
-  nextPage,
-  prevPage,
-}: WriteContentProps) => {
+const WriteContent = ({ title, children, onSave, isChanged }: WriteContentProps) => {
+  const { store } = useStore();
+  const { page, pageHandle } = store.WriteStore;
+
+  const nextPage = useCallback(() => {
+    if (!isChanged) {
+      pageHandle(page + 1);
+    }
+  }, [isChanged]);
+
+  const prevPage = useCallback(() => {
+    if (!isChanged) {
+      pageHandle(page - 1);
+    }
+  }, [isChanged]);
+
   return (
     <>
       <div className="writecontent">
@@ -23,7 +33,16 @@ const WriteContent = ({
         <div className="writecontent-children">
           <div className="writecontent-children-box">{children}</div>
           <div className="writecontent-children-area">
-            <div className="writecontent-children-area-btn save">원서저장</div>
+            <div
+              className="writecontent-children-area-btn save"
+              onClick={() => {
+                if (onSave() === true) {
+                  nextPage();
+                }
+              }}
+            >
+              원서저장
+            </div>
             <div className="writecontent-children-area-btn preview">원서 미리보기</div>
             <div className="writecontent-children-area-hr"></div>
 
@@ -44,4 +63,4 @@ const WriteContent = ({
   );
 };
 
-export default WriteContent;
+export default observer(WriteContent);

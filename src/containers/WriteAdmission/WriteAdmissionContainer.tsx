@@ -5,24 +5,13 @@ import WriteAdmission from "../../components/WriteAdmission";
 
 const WriteAdmissionContainer = ({}) => {
   const { store } = useStore();
-  const { page, pageHandle } = store.WriteStore;
   const [mission, setMission] = useState<string>("");
   const [special, setSpecial] = useState<string>("");
   const [typical, setTypical] = useState<string>("");
 
-  const nextPage = () => {
-    pageHandle(page + 1);
-  };
-
-  const prevPage = () => {
-    pageHandle(page - 1);
-  };
   return (
     <>
       <WriteAdmission
-        page={page}
-        nextPage={nextPage}
-        prevPage={prevPage}
         mission={mission}
         setMission={setMission}
         special={special}
