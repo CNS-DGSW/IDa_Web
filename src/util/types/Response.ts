@@ -1,3 +1,5 @@
+import Sex from "util/enums/Sex";
+
 export type Response = {
   status: number;
   message: string;
@@ -17,11 +19,11 @@ export interface RefreshTokenResponse extends Response {
 
 export interface UserInfoResponse extends Response {
   data: {
-    birth: string;
+    birth: Date;
     email: string;
     name: string;
     profileImage: string;
-    sex: string;
+    sex: Sex;
     studentTel: string;
   };
 }
