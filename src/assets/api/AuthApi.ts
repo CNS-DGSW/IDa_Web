@@ -1,5 +1,4 @@
 import axios from "axios";
-import { config } from "process";
 import { server } from "../../config/config.json";
 
 class AuthApi {
@@ -70,15 +69,11 @@ class AuthApi {
     try {
       const url = `${server}/user/getInfo`;
 
-      let config = {};
-
-      if (localStorage.getItem("accessToken")) {
-        config = {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-        };
-      }
+      const config = {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      };
 
       const { data } = await axios.get(url, config);
 
@@ -92,15 +87,11 @@ class AuthApi {
     try {
       const url = `${server}/user/getInfo`;
 
-      let config = {};
-
-      if (localStorage.getItem("accessToken")) {
-        config = {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-        };
-      }
+      const config = {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      };
 
       const { data } = await axios.get(url, config);
 
