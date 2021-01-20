@@ -2,21 +2,12 @@ import React from "react";
 import "./WriteGrades.scss";
 import WriteContent from "../common/WriteContent";
 
-interface WriteGradesProps {
-  page: number;
-  nextPage: () => void;
-  prevPage: () => void;
-}
+interface WriteGradesProps {}
 
-const WriteGrades = ({ page, nextPage, prevPage }: WriteGradesProps) => {
+const WriteGrades = ({}: WriteGradesProps) => {
   return (
     <>
-      <WriteContent
-        title="성적알림표를 작성해주세요"
-        page={page}
-        nextPage={nextPage}
-        prevPage={prevPage}
-      >
+      <WriteContent title="성적알림표를 작성해주세요" onSave={() => console.log(1)}>
         <div></div>
       </WriteContent>
     </>

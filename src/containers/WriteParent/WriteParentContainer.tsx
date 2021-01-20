@@ -5,18 +5,10 @@ import WriteParents from "../../components/WriteParents";
 
 const WriteParentContainer = ({}) => {
   const { store } = useStore();
-  const { page, pageHandle } = store.WriteStore;
 
-  const nextPage = () => {
-    pageHandle(page + 1);
-  };
-
-  const prevPage = () => {
-    pageHandle(page - 1);
-  };
   return (
     <>
-      <WriteParents page={page} nextPage={nextPage} prevPage={prevPage}></WriteParents>
+      <WriteParents></WriteParents>
     </>
   );
 };

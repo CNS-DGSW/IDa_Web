@@ -88,8 +88,6 @@ class AuthStore {
         this.login = true;
       }
 
-      console.log(this.login);
-
       return new Promise((resolve: (response: UserInfoResponse) => void, reject) => {
         resolve(response);
       });

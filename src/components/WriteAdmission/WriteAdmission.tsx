@@ -3,9 +3,6 @@ import "./WriteAdmission.scss";
 import WriteContent from "../common/WriteContent";
 
 interface WriteAdmissionProps {
-  page: number;
-  nextPage: () => void;
-  prevPage: () => void;
   mission: string;
   setMission: React.Dispatch<React.SetStateAction<string>>;
   special: string;
@@ -15,9 +12,6 @@ interface WriteAdmissionProps {
 }
 
 const WriteAdmission = ({
-  page,
-  nextPage,
-  prevPage,
   mission,
   setMission,
   special,
@@ -29,9 +23,7 @@ const WriteAdmission = ({
     <>
       <WriteContent
         title="전형 및 그에 따른 해당사항을 선택해주세요"
-        page={page}
-        nextPage={nextPage}
-        prevPage={prevPage}
+        onSave={() => console.log(1)}
       >
         <div className="mission">
           <div className="mission-area">
