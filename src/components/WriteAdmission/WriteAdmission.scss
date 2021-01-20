@@ -1,14 +1,32 @@
 @import "util/colors.scss";
 
-.admission {
+.mission {
   padding: 2rem;
   background-color: #f6f6fc;
-  &-text {
+  margin-bottom: 2rem;
+  color: $ft-darkgray;
+
+  &-area {
     display: flex;
     flex-direction: column;
     font-size: 1.2rem;
 
-    label {
+    select {
+      width: 100%;
+      height: 2.6rem;
+      border: none;
+      border: 1px solid $bd-gray-700;
+      padding: 0 0.8rem;
+      color: $ft-darkgray;
+      font-size: 0.9rem;
+      outline: none;
+      &:focus {
+        border: 1px solid $bd-blue;
+        outline: none;
+      }
+    }
+
+    &-label {
       width: 100%;
       margin-bottom: 0.6rem;
     }
@@ -20,6 +38,95 @@
       border: none;
       border: 1px solid $bd-gray-700;
       border-radius: 2px;
+      &:focus {
+        border: 1px solid $bd-blue;
+        outline: none;
+      }
+    }
+    &-select {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.2rem;
+
+      &-box {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 13rem;
+        height: 2.6rem;
+        font-size: 1rem;
+        font-weight: 300;
+        padding: 0 1rem;
+        border: 1px solid $bd-gray-700;
+        border-radius: 2px;
+        background-color: $bg-white;
+        cursor: pointer;
+
+        &-selectinput {
+          width: 1.2rem;
+          height: 2rem;
+          padding-left: 1rem;
+          border: none;
+          border: 1px solid $bd-gray-700;
+          border-radius: 2px;
+          cursor: pointer;
+          &:focus {
+            border: 1px solid $bd-blue;
+            outline: none;
+          }
+        }
+      }
+
+      &-box2 {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 9.6rem;
+        height: 2.6rem;
+        font-size: 0.9rem;
+        font-weight: 300;
+        padding: 0 0.6rem;
+        border: 1px solid $bd-gray-700;
+        border-radius: 2px;
+        background-color: $bg-white;
+        cursor: pointer;
+
+        &-selectinput {
+          width: 1rem;
+          height: 1.8rem;
+          padding-left: 1rem;
+          border: none;
+          border: 1px solid $bd-gray-700;
+          border-radius: 2px;
+          cursor: pointer;
+          &:focus {
+            border: 1px solid $bd-blue;
+            outline: none;
+          }
+        }
+      }
+    }
+
+    &-info {
+      width: 100%;
+      height: 10rem;
+      margin-top: 1rem;
+      background-color: $bg-white;
+      padding: 1rem;
+    }
+  }
+
+  &-selector {
+    margin-top: 1rem;
+    select {
+      width: 100%;
+      height: 2.6rem;
+      border: none;
+      border: 1px solid $bd-gray-700;
+      padding: 0 0.8rem;
+      color: $ft-darkgray;
+      font-size: 0.9rem;
+      outline: none;
       &:focus {
         border: 1px solid $bd-blue;
         outline: none;
