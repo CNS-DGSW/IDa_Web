@@ -1,34 +1,68 @@
 import React from "react";
+import Sex from "util/enums/Sex";
 import WriteContent from "../common/WriteContent";
 import "./WriteStudent.scss";
 
 interface WriteStudentProps {
-  page: number;
-  nextPage: () => void;
-  prevPage: () => void;
+  onSave: () => void;
+  name: string;
+  setName: React.Dispatch<React.SetStateAction<string>>;
+  birth: string;
+  setBirth: React.Dispatch<React.SetStateAction<string>>;
+  sex: Sex | null;
+  setSex: React.Dispatch<React.SetStateAction<Sex | null>>;
+  studentTel: string;
+  setStudentTel: React.Dispatch<React.SetStateAction<string>>;
+  isChanged: boolean;
+  setIsChanged: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const WriteStudent = ({ page, nextPage, prevPage }: WriteStudentProps) => {
+const WriteStudent = ({
+  onSave,
+  name,
+  setName,
+  birth,
+  setBirth,
+  sex,
+  setSex,
+  studentTel,
+  setStudentTel,
+  isChanged,
+  setIsChanged,
+}: WriteStudentProps) => {
   return (
     <>
       <WriteContent
         title="지원자 정보를 입력해 주세요"
-        page={page}
-        nextPage={nextPage}
-        prevPage={prevPage}
+        isChanged={isChanged}
+        onSave={onSave}
       >
         <div className="student">
           <div className="student-text">
             <label className="student-text-label">성명</label>
-            <input type="text" className="student-text-textInput" />
+            <input
+              type="text"
+              className="student-text-textInput"
+              value={name}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                setName(e.target.value);
+                setIsChanged(true);
+              }}
+            />
           </div>
           <div className="student-select">
             <div className="student-select-box">
               <label className="student-select-box-label">생년월일</label>
               <div className="student-select-box-area">
-                <input type="text" className="student-select-box-area-Input7" />
-                <input type="text" className="student-select-box-area-Input5" />
-                <input type="text" className="student-select-box-area-Input5" />
+                <input
+                  type="date"
+                  className="student-select-box-area-Input7"
+                  value={birth}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    setBirth(e.target.value);
+                    setIsChanged(true);
+                  }}
+                />
               </div>
             </div>
             <div className="student-select-box">
@@ -39,7 +73,13 @@ const WriteStudent = ({ page, nextPage, prevPage }: WriteStudentProps) => {
                   <input
                     type="radio"
                     name="studentSex"
+                    value={Sex.M}
                     className="student-select-box-area-sex-sexinput"
+                    onChange={(e) => {
+                      setSex(Sex.M);
+                      setIsChanged(true);
+                    }}
+                    checked={sex === Sex.M}
                   />
                 </label>
                 <label className="student-select-box-area-sex">
@@ -47,7 +87,13 @@ const WriteStudent = ({ page, nextPage, prevPage }: WriteStudentProps) => {
                   <input
                     type="radio"
                     name="studentSex"
+                    value={Sex.W}
                     className="student-select-box-area-sex-sexinput"
+                    onChange={(e) => {
+                      setSex(Sex.W);
+                      setIsChanged(true);
+                    }}
+                    checked={sex === Sex.W}
                   />
                 </label>
               </div>
@@ -55,19 +101,17 @@ const WriteStudent = ({ page, nextPage, prevPage }: WriteStudentProps) => {
           </div>
           <div className="student-select">
             <div className="student-select-box">
-              <label className="student-select-box-label">집전화</label>
-              <div className="student-select-box-area">
-                <input type="text" className="student-select-box-area-Input5" />
-                <input type="text" className="student-select-box-area-Input6" />
-                <input type="text" className="student-select-box-area-Input6" />
-              </div>
-            </div>
-            <div className="student-select-box">
               <label className="student-select-box-label">휴대폰</label>
               <div className="student-select-box-area">
-                <input type="text" className="student-select-box-area-Input5" />
-                <input type="text" className="student-select-box-area-Input6" />
-                <input type="text" className="student-select-box-area-Input6" />
+                <input
+                  type="text"
+                  className="student-select-box-area-Input5"
+                  value={studentTel}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    setStudentTel(e.target.value);
+                    setIsChanged(true);
+                  }}
+                />
               </div>
             </div>
           </div>
