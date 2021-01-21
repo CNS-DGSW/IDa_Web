@@ -44,28 +44,9 @@ class AuthApi {
     }
   }
 
-  async RefreshToken(refreshToken: string) {
-    try {
-      const body = {
-        refreshToken,
-      };
-      const { data } = await Api.post("/auth/token", body);
-
-      return data;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
-  }
-
   async GetInfo() {
     try {
-      const config = {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      };
-
-      const { data } = await Api.get("/user/getInfo", config);
+      const { data } = await Api.get("/user/getInfo");
 
       return data;
     } catch (error) {
@@ -75,13 +56,7 @@ class AuthApi {
 
   async changePw() {
     try {
-      const config = {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      };
-
-      const { data } = await Api.get("/user/getInfo", config);
+      const { data } = await Api.get("/user/getInfo");
 
       return data;
     } catch (error) {
