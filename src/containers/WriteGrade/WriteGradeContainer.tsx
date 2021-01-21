@@ -1,7 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react";
 import WriteGrade from "../../components/WriteGrades";
-import useStore from "util/lib/hooks/useStore";
+import useStore from "lib/hooks/useStore";
 
 const WriteGradeContainer = ({}) => {
   const { store } = useStore();

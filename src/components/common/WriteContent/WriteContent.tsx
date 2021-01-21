@@ -1,6 +1,6 @@
 import { observer } from "mobx-react";
 import React, { useCallback } from "react";
-import useStore from "util/lib/hooks/useStore";
+import useStore from "lib/hooks/useStore";
 import "./WriteContent.scss";
 
 interface WriteContentProps {

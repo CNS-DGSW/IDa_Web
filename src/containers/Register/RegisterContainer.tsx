@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { inject, observer } from "mobx-react";
 import Register from "components/Register";
 import { Response } from "../../util/types/Response";
-import useStore from "../../util/lib/hooks/useStore";
+import useStore from "../../lib/hooks/useStore";
 import { useHistory, withRouter } from "react-router-dom";
 
 const RegisterContainer = () => {

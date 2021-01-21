@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import WriteStudent from "../../components/WriteStudent";
-import useStore from "util/lib/hooks/useStore";
+import useStore from "lib/hooks/useStore";
 import { UserInfoResponse } from "util/types/Response";
 import Sex from "util/enums/Sex";
 import moment from "moment";
