@@ -2,6 +2,7 @@ import axios, { AxiosRequestConfig } from "axios";
 import Cookie from "js-cookie";
 import AuthApi from "assets/api/AuthApi";
 import { RefreshTokenResponse } from "util/types/Response";
+import { server } from "config/config.json";
 import moment from "moment";
 
 const refresh = async (config: AxiosRequestConfig): Promise<AxiosRequestConfig> => {
@@ -9,14 +10,18 @@ const refresh = async (config: AxiosRequestConfig): Promise<AxiosRequestConfig> 
   const expireAt = localStorage.getItem("expiresAt");
   let token = localStorage.getItem("accessToken");
   if (moment(expireAt).diff(moment()) < 0 && refreshToken) {
-    await AuthApi.RefreshToken(refreshToken).then((res: RefreshTokenResponse) => {
-      token = res.data.accessToken;
-      localStorage.setItem("accessToken", res.data.accessToken);
-      localStorage.setItem(
-        "expiresAt",
-        moment().add(1, "hour").format("yyyy-MM-DD HH:mm:ss")
-      );
-    });
+    const body = {
+      refreshToken,
+    };
+    const { data } = await axios.post(`${server}/auth/token`, body);
+    const res: RefreshTokenResponse = data;
+
+    token = res.data.accessToken;
+    localStorage.setItem("accessToken", res.data.accessToken);
+    localStorage.setItem(
+      "expiresAt",
+      moment().add(1, "hour").format("yyyy-MM-DD HH:mm:ss")
+    );
   }
 
   config.headers["Authorization"] = `Bearer ${token}`;
