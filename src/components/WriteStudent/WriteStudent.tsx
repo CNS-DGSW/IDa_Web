@@ -10,12 +10,12 @@ const WriteStudent = ({}: WriteStudentProps) => {
       <WriteContent title="지원자 정보를 입력해 주세요" idx="1">
         <div className="student">
           <div className="student-text">
-            <label>성명</label>
+            <label className="student-text-label">성명</label>
             <input type="text" className="student-text-textInput" />
           </div>
           <div className="student-select">
             <div className="student-select-box">
-              <label>생년월일</label>
+              <label className="student-select-box-label">생년월일</label>
               <div className="student-select-box-area">
                 <input type="text" className="student-select-box-area-Input7" />
                 <input type="text" className="student-select-box-area-Input5" />
@@ -23,7 +23,7 @@ const WriteStudent = ({}: WriteStudentProps) => {
               </div>
             </div>
             <div className="student-select-box">
-              <label>성별</label>
+              <label className="student-select-box-label">성별</label>
               <div className="student-select-box-area">
                 <label className="student-select-box-area-sex">
                   남자
@@ -46,7 +46,7 @@ const WriteStudent = ({}: WriteStudentProps) => {
           </div>
           <div className="student-select">
             <div className="student-select-box">
-              <label>집전화</label>
+              <label className="student-select-box-label">집전화</label>
               <div className="student-select-box-area">
                 <input type="text" className="student-select-box-area-Input5" />
                 <input type="text" className="student-select-box-area-Input6" />
@@ -54,7 +54,7 @@ const WriteStudent = ({}: WriteStudentProps) => {
               </div>
             </div>
             <div className="student-select-box">
-              <label>휴대폰</label>
+              <label className="student-select-box-label">휴대폰</label>
               <div className="student-select-box-area">
                 <input type="text" className="student-select-box-area-Input5" />
                 <input type="text" className="student-select-box-area-Input6" />
