@@ -8,6 +8,8 @@ import { sha256 } from "js-sha256";
 class AuthStore {
   @observable login: boolean = false;
   @observable profileBox: boolean = false;
+  @observable name: string = "";
+  @observable email: string = "";
 
   @action
   tryProfileBox = () => {
@@ -82,10 +84,12 @@ class AuthStore {
   @action
   getInfo = async (): Promise<UserInfoResponse> => {
     try {
-      const response = await AuthApi.GetInfo();
+      const response: UserInfoResponse = await AuthApi.GetInfo();
 
       if (response.status === 200) {
         this.login = true;
+        this.email = response.data.email;
+        this.name = response.data.name;
       }
 
       return new Promise((resolve: (response: UserInfoResponse) => void, reject) => {

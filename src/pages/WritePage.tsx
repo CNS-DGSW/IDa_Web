@@ -1,11 +1,11 @@
 import React from "react";
-import RegisterContainer from "containers/Write/WriteContainer";
 import DefaultTemplate from "components/common/Template/DefaultTemplate";
+import WriteContainer from "containers/Write/WriteContainer";
 
 const RegisterPage = () => {
   return (
-    <DefaultTemplate>
-      <RegisterContainer />
+    <DefaultTemplate theme={true}>
+      <WriteContainer />
     </DefaultTemplate>
   );
 };
