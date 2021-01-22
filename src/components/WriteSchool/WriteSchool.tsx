@@ -175,66 +175,8 @@ const WriteSchool = ({ school, setSchool }: WriteSchoolProps) => {
         ) : school === "examination" ? (
           <>
             <div className="school">
-              <div className="school-schedule">
-                <div className="school-schedule-box">
-                  <label>출신 중학교명</label>
-                  <input type="text" className="school-schedule-box-textInput" />
-                </div>
-                <div className="school-schedule-box">
-                  <label>NEIS 학교 번호</label>
-                  <input type="text" className="school-schedule-box-textInput" />
-                </div>
-              </div>
-
-              <div className="school-schedule">
-                <div className="school-schedule-box">
-                  <div className="school-schedule-box-area">
-                    <div className="school-schedule-box-area-column">
-                      <label>지역명(시도)</label>
-                      <input
-                        type="text"
-                        className="school-schedule-box-area-selectinput"
-                      />
-                    </div>
-
-                    <div className="school-schedule-box-area-column">
-                      <label>시군구</label>
-                      <input
-                        type="text"
-                        className="school-schedule-box-area-selectinput"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="school-schedule-box">
-                  <label>NEIS 학교 번호</label>
-                  <div className="student-select-box-area">
-                    <input type="text" className="student-select-box-area-Input5" />
-                    <input type="text" className="student-select-box-area-Input6" />
-                    <input type="text" className="student-select-box-area-Input6" />
-                  </div>
-                </div>
-              </div>
-
-              <div className="school-schedule">
-                <div className="school-schedule-box">
-                  <label>담임 성명</label>
-                  <input type="text" className="school-schedule-box-textInput" />
-                </div>
-                <div className="school-schedule-box">
-                  <label>담임 연락처</label>
-                  <div className="student-select-box-area">
-                    <input type="text" className="student-select-box-area-Input5" />
-                    <input type="text" className="student-select-box-area-Input6" />
-                    <input type="text" className="student-select-box-area-Input6" />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="school">
               <div className="school-area">
-                <label className="school-area-label">졸업년도</label>
+                <label className="school-area-label">합격년도</label>
                 <input type="text" className="school-area-textInput" />
               </div>
             </div>

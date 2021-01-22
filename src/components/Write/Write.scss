@@ -1,10 +1,8 @@
 @import "util/colors.scss";
 
 .write {
-  margin-top: 4rem;
+  padding-top: 4rem;
   width: 100%;
-  min-width: 1100px;
-  min-height: 100vh;
   display: flex;
   justify-content: center;
   &-box {

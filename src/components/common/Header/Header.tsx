@@ -1,17 +1,19 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { ReactComponent as Logo } from "assets/images/logo.svg";
+import React from "react";
 import "./Header.scss";
-import Profile from "assets/images/profile.png";
+import { ReactComponent as Profile } from "assets/images/profile.svg";
 import ProfileModalBox from "components/Profile/ProfileModalBox";
 import { useHistory } from "react-router-dom";
+import { ReactComponent as Logo1 } from "assets/images/logo-1.svg";
+import { ReactComponent as Logo2 } from "assets/images/logo-2.svg";
 
 interface HeaderProps {
   login: boolean;
   profileBox: boolean;
   tryProfileBox: () => void;
-  name: string | undefined;
-  email: string | undefined;
+  name: string;
+  email: string;
   HandleLogout: () => void;
+  theme?: boolean;
 }
 
 const Header = ({
@@ -21,147 +23,23 @@ const Header = ({
   name,
   email,
   HandleLogout,
+  theme,
 }: HeaderProps) => {
   const history = useHistory();
 
-  const [lastKnownScroll, setLastKnownScroll] = useState<number>(0);
-  const [currentScroll, setCurrentScroll] = useState<number>(0);
-  const [scrolling, setScrolling] = useState<boolean>(false);
-  const [headerState, setHeaderState] = useState<string>("unfixed");
-  const [headerStyle, setHeaderStyle] = useState<React.CSSProperties>();
-
-  const getScroll = () => {
-    if (window.pageYOffset !== undefined) {
-      return window.pageYOffset;
-    } else {
-      return (document.documentElement || document.body.parentNode || document.body)
-        .scrollTop;
-    }
-  };
-
-  const isOutOfBound = (scrollY: number) => {
-    const pastTop = scrollY < 100;
-
-    const scrollerPhysicalHeight =
-      window.innerHeight ||
-      document.documentElement.clientHeight ||
-      document.body.clientHeight;
-    const scrollerHeight = Math.max(
-      document.body.scrollHeight,
-      document.documentElement.scrollHeight,
-      document.body.offsetHeight,
-      document.documentElement.offsetHeight,
-      document.body.clientHeight,
-      document.documentElement.clientHeight
-    );
-
-    const pastBottom = scrollY + scrollerPhysicalHeight > scrollerHeight;
-
-    return pastTop || pastBottom;
-  };
-
-  const shouldUpdate = (lastKnown: number, current: number, state: string) => {
-    const scrollDirection = current >= lastKnown ? "down" : "up";
-    const distanceScrolled = Math.abs(current - lastKnown);
-
-    if (
-      scrollDirection === "down" &&
-      state === "pinned" &&
-      currentScroll > document.getElementById("header")!.offsetHeight &&
-      distanceScrolled > 5
-    ) {
-      setHeaderState("unpinned");
-    } else if (scrollDirection === "up" && distanceScrolled > 3) {
-      setHeaderState("pinned");
-    } else if (
-      scrollDirection === "up" &&
-      currentScroll <= document.getElementById("header")!.offsetHeight
-    ) {
-      setHeaderState("pinned");
-    }
-  };
-
-  const update = useCallback(() => {
-    setCurrentScroll(getScroll());
-
-    if (!isOutOfBound(currentScroll)) {
-      shouldUpdate(lastKnownScroll, currentScroll, headerState);
-    } else {
-      setHeaderState("unfixed");
-    }
-
-    setLastKnownScroll(currentScroll);
-    setScrolling(false);
-  }, [currentScroll, lastKnownScroll, headerState]);
-
-  const handleScroll = useCallback(() => {
-    if (!scrolling) {
-      setScrolling(true);
-      update();
-    }
-  }, [scrolling, update]);
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [handleScroll]);
-
-  useEffect(() => {
-    const header = document.getElementById("header");
-    if (header) {
-      if (currentScroll < 100) {
-        setHeaderState("unfixed");
-        setHeaderStyle({
-          transition: "all ease-in-out 0.2s 0s",
-        });
-        header.classList.add("unfixed");
-      } else if (headerState === "unfixed") {
-        setHeaderStyle({
-          transition: "all ease-in-out 0.2s 0s",
-          transform: "translate3d(0px, -100%, 0px)",
-        });
-        header.classList.add("unfixed");
-      } else if (headerState === "pinned") {
-        setHeaderStyle({
-          transition: "all 0.2s ease-in-out 0s",
-          fill: "black !important",
-          transform: "translate3d(0px, 0px, 0px)",
-          position: "fixed",
-          backgroundColor: "white",
-        });
-        header.classList.remove("unfixed");
-      } else if (headerState === "unpinned") {
-        setHeaderStyle({
-          transition: "all ease-in-out 0.2s 0s",
-          position: "fixed",
-          transform: "translate3d(0px, -100%, 0px)",
-          backgroundColor: "white",
-        });
-        header.classList.remove("unfixed");
-      } else {
-        setHeaderStyle({
-          transition: "all ease-in-out 0.2s 0s",
-          position: "fixed",
-          transform: "translate3d(0px, -100%, 0px)",
-        });
-        header.classList.remove("unfixed");
-      }
-    }
-  }, [currentScroll, headerState]);
-
   return (
-    <header className="header" id="header" style={headerStyle}>
+    <header className={theme ? "header header-theme" : "header"} id="header">
       <div className="header-container">
-        <Logo className="header-container-logo" onClick={() => history.push("/")} />
         <>
+          {theme ? (
+            <Logo2 className="pointer" onClick={() => history.push("/")} />
+          ) : (
+            <Logo1 className="pointer" onClick={() => history.push("/")} />
+          )}
           {login ? (
             <>
-              <img
-                src={Profile}
-                alt="프로필 아이콘"
-                className="header-container-profile"
+              <Profile
+                className="header-container-profile pointer"
                 onClick={() => tryProfileBox()}
               />
               {profileBox ? (
@@ -171,7 +49,6 @@ const Header = ({
                     name={name}
                     email={email}
                     HandleLogout={HandleLogout}
-                    history={history}
                   />
                 </>
               ) : (

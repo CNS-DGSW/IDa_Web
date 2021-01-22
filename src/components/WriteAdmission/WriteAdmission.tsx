@@ -1,24 +1,39 @@
 import React from "react";
 import "./WriteAdmission.scss";
 import WriteContent from "../common/WriteContent";
+import Apply from "util/enums/Apply";
+import models from "models/ApplyDetailModel";
+import ApplyDetail from "util/enums/ApplyDetail";
 
 interface WriteAdmissionProps {
-  mission: string;
-  setMission: React.Dispatch<React.SetStateAction<string>>;
+  applyType: Apply | null;
+  setApplyType: React.Dispatch<React.SetStateAction<Apply | null>>;
   special: string;
   setSpecial: React.Dispatch<React.SetStateAction<string>>;
-  typical: string;
-  setTypical: React.Dispatch<React.SetStateAction<string>>;
+  applyDetailType: ApplyDetail | null;
+  setApplyDetailType: React.Dispatch<React.SetStateAction<ApplyDetail | null>>;
 }
 
 const WriteAdmission = ({
-  mission,
-  setMission,
+  applyType,
+  setApplyType,
   special,
   setSpecial,
-  typical,
-  setTypical,
+  applyDetailType,
+  setApplyDetailType,
 }: WriteAdmissionProps) => {
+  const findByNameForSpecial = (model: any) => {
+    if (model.name === special) {
+      return true;
+    }
+  };
+
+  const findByNameForSpecialModel = (model: any) => {
+    if (model.value === applyDetailType) {
+      return true;
+    }
+  };
+
   return (
     <>
       <WriteContent
@@ -33,151 +48,132 @@ const WriteAdmission = ({
                 일반전형
                 <input
                   type="radio"
-                  name="mission"
-                  value="nomal"
+                  name="applyType"
+                  value={Apply.COMMON}
                   className="mission-area-select-box-selectinput"
-                  onChange={(e) => setMission(e.target.value)}
+                  onChange={(e) => setApplyType(Apply.COMMON)}
+                  checked={Apply.COMMON === applyType}
                 />
               </label>
               <label className="mission-area-select-box">
                 특별전형
                 <input
                   type="radio"
-                  name="mission"
-                  value="special"
+                  name="applyType"
+                  value={Apply.SPECIAL}
                   className="mission-area-select-box-selectinput"
-                  onChange={(e) => setMission(e.target.value)}
+                  onChange={(e) => setApplyType(Apply.SPECIAL)}
+                  checked={Apply.SPECIAL === applyType}
                 />
               </label>
               <label className="mission-area-select-box">
                 특례입학
                 <input
                   type="radio"
-                  name="mission"
-                  value="specialcase"
+                  name="applyType"
+                  value={Apply.OTHER}
                   className="mission-area-select-box-selectinput"
-                  onChange={(e) => setMission(e.target.value)}
+                  onChange={(e) => setApplyType(Apply.OTHER)}
+                  checked={Apply.OTHER === applyType}
                 />
               </label>
             </div>
-            {mission && <div className="mission-area-info">설명</div>}
+            {applyType === Apply.COMMON && (
+              <div className="mission-area-info">{models.common.description}</div>
+            )}
           </div>
         </div>
-        {mission === "special" ? (
+        {applyType === Apply.SPECIAL ? (
           <div className="mission">
             <div className="mission-area">
               <label className="mission-area-label">특별전형 선택</label>
               <div className="mission-area-select">
-                <label className="mission-area-select-box2">
-                  마이스터인재전형
-                  <input
-                    type="radio"
-                    name="mission"
-                    value="maister"
-                    className="mission-area-select-box2-selectinput"
-                    onChange={(e) => setSpecial(e.target.value)}
-                  />
-                </label>
-                <label className="mission-area-select-box2">
-                  기회균등전형
-                  <input
-                    type="radio"
-                    name="mission"
-                    value="opportunity"
-                    className="mission-area-select-box2-selectinput"
-                    onChange={(e) => setSpecial(e.target.value)}
-                  />
-                </label>
-                <label className="mission-area-select-box2">
-                  사회다양성전형
-                  <input
-                    type="radio"
-                    name="mission"
-                    value="Society"
-                    className="mission-area-select-box2-selectinput"
-                    onChange={(e) => setSpecial(e.target.value)}
-                  />
-                </label>
-                <label className="mission-area-select-box2">
-                  지역우선정형
-                  <input
-                    type="radio"
-                    name="mission"
-                    value="Area"
-                    className="mission-area-select-box2-selectinput"
-                    onChange={(e) => setSpecial(e.target.value)}
-                  />
-                </label>
+                {models.special.map((model, index) => (
+                  <React.Fragment key={index}>
+                    <label className="mission-area-select-box2">
+                      {model.name}
+                      <input
+                        type="radio"
+                        name="mission"
+                        value={model.name}
+                        className="mission-area-select-box2-selectinput"
+                        onChange={(e) => {
+                          setSpecial(e.target.value);
+                          if (model.value) {
+                            setApplyDetailType(model.value);
+                          } else {
+                            setApplyDetailType(null);
+                          }
+                        }}
+                        checked={model.name === special}
+                      />
+                    </label>
+                  </React.Fragment>
+                ))}
               </div>
-              {special && <div className="mission-area-info">설명</div>}
+              {special && models.special.find(findByNameForSpecial)?.description && (
+                <div className="mission-area-info">
+                  {models.special.find(findByNameForSpecial)?.description}
+                </div>
+              )}
             </div>
 
-            <div className="mission-selector">
-              {special === "opportunity" && (
-                <select onChange={(e) => setTypical(e.target.value)}>
-                  <option value="1">선택해주세요</option>
-                  <option value="2">국민기초생활수급자</option>
-                  <option value="3">차상위계층</option>
-                  <option value="4">국가보훈대상자</option>
-                  <option value="5">한부모가족보호대상자</option>
-                  <option value="6">차차상위계층</option>
-                  <option value="7">학교장이 추천한 경제적으로 어려운 학생</option>
-                </select>
-              )}
-              {special === "Society" && (
-                <select onChange={(e) => setTypical(e.target.value)}>
-                  <option value="8">선택해주세요</option>
-                  <option value="9">특수교육대상자</option>
-                  <option value="10">북한이탈주민 또는 자녀</option>
-                  <option value="11">다문화가정 자녀</option>
-                  <option value="12">아동복지시설수용자</option>
-                  <option value="13">소년소녀 가장, 조손가정 자녀</option>
-                  <option value="14">순직 공무원의 자녀</option>
-                  <option value="15">
-                    장애인(장애 등록증 5급 이내) 가정 가족 구성원
-                  </option>
-                  <option value="16">농어촌거주</option>
-                  <option value="17">직업군인자녀</option>
-                  <option value="18">경찰,소방,교정 공무원 자녀</option>
-                  <option value="19">산업재해근로자 자녀</option>
-                  <option value="20">환경미화원 자녀</option>
-                  <option value="21">우편집배원 자녀</option>
-                  <option value="22">무형문화재보유자 자녀</option>
-                  <option value="23">입양자녀, 입양가족 자녀</option>
-                  <option value="24">한부모가정 자녀, 다자녀가정 자녀</option>
-                </select>
-              )}
-              {typical && <div className="mission-area-info">설명</div>}
-            </div>
+            {special && models.special.find(findByNameForSpecial)?.models !== undefined && (
+              <>
+                <div className="mission-selector">
+                  <select
+                    value={applyDetailType?.toString()}
+                    onChange={(e) => setApplyDetailType(e.target.value as ApplyDetail)}
+                  >
+                    <option value={undefined}>선택해주세요</option>
+
+                    {models.special
+                      .find(findByNameForSpecial)!
+                      .models?.map((model, index) => (
+                        <option
+                          key={index}
+                          value={model.value}
+                          // selected={applyDetailType === model.value}
+                        >
+                          {model.name}
+                        </option>
+                      ))}
+                  </select>
+                </div>
+                {applyDetailType && (
+                  <div className="mission-area-info">
+                    {
+                      models.special
+                        .find(findByNameForSpecial)
+                        ?.models!.find(findByNameForSpecialModel)?.description
+                    }
+                  </div>
+                )}
+              </>
+            )}
           </div>
         ) : (
-          mission === "specialcase" && (
+          applyType === Apply.OTHER && (
             <div className="mission">
               <div className="mission-area">
                 <label className="mission-area-label">특례입학 선택</label>
-                <select onChange={(e) => setTypical(e.target.value)}>
-                  <option value="25">선택해주세요</option>
-                  <option value="26">특수교육대상자</option>
-                  <option value="27">북한이탈주민 또는 자녀</option>
-                  <option value="28">다문화가정 자녀</option>
-                  <option value="29">아동복지시설수용자</option>
-                  <option value="30">소년소녀 가장, 조손가정 자녀</option>
-                  <option value="31">순직 공무원의 자녀</option>
-                  <option value="32">
-                    장애인(장애 등록증 5급 이내) 가정 가족 구성원
-                  </option>
-                  <option value="33">농어촌거주</option>
-                  <option value="34">직업군인자녀</option>
-                  <option value="35">경찰,소방,교정 공무원 자녀</option>
-                  <option value="36">산업재해근로자 자녀</option>
-                  <option value="37">환경미화원 자녀</option>
-                  <option value="38">우편집배원 자녀</option>
-                  <option value="39">무형문화재보유자 자녀</option>
-                  <option value="40">입양자녀, 입양가족 자녀</option>
-                  <option value="41">한부모가정 자녀, 다자녀가정 자녀</option>
+                <select
+                  value={applyDetailType?.toString()}
+                  onChange={(e) => setApplyDetailType(e.target.value as ApplyDetail)}
+                >
+                  <option value={undefined}>선택해주세요</option>
+                  {models.other.models.map((model, index) => (
+                    <option key={index} value={model.value}>
+                      {model.name}
+                    </option>
+                  ))}
                 </select>
               </div>
-              {typical && <div className="mission-area-info">설명</div>}
+              {applyDetailType && (
+                <div className="mission-area-info">
+                  {models.other.models.find(findByNameForSpecialModel)?.description}
+                </div>
+              )}
             </div>
           )
         )}

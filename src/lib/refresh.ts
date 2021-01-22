@@ -1,6 +1,5 @@
 import axios, { AxiosRequestConfig } from "axios";
 import Cookie from "js-cookie";
-import AuthApi from "assets/api/AuthApi";
 import { RefreshTokenResponse } from "util/types/Response";
 import { server } from "config/config.json";
 import moment from "moment";
