@@ -1,22 +1,23 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect } from "react";
 import { observer } from "mobx-react";
 import Header from "components/common/Header";
 import useStore from "lib/hooks/useStore";
-import { useHistory, withRouter } from "react-router-dom";
-import axios from "axios";
-import { UserInfoResponse } from "util/types/Response";
+import { RouteComponentProps, useHistory, withRouter } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
-const HeaderContainer = ({}) => {
+interface HeaderContainerProps {
+  theme?: boolean;
+}
+
+const HeaderContainer = ({ theme }: HeaderContainerProps & RouteComponentProps) => {
   const { store } = useStore();
   const history = useHistory();
-
-  const [name, setName] = useState<string>();
-  const [email, setEmail] = useState<string>();
 
   const {
     getInfo,
     login,
+    name,
+    email,
     profileBox,
     tryProfileBox,
     tryLogout,
@@ -34,16 +35,11 @@ const HeaderContainer = ({}) => {
 
   const getInfoCallback = useCallback(() => {
     if (localStorage.getItem("accessToken") && !login) {
-      getInfo()
-        .then((res: UserInfoResponse) => {
-          setName(res.data.name);
-          setEmail(res.data.email);
-        })
-        .catch(async (err: Error) => {
-          if (err.message.indexOf("401")) {
-            console.log("권한 없음");
-          }
-        });
+      getInfo().catch(async (err: Error) => {
+        if (err.message.indexOf("401")) {
+          console.log("권한 없음");
+        }
+      });
     }
   }, [login]);
 
@@ -54,14 +50,13 @@ const HeaderContainer = ({}) => {
   useEffect(() => {
     return () => {
       tryCloseModal();
-      setName("");
-      setEmail("");
     };
   }, []);
 
   return (
     <>
       <Header
+        theme={theme}
         login={login}
         profileBox={profileBox}
         tryProfileBox={tryProfileBox}
