@@ -1,1 +1,26 @@
-/* your css code */
+@import "util/colors.scss";
+
+.intro {
+  padding: 2rem;
+  background-color: #f6f6fc;
+  color: $ft-darkgray;
+
+  &-textBox {
+    width: 100%;
+    background-color: $bg-white;
+    padding: 0.1rem 2rem;
+
+    p {
+      font-size: 0.9rem;
+      margin: 1rem 0;
+    }
+  }
+
+  &-inputBox {
+    width: 100%;
+    height: 20rem;
+    border: 2px dashed $bd-skyblue;
+    background-color: $bg-white;
+    margin-top: 2rem;
+  }
+}
