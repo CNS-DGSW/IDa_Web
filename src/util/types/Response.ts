@@ -1,3 +1,5 @@
+import Apply from "util/enums/Apply";
+import ApplyDetail from "util/enums/ApplyDetail";
 import Sex from "util/enums/Sex";
 
 export type Response = {
@@ -47,5 +49,12 @@ export interface GetPostResponse extends Response {
         };
       }
     ];
+
+export interface ApplyTypeResponse extends Response {
+  data: {
+    applyType: Apply;
+    applyDetailType: ApplyDetail;
+    verteransCity?: string;
+    verteransNumber?: string;
   };
 }

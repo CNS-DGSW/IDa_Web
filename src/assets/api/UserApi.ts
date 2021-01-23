@@ -1,12 +1,11 @@
-import axios from "axios";
+import Api from "lib/customAxios";
+import Apply from "util/enums/Apply";
+import ApplyDetail from "util/enums/ApplyDetail";
 import Sex from "util/enums/Sex";
-import { server } from "../../config/config.json";
 
 class UserApi {
   async EditUserInfo(name: string, birth: string, sex: Sex, studentTel: string) {
     try {
-      const url = `${server}/user/editInfo`;
-
       const body = {
         name,
         birth,
@@ -14,13 +13,39 @@ class UserApi {
         studentTel,
       };
 
-      const config = {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
+      const { data } = await Api.patch("/user/editInfo", body);
+
+      return data;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
+
+  async GetApplyType() {
+    try {
+      const { data } = await Api.get("/user/getApplyType");
+
+      return data;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
+
+  async EditApplyType(
+    applyType: Apply,
+    applyDetailType: ApplyDetail,
+    verteransCity?: string,
+    verteransNumber?: string
+  ) {
+    try {
+      const body = {
+        applyType,
+        applyDetailType,
+        verteransCity,
+        verteransNumber,
       };
 
-      const { data } = await axios.patch(url, body, config);
+      const { data } = await Api.patch("/user/editInfo", body);
 
       return data;
     } catch (error) {
