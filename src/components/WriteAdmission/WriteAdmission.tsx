@@ -12,6 +12,7 @@ interface WriteAdmissionProps {
   setSpecial: React.Dispatch<React.SetStateAction<string>>;
   applyDetailType: ApplyDetail | null;
   setApplyDetailType: React.Dispatch<React.SetStateAction<ApplyDetail | null>>;
+  onSave: () => boolean;
 }
 
 const WriteAdmission = ({
@@ -21,6 +22,7 @@ const WriteAdmission = ({
   setSpecial,
   applyDetailType,
   setApplyDetailType,
+  onSave,
 }: WriteAdmissionProps) => {
   const findByNameForSpecial = (model: any) => {
     if (model.name === special) {
@@ -36,10 +38,7 @@ const WriteAdmission = ({
 
   return (
     <>
-      <WriteContent
-        title="전형 및 그에 따른 해당사항을 선택해주세요"
-        onSave={() => console.log(1)}
-      >
+      <WriteContent title="전형 및 그에 따른 해당사항을 선택해주세요" onSave={onSave}>
         <div className="mission">
           <div className="mission-area">
             <label className="mission-area-label">입학전형 선택</label>
