@@ -30,6 +30,26 @@ export interface UserInfoResponse extends Response {
   };
 }
 
+export interface GetPostResponse extends Response {
+  data: {
+    posts: [
+      {
+        category: string;
+        content: string;
+        createAt: string;
+        idx: number;
+        isDeleted: Date;
+        parentIdx: number;
+        title: string;
+        updateAt: Date;
+        user: {
+          idx: number;
+          isAdmin: boolean;
+          name: string;
+        };
+      }
+    ];
+
 export interface ApplyTypeResponse extends Response {
   data: {
     applyType: Apply;

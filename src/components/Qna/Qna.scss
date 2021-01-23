@@ -1,1 +1,49 @@
-/* your css code */
+@import "../../util/util.scss";
+
+.List {
+  display: flex;
+  justify-content: center;
+
+  &-table {
+    display: flex;
+    margin-bottom: 1rem;
+    max-width: 1100px;
+    width: 100%;
+    border-spacing: 0px;
+    border-collapse: separate;
+    &-tbody {
+      border-top: 1px solid #0e1f91;
+      &-tr {
+        & td {
+          border-bottom: 1px solid #efefef;
+        }
+        &-num {
+          padding: 1rem 1.4rem;
+        }
+        &:hover {
+          background-color: rgba($color: #c6cbe7b0, $alpha: 0.1);
+        }
+      }
+    }
+  }
+}
+
+.td {
+  &-num {
+    text-align: center;
+  }
+
+  &-subject {
+    width: 45rem;
+    text-align: left;
+  }
+
+  &-name {
+    width: 18rem;
+    text-align: center;
+  }
+
+  &-date {
+    width: 10rem;
+  }
+}
