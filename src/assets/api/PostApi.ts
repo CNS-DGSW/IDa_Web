@@ -1,28 +1,16 @@
-import axios from "axios";
-import { server } from "../../config/config.json";
+import Api from "lib/customAxios";
+import Category from "util/enums/Category";
 
 class PostApi {
-  async CreatePost(category: string, title: string, content: string) {
+  async CreatePost(category: Category, title: string, content: string) {
     try {
-      const url = `${server}/post/createPost`;
-
       const body = {
         category,
         title,
         content,
       };
 
-      let config = {};
-
-      if (localStorage.getItem("accessToken")) {
-        config = {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-        };
-      }
-
-      const { data } = await axios.post(url, body, config);
+      const { data } = await Api.post("/post/createPost", body);
 
       return data;
     } catch (error) {
@@ -30,21 +18,19 @@ class PostApi {
     }
   }
 
-  async GetPost() {
+  async GetPost(idx: number) {
     try {
-      const url = `${server}/post/getPost`;
+      const { data } = await Api.get(`/post/getPost/${idx}`);
 
-      let config = {};
+      return data;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
 
-      if (localStorage.getItem("accessToken")) {
-        config = {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-        };
-      }
-
-      const { data } = await axios.get(url, config);
+  async GetPosts(category: Category) {
+    try {
+      const { data } = await Api.get(`/post/getPosts?category=${category}`);
 
       return data;
     } catch (error) {
@@ -54,24 +40,12 @@ class PostApi {
 
   async CreateAnswer(content: string, postIdx: number) {
     try {
-      const url = `${server}/post/createAnswer`;
-
       const body = {
         content,
         postIdx,
       };
 
-      let config = {};
-
-      if (localStorage.getItem("accessToken")) {
-        config = {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-        };
-      }
-
-      const { data } = await axios.post(url, body, config);
+      const { data } = await Api.post("/post/createAnswer", body);
 
       return data;
     } catch (error) {
@@ -81,19 +55,7 @@ class PostApi {
 
   async DeletePost(idx: number) {
     try {
-      const url = `${server}/post/getPost/${idx}`;
-
-      let config = {};
-
-      if (localStorage.getItem("accessToken")) {
-        config = {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-        };
-      }
-
-      const { data } = await axios.delete(url, config);
+      const { data } = await Api.delete(`/post/deletePost/${idx}`);
 
       return data;
     } catch (error) {
@@ -103,24 +65,12 @@ class PostApi {
 
   async ModifyPost(idx: number, content: string, title: string) {
     try {
-      const url = `${server}/post/modifyPost/${idx}`;
-
       const body = {
         content,
         title,
       };
 
-      let config = {};
-
-      if (localStorage.getItem("accessToken")) {
-        config = {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-        };
-      }
-
-      const { data } = await axios.put(url, body, config);
+      const { data } = await Api.patch(`/post/modifyPost/${idx}`, body);
 
       return data;
     } catch (error) {
