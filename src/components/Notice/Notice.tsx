@@ -1,76 +1,69 @@
 import React from "react";
 import "./Notice.scss";
-import Table from "components/common/Table/Table";
-import TableRow from "components/common/Table/TableRow";
-import TableColumn from "components/common/Table/TableColumn";
 import Board from "components/common/Board";
-import Modal from "components/BoardModal";
+import HandlePostContainer from "containers/HandlePost/HandlePostContainer";
+import Category from "util/enums/Category";
+import { PostType } from "util/types/PostType";
 
 interface NoticeProps {
-  modal: boolean;
-  setModal: React.Dispatch<React.SetStateAction<boolean>>;
-  title: string;
-  setTitle: React.Dispatch<React.SetStateAction<string>>;
-  content: string;
-  setContent: React.Dispatch<React.SetStateAction<string>>;
-  handleCreatePost: () => void;
-  handleCloseModal: () => void;
-  handleDeletePost: (idx: number) => Promise<void>;
-  handleModifyPost: (idx: number) => Promise<void>;
-  handleCreateAnswer: () => void;
-  handleGetPost: () => void;
   isAdmin: boolean;
+  posts: PostType[];
+  handleGetPosts: () => Promise<void>;
+  selectedIdx: number | undefined;
+  setSelectedIdx: React.Dispatch<React.SetStateAction<number | undefined>>;
+  search: string;
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
+  show: boolean;
+  setShow: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Notice = ({
-  modal,
-  setModal,
-  title,
-  setTitle,
-  content,
-  setContent,
-  handleCreatePost,
-  handleCloseModal,
-  handleDeletePost,
-  handleModifyPost,
-  handleCreateAnswer,
-  handleGetPost,
   isAdmin,
+  posts,
+  handleGetPosts,
+  selectedIdx,
+  setSelectedIdx,
+  search,
+  setSearch,
+  show,
+  setShow,
 }: NoticeProps) => {
   return (
     <>
-      <Board title="공지사항" content="공지사항을 필독해주세요">
+      <Board
+        title="공지사항"
+        content="공지사항을 필독해주세요"
+        posts={posts}
+        setSelectedIdx={setSelectedIdx}
+        search={search}
+        setSearch={setSearch}
+        setShow={setShow}
+      >
         {isAdmin ? (
-          <p className="Board-text-button" onClick={() => setModal(true)}>
+          <p
+            className="Board-text-button"
+            onClick={() => {
+              setSelectedIdx(undefined);
+              setShow(true);
+            }}
+          >
             글 작성
           </p>
         ) : (
           <p></p>
         )}
       </Board>
-      {modal ? (
-        <>
-          <Modal
-            mainTitle="공지사항 게시글 작성"
-            title={title}
-            setTitle={setTitle}
-            content={content}
-            setContent={setContent}
-            handleCreatePost={handleCreatePost}
-            handleCloseModal={handleCloseModal}
-            handleDeletePost={handleDeletePost}
-            handleModifyPost={handleModifyPost}
-            handleCreateAnswer={handleCreateAnswer}
-            handleGetPost={handleGetPost}
-          ></Modal>
-        </>
-      ) : (
-        <></>
+      {show && (
+        <HandlePostContainer
+          handleGetPosts={handleGetPosts}
+          idx={selectedIdx}
+          category={Category.NOTICE}
+          onClose={() => {
+            setSelectedIdx(undefined);
+            setShow(false);
+          }}
+        />
       )}
-
-      <Table>
-        <TableColumn />
-      </Table>
     </>
   );
 };
