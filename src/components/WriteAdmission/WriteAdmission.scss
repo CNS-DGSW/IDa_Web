@@ -6,6 +6,26 @@
   margin-bottom: 2rem;
   color: $ft-darkgray;
 
+  &-verterans {
+    width: 100%;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+
+    &-textInput {
+      width: 20rem;
+      height: 2.6rem;
+      padding-left: 1rem;
+      border: none;
+      border: 1px solid $bd-gray-700;
+      border-radius: 2px;
+      &:focus {
+        border: 1px solid $bd-blue;
+        outline: none;
+      }
+    }
+  }
+
   &-area {
     display: flex;
     flex-direction: column;
@@ -113,6 +133,7 @@
       margin-top: 1rem;
       background-color: $bg-white;
       padding: 1rem;
+      font-size: 1rem;
     }
   }
 

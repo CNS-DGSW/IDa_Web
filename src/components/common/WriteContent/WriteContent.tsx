@@ -6,7 +6,7 @@ import "./WriteContent.scss";
 interface WriteContentProps {
   title: string;
   children: React.ReactNode;
-  onSave: () => void | boolean;
+  onSave: () => void | boolean | Promise<boolean>;
   isChanged?: boolean;
 }
 
@@ -16,7 +16,9 @@ const WriteContent = ({ title, children, onSave, isChanged }: WriteContentProps)
 
   const nextPage = useCallback(() => {
     if (!isChanged) {
-      pageHandle(page + 1);
+      if (page !== 6) {
+        pageHandle(page + 1);
+      }
     }
   }, [isChanged]);
 
@@ -36,7 +38,7 @@ const WriteContent = ({ title, children, onSave, isChanged }: WriteContentProps)
             <div
               className="writecontent-children-area-btn save"
               onClick={() => {
-                if (onSave() === true) {
+                if (Boolean(onSave()) === true) {
                   nextPage();
                 }
               }}
@@ -44,9 +46,18 @@ const WriteContent = ({ title, children, onSave, isChanged }: WriteContentProps)
               원서저장
             </div>
             <div className="writecontent-children-area-btn preview">원서 미리보기</div>
+            {page === 6 && (
+              <div className="writecontent-children-area-btn prev" onClick={prevPage}>
+                원서 출력
+              </div>
+            )}
             <div className="writecontent-children-area-hr"></div>
 
-            {page !== 6 && (
+            {page === 6 ? (
+              <div className="writecontent-children-area-btn last" onClick={nextPage}>
+                원서 최종 제출
+              </div>
+            ) : (
               <div className="writecontent-children-area-btn next" onClick={nextPage}>
                 다음
               </div>
