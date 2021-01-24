@@ -56,7 +56,7 @@ const WriteStudent = ({
               <div className="student-select-box-area">
                 <input
                   type="date"
-                  className="student-select-box-area-Input7"
+                  className="student-select-box-area-textInput"
                   value={birth}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                     setBirth(e.target.value);
@@ -105,7 +105,7 @@ const WriteStudent = ({
               <div className="student-select-box-area">
                 <input
                   type="text"
-                  className="student-select-box-area-Input5"
+                  className="student-select-box-area-textInput"
                   value={studentTel}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                     setStudentTel(e.target.value);

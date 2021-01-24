@@ -24,8 +24,8 @@ const WriteStudentContainer = ({}) => {
   const getStudentInfoCallback = useCallback(() => {
     getStudentInfo()
       .then((res: UserInfoResponse) => {
-        setName(res.data.name);
-        setBirth(moment(res.data.birth).format("yyyy-MM-DD"));
+        setName(res.data.name || "");
+        setBirth(moment(res.data.birth || "").format("yyyy-MM-DD"));
         setSex(res.data.sex);
         setStudentTel(res.data.studentTel || "");
       })
@@ -37,8 +37,10 @@ const WriteStudentContainer = ({}) => {
   }, []);
 
   const onSave = useCallback(() => {
+    console.log(isChanged);
     if (name !== "" && birth !== "" && sex !== null && studentTel !== "") {
       editStudentInfo(name, birth, sex, studentTel);
+      setIsChanged(false);
       return true;
     } else {
       return false;
@@ -50,13 +52,15 @@ const WriteStudentContainer = ({}) => {
   }, []);
 
   useEffect(() => {
-    if (studentTel.length === 10) {
-      setStudentTel(studentTel.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"));
-    }
-    if (studentTel.length === 13) {
-      setStudentTel(
-        studentTel.replace(/-/g, "").replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")
-      );
+    if (studentTel) {
+      if (studentTel.length === 10) {
+        setStudentTel(studentTel.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"));
+      }
+      if (studentTel.length === 13) {
+        setStudentTel(
+          studentTel.replace(/-/g, "").replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")
+        );
+      }
     }
   }, [studentTel]);
 

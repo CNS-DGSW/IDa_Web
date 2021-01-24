@@ -1,1 +1,42 @@
-/* your css code */
+@import "util/colors.scss";
+
+.intro {
+  padding: 2rem;
+  background-color: #f6f6fc;
+  color: $ft-darkgray;
+
+  &-textBox {
+    width: 100%;
+    background-color: $bg-white;
+    padding: 0.1rem 2rem;
+
+    p {
+      font-size: 0.9rem;
+      margin: 1rem 0;
+    }
+  }
+
+  &-inputBox {
+    width: 100%;
+    height: 20rem;
+    background-color: $bg-white;
+    border: none;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    resize: none;
+    margin-top: 1rem;
+
+    &:focus {
+      border: 1px solid $bd-blue;
+      outline: none;
+    }
+  }
+
+  label {
+    display: inline-block;
+    margin-top: 1rem;
+  }
+}
