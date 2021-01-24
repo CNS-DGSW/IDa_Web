@@ -7,6 +7,7 @@ import { sha256 } from "js-sha256";
 @autobind
 class AuthStore {
   @observable login: boolean = false;
+  @observable isAdmin: boolean = false;
   @observable profileBox: boolean = false;
   @observable name: string = "";
   @observable email: string = "";
@@ -20,6 +21,9 @@ class AuthStore {
   tryLogout = () => {
     this.login = false;
     this.profileBox = false;
+    this.name = "";
+    this.email = "";
+    this.isAdmin = false;
   };
 
   @action
@@ -90,6 +94,7 @@ class AuthStore {
         this.login = true;
         this.email = response.data.email;
         this.name = response.data.name;
+        this.isAdmin = response.data.isAdmin;
       }
 
       return new Promise((resolve: (response: UserInfoResponse) => void, reject) => {
