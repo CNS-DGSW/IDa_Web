@@ -1,136 +1,66 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { inject, observer } from "mobx-react";
+import { observer } from "mobx-react";
 import Qna from "components/Qna";
 import useStore from "lib/hooks/useStore";
-import { GetPostResponse, Response } from "util/types/Response";
-import Swal from "sweetalert2";
-import useQuery from "lib/hooks/useQuery";
+import { GetPostsResponse } from "util/types/Response";
+import Category from "util/enums/Category";
+import { PostType } from "util/types/PostType";
 
 const QnaContainer = ({}) => {
-  const [modal, setModal] = useState<boolean>(false);
-  const [title, setTitle] = useState<string>("");
-  const [content, setContent] = useState<string>("");
+  const [posts, setPosts] = useState<PostType[]>([]);
+  const [filteredPosts, setFilteredPosts] = useState<PostType[]>([]);
+  const [search, setSearch] = useState<string>("");
+  const [selectedIdx, setSelectedIdx] = useState<number>();
+  const [show, setShow] = useState<boolean>(false);
+  const [isAnswer, setIsAnswer] = useState<boolean>(false);
 
   const { store } = useStore();
-  const query = useQuery();
+  const { isAdmin } = store.AuthStore;
+  const { getPosts } = store.BoardStore;
 
-  const {
-    tryCreatePost,
-    tryCreateAnswer,
-    tryGetPost,
-    tryDeletePost,
-    tryModifyPost,
-  } = store.BoardStore;
-
-  const handleCreatePost = useCallback(async () => {
-    if (!title && !content) {
-      console.log("제목과 내용을 입력해 주세요");
-    } else if (!title) {
-      console.log("제목을 입력해 주세요");
-    } else if (!content) {
-      console.log("내용을 입력해 주세요");
-    } else {
-      await tryCreatePost("NOTICE", title, content)
-        .then((res: Response) => {
-          setModal(false);
-        })
-        .catch((err: Error) => {
-          console.log(err);
-        });
-    }
-  }, [title, content]);
-
-  const handleCreateAnswer = useCallback(async () => {
-    if (!content) {
-      console.log("내용을 작성해 주세요");
-    } else {
-      await tryCreateAnswer(content, Number(query.get("postIdx")))
-        .then((res: Response) => {
-          setModal(false);
-        })
-        .catch((err: Error) => {
-          console.log(err);
-        });
-    }
-  }, [content]);
-
-  const handleModifyPost = useCallback(async () => {
-    if (!title && !content) {
-      console.log("제목과 내용을 입력해 주세요");
-    } else if (!title) {
-      console.log("제목을 입력해 주세요");
-    } else if (!content) {
-      console.log("내용을 입력해 주세요");
-    } else {
-      await tryModifyPost(Number(query.get("idx")), title, content)
-        .then((res: Response) => {
-          setModal(false);
-        })
-        .catch((err: Error) => {
-          console.log(err);
-        });
-    }
-  }, [title, content]);
-
-  const handleGetPost = useCallback(async () => {
-    await tryGetPost()
-      .then((res: GetPostResponse) => {})
+  const handleGetPosts = useCallback(async () => {
+    await getPosts(Category.QNA)
+      .then((res: GetPostsResponse) => {
+        setPosts(res.data.posts);
+      })
       .catch((err: Error) => {
         console.log(err);
       });
   }, []);
 
-  const handleDeletePost = useCallback(async () => {
-    await tryDeletePost(Number(query.get("idx")))
-      .then((res: Response) => {})
-      .catch((err: Error) => {
-        console.log(err);
-      });
-  }, []);
-
-  const handleCloseModal = () => {
-    if (title || content) {
-      Swal.fire({
-        title: "나가시겠습니까?",
-        text: "작성된 내용은 모두 삭제됩니다.",
-        showCancelButton: true,
-        cancelButtonText: "취소",
-        confirmButtonText: "확인",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          setModal(false);
-        }
-      });
-    } else if (!title && !content) {
-      setModal(false);
-    }
-  };
+  const searchPostFilter = useCallback(() => {
+    setFilteredPosts(
+      posts.filter((post) => {
+        if (post.title.includes(search)) return true;
+      })
+    );
+  }, [search, posts]);
 
   useEffect(() => {
-    if (!modal) {
-      setTitle("");
-      setContent("");
-    }
-  }, [modal]);
+    handleGetPosts();
+  }, [handleGetPosts]);
+
+  useEffect(() => {
+    searchPostFilter();
+  }, [searchPostFilter]);
 
   return (
     <>
       <Qna
-        modal={modal}
-        setModal={setModal}
-        title={title}
-        setTitle={setTitle}
-        content={content}
-        setContent={setContent}
-        handleCreatePost={handleCreatePost}
-        handleCloseModal={handleCloseModal}
-        handleDeletePost={handleDeletePost}
-        handleModifyPost={handleModifyPost}
-        handleCreateAnswer={handleCreateAnswer}
-        handleGetPost={handleGetPost}
+        isAdmin={isAdmin}
+        posts={filteredPosts}
+        selectedIdx={selectedIdx}
+        setSelectedIdx={setSelectedIdx}
+        search={search}
+        setSearch={setSearch}
+        show={show}
+        setShow={setShow}
+        handleGetPosts={handleGetPosts}
+        isAnswer={isAnswer}
+        setIsAnswer={setIsAnswer}
       />
     </>
   );
 };
 
-export default inject("store")(observer(QnaContainer));
+export default observer(QnaContainer);
