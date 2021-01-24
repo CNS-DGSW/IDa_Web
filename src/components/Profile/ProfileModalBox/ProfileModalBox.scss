@@ -70,20 +70,6 @@
       }
     }
   }
-  &-check {
-    &-img {
-      background-image: url("../../../assets/images/auth-gray.png");
-      background-repeat: no-repeat;
-      width: 1.4rem;
-      height: 1.4rem;
-      background-size: 1.4rem 1.4rem;
-    }
-    &:hover {
-      .ProfileModalBox-check-img {
-        background-image: url("../../../assets/images/auth.png");
-      }
-    }
-  }
   &-logout {
     margin-bottom: 4px;
     &-img {

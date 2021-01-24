@@ -60,6 +60,7 @@ const Register = ({
   return (
     <>
       <div className="Register">
+        <div className="Register-img" />
         <div className="Register-text">
           <span className="Register-text-Welcome">Welcome</span>
           <span className="Register-text-content">아아디 비번 똑띠 적어라^^</span>

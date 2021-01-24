@@ -29,6 +29,7 @@ const Login = ({
   return (
     <>
       <div className="Login">
+        <div className="Login-img" />
         <div className="Login-text">
           <span className="Login-text-Welcome">Welcome</span>
           <span className="Login-text-content">아아디 비번 똑띠 적어라^^</span>

@@ -39,10 +39,7 @@ const ProfileModalBox = ({
           <div className="ProfileModalBox-modify-img"></div>
           <span className="box-text">비밀번호 수정</span>
         </div>
-        <div className="ProfileModalBox-check box pointer">
-          <div className="ProfileModalBox-check-img"></div>
-          <span className="box-text">본인 인증</span>
-        </div>
+
         <div
           className="ProfileModalBox-logout box pointer"
           onClick={() => {

@@ -4,6 +4,7 @@ import Register from "components/Register";
 import { Response } from "../../util/types/Response";
 import useStore from "../../lib/hooks/useStore";
 import { useHistory, withRouter } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const RegisterContainer = () => {
   const { store } = useStore();
@@ -31,7 +32,7 @@ const RegisterContainer = () => {
     setEmailLoading(true);
     if (!email) {
       setEmailLoading(false);
-      console.log("이메일을 입력해 주세요");
+      toast.warn("이메일을 입력해 주세요");
     } else {
       await trySendEmail(email)
         .then((res: Response) => {
@@ -40,11 +41,11 @@ const RegisterContainer = () => {
         .catch((err: Error) => {
           setEmailLoading(false);
           if (err.message.includes("400")) {
-            console.log("메일 형식이 아닙니다.");
+            toast.warn("메일 형식이 아닙니다.");
           } else if (err.message.includes("409")) {
-            console.log("이미 사용중인 메일입니다.");
+            toast.warn("이미 사용중인 메일입니다.");
           } else {
-            console.log("서버 오류입니다");
+            toast.error("서버 오류입니다");
           }
         });
     }
@@ -52,21 +53,24 @@ const RegisterContainer = () => {
 
   const handleRegister = useCallback(async () => {
     if (!email || !pw || !checkPw || !name || !birth) {
-      console.log("빈칸이 있습니다.");
+      toast.warn("빈칸이 있습니다.");
     } else if (pw !== checkPw) {
-      console.log("비밀번호가 일치하지 않습니다.");
+      toast.warn("비밀번호가 일치하지 않습니다.");
     } else if (!allCheck) {
-      console.log("모두 동의를 체크해 주세요");
+      toast.warn("모두 동의를 체크해 주세요");
     } else {
       await tryRegister(name, email, pw, birth)
         .then((res: Response) => {
           history.push("login");
+          toast.success("가입되었습니다.");
         })
-        .catch((Error: Error) => {
-          if (Error.message.includes("409")) {
-            console.log("메일 인증이 안되었습니다.");
+        .catch((err: Error) => {
+          if (err.message.includes("409")) {
+            toast.warn("이미 사용중인 이메일입니다.");
+          } else if (err.message.includes("401")) {
+            toast.warn("메일 인증이 안되었습니다.");
           } else {
-            console.log(Error.message);
+            toast.error("서버 오류입니다");
           }
         });
     }
@@ -80,7 +84,7 @@ const RegisterContainer = () => {
 
   useEffect(() => {
     handleAllCheck();
-  }, [allCheck, handleAllCheck]);
+  }, [handleAllCheck]);
 
   useEffect(() => {
     if (privacy && use && background) {
