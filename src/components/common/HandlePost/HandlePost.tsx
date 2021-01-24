@@ -103,23 +103,41 @@ const HandlePost = ({
             </>
           ) : (
             <>
-              {email === post.user.email ||
-                (category === Category.NOTICE && isAdmin && (
-                  <>
-                    <div
-                      className="handle-post-footer-btn"
-                      onClick={() => setIsModify(true)}
-                    >
-                      수정
-                    </div>
-                    <div
-                      className="handle-post-footer-btn"
-                      onClick={() => handleDeletePost()}
-                    >
-                      삭제
-                    </div>
-                  </>
-                ))}
+              {email === post.user.email ? (
+                <>
+                  <div
+                    className="handle-post-footer-btn"
+                    onClick={() => setIsModify(true)}
+                  >
+                    수정
+                  </div>
+                  <div
+                    className="handle-post-footer-btn"
+                    onClick={() => handleDeletePost()}
+                  >
+                    삭제
+                  </div>
+                </>
+              ) : (
+                <>
+                  {category === Category.NOTICE && isAdmin && (
+                    <>
+                      <div
+                        className="handle-post-footer-btn"
+                        onClick={() => setIsModify(true)}
+                      >
+                        수정
+                      </div>
+                      <div
+                        className="handle-post-footer-btn"
+                        onClick={() => handleDeletePost()}
+                      >
+                        삭제
+                      </div>
+                    </>
+                  )}
+                </>
+              )}
             </>
           )}
         </div>

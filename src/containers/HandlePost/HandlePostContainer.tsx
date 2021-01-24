@@ -38,18 +38,18 @@ const HandlePostContainer = ({
   const [content, setContent] = useState<string>("");
   const [post, setPost] = useState<PostType>({
     category: category,
-    content: "",
+    content: " ",
     createdAt: new Date(),
     idx: 0,
     isDeleted: false,
     parentIdx: 0,
-    title: "",
+    title: " ",
     updatedAt: new Date(),
     user: {
       idx: 0,
       isAdmin: false,
-      name: "",
-      email: "?",
+      name: " ",
+      email: " ",
     },
   });
 
@@ -195,6 +195,26 @@ const HandlePostContainer = ({
   useEffect(() => {
     getPostCallback();
   }, [getPostCallback]);
+
+  useEffect(() => {
+    return () =>
+      setPost({
+        category: category,
+        content: " ",
+        createdAt: new Date(),
+        idx: 0,
+        isDeleted: false,
+        parentIdx: 0,
+        title: " ",
+        updatedAt: new Date(),
+        user: {
+          idx: 0,
+          isAdmin: false,
+          name: " ",
+          email: " ",
+        },
+      });
+  }, []);
 
   return (
     <Modal onClose={onClose} className={"handle-post-modal"}>
