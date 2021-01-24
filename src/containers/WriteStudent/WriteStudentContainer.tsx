@@ -24,8 +24,8 @@ const WriteStudentContainer = ({}) => {
   const getStudentInfoCallback = useCallback(() => {
     getStudentInfo()
       .then((res: UserInfoResponse) => {
-        setName(res.data.name);
-        setBirth(moment(res.data.birth).format("yyyy-MM-DD"));
+        setName(res.data.name || "");
+        setBirth(moment(res.data.birth || "").format("yyyy-MM-DD"));
         setSex(res.data.sex);
         setStudentTel(res.data.studentTel || "");
       })

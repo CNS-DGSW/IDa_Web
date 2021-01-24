@@ -56,36 +56,11 @@ const WriteParents = ({
                   onChange={(e) => setParentRelation(e.target.value as Relation)}
                 >
                   <option>선택</option>
-                  <option
-                    value={Relation.MOTHER}
-                    selected={Relation.MOTHER === parentRelation}
-                  >
-                    모
-                  </option>
-                  <option
-                    value={Relation.FATHER}
-                    selected={Relation.FATHER === parentRelation}
-                  >
-                    부
-                  </option>
-                  <option
-                    value={Relation.GRANDMOTHER}
-                    selected={Relation.GRANDMOTHER === parentRelation}
-                  >
-                    조모
-                  </option>
-                  <option
-                    value={Relation.GRANDFATHER}
-                    selected={Relation.GRANDFATHER === parentRelation}
-                  >
-                    조부
-                  </option>
-                  <option
-                    value={Relation.OTHER}
-                    selected={Relation.OTHER === parentRelation}
-                  >
-                    기타
-                  </option>
+                  <option value={Relation.MOTHER}>모</option>
+                  <option value={Relation.FATHER}>부</option>
+                  <option value={Relation.GRANDMOTHER}>조모</option>
+                  <option value={Relation.GRANDFATHER}>조부</option>
+                  <option value={Relation.OTHER}>기타</option>
                 </select>
               </div>
             </div>
@@ -109,6 +84,7 @@ const WriteParents = ({
               type="text"
               className="parent-select-box-area-textInput"
               value={address}
+              readOnly
               onClick={() => setIsOpen(true)}
             />
             {isOpen === true && (

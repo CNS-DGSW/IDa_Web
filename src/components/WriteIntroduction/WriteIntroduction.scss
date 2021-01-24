@@ -9,7 +9,6 @@
     width: 100%;
     background-color: $bg-white;
     padding: 0.1rem 2rem;
-    margin-bottom: 2rem;
 
     p {
       font-size: 0.9rem;
@@ -20,32 +19,24 @@
   &-inputBox {
     width: 100%;
     height: 20rem;
-    border: 2px dashed $bd-skyblue;
     background-color: $bg-white;
+    border: none;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    position: relative;
+    resize: none;
+    margin-top: 1rem;
 
-    label {
-      width: 8rem;
-      height: 2.5rem;
-      background-color: $bg-blue;
-      color: $ft-white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 2px;
-      margin: 0.4rem 0;
-      position: relative;
+    &:focus {
+      border: 1px solid $bd-blue;
+      outline: none;
     }
+  }
 
-    input {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-    }
+  label {
+    display: inline-block;
+    margin-top: 1rem;
   }
 }

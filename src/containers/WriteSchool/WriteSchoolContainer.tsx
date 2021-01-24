@@ -65,15 +65,15 @@ const WriteSchoolContainer = ({}) => {
   const getSchoolInfoCallback = useCallback(() => {
     getSchoolInfo()
       .then((res: SchoolInfoResponse) => {
-        setCityLocation(res.data.cityLocation);
-        setCityName(res.data.cityName);
+        setCityLocation(res.data.cityLocation || "");
+        setCityName(res.data.cityName || "");
         handleGrade(res.data.gradeType);
-        setGraduatedDate(res.data.graduatedDate);
-        setSchoolCode(res.data.graduatedDate);
-        setSchoolName(res.data.schoolName);
-        setSchoolTel(res.data.schoolTel);
-        setTeacherName(res.data.teacherName);
-        setTeacherTel(res.data.teacherTel);
+        setGraduatedDate(res.data.graduatedDate || "");
+        setSchoolCode(res.data.graduatedDate || "");
+        setSchoolName(res.data.schoolName || "");
+        setSchoolTel(res.data.schoolTel || "");
+        setTeacherName(res.data.teacherName || "");
+        setTeacherTel(res.data.teacherTel || "");
       })
       .catch((err: Error) => {
         if (err.message.includes("401")) {

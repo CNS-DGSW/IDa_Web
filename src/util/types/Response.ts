@@ -64,3 +64,27 @@ export interface SchoolInfoResponse extends Response {
     teacherTel: string;
   };
 }
+
+export interface ProfileInfoResponse extends Response {
+  data: {
+    profileImage: string;
+  };
+}
+
+export interface uploadResponse extends Response {
+  data: {
+    fileName: string;
+  };
+}
+
+export interface selfIntroductionResponse extends Response {
+  data: {
+    selfIntroduction: string;
+  };
+}
+
+export interface studyPlanResponse extends Response {
+  data: {
+    studyPlan: string;
+  };
+}

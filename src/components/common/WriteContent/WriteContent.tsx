@@ -6,7 +6,7 @@ import "./WriteContent.scss";
 interface WriteContentProps {
   title: string;
   children: React.ReactNode;
-  onSave: () => void | boolean;
+  onSave: () => void | boolean | Promise<boolean>;
   isChanged?: boolean;
 }
 
@@ -16,7 +16,9 @@ const WriteContent = ({ title, children, onSave, isChanged }: WriteContentProps)
 
   const nextPage = useCallback(() => {
     if (!isChanged) {
-      pageHandle(page + 1);
+      if (page !== 6) {
+        pageHandle(page + 1);
+      }
     }
   }, [isChanged]);
 
@@ -36,7 +38,7 @@ const WriteContent = ({ title, children, onSave, isChanged }: WriteContentProps)
             <div
               className="writecontent-children-area-btn save"
               onClick={() => {
-                if (onSave() === true) {
+                if (Boolean(onSave()) === true) {
                   nextPage();
                 }
               }}

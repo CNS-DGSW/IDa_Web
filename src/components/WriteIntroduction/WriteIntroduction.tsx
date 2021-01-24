@@ -4,17 +4,27 @@ import { ReactComponent as Folder } from "../../assets/images/folder.svg";
 import "./WriteIntroduction.scss";
 
 interface WriteIntroductionProps {
-  file: string;
-  setFile: React.Dispatch<React.SetStateAction<string>>;
+  intro: number;
+  plan: number;
+  selfIntroduce: string;
+  setSelfIntroduce: React.Dispatch<React.SetStateAction<string>>;
+  studyPlan: string;
+  setStudyPlan: React.Dispatch<React.SetStateAction<string>>;
+  onSave: () => boolean;
 }
 
-const WriteIntroduction = ({ file, setFile }: WriteIntroductionProps) => {
+const WriteIntroduction = ({
+  intro,
+  plan,
+  selfIntroduce,
+  setSelfIntroduce,
+  studyPlan,
+  setStudyPlan,
+  onSave,
+}: WriteIntroductionProps) => {
   return (
     <>
-      <WriteContent
-        title="자기소개서 및 학업계획서를 작성(제출)해주세요"
-        onSave={() => console.log(1)}
-      >
+      <WriteContent title="자기소개서 및 학업계획서를 작성(제출)해주세요" onSave={onSave}>
         <div className="intro">
           <div className="intro-textBox">
             <p>
@@ -29,12 +39,20 @@ const WriteIntroduction = ({ file, setFile }: WriteIntroductionProps) => {
               놓아주세요.
             </p>
           </div>
-          <div className="intro-inputBox">
-            <Folder />
-            <label htmlFor="intro">{file ? "파일변경" : "파일선택"}</label>
-            <input type="file" id="intro" onChange={(e) => setFile(e.target.value)} />
-            <div>{file}</div>
-          </div>
+
+          <label>자기소개서 ({intro}/1500)</label>
+          <textarea
+            className="intro-inputBox"
+            value={selfIntroduce}
+            onChange={(e) => setSelfIntroduce(e.target.value)}
+          ></textarea>
+
+          <label>학업계획서 ({plan}/1500)</label>
+          <textarea
+            className="intro-inputBox"
+            value={studyPlan}
+            onChange={(e) => setStudyPlan(e.target.value)}
+          ></textarea>
         </div>
       </WriteContent>
     </>

@@ -23,6 +23,30 @@ class UserApi {
     }
   }
 
+  async EditProfileImage(profileImage: string) {
+    try {
+      const body = {
+        profileImage,
+      };
+
+      const { data } = await Api.patch("/user/editProfileImage", body);
+
+      return data;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
+
+  async GetProfileImage() {
+    try {
+      const { data } = await Api.get("/user/getProfileImage");
+
+      return data;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
+
   async GetApplyType() {
     try {
       const { data } = await Api.get("/user/getApplyType");
@@ -78,7 +102,7 @@ class UserApi {
     }
   }
 
-  async getParentInfo() {
+  async GetParentInfo() {
     try {
       const { data } = await Api.get("/user/getParentInfo");
 
@@ -88,7 +112,7 @@ class UserApi {
     }
   }
 
-  async editSchoolInfo(
+  async EditSchoolInfo(
     cityLocation: string,
     cityName: string,
     gradeType: Grade,
@@ -120,9 +144,67 @@ class UserApi {
     }
   }
 
-  async getSchoolInfo() {
+  async GetSchoolInfo() {
     try {
       const { data } = await Api.get("/user/getSchoolInfo");
+      return data;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
+
+  async upload(fileName: File | Blob) {
+    try {
+      const formData = new FormData();
+      formData.append("file", fileName);
+
+      const { data } = await Api.post("/file/upload", formData);
+      return data;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
+
+  async EditSelfIntroduce(selfIntroduction: string) {
+    try {
+      const body = {
+        selfIntroduction,
+      };
+
+      const { data } = await Api.patch("/user/editSelfIntroduce", body);
+
+      return data;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
+
+  async GetSelfIntroduce() {
+    try {
+      const { data } = await Api.get("/user/getSelfIntroduce");
+      return data;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
+
+  async EditStudyPlan(studyPlan: string) {
+    try {
+      const body = {
+        studyPlan,
+      };
+
+      const { data } = await Api.patch("/user/editStudyPlan", body);
+
+      return data;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
+
+  async GetStudyPlan() {
+    try {
+      const { data } = await Api.get("/user/getStudyPlan");
       return data;
     } catch (error) {
       throw new Error(`${error}`);

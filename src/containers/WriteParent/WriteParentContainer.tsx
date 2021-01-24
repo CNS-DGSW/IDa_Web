@@ -62,11 +62,11 @@ const WriteParentContainer = ({}) => {
   const getParentInfoCallback = useCallback(() => {
     getParentInfo()
       .then((res: ParentInfoResponse) => {
-        setAddress(res.data.address);
-        setParentName(res.data.parentName);
+        setAddress(res.data.address || "");
+        setParentName(res.data.parentName || "");
         setParentRelation(res.data.parentRelation);
-        setParentTel(res.data.parentTel);
-        setPostCode(res.data.postCode);
+        setParentTel(res.data.parentTel || "");
+        setPostCode(res.data.postCode || "");
       })
       .catch((err: Error) => {
         if (err.message.includes("401")) {

@@ -16,19 +16,21 @@ const WriteAdmissionContainer = ({}) => {
   const [applyType, setApplyType] = useState<Apply | null>(null);
   const [special, setSpecial] = useState<string>("");
   const [applyDetailType, setApplyDetailType] = useState<ApplyDetail | null>(null);
-  const [verteransCity, setVerteransCity] = useState<string | undefined>("");
-  const [verteransNumber, setVerteransNumber] = useState<string | undefined>("");
+  const [verteransCity, setVerteransCity] = useState<string>("");
+  const [verteransNumber, setVerteransNumber] = useState<string>("");
   const [isChanged, setIsChanged] = useState<boolean>(false);
 
   const onSave = useCallback(() => {
-    console.log(isChanged);
-    if (
-      applyDetailType !== null &&
-      applyType !== null &&
-      verteransCity !== "" &&
-      verteransNumber !== ""
-    ) {
-      console.log(applyDetailType, applyType, verteransCity, verteransNumber);
+    console.log(applyDetailType, applyType, verteransCity, verteransNumber);
+
+    if (applyDetailType && applyType) {
+      if (
+        applyDetailType === ApplyDetail.VERTERANS &&
+        !verteransCity &&
+        !verteransNumber
+      ) {
+        return false;
+      }
       editApplyType(applyType, applyDetailType, verteransCity, verteransNumber);
       setIsChanged(false);
       return true;
@@ -42,9 +44,9 @@ const WriteAdmissionContainer = ({}) => {
       .then((res) => {
         setApplyType(res.data.applyType);
         setApplyDetailType(res.data.applyDetailType);
-        setSpecial(findNameByValue(res.data.applyDetailType));
-        setVerteransCity(res.data.verteransCity);
-        setVerteransNumber(res.data.verteransNumber);
+        setSpecial(findNameByValue(res.data.applyDetailType || ""));
+        setVerteransCity(res.data.verteransCity || "");
+        setVerteransNumber(res.data.verteransNumber || "");
       })
       .catch((err: Error) => {
         if (err.message.includes("401") || err.message.includes("410")) {
@@ -66,6 +68,10 @@ const WriteAdmissionContainer = ({}) => {
         setSpecial={setSpecial}
         applyDetailType={applyDetailType}
         setApplyDetailType={setApplyDetailType}
+        verteransCity={verteransCity}
+        setVerteransCity={setVerteransCity}
+        verteransNumber={verteransNumber}
+        setVerteransNumber={setVerteransNumber}
         onSave={onSave}
       ></WriteAdmission>
     </>
