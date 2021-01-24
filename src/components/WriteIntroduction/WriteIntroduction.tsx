@@ -1,10 +1,14 @@
 import React from "react";
 import WriteContent from "../common/WriteContent";
+import { ReactComponent as Folder } from "../../assets/images/folder.svg";
 import "./WriteIntroduction.scss";
 
-interface WriteIntroductionProps {}
+interface WriteIntroductionProps {
+  file: string;
+  setFile: React.Dispatch<React.SetStateAction<string>>;
+}
 
-const WriteIntroduction = ({}: WriteIntroductionProps) => {
+const WriteIntroduction = ({ file, setFile }: WriteIntroductionProps) => {
   return (
     <>
       <WriteContent
@@ -25,7 +29,12 @@ const WriteIntroduction = ({}: WriteIntroductionProps) => {
               놓아주세요.
             </p>
           </div>
-          <div className="intro-inputBox"></div>
+          <div className="intro-inputBox">
+            <Folder />
+            <label htmlFor="intro">{file ? "파일변경" : "파일선택"}</label>
+            <input type="file" id="intro" onChange={(e) => setFile(e.target.value)} />
+            <div>{file}</div>
+          </div>
         </div>
       </WriteContent>
     </>
