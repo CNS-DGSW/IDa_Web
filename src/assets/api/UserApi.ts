@@ -370,6 +370,15 @@ class UserApi {
       throw new Error(`${error}`);
     }
   }
+
+  async SearchSchool(schoolName: string) {
+    try {
+      const { data } = await Api.get(`/school/searchSchool?query=${schoolName}`);
+      return data;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
 }
 
 export default new UserApi();

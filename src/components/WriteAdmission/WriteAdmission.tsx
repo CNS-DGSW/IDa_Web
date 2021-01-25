@@ -137,11 +137,7 @@ const WriteAdmission = ({
                     {models.special
                       .find(findByNameForSpecial)!
                       .models?.map((model, index) => (
-                        <option
-                          key={index}
-                          value={model.value}
-                          // selected={applyDetailType === model.value}
-                        >
+                        <option key={index} value={model.value}>
                           {model.name}
                         </option>
                       ))}

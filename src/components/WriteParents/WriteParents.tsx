@@ -54,6 +54,7 @@ const WriteParents = ({
                 <select
                   className="parent-select-box-area-textInput"
                   onChange={(e) => setParentRelation(e.target.value as Relation)}
+                  value={parentRelation?.toString()}
                 >
                   <option>선택</option>
                   <option value={Relation.MOTHER}>모</option>

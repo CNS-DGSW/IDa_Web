@@ -14,6 +14,7 @@ import {
   attendResponse,
   additionalResponse,
   volunteerResponse,
+  schoolResponse,
 } from "util/types/Response";
 import Sex from "util/enums/Sex";
 import Relation from "util/enums/Relation";
@@ -593,6 +594,21 @@ class WriteStore {
       const response: volunteerResponse = await UserApi.GetAttend();
 
       return new Promise((resolve: (response: volunteerResponse) => void, reject) => {
+        resolve(response);
+      });
+    } catch (error) {
+      return new Promise((resolve, reject: (error: Error) => void) => {
+        reject(error);
+      });
+    }
+  };
+
+  @action
+  searchSchool = async (schoolName: string): Promise<schoolResponse> => {
+    try {
+      const response: schoolResponse = await UserApi.SearchSchool(schoolName);
+
+      return new Promise((resolve: (response: schoolResponse) => void, reject) => {
         resolve(response);
       });
     } catch (error) {
