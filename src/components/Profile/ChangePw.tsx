@@ -10,7 +10,7 @@ interface ChangePwProps {
   setChangePw: React.Dispatch<React.SetStateAction<string>>;
   checkPw: string;
   setCheckPw: React.Dispatch<React.SetStateAction<string>>;
-  tryChangePw: () => void;
+  handleTryChangePw: () => void;
 }
 
 const ChangePw = ({
@@ -20,13 +20,13 @@ const ChangePw = ({
   setChangePw,
   checkPw,
   setCheckPw,
-  tryChangePw,
+  handleTryChangePw,
 }: ChangePwProps) => {
   return (
     <div className="Profile">
       <div className="Profile-title">
         <span className="Profile-title-Welcome">Welcome</span>
-        <span className="Profile-title-content">아이디 비번 똑띠 적어라 ^^</span>
+        <span className="Profile-title-content">반갑습니다.</span>
       </div>
       <div className="Profile-box">
         <div className="Profile-box-text">비밀번호 변경</div>
@@ -51,7 +51,7 @@ const ChangePw = ({
           />
         </div>
         <div className="Profile-box-button">
-          <Button content="변경" onClick={() => tryChangePw()} />
+          <Button content="변경" onClick={() => handleTryChangePw()} />
         </div>
       </div>
     </div>

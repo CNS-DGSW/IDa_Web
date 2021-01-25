@@ -1,23 +1,18 @@
+import Category from "util/enums/Category";
+
 export type PostType = {
-  data: {
-    posts: [
-      {
-        category: string;
-        content: string;
-        createAt: Date;
-        idx: number;
-        isDeleted: boolean;
-        parentIdx: number;
-        title: string;
-        updateAt: Date;
-        user: {
-          idx: number;
-          isAdmin: boolean;
-          name: string;
-        };
-      }
-    ];
+  category: Category;
+  content: string;
+  createdAt: Date;
+  idx: number;
+  isDeleted: boolean;
+  parentIdx: number;
+  title: string;
+  updatedAt: Date;
+  user: {
+    idx: number;
+    isAdmin: boolean;
+    name: string;
+    email: string;
   };
-  message: string;
-  status: number;
 };

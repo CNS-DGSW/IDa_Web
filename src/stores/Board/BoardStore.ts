@@ -1,15 +1,14 @@
-import { action, observable } from "mobx";
+import { action } from "mobx";
 import { autobind } from "core-decorators";
 import PostApi from "../../assets/api/PostApi";
-import { Response, GetPostResponse } from "../../util/types/Response";
-import { stringify } from "querystring";
-import { PostType } from "util/types/PostType";
+import { Response, GetPostResponse, GetPostsResponse } from "../../util/types/Response";
+import Category from "util/enums/Category";
 
 @autobind
 class BoardStore {
   @action
-  tryCreatePost = async (
-    category: string,
+  createPost = async (
+    category: Category,
     title: string,
     content: string
   ): Promise<Response> => {
@@ -27,7 +26,7 @@ class BoardStore {
   };
 
   @action
-  tryCreateAnswer = async (content: string, postIdx: number): Promise<Response> => {
+  createAnswer = async (content: string, postIdx: number): Promise<Response> => {
     try {
       const response = await PostApi.CreateAnswer(content, postIdx);
 
@@ -42,9 +41,24 @@ class BoardStore {
   };
 
   @action
-  tryGetPost = async (): Promise<GetPostResponse> => {
+  getPosts = async (category: Category): Promise<GetPostsResponse> => {
     try {
-      const response = await PostApi.GetPost();
+      const response: GetPostsResponse = await PostApi.GetPosts(category);
+
+      return new Promise((resolve: (requset: GetPostsResponse) => void, reject) => {
+        resolve(response);
+      });
+    } catch (error) {
+      return new Promise((resolve, reject: (error: Error) => void) => {
+        reject(error);
+      });
+    }
+  };
+
+  @action
+  getPost = async (idx: number): Promise<GetPostResponse> => {
+    try {
+      const response: GetPostResponse = await PostApi.GetPost(idx);
 
       return new Promise((resolve: (requset: GetPostResponse) => void, reject) => {
         resolve(response);
@@ -57,7 +71,7 @@ class BoardStore {
   };
 
   @action
-  tryDeletePost = async (idx: number): Promise<Response> => {
+  deletePost = async (idx: number): Promise<Response> => {
     try {
       const response = await PostApi.DeletePost(idx);
 
@@ -72,11 +86,7 @@ class BoardStore {
   };
 
   @action
-  tryModifyPost = async (
-    idx: number,
-    title: string,
-    content: string
-  ): Promise<Response> => {
+  modifyPost = async (idx: number, title: string, content: string): Promise<Response> => {
     try {
       const response = await PostApi.ModifyPost(idx, content, title);
 

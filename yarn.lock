@@ -6628,6 +6628,11 @@ js-cookie@^2.2.1:
   resolved "https://registry.yarnpkg.com/js-cookie/-/js-cookie-2.2.1.tgz#69e106dc5d5806894562902aa5baec3744e9b2b8"
   integrity sha512-HvdH2LzI/EAZcUwA8+0nKNtWHqS+ZmijLA30RwZA0bo7ToCckjK5MkGhjED9KoRcXO6BaGI3I9UIzSA1FKFPOQ==
 
+js-file-download@^0.4.12:
+  version "0.4.12"
+  resolved "https://registry.yarnpkg.com/js-file-download/-/js-file-download-0.4.12.tgz#10c70ef362559a5b23cdbdc3bd6f399c3d91d821"
+  integrity sha512-rML+NkoD08p5Dllpjo0ffy4jRHeY6Zsapvr/W86N7E0yuzAO6qa5X9+xog6zQNlH102J7IXljNY2FtS6Lj3ucg==
+
 js-sha256@^0.9.0:
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/js-sha256/-/js-sha256-0.9.0.tgz#0b89ac166583e91ef9123644bd3c5334ce9d0966"
@@ -10773,6 +10778,11 @@ svgo@^1.0.0, svgo@^1.2.2:
     unquote "~1.1.1"
     util.promisify "~1.0.0"
 
+sweetalert2@^10.13.0:
+  version "10.13.0"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-10.13.0.tgz#fd3c25ae511c36608d205aa020214508641ebd45"
+  integrity sha512-kF6Pnr7s7GDqVYRqqgyfxvG5vlUqfP+j+JF7oZ7DOs0/35jg6sTu8hyi6oD6Rb3fIKWIf1S9mCU7wR8iKa7dAA==
+
 symbol-tree@^3.2.2:
   version "3.2.4"
   resolved "https://registry.yarnpkg.com/symbol-tree/-/symbol-tree-3.2.4.tgz#430637d248ba77e078883951fb9aa0eed7c63fa2"
@@ -10878,6 +10888,11 @@ thunky@^1.0.2:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/thunky/-/thunky-1.1.0.tgz#5abaf714a9405db0504732bbccd2cedd9ef9537d"
   integrity sha512-eHY7nBftgThBqOyHGVN+l8gF0BucP09fMo0oO/Lb0w1OF80dJv+lDVpXG60WMQvkcxAkNybKsrEIE3ZtKGmPrA==
+
+time-counting@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/time-counting/-/time-counting-2.0.0.tgz#4021aeb6e6f52290f22ba40f49065388585032f6"
+  integrity sha512-P8E0Ljw5VkMqSnwAuWH6tOv5s3JE8E2S4FlLYLVydctxkKHtFK++IxWPLGveoyPUrBtXvDrLGZUaY7FQJcPXyQ==
 
 timers-browserify@^2.0.4:
   version "2.0.11"

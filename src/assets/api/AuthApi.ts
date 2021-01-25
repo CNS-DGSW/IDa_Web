@@ -54,17 +54,7 @@ class AuthApi {
     }
   }
 
-  async changePw() {
-    try {
-      const { data } = await Api.get("/user/getInfo");
-
-      return data;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
-  }
-
-  async pwCode(email: string) {
+  async PwCode(email: string) {
     try {
       const body = {
         email,
@@ -78,7 +68,7 @@ class AuthApi {
     }
   }
 
-  async changePwByEmail(code: string, pw: string) {
+  async ChangePwByEmail(code: string, pw: string) {
     try {
       const body = {
         code,
@@ -86,6 +76,21 @@ class AuthApi {
       };
 
       const { data } = await Api.patch("/auth/changePwByEmail", body);
+
+      return data;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
+
+  async ChangePw(newPw: string, pw: string) {
+    try {
+      const body = {
+        newPw,
+        pw,
+      };
+
+      const { data } = await Api.patch("/auth/changePw", body);
 
       return data;
     } catch (error) {

@@ -1,140 +1,65 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { inject, observer } from "mobx-react";
+import { observer } from "mobx-react";
 import Faq from "components/Faq";
 import useStore from "lib/hooks/useStore";
-import { GetPostResponse, Response } from "util/types/Response";
-import Swal from "sweetalert2";
-import useQuery from "lib/hooks/useQuery";
+import { GetPostsResponse } from "util/types/Response";
+import Category from "util/enums/Category";
+import { PostType } from "util/types/PostType";
 
 const FaqContainer = ({}) => {
-  const [modal, setModal] = useState<boolean>(false);
-  const [title, setTitle] = useState<string>("");
-  const [content, setContent] = useState<string>("");
-  const [isAdmin, setIsAdmin] = useState<boolean>(true); //임시
+  const [posts, setPosts] = useState<PostType[]>([]);
+  const [filteredPosts, setFilteredPosts] = useState<PostType[]>([]);
+  const [search, setSearch] = useState<string>("");
+  const [selectedIdx, setSelectedIdx] = useState<number>();
+  const [show, setShow] = useState<boolean>(false);
 
   const { store } = useStore();
-  const query = useQuery();
 
-  const {
-    tryCreatePost,
-    tryCreateAnswer,
-    tryGetPost,
-    tryDeletePost,
-    tryModifyPost,
-  } = store.BoardStore;
+  const { getPosts } = store.BoardStore;
+  const { isAdmin } = store.AuthStore;
 
-  const handleCreatePost = useCallback(async () => {
-    if (!title && !content) {
-      console.log("제목과 내용을 입력해 주세요");
-    } else if (!title) {
-      console.log("제목을 입력해 주세요");
-    } else if (!content) {
-      console.log("내용을 입력해 주세요");
-    } else {
-      await tryCreatePost("NOTICE", title, content)
-        .then((res: Response) => {
-          setModal(false);
-        })
-        .catch((err: Error) => {
-          console.log(err);
-        });
-    }
-  }, [title, content]);
-
-  const handleCreateAnswer = useCallback(async () => {
-    if (!content) {
-      console.log("내용을 작성해 주세요");
-    } else {
-      await tryCreateAnswer(content, Number(query.get("postIdx")))
-        .then((res: Response) => {
-          setModal(false);
-        })
-        .catch((err: Error) => {
-          console.log(err);
-        });
-    }
-  }, [content]);
-
-  const handleModifyPost = useCallback(async () => {
-    if (!title && !content) {
-      console.log("제목과 내용을 입력해 주세요");
-    } else if (!title) {
-      console.log("제목을 입력해 주세요");
-    } else if (!content) {
-      console.log("내용을 입력해 주세요");
-    } else {
-      await tryModifyPost(Number(query.get("idx")), title, content)
-        .then((res: Response) => {
-          setModal(false);
-        })
-        .catch((err: Error) => {
-          console.log(err);
-        });
-    }
-  }, [title, content]);
-
-  const handleGetPost = useCallback(async () => {
-    await tryGetPost()
-      .then((res: GetPostResponse) => {})
+  const handleGetPosts = useCallback(async () => {
+    await getPosts(Category.FAQ)
+      .then((res: GetPostsResponse) => {
+        setPosts(res.data.posts);
+        setFilteredPosts(res.data.posts);
+      })
       .catch((err: Error) => {
         console.log(err);
       });
   }, []);
 
-  const handleDeletePost = useCallback(async () => {
-    await tryDeletePost(Number(query.get("idx")))
-      .then((res: Response) => {})
-      .catch((err: Error) => {
-        console.log(err);
-      });
-  }, []);
-
-  const handleCloseModal = () => {
-    if (title || content) {
-      Swal.fire({
-        title: "나가시겠습니까?",
-        text: "작성된 내용은 모두 삭제됩니다.",
-        showCancelButton: true,
-        cancelButtonText: "취소",
-        confirmButtonText: "확인",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          setModal(false);
-        }
-      });
-    } else if (!title && !content) {
-      setModal(false);
-    }
-  };
+  const searchPostFilter = useCallback(() => {
+    setFilteredPosts(
+      posts.filter((post) => {
+        if (post.title.includes(search)) return true;
+      })
+    );
+  }, [search, posts]);
 
   useEffect(() => {
-    if (!modal) {
-      setTitle("");
-      setContent("");
-    }
-  }, [modal]);
+    handleGetPosts();
+  }, [handleGetPosts]);
+
+  useEffect(() => {
+    searchPostFilter();
+  }, [searchPostFilter]);
 
   return (
     <>
-      <div>
-        <Faq
-          modal={modal}
-          setModal={setModal}
-          title={title}
-          setTitle={setTitle}
-          content={content}
-          setContent={setContent}
-          handleCreatePost={handleCreatePost}
-          handleCloseModal={handleCloseModal}
-          handleDeletePost={handleDeletePost}
-          handleModifyPost={handleModifyPost}
-          handleCreateAnswer={handleCreateAnswer}
-          handleGetPost={handleGetPost}
-          isAdmin={isAdmin}
-        />
-      </div>
+      <Faq
+        isAdmin={isAdmin}
+        posts={filteredPosts}
+        selectedIdx={selectedIdx}
+        setSelectedIdx={setSelectedIdx}
+        search={search}
+        setSearch={setSearch}
+        show={show}
+        handleGetPosts={handleGetPosts}
+        setShow={setShow}
+      />
     </>
   );
 };
 
-export default inject("store")(observer(FaqContainer));
+export default observer(FaqContainer);

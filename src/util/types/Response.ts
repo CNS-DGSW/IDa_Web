@@ -3,6 +3,7 @@ import ApplyDetail from "util/enums/ApplyDetail";
 import Grade from "util/enums/Grade";
 import Relation from "util/enums/Relation";
 import Sex from "util/enums/Sex";
+import { PostType } from "./PostType";
 
 export type Response = {
   status: number;
@@ -29,28 +30,21 @@ export interface UserInfoResponse extends Response {
     profileImage: string;
     sex: Sex;
     studentTel: string;
+    isAdmin: boolean;
+  };
+}
+
+export interface GetPostsResponse extends Response {
+  data: {
+    posts: PostType[];
   };
 }
 
 export interface GetPostResponse extends Response {
   data: {
-    posts: [
-      {
-        category: string;
-        content: string;
-        createAt: string;
-        idx: number;
-        isDeleted: Date;
-        parentIdx: number;
-        title: string;
-        updateAt: Date;
-        user: {
-          idx: number;
-          isAdmin: boolean;
-          name: string;
-        };
-      }
-    ];
+    post: PostType;
+  };
+}
 
 export interface ApplyTypeResponse extends Response {
   data: {

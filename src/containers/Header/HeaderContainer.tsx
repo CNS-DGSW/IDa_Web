@@ -34,7 +34,7 @@ const HeaderContainer = ({ theme }: HeaderContainerProps & RouteComponentProps) 
   };
 
   const getInfoCallback = useCallback(() => {
-    if (localStorage.getItem("accessToken") && !login) {
+    if (localStorage.getItem("accessToken") && !name && !email) {
       getInfo().catch(async (err: Error) => {
         if (err.message.indexOf("401")) {
           console.log("권한 없음");
@@ -45,7 +45,7 @@ const HeaderContainer = ({ theme }: HeaderContainerProps & RouteComponentProps) 
 
   useEffect(() => {
     getInfoCallback();
-  }, [getInfoCallback]);
+  }, [getInfoCallback, login]);
 
   useEffect(() => {
     return () => {

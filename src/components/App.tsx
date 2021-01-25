@@ -10,10 +10,12 @@ import ApplyStatusPage from "pages/AdminPage/ApplyStatusPage";
 import QnaPage from "pages/QnaPage";
 import FaqPage from "pages/FaqPage";
 import NoticePage from "pages/NoticePage";
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
   return (
     <div className="App">
+      <ToastContainer />
       <Switch>
         <Route exact path="/" component={MainPage} />
         <Route exact path="/login" component={LoginPage} />

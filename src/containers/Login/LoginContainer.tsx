@@ -5,7 +5,7 @@ import { LoginResponse } from "../../util/types/Response";
 import useStore from "lib/hooks/useStore";
 import { useHistory, withRouter } from "react-router-dom";
 import { useCookies } from "react-cookie";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import moment from "moment";
 
@@ -28,7 +28,7 @@ const LoginContainer = () => {
     } else {
       await tryLogin(id, password)
         .then((res: LoginResponse) => {
-          toast("로그인 되었습니다");
+          toast.success("로그인 되었습니다");
           localStorage.setItem("accessToken", res.data.accessToken);
           localStorage.setItem(
             "expiresAt",
@@ -40,9 +40,9 @@ const LoginContainer = () => {
         })
         .catch((err: Error) => {
           if (err.message.includes("401")) {
-            toast("이메일이나 비밀번호가 다릅니다");
+            toast.warn("이메일이나 비밀번호가 다릅니다");
           } else {
-            toast("서버 오류입니다");
+            toast.error("서버 오류입니다");
           }
         });
     }
@@ -88,7 +88,6 @@ const LoginContainer = () => {
         setPassword={setPassword}
         handleLogin={handleLogin}
       />
-      <ToastContainer />
     </>
   );
 };

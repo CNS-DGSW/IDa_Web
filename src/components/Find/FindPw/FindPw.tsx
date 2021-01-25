@@ -32,7 +32,7 @@ const FindPw = ({
 }: FindPwProps) => {
   return (
     <div className="FindPw">
-      <span className="FindPw-text">아이디/비밀번호 찾기</span>
+      <span className="FindPw-text">비밀번호 찾기</span>
       <div>
         {emailLoading ? (
           <>...Loading</>
