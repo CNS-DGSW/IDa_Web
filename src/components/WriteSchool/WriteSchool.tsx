@@ -2,6 +2,9 @@ import React from "react";
 import "./WriteSchool.scss";
 import WriteContent from "components/common/WriteContent";
 import Grade from "util/enums/Grade";
+import Modal from "components/common/Modal";
+import SearchSchoolContainer from "../../containers/SearchSchool/SearchSchoolContainer";
+import City from "models/City";
 
 interface WriteSchoolProps {
   gradeType: Grade | null;
@@ -23,6 +26,8 @@ interface WriteSchoolProps {
   teacherTel: string;
   setTeacherTel: React.Dispatch<React.SetStateAction<string>>;
   onSave: () => void;
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const WriteSchool = ({
@@ -45,6 +50,8 @@ const WriteSchool = ({
   teacherTel,
   setTeacherTel,
   onSave,
+  isOpen,
+  setIsOpen,
 }: WriteSchoolProps) => {
   return (
     <>
@@ -92,15 +99,29 @@ const WriteSchool = ({
 
         {gradeType === Grade.UNGRADUATED ? (
           <div className="school">
+            {isOpen === true && (
+              <Modal onClose={() => setIsOpen(false)}>
+                <SearchSchoolContainer
+                  setIsOpen={setIsOpen}
+                  setSchoolName={setSchoolName}
+                  setSchoolTel={setSchoolTel}
+                  setSchoolCode={setSchoolCode}
+                />
+              </Modal>
+            )}
             <div className="school-schedule">
               <div className="school-schedule-box">
                 <label>출신 중학교명</label>
-                <input
-                  type="text"
-                  className="school-schedule-box-textInput"
-                  value={schoolName}
-                  onChange={(e) => setSchoolName(e.target.value)}
-                />
+                <div className="school-schedule-box-search">
+                  <input
+                    type="text"
+                    className="school-schedule-box-search-textInput"
+                    value={schoolName}
+                    onChange={(e) => setSchoolName(e.target.value)}
+                  />
+
+                  <div onClick={() => setIsOpen(true)}>학교검색</div>
+                </div>
               </div>
               <div className="school-schedule-box">
                 <label>NEIS 학교 번호</label>
@@ -118,22 +139,38 @@ const WriteSchool = ({
                 <div className="school-schedule-box-area">
                   <div className="school-schedule-box-area-column">
                     <label>지역명(시도)</label>
-                    <input
-                      type="text"
-                      className="school-schedule-box-area-selectinput"
+                    <select
                       value={cityName}
                       onChange={(e) => setCityName(e.target.value)}
-                    />
+                      className="school-schedule-box-area-selectinput"
+                    >
+                      <option>선택해주세요</option>
+                      {City.map((res) => {
+                        return <option value={res.cityName}>{res.cityName}</option>;
+                      })}
+                    </select>
                   </div>
 
                   <div className="school-schedule-box-area-column">
                     <label>시군구</label>
-                    <input
-                      type="text"
-                      className="school-schedule-box-area-selectinput"
+                    <select
                       value={cityLocation}
                       onChange={(e) => setCityLocation(e.target.value)}
-                    />
+                      className="school-schedule-box-area-selectinput"
+                    >
+                      <option>선택해주세요</option>
+                      {cityName && (
+                        <>
+                          {City.find((city) => {
+                            if (cityName === city.cityName) {
+                              return true;
+                            }
+                          })?.cityLocation.map((res) => {
+                            return <option>{res}</option>;
+                          })}
+                        </>
+                      )}
+                    </select>
                   </div>
                 </div>
               </div>
@@ -175,16 +212,30 @@ const WriteSchool = ({
           </div>
         ) : gradeType === Grade.GRADUATED ? (
           <>
+            {isOpen === true && (
+              <Modal onClose={() => setIsOpen(false)}>
+                <SearchSchoolContainer
+                  setIsOpen={setIsOpen}
+                  setSchoolName={setSchoolName}
+                  setSchoolTel={setSchoolTel}
+                  setSchoolCode={setSchoolCode}
+                />
+              </Modal>
+            )}
             <div className="school">
               <div className="school-schedule">
                 <div className="school-schedule-box">
                   <label>출신 중학교명</label>
-                  <input
-                    type="text"
-                    className="school-schedule-box-textInput"
-                    value={schoolName}
-                    onChange={(e) => setSchoolName(e.target.value)}
-                  />
+                  <div className="school-schedule-box-search">
+                    <input
+                      type="text"
+                      className="school-schedule-box-search-textInput"
+                      value={schoolName}
+                      onChange={(e) => setSchoolName(e.target.value)}
+                    />
+
+                    <div onClick={() => setIsOpen(true)}>학교검색</div>
+                  </div>
                 </div>
                 <div className="school-schedule-box">
                   <label>NEIS 학교 번호</label>
@@ -202,22 +253,38 @@ const WriteSchool = ({
                   <div className="school-schedule-box-area">
                     <div className="school-schedule-box-area-column">
                       <label>지역명(시도)</label>
-                      <input
-                        type="text"
-                        className="school-schedule-box-area-selectinput"
+                      <select
                         value={cityName}
                         onChange={(e) => setCityName(e.target.value)}
-                      />
+                        className="school-schedule-box-area-selectinput"
+                      >
+                        <option>선택해주세요</option>
+                        {City.map((res) => {
+                          return <option value={res.cityName}>{res.cityName}</option>;
+                        })}
+                      </select>
                     </div>
 
                     <div className="school-schedule-box-area-column">
                       <label>시군구</label>
-                      <input
-                        type="text"
-                        className="school-schedule-box-area-selectinput"
+                      <select
                         value={cityLocation}
                         onChange={(e) => setCityLocation(e.target.value)}
-                      />
+                        className="school-schedule-box-area-selectinput"
+                      >
+                        <option>선택해주세요</option>
+                        {cityName && (
+                          <>
+                            {City.find((city) => {
+                              if (cityName === city.cityName) {
+                                return true;
+                              }
+                            })?.cityLocation.map((res) => {
+                              return <option>{res}</option>;
+                            })}
+                          </>
+                        )}
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -262,7 +329,7 @@ const WriteSchool = ({
               <div className="school-area">
                 <label className="school-area-label">졸업년도</label>
                 <input
-                  type="date"
+                  type="text"
                   className="school-area-textInput"
                   value={graduatedDate}
                   onChange={(e) => setGraduatedDate(e.target.value)}
@@ -275,7 +342,12 @@ const WriteSchool = ({
             <div className="school">
               <div className="school-area">
                 <label className="school-area-label">합격년도</label>
-                <input type="text" className="school-area-textInput" />
+                <input
+                  type="text"
+                  className="school-area-textInput"
+                  value={graduatedDate}
+                  onChange={(e) => setGraduatedDate(e.target.value)}
+                />
               </div>
             </div>
           </>

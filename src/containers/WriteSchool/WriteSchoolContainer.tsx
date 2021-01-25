@@ -18,6 +18,7 @@ const WriteSchoolContainer = ({}) => {
   const [teacherName, setTeacherName] = useState<string>("");
   const [teacherTel, setTeacherTel] = useState<string>("");
   const [isChanged, setIsChanged] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const { gradeType, handleGrade, editSchoolInfo, getSchoolInfo } = store.WriteStore;
 
@@ -144,7 +145,9 @@ const WriteSchoolContainer = ({}) => {
         setTeacherName={setTeacherName}
         teacherTel={teacherTel}
         setTeacherTel={setTeacherTel}
+        isOpen={isOpen}
         onSave={onSave}
+        setIsOpen={setIsOpen}
       ></WriteSchool>
     </>
   );

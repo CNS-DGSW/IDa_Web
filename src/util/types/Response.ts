@@ -4,6 +4,7 @@ import Grade from "util/enums/Grade";
 import Relation from "util/enums/Relation";
 import Sex from "util/enums/Sex";
 import { PostType } from "./PostType";
+import Schools from "util/types/Schools";
 
 export type Response = {
   status: number;
@@ -148,5 +149,11 @@ export interface volunteerResponse extends Response {
     volunteer1: number;
     volunteer2: number;
     volunteer3: number;
+  };
+}
+
+export interface schoolResponse extends Response {
+  data: {
+    schools: Schools[];
   };
 }
