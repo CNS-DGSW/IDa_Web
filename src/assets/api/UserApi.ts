@@ -4,6 +4,7 @@ import ApplyDetail from "util/enums/ApplyDetail";
 import Grade from "util/enums/Grade";
 import Relation from "util/enums/Relation";
 import Sex from "util/enums/Sex";
+import FreeSumType from "util/types/FreeSum";
 
 class UserApi {
   async EditUserInfo(name: string, birth: string, sex: Sex, studentTel: string) {
@@ -205,6 +206,165 @@ class UserApi {
   async GetStudyPlan() {
     try {
       const { data } = await Api.get("/user/getStudyPlan");
+      return data;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
+
+  async EditGrade(freeSum: FreeSumType, grade: Grade[]) {
+    try {
+      const body = {
+        freeSum,
+        grade,
+      };
+
+      const { data } = await Api.patch("/user/editGrade", body);
+
+      return data;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
+
+  async GetGrade() {
+    try {
+      const { data } = await Api.get("/user/getGrade");
+      return data;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
+
+  async EditGed(
+    englishScore: number,
+    koreanScore: number,
+    mathScore: number,
+    otherScore: number,
+    scienceScore: number,
+    socialScore: number
+  ) {
+    try {
+      const body = {
+        englishScore,
+        koreanScore,
+        mathScore,
+        otherScore,
+        scienceScore,
+        socialScore,
+      };
+
+      const { data } = await Api.post("/user/editged", body);
+
+      return data;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
+
+  async EditAttend(
+    absence1: number,
+    absence2: number,
+    absence3: number,
+    lateness1: number,
+    lateness2: number,
+    lateness3: number,
+    earlyLeave1: number,
+    earlyLeave2: number,
+    earlyLeave3: number,
+    absenceLecture1: number,
+    absenceLecture2: number,
+    absenceLecture3: number
+  ) {
+    try {
+      const body = {
+        absence1,
+        absence2,
+        absence3,
+        lateness1,
+        lateness2,
+        lateness3,
+        earlyLeave1,
+        earlyLeave2,
+        earlyLeave3,
+        absenceLecture1,
+        absenceLecture2,
+        absenceLecture3,
+      };
+
+      const { data } = await Api.post("/user/editAttend", body);
+
+      return data;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
+
+  async GetAttend() {
+    try {
+      const { data } = await Api.get("/user/getAttend");
+      return data;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
+
+  async EditAdditional(
+    leadership11: boolean,
+    leadership12: boolean,
+    leadership21: boolean,
+    leadership22: boolean,
+    leadership31: boolean,
+    leadership32: boolean,
+    prize: number
+  ) {
+    try {
+      const body = {
+        leadership11,
+        leadership12,
+        leadership21,
+        leadership22,
+        leadership31,
+        leadership32,
+        prize,
+      };
+
+      const { data } = await Api.post("/user/editAdditional", body);
+
+      return data;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
+
+  async GetAdditional() {
+    try {
+      const { data } = await Api.get("/user/getAdditional");
+      return data;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
+
+  async EditVolunteer(volunteer1: number, volunteer2: number, volunteer3: number) {
+    try {
+      const body = {
+        volunteer1,
+        volunteer2,
+        volunteer3,
+      };
+
+      const { data } = await Api.post("/user/editVolunteer", body);
+
+      return data;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
+
+  async GetVolunteer() {
+    try {
+      const { data } = await Api.get("/user/getVolunteer");
       return data;
     } catch (error) {
       throw new Error(`${error}`);
