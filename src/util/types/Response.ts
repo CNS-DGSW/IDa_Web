@@ -102,3 +102,51 @@ export interface studyPlanResponse extends Response {
     studyPlan: string;
   };
 }
+
+export interface gedResponse extends Response {
+  data: {
+    englishScore: number;
+    koreanScore: number;
+    mathScore: number;
+    otherScore: number;
+    scienceScore: number;
+    socialScore: number;
+  };
+}
+
+export interface attendResponse extends Response {
+  data: {
+    absence1: number;
+    absence2: number;
+    absence3: number;
+    lateness1: number;
+    lateness2: number;
+    lateness3: number;
+    earlyLeave1: number;
+    earlyLeave2: number;
+    earlyLeave3: number;
+    absenceLecture1: number;
+    absenceLecture2: number;
+    absenceLecture3: number;
+  };
+}
+
+export interface additionalResponse extends Response {
+  data: {
+    leadership11: boolean;
+    leadership12: boolean;
+    leadership21: boolean;
+    leadership22: boolean;
+    leadership31: boolean;
+    leadership32: boolean;
+    prize: number;
+  };
+}
+
+export interface volunteerResponse extends Response {
+  data: {
+    volunteer1: number;
+    volunteer2: number;
+    volunteer3: number;
+  };
+}

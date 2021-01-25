@@ -1,6 +1,9 @@
 import React from "react";
 import "./WriteGrades.scss";
 import WriteContent from "../common/WriteContent";
+import Score from "util/enums/Score";
+import WriteGradeAttendContainer from "../../containers/WriteGrade/WriteGradeAttend/WriteGradeAttendContainer";
+import WriteGradeAdditionalContainer from "../../containers/WriteGrade/WriteGradeAdditional/WriteGradeAdditionalContainer";
 
 interface WriteGradesProps {}
 
@@ -80,54 +83,166 @@ const WriteGrades = ({}: WriteGradesProps) => {
               <div className="grade-container-listBody-Semester">
                 <div className="grade-container-listBody-Semester-area">
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                 </div>
                 <div className="grade-container-listBody-Semester-area">
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                 </div>
               </div>
@@ -150,54 +265,166 @@ const WriteGrades = ({}: WriteGradesProps) => {
               <div className="grade-container-listBody-Semester">
                 <div className="grade-container-listBody-Semester-area">
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                 </div>
                 <div className="grade-container-listBody-Semester-area">
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                 </div>
               </div>
@@ -220,54 +447,166 @@ const WriteGrades = ({}: WriteGradesProps) => {
               <div className="grade-container-listBody-Semester">
                 <div className="grade-container-listBody-Semester-area">
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                 </div>
                 <div className="grade-container-listBody-Semester-area">
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                   <div className="grade-container-listBody-Semester-area-body">
-                    <select></select>
+                    <select>
+                      <option value={Score.NONE}>선택</option>
+                      <option value={Score.A}>A</option>
+                      <option value={Score.B}>B</option>
+                      <option value={Score.C}>C</option>
+                      <option value={Score.D}>D</option>
+                      <option value={Score.E}>E</option>
+                    </select>
                   </div>
                 </div>
               </div>
@@ -283,66 +622,7 @@ const WriteGrades = ({}: WriteGradesProps) => {
             </p>
           </div>
 
-          <div className="grade-addition">
-            <div className="grade-addition-attend">
-              <div className="grade-addition-attend-grade">학년</div>
-              <div className="grade-addition-attend-white">1학년</div>
-              <div className="grade-addition-attend-white">2학년</div>
-              <div className="grade-addition-attend-white">3학년</div>
-            </div>
-
-            <div className="grade-addition-attend">
-              <div className="grade-addition-attend-grade">미인정출석</div>
-              <div>
-                <input type="text" />
-              </div>
-              <div>
-                <input type="text" />
-              </div>
-              <div>
-                <input type="text" />
-              </div>
-            </div>
-
-            <div className="grade-addition-attend">
-              <div className="grade-addition-attend-grade">미인정지각</div>
-              <div>
-                <input type="text" />
-              </div>
-              <div>
-                <input type="text" />
-              </div>
-              <div>
-                <input type="text" />
-              </div>
-            </div>
-
-            <div className="grade-addition-attend">
-              <div className="grade-addition-attend-grade">미인정조퇴</div>
-              <div>
-                <input type="text" />
-              </div>
-              <div>
-                <input type="text" />
-              </div>
-              <div>
-                <input type="text" />
-              </div>
-            </div>
-
-            <div className="grade-addition-attend">
-              <div className="grade-addition-attend-grade">미인정결과</div>
-              <div>
-                <input type="text" />
-              </div>
-              <div>
-                <input type="text" />
-              </div>
-              <div>
-                <input type="text" />
-              </div>
-            </div>
-          </div>
+          <WriteGradeAttendContainer />
 
           <div className="grade-textBox">
             <p>
@@ -351,103 +631,7 @@ const WriteGrades = ({}: WriteGradesProps) => {
             </p>
           </div>
 
-          <div className="grade-addition">
-            <div className="grade-addition-attend">
-              <div className="grade-addition-attend-grade">학년</div>
-              <div className="grade-addition-attend-white">1학년</div>
-              <div className="grade-addition-attend-white">2학년</div>
-              <div className="grade-addition-attend-white">3학년</div>
-            </div>
-
-            <div className="grade-addition-body">
-              <div className="grade-addition-body-grade">봉사활동 시간</div>
-              <div>
-                <input type="text" />
-              </div>
-              <div>
-                <input type="text" />
-              </div>
-              <div>
-                <input type="text" />
-              </div>
-            </div>
-          </div>
-
-          <div className="grade-leader">
-            <div className="grade-leader-area">
-              <div className="grade-leader-area-head">구분</div>
-              <div className="grade-leader-area-text">리더쉽</div>
-              <div className="grade-leader-area-text">모범상</div>
-            </div>
-
-            <div className="grade-leader-box">
-              <div className="grade-leader-box-head">설명</div>
-              <div className="grade-leader-box-text">
-                최소 한 학기 이상 학생회 임원 <br />
-                (전교 학생회장, 전교 학생부회장, 학급반장)
-              </div>
-              <div className="grade-leader-box-text">
-                재학 중 교내 모범상을 수상 <br /> (모범, 선행, 효행, 공로 등)
-              </div>
-            </div>
-
-            <div className="grade-leader-content">
-              <div className="grade-leader-content-head">
-                <div className="grade-leader-content-head-list">
-                  <div className="grade-leader-content-head-list-name">1학년</div>
-                  <div className="grade-leader-content-head-list-group">
-                    <div className="grade-leader-content-head-list-group-box">1학기</div>
-                    <div className="grade-leader-content-head-list-group-box">2학기</div>
-                  </div>
-                </div>
-
-                <div className="grade-leader-content-head-list">
-                  <div className="grade-leader-content-head-list-name">2학년</div>
-                  <div className="grade-leader-content-head-list-group">
-                    <div className="grade-leader-content-head-list-group-box">1학기</div>
-                    <div className="grade-leader-content-head-list-group-box">2학기</div>
-                  </div>
-                </div>
-                <div className="grade-leader-content-head-list">
-                  <div className="grade-leader-content-head-list-name">3학년</div>
-                  <div className="grade-leader-content-head-list-group">
-                    <div className="grade-leader-content-head-list-group-box">1학기</div>
-                    <div className="grade-leader-content-head-list-group-box">2학기</div>
-                  </div>
-                </div>
-              </div>
-              <div className="grade-leader-content-head">
-                <div className="grade-leader-content-head-check">
-                  <div className="grade-leader-content-head-check-box">
-                    <input type="checkbox" />
-                  </div>
-                  <div className="grade-leader-content-head-check-box">
-                    <input type="checkbox" />
-                  </div>
-                </div>
-
-                <div className="grade-leader-content-head-check">
-                  <div className="grade-leader-content-head-check-box">
-                    <input type="checkbox" />
-                  </div>
-                  <div className="grade-leader-content-head-check-box">
-                    <input type="checkbox" />
-                  </div>
-                </div>
-                <div className="grade-leader-content-head-check">
-                  <div className="grade-leader-content-head-check-box">
-                    <input type="checkbox" />
-                  </div>
-                  <div className="grade-leader-content-head-check-box">
-                    <input type="checkbox" />
-                  </div>
-                </div>
-              </div>
-              <div className="grade-leader-content-select">
-                <select></select>
-              </div>
-            </div>
-          </div>
+          <WriteGradeAdditionalContainer />
         </div>
       </WriteContent>
     </>
