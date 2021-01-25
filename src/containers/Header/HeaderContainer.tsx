@@ -1,9 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { inject, observer } from "mobx-react";
+import { observer } from "mobx-react";
 import Header from "components/common/Header";
-import useStore from "util/lib/hooks/useStore";
-import { useHistory } from "react-router-dom";
-import refresh from "util/lib/refresh";
+import useStore from "lib/hooks/useStore";
+import { useHistory, withRouter } from "react-router-dom";
 import axios from "axios";
 import { UserInfoResponse } from "util/types/Response";
 import { useCookies } from "react-cookie";
@@ -34,41 +33,36 @@ const HeaderContainer = ({}) => {
   };
 
   const getInfoCallback = useCallback(() => {
-    if (localStorage.getItem("accessToken")) {
-      axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem(
-        "accessToken"
-      )}`;
-
+    if (localStorage.getItem("accessToken") && !login) {
       getInfo()
         .then((res: UserInfoResponse) => {
           setName(res.data.name);
           setEmail(res.data.email);
         })
         .catch(async (err: Error) => {
-          if (err.message.indexOf("410")) {
-            if (await refresh()) {
-              getInfo().catch((err: Error) => {
-                console.log("권한 없음");
-              });
-            }
+          if (err.message.indexOf("401")) {
+            console.log("권한 없음");
           }
         });
     }
-  }, [login, getInfo]);
+  }, [login]);
 
   useEffect(() => {
     getInfoCallback();
-  }, [login, getInfoCallback]);
+  }, [getInfoCallback]);
 
   useEffect(() => {
-    tryCloseModal();
-  }, [window.location.href]);
+    return () => {
+      tryCloseModal();
+      setName("");
+      setEmail("");
+    };
+  }, []);
 
   return (
     <>
       <Header
         login={login}
-        history={history}
         profileBox={profileBox}
         tryProfileBox={tryProfileBox}
         name={name}
@@ -79,4 +73,4 @@ const HeaderContainer = ({}) => {
   );
 };
 
-export default inject("store")(observer(HeaderContainer));
+export default withRouter(observer(HeaderContainer));

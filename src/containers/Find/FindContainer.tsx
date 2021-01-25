@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { observer } from "mobx-react";
 import Find from "components/Find";
-import useStore from "util/lib/hooks/useStore";
+import useStore from "lib/hooks/useStore";
 import { useHistory } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

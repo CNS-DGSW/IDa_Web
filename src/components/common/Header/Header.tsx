@@ -3,12 +3,10 @@ import { ReactComponent as Logo } from "assets/images/logo.svg";
 import "./Header.scss";
 import Profile from "assets/images/profile.png";
 import ProfileModalBox from "components/Profile/ProfileModalBox";
+import { useHistory } from "react-router-dom";
 
 interface HeaderProps {
   login: boolean;
-  history: {
-    push(url: string): void;
-  };
   profileBox: boolean;
   tryProfileBox: () => void;
   name: string | undefined;
@@ -18,13 +16,14 @@ interface HeaderProps {
 
 const Header = ({
   login,
-  history,
   profileBox,
   tryProfileBox,
   name,
   email,
   HandleLogout,
 }: HeaderProps) => {
+  const history = useHistory();
+
   const [lastKnownScroll, setLastKnownScroll] = useState<number>(0);
   const [currentScroll, setCurrentScroll] = useState<number>(0);
   const [scrolling, setScrolling] = useState<boolean>(false);

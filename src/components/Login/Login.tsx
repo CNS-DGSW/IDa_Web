@@ -2,6 +2,7 @@ import Button from "components/common/Button";
 import CheckBox from "components/common/CheckBox";
 import CustomInput from "components/common/CustomInput";
 import React from "react";
+import { useHistory } from "react-router-dom";
 import "./Login.scss";
 
 interface LoginProps {
@@ -12,9 +13,6 @@ interface LoginProps {
   password: string;
   setPassword: React.Dispatch<React.SetStateAction<string>>;
   handleLogin: () => Promise<void>;
-  history: {
-    push(url: string): void;
-  };
 }
 
 const Login = ({
@@ -25,8 +23,9 @@ const Login = ({
   password,
   setPassword,
   handleLogin,
-  history,
 }: LoginProps) => {
+  const history = useHistory();
+
   return (
     <>
       <div className="Login">

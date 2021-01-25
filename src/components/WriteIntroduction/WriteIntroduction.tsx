@@ -7,9 +7,12 @@ interface WriteIntroductionProps {}
 const WriteIntroduction = ({}: WriteIntroductionProps) => {
   return (
     <>
-      <WriteContent title="자기소개서 및 학업계획서를 작성(제출)해주세요" idx="7">
+      <WriteContent
+        title="자기소개서 및 학업계획서를 작성(제출)해주세요"
+        onSave={() => console.log(1)}
+      >
         <div></div>
-      </WriteContent>{" "}
+      </WriteContent>
     </>
   );
 };

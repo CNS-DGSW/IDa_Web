@@ -7,7 +7,7 @@ interface WriteGradesProps {}
 const WriteGrades = ({}: WriteGradesProps) => {
   return (
     <>
-      <WriteContent title="성적알림표를 작성해주세요" idx="6">
+      <WriteContent title="성적알림표를 작성해주세요" onSave={() => console.log(1)}>
         <div></div>
       </WriteContent>
     </>

@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { inject, observer } from "mobx-react";
 import Write from "components/Write/Write";
+import useStore from "lib/hooks/useStore";
 
 const WriteContainer = ({}) => {
+  const { store } = useStore();
+  const { page } = store.WriteStore;
+
   return (
     <>
-      <Write />
+      <Write page={page} />
     </>
   );
 };
 
-export default inject("store")(observer(WriteContainer));
+export default observer(WriteContainer);

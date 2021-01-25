@@ -7,7 +7,7 @@ interface WriteParentsProps {}
 const WriteParents = ({}: WriteParentsProps) => {
   return (
     <>
-      <WriteContent title="보호자 정보를 입력해 주세요" idx="2">
+      <WriteContent title="보호자 정보를 입력해 주세요" onSave={() => console.log(1)}>
         <div className="parent">
           <div className="parent-select">
             <div className="parent-select-box">
