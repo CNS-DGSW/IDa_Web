@@ -1,4 +1,4 @@
-type FreeSumType = {
+type FreeSemType = {
   freeSem11: boolean;
   freeSem12: boolean;
   freeSem21: boolean;
@@ -7,4 +7,4 @@ type FreeSumType = {
   freeSem32: boolean;
 };
 
-export default FreeSumType;
+export default FreeSemType;

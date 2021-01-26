@@ -8,13 +8,15 @@ import {
   UserInfoResponse,
   SchoolInfoResponse,
   ProfileInfoResponse,
-  uploadResponse,
-  selfIntroductionResponse,
-  studyPlanResponse,
-  attendResponse,
-  additionalResponse,
-  volunteerResponse,
-  schoolResponse,
+  UploadResponse,
+  SelfIntroductionResponse,
+  StudyPlanResponse,
+  AttendResponse,
+  AdditionalResponse,
+  VolunteerResponse,
+  SchoolResponse,
+  GetGradeList,
+  GedResponse,
 } from "util/types/Response";
 import Sex from "util/enums/Sex";
 import Relation from "util/enums/Relation";
@@ -22,12 +24,32 @@ import Grade from "util/enums/Grade";
 import UserApi from "assets/api/UserApi";
 import Apply from "util/enums/Apply";
 import ApplyDetail from "util/enums/ApplyDetail";
-import FreeSumType from "util/types/FreeSum";
+import FreeSemType from "util/types/FreeSem";
+import ScoreGrade from "util/types/ScoreGrade";
 
 @autobind
 class WriteStore {
   @observable page: number = 0;
   @observable gradeType: Grade | null = null;
+
+  @observable isChanged: boolean = false;
+
+  @observable englishScore: number = 0;
+  @observable koreanScore: number = 0;
+  @observable mathScore: number = 0;
+  @observable otherScore: number = 0;
+  @observable scienceScore: number = 0;
+  @observable socialScore: number = 0;
+
+  @observable grades: ScoreGrade[] = [];
+  @observable freeSem: FreeSemType = {
+    freeSem11: false,
+    freeSem12: false,
+    freeSem21: false,
+    freeSem22: false,
+    freeSem31: false,
+    freeSem32: false,
+  };
 
   @observable absence1: number = 0;
   @observable absence2: number = 0;
@@ -55,8 +77,53 @@ class WriteStore {
   @observable volunteer3: number = 0;
 
   @action
+  handleEnglishScore = (englishScore: number) => {
+    this.englishScore = englishScore;
+  };
+
+  @action
+  handleKoreanScore = (koreanScore: number) => {
+    this.koreanScore = koreanScore;
+  };
+
+  @action
+  handleMathScore = (mathScore: number) => {
+    this.mathScore = mathScore;
+  };
+
+  @action
+  handleScienceScore = (scienceScore: number) => {
+    this.scienceScore = scienceScore;
+  };
+
+  @action
+  handleSocialScore = (socialScore: number) => {
+    this.socialScore = socialScore;
+  };
+
+  @action
+  handleOtherScore = (otherScore: number) => {
+    this.otherScore = otherScore;
+  };
+
+  @action
+  handleIsChanged = (value: boolean) => {
+    this.isChanged = value;
+  };
+
+  @action
   pageHandle = (page: number) => {
     this.page = page;
+  };
+
+  @action
+  handleGrades = (grades: ScoreGrade[]) => {
+    this.grades = grades;
+  };
+
+  @action
+  handleFreeSem = (freeSem: FreeSemType) => {
+    this.freeSem = freeSem;
   };
 
   @action
@@ -175,6 +242,43 @@ class WriteStore {
   };
 
   @action
+  getGed = async (): Promise<GedResponse> => {
+    try {
+      const response: GedResponse = await UserApi.GetGed();
+
+      return new Promise((resolve: (response: GedResponse) => void, reject) => {
+        resolve(response);
+      });
+    } catch (error) {
+      return new Promise((resolve, reject: (error: Error) => void) => {
+        reject(error);
+      });
+    }
+  };
+
+  @action
+  editGed = async (): Promise<Response> => {
+    try {
+      const response: Response = await UserApi.EditGed(
+        this.englishScore,
+        this.koreanScore,
+        this.mathScore,
+        this.otherScore,
+        this.scienceScore,
+        this.socialScore
+      );
+
+      return new Promise((resolve: (response: Response) => void, reject) => {
+        resolve(response);
+      });
+    } catch (error) {
+      return new Promise((resolve, reject: (error: Error) => void) => {
+        reject(error);
+      });
+    }
+  };
+
+  @action
   getStudentInfo = async (): Promise<UserInfoResponse> => {
     try {
       const response: UserInfoResponse = await AuthApi.GetInfo();
@@ -190,12 +294,7 @@ class WriteStore {
   };
 
   @action
-  editStudentInfo = async (
-    name: string,
-    birth: string,
-    sex: Sex,
-    studentTel: string
-  ): Promise<Response> => {
+  editStudentInfo = async (name: string, birth: string, sex: Sex, studentTel: string): Promise<Response> => {
     try {
       const response: Response = await UserApi.EditUserInfo(name, birth, sex, studentTel);
 
@@ -372,11 +471,11 @@ class WriteStore {
   };
 
   @action
-  upload = async (fileName: File | Blob): Promise<uploadResponse> => {
+  upload = async (fileName: File | Blob): Promise<UploadResponse> => {
     try {
-      const response: uploadResponse = await UserApi.upload(fileName);
+      const response: UploadResponse = await UserApi.upload(fileName);
 
-      return new Promise((resolve: (response: uploadResponse) => void, reject) => {
+      return new Promise((resolve: (response: UploadResponse) => void, reject) => {
         resolve(response);
       });
     } catch (error) {
@@ -402,15 +501,13 @@ class WriteStore {
   };
 
   @action
-  getSelfIntroduce = async (): Promise<selfIntroductionResponse> => {
+  getSelfIntroduce = async (): Promise<SelfIntroductionResponse> => {
     try {
-      const response: selfIntroductionResponse = await UserApi.GetSelfIntroduce();
+      const response: SelfIntroductionResponse = await UserApi.GetSelfIntroduce();
 
-      return new Promise(
-        (resolve: (response: selfIntroductionResponse) => void, reject) => {
-          resolve(response);
-        }
-      );
+      return new Promise((resolve: (response: SelfIntroductionResponse) => void, reject) => {
+        resolve(response);
+      });
     } catch (error) {
       return new Promise((resolve, reject: (error: Error) => void) => {
         reject(error);
@@ -434,11 +531,11 @@ class WriteStore {
   };
 
   @action
-  getStudyPlan = async (): Promise<studyPlanResponse> => {
+  getStudyPlan = async (): Promise<StudyPlanResponse> => {
     try {
-      const response: studyPlanResponse = await UserApi.GetStudyPlan();
+      const response: StudyPlanResponse = await UserApi.GetStudyPlan();
 
-      return new Promise((resolve: (response: studyPlanResponse) => void, reject) => {
+      return new Promise((resolve: (response: StudyPlanResponse) => void, reject) => {
         resolve(response);
       });
     } catch (error) {
@@ -449,9 +546,9 @@ class WriteStore {
   };
 
   @action
-  editGrade = async (freeSum: FreeSumType, grade: Grade[]): Promise<Response> => {
+  editGrade = async (): Promise<Response> => {
     try {
-      const response: Response = await UserApi.EditGrade(freeSum, grade);
+      const response: Response = await UserApi.EditGrade(this.freeSem, this.grades);
 
       return new Promise((resolve: (response: Response) => void, reject) => {
         resolve(response);
@@ -464,34 +561,21 @@ class WriteStore {
   };
 
   @action
-  editAttend = async (
-    absence1: number,
-    absence2: number,
-    absence3: number,
-    lateness1: number,
-    lateness2: number,
-    lateness3: number,
-    earlyLeave1: number,
-    earlyLeave2: number,
-    earlyLeave3: number,
-    absenceLecture1: number,
-    absenceLecture2: number,
-    absenceLecture3: number
-  ): Promise<Response> => {
+  editAttend = async (): Promise<Response> => {
     try {
       const response: Response = await UserApi.EditAttend(
-        absence1,
-        absence2,
-        absence3,
-        lateness1,
-        lateness2,
-        lateness3,
-        earlyLeave1,
-        earlyLeave2,
-        earlyLeave3,
-        absenceLecture1,
-        absenceLecture2,
-        absenceLecture3
+        this.absence1,
+        this.absence2,
+        this.absence3,
+        this.lateness1,
+        this.lateness2,
+        this.lateness3,
+        this.earlyLeave1,
+        this.earlyLeave2,
+        this.earlyLeave3,
+        this.absenceLecture1,
+        this.absenceLecture2,
+        this.absenceLecture3
       );
 
       return new Promise((resolve: (response: Response) => void, reject) => {
@@ -505,24 +589,16 @@ class WriteStore {
   };
 
   @action
-  editAdditional = async (
-    leadership11: boolean,
-    leadership12: boolean,
-    leadership21: boolean,
-    leadership22: boolean,
-    leadership31: boolean,
-    leadership32: boolean,
-    prize: number
-  ): Promise<Response> => {
+  editAdditional = async (): Promise<Response> => {
     try {
       const response: Response = await UserApi.EditAdditional(
-        leadership11,
-        leadership12,
-        leadership21,
-        leadership22,
-        leadership31,
-        leadership32,
-        prize
+        this.leadership11,
+        this.leadership12,
+        this.leadership21,
+        this.leadership22,
+        this.leadership31,
+        this.leadership32,
+        this.prize
       );
 
       return new Promise((resolve: (response: Response) => void, reject) => {
@@ -536,17 +612,15 @@ class WriteStore {
   };
 
   @action
-  editVolunteer = async (
-    volunteer1: number,
-    volunteer2: number,
-    volunteer3: number
-  ): Promise<Response> => {
+  editVolunteer = async (): Promise<Response> => {
     try {
       const response: Response = await UserApi.EditVolunteer(
-        volunteer1,
-        volunteer2,
-        volunteer3
+        this.volunteer1,
+        this.volunteer2,
+        this.volunteer3
       );
+
+      console.log(this.volunteer1);
 
       return new Promise((resolve: (response: Response) => void, reject) => {
         resolve(response);
@@ -559,11 +633,11 @@ class WriteStore {
   };
 
   @action
-  getAttend = async (): Promise<attendResponse> => {
+  getAttend = async (): Promise<AttendResponse> => {
     try {
-      const response: attendResponse = await UserApi.GetAttend();
+      const response: AttendResponse = await UserApi.GetAttend();
 
-      return new Promise((resolve: (response: attendResponse) => void, reject) => {
+      return new Promise((resolve: (response: AttendResponse) => void, reject) => {
         resolve(response);
       });
     } catch (error) {
@@ -574,11 +648,11 @@ class WriteStore {
   };
 
   @action
-  getAdditional = async (): Promise<additionalResponse> => {
+  getAdditional = async (): Promise<AdditionalResponse> => {
     try {
-      const response: additionalResponse = await UserApi.GetAttend();
+      const response: AdditionalResponse = await UserApi.GetAdditional();
 
-      return new Promise((resolve: (response: additionalResponse) => void, reject) => {
+      return new Promise((resolve: (response: AdditionalResponse) => void, reject) => {
         resolve(response);
       });
     } catch (error) {
@@ -589,11 +663,11 @@ class WriteStore {
   };
 
   @action
-  getVolunteer = async (): Promise<volunteerResponse> => {
+  getVolunteer = async (): Promise<VolunteerResponse> => {
     try {
-      const response: volunteerResponse = await UserApi.GetAttend();
+      const response: VolunteerResponse = await UserApi.GetAttend();
 
-      return new Promise((resolve: (response: volunteerResponse) => void, reject) => {
+      return new Promise((resolve: (response: VolunteerResponse) => void, reject) => {
         resolve(response);
       });
     } catch (error) {
@@ -604,11 +678,26 @@ class WriteStore {
   };
 
   @action
-  searchSchool = async (schoolName: string): Promise<schoolResponse> => {
+  searchSchool = async (schoolName: string): Promise<SchoolResponse> => {
     try {
-      const response: schoolResponse = await UserApi.SearchSchool(schoolName);
+      const response: SchoolResponse = await UserApi.SearchSchool(schoolName);
 
-      return new Promise((resolve: (response: schoolResponse) => void, reject) => {
+      return new Promise((resolve: (response: SchoolResponse) => void, reject) => {
+        resolve(response);
+      });
+    } catch (error) {
+      return new Promise((resolve, reject: (error: Error) => void) => {
+        reject(error);
+      });
+    }
+  };
+
+  @action
+  getGradeList = async (): Promise<GetGradeList> => {
+    try {
+      const response: GetGradeList = await UserApi.GetGrade();
+
+      return new Promise((resolve: (response: GetGradeList) => void, reject) => {
         resolve(response);
       });
     } catch (error) {
