@@ -1,11 +1,11 @@
 import React from "react";
-import WriteStudent from "../../containers/WriteStudent/WriteStudentContainer";
-import WriteParent from "../../containers/WriteParent/WriteParentContainer";
-import WritePhoto from "../../containers/WritePhoto/WritePhotoContainer";
-import WriteSchool from "../../containers/WriteSchool/WriteSchoolContainer";
-import WriteAdmission from "../../containers/WriteAdmission/WriteAdmissionContainer";
-import WriteGrades from "../../containers/WriteGrade/WriteGradeContainer";
-import WriteIntroduction from "../../containers/WriteIntroduction/WriteIntroductionContainer";
+import WriteStudent from "../../containers/Write/WriteStudent/WriteStudentContainer";
+import WriteParent from "../../containers/Write/WriteParent/WriteParentContainer";
+import WritePhoto from "../../containers/Write/WritePhoto/WritePhotoContainer";
+import WriteSchool from "../../containers/Write/WriteSchool/WriteSchoolContainer";
+import WriteAdmission from "../../containers/Write/WriteAdmission/WriteAdmissionContainer";
+import WriteGrades from "../../containers/Write/WriteGrade/WriteGradeContainer";
+import WriteIntroduction from "../../containers/Write/WriteIntroduction/WriteIntroductionContainer";
 import "react-step-progress/dist/index.css";
 import "./Write.scss";
 import Steps from "rc-steps";
