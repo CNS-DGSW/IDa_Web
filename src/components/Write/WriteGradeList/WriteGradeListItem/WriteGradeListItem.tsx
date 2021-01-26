@@ -135,7 +135,9 @@ const WriteGradeListItem = ({
         <td>
           {isNew && (
             <>
-              <button onClick={() => deleteGrade(value)}>삭제</button>
+              <button className="delete" onClick={() => deleteGrade(value)}>
+                삭제
+              </button>
             </>
           )}
         </td>
