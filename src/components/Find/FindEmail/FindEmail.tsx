@@ -37,7 +37,7 @@ const FindEmail = ({ setChangePage, name, setName, birth, setBirth }: FindEmailP
           <CustomInput placeholder="생년월일" setValue={setBirth} value={birth} />
         </div>
       </div>
-      <Button content="찾기" />
+      <Button>찾기</Button>
     </div>
   );
 };

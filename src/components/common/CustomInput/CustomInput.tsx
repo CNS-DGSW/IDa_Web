@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./CustomInput.scss";
 
 interface CustomInputProps {
@@ -7,9 +7,17 @@ interface CustomInputProps {
   value?: string;
   setValue?: React.Dispatch<React.SetStateAction<string>>;
   style?: React.CSSProperties;
+  passwordInput?: React.RefObject<HTMLInputElement>;
 }
 
-const CustomInput = ({ placeholder, type, value, setValue, style }: CustomInputProps) => {
+const CustomInput = ({
+  placeholder,
+  type,
+  value,
+  setValue,
+  style,
+  passwordInput,
+}: CustomInputProps) => {
   return (
     <>
       <input
@@ -19,6 +27,7 @@ const CustomInput = ({ placeholder, type, value, setValue, style }: CustomInputP
         value={value}
         placeholder={placeholder}
         onChange={(e) => setValue && setValue(e.target.value)}
+        ref={passwordInput}
       />
     </>
   );

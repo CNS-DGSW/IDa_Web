@@ -9,6 +9,7 @@
   right: 0%;
   background: white;
   font-size: 15px;
+  animation: fadein 0.4s;
   &-title {
     display: flex;
     flex-direction: column;
@@ -117,5 +118,14 @@
   &:hover {
     color: #0e1f91;
     background: #eff1fc;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

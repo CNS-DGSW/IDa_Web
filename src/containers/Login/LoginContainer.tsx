@@ -1,54 +1,68 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import { inject, observer } from "mobx-react";
 import Login from "components/Login";
 import { LoginResponse } from "../../util/types/Response";
 import useStore from "lib/hooks/useStore";
 import { useHistory, withRouter } from "react-router-dom";
 import { useCookies } from "react-cookie";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import moment from "moment";
+import { NotificationContainer, NotificationManager } from "react-notifications";
+import "react-notifications/lib/notifications.css";
 
 const LoginContainer = () => {
+  const passwordInput = React.useRef<HTMLInputElement>(null);
+
   const [check, setCheck] = useState<boolean>(false);
+
   const [loginSave, setLoginSave] = useState<string | null>("");
+  //input들
   const [id, setId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
   const { store } = useStore();
   const history = useHistory();
 
+  //api 불러오기
   const { tryLogin } = store.AuthStore;
 
   const [cookie, setCookie, removeCookie] = useCookies(["refreshToken"]);
 
-  const handleLogin = useCallback(async () => {
+  //로그인
+  const handleLogin = async () => {
     if (!id || !password) {
-      toast("아이디 또는 비밀번호를 입력해 주세요");
+      NotificationManager.warning(
+        "warning.",
+        "아이디 또는 비밀번호를 입력해 주세요",
+        1000
+      );
     } else {
       await tryLogin(id, password)
         .then((res: LoginResponse) => {
-          toast("로그인 되었습니다");
+          NotificationManager.success("Succes", "로그인 되었습니다.", 1000);
           localStorage.setItem("accessToken", res.data.accessToken);
-          localStorage.setItem(
-            "expiresAt",
-            moment().add(1, "hour").format("yyyy-MM-DD HH:mm:ss")
-          );
           setCookie("refreshToken", res.data.refreshToken, { path: "/" });
           setLoginCheck();
           history.push("/");
         })
         .catch((err: Error) => {
           if (err.message.includes("401")) {
-            toast("이메일이나 비밀번호가 다릅니다");
+            passwordInput.current?.focus();
+            console.log(passwordInput);
+            console.log(passwordInput.current);
+
+            NotificationManager.warning(
+              "warning.",
+              "이메일이나 비밀번호가 다릅니다",
+              1000
+            );
           } else {
-            toast("서버 오류입니다");
+            NotificationManager.error("Error", "서버 오류입니다", 1000);
           }
         });
     }
-  }, [id, password]);
+  };
 
-  const setLoginCheck = useCallback(() => {
+  //id 저장여부 확인해서
+  const setLoginCheck = () => {
     if (check) {
       localStorage.setItem("loginSave", "true");
       localStorage.setItem("id", id);
@@ -56,8 +70,9 @@ const LoginContainer = () => {
       localStorage.setItem("loginSave", "false");
       localStorage.removeItem("id");
     }
-  }, [check]);
+  };
 
+  //아이디 저장했으면 불러오기
   const getLoginSave = useCallback(() => {
     setLoginSave(localStorage.getItem("loginSave"));
     let localStroageId: any = localStorage.getItem("id");
@@ -71,11 +86,26 @@ const LoginContainer = () => {
     }
   }, [id, setId, loginSave]);
 
+  //비밀번호 비었으면 비밀번호에 포커스 두기 아님 로그인
+  useEffect(() => {
+    const listener = (e: KeyboardEvent) => {
+      if (e.key === "Enter" || e.key === "NumpadEnter") {
+        if (password.length !== 0) {
+          handleLogin();
+        } else {
+          passwordInput.current?.focus();
+        }
+      }
+    };
+    document.addEventListener("keydown", listener);
+    return () => {
+      document.removeEventListener("keydown", listener);
+    };
+  }, [id, password]);
+
   useEffect(() => {
     getLoginSave();
-  }, []);
-
-  useEffect(() => {}, []);
+  }, [loginSave]);
 
   return (
     <>
@@ -87,8 +117,9 @@ const LoginContainer = () => {
         password={password}
         setPassword={setPassword}
         handleLogin={handleLogin}
+        passwordInput={passwordInput}
       />
-      <ToastContainer />
+      <NotificationContainer />
     </>
   );
 };

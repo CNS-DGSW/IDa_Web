@@ -51,7 +51,7 @@ const ChangePw = ({
           />
         </div>
         <div className="Profile-box-button">
-          <Button content="변경" onClick={() => tryChangePw()} />
+          <Button onClick={() => tryChangePw()} >변경</Button>
         </div>
       </div>
     </div>
