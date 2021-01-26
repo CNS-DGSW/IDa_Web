@@ -12,6 +12,7 @@ interface SearchSchoolProps {
   setSchoolTel: React.Dispatch<React.SetStateAction<string>>;
   setSchoolCode: React.Dispatch<React.SetStateAction<string>>;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsChanged: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const SearchSchool = ({
@@ -24,6 +25,7 @@ const SearchSchool = ({
   setSchoolTel,
   setSchoolCode,
   setIsOpen,
+  setIsChanged,
 }: SearchSchoolProps) => {
   return (
     <>
@@ -53,6 +55,7 @@ const SearchSchool = ({
                       setSchoolName(res.schoolName);
                       setSchoolTel(res.schoolTel);
                       setSchoolCode(res.schoolCode);
+                      setIsChanged(true);
                       setIsOpen(false);
                     }}
                   >

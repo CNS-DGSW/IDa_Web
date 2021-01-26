@@ -4,7 +4,8 @@ import ApplyDetail from "util/enums/ApplyDetail";
 import Grade from "util/enums/Grade";
 import Relation from "util/enums/Relation";
 import Sex from "util/enums/Sex";
-import FreeSumType from "util/types/FreeSum";
+import FreeSemType from "util/types/FreeSem";
+import ScoreGrade from "util/types/ScoreGrade";
 
 class UserApi {
   async EditUserInfo(name: string, birth: string, sex: Sex, studentTel: string) {
@@ -212,14 +213,14 @@ class UserApi {
     }
   }
 
-  async EditGrade(freeSum: FreeSumType, grade: Grade[]) {
+  async EditGrade(freeSem: FreeSemType, grade: ScoreGrade[]) {
     try {
       const body = {
-        freeSum,
+        freeSem,
         grade,
       };
 
-      const { data } = await Api.patch("/user/editGrade", body);
+      const { data } = await Api.patch("/grade/editGrade", body);
 
       return data;
     } catch (error) {
@@ -229,7 +230,7 @@ class UserApi {
 
   async GetGrade() {
     try {
-      const { data } = await Api.get("/user/getGrade");
+      const { data } = await Api.get("/grade/getGrade");
       return data;
     } catch (error) {
       throw new Error(`${error}`);
@@ -254,7 +255,17 @@ class UserApi {
         socialScore,
       };
 
-      const { data } = await Api.post("/user/editged", body);
+      const { data } = await Api.patch("/grade/editGed", body);
+
+      return data;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
+
+  async GetGed() {
+    try {
+      const { data } = await Api.get("/grade/getGed");
 
       return data;
     } catch (error) {
@@ -292,7 +303,7 @@ class UserApi {
         absenceLecture3,
       };
 
-      const { data } = await Api.post("/user/editAttend", body);
+      const { data } = await Api.patch("/attend/editAttend", body);
 
       return data;
     } catch (error) {
@@ -302,7 +313,7 @@ class UserApi {
 
   async GetAttend() {
     try {
-      const { data } = await Api.get("/user/getAttend");
+      const { data } = await Api.get("/attend/getAttend");
       return data;
     } catch (error) {
       throw new Error(`${error}`);
@@ -329,7 +340,7 @@ class UserApi {
         prize,
       };
 
-      const { data } = await Api.post("/user/editAdditional", body);
+      const { data } = await Api.patch("/attend/editAdditional", body);
 
       return data;
     } catch (error) {
@@ -339,7 +350,7 @@ class UserApi {
 
   async GetAdditional() {
     try {
-      const { data } = await Api.get("/user/getAdditional");
+      const { data } = await Api.get("/attend/getAdditional");
       return data;
     } catch (error) {
       throw new Error(`${error}`);
@@ -354,7 +365,7 @@ class UserApi {
         volunteer3,
       };
 
-      const { data } = await Api.post("/user/editVolunteer", body);
+      const { data } = await Api.patch("/attend/editVolunteer", body);
 
       return data;
     } catch (error) {
@@ -364,7 +375,7 @@ class UserApi {
 
   async GetVolunteer() {
     try {
-      const { data } = await Api.get("/user/getVolunteer");
+      const { data } = await Api.get("/attend/getVolunteer");
       return data;
     } catch (error) {
       throw new Error(`${error}`);
