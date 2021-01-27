@@ -1,0 +1,36 @@
+@import "util/colors.scss";
+
+.photo {
+  padding: 2rem;
+  background-color: #f6f6fc;
+  color: $ft-darkgray;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: $ft-blue;
+
+  &-preview {
+    width: 20rem;
+    height: 26rem;
+    background-color: $bg-white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  input {
+    display: none;
+  }
+
+  label {
+    width: 20rem;
+    height: 2.5rem;
+    background-color: $bg-blue;
+    color: $ft-white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    margin-top: 0.6rem;
+  }
+}

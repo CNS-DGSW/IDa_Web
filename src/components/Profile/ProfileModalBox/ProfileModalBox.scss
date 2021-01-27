@@ -8,6 +8,8 @@
   top: 110%;
   right: 0%;
   background: white;
+  border-radius: 3px;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.308);
   font-size: 15px;
   animation: fadein 0.4s;
   &-title {
@@ -66,20 +68,6 @@
     &:hover {
       .ProfileModalBox-modify-img {
         background-image: url("../../../assets/images/password@2x.png");
-      }
-    }
-  }
-  &-check {
-    &-img {
-      background-image: url("../../../assets/images/auth-gray.png");
-      background-repeat: no-repeat;
-      width: 1.4rem;
-      height: 1.4rem;
-      background-size: 1.4rem 1.4rem;
-    }
-    &:hover {
-      .ProfileModalBox-check-img {
-        background-image: url("../../../assets/images/auth.png");
       }
     }
   }

@@ -1,0 +1,60 @@
+.handle-post {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  &-modal {
+    width: 100%;
+    margin: 0 1rem;
+    max-width: 700px;
+  }
+  &-header {
+    background-color: #242174;
+    padding: 1rem 3rem;
+    width: 100%;
+    color: white;
+    font-size: 1.3rem;
+  }
+  &-content {
+    width: 100%;
+    padding: 1.5rem 3rem;
+    margin-bottom: 1rem;
+    &-item {
+      display: flex;
+      flex-direction: column;
+      font-weight: 500;
+      span {
+        font-size: 1.3rem;
+      }
+      input {
+        outline: none;
+      }
+      textarea {
+        outline: none;
+        resize: none;
+      }
+      &-box {
+        width: 100%;
+        margin-top: 0.3rem;
+        margin-bottom: 2rem;
+        font-size: 1.1rem;
+        padding: 0.5rem 1rem;
+        border: 0.5px solid #7d7d7d;
+        border-radius: 2px;
+      }
+      &-content {
+        height: 20rem;
+      }
+    }
+  }
+  &-footer {
+    display: flex;
+    &-btn {
+      background-color: #1c32c5;
+      padding: 0.5rem 2rem;
+      margin-right: 3rem;
+      border-radius: 2px;
+      cursor: pointer;
+      color: white;
+    }
+  }
+}

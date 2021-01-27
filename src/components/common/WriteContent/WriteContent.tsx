@@ -2,29 +2,101 @@ import { observer } from "mobx-react";
 import React, { useCallback } from "react";
 import useStore from "lib/hooks/useStore";
 import "./WriteContent.scss";
+import Swal from "sweetalert2";
+import { toast } from "react-toastify";
+import { RouteComponentProps, useHistory, withRouter } from "react-router-dom";
 
 interface WriteContentProps {
   title: string;
   children: React.ReactNode;
-  onSave: () => void | boolean;
+  onSave: () => void | boolean | Promise<boolean>;
   isChanged?: boolean;
 }
 
-const WriteContent = ({ title, children, onSave, isChanged }: WriteContentProps) => {
+const WriteContent = ({ title, children, onSave, isChanged }: WriteContentProps & RouteComponentProps) => {
   const { store } = useStore();
   const { page, pageHandle } = store.WriteStore;
+  const { changeSubmit } = store.StatusStore;
 
-  const nextPage = useCallback(() => {
-    if (!isChanged) {
-      pageHandle(page + 1);
-    }
-  }, [isChanged]);
+  const history = useHistory();
+
+  const nextPage = useCallback(
+    (skip?: boolean) => {
+      if (!isChanged || skip) {
+        if (page !== 6) {
+          pageHandle(page + 1);
+        }
+      } else {
+        Swal.fire({
+          title: "이동하시겠습니까?",
+          text: "수정된 내용이 저장되지 않았습니다.",
+          showCancelButton: true,
+          icon: "warning",
+          cancelButtonText: "취소",
+          confirmButtonText: "확인",
+        }).then(async (result) => {
+          if (result.isConfirmed) {
+            if (page !== 6) {
+              pageHandle(page + 1);
+            }
+          }
+        });
+      }
+    },
+    [isChanged]
+  );
 
   const prevPage = useCallback(() => {
-    if (!isChanged) {
+    if (!isChanged && page !== 0) {
       pageHandle(page - 1);
+    } else {
+      Swal.fire({
+        title: "이동하시겠습니까?",
+        text: "수정된 내용이 저장되지 않았습니다.",
+        showCancelButton: true,
+        icon: "warning",
+        cancelButtonText: "취소",
+        confirmButtonText: "확인",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          if (page !== 0) {
+            pageHandle(page - 1);
+          }
+        }
+      });
     }
   }, [isChanged]);
+
+  const changeSubmitCallback = useCallback(async () => {
+    Swal.fire({
+      title: "제출하시겠습니까?",
+      text: "제출 후 모든 수정은 불가능합니다.",
+      showCancelButton: true,
+      icon: "warning",
+      cancelButtonText: "취소",
+      confirmButtonText: "확인",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await changeSubmit()
+          .then(() => {
+            history.push("/");
+            toast.success("제출되었습니다.");
+          })
+          .catch((err: Error) => {
+            if (err.message.includes("401") || err.message.includes("410")) {
+              history.push("/login");
+              toast.warn("로그인이 필요합니다.");
+            } else if (err.message.includes("406")) {
+              toast.warn("원서를 모두 작성하지 않았습니다.");
+            } else if (err.message.includes("403")) {
+              toast.warn("이미 제출하셨습니다.");
+            } else {
+              toast.error("서버 오류입니다.");
+            }
+          });
+      }
+    });
+  }, []);
 
   return (
     <>
@@ -35,19 +107,29 @@ const WriteContent = ({ title, children, onSave, isChanged }: WriteContentProps)
           <div className="writecontent-children-area">
             <div
               className="writecontent-children-area-btn save"
-              onClick={() => {
-                if (onSave() === true) {
-                  nextPage();
+              onClick={async () => {
+                if ((await onSave()) === true) {
+                  toast.success("저장되었습니다.");
+                  nextPage(true);
                 }
               }}
             >
               원서저장
             </div>
             <div className="writecontent-children-area-btn preview">원서 미리보기</div>
+            {page === 6 && (
+              <div className="writecontent-children-area-btn prev" onClick={prevPage}>
+                원서 출력
+              </div>
+            )}
             <div className="writecontent-children-area-hr"></div>
 
-            {page !== 6 && (
-              <div className="writecontent-children-area-btn next" onClick={nextPage}>
+            {page === 6 ? (
+              <div className="writecontent-children-area-btn last" onClick={() => changeSubmitCallback()}>
+                원서 최종 제출
+              </div>
+            ) : (
+              <div className="writecontent-children-area-btn next" onClick={() => nextPage()}>
                 다음
               </div>
             )}
@@ -63,4 +145,4 @@ const WriteContent = ({ title, children, onSave, isChanged }: WriteContentProps)
   );
 };
 
-export default observer(WriteContent);
+export default withRouter(observer(WriteContent));

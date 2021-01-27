@@ -5,50 +5,39 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { server } from "config/config.json";
 import { sha256 } from "js-sha256";
+import { toast } from "react-toastify";
+import useStore from "lib/hooks/useStore";
 
 const ChangePwContainer = ({}) => {
+  const { store } = useStore();
+
+  const { tryChangePw } = store.AuthStore;
+
   const [originPw, setOriginPw] = useState<string>("");
   const [changePw, setChangePw] = useState<string>("");
   const [checkPw, setCheckPw] = useState<string>("");
 
   const history = useHistory();
 
-  const tryChangePw = async () => {
+  const handleTryChangePw = useCallback(async () => {
     if (checkPw === changePw && changePw !== originPw) {
-      const body = {
-        newPw: sha256(changePw),
-        pw: sha256(originPw),
-      };
-
-      const config = {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      };
-      patchChangePw(body, config)
+      tryChangePw(changePw, originPw)
         .then((res) => {
           history.push("/");
         })
         .catch((err: Error) => {
           if (err.message.includes("401")) {
-            console.log("현재 비밀번호가 다릅니다.");
+            toast.warn("현재 비밀번호가 다릅니다.");
+          } else {
+            toast.error("서버 오류입니다");
           }
         });
     } else if (changePw === originPw) {
-      console.log("같은 비밀번호로 변경할 수 없습니다.");
+      toast.warn("같은 비밀번호로 변경할 수 없습니다.");
     } else {
-      console.log("새로운 비밀번호 확인이 다릅니다.");
+      toast.warn("새로운 비밀번호 확인이 다릅니다.");
     }
-  };
-
-  const patchChangePw = async (body: object, config: object) => {
-    try {
-      const { data } = await axios.patch(`${server}/auth/changePw`, body, config);
-      return data;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
-  };
+  }, [checkPw, changePw, originPw]);
 
   useEffect(() => {
     if (!localStorage.getItem("accessToken")) {
@@ -65,7 +54,7 @@ const ChangePwContainer = ({}) => {
         setChangePw={setChangePw}
         checkPw={checkPw}
         setCheckPw={setCheckPw}
-        tryChangePw={tryChangePw}
+        handleTryChangePw={handleTryChangePw}
       />
     </>
   );

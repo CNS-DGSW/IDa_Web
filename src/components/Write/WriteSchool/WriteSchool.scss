@@ -1,0 +1,167 @@
+@import "util/colors.scss";
+
+.school {
+  padding: 2rem;
+  background-color: #f6f6fc;
+  margin-bottom: 2rem;
+  color: $ft-darkgray;
+
+  &-area {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.2rem;
+
+    &-label {
+      width: 100%;
+      margin-bottom: 0.6rem;
+    }
+
+    &-textInput {
+      width: 100%;
+      height: 2.6rem;
+      padding-left: 1rem;
+      border: none;
+      border: 1px solid $bd-gray-700;
+      border-radius: 2px;
+      &:focus {
+        border: 1px solid $bd-blue;
+        outline: none;
+      }
+    }
+    &-select {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.2rem;
+
+      &-box {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 13rem;
+        height: 2.6rem;
+        font-size: 1rem;
+        font-weight: 300;
+        padding: 0 1rem;
+        border: 1px solid $bd-gray-700;
+        border-radius: 2px;
+        background-color: $bg-white;
+        cursor: pointer;
+
+        &-selectinput {
+          width: 1.2rem;
+          height: 2rem;
+          padding-left: 1rem;
+          border: none;
+          border: 1px solid $bd-gray-700;
+          border-radius: 2px;
+          cursor: pointer;
+          &:focus {
+            border: 1px solid $bd-blue;
+            outline: none;
+          }
+        }
+      }
+    }
+  }
+
+  &-schedule {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+
+    &-box {
+      display: flex;
+      width: 48%;
+      flex-direction: column;
+      label {
+        width: 100%;
+        margin-bottom: 0.6rem;
+      }
+
+      &-search {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        &-textInput {
+          width: 74%;
+          height: 2.6rem;
+          padding-left: 1rem;
+          border: none;
+          border: 1px solid $bd-gray-700;
+          border-radius: 2px;
+          &:focus {
+            border: 1px solid $bd-blue;
+            outline: none;
+          }
+        }
+
+        div {
+          width: 24%;
+          height: 2.6rem;
+          background-color: $bg-blue;
+          color: $ft-white;
+          border-radius: 2px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 0.8rem;
+        }
+      }
+
+      &-textInput {
+        width: 100%;
+        height: 2.6rem;
+        padding-left: 1rem;
+        border: none;
+        border: 1px solid $bd-gray-700;
+        border-radius: 2px;
+        &:focus {
+          border: 1px solid $bd-blue;
+          outline: none;
+        }
+      }
+
+      &-area {
+        display: flex;
+        justify-content: space-between;
+
+        &-column {
+          display: flex;
+          flex-direction: column;
+
+          label {
+            margin-bottom: 0.6rem;
+          }
+        }
+
+        &-selectinput {
+          width: 9.6rem;
+          height: 2.6rem;
+          padding-left: 1rem;
+          border: none;
+          border: 1px solid $bd-gray-700;
+          border-radius: 2px;
+          &:focus {
+            border: 1px solid $bd-blue;
+            outline: none;
+          }
+        }
+
+        &-textInput {
+          width: 100%;
+          height: 2.6rem;
+          padding-left: 1rem;
+          border: none;
+          border: 1px solid $bd-gray-700;
+          border-radius: 2px;
+          &:focus {
+            border: 1px solid $bd-blue;
+            outline: none;
+          }
+        }
+      }
+    }
+  }
+}

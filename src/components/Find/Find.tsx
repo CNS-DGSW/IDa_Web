@@ -35,7 +35,7 @@ const Find = ({
     <div className="Find">
       <div className="Find-text">
         <div className="Find-text-Welcome">Welcome</div>
-        <div className="Find-text-content">동해물과 백두산이 마르고 닳도록</div>
+        <div className="Find-text-content">비밀번호를 잊으셨나요?</div>
       </div>
       <div className="Find-box">
         <FindPw

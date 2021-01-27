@@ -5,8 +5,8 @@ import { LoginResponse } from "../../util/types/Response";
 import useStore from "lib/hooks/useStore";
 import { useHistory, withRouter } from "react-router-dom";
 import { useCookies } from "react-cookie";
-import { NotificationContainer, NotificationManager } from "react-notifications";
-import "react-notifications/lib/notifications.css";
+import { toast } from "react-toastify";
+import moment from "moment";
 
 const LoginContainer = () => {
   const passwordInput = React.useRef<HTMLInputElement>(null);
@@ -29,16 +29,13 @@ const LoginContainer = () => {
   //로그인
   const handleLogin = async () => {
     if (!id || !password) {
-      NotificationManager.warning(
-        "warning.",
-        "아이디 또는 비밀번호를 입력해 주세요",
-        1000
-      );
+      toast.warn("아이디 또는 비밀번호를 입력해 주세요");
     } else {
       await tryLogin(id, password)
         .then((res: LoginResponse) => {
-          NotificationManager.success("Succes", "로그인 되었습니다.", 1000);
+          toast.success("로그인 되었습니다");
           localStorage.setItem("accessToken", res.data.accessToken);
+          localStorage.setItem("expiresAt", moment().add(1, "hour").format("yyyy-MM-DD HH:mm:ss"));
           setCookie("refreshToken", res.data.refreshToken, { path: "/" });
           setLoginCheck();
           history.push("/");
@@ -46,16 +43,9 @@ const LoginContainer = () => {
         .catch((err: Error) => {
           if (err.message.includes("401")) {
             passwordInput.current?.focus();
-            console.log(passwordInput);
-            console.log(passwordInput.current);
-
-            NotificationManager.warning(
-              "warning.",
-              "이메일이나 비밀번호가 다릅니다",
-              1000
-            );
+            toast.warn("이메일이나 비밀번호가 다릅니다");
           } else {
-            NotificationManager.error("Error", "서버 오류입니다", 1000);
+            toast.error("서버 오류입니다");
           }
         });
     }
@@ -119,7 +109,6 @@ const LoginContainer = () => {
         handleLogin={handleLogin}
         passwordInput={passwordInput}
       />
-      <NotificationContainer />
     </>
   );
 };

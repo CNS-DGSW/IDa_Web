@@ -44,9 +44,12 @@ const Register = ({
   return (
     <>
       <div className="Register">
+        <div className="Register-img" />
         <div className="Register-text">
           <span className="Register-text-Welcome">Welcome</span>
-          <span className="Register-text-content">아아디 비번 똑띠 적어라^^</span>
+          <span className="Register-text-content">
+            대구소프트웨어고등학교 원서 작성 사이트에 오신 것을 환영합니다.
+          </span>
         </div>
         <div className="Register-box">
           <div className="Register-box-text">회원가입</div>

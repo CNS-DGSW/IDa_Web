@@ -4,9 +4,7 @@ import Register from "components/Register";
 import { Response } from "util/types/Response";
 import useStore from "lib/hooks/useStore";
 import { useHistory, withRouter } from "react-router-dom";
-//알림
-import { NotificationContainer, NotificationManager } from "react-notifications";
-import "react-notifications/lib/notifications.css";
+import { toast } from "react-toastify";
 
 const RegisterContainer = () => {
   const { store } = useStore();
@@ -29,29 +27,25 @@ const RegisterContainer = () => {
 
   //email 인증 보내기
   const handleEmailSend = useCallback(async () => {
-    NotificationManager.success("잠시만 기다려주세요", "이메일이 전송중입니다.", 1000);
+    toast.success("이메일이 전송중입니다.");
     setEmailLoading(true);
     if (!email) {
       setEmailLoading(false);
-      NotificationManager.warning(
-        "메일을 입력하지 않았습니다.",
-        "이메일을 입력해 주세요",
-        1000
-      );
+      toast.warn("이메일을 입력해 주세요");
     } else {
       await trySendEmail(email)
         .then((res: Response) => {
-          NotificationManager.success("Success", "이메일이 전송되었습니다.");
+          toast.success("이메일이 전송되었습니다.");
           setEmailLoading(false);
         })
         .catch((err: Error) => {
           setEmailLoading(false);
           if (err.message.includes("400")) {
-            NotificationManager.warning("Warning", "메일 형식이 아닙니다.", 1000);
+            toast.warn("메일 형식이 아닙니다.");
           } else if (err.message.includes("409")) {
-            NotificationManager.warning("Warning", "이미 사용중인 이메일입니다.", 1000);
+            toast.warn("이미 사용중인 메일입니다.");
           } else {
-            NotificationManager.error("Error", "메일 전송에 실패했습니다", 1000);
+            toast.error("서버 오류입니다");
           }
         });
     }
@@ -60,22 +54,25 @@ const RegisterContainer = () => {
   //회원가입하기
   const handleRegister = useCallback(async () => {
     if (!email || !pw || !checkPw || !name || !birth) {
-      NotificationManager.warning("Warning", "빈칸이 있습니다.", 1000);
+      toast.warn("빈칸이 있습니다.");
     } else if (pw !== checkPw) {
-      NotificationManager.warning("Warning", "비밀번호가 일치하지 않습니다.", 1000);
+      toast.warn("비밀번호가 일치하지 않습니다.");
     } else if (!allCheck) {
-      NotificationManager.warning("Warning", "모두 동의를 체크해 주세요.", 1000);
+      toast.warn("모두 동의를 체크해 주세요");
     } else {
       await tryRegister(name, email, pw, birth)
         .then((res: Response) => {
-          NotificationManager.success("Success", "회원가입이 완료되었습니다.", 1000);
+          toast.success("회원가입이 완료되었습니다.");
           history.push("login");
+          toast.success("가입되었습니다.");
         })
-        .catch((Error: Error) => {
-          if (Error.message.includes("409")) {
-            NotificationManager.warning("Warning", "메일 인증을 다시해주세요.", 1000);
+        .catch((err: Error) => {
+          if (err.message.includes("409")) {
+            toast.warn("이미 사용중인 이메일입니다.");
+          } else if (err.message.includes("401")) {
+            toast.warn("메일 인증이 안되었습니다.");
           } else {
-            NotificationManager.error("Error", "서버 오류입니다", 1000);
+            toast.error("서버 오류입니다");
           }
         });
     }
@@ -113,7 +110,6 @@ const RegisterContainer = () => {
         birth={birth}
         setBirth={setBirth}
       />
-      <NotificationContainer />
     </>
   );
 };

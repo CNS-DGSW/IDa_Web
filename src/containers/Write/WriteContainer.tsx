@@ -1,11 +1,30 @@
-import React, { useState, useEffect } from "react";
-import { inject, observer } from "mobx-react";
+import React, { useEffect } from "react";
+import { observer } from "mobx-react";
+import { useBeforeunload } from "react-beforeunload";
 import Write from "components/Write/Write";
 import useStore from "lib/hooks/useStore";
+import { useHistory, withRouter } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const WriteContainer = ({}) => {
   const { store } = useStore();
-  const { page } = store.WriteStore;
+  const { page, pageHandle } = store.WriteStore;
+  const { login } = store.AuthStore;
+
+  const history = useHistory();
+
+  useBeforeunload((event) => event.preventDefault());
+
+  useEffect(() => {
+    if (!localStorage.getItem("accessToken")) {
+      history.push("/login");
+      toast.warn("로그인이 필요합니다.");
+    }
+  }, [login]);
+
+  useEffect(() => {
+    return () => pageHandle(0);
+  }, []);
 
   return (
     <>
@@ -14,4 +33,4 @@ const WriteContainer = ({}) => {
   );
 };
 
-export default observer(WriteContainer);
+export default withRouter(observer(WriteContainer));
