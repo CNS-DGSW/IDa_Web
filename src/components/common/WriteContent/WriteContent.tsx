@@ -90,7 +90,7 @@ const WriteContent = ({ title, children, onSave, isChanged }: WriteContentProps 
               toast.warn("원서를 모두 작성하지 않았습니다.");
             } else if (err.message.includes("409")) {
               toast.warn("이미 제출하셨습니다.");
-            } else if (err.message.includes("409")) {
+            } else if (err.message.includes("403")) {
               toast.warn("제출 기간이 아닙니다.");
             } else {
               toast.error("서버 오류입니다.");
