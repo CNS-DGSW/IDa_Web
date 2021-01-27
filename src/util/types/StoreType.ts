@@ -3,6 +3,7 @@ import WriteStore from "../../stores/Write";
 import BoardStore from "../../stores/Board";
 import FileStore from "stores/File";
 import ScoreStore from "stores/Score";
+import StatusStore from "stores/Status";
 
 type StoreType = {
   store: {
@@ -11,6 +12,7 @@ type StoreType = {
     BoardStore: BoardStore;
     FileStore: FileStore;
     ScoreStore: ScoreStore;
+    StatusStore: StatusStore;
   };
 };
 
