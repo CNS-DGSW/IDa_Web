@@ -37,6 +37,10 @@ const WriteSchoolContainer = ({}) => {
         teacherName &&
         teacherTel)
     ) {
+      if ((gradeType === Grade.GRADUATED || gradeType === Grade.GED) && Number(graduatedDate) < 2010) {
+        toast.warn("올바른 년도를 입력해주세요.");
+        flag = false;
+      }
       await editSchoolInfo(
         cityLocation,
         cityName,
