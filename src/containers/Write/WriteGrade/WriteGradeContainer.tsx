@@ -37,6 +37,8 @@ const WriteGradeContainer = ({}) => {
           if (err.message.includes("401") || err.message.includes("410")) {
             history.push("/login");
             toast.warn("로그인이 필요합니다.");
+          } else if (err.message.includes("403")) {
+            toast.warn("이미 제출하셨습니다.");
           } else {
             toast.error("서버 오류입니다.");
           }

@@ -16,7 +16,7 @@ interface WriteParentsProps {
   handleComplete: (data: any) => void;
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  onSave: () => boolean;
+  onSave: () => Promise<boolean>;
   isChanged: boolean;
   setIsChanged: React.Dispatch<React.SetStateAction<boolean>>;
 }
