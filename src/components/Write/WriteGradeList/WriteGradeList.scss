@@ -1,11 +1,49 @@
+@import "util/colors.scss";
+
 .grade-list {
   width: 100%;
   border-collapse: collapse;
   border: 1px solid #ddd;
+  background-color: $bg-white;
+  margin-top: 2rem;
   thead,
   tr,
   th,
   td {
     border: 1px solid #ddd;
+    height: 2.6rem;
+  }
+
+  &-head {
+    background-color: $bg-blue;
+    color: $ft-white;
+  }
+
+  &-white {
+    background-color: $bg-white-100;
+  }
+}
+
+.on {
+  background-color: $bg-blue;
+  color: $ft-white;
+  width: 90%;
+  height: 1.8rem;
+  border: none;
+  border-radius: 4px;
+  &:focus {
+    outline: none;
+  }
+}
+
+.off {
+  width: 90%;
+  height: 1.8rem;
+  border: none;
+  border: 1px solid $bd-gray-700;
+  border-radius: 4px;
+  background-color: $bg-white;
+  &:focus {
+    outline: none;
   }
 }

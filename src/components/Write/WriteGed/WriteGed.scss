@@ -19,6 +19,21 @@
     width: 14%;
     input {
       width: 90%;
+      text-align: center;
+      height: 1.8em;
+    }
+  }
+
+  th {
+    font-weight: 400;
+  }
+
+  &-table {
+    box-sizing: border-box;
+    &-head {
+      background-color: $bg-blue;
+      color: $ft-white;
+      height: 2.6rem;
     }
   }
 }

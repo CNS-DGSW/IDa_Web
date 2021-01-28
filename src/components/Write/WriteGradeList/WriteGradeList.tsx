@@ -40,24 +40,34 @@ const WriteGradeList = ({
       <table className="grade-list">
         <thead>
           <tr>
-            <th rowSpan={3}>과목</th>
-            <th colSpan={2}>1학년</th>
-            <th colSpan={2}>2학년</th>
-            <th colSpan={2}>3학년</th>
-            <th rowSpan={3}>삭제</th>
+            <th className="grade-list-head" rowSpan={3}>
+              과목
+            </th>
+            <th className="grade-list-head" colSpan={2}>
+              1학년
+            </th>
+            <th className="grade-list-head" colSpan={2}>
+              2학년
+            </th>
+            <th className="grade-list-head" colSpan={2}>
+              3학년
+            </th>
+            <th className="grade-list-head" rowSpan={3}>
+              삭제
+            </th>
           </tr>
           <tr>
-            <th>1학기</th>
-            <th>2학기</th>
-            <th>1학기</th>
-            <th>2학기</th>
-            <th>1학기</th>
-            <th>2학기</th>
+            <th className="grade-list-white">1학기</th>
+            <th className="grade-list-white">2학기</th>
+            <th className="grade-list-white">1학기</th>
+            <th className="grade-list-white">2학기</th>
+            <th className="grade-list-white">1학기</th>
+            <th className="grade-list-white">2학기</th>
           </tr>
           <tr>
             <th>
               <button
-                type="button"
+                className={freeSem.freeSem11 ? "on" : "off"}
                 onClick={() => handleFreeSem({ ...freeSem, freeSem11: !freeSem.freeSem11 })}
               >
                 자유학기제
@@ -65,7 +75,7 @@ const WriteGradeList = ({
             </th>
             <th>
               <button
-                type="button"
+                className={freeSem.freeSem12 ? "on" : "off"}
                 onClick={() => handleFreeSem({ ...freeSem, freeSem12: !freeSem.freeSem12 })}
               >
                 자유학기제
@@ -73,7 +83,7 @@ const WriteGradeList = ({
             </th>
             <th>
               <button
-                type="button"
+                className={freeSem.freeSem21 ? "on" : "off"}
                 onClick={() => handleFreeSem({ ...freeSem, freeSem21: !freeSem.freeSem21 })}
               >
                 자유학기제
@@ -81,7 +91,7 @@ const WriteGradeList = ({
             </th>
             <th>
               <button
-                type="button"
+                className={freeSem.freeSem22 ? "on" : "off"}
                 onClick={() => handleFreeSem({ ...freeSem, freeSem22: !freeSem.freeSem22 })}
               >
                 자유학기제
@@ -89,7 +99,7 @@ const WriteGradeList = ({
             </th>
             <th>
               <button
-                type="button"
+                className={freeSem.freeSem31 ? "on" : "off"}
                 onClick={() => handleFreeSem({ ...freeSem, freeSem31: !freeSem.freeSem32 })}
               >
                 자유학기제
@@ -97,7 +107,7 @@ const WriteGradeList = ({
             </th>
             <th>
               <button
-                type="button"
+                className={freeSem.freeSem32 ? "on" : "off"}
                 onClick={() =>
                   handleFreeSem({
                     ...freeSem,

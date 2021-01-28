@@ -36,14 +36,14 @@ const WriteGed = ({
     <div className="ged">
       <table className="ged-table">
         <thead>
-          <tr>
-            <th>과목</th>
-            <th>국어</th>
-            <th>영어</th>
-            <th>수학</th>
-            <th>사회</th>
-            <th>과학</th>
-            <th>선택과목</th>
+          <tr className="ged-table-head">
+            <th className="ged-table-head">과목</th>
+            <th className="ged-table-head">국어</th>
+            <th className="ged-table-head">영어</th>
+            <th className="ged-table-head">수학</th>
+            <th className="ged-table-head">사회</th>
+            <th className="ged-table-head">과학</th>
+            <th className="ged-table-head">선택과목</th>
           </tr>
         </thead>
         <tbody>
