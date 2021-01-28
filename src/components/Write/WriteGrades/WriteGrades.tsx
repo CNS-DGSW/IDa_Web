@@ -6,7 +6,7 @@ import WriteGradeAdditionalContainer from "../../../containers/Write/WriteGrade/
 import Grade from "util/enums/Grade";
 import WriteScoreContainer from "containers/Write/WriteScore/WriteScoreContainer";
 import WriteGradeListContainer from "containers/Write/WriteGrade/WriteGradeList/WriteGradeListContainer";
-import WriteGedContainer from "containers/Write/WriteGed/WriteGedContainer";
+import WriteGedContainer from "containers/Write/WriteGrade/WriteGed/WriteGedContainer";
 
 interface WriteGradesProps {
   gradeType: Grade | null;

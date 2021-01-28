@@ -51,12 +51,11 @@ const FindPw = ({
                   style={{ width: "78%" }}
                 />
                 <Button
-                  content="코드"
                   style={{ height: "100%", width: "20%", minHeight: "3.3rem" }}
                   onClick={() => {
                     handlePwCode();
                   }}
-                />
+                >코드</Button>
               </div>
               <CustomInput
                 placeholder="이메일 인증 코드"
@@ -77,7 +76,7 @@ const FindPw = ({
           </>
         )}
       </div>
-      <Button content="변경" onClick={() => handleChangePw()} />
+      <Button onClick={() => handleChangePw()}>변경</Button>
     </div>
   );
 };

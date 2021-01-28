@@ -1,3 +1,5 @@
+@import "util/colors.scss";
+
 .Register {
   display: flex;
   align-items: center;
@@ -74,6 +76,15 @@
         margin: 0.3rem 0;
         & div {
           margin-left: 0.3rem;
+        }
+      }
+    }
+    &-agree {
+      &-watch {
+        color: $bg-blue-150;
+        cursor: pointer;
+        &:hover {
+          color: $bg-light-bule;
         }
       }
     }

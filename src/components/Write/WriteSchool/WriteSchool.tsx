@@ -25,7 +25,7 @@ interface WriteSchoolProps {
   setTeacherName: React.Dispatch<React.SetStateAction<string>>;
   teacherTel: string;
   setTeacherTel: React.Dispatch<React.SetStateAction<string>>;
-  onSave: () => void;
+  onSave: () => Promise<boolean>;
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setIsChanged: React.Dispatch<React.SetStateAction<boolean>>;

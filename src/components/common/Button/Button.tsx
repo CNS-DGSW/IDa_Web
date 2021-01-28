@@ -2,13 +2,13 @@ import React from "react";
 import "./Button.scss";
 
 interface ButtonProps {
+  children?: React.ReactNode;
   style?: React.CSSProperties;
-  content: string;
   className?: string;
   onClick?: ((event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void) | undefined;
 }
 
-const Button = ({ style, content, className, onClick }: ButtonProps) => {
+const Button = ({ children, style , className, onClick }: ButtonProps) => {
   return (
     <div
       className={className}
@@ -16,7 +16,7 @@ const Button = ({ style, content, className, onClick }: ButtonProps) => {
       onClick={(e) => onClick && onClick(e)}
       id="Button"
     >
-      <span id="Button-content">{content}</span>
+      <span id="Button-content">{children}</span>
     </div>
   );
 };

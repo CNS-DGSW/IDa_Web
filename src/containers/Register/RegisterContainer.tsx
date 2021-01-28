@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { inject, observer } from "mobx-react";
 import Register from "components/Register";
-import { Response } from "../../util/types/Response";
-import useStore from "../../lib/hooks/useStore";
+import { Response } from "util/types/Response";
+import useStore from "lib/hooks/useStore";
 import { useHistory, withRouter } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -12,23 +12,22 @@ const RegisterContainer = () => {
 
   const history = useHistory();
 
-  // RegisterComponents checkBox
+  //모두동의 체크박스
   const [allCheck, setAllCheck] = useState<boolean>(false);
-  const [privacy, setPrivacy] = useState<boolean>(false);
-  const [use, setUse] = useState<boolean>(false);
-  const [background, setBackground] = useState<boolean>(false);
 
-  // RegisterComponents input
+  // 정보들 받는 input들
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [pw, setPw] = useState<string>("");
   const [checkPw, setCheckPw] = useState<string>("");
-  const [birth, setBirth] = useState<string>("2003-01-28");
+  const [birth, setBirth] = useState<string>("");
 
   // 로딩
   const [emailLoading, setEmailLoading] = useState<boolean>(false);
 
+  //email 인증 보내기
   const handleEmailSend = useCallback(async () => {
+    toast.success("이메일이 전송중입니다.");
     setEmailLoading(true);
     if (!email) {
       setEmailLoading(false);
@@ -36,6 +35,7 @@ const RegisterContainer = () => {
     } else {
       await trySendEmail(email)
         .then((res: Response) => {
+          toast.success("이메일이 전송되었습니다.");
           setEmailLoading(false);
         })
         .catch((err: Error) => {
@@ -51,6 +51,7 @@ const RegisterContainer = () => {
     }
   }, [email, emailLoading]);
 
+  //회원가입하기
   const handleRegister = useCallback(async () => {
     if (!email || !pw || !checkPw || !name || !birth) {
       toast.warn("빈칸이 있습니다.");
@@ -61,6 +62,7 @@ const RegisterContainer = () => {
     } else {
       await tryRegister(name, email, pw, birth)
         .then((res: Response) => {
+          toast.success("회원가입이 완료되었습니다.");
           history.push("login");
           toast.success("가입되었습니다.");
         })
@@ -76,51 +78,39 @@ const RegisterContainer = () => {
     }
   }, [name, email, pw, checkPw, allCheck]);
 
-  const handleAllCheck = useCallback(() => {
-    setPrivacy(allCheck);
-    setUse(allCheck);
-    setBackground(allCheck);
-  }, [allCheck]);
-
+  //이메일인증 enter처리
   useEffect(() => {
-    handleAllCheck();
-  }, [handleAllCheck]);
-
-  useEffect(() => {
-    if (privacy && use && background) {
-      setAllCheck(true);
-    }
-    //  else if (!privacy || !use || !background) {
-    //   setAllCheck(false);
-    // }
-  }, [privacy, use, background]);
+    const listener = (e: KeyboardEvent) => {
+      if (e.key === "Enter" || e.key === "NumpadEnter") {
+        handleEmailSend();
+      }
+    };
+    document.addEventListener("keydown", listener);
+    return () => {
+      document.removeEventListener("keydown", listener);
+    };
+  }, [email]);
 
   return (
-    <Register
-      allCheck={allCheck}
-      setAllCheck={setAllCheck}
-      privacy={privacy}
-      setPrivacy={setPrivacy}
-      use={use}
-      setUse={setUse}
-      background={background}
-      setBackground={setBackground}
-      name={name}
-      setName={setName}
-      email={email}
-      setEmail={setEmail}
-      pw={pw}
-      setPw={setPw}
-      checkPw={checkPw}
-      setCheckPw={setCheckPw}
-      handleRegister={handleRegister}
-      emailLoading={emailLoading}
-      handleEmailSend={handleEmailSend}
-      handleAllCheck={handleAllCheck}
-      history={history}
-      birth={birth}
-      setBirth={setBirth}
-    />
+    <>
+      <Register
+        allCheck={allCheck}
+        setAllCheck={setAllCheck}
+        name={name}
+        setName={setName}
+        email={email}
+        setEmail={setEmail}
+        pw={pw}
+        setPw={setPw}
+        checkPw={checkPw}
+        setCheckPw={setCheckPw}
+        handleRegister={handleRegister}
+        emailLoading={emailLoading}
+        handleEmailSend={handleEmailSend}
+        birth={birth}
+        setBirth={setBirth}
+      />
+    </>
   );
 };
 

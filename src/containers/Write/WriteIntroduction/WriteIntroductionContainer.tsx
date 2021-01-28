@@ -17,23 +17,31 @@ const WriteIntroductionContainer = ({}) => {
   const { getSelfIntroduce, editSelfIntroduce, getStudyPlan, editStudyPlan } = store.WriteStore;
 
   const onSave = useCallback(async () => {
+    let flag = true;
     if (selfIntroduce && studyPlan) {
       const promises = [editStudyPlan(studyPlan), editSelfIntroduce(selfIntroduce)];
 
-      await Promise.all(promises).catch((err: Error) => {
-        if (err.message.includes("401") || err.message.includes("410")) {
-          history.push("/login");
-          toast.warn("로그인이 필요합니다.");
-        } else {
-          toast.error("서버 오류입니다.");
-        }
-      });
+      await Promise.all(promises)
+        .then(() => {
+          flag = true;
+        })
+        .catch((err: Error) => {
+          if (err.message.includes("401") || err.message.includes("410")) {
+            history.push("/login");
+            toast.warn("로그인이 필요합니다.");
+          } else if (err.message.includes("403")) {
+            toast.warn("이미 제출하셨습니다.");
+          } else {
+            toast.error("서버 오류입니다.");
+          }
+          flag = false;
+        });
       setIsChanged(false);
-      return true;
     } else {
       toast.warn("빈칸을 채워주세요.");
-      return false;
+      flag = false;
     }
+    return flag;
   }, [selfIntroduce, studyPlan]);
 
   const getSelfIntroduceCallBack = useCallback(() => {
