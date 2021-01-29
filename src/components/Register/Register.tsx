@@ -60,6 +60,7 @@ const Register = ({
                 type="text"
                 value={name}
                 setValue={setName}
+                maxLength={45}
                 style={{ width: "44%", height: "80%" }}
               />
               <CustomInput
@@ -67,6 +68,7 @@ const Register = ({
                 type="text"
                 value={birth}
                 setValue={setBirth}
+                maxLength={10}
                 style={{ width: "55%", height: "80%" }}
               />
             </div>
@@ -74,28 +76,16 @@ const Register = ({
               <CustomInput
                 type="text"
                 placeholder="이메일"
+                maxLength={100}
                 value={email}
                 setValue={setEmail}
               />
-              <Button
-                style={{ height: "100%", width: "30%" }}
-                onClick={() => handleEmailSend()}
-              >
+              <Button style={{ height: "100%", width: "30%" }} onClick={() => handleEmailSend()}>
                 인증
               </Button>
             </div>
-            <CustomInput
-              type="password"
-              placeholder="비밀번호"
-              value={pw}
-              setValue={setPw}
-            />
-            <CustomInput
-              type="password"
-              placeholder="비밀번호 확인"
-              value={checkPw}
-              setValue={setCheckPw}
-            />
+            <CustomInput type="password" placeholder="비밀번호" value={pw} setValue={setPw} />
+            <CustomInput type="password" placeholder="비밀번호 확인" value={checkPw} setValue={setCheckPw} />
             <CheckBox
               style={{ marginTop: "1rem" }}
               id="agree-all"
@@ -124,10 +114,7 @@ const Register = ({
             ) : (
               <Button onClick={() => handleRegister()}>회원가입</Button>
             )}
-            <span
-              className="Register-box-button-find"
-              onClick={() => history.push("/login")}
-            >
+            <span className="Register-box-button-find" onClick={() => history.push("/login")}>
               이미 회원이신가요?
             </span>
           </div>
