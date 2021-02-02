@@ -64,13 +64,14 @@ const RegisterContainer = () => {
         .then((res: Response) => {
           toast.success("회원가입이 완료되었습니다.");
           history.push("login");
-          toast.success("가입되었습니다.");
         })
         .catch((err: Error) => {
           if (err.message.includes("409")) {
             toast.warn("이미 사용중인 이메일입니다.");
           } else if (err.message.includes("401")) {
             toast.warn("메일 인증이 안되었습니다.");
+          } else if (err.message.includes("400")) {
+            toast.warn("올바르지 않은 값이 있습니다.");
           } else {
             toast.error("서버 오류입니다");
           }

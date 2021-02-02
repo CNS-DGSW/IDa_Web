@@ -8,6 +8,7 @@ interface CustomInputProps {
   setValue?: React.Dispatch<React.SetStateAction<string>>;
   style?: React.CSSProperties;
   passwordInput?: React.RefObject<HTMLInputElement>;
+  maxLength?: number;
 }
 
 const CustomInput = ({
@@ -17,6 +18,7 @@ const CustomInput = ({
   setValue,
   style,
   passwordInput,
+  maxLength,
 }: CustomInputProps) => {
   return (
     <>
@@ -28,6 +30,7 @@ const CustomInput = ({
         placeholder={placeholder}
         onChange={(e) => setValue && setValue(e.target.value)}
         ref={passwordInput}
+        maxLength={maxLength}
       />
     </>
   );

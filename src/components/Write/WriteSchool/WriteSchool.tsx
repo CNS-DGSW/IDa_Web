@@ -5,6 +5,7 @@ import Grade from "util/enums/Grade";
 import Modal from "components/common/Modal";
 import City from "models/City";
 import SearchSchoolContainer from "containers/SearchSchool/SearchSchoolContainer";
+import NumericInput from "react-numeric-input";
 
 interface WriteSchoolProps {
   gradeType: Grade | null;
@@ -259,12 +260,14 @@ const WriteSchool = ({
           <div className="school">
             <div className="school-area">
               <label className="school-area-label">졸업년도</label>
-              <input
-                type="text"
+              <NumericInput
+                strict
+                max={new Date().getFullYear()}
+                style={false}
                 maxLength={4}
                 className="school-area-textInput"
                 value={graduatedDate}
-                onChange={(e) => setGraduatedDate(e.target.value)}
+                onChange={(e) => setGraduatedDate(e ? e.toString() : "")}
               />
             </div>
           </div>
@@ -274,15 +277,14 @@ const WriteSchool = ({
             <div className="school">
               <div className="school-area">
                 <label className="school-area-label">합격년도</label>
-                <input
-                  type="text"
+                <NumericInput
+                  strict
+                  max={new Date().getFullYear()}
+                  style={false}
                   maxLength={4}
                   className="school-area-textInput"
                   value={graduatedDate}
-                  onChange={(e) => {
-                    setGraduatedDate(e.target.value);
-                    setIsChanged(true);
-                  }}
+                  onChange={(e) => setGraduatedDate(e ? e.toString() : "")}
                 />
               </div>
             </div>

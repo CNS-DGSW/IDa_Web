@@ -68,6 +68,10 @@ const WriteContent = ({ title, children, onSave, isChanged }: WriteContentProps 
   }, [isChanged]);
 
   const changeSubmitCallback = useCallback(async () => {
+    if (isChanged) {
+      toast.warn("변경사항이 저장되지 않았습니다.");
+      return;
+    }
     Swal.fire({
       title: "제출하시겠습니까?",
       text: "제출 후 모든 수정은 불가능합니다.",
@@ -88,15 +92,17 @@ const WriteContent = ({ title, children, onSave, isChanged }: WriteContentProps 
               toast.warn("로그인이 필요합니다.");
             } else if (err.message.includes("406")) {
               toast.warn("원서를 모두 작성하지 않았습니다.");
-            } else if (err.message.includes("403")) {
+            } else if (err.message.includes("409")) {
               toast.warn("이미 제출하셨습니다.");
+            } else if (err.message.includes("403")) {
+              toast.warn("제출 기간이 아닙니다.");
             } else {
               toast.error("서버 오류입니다.");
             }
           });
       }
     });
-  }, []);
+  }, [isChanged]);
 
   return (
     <>
