@@ -68,6 +68,10 @@ const WriteContent = ({ title, children, onSave, isChanged }: WriteContentProps 
   }, [isChanged]);
 
   const changeSubmitCallback = useCallback(async () => {
+    if (isChanged) {
+      toast.warn("변경사항이 저장되지 않았습니다.");
+      return;
+    }
     Swal.fire({
       title: "제출하시겠습니까?",
       text: "제출 후 모든 수정은 불가능합니다.",
@@ -98,7 +102,7 @@ const WriteContent = ({ title, children, onSave, isChanged }: WriteContentProps 
           });
       }
     });
-  }, []);
+  }, [isChanged]);
 
   return (
     <>
