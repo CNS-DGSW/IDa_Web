@@ -4,6 +4,7 @@ import WriteAdditional from "components/Write/WriteAdditional";
 import useStore from "lib/hooks/useStore";
 import { useHistory, withRouter } from "react-router-dom";
 import { toast } from "react-toastify";
+import { handleLogin } from "lib/handleErrors";
 
 const WriteGradeAdditionalContainer = ({}) => {
   const { store } = useStore();
@@ -50,12 +51,7 @@ const WriteGradeAdditionalContainer = ({}) => {
         handlePrize(res.data.prize);
       })
       .catch((err: Error) => {
-        if (err.message.includes("401") || err.message.includes("410")) {
-          history.push("/login");
-          toast.warn("로그인이 필요합니다.");
-        } else {
-          toast.error("서버 오류입니다.");
-        }
+        handleLogin(err, history);
       });
   }, []);
 

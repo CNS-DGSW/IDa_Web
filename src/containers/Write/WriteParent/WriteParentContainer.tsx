@@ -5,8 +5,9 @@ import WriteParents from "../../../components/Write/WriteParents";
 import Relation from "util/enums/Relation";
 import { AddressData } from "react-daum-postcode";
 import { ParentInfoResponse } from "util/types/Response";
-import { useHistory } from "react-router-dom";
+import { useHistory, withRouter } from "react-router-dom";
 import { toast } from "react-toastify";
+import { handleLogin, handleWriteError } from "lib/handleErrors";
 
 const WriteParentContainer = ({}) => {
   const { store } = useStore();
@@ -52,16 +53,7 @@ const WriteParentContainer = ({}) => {
       postCode !== ""
     ) {
       await editParentInfo(address, parentName, parentRelation, parentTel, postCode).catch((err: Error) => {
-        if (err.message.includes("401") || err.message.includes("410")) {
-          history.push("/login");
-          toast.warn("로그인이 필요합니다.");
-        } else if (err.message.includes("400")) {
-          toast.warn("빈칸이 있습니다.");
-        } else if (err.message.includes("403")) {
-          toast.warn("이미 제출하셨습니다.");
-        } else {
-          toast.error("서버 오류입니다.");
-        }
+        handleWriteError(err, history);
         flag = false;
       });
       setIsChanged(false);
@@ -82,12 +74,7 @@ const WriteParentContainer = ({}) => {
         setPostCode(res.data.postCode || "");
       })
       .catch((err: Error) => {
-        if (err.message.includes("401") || err.message.includes("410")) {
-          history.push("/login");
-          toast.warn("로그인이 필요합니다.");
-        } else {
-          toast.error("서버 오류입니다.");
-        }
+        handleLogin(err, history);
       });
   }, []);
 
@@ -127,4 +114,4 @@ const WriteParentContainer = ({}) => {
   );
 };
 
-export default observer(WriteParentContainer);
+export default withRouter(observer(WriteParentContainer));

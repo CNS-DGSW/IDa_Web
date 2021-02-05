@@ -7,6 +7,7 @@ import ApplyDetail from "util/enums/ApplyDetail";
 import { findNameByValue } from "models/ApplyDetailModel";
 import { useHistory, withRouter } from "react-router-dom";
 import { toast } from "react-toastify";
+import { handleLogin, handleWriteError } from "lib/handleErrors";
 
 const WriteAdmissionContainer = ({}) => {
   const { store } = useStore();
@@ -28,14 +29,7 @@ const WriteAdmissionContainer = ({}) => {
         flag = false;
       }
       await editApplyType(applyType, applyDetailType, verteransCity, verteransNumber).catch((err: Error) => {
-        if (err.message.includes("401") || err.message.includes("410")) {
-          history.push("/login");
-          toast.warn("로그인이 필요합니다.");
-        } else if (err.message.includes("403")) {
-          toast.warn("이미 제출하셨습니다.");
-        } else {
-          toast.error("서버 오류입니다.");
-        }
+        handleWriteError(err, history);
         flag = false;
       });
       setIsChanged(false);
@@ -55,9 +49,7 @@ const WriteAdmissionContainer = ({}) => {
         setVerteransNumber(res.data.verteransNumber || "");
       })
       .catch((err: Error) => {
-        if (err.message.includes("401") || err.message.includes("410")) {
-          history.push("/login");
-        }
+        handleLogin(err, history);
       });
   }, []);
 

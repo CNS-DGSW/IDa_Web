@@ -3,8 +3,9 @@ import { observer } from "mobx-react";
 import WritePhoto from "../../../components/Write/WritePhoto";
 import useStore from "lib/hooks/useStore";
 import { ProfileInfoResponse } from "util/types/Response";
-import { useHistory } from "react-router-dom";
+import { useHistory, withRouter } from "react-router-dom";
 import { toast } from "react-toastify";
+import { handleLogin, handleWriteError } from "lib/handleErrors";
 
 const WritePhotoContainer = ({}) => {
   const { store } = useStore();
@@ -39,26 +40,12 @@ const WritePhotoContainer = ({}) => {
         await upload(image)
           .then(async (res) => {
             await editProfileImage(res.data.fileName).catch((err: Error) => {
-              if (err.message.includes("401") || err.message.includes("410")) {
-                history.push("/login");
-                toast.warn("로그인이 필요합니다.");
-              } else if (err.message.includes("403")) {
-                toast.warn("이미 제출하셨습니다.");
-              } else {
-                toast.error("서버 오류입니다.");
-              }
+              handleWriteError(err, history);
               flag = false;
             });
           })
           .catch((err: Error) => {
-            if (err.message.includes("401") || err.message.includes("410")) {
-              history.push("/login");
-              toast.warn("로그인이 필요합니다.");
-            } else if (err.message.includes("403")) {
-              toast.warn("이미 제출하셨습니다.");
-            } else {
-              toast.error("서버 오류입니다.");
-            }
+            handleWriteError(err, history);
             flag = false;
           });
       } else {
@@ -77,12 +64,7 @@ const WritePhotoContainer = ({}) => {
         setPreview(res.data.profileImage);
       })
       .catch((err: Error) => {
-        if (err.message.includes("401") || err.message.includes("410")) {
-          history.push("/login");
-          toast.warn("로그인이 필요합니다.");
-        } else {
-          toast.error("서버 오류입니다.");
-        }
+        handleLogin(err, history);
       });
   }, []);
 
@@ -91,15 +73,13 @@ const WritePhotoContainer = ({}) => {
   }, []);
 
   return (
-    <>
-      <WritePhoto
-        preview={preview}
-        onSave={onSave}
-        handleImageChange={handleImageChange}
-        isChanged={isChanged}
-      />
-    </>
+    <WritePhoto
+      preview={preview}
+      onSave={onSave}
+      handleImageChange={handleImageChange}
+      isChanged={isChanged}
+    />
   );
 };
 
-export default observer(WritePhotoContainer);
+export default withRouter(observer(WritePhotoContainer));
