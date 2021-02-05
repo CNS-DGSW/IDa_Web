@@ -16,15 +16,7 @@ interface HeaderProps {
   theme?: boolean;
 }
 
-const Header = ({
-  login,
-  profileBox,
-  tryProfileBox,
-  name,
-  email,
-  HandleLogout,
-  theme,
-}: HeaderProps) => {
+const Header = ({ login, profileBox, tryProfileBox, name, email, HandleLogout, theme }: HeaderProps) => {
   const history = useHistory();
 
   return (
@@ -33,9 +25,9 @@ const Header = ({
         <>
           <div className="header-container-link">
             {theme ? (
-              <Logo2 className="pointer" onClick={() => history.push("/")} />
+              <Logo2 className="pointer header-container-logo" onClick={() => history.push("/")} />
             ) : (
-              <Logo1 className="pointer" onClick={() => history.push("/")} />
+              <Logo1 className="pointer header-container-logo" onClick={() => history.push("/")} />
             )}
             <NavLink
               to="/"
@@ -76,10 +68,7 @@ const Header = ({
           </div>
           {login ? (
             <>
-              <Profile
-                className="header-container-profile pointer"
-                onClick={() => tryProfileBox()}
-              />
+              <Profile className="header-container-profile pointer" onClick={() => tryProfileBox()} />
               {profileBox ? (
                 <>
                   <ProfileModalBox

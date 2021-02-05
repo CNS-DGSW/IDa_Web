@@ -69,12 +69,13 @@
     height: auto;
     display: flex;
     flex-direction: column;
+    padding: 0 1rem;
     &-area {
       margin: 4rem 0;
       display: flex;
       @media screen and (max-width: 767px) {
+        margin: 1rem 0;
         flex-direction: column;
-        margin: 0 1rem;
       }
       p {
         @media screen and (max-width: 767px) {
