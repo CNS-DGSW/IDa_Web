@@ -5,6 +5,7 @@ import ProfileModalBox from "components/Profile/ProfileModalBox";
 import { NavLink, useHistory } from "react-router-dom";
 import { ReactComponent as Logo1 } from "assets/images/logo-1.svg";
 import { ReactComponent as Logo2 } from "assets/images/logo-2.svg";
+import { HiOutlineMenuAlt3 } from "react-icons/hi";
 
 interface HeaderProps {
   login: boolean;
@@ -19,8 +20,75 @@ interface HeaderProps {
 const Header = ({ login, profileBox, tryProfileBox, name, email, HandleLogout, theme }: HeaderProps) => {
   const history = useHistory();
 
+  const menuToggle = () => {
+    const header = document.getElementById("header");
+
+    if (header) {
+      header.classList.toggle("header-mobile");
+    }
+  };
+
+  const closeMenu = () => {
+    const header = document.getElementById("header");
+
+    if (header) {
+      if (header.classList.contains("header-mobile")) {
+        menuToggle();
+      }
+    }
+  };
+
   return (
     <header className={theme ? "header header-theme" : "header"} id="header">
+      <div className="header-close" onClick={closeMenu} />
+      <div className="header-menu">
+        <div className="header-menu-content">
+          <NavLink
+            to="/"
+            exact
+            className="header-menu-content-item"
+            activeClassName="header-menu-content-item-active"
+          >
+            <span>홈</span>
+          </NavLink>
+          <NavLink
+            to="/write"
+            className="header-menu-content-item"
+            activeClassName="header-menu-content-item-active"
+          >
+            <span>원서접수</span>
+          </NavLink>
+          <NavLink
+            to="/notice"
+            className="header-menu-content-item"
+            activeClassName="header-menu-content-item-active"
+          >
+            <span>공지사항</span>
+          </NavLink>
+          <NavLink
+            to="/qna"
+            className="header-menu-content-item"
+            activeClassName="header-menu-content-item-active"
+          >
+            <span>Q&A</span>
+          </NavLink>
+          <NavLink
+            to="/faq"
+            className="header-menu-content-item"
+            activeClassName="header-menu-content-item-active"
+          >
+            <span>FAQ</span>
+          </NavLink>
+          {!login && (
+            <>
+              <button onClick={() => history.push("/login")}>로그인</button>
+              <button onClick={() => history.push("/register")} style={{ marginLeft: "1rem" }}>
+                회원가입
+              </button>
+            </>
+          )}
+        </div>
+      </div>
       <div className="header-container">
         <>
           <div className="header-container-link">
@@ -66,36 +134,39 @@ const Header = ({ login, profileBox, tryProfileBox, name, email, HandleLogout, t
               <span>FAQ</span>
             </NavLink>
           </div>
-          {login ? (
-            <>
-              <Profile className="header-container-profile pointer" onClick={() => tryProfileBox()} />
-              {profileBox ? (
-                <>
-                  <ProfileModalBox
-                    handleOnClick={() => tryProfileBox()}
-                    name={name}
-                    email={email}
-                    HandleLogout={HandleLogout}
-                  />
-                </>
-              ) : (
-                <></>
-              )}
-            </>
-          ) : (
-            <div className="header-container-button">
-              <button className="headerButton" onClick={() => history.push("/login")}>
-                로그인
-              </button>
-              <button
-                className="headerButton"
-                onClick={() => history.push("/register")}
-                style={{ marginLeft: "1rem" }}
-              >
-                회원가입
-              </button>
-            </div>
-          )}
+          <div className="header-container-button">
+            {login ? (
+              <>
+                <Profile className="header-container-profile pointer" onClick={() => tryProfileBox()} />
+                {profileBox ? (
+                  <>
+                    <ProfileModalBox
+                      handleOnClick={() => tryProfileBox()}
+                      name={name}
+                      email={email}
+                      HandleLogout={HandleLogout}
+                    />
+                  </>
+                ) : (
+                  <></>
+                )}
+              </>
+            ) : (
+              <>
+                <button className="headerButton" onClick={() => history.push("/login")}>
+                  로그인
+                </button>
+                <button
+                  className="headerButton"
+                  onClick={() => history.push("/register")}
+                  style={{ marginLeft: "1rem" }}
+                >
+                  회원가입
+                </button>
+              </>
+            )}
+            <HiOutlineMenuAlt3 className="header-toggle" onClick={menuToggle} />
+          </div>
         </>
       </div>
     </header>
