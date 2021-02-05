@@ -9,18 +9,8 @@ import { toast } from "react-toastify";
 const WriteContainer = ({}) => {
   const { store } = useStore();
   const { page, pageHandle } = store.WriteStore;
-  const { login } = store.AuthStore;
-
-  const history = useHistory();
 
   useBeforeunload((event) => event.preventDefault());
-
-  useEffect(() => {
-    if (!localStorage.getItem("accessToken")) {
-      history.push("/login");
-      toast.warn("로그인이 필요합니다.");
-    }
-  }, [login]);
 
   useEffect(() => {
     return () => pageHandle(0);
