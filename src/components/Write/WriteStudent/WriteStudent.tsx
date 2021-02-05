@@ -101,7 +101,7 @@ const WriteStudent = ({
               <label className="student-select-box-label">휴대폰</label>
               <div className="student-select-box-area">
                 <input
-                  maxLength={20}
+                  maxLength={13}
                   type="text"
                   className="student-select-box-area-textInput"
                   value={studentTel}

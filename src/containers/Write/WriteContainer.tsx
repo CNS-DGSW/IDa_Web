@@ -3,8 +3,7 @@ import { observer } from "mobx-react";
 import { useBeforeunload } from "react-beforeunload";
 import Write from "components/Write/Write";
 import useStore from "lib/hooks/useStore";
-import { useHistory, withRouter } from "react-router-dom";
-import { toast } from "react-toastify";
+import { withRouter } from "react-router-dom";
 
 const WriteContainer = ({}) => {
   const { store } = useStore();

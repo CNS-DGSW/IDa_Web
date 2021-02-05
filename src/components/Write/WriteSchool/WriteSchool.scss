@@ -5,11 +5,20 @@
   background-color: #f6f6fc;
   margin-bottom: 2rem;
   color: $ft-darkgray;
+  @media screen and (max-width: 767px) {
+    padding: 1rem;
+  }
+  @media screen and (max-width: 500px) {
+    padding: 0.8rem 1rem;
+  }
 
   &-area {
     display: flex;
     flex-direction: column;
     font-size: 1.2rem;
+    @media screen and (max-width: 767px) {
+      font-size: 1rem;
+    }
 
     &-label {
       width: 100%;
@@ -23,6 +32,13 @@
       border: none;
       border: 1px solid $bd-gray-700;
       border-radius: 2px;
+      @media screen and (max-width: 767px) {
+        font-size: 0.8rem;
+        height: 2rem;
+      }
+      @media screen and (max-width: 500px) {
+        padding-left: 0.5rem;
+      }
       &:focus {
         border: 1px solid $bd-blue;
         outline: none;
@@ -32,6 +48,9 @@
       display: flex;
       justify-content: space-between;
       font-size: 1.2rem;
+      @media screen and (max-width: 767px) {
+        font-size: 1rem;
+      }
 
       &-box {
         display: flex;
@@ -46,6 +65,16 @@
         border-radius: 2px;
         background-color: $bg-white;
         cursor: pointer;
+        @media screen and (max-width: 767px) {
+          font-size: 0.8rem;
+          height: 2rem;
+          padding: 0 0.5rem;
+          width: 10rem;
+        }
+        @media screen and (max-width: 500px) {
+          font-size: 0.67rem;
+          width: 7rem;
+        }
 
         &-selectinput {
           width: 1.2rem;
@@ -55,6 +84,14 @@
           border: 1px solid $bd-gray-700;
           border-radius: 2px;
           cursor: pointer;
+          @media screen and (max-width: 767px) {
+            width: 0.8rem;
+            height: 0.8rem;
+          }
+          @media screen and (max-width: 500px) {
+            width: 0.67rem;
+            height: 0.67rem;
+          }
           &:focus {
             border: 1px solid $bd-blue;
             outline: none;
@@ -69,11 +106,20 @@
     justify-content: space-between;
     margin-bottom: 1rem;
     font-size: 1.2rem;
+    @media screen and (max-width: 767px) {
+      font-size: 1rem;
+    }
+    @media screen and (max-width: 500px) {
+      flex-direction: column;
+    }
 
     &-box {
       display: flex;
       width: 48%;
       flex-direction: column;
+      @media screen and (max-width: 500px) {
+        width: 100%;
+      }
       label {
         width: 100%;
         margin-bottom: 0.6rem;
@@ -91,6 +137,13 @@
           border: none;
           border: 1px solid $bd-gray-700;
           border-radius: 2px;
+          @media screen and (max-width: 767px) {
+            font-size: 0.8rem;
+            height: 2rem;
+          }
+          @media screen and (max-width: 500px) {
+            padding-left: 0.5rem;
+          }
           &:focus {
             border: 1px solid $bd-blue;
             outline: none;
@@ -107,6 +160,9 @@
           justify-content: center;
           align-items: center;
           font-size: 0.8rem;
+          @media screen and (max-width: 767px) {
+            height: 2rem;
+          }
         }
       }
 
@@ -117,6 +173,14 @@
         border: none;
         border: 1px solid $bd-gray-700;
         border-radius: 2px;
+        @media screen and (max-width: 767px) {
+          font-size: 0.8rem;
+          height: 2rem;
+        }
+        @media screen and (max-width: 500px) {
+          padding-left: 0.5rem;
+        }
+
         &:focus {
           border: 1px solid $bd-blue;
           outline: none;
@@ -130,6 +194,7 @@
         &-column {
           display: flex;
           flex-direction: column;
+          width: 100%;
 
           label {
             margin-bottom: 0.6rem;
@@ -137,12 +202,18 @@
         }
 
         &-selectinput {
-          width: 9.6rem;
+          width: 98%;
           height: 2.6rem;
           padding-left: 1rem;
           border: none;
           border: 1px solid $bd-gray-700;
           border-radius: 2px;
+          @media screen and (max-width: 960px) {
+            width: 98%;
+          }
+          @media screen and (max-width: 767px) {
+            height: 2rem;
+          }
           &:focus {
             border: 1px solid $bd-blue;
             outline: none;
@@ -156,6 +227,13 @@
           border: none;
           border: 1px solid $bd-gray-700;
           border-radius: 2px;
+          @media screen and (max-width: 767px) {
+            font-size: 0.8rem;
+            height: 2rem;
+          }
+          @media screen and (max-width: 500px) {
+            padding-left: 0.5rem;
+          }
           &:focus {
             border: 1px solid $bd-blue;
             outline: none;

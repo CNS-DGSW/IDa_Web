@@ -39,13 +39,13 @@ const Write = ({ page }: WriteProps) => {
       <div className="write">
         <div className="write-box">
           <Steps current={page}>
-            <Steps.Step title="1단계" />
-            <Steps.Step title="2단계" />
-            <Steps.Step title="3단계" />
-            <Steps.Step title="4단계" />
-            <Steps.Step title="5단계" />
-            <Steps.Step title="6단계" />
-            <Steps.Step title="7단계" />
+            <Steps.Step />
+            <Steps.Step />
+            <Steps.Step />
+            <Steps.Step />
+            <Steps.Step />
+            <Steps.Step />
+            <Steps.Step />
           </Steps>
           {nowPage}
         </div>

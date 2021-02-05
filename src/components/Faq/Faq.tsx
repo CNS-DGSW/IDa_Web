@@ -33,8 +33,7 @@ const Faq = ({
     <>
       <Board
         title="FAQ"
-        content="찾고 계시는 질문 혹은 답변이 없나요?"
-        subContent="Q&A에서 질문을 해주세요!"
+        content="찾고 싶은 답을 못 찾으셨다면 직접 질문해보세요!"
         posts={posts}
         setSelectedIdx={setSelectedIdx}
         search={search}
