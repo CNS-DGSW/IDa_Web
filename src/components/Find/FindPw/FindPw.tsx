@@ -55,22 +55,17 @@ const FindPw = ({
                   onClick={() => {
                     handlePwCode();
                   }}
-                >코드</Button>
+                >
+                  코드
+                </Button>
               </div>
-              <CustomInput
-                placeholder="이메일 인증 코드"
-                setValue={setCode}
-                value={code}
-              />
-              <CustomInput
-                placeholder="새로운 비밀번호"
-                setValue={setNewPw}
-                value={newPw}
-              />
+              <CustomInput placeholder="이메일 인증 코드" setValue={setCode} value={code} />
+              <CustomInput placeholder="새로운 비밀번호" setValue={setNewPw} value={newPw} type="password" />
               <CustomInput
                 placeholder="새로운 비밀번호 확인"
                 setValue={setCheckPw}
                 value={checkPw}
+                type="password"
               />
             </div>
           </>
