@@ -6,12 +6,13 @@
   color: white;
   transition: 0.3s;
   border-radius: 3px;
+  padding: 0.5rem;
   max-width: 11.3rem;
   width: 11rem;
-  height: 2.5rem;
   cursor: pointer;
-  & span {
-    font-size: 1rem;
+  @media screen and (max-width: 500px) {
+    font-size: 0.8rem;
+    padding: 0.5rem 0.6rem;
   }
   &:hover {
     background: #465ae1;

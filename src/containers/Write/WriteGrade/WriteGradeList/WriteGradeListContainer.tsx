@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { useHistory, withRouter } from "react-router-dom";
 import Score from "util/enums/Score";
 import updateSemGrade from "lib/updateSemGrade";
+import { handleLogin } from "lib/handleErrors";
 
 const WriteGradeListContainer = ({}) => {
   const { store } = useStore();
@@ -33,12 +34,7 @@ const WriteGradeListContainer = ({}) => {
         }
       })
       .catch((err: Error) => {
-        if (err.message.includes("401") || err.message.includes("410")) {
-          history.push("/login");
-          toast.warn("로그인이 필요합니다.");
-        } else {
-          toast.error("서버 오류입니다.");
-        }
+        handleLogin(err, history);
       });
   }, [getGradeList, gradeType]);
 

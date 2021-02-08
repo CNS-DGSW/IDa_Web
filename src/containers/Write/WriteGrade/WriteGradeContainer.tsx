@@ -5,6 +5,7 @@ import useStore from "lib/hooks/useStore";
 import { toast } from "react-toastify";
 import { useHistory, withRouter } from "react-router-dom";
 import Grade from "util/enums/Grade";
+import { handleWriteError } from "lib/handleErrors";
 
 const WriteGradeContainer = ({}) => {
   const { store } = useStore();
@@ -34,14 +35,7 @@ const WriteGradeContainer = ({}) => {
           handleIsChanged(false);
         })
         .catch((err: Error) => {
-          if (err.message.includes("401") || err.message.includes("410")) {
-            history.push("/login");
-            toast.warn("로그인이 필요합니다.");
-          } else if (err.message.includes("403")) {
-            toast.warn("이미 제출하셨습니다.");
-          } else {
-            toast.error("서버 오류입니다.");
-          }
+          handleWriteError(err, history);
           flag = false;
         });
     } else {
@@ -50,14 +44,7 @@ const WriteGradeContainer = ({}) => {
           handleIsChanged(false);
         })
         .catch((err: Error) => {
-          if (err.message.includes("401") || err.message.includes("410")) {
-            history.push("/login");
-            toast.warn("로그인이 필요합니다.");
-          } else if (err.message.includes("400")) {
-            toast.warn("0에서 100까지 숫자를 입력해주세요.");
-          } else {
-            toast.error("서버 오류입니다.");
-          }
+          handleWriteError(err, history);
           flag = false;
         });
     }

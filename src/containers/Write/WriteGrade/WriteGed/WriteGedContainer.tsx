@@ -4,6 +4,7 @@ import useStore from "lib/hooks/useStore";
 import { useHistory, withRouter } from "react-router-dom";
 import { toast } from "react-toastify";
 import WriteGed from "components/Write/WriteGed";
+import { handleLogin } from "lib/handleErrors";
 
 const WriteGedContainer = ({}) => {
   const { store } = useStore();
@@ -38,12 +39,7 @@ const WriteGedContainer = ({}) => {
         handleOtherScore(res.data.score.otherScore);
       })
       .catch((err: Error) => {
-        if (err.message.includes("401") || err.message.includes("410")) {
-          history.push("/login");
-          toast.warn("로그인이 필요합니다.");
-        } else {
-          toast.error("서버 오류입니다.");
-        }
+        handleLogin(err, history);
       });
   }, [getGed]);
 
