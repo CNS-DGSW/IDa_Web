@@ -32,11 +32,16 @@ const LoginContainer = () => {
       toast.warn("아이디 또는 비밀번호를 입력해 주세요");
     } else {
       await tryLogin(id, password)
-        .then((res: LoginResponse) => {
+        .then(async (res: LoginResponse) => {
           toast.success("로그인 되었습니다");
-          localStorage.setItem("accessToken", res.data.accessToken);
-          localStorage.setItem("expiresAt", moment().add(1, "hour").format("yyyy-MM-DD HH:mm:ss"));
-          setCookie("refreshToken", res.data.refreshToken, { path: "/" });
+          const saveTokens: Promise<void> = new Promise<void>((resolve, reject) => {
+            localStorage.setItem("accessToken", res.data.accessToken);
+            localStorage.setItem("expiresAt", moment().add(1, "hour").format("yyyy-MM-DD HH:mm:ss"));
+            setCookie("refreshToken", res.data.refreshToken, { path: "/" });
+            resolve();
+          });
+
+          await saveTokens;
           setLoginCheck();
           history.push("/");
         })
