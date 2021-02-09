@@ -9,6 +9,8 @@ interface CustomInputProps {
   style?: React.CSSProperties;
   passwordInput?: React.RefObject<HTMLInputElement>;
   maxLength?: number;
+  onClick?: any;
+  className?: string;
 }
 
 const CustomInput = ({
@@ -19,18 +21,21 @@ const CustomInput = ({
   style,
   passwordInput,
   maxLength,
+  onClick,
+  className,
 }: CustomInputProps) => {
   return (
     <>
       <input
         style={style}
         type={type}
-        className="CustomInput"
+        className={className ? `${className} CustomInput` : "CustomInput"}
         value={value}
         placeholder={placeholder}
         onChange={(e) => setValue && setValue(e.target.value)}
         ref={passwordInput}
         maxLength={maxLength}
+        onClick={onClick}
       />
     </>
   );

@@ -8,14 +8,21 @@
   align-items: center;
   flex-direction: column;
   color: $ft-blue;
+  @media screen and (max-width: 767px) {
+    padding: 1rem;
+  }
 
   &-preview {
-    width: 20rem;
-    height: 26rem;
+    width: 18rem;
+    height: 24rem;
     background-color: $bg-white;
     display: flex;
     justify-content: center;
     align-items: center;
+    @media screen and (max-width: 767px) {
+      width: 12rem;
+      height: 16rem;
+    }
   }
 
   input {
@@ -32,5 +39,8 @@
     align-items: center;
     border-radius: 2px;
     margin-top: 0.6rem;
+    @media screen and (max-width: 767px) {
+      font-size: 0.8rem;
+    }
   }
 }

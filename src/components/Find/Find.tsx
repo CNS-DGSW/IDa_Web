@@ -1,6 +1,8 @@
+import AuthContent from "components/common/AuthContent";
+import Button from "components/common/Button";
+import CustomInput from "components/common/CustomInput";
 import React from "react";
 import "./Find.scss";
-import FindPw from "./FindPw";
 
 interface FindProps {
   name: string;
@@ -32,27 +34,38 @@ const Find = ({
   emailLoading,
 }: FindProps) => {
   return (
-    <div className="Find">
-      <div className="Find-text">
-        <div className="Find-text-Welcome">Welcome</div>
-        <div className="Find-text-content">비밀번호를 잊으셨나요?</div>
+    <AuthContent
+      title={"Welcome"}
+      description={"비밀번호를 잊으셨나요?"}
+      contentTitle={"비밀번호 찾기"}
+      footers={
+        <>
+          {emailLoading ? (
+            <Button style={{ background: "#808de5" }}>기다려주세요</Button>
+          ) : (
+            <Button onClick={() => handleChangePw()}>변경</Button>
+          )}
+        </>
+      }
+    >
+      <div className="FindPw-form">
+        <div className="FindPw-form-email">
+          <CustomInput placeholder="이메일" setValue={setEmail} value={email} style={{ width: "78%" }} />
+          <CustomInput
+            type="button"
+            value="인증"
+            className="FindPw-form-email-btn"
+            style={{ width: "21%" }}
+            onClick={() => {
+              handlePwCode();
+            }}
+          />
+        </div>
+        <CustomInput placeholder="이메일 인증 코드" setValue={setCode} value={code} />
+        <CustomInput placeholder="새로운 비밀번호" setValue={setNewPw} value={newPw} />
+        <CustomInput placeholder="새로운 비밀번호 확인" setValue={setCheckPw} value={checkPw} />
       </div>
-      <div className="Find-box">
-        <FindPw
-          email={email}
-          setEmail={setEmail}
-          newPw={newPw}
-          setNewPw={setNewPw}
-          checkPw={checkPw}
-          setCheckPw={setCheckPw}
-          handlePwCode={handlePwCode}
-          handleChangePw={handleChangePw}
-          code={code}
-          setCode={setCode}
-          emailLoading={emailLoading}
-        />
-      </div>
-    </div>
+    </AuthContent>
   );
 };
 

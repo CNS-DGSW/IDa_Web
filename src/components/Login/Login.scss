@@ -1,47 +1,5 @@
-/* your css code */
 .Login {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex-direction: column;
-  height: 100vh;
-  &-img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-repeat: no-repeat;
-    background-image: url("../../assets/images/Login.png");
-    background-size: cover;
-    z-index: -1000;
-    width: 100%;
-    height: 40%;
-  }
-  &-text {
-    margin-top: 3rem;
-    color: white;
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    align-items: center;
-    &-Welcome {
-      font-size: 2.5rem;
-    }
-    &-content {
-      font-size: 1.3rem;
-    }
-  }
   &-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    width: 95%;
-    max-width: 37rem;
-    height: 40rem;
-    background: white;
-    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.16);
     &-text {
       font-size: 1.9rem;
       font-weight: 700;
@@ -54,6 +12,22 @@
       position: relative;
       width: 90%;
       max-width: 24rem;
+      @media screen and (max-width: 500px) {
+        width: 100%;
+      }
+      .CheckBox {
+        margin-top: 1rem;
+      }
+      #save_id {
+        font-size: 0.8rem;
+        & ~ label {
+          width: 0.8rem;
+          height: 0.8rem;
+        }
+        & ~ span {
+          font-size: 0.8rem;
+        }
+      }
     }
     &-button {
       display: flex;

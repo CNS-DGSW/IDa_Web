@@ -8,15 +8,10 @@ interface ButtonProps {
   onClick?: ((event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void) | undefined;
 }
 
-const Button = ({ children, style , className, onClick }: ButtonProps) => {
+const Button = ({ children, style, className, onClick }: ButtonProps) => {
   return (
-    <div
-      className={className}
-      style={style}
-      onClick={(e) => onClick && onClick(e)}
-      id="Button"
-    >
-      <span id="Button-content">{children}</span>
+    <div className={className} style={style} onClick={(e) => onClick && onClick(e)} id="Button">
+      {children}
     </div>
   );
 };

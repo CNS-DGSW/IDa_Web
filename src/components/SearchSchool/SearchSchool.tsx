@@ -45,7 +45,11 @@ const SearchSchool = ({
         <div className="search-list">
           {search ? (
             isLoading ? (
-              <div className="search-list-load">검색중입니다</div>
+              <div className="search-list-load">
+                검색중입니다
+                <br />
+                다소 오래 걸릴 수 있습니다.
+              </div>
             ) : (
               schools.map((res) => {
                 return (

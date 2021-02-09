@@ -2,9 +2,10 @@ import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
 import WriteIntroduction from "../../../components/Write/WriteIntroduction";
-import { useHistory } from "react-router-dom";
+import { useHistory, withRouter } from "react-router-dom";
 import { SelfIntroductionResponse, StudyPlanResponse } from "util/types/Response";
 import { toast } from "react-toastify";
+import { handleLogin, handleWriteError } from "lib/handleErrors";
 
 const WriteIntroductionContainer = ({}) => {
   const { store } = useStore();
@@ -26,14 +27,7 @@ const WriteIntroductionContainer = ({}) => {
           flag = true;
         })
         .catch((err: Error) => {
-          if (err.message.includes("401") || err.message.includes("410")) {
-            history.push("/login");
-            toast.warn("로그인이 필요합니다.");
-          } else if (err.message.includes("403")) {
-            toast.warn("이미 제출하셨습니다.");
-          } else {
-            toast.error("서버 오류입니다.");
-          }
+          handleWriteError(err, history);
           flag = false;
         });
       setIsChanged(false);
@@ -50,12 +44,7 @@ const WriteIntroductionContainer = ({}) => {
         setSelfIntroduce(res.data.selfIntroduction || "");
       })
       .catch((err: Error) => {
-        if (err.message.includes("401") || err.message.includes("410")) {
-          history.push("/login");
-          toast.warn("로그인이 필요합니다.");
-        } else {
-          toast.error("서버 오류입니다.");
-        }
+        handleLogin(err, history);
       });
   }, []);
 
@@ -65,12 +54,7 @@ const WriteIntroductionContainer = ({}) => {
         setStudyPlan(res.data.studyPlan || "");
       })
       .catch((err: Error) => {
-        if (err.message.includes("401") || err.message.includes("410")) {
-          history.push("/login");
-          toast.warn("로그인이 필요합니다.");
-        } else {
-          toast.error("서버 오류입니다.");
-        }
+        handleLogin(err, history);
       });
   }, []);
 
@@ -94,4 +78,4 @@ const WriteIntroductionContainer = ({}) => {
   );
 };
 
-export default observer(WriteIntroductionContainer);
+export default withRouter(observer(WriteIntroductionContainer));

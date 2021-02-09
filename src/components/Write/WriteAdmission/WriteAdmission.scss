@@ -5,6 +5,12 @@
   background-color: #f6f6fc;
   margin-bottom: 2rem;
   color: $ft-darkgray;
+  @media screen and (max-width: 767px) {
+    padding: 1rem;
+  }
+  @media screen and (max-width: 500px) {
+    padding: 0.8rem 1rem;
+  }
 
   &-verterans {
     width: 100%;
@@ -13,12 +19,19 @@
     justify-content: space-between;
 
     &-textInput {
-      width: 20rem;
+      width: 48%;
       height: 2.6rem;
       padding-left: 1rem;
       border: none;
       border: 1px solid $bd-gray-700;
       border-radius: 2px;
+      @media screen and (max-width: 767px) {
+        font-size: 0.8rem;
+        height: 2rem;
+      }
+      @media screen and (max-width: 500px) {
+        padding-left: 0.5rem;
+      }
       &:focus {
         border: 1px solid $bd-blue;
         outline: none;
@@ -30,6 +43,9 @@
     display: flex;
     flex-direction: column;
     font-size: 1.2rem;
+    @media screen and (max-width: 767px) {
+      font-size: 1rem;
+    }
 
     select {
       width: 100%;
@@ -40,6 +56,13 @@
       color: $ft-darkgray;
       font-size: 0.9rem;
       outline: none;
+      @media screen and (max-width: 767px) {
+        font-size: 0.8rem;
+        height: 2rem;
+      }
+      @media screen and (max-width: 500px) {
+        padding-left: 0.5rem;
+      }
       &:focus {
         border: 1px solid $bd-blue;
         outline: none;
@@ -67,12 +90,15 @@
       display: flex;
       justify-content: space-between;
       font-size: 1.2rem;
+      @media screen and (max-width: 767px) {
+        font-size: 1rem;
+      }
 
       &-box {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        width: 13rem;
+        width: 30%;
         height: 2.6rem;
         font-size: 1rem;
         font-weight: 300;
@@ -81,6 +107,14 @@
         border-radius: 2px;
         background-color: $bg-white;
         cursor: pointer;
+        @media screen and (max-width: 767px) {
+          font-size: 0.8rem;
+          height: 2rem;
+          padding: 0 0.5rem;
+        }
+        @media screen and (max-width: 500px) {
+          font-size: 0.67rem;
+        }
 
         &-selectinput {
           width: 1.2rem;
@@ -90,6 +124,14 @@
           border: 1px solid $bd-gray-700;
           border-radius: 2px;
           cursor: pointer;
+          @media screen and (max-width: 767px) {
+            width: 0.8rem;
+            height: 0.8rem;
+          }
+          @media screen and (max-width: 500px) {
+            width: 0.67rem;
+            height: 0.67rem;
+          }
           &:focus {
             border: 1px solid $bd-blue;
             outline: none;
@@ -101,7 +143,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        width: 9.6rem;
+        width: 23%;
         height: 2.6rem;
         font-size: 0.9rem;
         font-weight: 300;
@@ -110,6 +152,14 @@
         border-radius: 2px;
         background-color: $bg-white;
         cursor: pointer;
+        @media screen and (max-width: 767px) {
+          font-size: 0.7rem;
+          height: 2rem;
+          padding: 0 0.5rem;
+        }
+        @media screen and (max-width: 500px) {
+          font-size: 0.6rem;
+        }
 
         &-selectinput {
           width: 1rem;
@@ -119,6 +169,14 @@
           border: 1px solid $bd-gray-700;
           border-radius: 2px;
           cursor: pointer;
+          @media screen and (max-width: 767px) {
+            width: 0.8rem;
+            height: 0.8rem;
+          }
+          @media screen and (max-width: 500px) {
+            width: 0.67rem;
+            height: 0.67rem;
+          }
           &:focus {
             border: 1px solid $bd-blue;
             outline: none;
@@ -134,6 +192,12 @@
       background-color: $bg-white;
       padding: 1rem;
       font-size: 1rem;
+      @media screen and (max-width: 767px) {
+        font-size: 0.9rem;
+      }
+      @media screen and (max-width: 500px) {
+        font-size: 0.8rem;
+      }
     }
   }
 
@@ -148,6 +212,14 @@
       color: $ft-darkgray;
       font-size: 0.9rem;
       outline: none;
+      @media screen and (max-width: 767px) {
+        font-size: 0.8rem;
+        height: 2rem;
+      }
+      @media screen and (max-width: 500px) {
+        padding-left: 0.5rem;
+        font-size: 0.68rem;
+      }
       &:focus {
         border: 1px solid $bd-blue;
         outline: none;

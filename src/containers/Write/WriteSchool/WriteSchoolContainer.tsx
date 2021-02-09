@@ -3,9 +3,10 @@ import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
 import WriteSchool from "../../../components/Write/WriteSchool";
 import { SchoolInfoResponse } from "util/types/Response";
-import { useHistory } from "react-router-dom";
+import { useHistory, withRouter } from "react-router-dom";
 import { toast } from "react-toastify";
 import Grade from "util/enums/Grade";
+import { handleLogin, handleWriteError } from "lib/handleErrors";
 
 const WriteSchoolContainer = ({}) => {
   const { store } = useStore();
@@ -51,17 +52,14 @@ const WriteSchoolContainer = ({}) => {
         schoolTel,
         teacherName,
         teacherTel
-      ).catch((err: Error) => {
-        if (err.message.includes("401") || err.message.includes("410")) {
-          history.push("/login");
-          toast.warn("로그인이 필요합니다.");
-        } else if (err.message.includes("403")) {
-          toast.warn("이미 제출하셨습니다.");
-        } else {
-          toast.error("서버 오류입니다.");
-        }
-        flag = false;
-      });
+      )
+        .then(() => {
+          handleGrade(gradeType);
+        })
+        .catch((err: Error) => {
+          handleWriteError(err, history);
+          flag = false;
+        });
       setIsChanged(false);
     } else {
       toast.warn("빈칸을 채워주세요.");
@@ -94,12 +92,7 @@ const WriteSchoolContainer = ({}) => {
         setTeacherTel(res.data.teacherTel || "");
       })
       .catch((err: Error) => {
-        if (err.message.includes("401") || err.message.includes("410")) {
-          history.push("/login");
-          toast.warn("로그인이 필요합니다.");
-        } else {
-          toast.error("서버 오류입니다.");
-        }
+        handleLogin(err, history);
       });
   }, []);
 
@@ -160,4 +153,4 @@ const WriteSchoolContainer = ({}) => {
   );
 };
 
-export default observer(WriteSchoolContainer);
+export default withRouter(observer(WriteSchoolContainer));
