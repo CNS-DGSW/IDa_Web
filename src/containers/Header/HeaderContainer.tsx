@@ -4,6 +4,7 @@ import Header from "components/common/Header";
 import useStore from "lib/hooks/useStore";
 import { RouteComponentProps, useHistory, withRouter } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import { toast } from "react-toastify";
 
 interface HeaderContainerProps {
   theme?: boolean;
