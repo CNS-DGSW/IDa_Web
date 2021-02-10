@@ -2,9 +2,12 @@ import Button from "components/common/Button";
 import React from "react";
 import "./ResultCheck.scss";
 
-interface ResultCheckProps {}
+interface ResultCheckProps {
+  submit: boolean | undefined;
+  print: boolean | undefined;
+}
 
-const ResultCheck = ({}: ResultCheckProps) => {
+const ResultCheck = ({ submit, print }: ResultCheckProps) => {
   return (
     <>
       <div className="ResultCheck">
@@ -14,13 +17,17 @@ const ResultCheck = ({}: ResultCheckProps) => {
             <div className="ResultCheck-status-web-span check-span">
               <span>인터넷 원서 접수</span>
             </div>
-            <div className="ResultCheck-status-web-result check-result">완료</div>
+            <div className="ResultCheck-status-web-result check-result">
+              {submit ? <>완료</> : <>미완료</>}
+            </div>
           </div>
           <div className="ResultCheck-status-post check">
             <div className="ResultCheck-status-post-span check-span">
               <span>우편 원서 접수</span>
             </div>
-            <div className="ResultCheck-status-post-result check-result">미완료</div>
+            <div className="ResultCheck-status-post-result check-result">
+              {print ? <>완료</> : <>미완료</>}
+            </div>
           </div>
         </div>
         <div className="ResultCheck-result">

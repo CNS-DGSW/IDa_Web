@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useCallback, useRef } from "react";
-import { inject, observer } from "mobx-react";
+import React, { useEffect, useState, useCallback } from "react";
+import { observer } from "mobx-react";
 import Login from "components/Login";
 import { LoginResponse } from "../../util/types/Response";
 import useStore from "lib/hooks/useStore";
@@ -7,6 +7,7 @@ import { useHistory, withRouter } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { toast } from "react-toastify";
 import moment from "moment";
+import asyncLocalStorage from "lib/asyncStorage";
 
 const LoginContainer = () => {
   const passwordInput = React.useRef<HTMLInputElement>(null);
@@ -34,14 +35,9 @@ const LoginContainer = () => {
       await tryLogin(id, password)
         .then(async (res: LoginResponse) => {
           toast.success("로그인 되었습니다");
-          const saveTokens: Promise<void> = new Promise<void>((resolve, reject) => {
-            localStorage.setItem("accessToken", res.data.accessToken);
-            localStorage.setItem("expiresAt", moment().add(1, "hour").format("yyyy-MM-DD HH:mm:ss"));
-            setCookie("refreshToken", res.data.refreshToken, { path: "/" });
-            resolve();
-          });
-
-          await saveTokens;
+          asyncLocalStorage.setItem("accessToken", res.data.accessToken);
+          asyncLocalStorage.setItem("expiresAt", moment().add(1, "hour").format("yyyy-MM-DD HH:mm:ss"));
+          setCookie("refreshToken", res.data.refreshToken, { path: "/" });
           setLoginCheck();
           history.push("/");
         })
@@ -118,4 +114,4 @@ const LoginContainer = () => {
   );
 };
 
-export default withRouter(inject("store")(observer(LoginContainer)));
+export default withRouter(observer(LoginContainer));
