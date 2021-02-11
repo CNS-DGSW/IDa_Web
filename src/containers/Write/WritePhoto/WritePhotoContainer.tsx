@@ -72,6 +72,13 @@ const WritePhotoContainer = ({}) => {
     getProfileImageCallback();
   }, []);
 
+  useEffect(() => {
+    return () => {
+      setPreview(null);
+      setImage(null);
+    };
+  }, []);
+
   return (
     <WritePhoto
       preview={preview}

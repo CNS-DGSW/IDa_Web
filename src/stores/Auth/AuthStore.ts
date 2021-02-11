@@ -31,6 +31,10 @@ class AuthStore {
     this.profileBox = false;
   };
 
+  changeLogin = (login: boolean) => {
+    this.login = login;
+  };
+
   @action
   tryLogin = async (email: string, password: string): Promise<LoginResponse> => {
     try {
@@ -51,12 +55,7 @@ class AuthStore {
   };
 
   @action
-  tryRegister = async (
-    name: string,
-    email: string,
-    password: string,
-    birth: string
-  ): Promise<Response> => {
+  tryRegister = async (name: string, email: string, password: string, birth: string): Promise<Response> => {
     try {
       const response = await AuthApi.Register(name, email, sha256(password), birth);
 
@@ -101,6 +100,7 @@ class AuthStore {
         resolve(response);
       });
     } catch (error) {
+      this.login = false;
       return new Promise((resolve, reject: (error: Error) => void) => {
         reject(error);
       });

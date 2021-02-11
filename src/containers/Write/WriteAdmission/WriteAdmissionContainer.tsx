@@ -56,6 +56,16 @@ const WriteAdmissionContainer = ({}) => {
     getApplyTypeCallback();
   }, [getApplyTypeCallback]);
 
+  useEffect(() => {
+    return () => {
+      setApplyType(null);
+      setApplyDetailType(null);
+      setSpecial("");
+      setVerteransCity("");
+      setVerteransNumber("");
+    };
+  }, []);
+
   return (
     <>
       <WriteAdmission

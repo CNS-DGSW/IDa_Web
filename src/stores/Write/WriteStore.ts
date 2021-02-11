@@ -29,6 +29,7 @@ import ScoreGrade from "util/types/ScoreGrade";
 
 @autobind
 class WriteStore {
+  @observable userIdx: number | null = null;
   @observable page: number = 0;
   @observable gradeType: Grade | null = null;
 
@@ -75,6 +76,11 @@ class WriteStore {
   @observable volunteer1: number = 0;
   @observable volunteer2: number = 0;
   @observable volunteer3: number = 0;
+
+  @action
+  handleUserIdx = (userIdx: number | null) => {
+    this.userIdx = userIdx;
+  };
 
   @action
   handleEnglishScore = (englishScore: number) => {
@@ -244,7 +250,7 @@ class WriteStore {
   @action
   getGed = async (): Promise<GedResponse> => {
     try {
-      const response: GedResponse = await UserApi.GetGed();
+      const response: GedResponse = await UserApi.GetGed(this.userIdx);
 
       return new Promise((resolve: (response: GedResponse) => void, reject) => {
         resolve(response);
@@ -265,7 +271,8 @@ class WriteStore {
         this.mathScore,
         this.otherScore,
         this.scienceScore,
-        this.socialScore
+        this.socialScore,
+        this.userIdx
       );
 
       return new Promise((resolve: (response: Response) => void, reject) => {
@@ -279,9 +286,9 @@ class WriteStore {
   };
 
   @action
-  getStudentInfo = async (): Promise<UserInfoResponse> => {
+  getStudentInfo = async (userIdx?: number | null): Promise<UserInfoResponse> => {
     try {
-      const response: UserInfoResponse = await AuthApi.GetInfo();
+      const response: UserInfoResponse = await AuthApi.GetInfo(userIdx);
 
       return new Promise((resolve: (response: UserInfoResponse) => void, reject) => {
         resolve(response);
@@ -296,7 +303,7 @@ class WriteStore {
   @action
   editStudentInfo = async (name: string, birth: string, sex: Sex, studentTel: string): Promise<Response> => {
     try {
-      const response: Response = await UserApi.EditUserInfo(name, birth, sex, studentTel);
+      const response: Response = await UserApi.EditUserInfo(name, birth, sex, studentTel, this.userIdx);
 
       return new Promise((resolve: (response: Response) => void, reject) => {
         resolve(response);
@@ -311,7 +318,7 @@ class WriteStore {
   @action
   editProfileImage = async (ProfileImgage: string): Promise<Response> => {
     try {
-      const response: Response = await UserApi.EditProfileImage(ProfileImgage);
+      const response: Response = await UserApi.EditProfileImage(ProfileImgage, this.userIdx);
 
       return new Promise((resolve: (response: Response) => void, reject) => {
         resolve(response);
@@ -326,7 +333,7 @@ class WriteStore {
   @action
   getProfileImage = async (): Promise<ProfileInfoResponse> => {
     try {
-      const response: ProfileInfoResponse = await UserApi.GetProfileImage();
+      const response: ProfileInfoResponse = await UserApi.GetProfileImage(this.userIdx);
 
       return new Promise((resolve: (response: ProfileInfoResponse) => void, reject) => {
         resolve(response);
@@ -341,7 +348,7 @@ class WriteStore {
   @action
   getApplyType = async (): Promise<ApplyTypeResponse> => {
     try {
-      const response: ApplyTypeResponse = await UserApi.GetApplyType();
+      const response: ApplyTypeResponse = await UserApi.GetApplyType(this.userIdx);
 
       return new Promise((resolve: (response: ApplyTypeResponse) => void, reject) => {
         resolve(response);
@@ -356,7 +363,7 @@ class WriteStore {
   @action
   getParentInfo = async (): Promise<ParentInfoResponse> => {
     try {
-      const response: ParentInfoResponse = await UserApi.GetParentInfo();
+      const response: ParentInfoResponse = await UserApi.GetParentInfo(this.userIdx);
 
       return new Promise((resolve: (response: ParentInfoResponse) => void, reject) => {
         resolve(response);
@@ -380,7 +387,8 @@ class WriteStore {
         applyType,
         applyDetailType,
         verteransCity,
-        verteransNumber
+        verteransNumber,
+        this.userIdx
       );
 
       return new Promise((resolve: (response: Response) => void, reject) => {
@@ -407,7 +415,8 @@ class WriteStore {
         parentName,
         parentRelation,
         parentTel,
-        postcode
+        postcode,
+        this.userIdx
       );
 
       return new Promise((resolve: (response: Response) => void, reject) => {
@@ -423,7 +432,7 @@ class WriteStore {
   @action
   getSchoolInfo = async (): Promise<SchoolInfoResponse> => {
     try {
-      const response: SchoolInfoResponse = await UserApi.GetSchoolInfo();
+      const response: SchoolInfoResponse = await UserApi.GetSchoolInfo(this.userIdx);
 
       return new Promise((resolve: (response: SchoolInfoResponse) => void, reject) => {
         resolve(response);
@@ -457,7 +466,8 @@ class WriteStore {
         schoolName,
         schoolTel,
         teacherName,
-        teacherTel
+        teacherTel,
+        this.userIdx
       );
 
       return new Promise((resolve: (response: Response) => void, reject) => {
@@ -488,7 +498,7 @@ class WriteStore {
   @action
   editSelfIntroduce = async (selfIntroduction: string): Promise<Response> => {
     try {
-      const response: Response = await UserApi.EditSelfIntroduce(selfIntroduction);
+      const response: Response = await UserApi.EditSelfIntroduce(selfIntroduction, this.userIdx);
 
       return new Promise((resolve: (response: Response) => void, reject) => {
         resolve(response);
@@ -503,7 +513,7 @@ class WriteStore {
   @action
   getSelfIntroduce = async (): Promise<SelfIntroductionResponse> => {
     try {
-      const response: SelfIntroductionResponse = await UserApi.GetSelfIntroduce();
+      const response: SelfIntroductionResponse = await UserApi.GetSelfIntroduce(this.userIdx);
 
       return new Promise((resolve: (response: SelfIntroductionResponse) => void, reject) => {
         resolve(response);
@@ -518,7 +528,7 @@ class WriteStore {
   @action
   editStudyPlan = async (studyPlan: string): Promise<Response> => {
     try {
-      const response: Response = await UserApi.EditStudyPlan(studyPlan);
+      const response: Response = await UserApi.EditStudyPlan(studyPlan, this.userIdx);
 
       return new Promise((resolve: (response: Response) => void, reject) => {
         resolve(response);
@@ -533,7 +543,7 @@ class WriteStore {
   @action
   getStudyPlan = async (): Promise<StudyPlanResponse> => {
     try {
-      const response: StudyPlanResponse = await UserApi.GetStudyPlan();
+      const response: StudyPlanResponse = await UserApi.GetStudyPlan(this.userIdx);
 
       return new Promise((resolve: (response: StudyPlanResponse) => void, reject) => {
         resolve(response);
@@ -548,7 +558,7 @@ class WriteStore {
   @action
   editGrade = async (): Promise<Response> => {
     try {
-      const response: Response = await UserApi.EditGrade(this.freeSem, this.grades);
+      const response: Response = await UserApi.EditGrade(this.freeSem, this.grades, this.userIdx);
 
       return new Promise((resolve: (response: Response) => void, reject) => {
         resolve(response);
@@ -575,7 +585,8 @@ class WriteStore {
         this.earlyLeave3,
         this.absenceLecture1,
         this.absenceLecture2,
-        this.absenceLecture3
+        this.absenceLecture3,
+        this.userIdx
       );
 
       return new Promise((resolve: (response: Response) => void, reject) => {
@@ -598,7 +609,8 @@ class WriteStore {
         this.leadership22,
         this.leadership31,
         this.leadership32,
-        this.prize
+        this.prize,
+        this.userIdx
       );
 
       return new Promise((resolve: (response: Response) => void, reject) => {
@@ -617,7 +629,8 @@ class WriteStore {
       const response: Response = await UserApi.EditVolunteer(
         this.volunteer1,
         this.volunteer2,
-        this.volunteer3
+        this.volunteer3,
+        this.userIdx
       );
 
       console.log(this.volunteer1);
@@ -635,7 +648,7 @@ class WriteStore {
   @action
   getAttend = async (): Promise<AttendResponse> => {
     try {
-      const response: AttendResponse = await UserApi.GetAttend();
+      const response: AttendResponse = await UserApi.GetAttend(this.userIdx);
 
       return new Promise((resolve: (response: AttendResponse) => void, reject) => {
         resolve(response);
@@ -650,7 +663,7 @@ class WriteStore {
   @action
   getAdditional = async (): Promise<AdditionalResponse> => {
     try {
-      const response: AdditionalResponse = await UserApi.GetAdditional();
+      const response: AdditionalResponse = await UserApi.GetAdditional(this.userIdx);
 
       return new Promise((resolve: (response: AdditionalResponse) => void, reject) => {
         resolve(response);
@@ -665,7 +678,7 @@ class WriteStore {
   @action
   getVolunteer = async (): Promise<VolunteerResponse> => {
     try {
-      const response: VolunteerResponse = await UserApi.GetAttend();
+      const response: VolunteerResponse = await UserApi.GetAttend(this.userIdx);
 
       return new Promise((resolve: (response: VolunteerResponse) => void, reject) => {
         resolve(response);
@@ -695,7 +708,7 @@ class WriteStore {
   @action
   getGradeList = async (): Promise<GetGradeList> => {
     try {
-      const response: GetGradeList = await UserApi.GetGrade();
+      const response: GetGradeList = await UserApi.GetGrade(this.userIdx);
 
       return new Promise((resolve: (response: GetGradeList) => void, reject) => {
         resolve(response);

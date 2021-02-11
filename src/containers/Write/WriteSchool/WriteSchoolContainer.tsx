@@ -122,6 +122,20 @@ const WriteSchoolContainer = ({}) => {
     }
   }, [teacherTel]);
 
+  useEffect(() => {
+    return () => {
+      setCityLocation("");
+      setCityName("");
+      setGraduatedDate("");
+      setSchoolCode("");
+      setSchoolName("");
+      setSchoolTel("");
+      setTeacherTel("");
+      setTeacherName("");
+      setIsOpen(false);
+    };
+  }, []);
+
   return (
     <>
       <WriteSchool

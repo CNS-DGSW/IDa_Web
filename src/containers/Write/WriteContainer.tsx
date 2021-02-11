@@ -3,16 +3,27 @@ import { observer } from "mobx-react";
 import { useBeforeunload } from "react-beforeunload";
 import Write from "components/Write/Write";
 import useStore from "lib/hooks/useStore";
-import { withRouter } from "react-router-dom";
+import { useLocation, withRouter } from "react-router-dom";
+import useQuery from "lib/hooks/useQuery";
 
 const WriteContainer = ({}) => {
   const { store } = useStore();
-  const { page, pageHandle } = store.WriteStore;
+  const { page, pageHandle, handleUserIdx } = store.WriteStore;
+  const { search } = useLocation();
+  const query = useQuery();
 
   useBeforeunload((event) => event.preventDefault());
 
   useEffect(() => {
-    return () => pageHandle(0);
+    if (Number(query.get("userIdx"))) {
+      handleUserIdx(Number(query.get("userIdx")));
+    }
+  }, [search]);
+
+  useEffect(() => {
+    return () => {
+      pageHandle(0);
+    };
   }, []);
 
   return (

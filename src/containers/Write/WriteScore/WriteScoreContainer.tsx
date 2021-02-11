@@ -9,6 +9,7 @@ const WriteScoreContainer = ({}) => {
   const { store } = useStore();
 
   const { getScore } = store.ScoreStore;
+  const { gradeType } = store.WriteStore;
 
   const history = useHistory();
 
@@ -23,30 +24,45 @@ const WriteScoreContainer = ({}) => {
   const [isGed, setIsGed] = useState<boolean>(false);
 
   const getScoreCallback = useCallback(() => {
-    getScore()
-      .then((res) => {
-        setGrade1(res.data.grade1);
-        setGrade2(res.data.grade2);
-        setIsGed(res.data.isGed);
-        setAbsence(res.data.absence);
-        setVolunteer(res.data.volunteer);
-        setAdditional(res.data.additional);
-        if (res.data.isGed) {
-          setTotalScore1(res.data.grade1);
-          setTotalScore2(res.data.grade2);
-        } else {
-          setTotalScore1(res.data.grade1 + res.data.absence + res.data.volunteer + res.data.additional);
-          setTotalScore2(res.data.grade2 + res.data.absence + res.data.volunteer + res.data.additional);
-        }
-      })
-      .catch((err: Error) => {
-        handleGetWriteError(err, history);
-      });
-  }, [getScore]);
+    if (gradeType) {
+      getScore()
+        .then((res) => {
+          setGrade1(res.data.grade1);
+          setGrade2(res.data.grade2);
+          setIsGed(res.data.isGed);
+          setAbsence(res.data.absence);
+          setVolunteer(res.data.volunteer);
+          setAdditional(res.data.additional);
+          if (res.data.isGed) {
+            setTotalScore1(res.data.grade1);
+            setTotalScore2(res.data.grade2);
+          } else {
+            setTotalScore1(res.data.grade1 + res.data.absence + res.data.volunteer + res.data.additional);
+            setTotalScore2(res.data.grade2 + res.data.absence + res.data.volunteer + res.data.additional);
+          }
+        })
+        .catch((err: Error) => {
+          handleGetWriteError(err, history);
+        });
+    }
+  }, [getScore, gradeType]);
 
   useEffect(() => {
     getScoreCallback();
   }, [getScoreCallback]);
+
+  useEffect(() => {
+    return () => {
+      setGrade1(0);
+      setGrade2(0);
+      setAbsence(0);
+      setVolunteer(0);
+      setAdditional(0);
+      setTotalScore1(0);
+      setTotalScore2(0);
+      setIsGed(false);
+    };
+  }, []);
 
   return (
     <>

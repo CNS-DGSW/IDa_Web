@@ -93,6 +93,16 @@ const WriteParentContainer = ({}) => {
     }
   }, [parentTel]);
 
+  useEffect(() => {
+    return () => {
+      setAddress("");
+      setParentTel("");
+      setParentName("");
+      setParentRelation(null);
+      setPostCode("");
+    };
+  }, []);
+
   return (
     <>
       <WriteParents

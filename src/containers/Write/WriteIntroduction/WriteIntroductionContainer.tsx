@@ -63,6 +63,13 @@ const WriteIntroductionContainer = ({}) => {
     getStudyPlanCallBack();
   }, []);
 
+  useEffect(() => {
+    return () => {
+      setStudyPlan("");
+      setSelfIntroduce("");
+    };
+  }, []);
+
   return (
     <>
       <WriteIntroduction
