@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
 import WriteScore from "components/Write/WriteScore";
-import { handleLogin } from "lib/handleErrors";
+import { handleGetWriteError } from "lib/handleErrors";
 import { useHistory, withRouter } from "react-router-dom";
 
 const WriteScoreContainer = ({}) => {
@@ -40,7 +40,7 @@ const WriteScoreContainer = ({}) => {
         }
       })
       .catch((err: Error) => {
-        handleLogin(err, history);
+        handleGetWriteError(err, history);
       });
   }, [getScore]);
 

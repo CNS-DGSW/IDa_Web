@@ -4,7 +4,7 @@ import WriteAttend from "components/Write/WriteAttend";
 import useStore from "lib/hooks/useStore";
 import { useHistory, withRouter } from "react-router-dom";
 import { toast } from "react-toastify";
-import { handleLogin } from "lib/handleErrors";
+import { handleGetWriteError } from "lib/handleErrors";
 
 const WriteGradeAttendContainer = ({}) => {
   const { store } = useStore();
@@ -60,7 +60,7 @@ const WriteGradeAttendContainer = ({}) => {
         handleAbsenceLecture3(res.data.absenceLecture3);
       })
       .catch((err: Error) => {
-        handleLogin(err, history);
+        handleGetWriteError(err, history);
       });
   }, []);
 

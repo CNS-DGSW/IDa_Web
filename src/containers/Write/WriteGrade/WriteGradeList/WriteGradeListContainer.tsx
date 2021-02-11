@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { useHistory, withRouter } from "react-router-dom";
 import Score from "util/enums/Score";
 import updateSemGrade from "lib/updateSemGrade";
-import { handleLogin } from "lib/handleErrors";
+import { handleGetWriteError } from "lib/handleErrors";
 
 const WriteGradeListContainer = ({}) => {
   const { store } = useStore();
@@ -34,7 +34,7 @@ const WriteGradeListContainer = ({}) => {
         }
       })
       .catch((err: Error) => {
-        handleLogin(err, history);
+        handleGetWriteError(err, history);
       });
   }, [getGradeList, gradeType]);
 

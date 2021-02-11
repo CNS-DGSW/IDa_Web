@@ -4,7 +4,7 @@ import WriteAdditional from "components/Write/WriteAdditional";
 import useStore from "lib/hooks/useStore";
 import { useHistory, withRouter } from "react-router-dom";
 import { toast } from "react-toastify";
-import { handleLogin } from "lib/handleErrors";
+import { handleGetWriteError } from "lib/handleErrors";
 
 const WriteGradeAdditionalContainer = ({}) => {
   const { store } = useStore();
@@ -51,7 +51,7 @@ const WriteGradeAdditionalContainer = ({}) => {
         handlePrize(res.data.prize);
       })
       .catch((err: Error) => {
-        handleLogin(err, history);
+        handleGetWriteError(err, history);
       });
   }, []);
 

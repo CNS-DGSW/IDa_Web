@@ -5,7 +5,7 @@ import useStore from "lib/hooks/useStore";
 import { ProfileInfoResponse } from "util/types/Response";
 import { useHistory, withRouter } from "react-router-dom";
 import { toast } from "react-toastify";
-import { handleLogin, handleWriteError } from "lib/handleErrors";
+import { handleGetWriteError, handleWriteError } from "lib/handleErrors";
 
 const WritePhotoContainer = ({}) => {
   const { store } = useStore();
@@ -64,7 +64,7 @@ const WritePhotoContainer = ({}) => {
         setPreview(res.data.profileImage);
       })
       .catch((err: Error) => {
-        handleLogin(err, history);
+        handleGetWriteError(err, history);
       });
   }, []);
 

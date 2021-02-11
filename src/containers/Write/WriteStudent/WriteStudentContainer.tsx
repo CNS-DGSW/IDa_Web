@@ -7,7 +7,7 @@ import Sex from "util/enums/Sex";
 import moment from "moment";
 import { useHistory, withRouter } from "react-router-dom";
 import { toast } from "react-toastify";
-import { handleLogin, handleWriteError } from "lib/handleErrors";
+import { handleWriteError, handleGetWriteError } from "lib/handleErrors";
 
 const WriteStudentContainer = ({}) => {
   const { store } = useStore();
@@ -32,7 +32,7 @@ const WriteStudentContainer = ({}) => {
         setStudentTel(res.data.studentTel || "");
       })
       .catch((err: Error) => {
-        handleLogin(err, history);
+        handleGetWriteError(err, history);
       });
   }, []);
 

@@ -7,7 +7,7 @@ import { AddressData } from "react-daum-postcode";
 import { ParentInfoResponse } from "util/types/Response";
 import { useHistory, withRouter } from "react-router-dom";
 import { toast } from "react-toastify";
-import { handleLogin, handleWriteError } from "lib/handleErrors";
+import { handleGetWriteError, handleWriteError } from "lib/handleErrors";
 
 const WriteParentContainer = ({}) => {
   const { store } = useStore();
@@ -74,7 +74,7 @@ const WriteParentContainer = ({}) => {
         setPostCode(res.data.postCode || "");
       })
       .catch((err: Error) => {
-        handleLogin(err, history);
+        handleGetWriteError(err, history);
       });
   }, []);
 
