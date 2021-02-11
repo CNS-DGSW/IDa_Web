@@ -4,7 +4,6 @@ import Header from "components/common/Header";
 import useStore from "lib/hooks/useStore";
 import { RouteComponentProps, useHistory, withRouter } from "react-router-dom";
 import { useCookies } from "react-cookie";
-import { toast } from "react-toastify";
 
 interface HeaderContainerProps {
   theme?: boolean;
@@ -16,6 +15,7 @@ const HeaderContainer = ({ theme }: HeaderContainerProps & RouteComponentProps) 
 
   const {
     getInfo,
+    changeLogin,
     login,
     name,
     email,
@@ -34,9 +34,11 @@ const HeaderContainer = ({ theme }: HeaderContainerProps & RouteComponentProps) 
     history.push("/");
   };
 
-  const getInfoCallback = useCallback(() => {
+  const getInfoCallback = useCallback(async () => {
     if (localStorage.getItem("accessToken") && !name && !email) {
-      getInfo().catch(async (err: Error) => {
+      changeLogin(true);
+      await getInfo().catch((err: Error) => {
+        tryLogout();
         if (err.message.indexOf("401")) {
           console.log("권한 없음");
         }
@@ -46,7 +48,7 @@ const HeaderContainer = ({ theme }: HeaderContainerProps & RouteComponentProps) 
 
   useEffect(() => {
     getInfoCallback();
-  }, [getInfoCallback, login]);
+  }, [getInfoCallback]);
 
   useEffect(() => {
     return () => {

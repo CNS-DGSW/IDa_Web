@@ -44,6 +44,10 @@ const QnaContainer = ({}) => {
     searchPostFilter();
   }, [searchPostFilter]);
 
+  useEffect(() => {
+    return () => setFilteredPosts([]);
+  }, []);
+
   return (
     <>
       <Qna
