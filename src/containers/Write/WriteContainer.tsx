@@ -23,6 +23,7 @@ const WriteContainer = ({}) => {
   useEffect(() => {
     return () => {
       pageHandle(0);
+      handleUserIdx(null);
     };
   }, []);
 
