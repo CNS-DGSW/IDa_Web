@@ -31,6 +31,7 @@ const HeaderContainer = ({ theme }: HeaderContainerProps & RouteComponentProps) 
     tryLogout();
     removeCookie("refreshToken");
     localStorage.removeItem("accessToken");
+    localStorage.removeItem("expireAt");
     history.push("/");
   };
 
@@ -38,10 +39,7 @@ const HeaderContainer = ({ theme }: HeaderContainerProps & RouteComponentProps) 
     if (localStorage.getItem("accessToken") && !name && !email) {
       changeLogin(true);
       await getInfo().catch((err: Error) => {
-        tryLogout();
-        if (err.message.indexOf("401")) {
-          console.log("권한 없음");
-        }
+        HandleLogout();
       });
     }
   }, [login]);
