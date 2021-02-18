@@ -7,7 +7,8 @@ import Sex from "util/enums/Sex";
 import moment from "moment";
 import { useHistory, withRouter } from "react-router-dom";
 import { toast } from "react-toastify";
-import { handleLogin, handleWriteError } from "lib/handleErrors";
+import { handleWriteError, handleGetWriteError } from "lib/handleErrors";
+import useQuery from "lib/hooks/useQuery";
 
 const WriteStudentContainer = ({}) => {
   const { store } = useStore();
@@ -21,10 +22,12 @@ const WriteStudentContainer = ({}) => {
   const [sex, setSex] = useState<Sex | null>(null);
   const [studentTel, setStudentTel] = useState<string>("");
 
+  const query = useQuery();
+
   const [isChanged, setIsChanged] = useState<boolean>(false);
 
   const getStudentInfoCallback = useCallback(async () => {
-    await getStudentInfo()
+    await getStudentInfo(Number(query.get("userIdx")))
       .then((res: UserInfoResponse) => {
         setName(res.data.name || "");
         setBirth(moment(res.data.birth || "").format("yyyy-MM-DD"));
@@ -32,7 +35,7 @@ const WriteStudentContainer = ({}) => {
         setStudentTel(res.data.studentTel || "");
       })
       .catch((err: Error) => {
-        handleLogin(err, history);
+        handleGetWriteError(err, history);
       });
   }, []);
 
@@ -65,6 +68,15 @@ const WriteStudentContainer = ({}) => {
       }
     }
   }, [studentTel]);
+
+  useEffect(() => {
+    return () => {
+      setName("");
+      setBirth("");
+      setSex(null);
+      setStudentTel("");
+    };
+  }, []);
 
   return (
     <>

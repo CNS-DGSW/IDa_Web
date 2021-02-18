@@ -8,7 +8,7 @@ import FreeSemType from "util/types/FreeSem";
 import ScoreGrade from "util/types/ScoreGrade";
 
 class UserApi {
-  async EditUserInfo(name: string, birth: string, sex: Sex, studentTel: string) {
+  async EditUserInfo(name: string, birth: string, sex: Sex, studentTel: string, userIdx?: number | null) {
     try {
       const body = {
         name,
@@ -17,7 +17,9 @@ class UserApi {
         studentTel,
       };
 
-      const { data } = await Api.patch("/user/editInfo", body);
+      const query = userIdx ? `?userIdx=${userIdx}` : "";
+
+      const { data } = await Api.patch(`/user/editInfo${query}`, body);
 
       return data;
     } catch (error) {
@@ -25,13 +27,15 @@ class UserApi {
     }
   }
 
-  async EditProfileImage(profileImage: string) {
+  async EditProfileImage(profileImage: string, userIdx?: number | null) {
     try {
       const body = {
         profileImage,
       };
 
-      const { data } = await Api.patch("/user/editProfileImage", body);
+      const query = userIdx ? `?userIdx=${userIdx}` : "";
+
+      const { data } = await Api.patch(`/user/editProfileImage${query}`, body);
 
       return data;
     } catch (error) {
@@ -39,9 +43,11 @@ class UserApi {
     }
   }
 
-  async GetProfileImage() {
+  async GetProfileImage(userIdx?: number | null) {
     try {
-      const { data } = await Api.get("/user/getProfileImage");
+      const query = userIdx ? `?userIdx=${userIdx}` : "";
+
+      const { data } = await Api.get(`/user/getProfileImage${query}`);
 
       return data;
     } catch (error) {
@@ -49,9 +55,11 @@ class UserApi {
     }
   }
 
-  async GetApplyType() {
+  async GetApplyType(userIdx?: number | null) {
     try {
-      const { data } = await Api.get("/user/getApplyType");
+      const query = userIdx ? `?userIdx=${userIdx}` : "";
+
+      const { data } = await Api.get(`/user/getApplyType${query}`);
 
       return data;
     } catch (error) {
@@ -63,7 +71,8 @@ class UserApi {
     applyType: Apply,
     applyDetailType: ApplyDetail,
     verteransCity?: string,
-    verteransNumber?: string
+    verteransNumber?: string,
+    userIdx?: number | null
   ) {
     try {
       const body = {
@@ -72,8 +81,9 @@ class UserApi {
         verteransCity,
         verteransNumber,
       };
+      const query = userIdx ? `?userIdx=${userIdx}` : "";
 
-      const { data } = await Api.patch("/user/editApplyType", body);
+      const { data } = await Api.patch(`/user/editApplyType${query}`, body);
       return data;
     } catch (error) {
       throw new Error(`${error}`);
@@ -85,7 +95,8 @@ class UserApi {
     parentName: string,
     parentRelation: Relation,
     parentTel: string,
-    postCode: string
+    postCode: string,
+    userIdx?: number | null
   ) {
     try {
       const body = {
@@ -96,7 +107,9 @@ class UserApi {
         postCode,
       };
 
-      const { data } = await Api.patch("/user/editParentInfo", body);
+      const query = userIdx ? `?userIdx=${userIdx}` : "";
+
+      const { data } = await Api.patch(`/user/editParentInfo${query}`, body);
 
       return data;
     } catch (error) {
@@ -104,9 +117,11 @@ class UserApi {
     }
   }
 
-  async GetParentInfo() {
+  async GetParentInfo(userIdx?: number | null) {
     try {
-      const { data } = await Api.get("/user/getParentInfo");
+      const query = userIdx ? `?userIdx=${userIdx}` : "";
+
+      const { data } = await Api.get(`/user/getParentInfo${query}`);
 
       return data;
     } catch (error) {
@@ -123,7 +138,8 @@ class UserApi {
     schoolName: string,
     schoolTel: string,
     teacherName: string,
-    teacherTel: string
+    teacherTel: string,
+    userIdx?: number | null
   ) {
     try {
       const body = {
@@ -138,7 +154,9 @@ class UserApi {
         teacherTel,
       };
 
-      const { data } = await Api.patch("/user/editSchoolInfo", body);
+      const query = userIdx ? `?userIdx=${userIdx}` : "";
+
+      const { data } = await Api.patch(`/user/editSchoolInfo${query}`, body);
 
       return data;
     } catch (error) {
@@ -146,9 +164,11 @@ class UserApi {
     }
   }
 
-  async GetSchoolInfo() {
+  async GetSchoolInfo(userIdx?: number | null) {
     try {
-      const { data } = await Api.get("/user/getSchoolInfo");
+      const query = userIdx ? `?userIdx=${userIdx}` : "";
+
+      const { data } = await Api.get(`/user/getSchoolInfo${query}`);
       return data;
     } catch (error) {
       throw new Error(`${error}`);
@@ -160,20 +180,22 @@ class UserApi {
       const formData = new FormData();
       formData.append("file", fileName);
 
-      const { data } = await Api.post("/file/upload", formData);
+      const { data } = await Api.post(`/file/upload`, formData);
       return data;
     } catch (error) {
       throw new Error(`${error}`);
     }
   }
 
-  async EditSelfIntroduce(selfIntroduction: string) {
+  async EditSelfIntroduce(selfIntroduction: string, userIdx?: number | null) {
     try {
       const body = {
         selfIntroduction,
       };
 
-      const { data } = await Api.patch("/user/editSelfIntroduce", body);
+      const query = userIdx ? `?userIdx=${userIdx}` : "";
+
+      const { data } = await Api.patch(`/user/editSelfIntroduce${query}`, body);
 
       return data;
     } catch (error) {
@@ -181,22 +203,26 @@ class UserApi {
     }
   }
 
-  async GetSelfIntroduce() {
+  async GetSelfIntroduce(userIdx?: number | null) {
     try {
-      const { data } = await Api.get("/user/getSelfIntroduce");
+      const query = userIdx ? `?userIdx=${userIdx}` : "";
+
+      const { data } = await Api.get(`/user/getSelfIntroduce${query}`);
       return data;
     } catch (error) {
       throw new Error(`${error}`);
     }
   }
 
-  async EditStudyPlan(studyPlan: string) {
+  async EditStudyPlan(studyPlan: string, userIdx?: number | null) {
     try {
       const body = {
         studyPlan,
       };
 
-      const { data } = await Api.patch("/user/editStudyPlan", body);
+      const query = userIdx ? `?userIdx=${userIdx}` : "";
+
+      const { data } = await Api.patch(`/user/editStudyPlan${query}`, body);
 
       return data;
     } catch (error) {
@@ -204,23 +230,27 @@ class UserApi {
     }
   }
 
-  async GetStudyPlan() {
+  async GetStudyPlan(userIdx?: number | null) {
     try {
-      const { data } = await Api.get("/user/getStudyPlan");
+      const query = userIdx ? `?userIdx=${userIdx}` : "";
+
+      const { data } = await Api.get(`/user/getStudyPlan${query}`);
       return data;
     } catch (error) {
       throw new Error(`${error}`);
     }
   }
 
-  async EditGrade(freeSem: FreeSemType, grade: ScoreGrade[]) {
+  async EditGrade(freeSem: FreeSemType, grade: ScoreGrade[], userIdx?: number | null) {
     try {
       const body = {
         freeSem,
         grade,
       };
 
-      const { data } = await Api.patch("/grade/editGrade", body);
+      const query = userIdx ? `?userIdx=${userIdx}` : "";
+
+      const { data } = await Api.patch(`/grade/editGrade${query}`, body);
 
       return data;
     } catch (error) {
@@ -228,9 +258,11 @@ class UserApi {
     }
   }
 
-  async GetGrade() {
+  async GetGrade(userIdx?: number | null) {
     try {
-      const { data } = await Api.get("/grade/getGrade");
+      const query = userIdx ? `?userIdx=${userIdx}` : "";
+
+      const { data } = await Api.get(`/grade/getGrade${query}`);
       return data;
     } catch (error) {
       throw new Error(`${error}`);
@@ -243,7 +275,8 @@ class UserApi {
     mathScore: number,
     otherScore: number,
     scienceScore: number,
-    socialScore: number
+    socialScore: number,
+    userIdx?: number | null
   ) {
     try {
       const body = {
@@ -255,7 +288,9 @@ class UserApi {
         socialScore,
       };
 
-      const { data } = await Api.patch("/grade/editGed", body);
+      const query = userIdx ? `?userIdx=${userIdx}` : "";
+
+      const { data } = await Api.patch(`/grade/editGed${query}`, body);
 
       return data;
     } catch (error) {
@@ -263,9 +298,11 @@ class UserApi {
     }
   }
 
-  async GetGed() {
+  async GetGed(userIdx?: number | null) {
     try {
-      const { data } = await Api.get("/grade/getGed");
+      const query = userIdx ? `?userIdx=${userIdx}` : "";
+
+      const { data } = await Api.get(`/grade/getGed${query}`);
 
       return data;
     } catch (error) {
@@ -285,7 +322,8 @@ class UserApi {
     earlyLeave3: number,
     absenceLecture1: number,
     absenceLecture2: number,
-    absenceLecture3: number
+    absenceLecture3: number,
+    userIdx?: number | null
   ) {
     try {
       const body = {
@@ -303,7 +341,9 @@ class UserApi {
         absenceLecture3,
       };
 
-      const { data } = await Api.patch("/attend/editAttend", body);
+      const query = userIdx ? `?userIdx=${userIdx}` : "";
+
+      const { data } = await Api.patch(`/attend/editAttend${query}`, body);
 
       return data;
     } catch (error) {
@@ -311,9 +351,11 @@ class UserApi {
     }
   }
 
-  async GetAttend() {
+  async GetAttend(userIdx?: number | null) {
     try {
-      const { data } = await Api.get("/attend/getAttend");
+      const query = userIdx ? `?userIdx=${userIdx}` : "";
+
+      const { data } = await Api.get(`/attend/getAttend${query}`);
       return data;
     } catch (error) {
       throw new Error(`${error}`);
@@ -327,7 +369,8 @@ class UserApi {
     leadership22: boolean,
     leadership31: boolean,
     leadership32: boolean,
-    prize: number
+    prize: number,
+    userIdx?: number | null
   ) {
     try {
       const body = {
@@ -340,7 +383,9 @@ class UserApi {
         prize,
       };
 
-      const { data } = await Api.patch("/attend/editAdditional", body);
+      const query = userIdx ? `?userIdx=${userIdx}` : "";
+
+      const { data } = await Api.patch(`/attend/editAdditional${query}`, body);
 
       return data;
     } catch (error) {
@@ -348,16 +393,18 @@ class UserApi {
     }
   }
 
-  async GetAdditional() {
+  async GetAdditional(userIdx?: number | null) {
     try {
-      const { data } = await Api.get("/attend/getAdditional");
+      const query = userIdx ? `?userIdx=${userIdx}` : "";
+
+      const { data } = await Api.get(`/attend/getAdditional${query}`);
       return data;
     } catch (error) {
       throw new Error(`${error}`);
     }
   }
 
-  async EditVolunteer(volunteer1: number, volunteer2: number, volunteer3: number) {
+  async EditVolunteer(volunteer1: number, volunteer2: number, volunteer3: number, userIdx?: number | null) {
     try {
       const body = {
         volunteer1,
@@ -365,7 +412,9 @@ class UserApi {
         volunteer3,
       };
 
-      const { data } = await Api.patch("/attend/editVolunteer", body);
+      const query = userIdx ? `?userIdx=${userIdx}` : "";
+
+      const { data } = await Api.patch(`/attend/editVolunteer${query}`, body);
 
       return data;
     } catch (error) {
@@ -373,9 +422,11 @@ class UserApi {
     }
   }
 
-  async GetVolunteer() {
+  async GetVolunteer(userIdx?: number | null) {
     try {
-      const { data } = await Api.get("/attend/getVolunteer");
+      const query = userIdx ? `?userIdx=${userIdx}` : "";
+
+      const { data } = await Api.get(`/attend/getVolunteer${query}`);
       return data;
     } catch (error) {
       throw new Error(`${error}`);

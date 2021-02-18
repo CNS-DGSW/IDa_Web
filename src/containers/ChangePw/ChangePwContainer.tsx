@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
-import ChangePw from "components/Profile/ChangePw";
+import ChangePw from "components/ChangePw/ChangePw";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { server } from "config/config.json";

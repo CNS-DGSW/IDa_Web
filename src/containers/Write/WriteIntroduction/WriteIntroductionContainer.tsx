@@ -5,7 +5,7 @@ import WriteIntroduction from "../../../components/Write/WriteIntroduction";
 import { useHistory, withRouter } from "react-router-dom";
 import { SelfIntroductionResponse, StudyPlanResponse } from "util/types/Response";
 import { toast } from "react-toastify";
-import { handleLogin, handleWriteError } from "lib/handleErrors";
+import { handleGetWriteError, handleWriteError } from "lib/handleErrors";
 
 const WriteIntroductionContainer = ({}) => {
   const { store } = useStore();
@@ -44,7 +44,7 @@ const WriteIntroductionContainer = ({}) => {
         setSelfIntroduce(res.data.selfIntroduction || "");
       })
       .catch((err: Error) => {
-        handleLogin(err, history);
+        handleGetWriteError(err, history);
       });
   }, []);
 
@@ -54,13 +54,20 @@ const WriteIntroductionContainer = ({}) => {
         setStudyPlan(res.data.studyPlan || "");
       })
       .catch((err: Error) => {
-        handleLogin(err, history);
+        handleGetWriteError(err, history);
       });
   }, []);
 
   useEffect(() => {
     getSelfIntroduceCallBack();
     getStudyPlanCallBack();
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      setStudyPlan("");
+      setSelfIntroduce("");
+    };
   }, []);
 
   return (

@@ -31,7 +31,7 @@
   &-pencil {
     margin-top: 3px;
     &-img {
-      background-image: url("../../../assets/images/pencil-gray.png");
+      background-image: url("../../assets/images/pencil-gray.png");
       background-repeat: no-repeat;
       width: 1.4rem;
       height: 1.4rem;
@@ -39,13 +39,13 @@
     }
     &:hover {
       .ProfileModalBox-pencil-img {
-        background-image: url("../../../assets/images/pencil.png");
+        background-image: url("../../assets/images/pencil.png");
       }
     }
   }
   &-status {
     &-img {
-      background-image: url("../../../assets/images/paper-gray.png");
+      background-image: url("../../assets/images/paper-gray.png");
       background-repeat: no-repeat;
       width: 1.4rem;
       height: 1.4rem;
@@ -53,13 +53,13 @@
     }
     &:hover {
       .ProfileModalBox-status-img {
-        background-image: url("../../../assets/images/paper.png");
+        background-image: url("../../assets/images/paper.png");
       }
     }
   }
   &-modify {
     &-img {
-      background-image: url("../../../assets/images/password-gray.png");
+      background-image: url("../../assets/images/password-gray.png");
       background-repeat: no-repeat;
       width: 1.4rem;
       height: 1.4rem;
@@ -67,14 +67,14 @@
     }
     &:hover {
       .ProfileModalBox-modify-img {
-        background-image: url("../../../assets/images/password@2x.png");
+        background-image: url("../../assets/images/password@2x.png");
       }
     }
   }
   &-logout {
     margin-bottom: 4px;
     &-img {
-      background-image: url("../../../assets/images/logout-gray.png");
+      background-image: url("../../assets/images/logout-gray.png");
       background-repeat: no-repeat;
       width: 1.4rem;
       height: 1.4rem;
@@ -82,7 +82,7 @@
     }
     &:hover {
       .ProfileModalBox-logout-img {
-        background-image: url("../../../assets/images/logout.png");
+        background-image: url("../../assets/images/logout.png");
       }
     }
   }

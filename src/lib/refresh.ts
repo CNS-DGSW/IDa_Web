@@ -17,10 +17,7 @@ const refresh = async (config: AxiosRequestConfig): Promise<AxiosRequestConfig> 
 
     token = res.data.accessToken;
     localStorage.setItem("accessToken", res.data.accessToken);
-    localStorage.setItem(
-      "expiresAt",
-      moment().add(1, "hour").format("yyyy-MM-DD HH:mm:ss")
-    );
+    localStorage.setItem("expiresAt", moment().add(1, "hour").format("yyyy-MM-DD HH:mm:ss"));
   }
 
   config.headers["Authorization"] = `Bearer ${token}`;

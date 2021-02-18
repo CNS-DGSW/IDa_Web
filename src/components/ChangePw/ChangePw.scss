@@ -1,0 +1,20 @@
+@import "util/colors.scss";
+
+.Profile {
+  &-box {
+    &-text {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: $ft-darkblue;
+      margin-top: 1rem;
+    }
+    &-form {
+      display: flex;
+      flex-direction: column;
+      padding: 0.8rem 0.5rem;
+      position: relative;
+      max-width: 25rem;
+      width: 90%;
+    }
+  }
+}

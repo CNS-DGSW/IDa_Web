@@ -1,7 +1,7 @@
 import React from "react";
 import "./Header.scss";
 import { ReactComponent as Profile } from "assets/images/profile.svg";
-import ProfileModalBox from "components/Profile/ProfileModalBox";
+import ProfileModalBox from "components/ProfileModalBox";
 import { NavLink, useHistory } from "react-router-dom";
 import { ReactComponent as Logo1 } from "assets/images/logo-1.svg";
 import { ReactComponent as Logo2 } from "assets/images/logo-2.svg";

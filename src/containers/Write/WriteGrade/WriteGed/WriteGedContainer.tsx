@@ -2,9 +2,8 @@ import React, { useCallback, useEffect } from "react";
 import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
 import { useHistory, withRouter } from "react-router-dom";
-import { toast } from "react-toastify";
 import WriteGed from "components/Write/WriteGed";
-import { handleLogin } from "lib/handleErrors";
+import { handleGetWriteError } from "lib/handleErrors";
 
 const WriteGedContainer = ({}) => {
   const { store } = useStore();
@@ -39,7 +38,7 @@ const WriteGedContainer = ({}) => {
         handleOtherScore(res.data.score.otherScore);
       })
       .catch((err: Error) => {
-        handleLogin(err, history);
+        handleGetWriteError(err, history);
       });
   }, [getGed]);
 

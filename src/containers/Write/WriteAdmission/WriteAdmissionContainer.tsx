@@ -6,8 +6,7 @@ import Apply from "util/enums/Apply";
 import ApplyDetail from "util/enums/ApplyDetail";
 import { findNameByValue } from "models/ApplyDetailModel";
 import { useHistory, withRouter } from "react-router-dom";
-import { toast } from "react-toastify";
-import { handleLogin, handleWriteError } from "lib/handleErrors";
+import { handleGetWriteError, handleWriteError } from "lib/handleErrors";
 
 const WriteAdmissionContainer = ({}) => {
   const { store } = useStore();
@@ -49,13 +48,23 @@ const WriteAdmissionContainer = ({}) => {
         setVerteransNumber(res.data.verteransNumber || "");
       })
       .catch((err: Error) => {
-        handleLogin(err, history);
+        handleGetWriteError(err, history);
       });
   }, []);
 
   useEffect(() => {
     getApplyTypeCallback();
   }, [getApplyTypeCallback]);
+
+  useEffect(() => {
+    return () => {
+      setApplyType(null);
+      setApplyDetailType(null);
+      setSpecial("");
+      setVerteransCity("");
+      setVerteransNumber("");
+    };
+  }, []);
 
   return (
     <>

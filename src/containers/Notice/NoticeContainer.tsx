@@ -45,6 +45,10 @@ const NoticeContainer = () => {
     searchPostFilter();
   }, [searchPostFilter]);
 
+  useEffect(() => {
+    return () => setFilteredPosts([]);
+  }, []);
+
   return (
     <>
       <Notice

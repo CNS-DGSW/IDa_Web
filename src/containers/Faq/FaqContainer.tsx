@@ -45,6 +45,10 @@ const FaqContainer = ({}) => {
     searchPostFilter();
   }, [searchPostFilter]);
 
+  useEffect(() => {
+    return () => setFilteredPosts([]);
+  }, []);
+
   return (
     <>
       <Faq

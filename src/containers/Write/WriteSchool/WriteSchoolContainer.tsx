@@ -6,7 +6,7 @@ import { SchoolInfoResponse } from "util/types/Response";
 import { useHistory, withRouter } from "react-router-dom";
 import { toast } from "react-toastify";
 import Grade from "util/enums/Grade";
-import { handleLogin, handleWriteError } from "lib/handleErrors";
+import { handleGetWriteError, handleWriteError } from "lib/handleErrors";
 
 const WriteSchoolContainer = ({}) => {
   const { store } = useStore();
@@ -92,7 +92,7 @@ const WriteSchoolContainer = ({}) => {
         setTeacherTel(res.data.teacherTel || "");
       })
       .catch((err: Error) => {
-        handleLogin(err, history);
+        handleGetWriteError(err, history);
       });
   }, []);
 
@@ -121,6 +121,20 @@ const WriteSchoolContainer = ({}) => {
       }
     }
   }, [teacherTel]);
+
+  useEffect(() => {
+    return () => {
+      setCityLocation("");
+      setCityName("");
+      setGraduatedDate("");
+      setSchoolCode("");
+      setSchoolName("");
+      setSchoolTel("");
+      setTeacherTel("");
+      setTeacherName("");
+      setIsOpen(false);
+    };
+  }, []);
 
   return (
     <>

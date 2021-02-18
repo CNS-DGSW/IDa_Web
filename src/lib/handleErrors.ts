@@ -14,6 +14,18 @@ const handleWriteError = (err: Error, history?: History) => {
   }
 };
 
+const handleGetWriteError = (err: Error, history?: History) => {
+  if (err.message.includes("401") || err.message.includes("410")) {
+    if (history) history.push("/login");
+    toast.warn("로그인이 필요합니다.");
+  } else if (err.message.includes("403")) {
+    if (history) history.push("/");
+    toast.warn("권한이 없습니다.");
+  } else if (err.message.includes("500")) {
+    toast.error("서버 오류입니다.");
+  }
+};
+
 const handleLogin = (err: Error, history?: History) => {
   if (err.message.includes("401") || err.message.includes("410")) {
     if (history) history.push("/login");
@@ -23,4 +35,4 @@ const handleLogin = (err: Error, history?: History) => {
   }
 };
 
-export { handleWriteError, handleLogin };
+export { handleWriteError, handleLogin, handleGetWriteError };

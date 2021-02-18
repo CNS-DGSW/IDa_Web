@@ -44,9 +44,11 @@ class AuthApi {
     }
   }
 
-  async GetInfo() {
+  async GetInfo(userIdx?: number | null) {
     try {
-      const { data } = await Api.get("/user/getInfo");
+      const query = userIdx ? `?userIdx=${userIdx}` : "";
+
+      const { data } = await Api.get(`/user/getInfo${query}`);
 
       return data;
     } catch (error) {
