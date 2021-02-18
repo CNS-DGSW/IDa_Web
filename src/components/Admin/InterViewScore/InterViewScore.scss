@@ -1,0 +1,32 @@
+/* your css code */
+@import "util/colors.scss";
+.InterViewScore {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  &-title {
+    font-size: 2rem;
+  }
+  &-checkBox {
+    display: flex;
+    width: 10%;
+    justify-content: space-between;
+  }
+  &-table {
+    margin-top: 1rem;
+    border-collapse: collapse;
+    border: 1px solid black;
+  }
+
+  & table th {
+    //padding: 위 오른쪽 아래 왼쪽
+    background: gray;
+    padding: 0rem 2rem;
+    width: auto;
+    border: 1px solid black;
+  }
+  & table td {
+    border: 1px solid black;
+    width: auto;
+  }
+}

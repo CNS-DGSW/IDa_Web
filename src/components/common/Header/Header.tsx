@@ -15,9 +15,19 @@ interface HeaderProps {
   email: string;
   HandleLogout: () => void;
   theme?: boolean;
+  style?: React.CSSProperties;
 }
 
-const Header = ({ login, profileBox, tryProfileBox, name, email, HandleLogout, theme }: HeaderProps) => {
+const Header = ({
+  login,
+  profileBox,
+  tryProfileBox,
+  name,
+  email,
+  HandleLogout,
+  theme,
+  style,
+}: HeaderProps) => {
   const history = useHistory();
 
   const menuToggle = () => {
@@ -39,7 +49,7 @@ const Header = ({ login, profileBox, tryProfileBox, name, email, HandleLogout, t
   };
 
   return (
-    <header className={theme ? "header header-theme" : "header"} id="header">
+    <header className={theme ? "header header-theme" : "header"} id="header" style={style}>
       <div className="header-close" onClick={closeMenu} />
       <div className="header-menu">
         <div className="header-menu-content">
