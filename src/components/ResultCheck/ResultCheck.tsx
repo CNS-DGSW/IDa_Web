@@ -5,9 +5,20 @@ import "./ResultCheck.scss";
 interface ResultCheckProps {
   submit: boolean | undefined;
   print: boolean | undefined;
+  pass: boolean | null;
+  clicked: boolean;
+  setClicked: React.Dispatch<React.SetStateAction<boolean>>;
+  coment: string;
 }
 
-const ResultCheck = ({ submit, print }: ResultCheckProps) => {
+const ResultCheck = ({
+  submit,
+  print,
+  pass,
+  clicked,
+  setClicked,
+  coment,
+}: ResultCheckProps) => {
   return (
     <>
       <div className="ResultCheck">
@@ -31,8 +42,32 @@ const ResultCheck = ({ submit, print }: ResultCheckProps) => {
           </div>
         </div>
         <div className="ResultCheck-result">
-          <span className="ResultCheck-result-title">원서 접수 결과</span>
-          <Button>결과 확인</Button>
+          <span className="ResultCheck-result-title">1차 결과 확인</span>
+          {clicked ? (
+            <span>{coment}</span>
+          ) : (
+            <Button
+              onClick={() => {
+                setClicked(true);
+              }}
+            >
+              결과 보기
+            </Button>
+          )}
+
+          {pass === true && clicked === true ? (
+            <>
+              <span
+                style={{ marginTop: "1rem" }}
+                className="ResultCheck-result-title"
+              >
+                2차 결과 확인
+              </span>
+              <Button>결과 확인</Button>
+            </>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </>

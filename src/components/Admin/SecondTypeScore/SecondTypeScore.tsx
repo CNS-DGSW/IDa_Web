@@ -1,10 +1,11 @@
-import Button from "components/common/Button";
-import React, { useEffect } from "react";
+import React from "react";
 import "./SecondTypeScore.scss";
 
-interface SecondTypeScoreProps {}
+interface SecondTypeScoreProps {
+  tryDown: (key: string) => void;
+}
 
-const SecondTypeScore = ({}: SecondTypeScoreProps) => {
+const SecondTypeScore = ({ tryDown }: SecondTypeScoreProps) => {
   const eight = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -19,18 +20,24 @@ const SecondTypeScore = ({}: SecondTypeScoreProps) => {
       <div className="SecondScore-buttons">
         <div>
           <span>소프트웨어역량평가</span>
-          <button>서식 다운로드</button>
+          <button
+            onClick={() => {
+              tryDown("sw");
+            }}
+          >
+            서식 다운로드
+          </button>
         </div>
         <div>
           <span>직무능력검사</span>
-          <button>서식 다운로드</button>
+          <button onClick={() => tryDown("job")}>서식 다운로드</button>
         </div>
         <div>
           <span>코딩테스트</span>
-          <button>서식 다운로드</button>
+          <button onClick={() => tryDown("coding")}>서식 다운로드</button>
         </div>
         <button>성적 업로드</button>
-        <button>엑셀 다운로드</button>
+        <button onClick={() => tryDown("secondScore")}>엑셀 다운로드</button>
       </div>
       <table className="SecondScore-table">
         <th>수험번호</th>
