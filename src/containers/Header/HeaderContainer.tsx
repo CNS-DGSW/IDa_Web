@@ -7,9 +7,13 @@ import { useCookies } from "react-cookie";
 
 interface HeaderContainerProps {
   theme?: boolean;
+  style?: React.CSSProperties;
 }
 
-const HeaderContainer = ({ theme }: HeaderContainerProps & RouteComponentProps) => {
+const HeaderContainer = ({
+  theme,
+  style,
+}: HeaderContainerProps & RouteComponentProps) => {
   const { store } = useStore();
   const history = useHistory();
 
@@ -64,6 +68,7 @@ const HeaderContainer = ({ theme }: HeaderContainerProps & RouteComponentProps) 
         name={name}
         email={email}
         HandleLogout={HandleLogout}
+        style={style}
       />
     </>
   );

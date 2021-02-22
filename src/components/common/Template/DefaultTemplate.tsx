@@ -5,12 +5,13 @@ import Footer from "../Footer";
 interface DefaultTemplateProps {
   children: React.ReactNode;
   theme?: boolean;
+  style?: React.CSSProperties;
 }
 
-const DefaultTemplate = ({ children, theme }: DefaultTemplateProps) => {
+const DefaultTemplate = ({ children, theme, style }: DefaultTemplateProps) => {
   return (
     <div className="default-template">
-      <HeaderContainer theme={theme} />
+      <HeaderContainer theme={theme} style={style} />
       {children}
       <Footer />
     </div>

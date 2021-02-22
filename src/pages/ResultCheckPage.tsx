@@ -5,7 +5,7 @@ import ResultCheckContainer from "containers/ResultCheck/ResultCheckContainer";
 
 const ResultCheckPage = () => {
   return (
-    <DefaultTemplate>
+    <DefaultTemplate theme={true} style={{ position: "fixed" }}>
       <ResultCheckContainer />
     </DefaultTemplate>
   );
