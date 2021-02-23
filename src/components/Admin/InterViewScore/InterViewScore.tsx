@@ -10,6 +10,8 @@ interface InterViewScoreProps {
   teamCount: number[] | undefined;
   selectInterView: (index: string) => void;
   scoreDate: InterViewScoreType | undefined;
+  tryDownExcel: () => void;
+  uploadFile: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const InterViewScore = ({
@@ -18,6 +20,8 @@ const InterViewScore = ({
   teamCount,
   selectInterView,
   scoreDate,
+  tryDownExcel,
+  uploadFile,
 }: InterViewScoreProps) => {
   return (
     <div className="InterViewScore">
@@ -39,6 +43,21 @@ const InterViewScore = ({
               </option>
             ))}
         </select>
+        <button onClick={() => tryDownExcel()}>
+          면접 점수 &amp; 서식 다운로드
+        </button>
+        <div className="SecondScore-buttons-file">
+          <span>소프트웨어역량평가</span>
+          <label htmlFor="input-file1" className="buttons">
+            업로드
+          </label>
+          <input
+            type="file"
+            id="input-file1"
+            className="input-file"
+            onChange={(e) => uploadFile(e)}
+          />
+        </div>
       </div>
       <table className="InterViewScore-table">
         <th>수험번호</th>

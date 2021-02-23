@@ -4,28 +4,30 @@ import Ged from "util/enums/Grade";
 import InterViewCategory from "util/enums/InterViewCategory";
 
 export interface SecondScoreResponse extends Response {
-  data: {
-    absenceScore: number;
-    additionalScore: number;
-    applyDetailType: Apply;
-    applyType: Apply;
-    cityName: "string";
-    codingTestScore: number;
-    cooperationScore: number;
-    examCode: number;
-    finalApplyDetailType: Apply;
-    finalApplyType: Apply;
-    gradeScore: number;
-    gradeType: Ged;
-    interviewScore: number;
-    jobAptitudeScore: number;
-    swAbilityScore: number;
-    totalInterviewScore: number;
-    totalScore: number;
-    userIdx: number;
-    userName: "string";
-    volunteerScore: number;
-  };
+  data: [
+    {
+      absenceScore: number;
+      additionalScore: number;
+      applyDetailType: Apply;
+      applyType: Apply;
+      cityName: "string";
+      codingTestScore: number;
+      cooperationScore: number;
+      examCode: number;
+      finalApplyDetailType: Apply;
+      finalApplyType: Apply;
+      gradeScore: number;
+      gradeType: Ged;
+      interviewScore: number;
+      jobAptitudeScore: number;
+      swAbilityScore: number;
+      totalInterviewScore: number;
+      totalScore: number;
+      userIdx: number;
+      userName: "string";
+      volunteerScore: number;
+    }
+  ];
 }
 export interface TeamResponse extends Response {
   data: number[];
