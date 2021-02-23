@@ -124,7 +124,7 @@ const WriteContent = ({ title, children, onSave, isChanged }: WriteContentProps 
             </div>
             <div className="writecontent-children-area-btn preview">원서 미리보기</div>
             {page === 6 && (
-              <div className="writecontent-children-area-btn prev" onClick={prevPage}>
+              <div className="writecontent-children-area-btn prev" onClick={() => history.push("/print")}>
                 원서 출력
               </div>
             )}
