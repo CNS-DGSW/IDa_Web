@@ -1,0 +1,42 @@
+@import "../../../util/colors.scss";
+
+.schoolcity {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem;
+  min-width: 1440px;
+
+  &-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  &-btn {
+    width: 12rem;
+    height: 2.5rem;
+    background-color: $bg-gray-50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    border: 1px solid $bd-gray;
+  }
+
+  &-list {
+    width: 100%;
+    border-collapse: collapse;
+
+    &-header {
+      background-color: $bg-gray-50;
+    }
+
+    tr {
+      border-bottom: 1px solid $bd-line;
+      height: 2.5rem;
+    }
+  }
+}

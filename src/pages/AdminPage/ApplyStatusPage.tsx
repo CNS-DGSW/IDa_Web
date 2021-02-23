@@ -4,9 +4,9 @@ import ApplyStatusContainer from "containers/Admin/ApplyStatus/ApplyStatusContai
 
 const ApplyStatusPage = () => {
   return (
-    <DefaultTemplate>
+    <>
       <ApplyStatusContainer />
-    </DefaultTemplate>
+    </>
   );
 };
 
