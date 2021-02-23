@@ -17,7 +17,8 @@ const applyDetailModel = {
         {
           name: "국민기초생활수급자",
           value: ApplyDetail.BASIC_LIVELIHOOD,
-          description: "국민기초생활보장법 제2조제1호에 따른 수급권자 또는 그 자녀",
+          description:
+            "국민기초생활보장법 제2조제1호에 따른 수급권자 또는 그 자녀",
         },
         {
           name: "차상위계층",
@@ -28,7 +29,8 @@ const applyDetailModel = {
         {
           name: "국가보훈대상자",
           value: ApplyDetail.VERTERANS,
-          description: "국가보훈기본법 제3조제2호의 국가보훈대상자 또는 그 자녀",
+          description:
+            "국가보훈기본법 제3조제2호의 국가보훈대상자 또는 그 자녀",
         },
         {
           name: "한부모 가족 보호 대상자",
@@ -38,7 +40,8 @@ const applyDetailModel = {
         {
           name: "차차상위계층",
           value: ApplyDetail.HIGH_WELFARE_RECIPIENTS,
-          description: "교육청에서 정한 교육비지원 기준을 만족하는 사람 또는 그 자녀",
+          description:
+            "교육청에서 정한 교육비지원 기준을 만족하는 사람 또는 그 자녀",
         },
         {
           name: "학교장 추천한 경제적으로 어려운 학생",
@@ -101,12 +104,14 @@ const applyDetailModel = {
         {
           name: "경찰, 소방, 교정 공무원 자녀",
           value: ApplyDetail.CIVIL_SERVANT_CHILD,
-          description: "경찰(경사 이하)·소방(소방장 이하)·교정(교위 이하) 공무원 자녀",
+          description:
+            "경찰(경사 이하)·소방(소방장 이하)·교정(교위 이하) 공무원 자녀",
         },
         {
           name: "산업재해근로자 자녀",
           value: ApplyDetail.INDUSTRIAL_ACCIDENT_CHILD,
-          description: "경찰(경사 이하)·소방(소방장 이하)·교정(교위 이하) 공무원 자녀",
+          description:
+            "경찰(경사 이하)·소방(소방장 이하)·교정(교위 이하) 공무원 자녀",
         },
         {
           name: "환경미화원 자녀",
@@ -131,7 +136,8 @@ const applyDetailModel = {
         {
           name: "한부모가정 자녀, 다자녀가정 자녀",
           value: ApplyDetail.MULTI_CHILD_FAMILIES,
-          description: "한부모가정 자녀(기타), 다자녀가정(생존 자녀 3인 이상) 자녀",
+          description:
+            "한부모가정 자녀(기타), 다자녀가정(생존 자녀 3인 이상) 자녀",
         },
       ],
     },
@@ -173,8 +179,8 @@ const applyDetailModel = {
   },
 };
 
-const findNameByValue = (value: ApplyDetail): string => {
-  if (value === ApplyDetail.COMMON) {
+const findNameByValue = (value?: ApplyDetail | null): string => {
+  if (value === null || value === undefined || value === ApplyDetail.COMMON) {
     return "";
   }
 

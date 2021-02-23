@@ -12,7 +12,11 @@ interface WriteGradeListItemProps {
   filtered?: ScoreGrade;
   freeSem: FreeSem;
   gradeType: Grade | null;
-  handleGradesCallback: (idx: number, value: Score, subjectName: string) => void;
+  handleGradesCallback: (
+    idx: number,
+    value: Score,
+    subjectName: string
+  ) => void;
   handleIsChanged: (value: boolean) => void;
   handleNameChange: (prevName: string, name: string) => void;
   deleteGrade: (model: string) => void;
@@ -32,7 +36,7 @@ const WriteGradeListItem = ({
 }: WriteGradeListItemProps) => {
   return (
     <>
-      <tr>
+      <tr className="write-grade-list-item">
         {isNew ? (
           <td>
             <input
@@ -50,7 +54,9 @@ const WriteGradeListItem = ({
         )}
         <td>
           <select
-            onChange={(e) => handleGradesCallback(0, e.target.value as Score, value)}
+            onChange={(e) =>
+              handleGradesCallback(0, e.target.value as Score, value)
+            }
             value={filtered?.score11 || Score.NONE}
             disabled={freeSem.freeSem11}
           >
@@ -64,7 +70,9 @@ const WriteGradeListItem = ({
         </td>
         <td>
           <select
-            onChange={(e) => handleGradesCallback(1, e.target.value as Score, value)}
+            onChange={(e) =>
+              handleGradesCallback(1, e.target.value as Score, value)
+            }
             value={filtered?.score12 || Score.NONE}
             disabled={freeSem.freeSem12}
           >
@@ -78,7 +86,9 @@ const WriteGradeListItem = ({
         </td>
         <td>
           <select
-            onChange={(e) => handleGradesCallback(2, e.target.value as Score, value)}
+            onChange={(e) =>
+              handleGradesCallback(2, e.target.value as Score, value)
+            }
             value={filtered?.score21 || Score.NONE}
             disabled={freeSem.freeSem21}
           >
@@ -92,7 +102,9 @@ const WriteGradeListItem = ({
         </td>
         <td>
           <select
-            onChange={(e) => handleGradesCallback(3, e.target.value as Score, value)}
+            onChange={(e) =>
+              handleGradesCallback(3, e.target.value as Score, value)
+            }
             value={filtered?.score22 || Score.NONE}
             disabled={freeSem.freeSem22}
           >
@@ -106,7 +118,9 @@ const WriteGradeListItem = ({
         </td>
         <td>
           <select
-            onChange={(e) => handleGradesCallback(4, e.target.value as Score, value)}
+            onChange={(e) =>
+              handleGradesCallback(4, e.target.value as Score, value)
+            }
             value={filtered?.score31 || Score.NONE}
             disabled={freeSem.freeSem31}
           >
@@ -120,7 +134,9 @@ const WriteGradeListItem = ({
         </td>
         <td>
           <select
-            onChange={(e) => handleGradesCallback(5, e.target.value as Score, value)}
+            onChange={(e) =>
+              handleGradesCallback(5, e.target.value as Score, value)
+            }
             value={filtered?.score32 || Score.NONE}
             disabled={freeSem.freeSem32 || gradeType === Grade.UNGRADUATED}
           >

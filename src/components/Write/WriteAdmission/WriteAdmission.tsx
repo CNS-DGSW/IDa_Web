@@ -50,7 +50,11 @@ const WriteAdmission = ({
 
   return (
     <>
-      <WriteContent title="전형 및 그에 따른 해당사항을 선택해주세요" onSave={onSave} isChanged={isChanged}>
+      <WriteContent
+        title="전형 및 그에 따른 해당사항을 선택해주세요"
+        onSave={onSave}
+        isChanged={isChanged}
+      >
         <div className="mission">
           <div className="mission-area">
             <label className="mission-area-label">입학전형 선택</label>
@@ -100,7 +104,9 @@ const WriteAdmission = ({
               </label>
             </div>
             {applyType === Apply.COMMON && (
-              <div className="mission-area-info">{models.common.description}</div>
+              <div className="mission-area-info">
+                {models.common.description}
+              </div>
             )}
           </div>
         </div>
@@ -133,68 +139,74 @@ const WriteAdmission = ({
                   </React.Fragment>
                 ))}
               </div>
-              {special && models.special.find(findByNameForSpecial)?.description && (
-                <div className="mission-area-info">
-                  {models.special.find(findByNameForSpecial)?.description}
-                </div>
-              )}
+              {special &&
+                models.special.find(findByNameForSpecial)?.description && (
+                  <div className="mission-area-info">
+                    {models.special.find(findByNameForSpecial)?.description}
+                  </div>
+                )}
             </div>
 
-            {special && models.special.find(findByNameForSpecial)?.models !== undefined && (
-              <>
-                <div className="mission-selector">
-                  <select
-                    value={applyDetailType?.toString()}
-                    onChange={(e) => {
-                      setApplyDetailType(e.target.value as ApplyDetail);
-                      setIsChanged(true);
-                    }}
-                  >
-                    <option value={undefined}>선택해주세요</option>
-
-                    {models.special.find(findByNameForSpecial)!.models?.map((model, index) => (
-                      <option key={index} value={model.value}>
-                        {model.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                {applyDetailType === ApplyDetail.VERTERANS && (
-                  <div className="mission-verterans">
-                    <input
-                      type="text"
-                      className="mission-verterans-textInput"
-                      value={verteransCity}
-                      onChange={(e) => {
-                        setVerteransCity(e.target.value);
+            {special &&
+              models.special.find(findByNameForSpecial)?.models !==
+                undefined && (
+                <>
+                  <div className="mission-selector">
+                    <select
+                      value={applyDetailType?.toString()}
+                      onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                        setApplyDetailType(e.target.value as ApplyDetail);
                         setIsChanged(true);
                       }}
-                      placeholder="국가보훈지방청"
-                    />
-                    <input
-                      type="text"
-                      className="mission-verterans-textInput"
-                      value={verteransNumber}
-                      onChange={(e) => {
-                        setVerteransNumber(e.target.value);
-                        setIsChanged(true);
-                      }}
-                      placeholder="국가보훈 번호"
-                    />
-                  </div>
-                )}
+                    >
+                      <option value={undefined}>선택해주세요</option>
 
-                {applyDetailType && (
-                  <div className="mission-area-info">
-                    {
-                      models.special.find(findByNameForSpecial)?.models!.find(findByNameForSpecialModel)
-                        ?.description
-                    }
+                      {models.special
+                        .find(findByNameForSpecial)!
+                        .models?.map((model, index) => (
+                          <option key={index} value={model.value}>
+                            {model.name}
+                          </option>
+                        ))}
+                    </select>
                   </div>
-                )}
-              </>
-            )}
+
+                  {applyDetailType === ApplyDetail.VERTERANS && (
+                    <div className="mission-verterans">
+                      <input
+                        type="text"
+                        className="mission-verterans-textInput"
+                        value={verteransCity}
+                        onChange={(e) => {
+                          setVerteransCity(e.target.value);
+                          setIsChanged(true);
+                        }}
+                        placeholder="국가보훈지방청"
+                      />
+                      <input
+                        type="text"
+                        className="mission-verterans-textInput"
+                        value={verteransNumber}
+                        onChange={(e) => {
+                          setVerteransNumber(e.target.value);
+                          setIsChanged(true);
+                        }}
+                        placeholder="국가보훈 번호"
+                      />
+                    </div>
+                  )}
+
+                  {applyDetailType && (
+                    <div className="mission-area-info">
+                      {
+                        models.special
+                          .find(findByNameForSpecial)
+                          ?.models!.find(findByNameForSpecialModel)?.description
+                      }
+                    </div>
+                  )}
+                </>
+              )}
           </div>
         ) : (
           applyType === Apply.OTHER && (
@@ -218,7 +230,10 @@ const WriteAdmission = ({
               </div>
               {applyDetailType && (
                 <div className="mission-area-info">
-                  {models.other.models.find(findByNameForSpecialModel)?.description}
+                  {
+                    models.other.models.find(findByNameForSpecialModel)
+                      ?.description
+                  }
                 </div>
               )}
             </div>

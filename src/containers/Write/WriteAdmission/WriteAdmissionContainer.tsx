@@ -16,7 +16,9 @@ const WriteAdmissionContainer = ({}) => {
 
   const [applyType, setApplyType] = useState<Apply | null>(null);
   const [special, setSpecial] = useState<string>("");
-  const [applyDetailType, setApplyDetailType] = useState<ApplyDetail | null>(null);
+  const [applyDetailType, setApplyDetailType] = useState<ApplyDetail | null>(
+    null
+  );
   const [verteransCity, setVerteransCity] = useState<string>("");
   const [verteransNumber, setVerteransNumber] = useState<string>("");
   const [isChanged, setIsChanged] = useState<boolean>(false);
@@ -24,10 +26,19 @@ const WriteAdmissionContainer = ({}) => {
   const onSave = useCallback(async () => {
     let flag = true;
     if (applyDetailType && applyType) {
-      if (applyDetailType === ApplyDetail.VERTERANS && !verteransCity && !verteransNumber) {
+      if (
+        applyDetailType === ApplyDetail.VERTERANS &&
+        !verteransCity &&
+        !verteransNumber
+      ) {
         flag = false;
       }
-      await editApplyType(applyType, applyDetailType, verteransCity, verteransNumber).catch((err: Error) => {
+      await editApplyType(
+        applyType,
+        applyDetailType,
+        verteransCity,
+        verteransNumber
+      ).catch((err: Error) => {
         handleWriteError(err, history);
         flag = false;
       });
@@ -43,7 +54,7 @@ const WriteAdmissionContainer = ({}) => {
       .then((res) => {
         setApplyType(res.data.applyType);
         setApplyDetailType(res.data.applyDetailType);
-        setSpecial(findNameByValue(res.data.applyDetailType || ""));
+        setSpecial(findNameByValue(res.data.applyDetailType));
         setVerteransCity(res.data.verteransCity || "");
         setVerteransNumber(res.data.verteransNumber || "");
       })
