@@ -18,6 +18,9 @@ const handleGetWriteError = (err: Error, history?: History) => {
   if (err.message.includes("401") || err.message.includes("410")) {
     if (history) history.push("/login");
     toast.warn("로그인이 필요합니다.");
+  } else if (err.message.includes("404")) {
+    if (history) history.push("/");
+    toast.warn("없는 유저입니다.");
   } else if (err.message.includes("403")) {
     if (history) history.push("/");
     toast.warn("권한이 없습니다.");
