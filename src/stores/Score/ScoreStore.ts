@@ -11,9 +11,9 @@ import {
 @autobind
 class ScoreStore {
   @action
-  getScore = async (): Promise<GetScoreResponse> => {
+  getScore = async (userIdx?: number | null): Promise<GetScoreResponse> => {
     try {
-      const response: GetScoreResponse = await ScoreApi.GetScore();
+      const response: GetScoreResponse = await ScoreApi.GetScore(userIdx);
 
       return new Promise(
         (resolve: (response: GetScoreResponse) => void, reject) => {

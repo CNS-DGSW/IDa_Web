@@ -1,9 +1,11 @@
 import Api from "lib/customAxios";
 
 class StatusApi {
-  async GetStatus() {
+  async GetStatus(userIdx?: number | null) {
     try {
-      const { data } = await Api.get("/status/getStatus");
+      const query = userIdx ? `?userIdx=${userIdx}` : "";
+
+      const { data } = await Api.get(`/status/getStatus${query}`);
 
       return data;
     } catch (error) {

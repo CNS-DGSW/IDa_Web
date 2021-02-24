@@ -21,9 +21,11 @@ class StatusStore {
   };
 
   @action
-  tryGetStatus = async (): Promise<ResultStatusResponse> => {
+  tryGetStatus = async (
+    userIdx?: number | null
+  ): Promise<ResultStatusResponse> => {
     try {
-      const response: ResultStatusResponse = await StatusApi.GetStatus();
+      const response: ResultStatusResponse = await StatusApi.GetStatus(userIdx);
 
       return new Promise(
         (resolve: (response: ResultStatusResponse) => void, reject) => {

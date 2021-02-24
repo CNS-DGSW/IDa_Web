@@ -1,9 +1,11 @@
 import Api from "lib/customAxios";
 
 class ScoreApi {
-  async GetScore() {
+  async GetScore(userIdx?: number | null) {
     try {
-      const { data } = await Api.get("/score/getScore");
+      const query = userIdx ? `?userIdx=${userIdx}` : "";
+
+      const { data } = await Api.get(`/score/getScore${query}`);
 
       return data;
     } catch (error) {
