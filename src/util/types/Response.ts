@@ -7,6 +7,8 @@ import FreeSemType from "./FreeSem";
 import { PostType } from "./PostType";
 import Schools from "util/types/Schools";
 import ScoreGrade from "./ScoreGrade";
+import { Receipt } from "./ReceiptType";
+import { SchoolCity } from "./SchoolCity";
 
 export type Response = {
   status: number;
@@ -180,4 +182,12 @@ export interface SchoolResponse extends Response {
   data: {
     schools: Schools[];
   };
+}
+
+export interface ReceiptResponse extends Response {
+  data: Receipt[];
+}
+
+export interface SchoolCityResponse extends Response {
+  data: SchoolCity[];
 }

@@ -35,7 +35,9 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-step-progress": "^1.0.3",
+    "react-to-print": "^2.12.3",
     "react-toastify": "^6.2.0",
+    "save": "^2.4.0",
     "sweetalert2": "^10.13.0",
     "time-counting": "^2.0.0",
     "typescript": "~3.7.2"

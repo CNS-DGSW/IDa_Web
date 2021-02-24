@@ -80,7 +80,7 @@ const WriteParentContainer = ({}) => {
 
   useEffect(() => {
     getParentInfoCallback();
-  }, []);
+  }, [getParentInfoCallback]);
 
   useEffect(() => {
     if (parentTel) {

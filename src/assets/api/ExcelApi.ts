@@ -63,6 +63,20 @@ class ExcelApi {
           responseType: "blob",
         }
       );
+      
+      FileDown(response);
+
+      return response;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
+  
+  async GetReceiptStatus() {
+    try {
+      const response = await Api.get("/excel/getReceiptStatus", {
+        responseType: "blob",
+      });
 
       FileDown(response);
 
