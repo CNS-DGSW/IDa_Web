@@ -4,6 +4,7 @@ import { Response } from "util/types/Response";
 const FileDown = (response: any) => {
   const headerLine: string | undefined =
     response.headers["content-disposition"];
+
   if (headerLine) {
     const startFileNameIndex = headerLine.indexOf("=") + 1;
     const filename = headerLine.substring(
