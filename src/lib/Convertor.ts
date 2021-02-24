@@ -4,6 +4,7 @@ import Grade from "util/enums/Grade";
 import Apply from "util/enums/Apply";
 import ApplyDetail from "util/enums/ApplyDetail";
 import applyDetailModel, { findNameByValue } from "models/ApplyDetailModel";
+import Score from "util/enums/Score";
 
 class Convertor {
   static Sex(sex: Sex | null) {
@@ -100,7 +101,6 @@ class Convertor {
 
   static ApplyDetailType(apply: ApplyDetail | null) {
     const model = applyDetailModel;
-    let result: string;
 
     if (apply === null) return "";
 
@@ -137,12 +137,65 @@ class Convertor {
       apply === ApplyDetail.NORTH_KOREAN_DEFECTORS ||
       apply === ApplyDetail.MIDDLE_SCHOOL_EDUCATION
     ) {
+      result = "";
+    } else if (value !== "마이스터인재전형" && value !== "지역우선전형") {
+      result = `${value}\n(${this.ApplyDetailType(apply)})`;
+    } else {
+      result = value;
+    }
+
+    return result;
+  }
+
+  static ApplyDetailTypeInfo(apply: ApplyDetail | null) {
+    if (apply === null) {
+      return "";
+    }
+    const value = findNameByValue(apply);
+    let result: string;
+
+    if (!value) result = "";
+    else if (
+      apply === ApplyDetail.FOREIGN_EDUCATION ||
+      apply === ApplyDetail.FOREIGN_SCHOOL ||
+      apply === ApplyDetail.NORTH_KOREAN_DEFECTORS ||
+      apply === ApplyDetail.MIDDLE_SCHOOL_EDUCATION
+    ) {
       result = `특례입학\n(${this.ApplyDetailType(apply)})`;
     } else if (value !== "마이스터인재전형" && value !== "지역우선전형") {
       result = `${value}\n(${this.ApplyDetailType(apply)})`;
     } else {
       result = value;
     }
+
+    return result;
+  }
+
+  static GradeAndFreeSem(grade: Score, freeSem: boolean) {
+    let result: string;
+
+    switch (grade) {
+      case Score.A:
+        result = "A/수 (5)";
+        break;
+      case Score.B:
+        result = "B/우 (4)";
+        break;
+      case Score.C:
+        result = "C/미 (3)";
+        break;
+      case Score.D:
+        result = "D/양 (2)";
+        break;
+      case Score.E:
+        result = "E/가 (1)";
+        break;
+      default:
+        result = "-";
+        break;
+    }
+
+    if (freeSem) result = "-";
 
     return result;
   }
