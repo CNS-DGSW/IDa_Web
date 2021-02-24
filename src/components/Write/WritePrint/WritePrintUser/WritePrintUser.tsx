@@ -1,5 +1,6 @@
 import Convertor from "lib/Convertor";
 import moment from "moment";
+import "moment/locale/ko";
 import React from "react";
 import Apply from "util/enums/Apply";
 import ApplyDetail from "util/enums/ApplyDetail";
@@ -8,6 +9,7 @@ import Relation from "util/enums/Relation";
 import "./WritePrintUser.scss";
 
 interface WritePrintUserProps {
+  teacherName: string;
   name: string;
   schoolName: string;
   studentTel: string;
@@ -39,6 +41,7 @@ interface WritePrintUserProps {
 }
 
 const WritePrintUser = ({
+  teacherName,
   name,
   schoolName,
   studentTel,
@@ -68,10 +71,18 @@ const WritePrintUser = ({
   totalScore1,
   totalScore2,
 }: WritePrintUserProps) => {
+  const firstPassed = moment("2021-01-01 18:00:00")
+    .locale("ko")
+    .format("yyyy. MM. DD(ddd) HH:mm");
+  const finalPassed = moment("2021-01-10 18:00:00")
+    .locale("ko")
+    .format("yyyy. MM. DD(ddd) HH:mm");
   return (
     <div className="write-print-user">
       <div className="write-print-user-title">
-        {`${moment().year() + 1}년도 대구소프트웨어고등학교 입학원서 제출용`}
+        {`${
+          moment().year() + 1
+        }년도 대구소프트웨어마이스터고등학교 입학원서 제출용`}
       </div>
 
       <table className="write-print-user-area">
@@ -354,10 +365,34 @@ const WritePrintUser = ({
           <b>
             보호자 : <b style={{ letterSpacing: "5px" }}>{parentName}</b> (인)
           </b>
+          {gradeType !== Grade.GED && (
+            <b>
+              담임교사 : <b style={{ letterSpacing: "5px" }}>{teacherName}</b>{" "}
+              (인)
+            </b>
+          )}
         </span>
         <br />
+        {gradeType !== Grade.GED && schoolName && (
+          <>
+            위의 기재 사항은 사실과 상이 없음을 확인하고, 귀교의 1학년
+            입학대상자로 추천합니다.
+            <br />
+            <br />
+            <div
+              style={{
+                width: "85%",
+                textAlign: "right",
+                fontSize: "16px",
+                fontWeight: 700,
+              }}
+            >
+              {schoolName}장 (직인)
+            </div>
+          </>
+        )}
         <b className="write-print-user-agree-title">
-          대구소프트웨어고등학교장 귀하
+          대구소프트웨어마이스터고등학교장 귀하
         </b>
       </div>
       <div className="write-print-user-cut">절취선</div>
@@ -378,7 +413,8 @@ const WritePrintUser = ({
                   style={{ whiteSpace: "pre-wrap", textAlign: "center" }}
                 >
                   <span className="title">
-                    {moment().year() + 1}학년도 대구소프트웨어고등학교 입학전형
+                    {moment().year() + 1}학년도 대구소프트웨어마이스터고등학교
+                    입학전형
                   </span>
                   <br />
                   <span className="subtitle">수 험 표</span>
@@ -387,6 +423,7 @@ const WritePrintUser = ({
               <tr>
                 <td
                   className="write-print-user-top-left write-print-user-bottom"
+                  style={{ textAlign: "center" }}
                   rowSpan={6}
                 >
                   {profileImage && <img src={profileImage} alt={"profile"} />}
@@ -435,7 +472,9 @@ const WritePrintUser = ({
                   colSpan={2}
                   className="write-print-user-top-left write-print-user-bottom-right"
                 >
-                  <b>대구소프트웨어고등학교장</b>
+                  <b style={{ fontSize: "12px" }}>
+                    대구소프트웨어마이스터고등학교장
+                  </b>
                 </td>
               </tr>
             </tbody>
@@ -454,10 +493,11 @@ const WritePrintUser = ({
                 style={{ whiteSpace: "pre-wrap", textAlign: "center" }}
               >
                 <span className="title">
-                  {moment().year() + 1}학년도 대구소프트웨어고등학교 입학전형
+                  {moment().year() + 1}학년도 대구소프트웨어마이스터고등학교
+                  입학전형
                 </span>
                 <br />
-                <span className="subtitle">수 험 표</span>
+                <span className="subtitle">접 수 증</span>
               </td>
             </tr>
             <tr>
@@ -487,7 +527,7 @@ const WritePrintUser = ({
             <tr>
               <th className="write-print-user-top-left">1차합격자발표</th>
               <td className="write-print-user-top-left write-print-user-right">
-                "ㅇ"
+                {firstPassed}
               </td>
             </tr>
             <tr>
@@ -495,7 +535,7 @@ const WritePrintUser = ({
                 합격자&nbsp;&nbsp;발표
               </th>
               <td className="write-print-user-top-left write-print-user-right">
-                {submitCode}
+                {finalPassed}
               </td>
             </tr>
             <tr>
@@ -503,7 +543,9 @@ const WritePrintUser = ({
                 colSpan={2}
                 className="write-print-user-top-left write-print-user-bottom-right"
               >
-                <b>대구소프트웨어고등학교장</b>
+                <b style={{ fontSize: "12px" }}>
+                  대구소프트웨어마이스터고등학교장
+                </b>
               </td>
             </tr>
           </tbody>

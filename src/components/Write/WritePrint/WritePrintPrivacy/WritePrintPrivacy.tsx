@@ -101,7 +101,7 @@ const WritePrintPrivacy = ({ name }: WritePrintPrivacyProps) => {
           지원자 성명 : {name} (인)
         </div>
         <div className="write-print-privacy-info-school">
-          대구소프트웨어고등학교장 귀하
+          대구소프트웨어마이스터고등학교장 귀하
         </div>
       </div>
     </>

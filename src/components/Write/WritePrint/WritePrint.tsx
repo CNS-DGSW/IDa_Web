@@ -7,8 +7,36 @@ import ReactToPrint from "react-to-print";
 import WritePrintPrivacy from "./WritePrintPrivacy";
 import WritePrintUser from "./WritePrintUser";
 import Grade from "util/enums/Grade";
+import ScoreGrade from "util/types/ScoreGrade";
+import FreeSemType from "util/types/FreeSem";
+import WritePrintGrade from "./WritePrintGrade";
+import WritePrintSchool from "./WritePrintSchool";
+import WritePrintParent from "./WritePrintParent";
 
 interface WritePrintProps {
+  teacherName: string;
+  absence1: number;
+  absence2: number;
+  absence3: number;
+  lateness1: number;
+  lateness2: number;
+  lateness3: number;
+  earlyLeave1: number;
+  earlyLeave2: number;
+  earlyLeave3: number;
+  absenceLecture1: number;
+  absenceLecture2: number;
+  absenceLecture3: number;
+  leadership11: boolean;
+  leadership12: boolean;
+  leadership21: boolean;
+  leadership22: boolean;
+  leadership31: boolean;
+  leadership32: boolean;
+  prize: number;
+  volunteer1: number;
+  volunteer2: number;
+  volunteer3: number;
   name: string;
   birth: string;
   studentTel: string;
@@ -40,9 +68,40 @@ interface WritePrintProps {
   submitCode: string;
   examCode: string;
   profileImage: string;
+  grades: ScoreGrade[];
+  freeSem: FreeSemType;
+  koreanScore: number;
+  englishScore: number;
+  mathScore: number;
+  otherScore: number;
+  socialScore: number;
+  scienceScore: number;
 }
 
 const WritePrint = ({
+  teacherName,
+  absence1,
+  absence2,
+  absence3,
+  lateness1,
+  lateness2,
+  lateness3,
+  earlyLeave1,
+  earlyLeave2,
+  earlyLeave3,
+  absenceLecture1,
+  absenceLecture2,
+  absenceLecture3,
+  leadership11,
+  leadership12,
+  leadership21,
+  leadership22,
+  leadership31,
+  leadership32,
+  prize,
+  volunteer1,
+  volunteer2,
+  volunteer3,
   name,
   birth,
   studentTel,
@@ -74,12 +133,21 @@ const WritePrint = ({
   submitCode,
   examCode,
   profileImage,
+  grades,
+  freeSem,
+  koreanScore,
+  englishScore,
+  mathScore,
+  otherScore,
+  scienceScore,
+  socialScore,
 }: WritePrintProps) => {
   return (
-    <>
-      <div className="print" ref={componentRef}>
+    <div className="print-area">
+      <div className="print" id="print" ref={componentRef}>
         <div className="print-page">
           <WritePrintUser
+            teacherName={teacherName}
             applyDetailType={applyDetailType}
             verteransNumber={verteransNumber}
             verteransCity={verteransCity}
@@ -115,178 +183,186 @@ const WritePrint = ({
           <WritePrintPrivacy name={name} />
         </div>
 
-        {/* 
-            <div className="print-area-content-title">개인 성적알림표</div>
-            <div className="print-area-content-number">
-              <div className="print-area-content-number-box">
-                <div className="color">접수번호</div>
-                <div></div>
-              </div>
-              <div className="print-area-content-number-box">
-                <div className="color">수험번호</div>
-                <div></div>
-              </div>
-            </div>
+        {applyType === Apply.SPECIAL && gradeType !== Grade.GED && (
+          <div className="print-page">
+            <WritePrintSchool
+              schoolName={schoolName}
+              applyDetailType={applyDetailType}
+            />
+          </div>
+        )}
 
-            <div className="print-area-content-personal">
-              <div className="print-area-content-personal-info">
-                <div className="color print-area-content-personal-head">
-                  인적사항
-                </div>
-                <div className="print-area-content-personal-head">
-                  {name}, {schoolName}
-                </div>
-              </div>
-              <div className="print-area-content-personal-birth">
-                <div className="color print-area-content-personal-head">
-                  생년월일
-                </div>
-                <div className="print-area-content-personal-head">{birth}</div>
-              </div>
-            </div>
+        <div className="print-page">
+          <WritePrintGrade
+            absence1={absence1}
+            absence2={absence2}
+            absence3={absence3}
+            lateness1={lateness1}
+            lateness2={lateness2}
+            lateness3={lateness3}
+            earlyLeave1={earlyLeave1}
+            earlyLeave2={earlyLeave2}
+            earlyLeave3={earlyLeave3}
+            absenceLecture1={absenceLecture1}
+            absenceLecture2={absenceLecture2}
+            absenceLecture3={absenceLecture3}
+            leadership11={leadership11}
+            leadership12={leadership12}
+            leadership21={leadership21}
+            leadership22={leadership22}
+            leadership31={leadership31}
+            leadership32={leadership32}
+            prize={prize}
+            volunteer1={volunteer1}
+            volunteer2={volunteer2}
+            volunteer3={volunteer3}
+            grade1={grade1}
+            grade2={grade2}
+            absence={absence}
+            volunteer={volunteer}
+            additional={additional}
+            totalScore1={totalScore1}
+            totalScore2={totalScore2}
+            applyType={applyType}
+            birth={birth}
+            name={name}
+            schoolName={schoolName}
+            gradeType={gradeType}
+            submitCode={submitCode}
+            examCode={examCode}
+            grades={grades}
+            freeSem={freeSem}
+            koreanScore={koreanScore}
+            mathScore={mathScore}
+            englishScore={englishScore}
+            otherScore={otherScore}
+            scienceScore={scienceScore}
+            socialScore={socialScore}
+          />
+        </div>
 
-            <div className="print-area-content-title">교과 성적</div>
-            <table className="print-area-content-list">
+        <div className="print-page">
+          <table className="print-table">
+            <colgroup>
+              <col width="initial" />
+              <col width="70" />
+              <col width="100" />
+              <col width="70" />
+              <col width="100" />
+              <col width="70" />
+              <col width="100" />
+            </colgroup>
+            <tbody>
               <tr>
-                <th className="color">과목</th>
-                <th className="color">국어</th>
-                <th className="color">영어</th>
-                <th className="color">수학</th>
-                <th className="color">사회</th>
-                <th className="color">과학</th>
-                <th className="color">선택 과목</th>
-                <th className="color">총점</th>
+                <td colSpan={7} className="print-table-title print-table-none">
+                  <div style={{ marginBottom: "15px" }}>자기소개서</div>
+                </td>
               </tr>
               <tr>
-                <th className="color">점수</th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <td>{gradeType === Grade.GED ? "고입검정" : schoolName}</td>
+                <th>접수번호</th>
+                <td>{submitCode}</td>
+                <th>수험번호</th>
+                <td>{examCode}</td>
+                <th>성명</th>
+                <td>{name} &nbsp; (인)</td>
               </tr>
-            </table>
-
-            <div className="print-area-content-title">자기소개서</div>
-            <table className="print-area-content-list">
               <tr>
-                <th className="color">출신학교</th>
-                <th>{schoolName}</th>
-                <th className="color">접수번호</th>
-                <th></th>
-                <th className="color">수험번호</th>
-                <th></th>
-                <th className="color">성명</th>
-                <th>{name} (인)</th>
+                <td colSpan={7} className="print-table-none empty"></td>
               </tr>
-            </table>
-            <div className="print-area-content-textarea">{selfIntroduce}</div>
-
-            <div className="print-area-content-title">학업계획서</div>
-            <table className="print-area-content-list">
               <tr>
-                <th className="color">출신학교</th>
-                <th>{schoolName}</th>
-                <th className="color">접수번호</th>
-                <th></th>
-                <th className="color">수험번호</th>
-                <th></th>
-                <th className="color">성명</th>
-                <th>{name} (인)</th>
-              </tr>
-            </table>
-            <div className="print-area-content-textarea">{studyPlan}</div>
-            <div className="print-area-content-Stitle">
-              2021학년도 사회통합전형 부정입학 방지를 위한
-            </div>
-            <div className="print-area-content-Btitle">학부모 확인서</div>
-
-            <table className="print-area-content-announcement">
-              <tr className="print-area-content-announcement-info">
-                <th rowSpan={3}>성명</th>
-                <th>학생</th>
-                <th>{name}</th>
-                <th rowSpan={3}>생년월일</th>
-                <th>학생</th>
-                <th colSpan={2}>{birth}</th>
-              </tr>
-              <tr className="print-area-content-announcement-info">
-                <th>보호자</th>
-                <th>{parentName}</th>
-                <th rowSpan={2}>보호자</th>
-                <th colSpan={2} rowSpan={2}></th>
-              </tr>
-              <tr className="print-area-content-announcement-info">
-                <th>관계</th>
-                <th>{parentRelation}</th>
-              </tr>
-              <tr className="print-area-content-announcement-info">
-                <th colSpan={2}>주소</th>
-                <th colSpan={4}>{address}</th>
-              </tr>
-              <tr className="print-area-content-announcement-info">
-                <th colSpan={2}>출신학교</th>
-                <th colSpan={4}>{schoolName}</th>
-              </tr>
-              <tr className="print-area-content-announcement-info">
-                <td rowSpan={2}>지원유형</td>
-                <td colSpan={2}></td>
-                <td colSpan={3}></td>
-              </tr>
-              <tr className="print-area-content-announcement-info">
-                <td colSpan={2}></td>
-                <td colSpan={3}></td>
-              </tr>
-              <tr className="print-area-content-announcement-text">
-                <th colSpan={6}>
-                  본인은 사회통합전형 지원 자격에 적합하게 지원하였음을
-                  서약하며, 지원 자격을 <br />
-                  준수하지 않거나 지원 자격이 없음에도 증명서 위조 등 부정한
-                  방법으로 합격한
-                  <br />
-                  사실이 확인될 경우에는 합격 및 입학이 취소될 수 있음을
-                  확인합니다.
+                <th style={{ textAlign: "left" }} colSpan={7}>
+                  자기소개서
                 </th>
               </tr>
-              <tr className="print-area-content-announcement-contract">
-                <th
-                  colSpan={6}
-                  className="print-area-content-announcement-contract-area"
-                >
-                  <div className="print-area-content-announcement-contract-area-box">
-                    <div className="print-area-content-announcement-contract-area-box-date">
-                      2020년
-                      <div />월<div />일
-                    </div>
-                    <div className="print-area-content-announcement-contract-area-box-check">
-                      학&nbsp;&nbsp;&nbsp;&nbsp;생: <div /> (서명)
-                    </div>
-                    <div className="print-area-content-announcement-contract-area-box-check">
-                      보호자: <div /> (서명)
-                    </div>
-                    <div className="print-area-content-announcement-contract-area-box-title">
-                      대구소프트웨어고등학교장 귀하
-                    </div>
-                  </div>
-                </th> */}
-        {/* </tr> */}
-        {/* </table> */}
-        {/* </div> */}
-        {/* </div> */}
+              <tr>
+                <td style={{ textAlign: "left" }} colSpan={7}>
+                  {selfIntroduce}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div className="print-page">
+          <table className="print-table">
+            <colgroup>
+              <col width="initial" />
+              <col width="70" />
+              <col width="100" />
+              <col width="70" />
+              <col width="100" />
+              <col width="70" />
+              <col width="100" />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td colSpan={7} className="print-table-title print-table-none">
+                  <div style={{ marginBottom: "15px" }}>학업계획서</div>
+                </td>
+              </tr>
+              <tr>
+                <td>{gradeType === Grade.GED ? "고입검정" : schoolName}</td>
+                <th>접수번호</th>
+                <td>{submitCode}</td>
+                <th>수험번호</th>
+                <td>{examCode}</td>
+                <th>성명</th>
+                <td>{name} &nbsp; (인)</td>
+              </tr>
+              <tr>
+                <td colSpan={7} className="print-table-none empty"></td>
+              </tr>
+              <tr>
+                <th style={{ textAlign: "left" }} colSpan={7}>
+                  학업계획서
+                </th>
+              </tr>
+              <tr>
+                <td style={{ textAlign: "left" }} colSpan={7}>
+                  {studyPlan}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        {applyType === Apply.SPECIAL &&
+          applyDetailType !== ApplyDetail.CITY_FIRST &&
+          applyDetailType !== ApplyDetail.MEISTER && (
+            <div className="print-page">
+              <WritePrintParent
+                name={name}
+                parentName={parentName}
+                birth={birth}
+                parentRelation={parentRelation}
+                postCode={postCode}
+                address={address}
+                applyType={applyType}
+                applyDetailType={applyDetailType}
+                gradeType={gradeType}
+                schoolName={schoolName}
+                graduatedDate={graduatedDate}
+              />
+            </div>
+          )}
       </div>
 
       <ReactToPrint
         pageStyle={`{ size: 2.5in 4in}`}
+        documentTitle="대구소프트웨어마이스터고등학교 인터넷 원서 접수"
         trigger={() => (
-          <div className="print">
-            <div className="print-printBtn">인쇄</div>{" "}
+          <div
+            className="print-printBtn"
+            id="print-printBtn"
+            style={{ display: "none" }}
+          >
+            인쇄
           </div>
         )}
         content={() => componentRef.current}
       />
-    </>
+    </div>
   );
 };
 

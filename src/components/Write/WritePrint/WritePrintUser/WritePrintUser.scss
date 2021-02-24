@@ -135,32 +135,32 @@
 
     &-school {
       &-right {
-        border-right: $bd-gray-900 2px solid !important;
+        border-right: $bd-gray 3px solid !important;
       }
       &-bottom {
-        border-bottom: $bd-gray-900 2px solid !important;
+        border-bottom: $bd-gray 3px solid !important;
       }
       &-top {
-        border-top: $bd-gray-900 2px solid !important;
+        border-top: $bd-gray 3px solid !important;
       }
       &-left {
-        border-left: $bd-gray-900 2px solid !important;
+        border-left: $bd-gray 3px solid !important;
       }
       &-top-left {
-        border-top: $bd-gray-900 2px solid !important;
-        border-left: $bd-gray-900 2px solid !important;
+        border-top: $bd-gray 3px solid !important;
+        border-left: $bd-gray 3px solid !important;
       }
       &-top-right {
-        border-top: $bd-gray-900 2px solid !important;
-        border-right: $bd-gray-900 2px solid !important;
+        border-top: $bd-gray 3px solid !important;
+        border-right: $bd-gray 3px solid !important;
       }
       &-bottom-left {
-        border-bottom: $bd-gray-900 2px solid !important;
-        border-left: $bd-gray-900 2px solid !important;
+        border-bottom: $bd-gray 3px solid !important;
+        border-left: $bd-gray 3px solid !important;
       }
       &-bottom-right {
-        border-bottom: $bd-gray-900 2px solid !important;
-        border-right: $bd-gray-900 2px solid !important;
+        border-bottom: $bd-gray 3px solid !important;
+        border-right: $bd-gray 3px solid !important;
       }
     }
   }
@@ -171,7 +171,7 @@
     text-align: center;
     border: 1px solid $bd-gray;
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 600;
     padding: 8px 0;
     align-items: center;
     white-space: pre-wrap;
