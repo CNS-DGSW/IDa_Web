@@ -5,6 +5,7 @@ import useStore from "lib/hooks/useStore";
 import { InterViewScoreType } from "util/types/Score";
 import ExcelApi from "assets/api/ExcelApi";
 import { toast } from "react-toastify";
+import { useHistory } from "react-router-dom";
 
 const InterViewScoreContainer = ({}) => {
   const { store } = useStore();
@@ -13,8 +14,9 @@ const InterViewScoreContainer = ({}) => {
 
   const [teamCount, setTeamCount] = useState<number[]>();
   const [interView, setInterView] = useState<string>("COOPERATION");
-  const [team, setTeam] = useState<string>("1");
+  const [team, setTeam] = useState<string>("0");
   const [scoreDate, setScoreDate] = useState<InterViewScoreType>();
+  const history = useHistory();
 
   const uploadFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length) {
@@ -24,13 +26,18 @@ const InterViewScoreContainer = ({}) => {
           toast.success("파일 업로드 되었습니다");
         })
         .catch((err) => {
-          console.log(err);
+          if (err.message.includes("400")) {
+            toast.warn("파일을 잘못선택하였습니다");
+          }
         });
     }
   };
 
   const tryDownExcel = async () => {
-    await ExcelApi.GetInterviewScoreExcel(interView).catch((err) => {
+    await ExcelApi.GetInterviewScoreExcel(
+      interView,
+      team === "0" ? undefined : team
+    ).catch((err) => {
       console.log(err);
     });
   };
@@ -46,12 +53,15 @@ const InterViewScoreContainer = ({}) => {
   }, [interView]);
 
   const tryGetScore = useCallback(async () => {
-    await getInterviewScore(interView, team)
+    await getInterviewScore(interView, team === "0" ? undefined : team)
       .then((res) => {
         setScoreDate(res);
       })
       .catch((err) => {
-        console.log(err);
+        if (err.message.includes("403")) {
+          toast.warn("어드민으로 로그인해주세요");
+          history.push("/");
+        }
       });
   }, [interView, team, teamCount, scoreDate]);
 

@@ -36,6 +36,7 @@ const InterViewScore = ({
           <option value="1">심층면접</option>
         </select>
         <select name="" id="" onChange={(e) => setTeam(e.target.value)}>
+          <option value="0">전체</option>
           {teamCount &&
             teamCount.map((i, key) => (
               <option key={key} value={key + 1}>
@@ -48,7 +49,11 @@ const InterViewScore = ({
         </button>
         <div className="SecondScore-buttons-file">
           <span>소프트웨어역량평가</span>
-          <label htmlFor="input-file1" className="buttons">
+          <label
+            htmlFor="input-file1"
+            className="buttons"
+            style={{ marginLeft: "1rem" }}
+          >
             업로드
           </label>
           <input
@@ -73,7 +78,7 @@ const InterViewScore = ({
         <th>점수</th>
         <th>합산점수</th>
         {scoreDate?.data.map((i, key) => (
-          <tr>
+          <tr key={key}>
             <td>{i.examCode}</td>
             <td>{i.userName}</td>
             <td>{i.examCode}</td>

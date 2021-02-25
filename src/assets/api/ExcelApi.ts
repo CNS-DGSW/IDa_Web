@@ -55,10 +55,12 @@ class ExcelApi {
     }
   }
 
-  async GetInterviewScoreExcel(category: string) {
+  async GetInterviewScoreExcel(category: string, team?: string) {
     try {
+      const teamNumber = team ? `&teamNumber=${team}` : "";
+
       const response = await Api.get(
-        `/excel/getInterviewScore?category=${category}`,
+        `/excel/getInterviewScore?category=${category}` + teamNumber,
         {
           responseType: "blob",
         }

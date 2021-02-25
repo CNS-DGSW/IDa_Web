@@ -25,40 +25,16 @@ const SecondTypeScoreContainer = ({}) => {
 
   const { getSecondScore } = store.ScoreStore;
 
-  /**
-   * absenceScore
-   * additional 가산점
-   *
-   * absenceScore: 10
-    additionalScore: 0 가산점
-    applyDetailType: null
-    applyType: null 
-    cityName: null 도시이름
-    codingTestScore: 0 코딩점수
-    cooperationScore: 0 창의 협력
-    examCode: 210003 수험번호 
-    finalApplyDetailType: null 
-    finalApplyType: null 
-    gradeScore: 0 교과점수
-    gradeType: null
-    interviewScore: 0 심층
-    jobAptitudeScore: 0 직무적성
-    swAbilityScore: 0 sw 역량 점수
-    totalInterviewScore: 0 총 면접점수
-    totalScore: 10 총점수 
-    userIdx: 2 
-    userName: "정성훈" 이름 
-    volunteerScore: 0 봉사점수
-   */
-
   const handleSecondScore = async () => {
     await getSecondScore()
       .then((res) => {
+        console.log(res);
+
         setScoreDate(res);
       })
       .catch((err) => {
         if (err.message.includes("403")) {
-          console.log("어드민으로 로그인해주세요");
+          toast.warn("어드민으로 로그인해주세요");
           history.push("/");
         }
       });
@@ -67,35 +43,27 @@ const SecondTypeScoreContainer = ({}) => {
   const tryDown = (key: string) => {
     switch (key) {
       case "sw":
-        GetSoftWare()
-          .then((res) => {})
-          .catch((err) => {
-            console.log(err);
-          });
+        GetSoftWare().catch((err) => {
+          console.log(err);
+        });
         break;
 
       case "job":
-        GetJob()
-          .then((res) => {})
-          .catch((err) => {
-            console.log(err);
-          });
+        GetJob().catch((err) => {
+          console.log(err);
+        });
         break;
 
       case "coding":
-        GetCodingTest()
-          .then((res) => {})
-          .catch((err) => {
-            console.log(err);
-          });
+        GetCodingTest().catch((err) => {
+          console.log(err);
+        });
         break;
 
       case "secondScore":
-        GetSecondScoreExcel()
-          .then((res) => {})
-          .catch((err) => {
-            console.log(err);
-          });
+        GetSecondScoreExcel().catch((err) => {
+          console.log(err);
+        });
         break;
     }
   };
@@ -113,7 +81,9 @@ const SecondTypeScoreContainer = ({}) => {
               toast.success("파일 업로드 되었습니다");
             })
             .catch((err) => {
-              console.log(err);
+              if (err.message.includes("400")) {
+                toast.warn("파일을 잘못선택하였습니다");
+              }
             });
           break;
         case "job":
@@ -122,7 +92,9 @@ const SecondTypeScoreContainer = ({}) => {
               toast.success("파일 업로드 되었습니다");
             })
             .catch((err) => {
-              console.log(err);
+              if (err.message.includes("400")) {
+                toast.warn("파일을 잘못선택하였습니다");
+              }
             });
           break;
 
@@ -132,7 +104,9 @@ const SecondTypeScoreContainer = ({}) => {
               toast.success("파일 업로드 되었습니다");
             })
             .catch((err) => {
-              console.log(err);
+              if (err.message.includes("400")) {
+                toast.warn("파일을 잘못선택하였습니다");
+              }
             });
           break;
       }

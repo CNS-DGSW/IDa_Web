@@ -122,22 +122,29 @@ const SecondTypeScore = ({
         <th>합격여부</th>
         <th>최종합격전형</th>
         {scoreDate?.data.map((i, key) => (
-          <tr>
+          <tr key={key}>
             <td>{i.examCode}</td>
             {/* 수험번호 */}
             <td>{i.userName}</td>
             {/* 이름 */}
-            <td>{i.gradeType}</td>
+            <td>
+              {i.gradeType === "UNGRADUATED" ? <>미졸업</> : <></>}
+              {i.gradeType === "GRADUATED" ? <>졸업</> : <></>}
+            </td>
             {/* 학력 */}
             <td>{}</td>
             {/* 출신학교 */}
             <td>{i.cityName}</td>
             {/* 지역 */}
-            <td>{}</td>
+            <td>
+              {i.applyType === "COMMON" ? <>일반전형</> : <></>}
+              {i.applyType === "SPECIAL" ? <>특별전형</> : <></>}
+              {i.applyType === "OTHER" ? <>특례입학</> : <></>}
+            </td>
             {/* 1차 합격전형 */}
             <td>{i.gradeScore}</td>
             {/* 교과*/}
-            <td>{}</td>
+            <td>{i.absenceScore}</td>
             {/* 출결 */}
             <td>{i.volunteerScore}</td>
             {/* 봉사 */}
@@ -146,18 +153,22 @@ const SecondTypeScore = ({
             <td>{i.jobAptitudeScore}</td>
             {/* 직무적성 */}
             <td>{i.totalInterviewScore}</td>
-            {/* 면접 */}
+            {/* 면접 점수 */}
             <td>{i.swAbilityScore}</td>
             {/* sw역량 */}
-            <td>{}</td>
+            <td>{i.cooperationScore}</td>
             {/* 창의협업역량 */}
             <td>{i.interviewScore}</td>
             {/* 심층면접 */}
             <td>{i.totalScore}</td>
             {/* 합계 */}
-            <td>{i.finalApplyType}</td>
-            {/* 합격여부 */}
             <td>{}</td>
+            {/* 합격여부 */}
+            <td>
+              {i.finalApplyType === "COMMON" ? <>일반전형</> : <></>}
+              {i.finalApplyType === "SPECIAL" ? <>특별전형</> : <></>}
+              {i.finalApplyType === "OTHER" ? <>특례입학</> : <></>}
+            </td>
             {/* 최종합격전형 */}
           </tr>
         ))}

@@ -1,0 +1,24 @@
+/* your css code */
+@import "util/colors.scss";
+.Admin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &-header {
+    display: flex;
+    width: 70%;
+    justify-content: space-around;
+    font-size: 1.3rem;
+  }
+}
+.HeaderBtn {
+  padding: 0.2rem 0.2rem;
+  border: 1px solid black;
+  cursor: pointer;
+  transition: 0.4s;
+  border-radius: 3px;
+  &:hover {
+    background-color: $ft-blue-100;
+    color: white;
+  }
+}

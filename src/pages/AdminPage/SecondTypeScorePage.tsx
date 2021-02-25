@@ -1,9 +1,13 @@
 import React from "react";
-import DefaultTemplate from "components/common/Template/DefaultTemplate";
 import SecondTypeScoreContainer from "containers/Admin/SecondTypeScore/SecondTypeScoreContainer";
+import DefaultAdminHeader from "components/Admin/DefaultAdminHeader";
 
 const SecondTypeScorePage = () => {
-  return <SecondTypeScoreContainer />;
+  return (
+    <DefaultAdminHeader>
+      <SecondTypeScoreContainer />
+    </DefaultAdminHeader>
+  );
 };
 
 export default SecondTypeScorePage;

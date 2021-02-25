@@ -64,7 +64,7 @@ class ScoreStore {
   @action
   getInterviewScore = async (
     category: string,
-    teamNumber: string
+    teamNumber?: string
   ): Promise<InterViewScoreType> => {
     try {
       const response: InterViewScoreType = await ScoreApi.getInterviewScore(

@@ -28,10 +28,11 @@ class ScoreApi {
       throw new Error(`${error}`);
     }
   }
-  async getInterviewScore(category: string, teamNumber: string) {
+  async getInterviewScore(category: string, teamNumber?: string) {
     try {
+      const team = teamNumber ? `&teamNumber=${teamNumber}` : "";
       const { data } = await Api.get(
-        `/score/getInterviewScore?category=${category}&teamNumber=${teamNumber}`
+        `/score/getInterviewScore?category=${category}` + team
       );
       return data;
     } catch (error) {
