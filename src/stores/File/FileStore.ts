@@ -10,7 +10,10 @@ class FileStore {
     try {
       const response = await FileApi.DownloadApplyInfo();
 
-      FileDownload(response, "대구소프트웨어고등학교_2021학년도신입생입학전형요강.hwp");
+      FileDownload(
+        response,
+        "대구소프트웨어고등학교_2021학년도신입생입학전형요강.hwp"
+      );
 
       return new Promise((resolve: (response: any) => void, reject) => {
         resolve(response);
