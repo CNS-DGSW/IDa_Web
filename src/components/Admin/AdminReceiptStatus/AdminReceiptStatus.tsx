@@ -1,28 +1,41 @@
+import Convertor from "lib/Convertor";
+import moment from "moment";
 import React from "react";
 import { Receipt } from "util/types/ReceiptType";
 import "./AdminReceiptStatus.scss";
+import { useHistory } from "react-router-dom";
 
 interface AdminReceiptStatusProps {
   receiptStatus: Receipt[];
+  setReceiptStatus: React.Dispatch<React.SetStateAction<Receipt[]>>;
   setSearch: React.Dispatch<React.SetStateAction<string>>;
   search: string;
+  getReceiptSatusExcel: () => Promise<any>;
+  handleCancelSubmit: (userIdx: number) => Promise<Response>;
 }
 
 const AdminReceiptStatus = ({
   receiptStatus,
+  setReceiptStatus,
   setSearch,
   search,
+  getReceiptSatusExcel,
+  handleCancelSubmit,
 }: AdminReceiptStatusProps) => {
+  const history = useHistory();
+
   return (
     <>
       <div className="receipt">
         <div className="receipt-title">신입생 입학 전형 원부</div>
-        <div className="receipt-btn">현자료 엑셀 내려받기</div>
+        <div className="receipt-btn" onClick={() => getReceiptSatusExcel()}>
+          현자료 엑셀 내려받기
+        </div>
 
         <input
           type="text"
           className="receipt-input"
-          placeholder="검색"
+          placeholder="통합검색"
           onChange={(e) => setSearch(e.target.value)}
         />
 
@@ -50,11 +63,16 @@ const AdminReceiptStatus = ({
             ? receiptStatus
                 .filter(
                   (name) =>
-                    name.name === search ||
-                    name.cityName === search ||
-                    name.examCode === search ||
-                    name.submitCode === search ||
-                    name.schoolName === search
+                    (typeof name.name === "string" &&
+                      name.name.includes(search)) ||
+                    (typeof name.cityName === "string" &&
+                      name.cityName.includes(search)) ||
+                    (typeof name.examCode === "string" &&
+                      name.examCode.includes(search)) ||
+                    (typeof name.submitCode === "string" &&
+                      name.submitCode.includes(search)) ||
+                    (typeof name.schoolName === "string" &&
+                      name.schoolName.includes(search))
                 )
                 .map((filteredName) => (
                   <tr>
@@ -62,7 +80,10 @@ const AdminReceiptStatus = ({
                     <th>{filteredName.submitCode}</th>
                     <th>{filteredName.examCode}</th>
                     <th>{filteredName.name}</th>
-                    <th>{filteredName.birth}</th>
+                    <th>
+                      {filteredName.birth &&
+                        moment(filteredName.birth).format("yyyy-MM-DD")}
+                    </th>
                     <th>{filteredName.cityName}</th>
                     <th>{filteredName.schoolName}</th>
                     <th>{filteredName.gradeType}</th>
@@ -74,7 +95,30 @@ const AdminReceiptStatus = ({
                     <th>{filteredName.totalScore}</th>
                     <th>{filteredName.isSubmit ? "제출완료" : "미제출"}</th>
                     <th>
-                      {filteredName.isSubmit ? <button>제출취소</button> : ""}
+                      {filteredName.isSubmit ? (
+                        <button
+                          onClick={() => {
+                            handleCancelSubmit(filteredName.userIdx).then(
+                              (res) => {
+                                if (res.status === 200) {
+                                  const arr = receiptStatus.slice();
+                                  arr[
+                                    arr.findIndex(
+                                      (data) =>
+                                        data.userIdx === filteredName.userIdx
+                                    )
+                                  ].isSubmit = false;
+                                  setReceiptStatus(arr);
+                                }
+                              }
+                            );
+                          }}
+                        >
+                          제출취소
+                        </button>
+                      ) : (
+                        ""
+                      )}
                     </th>
                     <th>
                       <button>출력</button>
@@ -87,10 +131,10 @@ const AdminReceiptStatus = ({
                   <th>{res.submitCode}</th>
                   <th>{res.examCode}</th>
                   <th>{res.name}</th>
-                  <th>{res.birth}</th>
+                  <th>{res.birth && moment(res.birth).format("yyyy-MM-DD")}</th>
                   <th>{res.cityName}</th>
                   <th>{res.schoolName}</th>
-                  <th>{res.gradeType}</th>
+                  <th>{Convertor.GradeType(res.gradeType)}</th>
                   <th>{res.applyTypeString}</th>
                   <th>{res.gradeScore}</th>
                   <th>{res.absenceScore}</th>
@@ -98,9 +142,37 @@ const AdminReceiptStatus = ({
                   <th>{res.additionalScore}</th>
                   <th>{res.totalScore}</th>
                   <th>{res.isSubmit ? "제출완료" : "미제출"}</th>
-                  <th>{res.isSubmit ? <button>제출취소</button> : ""}</th>
                   <th>
-                    <button>출력</button>
+                    {res.isSubmit ? (
+                      <button
+                        onClick={() => {
+                          handleCancelSubmit(res.userIdx).then((response) => {
+                            if (response.status === 200) {
+                              const arr = receiptStatus.slice();
+                              arr[
+                                arr.findIndex(
+                                  (data) => data.userIdx === res.userIdx
+                                )
+                              ].isSubmit = false;
+                              setReceiptStatus(arr);
+                            }
+                          });
+                        }}
+                      >
+                        제출취소
+                      </button>
+                    ) : (
+                      ""
+                    )}
+                  </th>
+                  <th>
+                    <button
+                      onClick={() =>
+                        window.open(`/print?userIdx=${res.userIdx}`, "_blank")
+                      }
+                    >
+                      출력
+                    </button>
                   </th>
                 </tr>
               ))}
