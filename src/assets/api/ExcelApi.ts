@@ -65,7 +65,7 @@ class ExcelApi {
           responseType: "blob",
         }
       );
-      
+
       FileDown(response);
 
       return response;
@@ -73,7 +73,7 @@ class ExcelApi {
       throw new Error(`${error}`);
     }
   }
-  
+
   async GetReceiptStatus() {
     try {
       const response = await Api.get("/excel/getReceiptStatus", {
@@ -93,7 +93,7 @@ class ExcelApi {
       const formData = new FormData();
       formData.append("file", file);
 
-      const response = await Api.post(`/excel/uploadCodingTest`, file);
+      const response = await Api.post(`/excel/uploadCodingTest`, formData);
 
       return response;
     } catch (error) {
@@ -106,7 +106,7 @@ class ExcelApi {
       const formData = new FormData();
       formData.append("file", file);
 
-      const response = await Api.post(`/excel/uploadInterviewScore`, file);
+      const response = await Api.post(`/excel/uploadInterviewScore`, formData);
 
       return response;
     } catch (error) {
@@ -119,7 +119,7 @@ class ExcelApi {
       const formData = new FormData();
       formData.append("file", file);
 
-      const response = await Api.post(`/excel/uploadJobAptitude`, file);
+      const response = await Api.post(`/excel/uploadJobAptitude`, formData);
 
       return response;
     } catch (error) {
@@ -132,7 +132,7 @@ class ExcelApi {
       const formData = new FormData();
       formData.append("file", file);
 
-      const response = await Api.post(`/excel/uploadSwAbility`, file);
+      const response = await Api.post(`/excel/uploadSwAbility`, formData);
 
       return response;
     } catch (error) {
