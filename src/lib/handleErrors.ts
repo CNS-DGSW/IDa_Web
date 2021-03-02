@@ -15,7 +15,11 @@ const handleWriteError = (err: Error, history?: History) => {
 };
 
 const handleGetWriteError = (err: Error, history?: History) => {
-  if (err.message.includes("401") || err.message.includes("410")) {
+  if (
+    err.message.includes("400") ||
+    err.message.includes("401") ||
+    err.message.includes("410")
+  ) {
     if (history) history.push("/login");
     toast.warn("로그인이 필요합니다.");
   } else if (err.message.includes("404")) {
