@@ -1,10 +1,22 @@
 @import "util/colors.scss";
 
 .print {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding-bottom: 4rem;
+  &-area {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  &-page {
+    width: 216mm;
+    min-height: 279mm;
+    padding: 15mm;
+    background: white;
+    display: block;
+    @media print {
+      page-break-after: always;
+    }
+  }
 
   &-printBtn {
     width: 10rem;
@@ -17,337 +29,36 @@
     color: $ft-white;
   }
 
-  &-area {
+  &-table {
     width: 100%;
-    max-width: 1100px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 3rem;
-    padding: 0 2rem;
-
-    &-title {
-      font-weight: 600;
-      font-size: 1.4rem;
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 12px;
+    td,
+    th {
+      border: $bd-gray 1px solid;
     }
-
-    &-content {
-      width: 100%;
-      margin-top: 0.8rem;
-      &-title {
-        display: flex;
-        justify-content: center;
-        font-size: 1.4rem;
-        font-weight: 600;
-        margin-top: 4rem;
-        margin-bottom: 2rem;
-      }
-
-      &-Btitle {
-        display: flex;
-        justify-content: center;
-        font-size: 1.6rem;
-        font-weight: 600;
-      }
-
-      &-Stitle {
-        display: flex;
-        justify-content: center;
-        font-size: 1rem;
-        font-weight: 600;
-        margin-top: 2rem;
-      }
-
-      &-number {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-
-        &-box {
-          width: 16rem;
-          height: 2.5rem;
-          border: 1px solid $bd-gray;
-          display: flex;
-
-          div {
-            width: 8rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          }
-        }
-      }
-
-      &-personalinfo {
-        width: 100%;
-        border-collapse: collapse;
-        border: 1px solid $bd-gray;
-        box-sizing: border-box;
-        margin-top: 0.8rem;
-        &-area {
-          width: 100%;
-          &-head {
-            width: 2rem;
-            height: 2.5rem;
-            border: 1px solid $bd-gray;
-          }
-          &-nomal {
-            width: 6rem;
-            height: 2.5rem;
-            border: 1px solid $bd-gray;
-          }
-          &-body {
-            width: 10rem;
-            height: 2.5rem;
-            border: 1px solid $bd-gray;
-          }
-          &-photo {
-            width: 10rem;
-            height: 2.5rem;
-            border: 1px solid $bd-gray;
-          }
-        }
-      }
-
-      &-list {
-        width: 100%;
-        border-collapse: collapse;
-        border: 1px solid $bd-gray;
-        box-sizing: border-box;
-        margin-top: 0.8rem;
-
-        tr {
-          width: 100%;
-          th {
-            width: 8rem;
-            height: 2.5rem;
-            border: 1px solid $bd-gray;
-          }
-          td {
-            width: 8rem;
-            height: 3rem;
-            border: 1px solid $bd-gray;
-          }
-        }
-      }
-
-      &-announcement {
-        width: 100%;
-        border-collapse: collapse;
-        border: 1px solid $bd-gray;
-        box-sizing: border-box;
-        margin-top: 0.8rem;
-
-        &-info {
-          width: 100%;
-          font-weight: 700;
-          th {
-            width: 8rem;
-            height: 2.5rem;
-            border: 1px solid $bd-gray;
-          }
-          td {
-            width: 8rem;
-            height: 5rem;
-            border: 1px solid $bd-gray;
-          }
-        }
-
-        &-text {
-          font-size: 1.4rem;
-          font-weight: 400;
-          th {
-            width: 8rem;
-            height: 12rem;
-            border: 1px solid $bd-gray;
-          }
-        }
-
-        &-contract {
-          &-area {
-            width: 8rem;
-            height: 18rem;
-            border: 1px solid $bd-gray;
-
-            &-box {
-              width: 100%;
-              &-date {
-                font-size: 1.6rem;
-                font-weight: 500;
-                display: flex;
-                justify-content: center;
-                div {
-                  width: 6rem;
-                }
-              }
-              &-check {
-                font-size: 1.6rem;
-                font-weight: 500;
-                margin-top: 1rem;
-                display: flex;
-                justify-content: center;
-                div {
-                  width: 6rem;
-                }
-              }
-              &-title {
-                font-size: 1.6rem;
-                font-weight: 500;
-                margin-top: 2rem;
-              }
-            }
-          }
-        }
-      }
-
-      &-info {
-        width: 100%;
-        border: 1px solid $bd-gray;
-        margin-top: 0.8rem;
-        padding: 2rem 0;
-
-        &-text {
-          text-align: center;
-          font-size: 1.2rem;
-          display: flex;
-          justify-content: center;
-        }
-
-        &-date {
-          margin-top: 1.4rem;
-          display: flex;
-          justify-content: center;
-          font-size: 1.4rem;
-        }
-
-        &-people {
-          margin-top: 1.4rem;
-          padding: 0 15rem;
-          font-size: 1.2rem;
-          display: flex;
-          justify-content: space-between;
-        }
-
-        &-school {
-          font-size: 1.6rem;
-          font-weight: 600;
-          margin-top: 2rem;
-          display: flex;
-          justify-content: center;
-        }
-      }
-
-      &-line {
-        margin-top: 2rem;
-        text-align: center;
-        font-size: 1.1rem;
-
-        hr {
-          border: 1px dashed $bd-gray;
-          margin-top: 0.6rem;
-        }
-      }
-
-      &-cardarea {
-        margin-top: 0.8rem;
-        display: flex;
-        justify-content: space-between;
-
-        hr {
-          border: 1px dashed $bd-gray;
-        }
-
-        &-card {
-          width: 32rem;
-          height: 25rem;
-
-          &-deed {
-            width: 100%;
-            border: 1px solid $bd-gray;
-            border-collapse: collapse;
-            box-sizing: border-box;
-
-            &-text {
-              width: 100%;
-              th {
-                width: 8rem;
-                height: 10rem;
-                border: 1px solid $bd-gray;
-              }
-            }
-
-            &-list {
-              width: 100%;
-              th {
-                width: 10rem;
-                height: 2.5rem;
-                border: 1px solid $bd-gray;
-              }
-            }
-          }
-        }
-      }
-
-      &-solo {
-        width: 100%;
-        margin-top: 4rem;
-
-        &-title {
-          display: flex;
-          justify-content: center;
-          font-size: 1.6rem;
-        }
-
-        &-list {
-          padding: 2rem;
-          border: 1px solid $bd-gray;
-          margin-top: 1rem;
-
-          &-tap {
-            margin-top: 1rem;
-          }
-        }
-      }
-
-      &-personal {
-        width: 100%;
-        display: flex;
-        margin-top: 1rem;
-        border: 1px solid $bd-gray;
-
-        &-info {
-          width: 70%;
-          display: flex;
-        }
-
-        &-birth {
-          width: 30%;
-          display: flex;
-        }
-
-        &-head {
-          width: 50%;
-          height: 2.5rem;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-      }
-
-      &-textarea {
-        width: 100%;
-        border: 1px solid $bd-gray;
-        margin-top: 0.6rem;
-        padding: 1rem;
-      }
+    td {
+      padding: 4px 2px 4px 2px;
+    }
+    .empty:after {
+      content: "Empty cell";
+      visibility: hidden;
+    }
+    th {
+      padding: 4px 2px 4px 2px;
+      font-weight: 600;
+      background-color: $bg-gray-50;
+    }
+    &-title {
+      font-size: 20px;
+      font-weight: 700;
+    }
+    &-none {
+      border: none !important;
+    }
+    &-left {
+      text-align: left;
     }
   }
-}
-
-.color {
-  background-color: $bg-gray-50;
-}
-
-.title {
-  font-size: 2rem;
 }

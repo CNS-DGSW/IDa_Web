@@ -1,46 +1,48 @@
 @import "util/colors.scss";
 
-td {
-  width: 13%;
-  height: 3rem;
-  text-align: center;
-
-  select {
-    width: 80%;
-    padding-left: 1rem;
-    border: none;
-    border: 1px solid $bd-gray-700;
-    border-radius: 2px;
-    &:focus {
-      border: 1px solid $bd-blue;
-      outline: none;
-    }
-  }
-
-  input {
-    width: 80%;
+.write-grade-list-item {
+  td {
+    width: 13%;
+    height: 3rem;
     text-align: center;
-    border: none;
-    border: 1px solid $bd-gray-700;
-    border-radius: 2px;
-    &:focus {
-      border: 1px solid $bd-blue;
-      outline: none;
+
+    select {
+      width: 80%;
+      padding-left: 1rem;
+      border: none;
+      border: 1px solid $bd-gray-700;
+      border-radius: 2px;
+      &:focus {
+        border: 1px solid $bd-blue;
+        outline: none;
+      }
+    }
+
+    input {
+      width: 80%;
+      text-align: center;
+      border: none;
+      border: 1px solid $bd-gray-700;
+      border-radius: 2px;
+      &:focus {
+        border: 1px solid $bd-blue;
+        outline: none;
+      }
     }
   }
-}
 
-.delete {
-  width: 90%;
-  height: 1.8rem;
-  border: none;
-  border: 1px solid $bd-gray-700;
-  border-radius: 4px;
-  background-color: $bg-white;
-  &:focus {
-    outline: none;
-    background-color: $bg-blue;
-    color: $ft-white;
+  .delete {
+    width: 90%;
+    height: 1.8rem;
     border: none;
+    border: 1px solid $bd-gray-700;
+    border-radius: 4px;
+    background-color: $bg-white;
+    &:focus {
+      outline: none;
+      background-color: $bg-blue;
+      color: $ft-white;
+      border: none;
+    }
   }
 }

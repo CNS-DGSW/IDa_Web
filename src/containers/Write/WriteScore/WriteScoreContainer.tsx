@@ -4,6 +4,7 @@ import useStore from "lib/hooks/useStore";
 import WriteScore from "components/Write/WriteScore";
 import { handleGetWriteError } from "lib/handleErrors";
 import { useHistory, withRouter } from "react-router-dom";
+import useQuery from "lib/hooks/useQuery";
 
 const WriteScoreContainer = ({}) => {
   const { store } = useStore();
@@ -12,6 +13,8 @@ const WriteScoreContainer = ({}) => {
   const { gradeType } = store.WriteStore;
 
   const history = useHistory();
+
+  const query = useQuery();
 
   const [grade1, setGrade1] = useState<number>(0);
   const [grade2, setGrade2] = useState<number>(0);
@@ -25,7 +28,7 @@ const WriteScoreContainer = ({}) => {
 
   const getScoreCallback = useCallback(() => {
     if (gradeType) {
-      getScore()
+      getScore(Number(query.get("userIdx")))
         .then((res) => {
           setGrade1(res.data.grade1);
           setGrade2(res.data.grade2);
@@ -37,8 +40,18 @@ const WriteScoreContainer = ({}) => {
             setTotalScore1(res.data.grade1);
             setTotalScore2(res.data.grade2);
           } else {
-            setTotalScore1(res.data.grade1 + res.data.absence + res.data.volunteer + res.data.additional);
-            setTotalScore2(res.data.grade2 + res.data.absence + res.data.volunteer + res.data.additional);
+            setTotalScore1(
+              res.data.grade1 +
+                res.data.absence +
+                res.data.volunteer +
+                res.data.additional
+            );
+            setTotalScore2(
+              res.data.grade2 +
+                res.data.absence +
+                res.data.volunteer +
+                res.data.additional
+            );
           }
         })
         .catch((err: Error) => {

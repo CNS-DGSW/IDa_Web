@@ -1,0 +1,32 @@
+.print-school {
+  border: 2px solid #000;
+  padding: 20px;
+  margin-top: 20mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 230mm;
+  text-align: center;
+  &-title {
+    // margin-top: 80px;
+    font-size: 33pt;
+    text-align: center;
+  }
+  &-content {
+    text-align: left;
+    font-size: 20pt;
+    line-height: 160%;
+    span {
+      display: inline-block;
+      width: 30px;
+    }
+  }
+  &-date {
+    font-size: 23pt;
+    line-height: 160%;
+  }
+  &-footer {
+    font-size: 28pt;
+    line-height: 160%;
+  }
+}

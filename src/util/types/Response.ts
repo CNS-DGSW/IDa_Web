@@ -86,7 +86,7 @@ export interface SchoolInfoResponse extends Response {
 
 export interface ProfileInfoResponse extends Response {
   data: {
-    profileImage: string;
+    profileImage: string | null;
   };
 }
 
@@ -190,4 +190,14 @@ export interface ReceiptResponse extends Response {
 
 export interface SchoolCityResponse extends Response {
   data: SchoolCity[];
+}
+
+export interface ResultStatusResponse extends Response {
+  data: {
+    examCode: string;
+    isPrintedApplicationArrived: boolean;
+    isPassedFirstApply: boolean | null;
+    isSubmit: boolean;
+    submitCode: string;
+  };
 }

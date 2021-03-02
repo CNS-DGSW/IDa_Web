@@ -1,0 +1,230 @@
+@import "util/colors.scss";
+
+.write-print-user {
+  width: 100%;
+
+  &-title {
+    font-weight: 700;
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  &-number {
+    display: flex;
+    justify-content: space-between;
+    &-box {
+      display: flex;
+      font-size: 12px;
+      border-top: 1px solid $bd-gray;
+      border-left: 1px solid $bd-gray;
+      border-right: 1px solid $bd-gray;
+      border-collapse: collapse;
+      &-title {
+        font-weight: 600;
+        padding: 4px 2px 4px 2px;
+        border-right: 1px solid $bd-gray;
+        width: 95px;
+        text-align: center;
+      }
+      &-value {
+        padding: 4px 2px 4px 2px;
+        width: 109px;
+      }
+    }
+  }
+  &-profile {
+    height: 130px;
+    overflow: hidden;
+    width: 100px;
+    position: relative;
+    display: inline-block;
+    img {
+      width: 93px;
+      height: 123px;
+    }
+    &-mark {
+      border: 1px solid #ccc;
+      width: 40px;
+      height: 40px;
+      text-align: center;
+      border-radius: 20px;
+      position: absolute;
+      top: 85px;
+      left: 61.9px;
+      display: block;
+      span {
+        display: block;
+        position: relative;
+        top: 10px;
+        font-size: 9px;
+        color: #ddd;
+        line-height: 10px;
+      }
+    }
+  }
+
+  &-left {
+    border-left: 1px solid;
+  }
+  &-top {
+    border-top: 1px solid;
+  }
+  &-right {
+    border-right: 1px solid;
+  }
+  &-bottom {
+    border-bottom: 1px solid;
+  }
+  &-top-left {
+    border-left: 1px solid;
+    border-top: 1px solid;
+  }
+  &-top-right {
+    border-right: 1px solid;
+    border-top: 1px solid;
+  }
+  &-bottom-top {
+    border-bottom: 1px solid;
+    border-top: 1px solid;
+  }
+  &-bottom-left {
+    border-bottom: 1px solid;
+    border-left: 1px solid;
+  }
+  &-bottom-right {
+    border-bottom: 1px solid;
+    border-right: 1px solid;
+  }
+  &-left-right {
+    border-right: 1px solid;
+    border-left: 1px solid;
+  }
+  &-area {
+    width: 100%;
+    // border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0px;
+    text-align: center;
+    font-size: 12px;
+
+    td,
+    th {
+      border-color: $bd-gray;
+    }
+    td {
+      padding: 4px 2px 4px 2px;
+    }
+    th {
+      padding: 4px 2px 4px 2px;
+      font-weight: 600;
+      background-color: $bg-gray-50;
+    }
+
+    &-head {
+      letter-spacing: 1px;
+      width: 25px;
+    }
+    .address {
+      text-align: left;
+    }
+    #selected-apply {
+      font-weight: 700;
+      font-size: 14px;
+      color: $ft-blue;
+    }
+
+    &-school {
+      &-right {
+        border-right: $bd-gray 3px solid !important;
+      }
+      &-bottom {
+        border-bottom: $bd-gray 3px solid !important;
+      }
+      &-top {
+        border-top: $bd-gray 3px solid !important;
+      }
+      &-left {
+        border-left: $bd-gray 3px solid !important;
+      }
+      &-top-left {
+        border-top: $bd-gray 3px solid !important;
+        border-left: $bd-gray 3px solid !important;
+      }
+      &-top-right {
+        border-top: $bd-gray 3px solid !important;
+        border-right: $bd-gray 3px solid !important;
+      }
+      &-bottom-left {
+        border-bottom: $bd-gray 3px solid !important;
+        border-left: $bd-gray 3px solid !important;
+      }
+      &-bottom-right {
+        border-bottom: $bd-gray 3px solid !important;
+        border-right: $bd-gray 3px solid !important;
+      }
+    }
+  }
+  &-agree {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: 1px solid $bd-gray;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 8px 0;
+    align-items: center;
+    white-space: pre-wrap;
+    span {
+      display: flex;
+      width: 60%;
+      justify-content: space-between;
+    }
+    &-title {
+      font-size: 18px;
+    }
+  }
+  &-cut {
+    margin-top: 25px;
+    margin-bottom: 20px;
+    text-align: center;
+    letter-spacing: 30px;
+    font-size: 12px;
+    border-bottom: $bd-gray-900 2px dotted;
+  }
+  &-cutting {
+    display: flex;
+    td {
+      text-align: left;
+    }
+    .title {
+      text-align: center;
+
+      font-weight: 700;
+    }
+    .subtitle {
+      letter-spacing: 8px;
+      font-weight: 700;
+      font-size: 16px;
+    }
+    b {
+      letter-spacing: 2px;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 5px 0;
+      display: block;
+      text-align: center;
+    }
+    &-area {
+      width: 55%;
+      border-right: $bd-gray-900 2px dotted;
+      padding-right: 5px;
+      margin-right: 5px;
+
+      img {
+        width: 85px;
+        height: 113px;
+      }
+    }
+  }
+}
