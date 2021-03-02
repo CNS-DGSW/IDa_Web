@@ -1,15 +1,18 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { RouteComponentProps, useHistory, withRouter } from "react-router-dom";
 import "./DefaultAdminHeader.scss";
 
 interface DefaultAdminHeaderProps {
   children: React.ReactNode;
 }
 
-const DefaultAdminHeader = ({ children }: DefaultAdminHeaderProps) => {
+const DefaultAdminHeader = ({
+  children,
+}: DefaultAdminHeaderProps & RouteComponentProps) => {
   const history = useHistory();
+
   return (
-    <div>
+    <>
       <div className="Admin">
         <div className="Admin-header">
           <div
@@ -30,17 +33,29 @@ const DefaultAdminHeader = ({ children }: DefaultAdminHeaderProps) => {
           >
             면접 점수
           </div>
-          <div className="Admin-header HeaderBtn">면접 점수</div>
-          <div className="Admin-header HeaderBtn">면접 점수</div>
-          <div className="Admin-header HeaderBtn">면접 점수</div>
-          <div className="Admin-header HeaderBtn">면접 점수</div>
-          <div className="Admin-header HeaderBtn">면접 점수</div>
-          <div className="Admin-header HeaderBtn">면접 점수</div>
+          <div
+            className="Admin-header HeaderBtn"
+            onClick={() => history.push("/admin/schoolCity")}
+          >
+            지역별/출신교별 현황
+          </div>
+          <div
+            className="Admin-header HeaderBtn"
+            onClick={() => history.push("/admin/applystatus")}
+          >
+            지원.접수 현황
+          </div>
+          <div
+            className="Admin-header HeaderBtn"
+            onClick={() => history.push("/admin/receiptstatus")}
+          >
+            지원/접수 조건 검색
+          </div>
         </div>
       </div>
       {children}
-    </div>
+    </>
   );
 };
 
-export default DefaultAdminHeader;
+export default withRouter(DefaultAdminHeader);

@@ -6,6 +6,7 @@ import { InterViewScoreType } from "util/types/Score";
 import ExcelApi from "assets/api/ExcelApi";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
+import InterViewCategory from "util/enums/InterViewCategory";
 
 const InterViewScoreContainer = ({}) => {
   const { store } = useStore();
@@ -13,25 +14,12 @@ const InterViewScoreContainer = ({}) => {
   const { uploadInterview } = ExcelApi;
 
   const [teamCount, setTeamCount] = useState<number[]>();
-  const [interView, setInterView] = useState<string>("COOPERATION");
+  const [interView, setInterView] = useState<InterViewCategory>(
+    InterViewCategory.COOPERATION
+  );
   const [team, setTeam] = useState<string>("0");
   const [scoreDate, setScoreDate] = useState<InterViewScoreType>();
   const history = useHistory();
-
-  const uploadFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length) {
-      let file = e.target.files[0];
-      uploadInterview(file)
-        .then(() => {
-          toast.success("파일 업로드 되었습니다");
-        })
-        .catch((err) => {
-          if (err.message.includes("400")) {
-            toast.warn("파일을 잘못선택하였습니다");
-          }
-        });
-    }
-  };
 
   const tryDownExcel = async () => {
     await ExcelApi.GetInterviewScoreExcel(
@@ -68,12 +56,31 @@ const InterViewScoreContainer = ({}) => {
   const selectInterView = useCallback(
     (index: string) => {
       if (index === "0") {
-        setInterView("COOPERATION");
+        setInterView(InterViewCategory.COOPERATION);
       } else {
-        setInterView("INTERVIEW");
+        setInterView(InterViewCategory.INTERVIEW);
       }
     },
     [interView]
+  );
+
+  const uploadFile = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (e.target.files && e.target.files.length) {
+        let file = e.target.files[0];
+        uploadInterview(file)
+          .then(() => {
+            toast.success("파일 업로드 되었습니다");
+            tryGetScore();
+          })
+          .catch((err) => {
+            if (err.message.includes("400")) {
+              toast.warn("파일을 잘못선택하였습니다");
+            }
+          });
+      }
+    },
+    [tryGetScore]
   );
 
   useEffect(() => {
@@ -89,6 +96,7 @@ const InterViewScoreContainer = ({}) => {
       team={team}
       setTeam={setTeam}
       teamCount={teamCount}
+      interView={interView}
       selectInterView={selectInterView}
       scoreDate={scoreDate}
       tryDownExcel={tryDownExcel}
