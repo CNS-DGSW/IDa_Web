@@ -127,15 +127,13 @@ const WritePrintContainer = ({}) => {
   }, []);
 
   const getStudentInfoCallback = useCallback(async () => {
-    await getStudentInfo(Number(query.get("userIdx")))
-      .then((res: UserInfoResponse) => {
+    await getStudentInfo(Number(query.get("userIdx"))).then(
+      (res: UserInfoResponse) => {
         setName(res.data.name || "");
         setBirth(moment(res.data.birth || "").format("yyyy년 MM월 DD일"));
         setStudentTel(res.data.studentTel || "");
-      })
-      .catch((err: Error) => {
-        handleLogin(err, history);
-      });
+      }
+    );
   }, []);
 
   const getProfileImageCallback = useCallback(async () => {
@@ -145,97 +143,73 @@ const WritePrintContainer = ({}) => {
   }, []);
 
   const getParentInfoCallback = useCallback(async () => {
-    await getParentInfo()
-      .then((res: ParentInfoResponse) => {
-        setAddress(res.data.address || "");
-        setParentName(res.data.parentName || "");
-        setParentRelation(res.data.parentRelation);
-        setParentTel(res.data.parentTel || "");
-        setPostCode(res.data.postCode || "");
-      })
-      .catch((err: Error) => {
-        handleLogin(err, history);
-      });
+    await getParentInfo().then((res: ParentInfoResponse) => {
+      setAddress(res.data.address || "");
+      setParentName(res.data.parentName || "");
+      setParentRelation(res.data.parentRelation);
+      setParentTel(res.data.parentTel || "");
+      setPostCode(res.data.postCode || "");
+    });
   }, []);
 
   const getSchoolInfoCallback = useCallback(async () => {
-    await getSchoolInfo()
-      .then((res: SchoolInfoResponse) => {
-        setTeacherName(res.data.teacherName || "");
-        setCityName(res.data.cityName || "");
-        setSchoolCode(res.data.graduatedDate || "");
-        setSchoolName(res.data.schoolName || "");
-        setSchoolTel(res.data.schoolTel || "");
-        setGradeType(res.data.gradeType || null);
-        setGraduatedDate(res.data.graduatedDate || "");
-      })
-      .catch((err: Error) => {
-        handleLogin(err, history);
-      });
+    await getSchoolInfo().then((res: SchoolInfoResponse) => {
+      setTeacherName(res.data.teacherName || "");
+      setCityName(res.data.cityName || "");
+      setSchoolCode(res.data.graduatedDate || "");
+      setSchoolName(res.data.schoolName || "");
+      setSchoolTel(res.data.schoolTel || "");
+      setGradeType(res.data.gradeType || null);
+      setGraduatedDate(res.data.graduatedDate || "");
+    });
   }, []);
 
   const getApplyTypeCallback = useCallback(async () => {
-    await getApplyType()
-      .then((res) => {
-        setApplyType(res.data.applyType);
-        setApplyDetailType(res.data.applyDetailType);
-        setVerteransCity(res.data.verteransCity || "");
-        setVerteransNumber(res.data.verteransNumber || "");
-      })
-      .catch((err: Error) => {
-        handleLogin(err, history);
-      });
+    await getApplyType().then((res) => {
+      setApplyType(res.data.applyType);
+      setApplyDetailType(res.data.applyDetailType);
+      setVerteransCity(res.data.verteransCity || "");
+      setVerteransNumber(res.data.verteransNumber || "");
+    });
   }, []);
 
   const getScoreCallback = useCallback(async () => {
-    await getScore(Number(query.get("userIdx")))
-      .then((res) => {
-        setGrade1(res.data.grade1);
-        setGrade2(res.data.grade2);
-        setAbsence(res.data.absence);
-        setVolunteer(res.data.volunteer);
-        setAdditional(res.data.additional);
-        if (res.data.isGed) {
-          setTotalScore1(res.data.grade1);
-          setTotalScore2(res.data.grade2);
-        } else {
-          setTotalScore1(
-            res.data.grade1 +
-              res.data.absence +
-              res.data.volunteer +
-              res.data.additional
-          );
-          setTotalScore2(
-            res.data.grade2 +
-              res.data.absence +
-              res.data.volunteer +
-              res.data.additional
-          );
-        }
-      })
-      .catch((err: Error) => {
-        handleLogin(err, history);
-      });
+    await getScore(Number(query.get("userIdx"))).then((res) => {
+      setGrade1(res.data.grade1);
+      setGrade2(res.data.grade2);
+      setAbsence(res.data.absence);
+      setVolunteer(res.data.volunteer);
+      setAdditional(res.data.additional);
+      if (res.data.isGed) {
+        setTotalScore1(res.data.grade1);
+        setTotalScore2(res.data.grade2);
+      } else {
+        setTotalScore1(
+          res.data.grade1 +
+            res.data.absence +
+            res.data.volunteer +
+            res.data.additional
+        );
+        setTotalScore2(
+          res.data.grade2 +
+            res.data.absence +
+            res.data.volunteer +
+            res.data.additional
+        );
+      }
+    });
   }, [getScore]);
 
   const getSelfIntroduceCallBack = useCallback(async () => {
-    await getSelfIntroduce()
-      .then((res: SelfIntroductionResponse) => {
-        setSelfIntroduce(res.data.selfIntroduction || "");
-      })
-      .catch((err: Error) => {
-        handleLogin(err, history);
-      });
+    await getSelfIntroduce().then((res: SelfIntroductionResponse) => {
+      setSelfIntroduce(res.data.selfIntroduction || "");
+    });
   }, []);
 
   const getStudyPlanCallBack = useCallback(async () => {
-    await getStudyPlan()
-      .then((res: StudyPlanResponse) => {
-        setStudyPlan(res.data.studyPlan || "");
-      })
-      .catch((err: Error) => {
-        handleLogin(err, history);
-      });
+    await getStudyPlan().then((res: StudyPlanResponse) => {
+      setStudyPlan(res.data.studyPlan || "");
+    });
   }, []);
 
   const getGradeCallback = useCallback(async () => {
