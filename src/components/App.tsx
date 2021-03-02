@@ -35,7 +35,7 @@ const App = () => {
           path="/admin/receiptstatus"
           component={ReceiptStatusPage}
         />
-        <Route exact path="/admin/SchoolCity" component={SchoolCityPage} />
+        <Route exact path="/admin/schoolCity" component={SchoolCityPage} />
         <Route exact path="/find" component={FindPage} />
         <Route exact path="/qna" component={QnaPage} />
         <Route exact path="/faq" component={FaqPage} />
