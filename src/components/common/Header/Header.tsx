@@ -9,6 +9,7 @@ import { HiOutlineMenuAlt3 } from "react-icons/hi";
 
 interface HeaderProps {
   login: boolean;
+  isAdmin: boolean;
   profileBox: boolean;
   tryProfileBox: () => void;
   name: string;
@@ -24,6 +25,7 @@ interface HeaderProps {
 const Header = ({
   login,
   profileBox,
+  isAdmin,
   tryProfileBox,
   name,
   email,
@@ -166,11 +168,19 @@ const Header = ({
           <div className="header-container-button">
             {login ? (
               <>
+                {isAdmin && (
+                  <button
+                    className="headerButton header-admin"
+                    onClick={() => history.push("/admin/applystatus")}
+                  >
+                    관리자
+                  </button>
+                )}
                 <Profile
                   className="header-container-profile pointer"
                   onClick={() => tryProfileBox()}
                 />
-                {profileBox ? (
+                {profileBox && (
                   <>
                     <ProfileModalBox
                       handleOnClick={() => tryProfileBox()}
@@ -182,8 +192,6 @@ const Header = ({
                       closeSatusModal={closeSatusModal}
                     />
                   </>
-                ) : (
-                  <></>
                 )}
               </>
             ) : (
