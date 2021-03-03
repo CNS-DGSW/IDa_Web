@@ -16,6 +16,9 @@ interface HeaderProps {
   HandleLogout: () => void;
   theme?: boolean;
   style?: React.CSSProperties;
+  statusModal: boolean;
+  trySatusModal: () => void;
+  closeSatusModal: () => void;
 }
 
 const Header = ({
@@ -27,6 +30,9 @@ const Header = ({
   HandleLogout,
   theme,
   style,
+  statusModal,
+  trySatusModal,
+  closeSatusModal,
 }: HeaderProps) => {
   const history = useHistory();
 
@@ -49,7 +55,11 @@ const Header = ({
   };
 
   return (
-    <header className={theme ? "header header-theme" : "header"} id="header" style={style}>
+    <header
+      className={theme ? "header header-theme" : "header"}
+      id="header"
+      style={style}
+    >
       <div className="header-close" onClick={closeMenu} />
       <div className="header-menu">
         <div className="header-menu-content">
@@ -92,7 +102,10 @@ const Header = ({
           {!login && (
             <>
               <button onClick={() => history.push("/login")}>로그인</button>
-              <button onClick={() => history.push("/register")} style={{ marginLeft: "1rem" }}>
+              <button
+                onClick={() => history.push("/register")}
+                style={{ marginLeft: "1rem" }}
+              >
                 회원가입
               </button>
             </>
@@ -103,9 +116,15 @@ const Header = ({
         <>
           <div className="header-container-link">
             {theme ? (
-              <Logo2 className="pointer header-container-logo" onClick={() => history.push("/")} />
+              <Logo2
+                className="pointer header-container-logo"
+                onClick={() => history.push("/")}
+              />
             ) : (
-              <Logo1 className="pointer header-container-logo" onClick={() => history.push("/")} />
+              <Logo1
+                className="pointer header-container-logo"
+                onClick={() => history.push("/")}
+              />
             )}
             <NavLink
               to="/"
@@ -120,7 +139,7 @@ const Header = ({
               className="header-container-link-item"
               activeClassName="header-container-link-item-active"
             >
-              <span>원서접수</span>
+              <span>원서접수 </span>
             </NavLink>
             <NavLink
               to="/notice"
@@ -147,7 +166,10 @@ const Header = ({
           <div className="header-container-button">
             {login ? (
               <>
-                <Profile className="header-container-profile pointer" onClick={() => tryProfileBox()} />
+                <Profile
+                  className="header-container-profile pointer"
+                  onClick={() => tryProfileBox()}
+                />
                 {profileBox ? (
                   <>
                     <ProfileModalBox
@@ -155,6 +177,9 @@ const Header = ({
                       name={name}
                       email={email}
                       HandleLogout={HandleLogout}
+                      statusModal={statusModal}
+                      trySatusModal={trySatusModal}
+                      closeSatusModal={closeSatusModal}
                     />
                   </>
                 ) : (
@@ -163,7 +188,10 @@ const Header = ({
               </>
             ) : (
               <>
-                <button className="headerButton" onClick={() => history.push("/login")}>
+                <button
+                  className="headerButton"
+                  onClick={() => history.push("/login")}
+                >
                   로그인
                 </button>
                 <button

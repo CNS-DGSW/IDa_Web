@@ -23,11 +23,23 @@ class StatusApi {
     }
   }
 
+
   async cancelSubmit(userIdx: number) {
     try {
       const { data } = await Api.post(
-        `/status/cancelSubmit?userIdx=${userIdx}`
+        `/status/cancelSubmit?userIdx=${userIdx}`  
       );
+      
+        return data;
+      } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
+
+  async GetFinalStatus() {
+    try {
+      const { data } = await Api.get("/status/getFinalStatus");
+
 
       return data;
     } catch (error) {
