@@ -28,8 +28,6 @@ const SecondTypeScoreContainer = ({}) => {
   const handleSecondScore = async () => {
     await getSecondScore()
       .then((res) => {
-        console.log(res);
-
         setScoreDate(res);
       })
       .catch((err) => {
@@ -44,25 +42,25 @@ const SecondTypeScoreContainer = ({}) => {
     switch (key) {
       case "sw":
         GetSoftWare().catch((err) => {
-          console.log(err);
+          toast.error("서버 오류입니다");
         });
         break;
 
       case "job":
         GetJob().catch((err) => {
-          console.log(err);
+          toast.error("서버 오류입니다");
         });
         break;
 
       case "coding":
         GetCodingTest().catch((err) => {
-          console.log(err);
+          toast.error("서버 오류입니다");
         });
         break;
 
       case "secondScore":
         GetSecondScoreExcel().catch((err) => {
-          console.log(err);
+          toast.error("서버 오류입니다");
         });
         break;
     }
