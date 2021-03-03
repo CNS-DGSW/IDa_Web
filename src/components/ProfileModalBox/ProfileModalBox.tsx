@@ -31,10 +31,6 @@ const ProfileModalBox = ({
           <span className="ProfileModalBox-title-email">{email}</span>
         </div>
         <hr />
-        <div className="ProfileModalBox-pencil box pointer">
-          <div className="ProfileModalBox-pencil-img"></div>
-          <span className="box-text">정보 수정</span>
-        </div>
         <div
           className="ProfileModalBox-status box pointer"
           onClick={() => trySatusModal()}
