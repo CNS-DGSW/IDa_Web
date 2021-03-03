@@ -8,7 +8,7 @@ import SearchSchoolContainer from "containers/SearchSchool/SearchSchoolContainer
 import NumericInput from "react-numeric-input";
 
 interface WriteSchoolProps {
-  gradeType: Grade | null;
+  gradeType: Grade | null;  
   handleGrade: (Grade: Grade | null) => void;
   cityLocation: string;
   setCityLocation: React.Dispatch<React.SetStateAction<string>>;

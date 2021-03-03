@@ -8,6 +8,7 @@ interface AdminUserSchoolCityProps {
   totalUngraduatedMen: number;
   totalGraduatedWomen: number;
   totalGraduatedMen: number;
+  getUserSchoolCityExcel: () => Promise<any>;
 }
 
 const AdminUserSchoolCity = ({
@@ -16,12 +17,18 @@ const AdminUserSchoolCity = ({
   totalUngraduatedMen,
   totalGraduatedWomen,
   totalGraduatedMen,
+  getUserSchoolCityExcel,
 }: AdminUserSchoolCityProps) => {
   return (
     <>
       <div className="schoolcity">
         <div className="schoolcity-title">지역별 출신교별 현황</div>
-        <div className="schoolcity-btn">현자료 엑셀 내려받기</div>
+        <div
+          className="schoolcity-btn"
+          onClick={() => getUserSchoolCityExcel()}
+        >
+          현자료 엑셀 내려받기
+        </div>
         <table className="schoolcity-list">
           <tr className="schoolcity-list-header">
             <th>순번</th>

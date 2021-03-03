@@ -199,6 +199,27 @@ class Convertor {
 
     return result;
   }
+
+  static GradeType(gradeType: Grade | null) {
+    let result: string;
+
+    switch (gradeType) {
+      case Grade.GRADUATED:
+        result = "졸업";
+        break;
+      case Grade.UNGRADUATED:
+        result = "예정";
+        break;
+      case Grade.GED:
+        result = "고입검정";
+        break;
+      default:
+        result = "-";
+        break;
+    }
+
+    return result;
+  }
 }
 
 export default Convertor;

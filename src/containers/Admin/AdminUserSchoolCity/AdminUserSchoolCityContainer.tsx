@@ -11,12 +11,13 @@ const AdminUserSchoolCityContainer = ({}) => {
   let totalUngraduatedMen = 0;
   let totalGraduatedWomen = 0;
   let totalGraduatedMen = 0;
+
   const history = useHistory();
   const { store } = useStore();
 
   const [schoolCity, setSchoolCity] = useState<SchoolCity[]>([]);
 
-  const { getUserSchoolCity } = store.AdminStore;
+  const { getUserSchoolCity, getUserSchoolCityExcel } = store.AdminStore;
 
   const getUserSchoolCityCallBack = useCallback(() => {
     getUserSchoolCity()
@@ -47,6 +48,7 @@ const AdminUserSchoolCityContainer = ({}) => {
         totalUngraduatedMen={totalUngraduatedMen}
         totalGraduatedWomen={totalGraduatedWomen}
         totalGraduatedMen={totalGraduatedMen}
+        getUserSchoolCityExcel={getUserSchoolCityExcel}
       ></UserSchoolCity>
     </>
   );
