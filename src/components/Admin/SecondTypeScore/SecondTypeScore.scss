@@ -1,42 +1,73 @@
-/* your css code */
 @import "util/colors.scss";
+
 .SecondScore {
+  width: 100%;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  padding: 2rem;
+  min-width: 1440px;
   &-title {
-    font-size: 1.5rem;
+    font-size: 2rem;
+    margin-bottom: 1rem;
     font-weight: 600;
+  }
+  &-table {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem 0rem;
+    min-width: 1440px;
+    font-size: 1rem;
+    &-list {
+      width: 100%;
+      text-align: center;
+      border-collapse: collapse;
+      &-title {
+        font-size: 1rem;
+      }
+    }
+    & table th {
+      background: $bg-gray-50;
+      padding: 0rem 2rem;
+      border: 1px solid $bd-line;
+    }
+    & table td {
+      text-align: center;
+      border: 1px solid $bd-line;
+    }
+    tr,
+    td,
+    th {
+      border: 1px solid $bd-line;
+      height: 2.5rem;
+    }
+    th {
+      font-size: 1rem;
+    }
   }
   &-buttons {
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    width: 100%;
+    justify-content: space-between;
+    width: 55%;
     margin-top: 1rem;
-    & div {
+    font-size: 1rem;
+    &-s {
+      &-op {
+        font-size: 1rem;
+        height: 2rem;
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+    &-download,
+    &-upload {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: space-around;
-      width: 15%;
-    }
-  }
-  &-table {
-    border-collapse: collapse;
-    margin-top: 1rem;
-  }
-  & table {
-    & th {
-      background-color: $bg-gray-50;
-      border: 1px solid $bd-line;
-      width: 5.6%;
-      align-items: center;
-    }
-    & td {
-      text-align: center;
-      border: 1px solid $bd-line;
-      width: auto;
     }
   }
 }
@@ -44,15 +75,18 @@
   display: none;
 }
 .buttons {
-  padding: 1px 25px;
-  border: 1px solid $ft-blue-100;
-  border-radius: 4px;
-  color: $ft-blue-100;
-  cursor: pointer;
-  transition: 0.2s;
-  background: white;
+  width: 12rem;
+  height: 2.5rem;
+  background-color: $bg-gray-50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+  border-radius: 3px;
+  border: 1px solid $bd-gray;
+  font-size: 1rem;
   &:hover {
-    background-color: $ft-blue-100;
-    color: white;
+    background-color: $bg-gray-100;
+    cursor: pointer;
   }
 }

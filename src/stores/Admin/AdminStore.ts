@@ -1,4 +1,4 @@
-import { action } from "mobx";
+import { action, observable } from "mobx";
 import { autobind } from "core-decorators";
 import AdminApi from "../../assets/api/AdminApi";
 import {
@@ -12,10 +12,11 @@ import {
 } from "util/types/Response";
 import ExcelApi from "assets/api/ExcelApi";
 import StatusApi from "assets/api/StatusApi";
-import { List } from "util/types/User";
 
 @autobind
 class AdminStore {
+  @observable isFinal: boolean = false;
+
   @action
   getReceiptSatus = async (): Promise<ReceiptResponse> => {
     try {

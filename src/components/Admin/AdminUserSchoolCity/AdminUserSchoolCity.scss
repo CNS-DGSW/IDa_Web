@@ -21,9 +21,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 1rem;
-    border-radius: 6px;
+    margin: 1rem;
+    border-radius: 3px;
     border: 1px solid $bd-gray;
+    font-size: 1rem;
     cursor: pointer;
   }
 
@@ -35,9 +36,12 @@
       background-color: $bg-gray-50;
     }
 
-    tr {
-      border-bottom: 1px solid $bd-line;
+    tr,
+    td,
+    th {
+      border: 1px solid $bd-line;
       height: 2.5rem;
+      text-align: center;
     }
   }
 }
