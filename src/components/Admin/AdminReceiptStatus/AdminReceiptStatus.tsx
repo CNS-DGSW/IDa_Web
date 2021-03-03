@@ -76,25 +76,25 @@ const AdminReceiptStatus = ({
                 )
                 .map((filteredName) => (
                   <tr>
-                    <th>{filteredName.idx}</th>
-                    <th>{filteredName.submitCode}</th>
-                    <th>{filteredName.examCode}</th>
-                    <th>{filteredName.name}</th>
-                    <th>
+                    <td>{filteredName.idx}</td>
+                    <td>{filteredName.submitCode}</td>
+                    <td>{filteredName.examCode}</td>
+                    <td>{filteredName.name}</td>
+                    <td>
                       {filteredName.birth &&
                         moment(filteredName.birth).format("yyyy-MM-DD")}
-                    </th>
-                    <th>{filteredName.cityName}</th>
-                    <th>{filteredName.schoolName}</th>
-                    <th>{filteredName.gradeType}</th>
-                    <th>{filteredName.applyTypeString}</th>
-                    <th>{filteredName.gradeScore}</th>
-                    <th>{filteredName.absenceScore}</th>
-                    <th>{filteredName.volunteerScore}</th>
-                    <th>{filteredName.additionalScore}</th>
-                    <th>{filteredName.totalScore}</th>
-                    <th>{filteredName.isSubmit ? "제출완료" : "미제출"}</th>
-                    <th>
+                    </td>
+                    <td>{filteredName.cityName}</td>
+                    <td>{filteredName.schoolName}</td>
+                    <td>{filteredName.gradeType}</td>
+                    <td>{filteredName.applyTypeString}</td>
+                    <td>{filteredName.gradeScore}</td>
+                    <td>{filteredName.absenceScore}</td>
+                    <td>{filteredName.volunteerScore}</td>
+                    <td>{filteredName.additionalScore}</td>
+                    <td>{filteredName.totalScore}</td>
+                    <td>{filteredName.isSubmit ? "제출완료" : "미제출"}</td>
+                    <td>
                       {filteredName.isSubmit ? (
                         <button
                           onClick={() => {
@@ -119,30 +119,30 @@ const AdminReceiptStatus = ({
                       ) : (
                         ""
                       )}
-                    </th>
-                    <th>
+                    </td>
+                    <td>
                       <button>출력</button>
-                    </th>
+                    </td>
                   </tr>
                 ))
             : receiptStatus.map((res) => (
                 <tr>
-                  <th>{res.idx}</th>
-                  <th>{res.submitCode}</th>
-                  <th>{res.examCode}</th>
-                  <th>{res.name}</th>
-                  <th>{res.birth && moment(res.birth).format("yyyy-MM-DD")}</th>
-                  <th>{res.cityName}</th>
-                  <th>{res.schoolName}</th>
-                  <th>{Convertor.GradeType(res.gradeType)}</th>
-                  <th>{res.applyTypeString}</th>
-                  <th>{res.gradeScore}</th>
-                  <th>{res.absenceScore}</th>
-                  <th>{res.volunteerScore}</th>
-                  <th>{res.additionalScore}</th>
-                  <th>{res.totalScore}</th>
-                  <th>{res.isSubmit ? "제출완료" : "미제출"}</th>
-                  <th>
+                  <td>{res.idx}</td>
+                  <td>{res.submitCode}</td>
+                  <td>{res.examCode}</td>
+                  <td>{res.name}</td>
+                  <td>{res.birth && moment(res.birth).format("yyyy-MM-DD")}</td>
+                  <td>{res.cityName}</td>
+                  <td>{res.schoolName}</td>
+                  <td>{Convertor.GradeType(res.gradeType)}</td>
+                  <td>{res.applyTypeString}</td>
+                  <td>{res.gradeScore}</td>
+                  <td>{res.absenceScore}</td>
+                  <td>{res.volunteerScore}</td>
+                  <td>{res.additionalScore}</td>
+                  <td>{res.totalScore}</td>
+                  <td>{res.isSubmit ? "제출완료" : "미제출"}</td>
+                  <td>
                     {res.isSubmit ? (
                       <button
                         onClick={() => {
@@ -164,8 +164,8 @@ const AdminReceiptStatus = ({
                     ) : (
                       ""
                     )}
-                  </th>
-                  <th>
+                  </td>
+                  <td>
                     <button
                       onClick={() =>
                         window.open(`/print?userIdx=${res.userIdx}`, "_blank")
@@ -173,7 +173,7 @@ const AdminReceiptStatus = ({
                     >
                       출력
                     </button>
-                  </th>
+                  </td>
                 </tr>
               ))}
         </table>
