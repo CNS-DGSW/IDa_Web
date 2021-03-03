@@ -22,7 +22,6 @@ const MainContainer = () => {
   const firstOpenModal = useCallback(() => {
     setFirstResultModal(!firstResultModal);
   }, [firstResultModal]);
-  console.log(firstResultModal);
 
   const secondOpenModal = useCallback(() => {
     setSecondResultModal(!secondResultModal);

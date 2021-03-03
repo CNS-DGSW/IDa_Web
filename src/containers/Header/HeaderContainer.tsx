@@ -54,7 +54,6 @@ const HeaderContainer = ({
 
   const closeAllModal = () => {
     if (!profileBox) {
-      console.log(profileBox, statusModal);
       closeSatusModal();
     }
   };

@@ -13,11 +13,11 @@ const ResultStatusContainer = ({}: ResultStatusContainerPropse) => {
 
   const { tryCloseModal } = store.AuthStore;
 
-  const getStauts = useCallback(() => {
-    tryGetStatus()
-      .then(() => {
-        setPost(submit);
-        setInternet(print);
+  const getStauts = useCallback(async () => {
+    await tryGetStatus()
+      .then((res) => {
+        setPost(res.data.isSubmit);
+        setInternet(res.data.isPrintedApplicationArrived);
       })
       .catch(() => {});
   }, [post, internet]);
