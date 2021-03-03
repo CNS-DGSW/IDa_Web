@@ -1,0 +1,57 @@
+@import "../../../util/colors.scss";
+
+.listPassed {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem 2rem 0rem 2rem;
+  min-width: 1440px;
+  font-size: 1rem;
+  &-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+  button {
+    width: 12rem;
+    height: 2.5rem;
+    background-color: $bg-gray-50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 1rem 0rem 1rem;
+    border-radius: 3px;
+    border: 1px solid $bd-gray;
+    font-size: 1rem;
+    &:hover {
+      background-color: $bg-gray-100;
+      cursor: pointer;
+    }
+  }
+}
+
+.passed {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem;
+  min-width: 1440px;
+  font-size: 1rem;
+  &-list {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+
+    tr,
+    td,
+    th {
+      border: 1px solid $bd-line;
+      height: 2.5rem;
+      th {
+        background-color: $bg-gray-100;
+      }
+    }
+  }
+}

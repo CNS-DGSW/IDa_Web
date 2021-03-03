@@ -1,0 +1,93 @@
+@import "../../../util/colors.scss";
+
+.userList {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem;
+  min-width: 1440px;
+  font-size: 1rem;
+  &-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+  &-search {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &-input {
+      width: 20rem;
+      border: 1px solid $bd-gray;
+      height: 2rem;
+      padding-left: 1rem;
+      &:focus {
+        outline: none;
+        border: 1px solid $bd-blue;
+        &::placeholder {
+          color: transparent;
+        }
+      }
+    }
+    &-btn {
+      width: 12rem;
+      height: 2.5rem;
+      background-color: $bg-gray-50;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 1rem;
+      border-radius: 3px;
+      border: 1px solid $bd-gray;
+      font-size: 1rem;
+      &:hover {
+        background-color: $bg-gray-100;
+        cursor: pointer;
+      }
+    }
+  }
+  &-list {
+    width: 100%;
+    border-collapse: collapse;
+
+    &-title {
+      background-color: $bg-gray-50;
+    }
+    tr,
+    td,
+    th {
+      border: 1px solid $bd-line;
+      height: 2.5rem;
+      text-align: center;
+    }
+  }
+}
+
+.allRatio {
+  display: flex;
+  flex-direction: row;
+  padding: 2rem;
+  min-width: 1440px;
+  align-content: flex-start;
+  font-size: 1rem;
+  &-list {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    &-title {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      font-weight: 500;
+      background-color: $bg-gray-50;
+    }
+    tr,
+    td,
+    th {
+      border: 1px solid $bd-line;
+      height: 2.5rem;
+    }
+  }
+}
