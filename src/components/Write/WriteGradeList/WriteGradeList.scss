@@ -1,6 +1,12 @@
 @import "util/colors.scss";
 
 .grade-list {
+  @media screen and (max-width: 767px) {
+    font-size: 0.8rem;
+  }
+  @media screen and (max-width: 500px) {
+    font-size: 0.4rem;
+  }
   width: 100%;
   border-collapse: collapse;
   border: 1px solid #ddd;
@@ -34,6 +40,12 @@
   &:focus {
     outline: none;
   }
+  @media screen and (max-width: 767px) {
+    font-size: 0.65rem;
+  }
+  @media screen and (max-width: 500px) {
+    font-size: 1px;
+  }
 }
 
 .off {
@@ -45,5 +57,11 @@
   background-color: $bg-white;
   &:focus {
     outline: none;
+  }
+  @media screen and (max-width: 767px) {
+    font-size: 0.65rem;
+  }
+  @media screen and (max-width: 500px) {
+    font-size: 0.2rem;
   }
 }

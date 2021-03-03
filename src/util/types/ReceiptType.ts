@@ -14,10 +14,11 @@ export type Receipt = {
   gradeScore: number;
   gradeType: Grade;
   idx: number;
-  isSubmit: true;
+  isSubmit: boolean;
   name: string;
   schoolName: string;
   submitCode: string;
   totalScore: number;
+  userIdx: number;
   volunteerScore: number;
 };

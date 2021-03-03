@@ -26,7 +26,7 @@ const InterViewScoreContainer = ({}) => {
       interView,
       team === "0" ? undefined : team
     ).catch((err) => {
-      console.log(err);
+      toast.error("서버 오류입니다");
     });
   };
 
@@ -36,7 +36,7 @@ const InterViewScoreContainer = ({}) => {
         setTeamCount(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        toast.error("서버 오류입니다");
       });
   }, [interView]);
 

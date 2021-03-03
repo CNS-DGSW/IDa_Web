@@ -1,56 +1,44 @@
 /* your css code */
 @import "util/colors.scss";
-.ResultCheck {
+.ResultStatus {
+  position: fixed;
+  z-index: 1000;
   display: flex;
+  height: 30%;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  background-color: $bg-writeback;
-  height: 100vh;
-  width: 100%;
   font-weight: 600;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   &-status {
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: white;
     border: 1px solid $ft-line;
-    width: 27%;
-    height: 27%;
+    width: 30%;
     min-width: 30rem;
-    margin-bottom: 5rem;
+    border-radius: 0.3rem;
     &-title {
       font-size: 1.3rem;
       margin-bottom: 1.4rem;
     }
     &-web {
       margin-bottom: 1rem;
-      &-result {
-        background-color: #2f9b6c;
-        box-shadow: 0px 3px 15px #40c1897a;
-      }
-    }
-    &-post {
-      &-result {
-        background-color: #ecaa27;
-        box-shadow: 0px 3px 15px #e9b1428f;
-      }
     }
   }
-  &-result {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    background-color: white;
-    border: 1px solid $ft-line;
-    width: 27%;
-    height: 27%;
-    &-title {
-      font-size: 1.3rem;
-      margin-bottom: 3rem;
-    }
+  &-background {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    background-color: $bg-gray-10;
   }
 }
 .check {
@@ -60,7 +48,6 @@
   width: 80%;
   height: 2.5rem;
   font-size: 1.1rem;
-
   &-span {
     display: flex;
     align-items: center;
@@ -74,7 +61,24 @@
     align-items: center;
     justify-content: center;
     color: white;
-    width: 30%;
     height: 100%;
+    &-success {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30%;
+      height: 100%;
+      background-color: #2f9b6c;
+      box-shadow: 0px 3px 15px #40c1897a;
+    }
+    &-fail {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30%;
+      height: 100%;
+      background-color: #ecaa27;
+      box-shadow: 0px 3px 15px #e9b1428f;
+    }
   }
 }

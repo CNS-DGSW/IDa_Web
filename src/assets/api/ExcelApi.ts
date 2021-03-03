@@ -88,6 +88,20 @@ class ExcelApi {
     }
   }
 
+  async GetUserSchoolCity() {
+    try {
+      const response = await Api.get("/excel/getUserSchoolCity", {
+        responseType: "blob",
+      });
+
+      FileDown(response);
+
+      return response;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
+
   async uploadCodingTest(file: File) {
     try {
       const formData = new FormData();

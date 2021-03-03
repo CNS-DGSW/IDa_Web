@@ -77,6 +77,12 @@
   display: flex;
   background-color: $bg-white;
   margin-top: 2rem;
+  @media screen and (max-width: 767px) {
+    font-size: 1rem;
+  }
+  @media screen and (max-width: 500px) {
+    font-size: 0.8rem;
+  }
 
   &-area {
     width: 12%;
@@ -127,6 +133,12 @@
       align-items: center;
       font-size: 0.9em;
       text-align: center;
+      @media screen and (max-width: 767px) {
+        font-size: 0.8rem;
+      }
+      @media screen and (max-width: 500px) {
+        font-size: 0.6rem;
+      }
     }
   }
 
