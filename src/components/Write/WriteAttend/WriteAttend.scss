@@ -28,6 +28,20 @@
         }
       }
 
+      @media screen and (max-width: 767px) {
+        font-size: 0.9rem;
+        input {
+          width: 5rem;
+        }
+      }
+
+      @media screen and (max-width: 500px) {
+        font-size: 0.8rem;
+        input {
+          width: 4rem;
+        }
+      }
+
       input::-webkit-outer-spin-button,
       input::-webkit-inner-spin-button {
         -webkit-appearance: none;
