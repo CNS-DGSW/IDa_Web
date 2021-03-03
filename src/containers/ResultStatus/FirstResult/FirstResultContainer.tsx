@@ -2,6 +2,8 @@ import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
 import FirstResult from "components/ResultStatusCheck/FirstResult";
+import { toast } from "react-toastify";
+import { useHistory } from "react-router-dom";
 
 interface FirstResultContainerProps {
   firstOpenModal: () => void;
@@ -10,6 +12,7 @@ interface FirstResultContainerProps {
 const FirstResultContainer = ({
   firstOpenModal,
 }: FirstResultContainerProps) => {
+  const history = useHistory();
   const { store } = useStore();
   const { flag, pass, tryGetStatus } = store.StatusStore;
   const [comment, setComment] = useState<string>("");
@@ -25,9 +28,16 @@ const FirstResultContainer = ({
   }, []);
 
   const getStatus = () => {
-    tryGetStatus().then((res) => {
-      setCommented(res.data.isPassedFirstApply);
-    });
+    tryGetStatus()
+      .then((res) => {
+        setCommented(res.data.isPassedFirstApply);
+      })
+      .catch((err) => {
+        if (err.message.includes("401")) {
+          toast.warn("로그인이 필요합니다.");
+          history.push("/login");
+        }
+      });
   };
 
   useEffect(() => {
