@@ -1,14 +1,28 @@
 /* your css code */
 @import "util/colors.scss";
 .Admin {
+  // z-index: 100;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: $bg-gray-10;
+  padding: 1rem 0;
+
   &-header {
     display: flex;
     width: 70%;
     justify-content: space-around;
     font-size: 1.3rem;
+    &-link {
+      text-decoration: none;
+      color: rgb(77, 77, 77);
+      :hover {
+        color: black;
+      }
+      &-active {
+        color: black;
+      }
+    }
   }
 }
 .HeaderBtn {

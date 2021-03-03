@@ -65,6 +65,7 @@ const Header = ({
       <div className="header-close" onClick={closeMenu} />
       <div className="header-menu">
         <div className="header-menu-content">
+          <div className="header-menu-content-category">카테고리</div>
           <NavLink
             to="/"
             exact

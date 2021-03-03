@@ -22,36 +22,41 @@ const SecondTypeScore = ({
       <span className="SecondScore-title">2차 전형 점수 관리</span>
       <div className="SecondScore-buttons">
         <select
+          className="SecondScore-buttons-s-op"
           name=""
           id=""
           onChange={(e) => {
             setSelect(e.target.value);
           }}
         >
-          <option value={"0"}>다운로드</option>
-          <option value={"1"}>업로드</option>
+          <option className="SecondScore-buttons-s-op" value={"0"}>
+            다운로드
+          </option>
+          <option className="SecondScore-buttons-s-op" value={"1"}>
+            업로드
+          </option>
         </select>
         {select === "0" ? (
           <>
-            <div>
+            <div className="SecondScore-buttons-download">
               <span>소프트웨어역량평가</span>
               <button className="buttons" onClick={() => tryDown("sw")}>
                 서식 다운로드
               </button>
             </div>
-            <div>
+            <div className="SecondScore-buttons-download">
               <span>직무능력검사</span>
               <button className="buttons" onClick={() => tryDown("job")}>
                 서식 다운로드
               </button>
             </div>
-            <div>
+            <div className="SecondScore-buttons-download">
               <span>코딩테스트</span>
               <button className="buttons" onClick={() => tryDown("coding")}>
                 서식 다운로드
               </button>
             </div>
-            <div>
+            <div className="SecondScore-buttons-download">
               <span>최종 결과 다운로드</span>
               <button
                 className="buttons"
@@ -63,7 +68,7 @@ const SecondTypeScore = ({
           </>
         ) : (
           <>
-            <div className="SecondScore-buttons-file">
+            <div className="SecondScore-buttons-upload">
               <span>소프트웨어역량평가</span>
               <label htmlFor="input-file1" className="buttons">
                 업로드
@@ -75,7 +80,7 @@ const SecondTypeScore = ({
                 onChange={(e) => tryUpload(e, "sw")}
               />
             </div>
-            <div className="SecondScore-buttons-file">
+            <div className="SecondScore-buttons-upload">
               <span>직무능력검사</span>
               <label htmlFor="input-file2" className="buttons">
                 업로드
@@ -87,7 +92,7 @@ const SecondTypeScore = ({
                 onChange={(e) => tryUpload(e, "job")}
               />
             </div>
-            <div className="SecondScore-buttons-file">
+            <div className="SecondScore-buttons-upload">
               <span>코딩테스트</span>
               <label htmlFor="input-file3" className="buttons">
                 업로드
@@ -102,13 +107,12 @@ const SecondTypeScore = ({
           </>
         )}
       </div>
-      <table className="SecondScore-table">
-        <thead>
-          <tr>
+      <div className="SecondScore-table">
+        <table className="SecondScore-table-list">
+          <tr className="SecondScore-table-list-title">
             <th>수험번호</th>
             <th>이름</th>
             <th>학력</th>
-            <th>출신학교</th>
             <th>지역</th>
             <th>1차합격전형</th>
             <th>교과</th>
@@ -124,8 +128,6 @@ const SecondTypeScore = ({
             <th>합격여부</th>
             <th>최종합격전형</th>
           </tr>
-        </thead>
-        <tbody>
           {scoreDate?.data.map((i, key) => (
             <tr key={key}>
               <td>{i.examCode}</td>
@@ -137,8 +139,6 @@ const SecondTypeScore = ({
                 {i.gradeType === "GRADUATED" ? <>졸업</> : <></>}
               </td>
               {/* 학력 */}
-              <td>{}</td>
-              {/* 출신학교 */}
               <td>{i.cityName}</td>
               {/* 지역 */}
               <td>
@@ -183,8 +183,8 @@ const SecondTypeScore = ({
               {/* 최종합격전형 */}
             </tr>
           ))}
-        </tbody>
-      </table>
+        </table>
+      </div>
     </div>
   );
 };

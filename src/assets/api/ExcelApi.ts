@@ -1,4 +1,5 @@
 import Api from "lib/customAxios";
+import fileDownload from "js-file-download";
 import FileDown from "lib/FileDown";
 
 class ExcelApi {
@@ -74,20 +75,6 @@ class ExcelApi {
     }
   }
 
-  async GetReceiptStatus() {
-    try {
-      const response = await Api.get("/excel/getReceiptStatus", {
-        responseType: "blob",
-      });
-
-      FileDown(response);
-
-      return response;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
-  }
-
   async GetUserSchoolCity() {
     try {
       const response = await Api.get("/excel/getUserSchoolCity", {
@@ -147,6 +134,58 @@ class ExcelApi {
       formData.append("file", file);
 
       const response = await Api.post(`/excel/uploadSwAbility`, formData);
+
+      return response;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
+  async GetReceiptStatus() {
+    try {
+      const response = await Api.get("/excel/getReceiptStatus", {
+        responseType: "blob",
+      });
+
+      FileDown(response);
+
+      return response;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
+  async GetFirstSelection() {
+    try {
+      const response = await Api.get("/excel/getFirstSelection", {
+        responseType: "blob",
+      });
+
+      FileDown(response);
+
+      return response;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
+  async GetSecondSelection() {
+    try {
+      const response = await Api.get("/excel/getSecondSelection", {
+        responseType: "blob",
+      });
+
+      FileDown(response);
+
+      return response;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
+  async GetUserRate() {
+    try {
+      const response = await Api.get("/excel/getUserRate", {
+        responseType: "blob",
+      });
+
+      FileDown(response);
 
       return response;
     } catch (error) {

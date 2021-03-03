@@ -6,7 +6,6 @@ import MainPage from "../pages/MainPage";
 import RegisterPage from "pages/RegisterPage";
 import ChangePwPage from "pages/ChangePwPage";
 import FindPage from "pages/FindPage";
-import ApplyStatusPage from "pages/AdminPage/ApplyStatusPage";
 import QnaPage from "pages/QnaPage";
 import FaqPage from "pages/FaqPage";
 import NoticePage from "pages/NoticePage";
@@ -16,6 +15,9 @@ import InterViewScorePage from "pages/AdminPage/InterViewScorePage";
 import WritePrintPage from "pages/WritePrintPage";
 import ReceiptStatusPage from "pages/AdminPage/AdminReceiptStatusPage";
 import SchoolCityPage from "pages/AdminPage/AdminUserSchoolCity";
+import UserRatePage from "pages/AdminPage/UserRate";
+import UserListPage from "pages/AdminPage/UserListPage";
+import UserListPassedPage from "pages/AdminPage/UserListPassed";
 
 const App = () => {
   return (
@@ -28,7 +30,6 @@ const App = () => {
         <Route exact path="/register" component={RegisterPage} />
         <Route exact path="/register" component={RegisterPage} />
         <Route exact path="/changepw" component={ChangePwPage} />
-        <Route exact path="/admin/applystatus" component={ApplyStatusPage} />
         <Route
           exact
           path="/admin/receiptstatus"
@@ -39,7 +40,6 @@ const App = () => {
         <Route exact path="/qna" component={QnaPage} />
         <Route exact path="/faq" component={FaqPage} />
         <Route exact path="/notice" component={NoticePage} />
-        <Route exact path="/admin/applystatus" component={ApplyStatusPage} />
         <Route
           exact
           path="/admin/secondscore"
@@ -50,7 +50,14 @@ const App = () => {
           path="/admin/interviewscore"
           component={InterViewScorePage}
         />
-        <Route exact path="/print" component={WritePrintPage} />
+        <Route exact path="/print" component={WritePrintPage} />\
+        <Route exact path="/admin/userlist" component={UserListPage} />
+        <Route exact path="/admin/userrate" component={UserRatePage} />
+        <Route
+          exact
+          path="/admin/userlistpassed"
+          component={UserListPassedPage}
+        />
       </Switch>
     </div>
   );

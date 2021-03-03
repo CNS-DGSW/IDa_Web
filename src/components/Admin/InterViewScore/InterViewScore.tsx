@@ -29,15 +29,27 @@ const InterViewScore = ({
       <span className="InterViewScore-title">2차전형 면접 점수 확인</span>
       <div className="InterViewScore-checkBox">
         <select
+          className="InterViewScore-checkBox-s-op"
           onChange={(e) => {
             selectInterView(e.target.value);
           }}
         >
-          <option value="0">그룹면접</option>
-          <option value="1">심층면접</option>
+          <option value="0" className="InterViewScore-checkBox-s-op">
+            그룹면접2
+          </option>
+          <option value="1" className="InterViewScore-checkBox-s-op">
+            심층면접
+          </option>
         </select>
-        <select name="" id="" onChange={(e) => setTeam(e.target.value)}>
-          <option value="0">전체</option>
+        <select
+          className="InterViewScore-checkBox-s-op"
+          name=""
+          id=""
+          onChange={(e) => setTeam(e.target.value)}
+        >
+          <option className="InterViewScore-checkBox-s-op" value="0">
+            전체
+          </option>
           {teamCount &&
             teamCount.map((i, key) => (
               <option key={key} value={key + 1}>
@@ -45,16 +57,17 @@ const InterViewScore = ({
               </option>
             ))}
         </select>
-        <button onClick={() => tryDownExcel()}>
-          면접 점수 &amp; 서식 다운로드
-        </button>
-        <div className="SecondScore-buttons-file">
+
+        <div className="InterViewScore-checkBox-label">
+          <span>면접 점수 &amp; 서식</span>
+          <button onClick={() => tryDownExcel()} className="buttons">
+            다운로드
+          </button>
+        </div>
+
+        <div className="InterViewScore-checkBox-label">
           <span>소프트웨어역량평가</span>
-          <label
-            htmlFor="input-file1"
-            className="buttons"
-            style={{ marginLeft: "1rem" }}
-          >
+          <label htmlFor="input-file1" className="buttons">
             업로드
           </label>
           <input
@@ -65,58 +78,60 @@ const InterViewScore = ({
           />
         </div>
       </div>
-      <table className="InterViewScore-table">
-        <thead>
-          <tr>
-            <th>수험번호</th>
-            <th>이름</th>
-            <th>참석여부</th>
-            <th>평가요소1</th>
-            <th>평가요소2</th>
-            <th>평가요소3</th>
-            <th>평가요소4</th>
-            <th>평가요소5</th>
-            {interView === InterViewCategory.INTERVIEW && (
-              <>
-                <th>평가요소6</th>
-                <th>평가요소6</th>
-              </>
-            )}
-            <th>점수</th>
-            <th>합산점수</th>
-          </tr>
-        </thead>
-        <tbody>
-          {scoreDate?.data.map((i, key) => (
-            <tr key={key}>
-              <td>{i.examCode}</td>
-              <td>{i.userName}</td>
-              <td>{i.examCode}</td>
-              <td>{i.evaluationFactor1}</td>
-              <td>{i.evaluationFactor2}</td>
-              <td>{i.evaluationFactor3}</td>
-              <td>{i.evaluationFactor4}</td>
-              <td>{i.evaluationFactor5}</td>
+      <div className="InterViewScore-table">
+        <table className="InterViewScore-table-list">
+          <thead>
+            <tr className="InterViewScore-table-list-title">
+              <th>수험번호</th>
+              <th>이름</th>
+              <th>참석여부</th>
+              <th>평가요소1</th>
+              <th>평가요소2</th>
+              <th>평가요소3</th>
+              <th>평가요소4</th>
+              <th>평가요소5</th>
               {interView === InterViewCategory.INTERVIEW && (
                 <>
-                  <td>{i.evaluationFactor6}</td>
-                  <td>{i.evaluationFactor7}</td>
+                  <th>평가요소6</th>
+                  <th>평가요소6</th>
                 </>
               )}
-              <td>{i.calcScore}</td>
-              <td>
-                {i.evaluationFactor1 +
-                  i.evaluationFactor2 +
-                  i.evaluationFactor3 +
-                  i.evaluationFactor4 +
-                  i.evaluationFactor5 +
-                  (i.evaluationFactor6 !== null ? i.evaluationFactor6 : 0) +
-                  (i.evaluationFactor7 !== null ? i.evaluationFactor7 : 0)}
-              </td>
+              <th>점수</th>
+              <th>합산점수</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {scoreDate?.data.map((i, key) => (
+              <tr key={key}>
+                <td>{i.examCode}</td>
+                <td>{i.userName}</td>
+                <td>{i.examCode}</td>
+                <td>{i.evaluationFactor1}</td>
+                <td>{i.evaluationFactor2}</td>
+                <td>{i.evaluationFactor3}</td>
+                <td>{i.evaluationFactor4}</td>
+                <td>{i.evaluationFactor5}</td>
+                {interView === InterViewCategory.INTERVIEW && (
+                  <>
+                    <td>{i.evaluationFactor6}</td>
+                    <td>{i.evaluationFactor7}</td>
+                  </>
+                )}
+                <td>{i.calcScore}</td>
+                <td>
+                  {i.evaluationFactor1 +
+                    i.evaluationFactor2 +
+                    i.evaluationFactor3 +
+                    i.evaluationFactor4 +
+                    i.evaluationFactor5 +
+                    (i.evaluationFactor6 !== null ? i.evaluationFactor6 : 0) +
+                    (i.evaluationFactor7 !== null ? i.evaluationFactor7 : 0)}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
