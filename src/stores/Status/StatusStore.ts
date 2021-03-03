@@ -58,7 +58,7 @@ class StatusStore {
     try {
       const response: ResultStatusResponse = await StatusApi.GetStatus(userIdx);
 
-      if (response.status === 200) {
+      if (response.status === 200 && this.flag === false) {
         this.flag = true;
       }
 
