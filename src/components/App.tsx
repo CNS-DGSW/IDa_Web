@@ -11,7 +11,6 @@ import QnaPage from "pages/QnaPage";
 import FaqPage from "pages/FaqPage";
 import NoticePage from "pages/NoticePage";
 import { ToastContainer } from "react-toastify";
-import ResultCheckPage from "pages/ResultCheckPage";
 import SecondTypeScorePage from "pages/AdminPage/SecondTypeScorePage";
 import InterViewScorePage from "pages/AdminPage/InterViewScorePage";
 import WritePrintPage from "pages/WritePrintPage";
@@ -40,7 +39,6 @@ const App = () => {
         <Route exact path="/qna" component={QnaPage} />
         <Route exact path="/faq" component={FaqPage} />
         <Route exact path="/notice" component={NoticePage} />
-        <Route exact path="/resultcheck" component={ResultCheckPage} />
         <Route exact path="/admin/applystatus" component={ApplyStatusPage} />
         <Route
           exact
