@@ -201,3 +201,11 @@ export interface ResultStatusResponse extends Response {
     submitCode: string;
   };
 }
+
+export interface FinalStatusResponse extends Response {
+  data: {
+    finalApplyDetailType: Apply;
+    finalApplyType: Apply;
+    isPassed: true | null;
+  };
+}

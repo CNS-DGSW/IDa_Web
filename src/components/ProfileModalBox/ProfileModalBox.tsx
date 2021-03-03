@@ -1,3 +1,4 @@
+import ResultStatusContainer from "containers/ResultStatus/ResultStatus/ResultStatusContainer";
 import React from "react";
 import { RouteComponentProps, useHistory, withRouter } from "react-router-dom";
 import "./ProfileModalBox.scss";
@@ -6,6 +7,9 @@ interface ProfileModalBoxProps {
   name: string | undefined;
   email: string | undefined;
   HandleLogout: () => void;
+  statusModal: boolean;
+  trySatusModal: () => void;
+  closeSatusModal: () => void;
 }
 
 const ProfileModalBox = ({
@@ -13,6 +17,9 @@ const ProfileModalBox = ({
   name,
   email,
   HandleLogout,
+  statusModal,
+  trySatusModal,
+  closeSatusModal,
 }: ProfileModalBoxProps & RouteComponentProps) => {
   const history = useHistory();
 
@@ -28,11 +35,17 @@ const ProfileModalBox = ({
           <div className="ProfileModalBox-pencil-img"></div>
           <span className="box-text">정보 수정</span>
         </div>
-        <div className="ProfileModalBox-status box pointer" onClick={() => history.push("/resultcheck")}>
+        <div
+          className="ProfileModalBox-status box pointer"
+          onClick={() => trySatusModal()}
+        >
           <div className="ProfileModalBox-status-img"></div>
           <span className="box-text">원서접수 현황</span>
         </div>
-        <div onClick={() => history.push("/changepw")} className="ProfileModalBox-modify box pointer">
+        <div
+          onClick={() => history.push("/changepw")}
+          className="ProfileModalBox-modify box pointer"
+        >
           <div className="ProfileModalBox-modify-img"></div>
           <span className="box-text">비밀번호 수정</span>
         </div>
@@ -53,6 +66,7 @@ const ProfileModalBox = ({
           handleOnClick();
         }}
       ></div>
+      {statusModal ? <ResultStatusContainer /> : <></>}
     </>
   );
 };

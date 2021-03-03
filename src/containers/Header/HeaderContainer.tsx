@@ -29,7 +29,11 @@ const HeaderContainer = ({
     tryCloseModal,
   } = store.AuthStore;
 
+  const { statusModal, closeSatusModal, trySatusModal } = store.StatusStore;
+
   const [cookie, setCookie, removeCookie] = useCookies(["refreshToken"]);
+
+  const openStatusModal = () => {};
 
   const HandleLogout = () => {
     tryLogout();
@@ -48,9 +52,20 @@ const HeaderContainer = ({
     }
   }, [login]);
 
+  const closeAllModal = () => {
+    if (!profileBox) {
+      console.log(profileBox, statusModal);
+      closeSatusModal();
+    }
+  };
+
   useEffect(() => {
     getInfoCallback();
   }, [getInfoCallback]);
+
+  useEffect(() => {
+    closeAllModal();
+  }, [profileBox]);
 
   useEffect(() => {
     return () => {
@@ -69,6 +84,9 @@ const HeaderContainer = ({
         email={email}
         HandleLogout={HandleLogout}
         style={style}
+        statusModal={statusModal}
+        trySatusModal={trySatusModal}
+        closeSatusModal={closeSatusModal}
       />
     </>
   );

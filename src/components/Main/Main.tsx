@@ -5,9 +5,15 @@ import { RouteComponentProps, useHistory, withRouter } from "react-router-dom";
 
 interface MainProps {
   handleDownloadApplyInfo: () => void;
+  firstOpenModal: () => void;
+  secondOpenModal: () => void;
 }
 
-const Main = ({ handleDownloadApplyInfo }: MainProps & RouteComponentProps) => {
+const Main = ({
+  handleDownloadApplyInfo,
+  firstOpenModal,
+  secondOpenModal,
+}: MainProps & RouteComponentProps) => {
   const history = useHistory();
 
   return (
@@ -18,7 +24,10 @@ const Main = ({ handleDownloadApplyInfo }: MainProps & RouteComponentProps) => {
             <div className="Main-content-Title">
               <p className="Main-content-Title-Sub">대구소프트웨어고등학교</p>
               <p className="Main-content-Title-Main">2021 입학원서 접수</p>
-              <div className="Main-content-btn" onClick={() => history.push("/Write")}>
+              <div
+                className="Main-content-btn"
+                onClick={() => history.push("/Write")}
+              >
                 원서 접수
               </div>
             </div>
@@ -81,8 +90,23 @@ const Main = ({ handleDownloadApplyInfo }: MainProps & RouteComponentProps) => {
             <MainContent title="최종결과 확인">
               <div>
                 <p className="Content-box-area-small">최종결과 발표</p>
-                <p className="Content-box-area-bold">{"2020. 10. 19.(월) 09:00"}</p>
-                <div className="Content-box-area-btn-style">최종결과확인</div>
+                <p className="Content-box-area-bold">
+                  {"2020. 10. 19.(월) 09:00"}
+                </p>
+                <div className="Content-box-area-btns">
+                  <div
+                    className="Content-box-area-btn-style"
+                    onClick={() => firstOpenModal()}
+                  >
+                    1차 결과 확인
+                  </div>
+                  <div
+                    className="Content-box-area-btn-style"
+                    onClick={() => secondOpenModal()}
+                  >
+                    최종결과확인
+                  </div>
+                </div>
               </div>
             </MainContent>
           </div>
