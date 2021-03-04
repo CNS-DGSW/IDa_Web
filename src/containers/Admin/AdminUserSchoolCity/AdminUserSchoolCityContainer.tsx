@@ -4,7 +4,7 @@ import UserSchoolCity from "../../../components/Admin/AdminUserSchoolCity";
 import { useHistory } from "react-router-dom";
 import useStore from "lib/hooks/useStore";
 import { SchoolCity } from "util/types/SchoolCity";
-import { handleLogin } from "lib/handleErrors";
+import { handleAdmin } from "lib/handleErrors";
 
 const AdminUserSchoolCityContainer = ({}) => {
   let totalUngraduatedWomen = 0;
@@ -25,7 +25,7 @@ const AdminUserSchoolCityContainer = ({}) => {
         setSchoolCity(res.data);
       })
       .catch((err: Error) => {
-        handleLogin(err, history);
+        handleAdmin(err, history);
       });
   }, []);
 

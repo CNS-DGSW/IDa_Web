@@ -51,9 +51,10 @@ class AdminApi {
     }
   }
 
-  async GetUserRate() {
+  async GetUserRate(isFinal?: boolean) {
     try {
-      const { data } = await Api.get("/admin/getUserRate");
+      const query = isFinal ? `?isFinal=${isFinal}` : "";
+      const { data } = await Api.get(`/admin/getUserRate${query}`);
 
       console.log("ASDAS");
 

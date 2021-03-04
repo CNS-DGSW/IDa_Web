@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import ExcelApi from "assets/api/ExcelApi";
 import { SecondScoreResponse } from "util/types/Score";
 import { toast } from "react-toastify";
+import { handleAdmin } from "lib/handleErrors";
 
 const SecondTypeScoreContainer = ({}) => {
   const history = useHistory();
@@ -31,10 +32,7 @@ const SecondTypeScoreContainer = ({}) => {
         setScoreDate(res);
       })
       .catch((err) => {
-        if (err.message.includes("403")) {
-          toast.warn("어드민으로 로그인해주세요");
-          history.push("/");
-        }
+        handleAdmin(err, history);
       });
   };
 

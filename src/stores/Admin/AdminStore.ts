@@ -129,9 +129,9 @@ class AdminStore {
   };
 
   @action
-  getUserRate = async (): Promise<UserRate> => {
+  getUserRate = async (isFinal?: boolean): Promise<UserRate> => {
     try {
-      const response: UserRate = await AdminApi.GetUserRate();
+      const response: UserRate = await AdminApi.GetUserRate(isFinal);
 
       return new Promise((resolve: (response: UserRate) => void, reject) => {
         resolve(response);

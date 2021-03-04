@@ -4,9 +4,10 @@ import UserListCompoment from "components/Admin/UserList";
 import useStore from "lib/hooks/useStore";
 import { useHistory } from "react-router-dom";
 import { List } from "util/types/User";
-import { handleLogin } from "lib/handleErrors";
+import { handleAdmin, handleLogin } from "lib/handleErrors";
 import { CityRatio, DateRatio, SchoolRatio } from "util/types/UserRatio";
 import ExcelApi from "assets/api/ExcelApi";
+import { toast } from "react-toastify";
 
 const UserListContainer = ({}) => {
   const { store } = useStore();
@@ -28,7 +29,7 @@ const UserListContainer = ({}) => {
         setUserStatus(res.data);
       })
       .catch((err: Error) => {
-        handleLogin(err, history);
+        handleAdmin(err, history);
       });
   }, []);
 
@@ -46,7 +47,7 @@ const UserListContainer = ({}) => {
 
   const tryDownExcel = () => {
     GetReceiptStatus().catch((err) => {
-      console.log(err);
+      toast.warn("서버 오류입니다.");
     });
   };
 

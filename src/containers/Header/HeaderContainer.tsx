@@ -23,6 +23,7 @@ const HeaderContainer = ({
     login,
     name,
     email,
+    isAdmin,
     profileBox,
     tryProfileBox,
     tryLogout,
@@ -75,6 +76,7 @@ const HeaderContainer = ({
   return (
     <>
       <Header
+        isAdmin={isAdmin}
         theme={theme}
         login={login}
         profileBox={profileBox}

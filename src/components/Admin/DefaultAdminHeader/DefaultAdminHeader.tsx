@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./DefaultAdminHeader.scss";
 
 interface DefaultAdminHeaderProps {
@@ -7,9 +7,8 @@ interface DefaultAdminHeaderProps {
 }
 
 const DefaultAdminHeader = ({ children }: DefaultAdminHeaderProps) => {
-  const history = useHistory();
   return (
-    <div>
+    <>
       <div className="Admin">
         <div className="Admin-header">
           <NavLink
@@ -67,7 +66,7 @@ const DefaultAdminHeader = ({ children }: DefaultAdminHeaderProps) => {
         </div>
       </div>
       {children}
-    </div>
+    </>
   );
 };
 
