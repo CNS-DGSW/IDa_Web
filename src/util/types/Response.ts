@@ -200,6 +200,8 @@ export interface ResultStatusResponse extends Response {
     examCode: string;
     isPrintedApplicationArrived: boolean;
     isPassedFirstApply: boolean | null;
+    firstApplyDetailType: ApplyDetail | null;
+    firstApplyType: Apply | null;
     isSubmit: boolean;
     submitCode: string;
   };

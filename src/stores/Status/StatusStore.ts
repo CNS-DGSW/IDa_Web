@@ -8,7 +8,6 @@ class StatusStore {
   @observable submit: boolean = false;
   @observable print: boolean = false;
   @observable pass: boolean | null = false;
-  @observable flag: boolean = false;
   @observable statusModal: boolean = false;
 
   @action trySatusModal = () => {
@@ -57,10 +56,6 @@ class StatusStore {
   ): Promise<ResultStatusResponse> => {
     try {
       const response: ResultStatusResponse = await StatusApi.GetStatus(userIdx);
-
-      if (response.status === 200 && this.flag === false) {
-        this.flag = true;
-      }
 
       this.submit = response.data.isSubmit;
       this.print = response.data.isPrintedApplicationArrived;

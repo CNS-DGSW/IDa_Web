@@ -45,7 +45,7 @@ const SecondResultContainer = ({
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [getData]);
 
   return <SecondResult comment={comment} secondOpenModal={secondOpenModal} />;
 };
