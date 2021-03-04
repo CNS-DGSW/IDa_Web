@@ -172,7 +172,7 @@ const Header = ({
                 {isAdmin && (
                   <button
                     className="headerButton header-admin"
-                    onClick={() => history.push("/admin/applystatus")}
+                    onClick={() => history.push("/admin/userList")}
                   >
                     관리자
                   </button>

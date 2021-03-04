@@ -13,6 +13,14 @@
   @media screen and (max-width: 767px) {
     padding: 0.5rem 0.5rem;
   }
+  &-admin {
+    display: block !important;
+    margin-right: 1rem;
+    @media screen and (max-width: 767px) {
+      padding: 0.5rem !important;
+      font-size: 0.8rem !important;
+    }
+  }
   &-menu {
     position: fixed;
     right: -100%;
