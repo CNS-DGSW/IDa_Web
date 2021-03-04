@@ -2,6 +2,8 @@ import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
 import SecondResult from "components/ResultStatusCheck/SecondResult";
+import { toast } from "react-toastify";
+import { useHistory } from "react-router-dom";
 
 interface SecondResultContainerProps {
   secondOpenModal: () => void;
@@ -10,6 +12,7 @@ interface SecondResultContainerProps {
 const SecondResultContainer = ({
   secondOpenModal,
 }: SecondResultContainerProps) => {
+  const history = useHistory();
   const { store } = useStore();
   const { tryGetFinalStatus } = store.StatusStore;
   const [comment, setComment] = useState<string>("");
@@ -32,12 +35,17 @@ const SecondResultContainer = ({
       .then((res) => {
         selectComment(res.data.isPassed);
       })
-      .catch((err) => {});
+      .catch((err) => {
+        if (err.message.includes("401")) {
+          toast.warn("로그인이 필요합니다.");
+          history.push("/login");
+        }
+      });
   };
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [getData]);
 
   return <SecondResult comment={comment} secondOpenModal={secondOpenModal} />;
 };

@@ -2,12 +2,13 @@ import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
 import ResultStatus from "components/ResultStatusCheck/ResultStatus";
+import { toast } from "react-toastify";
 
 interface ResultStatusContainerPropse {}
 
 const ResultStatusContainer = ({}: ResultStatusContainerPropse) => {
   const { store } = useStore();
-  const { submit, print, flag, tryGetStatus } = store.StatusStore;
+  const { tryGetStatus } = store.StatusStore;
   const [post, setPost] = useState<boolean>(false);
   const [internet, setInternet] = useState<boolean>(false);
 
@@ -19,17 +20,14 @@ const ResultStatusContainer = ({}: ResultStatusContainerPropse) => {
         setPost(res.data.isSubmit);
         setInternet(res.data.isPrintedApplicationArrived);
       })
-      .catch(() => {});
-  }, [post, internet]);
+      .catch(() => {
+        toast.error("서버 오류입니다");
+      });
+  }, []);
 
   useEffect(() => {
-    if (flag) {
-      setPost(submit);
-      setInternet(print);
-    } else {
-      getStauts();
-    }
-  }, [post, internet]);
+    getStauts();
+  }, [getStauts]);
 
   return (
     <ResultStatus

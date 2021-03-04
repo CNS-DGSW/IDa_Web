@@ -5,14 +5,20 @@ import "./FirstResult.scss";
 interface FirstResultProps {
   comment: string;
   firstOpenModal: () => void;
+  applyComment: string;
 }
 
-const FirstResult = ({ comment, firstOpenModal }: FirstResultProps) => {
+const FirstResult = ({
+  comment,
+  firstOpenModal,
+  applyComment,
+}: FirstResultProps) => {
   return (
     <>
       <div className="FirstResult-comment">
         <div className="FirstResult-comment-top">
           <span className="FirstResult-comment-top-result">{comment}</span>
+          <span className="FirstResult-comment-top-apply">{applyComment}</span>
         </div>
         <div className="FirstResult-comment-bottom">
           <Button
