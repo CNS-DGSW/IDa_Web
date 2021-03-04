@@ -8,6 +8,14 @@
   padding: 2rem 2rem 0rem 2rem;
   min-width: 1440px;
   font-size: 1rem;
+  &-select {
+    margin-top: 1rem;
+    font-size: 1rem;
+    height: 2rem;
+    &:focus {
+      outline: none;
+    }
+  }
   &-title {
     font-size: 2rem;
     margin-bottom: 1rem;

@@ -41,9 +41,10 @@ class AdminApi {
     }
   }
 
-  async GetUserListPassed() {
+  async GetUserListPassed(isFinal?: boolean) {
     try {
-      const { data } = await Api.get("/admin/getUserListPassed");
+      const query = isFinal ? `?isFinal=${isFinal}` : "";
+      const { data } = await Api.get(`/admin/getUserListPassed${query}`);
 
       return data;
     } catch (error) {

@@ -6,25 +6,31 @@ import { useHistory } from "react-router-dom";
 import { ListPassed } from "util/types/User";
 import { handleAdmin } from "lib/handleErrors";
 import ExcelApi from "assets/api/ExcelApi";
+import ListPassedCategory from "util/enums/ListPassedCategory";
 
 const UserListPassedContainer = ({}) => {
   const { store } = useStore();
   const history = useHistory();
-  const { getUserListPassed, isFinal } = store.AdminStore;
+  const { getUserListPassed } = store.AdminStore;
 
   const { GetFirstSelection, GetSecondSelection } = ExcelApi;
+  const [listPassed, setListPassed] = useState<ListPassedCategory>(
+    ListPassedCategory.First
+  );
 
   const [passedStatus, setPassedStatus] = useState<ListPassed[]>([]);
 
   const tryGetUserListPassed = useCallback(() => {
-    getUserListPassed()
+    getUserListPassed(
+      listPassed === ListPassedCategory.Final ? true : undefined
+    )
       .then((res) => {
         setPassedStatus(res.data);
       })
       .catch((err: Error) => {
         handleAdmin(err, history);
       });
-  }, []);
+  }, [listPassed]);
 
   const tryDownExcel = (key: string) => {
     switch (key) {
@@ -42,6 +48,17 @@ const UserListPassedContainer = ({}) => {
     }
   };
 
+  const selectListPassed = useCallback(
+    (index: string) => {
+      if (index === "0") {
+        setListPassed(ListPassedCategory.First);
+      } else {
+        setListPassed(ListPassedCategory.Final);
+      }
+    },
+    [listPassed]
+  );
+
   useEffect(() => {
     tryGetUserListPassed();
   }, [tryGetUserListPassed]);
@@ -51,7 +68,8 @@ const UserListPassedContainer = ({}) => {
       <UserListPassed
         tryDownExcel={tryDownExcel}
         passedStatus={passedStatus}
-        isFinal={isFinal}
+        selectListPassed={selectListPassed}
+        listPassed={listPassed}
       />
     </>
   );

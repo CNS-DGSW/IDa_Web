@@ -1,6 +1,5 @@
 import React from "react";
 import HeaderContainer from "containers/Header/HeaderContainer";
-import Footer from "../Footer";
 
 interface DefaultTemplateProps {
   children: React.ReactNode;
@@ -13,7 +12,6 @@ const DefaultTemplate = ({ children, theme, style }: DefaultTemplateProps) => {
     <div className="default-template">
       <HeaderContainer theme={theme} style={style} />
       {children}
-      <Footer />
     </div>
   );
 };

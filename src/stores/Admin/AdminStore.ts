@@ -112,9 +112,11 @@ class AdminStore {
   };
 
   @action
-  getUserListPassed = async (): Promise<UserListPassed> => {
+  getUserListPassed = async (isFinal?: boolean): Promise<UserListPassed> => {
     try {
-      const response: UserListPassed = await AdminApi.GetUserListPassed();
+      const response: UserListPassed = await AdminApi.GetUserListPassed(
+        isFinal
+      );
 
       return new Promise(
         (resolve: (response: UserListPassed) => void, reject) => {
