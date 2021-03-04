@@ -45,40 +45,40 @@ const AdminUserSchoolCity = ({
           {schoolCity.map((res) => {
             return (
               <tr>
-                <th>{res.idx}</th>
-                <th>{res.cityName}</th>
-                <th>{res.schoolName}</th>
-                <th>{res.ungraduatedMen}</th>
-                <th>{res.ungraduatedWomen}</th>
-                <th>{res.graduatedMen}</th>
-                <th>{res.graduatedWomen}</th>
-                <th>{res.ungraduatedMen + res.graduatedMen}</th>
-                <th>{res.ungraduatedWomen + res.graduatedWomen}</th>
-                <th>
+                <td>{res.idx}</td>
+                <td>{res.cityName}</td>
+                <td>{res.schoolName}</td>
+                <td>{res.ungraduatedMen}</td>
+                <td>{res.ungraduatedWomen}</td>
+                <td>{res.graduatedMen}</td>
+                <td>{res.graduatedWomen}</td>
+                <td>{res.ungraduatedMen + res.graduatedMen}</td>
+                <td>{res.ungraduatedWomen + res.graduatedWomen}</td>
+                <td>
                   {res.ungraduatedMen +
                     res.graduatedMen +
                     res.ungraduatedWomen +
                     res.graduatedWomen}
-                </th>
+                </td>
               </tr>
             );
           })}
           <tr>
-            <th colSpan={3} className="schoolcity-list-header">
+            <td colSpan={3} className="schoolcity-list-header">
               합계
-            </th>
-            <th>{totalUngraduatedMen}</th>
-            <th>{totalUngraduatedWomen}</th>
-            <th>{totalGraduatedMen}</th>
-            <th>{totalGraduatedWomen}</th>
-            <th>{totalUngraduatedMen + totalGraduatedMen}</th>
-            <th>{totalUngraduatedWomen + totalGraduatedWomen}</th>
-            <th>
+            </td>
+            <td>{totalUngraduatedMen}</td>
+            <td>{totalUngraduatedWomen}</td>
+            <td>{totalGraduatedMen}</td>
+            <td>{totalGraduatedWomen}</td>
+            <td>{totalUngraduatedMen + totalGraduatedMen}</td>
+            <td>{totalUngraduatedWomen + totalGraduatedWomen}</td>
+            <td>
               {totalUngraduatedMen +
                 totalGraduatedMen +
                 totalUngraduatedWomen +
                 totalGraduatedWomen}
-            </th>
+            </td>
           </tr>
         </table>
       </div>

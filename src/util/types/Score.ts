@@ -19,6 +19,7 @@ export interface SecondScoreResponse extends Response {
       gradeScore: number;
       gradeType: Ged;
       interviewScore: number;
+      isPassed: boolean;
       jobAptitudeScore: number;
       swAbilityScore: number;
       totalInterviewScore: number;

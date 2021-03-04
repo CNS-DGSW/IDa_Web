@@ -9,6 +9,9 @@ import Schools from "util/types/Schools";
 import ScoreGrade from "./ScoreGrade";
 import { Receipt } from "./ReceiptType";
 import { SchoolCity } from "./SchoolCity";
+import { CityRatio, DateRatio, SchoolRatio } from "./UserRatio";
+import { List, ListPassed, Rate } from "./User";
+import { Report } from "./ReportInfo";
 
 export type Response = {
   status: number;
@@ -208,4 +211,27 @@ export interface FinalStatusResponse extends Response {
     finalApplyType: Apply;
     isPassed: true | null;
   };
+}
+export interface AllUserRatio extends Response {
+  data: {
+    userCityRatio: CityRatio[];
+    userDateRatio: DateRatio[];
+    userSchoolRatio: SchoolRatio[];
+  };
+}
+
+export interface UserList extends Response {
+  data: List[];
+}
+
+export interface UserListPassed extends Response {
+  data: ListPassed[];
+}
+
+export interface UserRate extends Response {
+  data: Rate[];
+}
+
+export interface ReportInfo extends Response {
+  data: Report[];
 }
