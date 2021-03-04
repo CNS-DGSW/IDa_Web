@@ -1,17 +1,20 @@
 import React from "react";
 import { ListPassed } from "util/types/User";
 import "./UserListPassed.scss";
+import ListPassedCategory from "util/enums/ListPassedCategory";
 
 interface UserListPassedProps {
   tryDownExcel: (key: string) => void;
   passedStatus: ListPassed[];
-  isFinal: boolean;
+  selectListPassed: (index: string) => void;
+  listPassed: ListPassedCategory;
 }
 
 const UserListPassed = ({
   tryDownExcel,
   passedStatus,
-  isFinal,
+  selectListPassed,
+  listPassed,
 }: UserListPassedProps) => {
   return (
     <>
@@ -23,6 +26,17 @@ const UserListPassed = ({
         <button onClick={() => tryDownExcel("final")} className="header-btn">
           최종 합격 엑셀
         </button>
+        <select
+          className="listPassed-select"
+          onChange={(e) => {
+            selectListPassed(e.target.value);
+          }}
+        >
+          <option value="0">1차 합격</option>
+          <option value="1" className="listPassed-select-op">
+            최종 합격
+          </option>
+        </select>
       </div>
       <div className="passed">
         <table className="passed-list">
@@ -44,67 +58,45 @@ const UserListPassed = ({
             {passedStatus.map((i, idx) => {
               return (
                 <tr key={idx}>
-                  <td>{i.idx}</td>
-                  <td>{i.name}</td>
-                  <td>{i.schoolName}</td>
-                  <td>{i.cityName}</td>
-                  <td>{i.studentTel}</td>
-                  <td>{i.email}</td>
-                  <td>{i.birth}</td>
-                  <td>{i.submitCode}</td>
-                  <td>{i.examCode}</td>
-                  {isFinal ? (
-                    <td>
-                      {i.firstApplyType === "COMMON" ? (
-                        <>1차: 일반전형</>
-                      ) : (
-                        <></>
-                      )}
-                      {i.firstApplyType === "SPECIAL" ? (
-                        <>1차: 특별전형</>
-                      ) : (
-                        <></>
-                      )}
-                      {i.firstApplyType === "OTHER" ? (
-                        <>1차: 특례입학</>
-                      ) : (
-                        <></>
-                      )}
-                      <br />
-                      {i.finalApplyType === "COMMON" ? (
-                        <>2차: 일반전형</>
-                      ) : (
-                        <></>
-                      )}
-                      {i.finalApplyType === "SPECIAL" ? (
-                        <>2차: 특별전형</>
-                      ) : (
-                        <></>
-                      )}
-                      {i.finalApplyType === "OTHER" ? (
-                        <>2차: 특례입학</>
-                      ) : (
-                        <></>
-                      )}
-                    </td>
-                  ) : (
-                    <td>
-                      {i.firstApplyType === "COMMON" ? (
-                        <>1차: 일반전형</>
-                      ) : (
-                        <></>
-                      )}
-                      {i.firstApplyType === "SPECIAL" ? (
-                        <>1차: 특별전형</>
-                      ) : (
-                        <></>
-                      )}
-                      {i.firstApplyType === "OTHER" ? (
-                        <>1차: 특례입학</>
-                      ) : (
-                        <></>
-                      )}
-                    </td>
+                  {listPassed === ListPassedCategory.Final && (
+                    <>
+                      <td>{i.idx}</td>
+                      <td>{i.name}</td>
+                      <td>{i.schoolName}</td>
+                      <td>{i.cityName}</td>
+                      <td>{i.studentTel}</td>
+                      <td>{i.email}</td>
+                      <td>{i.birth}</td>
+                      <td>{i.submitCode}</td>
+                      <td>{i.examCode}</td>
+                      <td>
+                        {i.firstApplyType === "COMMON" && "1차: 일반전형"}
+                        {i.firstApplyType === "OTHER" && "1차: 특례입학"}
+                        {i.firstApplyType === "SPECIAL" && "1차: 특별전형"}
+                        <br />
+                        {i.finalApplyType === "COMMON" && "2차: 일반전형"}
+                        {i.finalApplyType === "OTHER" && "2차: 특례입학"}
+                        {i.finalApplyType === "SPECIAL" && "2차: 특별전형"}
+                      </td>
+                    </>
+                  )}
+                  {listPassed === ListPassedCategory.First && (
+                    <>
+                      <td>{i.idx}</td>
+                      <td>{i.name}</td>
+                      <td>{i.schoolName}</td>
+                      <td>{i.cityName}</td>
+                      <td>{i.studentTel}</td>
+                      <td>{i.email}</td>
+                      <td>{i.birth}</td>
+                      <td>{i.submitCode}</td>
+                      <td>{i.examCode}</td>
+                      <td>
+                        {i.firstApplyType === "COMMON" && "1차: 일반전형"}
+                        {i.firstApplyType === "OTHER" && "1차: 특례입학"}
+                        {i.firstApplyType === "SPECIAL" && "1차: 특별전형"}
+                      </td>
+                    </>
                   )}
                 </tr>
               );

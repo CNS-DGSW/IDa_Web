@@ -138,16 +138,16 @@ const SecondTypeScore = ({
                 <td>{i.userName}</td>
                 {/* 이름 */}
                 <td>
-                  {i.gradeType === "UNGRADUATED" ? <>미졸업</> : <></>}
-                  {i.gradeType === "GRADUATED" ? <>졸업</> : <></>}
+                  {i.gradeType === "UNGRADUATED" && "졸업예정"}
+                  {i.gradeType === "GRADUATED" && "졸업"}
                 </td>
                 {/* 학력 */}
                 <td>{i.cityName}</td>
                 {/* 지역 */}
                 <td>
-                  {i.applyType === "COMMON" ? <>일반전형</> : <></>}
-                  {i.applyType === "SPECIAL" ? <>특별전형</> : <></>}
-                  {i.applyType === "OTHER" ? <>특례입학</> : <></>}
+                  {i.applyType === "COMMON" && "일반전형"}
+                  {i.applyType === "SPECIAL" && "특별전형"}
+                  {i.applyType === "OTHER" && "특례입학"}
                 </td>
                 {/* 1차 합격전형 */}
                 <td>{i.gradeScore}</td>
@@ -179,9 +179,9 @@ const SecondTypeScore = ({
                 </td>
                 {/* 합격여부 */}
                 <td>
-                  {i.finalApplyType === "COMMON" ? <>일반전형</> : <></>}
-                  {i.finalApplyType === "SPECIAL" ? <>특별전형</> : <></>}
-                  {i.finalApplyType === "OTHER" ? <>특례입학</> : <></>}
+                  {i.finalApplyType === "COMMON" && "일반전형"}
+                  {i.finalApplyType === "SPECIAL" && "특별전형"}
+                  {i.finalApplyType === "OTHER" && "특례입학"}
                 </td>
                 {/* 최종합격전형 */}
               </tr>
