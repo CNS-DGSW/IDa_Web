@@ -26,62 +26,90 @@ const UserListPassed = ({
       </div>
       <div className="passed">
         <table className="passed-list">
-          <tr className="passed-list-title">
-            <th>순번</th>
-            <th>이름</th>
-            <th>출신학교</th>
-            <th>지역</th>
-            <th>전화번호</th>
-            <th>이메일</th>
-            <th>생년월일</th>
-            <th>접수번호</th>
-            <th>수험번호</th>
-            <th>합격전형</th>
-          </tr>
-          {passedStatus.map((i) => {
-            return (
-              <tr>
-                <td>{i.idx}</td>
-                <td>{i.name}</td>
-                <td>{i.schoolName}</td>
-                <td>{i.cityName}</td>
-                <td>{i.studentTel}</td>
-                <td>{i.email}</td>
-                <td>{i.birth}</td>
-                <td>{i.submitCode}</td>
-                <td>{i.examCode}</td>
-                {isFinal ? (
-                  <td>
-                    {i.firstApplyType === "COMMON" ? <>1차: 일반전형</> : <></>}
-                    {i.firstApplyType === "SPECIAL" ? (
-                      <>1차: 특별전형</>
-                    ) : (
-                      <></>
-                    )}
-                    {i.firstApplyType === "OTHER" ? <>1차: 특례입학</> : <></>}
-                    <br />
-                    {i.finalApplyType === "COMMON" ? <>2차: 일반전형</> : <></>}
-                    {i.finalApplyType === "SPECIAL" ? (
-                      <>2차: 특별전형</>
-                    ) : (
-                      <></>
-                    )}
-                    {i.finalApplyType === "OTHER" ? <>2차: 특례입학</> : <></>}
-                  </td>
-                ) : (
-                  <td>
-                    {i.firstApplyType === "COMMON" ? <>1차: 일반전형</> : <></>}
-                    {i.firstApplyType === "SPECIAL" ? (
-                      <>1차: 특별전형</>
-                    ) : (
-                      <></>
-                    )}
-                    {i.firstApplyType === "OTHER" ? <>1차: 특례입학</> : <></>}
-                  </td>
-                )}
-              </tr>
-            );
-          })}
+          <thead>
+            <tr className="passed-list-title">
+              <th>순번</th>
+              <th>이름</th>
+              <th>출신학교</th>
+              <th>지역</th>
+              <th>전화번호</th>
+              <th>이메일</th>
+              <th>생년월일</th>
+              <th>접수번호</th>
+              <th>수험번호</th>
+              <th>합격전형</th>
+            </tr>
+          </thead>
+          <tbody>
+            {passedStatus.map((i, idx) => {
+              return (
+                <tr key={idx}>
+                  <td>{i.idx}</td>
+                  <td>{i.name}</td>
+                  <td>{i.schoolName}</td>
+                  <td>{i.cityName}</td>
+                  <td>{i.studentTel}</td>
+                  <td>{i.email}</td>
+                  <td>{i.birth}</td>
+                  <td>{i.submitCode}</td>
+                  <td>{i.examCode}</td>
+                  {isFinal ? (
+                    <td>
+                      {i.firstApplyType === "COMMON" ? (
+                        <>1차: 일반전형</>
+                      ) : (
+                        <></>
+                      )}
+                      {i.firstApplyType === "SPECIAL" ? (
+                        <>1차: 특별전형</>
+                      ) : (
+                        <></>
+                      )}
+                      {i.firstApplyType === "OTHER" ? (
+                        <>1차: 특례입학</>
+                      ) : (
+                        <></>
+                      )}
+                      <br />
+                      {i.finalApplyType === "COMMON" ? (
+                        <>2차: 일반전형</>
+                      ) : (
+                        <></>
+                      )}
+                      {i.finalApplyType === "SPECIAL" ? (
+                        <>2차: 특별전형</>
+                      ) : (
+                        <></>
+                      )}
+                      {i.finalApplyType === "OTHER" ? (
+                        <>2차: 특례입학</>
+                      ) : (
+                        <></>
+                      )}
+                    </td>
+                  ) : (
+                    <td>
+                      {i.firstApplyType === "COMMON" ? (
+                        <>1차: 일반전형</>
+                      ) : (
+                        <></>
+                      )}
+                      {i.firstApplyType === "SPECIAL" ? (
+                        <>1차: 특별전형</>
+                      ) : (
+                        <></>
+                      )}
+                      {i.firstApplyType === "OTHER" ? (
+                        <>1차: 특례입학</>
+                      ) : (
+                        <></>
+                      )}
+                    </td>
+                  )}
+                </tr>
+              );
+            })}
+          </tbody>
         </table>
       </div>
     </>

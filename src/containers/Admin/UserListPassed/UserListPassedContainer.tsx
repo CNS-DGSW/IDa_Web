@@ -4,7 +4,7 @@ import UserListPassed from "components/Admin/UserListPassed";
 import useStore from "lib/hooks/useStore";
 import { useHistory } from "react-router-dom";
 import { ListPassed } from "util/types/User";
-import { handleLogin } from "lib/handleErrors";
+import { handleAdmin } from "lib/handleErrors";
 import ExcelApi from "assets/api/ExcelApi";
 
 const UserListPassedContainer = ({}) => {
@@ -22,7 +22,7 @@ const UserListPassedContainer = ({}) => {
         setPassedStatus(res.data);
       })
       .catch((err: Error) => {
-        handleLogin(err, history);
+        handleAdmin(err, history);
       });
   }, []);
 

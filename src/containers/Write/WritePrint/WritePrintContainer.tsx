@@ -319,7 +319,11 @@ const WritePrintContainer = ({}) => {
   useEffect(() => {
     if (componentRef && componentRef.current && !loading) {
       const content = document.getElementById("print-printBtn");
-      if (content) {
+      if (
+        content &&
+        (!query.get("auto") ||
+          (query.get("auto") && query.get("auto") === "true"))
+      ) {
         content.click();
       }
     }

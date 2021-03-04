@@ -4,7 +4,12 @@ import useStore from "lib/hooks/useStore";
 import "./WriteContent.scss";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
-import { RouteComponentProps, useHistory, withRouter } from "react-router-dom";
+import {
+  Link,
+  RouteComponentProps,
+  useHistory,
+  withRouter,
+} from "react-router-dom";
 
 interface WriteContentProps {
   title: string;
@@ -13,7 +18,12 @@ interface WriteContentProps {
   isChanged?: boolean;
 }
 
-const WriteContent = ({ title, children, onSave, isChanged }: WriteContentProps & RouteComponentProps) => {
+const WriteContent = ({
+  title,
+  children,
+  onSave,
+  isChanged,
+}: WriteContentProps & RouteComponentProps) => {
   const { store } = useStore();
   const { page, pageHandle } = store.WriteStore;
   const { changeSubmit } = store.StatusStore;
@@ -122,25 +132,44 @@ const WriteContent = ({ title, children, onSave, isChanged }: WriteContentProps 
             >
               원서저장
             </div>
-            <div className="writecontent-children-area-btn preview">원서 미리보기</div>
+            <Link
+              to="/print?auto=false"
+              target="_blank"
+              className="writecontent-children-area-btn preview"
+            >
+              원서 미리보기
+            </Link>
             {page === 6 && (
-              <div className="writecontent-children-area-btn prev" onClick={() => history.push("/print")}>
+              <Link
+                to="/print"
+                target="_blank"
+                className="writecontent-children-area-btn prev"
+              >
                 원서 출력
-              </div>
+              </Link>
             )}
             <div className="writecontent-children-area-hr"></div>
 
             {page === 6 ? (
-              <div className="writecontent-children-area-btn last" onClick={() => changeSubmitCallback()}>
+              <div
+                className="writecontent-children-area-btn last"
+                onClick={() => changeSubmitCallback()}
+              >
                 원서 최종 제출
               </div>
             ) : (
-              <div className="writecontent-children-area-btn next" onClick={() => nextPage()}>
+              <div
+                className="writecontent-children-area-btn next"
+                onClick={() => nextPage()}
+              >
                 다음
               </div>
             )}
             {page !== 0 && (
-              <div className="writecontent-children-area-btn prev" onClick={prevPage}>
+              <div
+                className="writecontent-children-area-btn prev"
+                onClick={prevPage}
+              >
                 이전
               </div>
             )}

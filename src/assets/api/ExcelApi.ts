@@ -94,7 +94,7 @@ class ExcelApi {
       const formData = new FormData();
       formData.append("file", file);
 
-      const response = await Api.post(`/excel/uploadCodingTest`, file);
+      const response = await Api.post(`/excel/uploadCodingTest`, formData);
 
       return response;
     } catch (error) {
@@ -107,7 +107,7 @@ class ExcelApi {
       const formData = new FormData();
       formData.append("file", file);
 
-      const response = await Api.post(`/excel/uploadInterviewScore`, file);
+      const response = await Api.post(`/excel/uploadInterviewScore`, formData);
 
       return response;
     } catch (error) {
@@ -120,7 +120,7 @@ class ExcelApi {
       const formData = new FormData();
       formData.append("file", file);
 
-      const response = await Api.post(`/excel/uploadJobAptitude`, file);
+      const response = await Api.post(`/excel/uploadJobAptitude`, formData);
 
       return response;
     } catch (error) {
@@ -133,7 +133,7 @@ class ExcelApi {
       const formData = new FormData();
       formData.append("file", file);
 
-      const response = await Api.post(`/excel/uploadSwAbility`, file);
+      const response = await Api.post(`/excel/uploadSwAbility`, formData);
 
       return response;
     } catch (error) {

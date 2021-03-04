@@ -8,25 +8,25 @@ export interface SecondScoreResponse extends Response {
     {
       absenceScore: number;
       additionalScore: number;
-      applyDetailType: Apply;
-      applyType: Apply;
-      cityName: "string";
+      applyDetailType: Apply | null;
+      applyType: Apply | null;
+      cityName: string;
       codingTestScore: number;
       cooperationScore: number;
       examCode: number;
-      finalApplyDetailType: Apply;
-      finalApplyType: Apply;
+      finalApplyDetailType: Apply | null;
+      finalApplyType: Apply | null;
       gradeScore: number;
-      gradeType: Ged;
+      gradeType: Ged | null;
       interviewScore: number;
-      isPassed: boolean;
       jobAptitudeScore: number;
       swAbilityScore: number;
       totalInterviewScore: number;
       totalScore: number;
       userIdx: number;
-      userName: "string";
+      userName: string;
       volunteerScore: number;
+      isPassed: boolean | null;
     }
   ];
 }
@@ -42,11 +42,11 @@ export interface InterViewScoreType extends Response {
       evaluationFactor3: number;
       evaluationFactor4: number;
       evaluationFactor5: number;
-      evaluationFactor6: number;
-      evaluationFactor7: number;
+      evaluationFactor6: number | null;
+      evaluationFactor7: number | null;
       examCode: number;
       interviewCategory: InterViewCategory;
-      userName: "string";
+      userName: string;
     }
   ];
 }

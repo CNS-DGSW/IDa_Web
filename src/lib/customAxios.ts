@@ -8,6 +8,12 @@ const Api = axios.create({
   params: {},
 });
 
+Api.defaults.headers = {
+  "Cache-Control": "no-cache",
+  Pragma: "no-cache",
+  Expires: "0",
+};
+
 Api.interceptors.request.use(refresh, refreshErrorHandle);
 
 export default Api;

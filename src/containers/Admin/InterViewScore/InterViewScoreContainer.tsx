@@ -6,6 +6,8 @@ import { InterViewScoreType } from "util/types/Score";
 import ExcelApi from "assets/api/ExcelApi";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
+import InterViewCategory from "util/enums/InterViewCategory";
+import { handleAdmin } from "lib/handleErrors";
 
 const InterViewScoreContainer = ({}) => {
   const { store } = useStore();
@@ -13,42 +15,33 @@ const InterViewScoreContainer = ({}) => {
   const { uploadInterview } = ExcelApi;
 
   const [teamCount, setTeamCount] = useState<number[]>();
-  const [interView, setInterView] = useState<string>("COOPERATION");
+  const [interView, setInterView] = useState<InterViewCategory>(
+    InterViewCategory.COOPERATION
+  );
   const [team, setTeam] = useState<string>("0");
   const [scoreDate, setScoreDate] = useState<InterViewScoreType>();
   const history = useHistory();
-
-  const uploadFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length) {
-      let file = e.target.files[0];
-      uploadInterview(file)
-        .then(() => {
-          toast.success("파일 업로드 되었습니다");
-        })
-        .catch((err) => {
-          if (err.message.includes("400")) {
-            toast.warn("파일을 잘못선택하였습니다");
-          }
-        });
-    }
-  };
 
   const tryDownExcel = async () => {
     await ExcelApi.GetInterviewScoreExcel(
       interView,
       team === "0" ? undefined : team
     ).catch((err) => {
-      toast.error("서버 오류입니다");
+      handleAdmin(err, history);
+      if (err.message.includes("404")) {
+        setTeam("0");
+      }
     });
   };
 
   const tryGetTeam = useCallback(async () => {
+    setTeam("0");
     await getTeam(interView)
       .then((res) => {
         setTeamCount(res.data);
       })
       .catch((err) => {
-        toast.error("서버 오류입니다");
+        handleAdmin(err, history);
       });
   }, [interView]);
 
@@ -58,22 +51,40 @@ const InterViewScoreContainer = ({}) => {
         setScoreDate(res);
       })
       .catch((err) => {
-        if (err.message.includes("403")) {
-          toast.warn("어드민으로 로그인해주세요");
-          history.push("/");
-        }
+        handleAdmin(err, history);
       });
   }, [interView, team, teamCount, scoreDate]);
 
   const selectInterView = useCallback(
     (index: string) => {
       if (index === "0") {
-        setInterView("COOPERATION");
+        setInterView(InterViewCategory.COOPERATION);
       } else {
-        setInterView("INTERVIEW");
+        setInterView(InterViewCategory.INTERVIEW);
       }
     },
     [interView]
+  );
+
+  const uploadFile = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (e.target.files && e.target.files.length) {
+        let file = e.target.files[0];
+        uploadInterview(file)
+          .then(() => {
+            toast.success("파일 업로드 되었습니다");
+            tryGetScore();
+          })
+          .catch((err) => {
+            if (err.message.includes("400")) {
+              toast.warn("파일을 잘못선택하였습니다");
+            } else if (err.message.includes("500")) {
+              toast.warn("서버 오류입니다.");
+            }
+          });
+      }
+    },
+    [tryGetScore]
   );
 
   useEffect(() => {
@@ -89,6 +100,7 @@ const InterViewScoreContainer = ({}) => {
       team={team}
       setTeam={setTeam}
       teamCount={teamCount}
+      interView={interView}
       selectInterView={selectInterView}
       scoreDate={scoreDate}
       tryDownExcel={tryDownExcel}

@@ -4,7 +4,7 @@ import UserRate from "components/Admin/UserRate";
 import { Rate } from "util/types/User";
 import { useHistory } from "react-router-dom";
 import { Report } from "util/types/ReportInfo";
-import { handleLogin } from "lib/handleErrors";
+import { handleAdmin } from "lib/handleErrors";
 import useStore from "lib/hooks/useStore";
 import ExcelApi from "assets/api/ExcelApi";
 
@@ -20,13 +20,12 @@ const UserRateContainer = ({}) => {
   const { GetUserRate } = ExcelApi;
 
   const tryGetUserRate = useCallback(() => {
-    getUserRate()
+    getUserRate(true)
       .then((res) => {
-        console.log(res.data);
         setRateStatus(res.data);
       })
       .catch((err: Error) => {
-        handleLogin(err, history);
+        handleAdmin(err, history);
       });
   }, []);
 
@@ -36,7 +35,7 @@ const UserRateContainer = ({}) => {
         setReportStatus(res.data);
       })
       .catch((err: Error) => {
-        handleLogin(err, history);
+        handleAdmin(err, history);
       });
   }, []);
 
