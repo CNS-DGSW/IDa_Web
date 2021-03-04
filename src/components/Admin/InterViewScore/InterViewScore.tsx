@@ -35,7 +35,7 @@ const InterViewScore = ({
           }}
         >
           <option value="0" className="InterViewScore-checkBox-s-op">
-            그룹면접2
+            그룹면접
           </option>
           <option value="1" className="InterViewScore-checkBox-s-op">
             심층면접
@@ -43,9 +43,8 @@ const InterViewScore = ({
         </select>
         <select
           className="InterViewScore-checkBox-s-op"
-          name=""
-          id=""
           onChange={(e) => setTeam(e.target.value)}
+          value={team}
         >
           <option className="InterViewScore-checkBox-s-op" value="0">
             전체
@@ -93,7 +92,7 @@ const InterViewScore = ({
               {interView === InterViewCategory.INTERVIEW && (
                 <>
                   <th>평가요소6</th>
-                  <th>평가요소6</th>
+                  <th>평가요소7</th>
                 </>
               )}
               <th>점수</th>

@@ -66,7 +66,9 @@ const RegisterContainer = () => {
           history.push("login");
         })
         .catch((err: Error) => {
-          if (err.message.includes("409")) {
+          if (err.message.includes("403")) {
+            toast.warn("이미 원서 제출이 마감되었습니다.");
+          } else if (err.message.includes("409")) {
             toast.warn("이미 사용중인 이메일입니다.");
           } else if (err.message.includes("401")) {
             toast.warn("메일 인증이 안되었습니다.");

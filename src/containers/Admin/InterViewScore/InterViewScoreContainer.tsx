@@ -7,6 +7,7 @@ import ExcelApi from "assets/api/ExcelApi";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 import InterViewCategory from "util/enums/InterViewCategory";
+import { handleAdmin } from "lib/handleErrors";
 
 const InterViewScoreContainer = ({}) => {
   const { store } = useStore();
@@ -26,17 +27,21 @@ const InterViewScoreContainer = ({}) => {
       interView,
       team === "0" ? undefined : team
     ).catch((err) => {
-      toast.error("서버 오류입니다");
+      handleAdmin(err, history);
+      if (err.message.includes("404")) {
+        setTeam("0");
+      }
     });
   };
 
   const tryGetTeam = useCallback(async () => {
+    setTeam("0");
     await getTeam(interView)
       .then((res) => {
         setTeamCount(res.data);
       })
       .catch((err) => {
-        toast.error("서버 오류입니다");
+        handleAdmin(err, history);
       });
   }, [interView]);
 
@@ -46,10 +51,7 @@ const InterViewScoreContainer = ({}) => {
         setScoreDate(res);
       })
       .catch((err) => {
-        if (err.message.includes("403")) {
-          toast.warn("어드민으로 로그인해주세요");
-          history.push("/");
-        }
+        handleAdmin(err, history);
       });
   }, [interView, team, teamCount, scoreDate]);
 
@@ -76,6 +78,8 @@ const InterViewScoreContainer = ({}) => {
           .catch((err) => {
             if (err.message.includes("400")) {
               toast.warn("파일을 잘못선택하였습니다");
+            } else if (err.message.includes("500")) {
+              toast.warn("서버 오류입니다.");
             }
           });
       }

@@ -1,7 +1,11 @@
 import { action, observable } from "mobx";
 import { autobind } from "core-decorators";
 import AuthApi from "../../assets/api/AuthApi";
-import { LoginResponse, Response, UserInfoResponse } from "../../util/types/Response";
+import {
+  LoginResponse,
+  Response,
+  UserInfoResponse,
+} from "../../util/types/Response";
 import { sha256 } from "js-sha256";
 
 @autobind
@@ -11,6 +15,11 @@ class AuthStore {
   @observable profileBox: boolean = false;
   @observable name: string = "";
   @observable email: string = "";
+
+  @action
+  handleName = (name: string) => {
+    this.name = name;
+  };
 
   @action
   tryProfileBox = () => {
@@ -36,7 +45,10 @@ class AuthStore {
   };
 
   @action
-  tryLogin = async (email: string, password: string): Promise<LoginResponse> => {
+  tryLogin = async (
+    email: string,
+    password: string
+  ): Promise<LoginResponse> => {
     try {
       const response = await AuthApi.Login(email, sha256(password));
 
@@ -44,9 +56,11 @@ class AuthStore {
         this.login = true;
       }
 
-      return new Promise((resolve: (response: LoginResponse) => void, reject) => {
-        resolve(response);
-      });
+      return new Promise(
+        (resolve: (response: LoginResponse) => void, reject) => {
+          resolve(response);
+        }
+      );
     } catch (error) {
       return new Promise((resolve, reject: (error: Error) => void) => {
         reject(error);
@@ -55,9 +69,19 @@ class AuthStore {
   };
 
   @action
-  tryRegister = async (name: string, email: string, password: string, birth: string): Promise<Response> => {
+  tryRegister = async (
+    name: string,
+    email: string,
+    password: string,
+    birth: string
+  ): Promise<Response> => {
     try {
-      const response = await AuthApi.Register(name, email, sha256(password), birth);
+      const response = await AuthApi.Register(
+        name,
+        email,
+        sha256(password),
+        birth
+      );
 
       return new Promise((resolve: (response: Response) => void, reject) => {
         resolve(response);
@@ -96,9 +120,11 @@ class AuthStore {
         this.isAdmin = response.data.isAdmin;
       }
 
-      return new Promise((resolve: (response: UserInfoResponse) => void, reject) => {
-        resolve(response);
-      });
+      return new Promise(
+        (resolve: (response: UserInfoResponse) => void, reject) => {
+          resolve(response);
+        }
+      );
     } catch (error) {
       this.login = false;
       return new Promise((resolve, reject: (error: Error) => void) => {

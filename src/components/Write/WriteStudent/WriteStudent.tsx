@@ -32,7 +32,11 @@ const WriteStudent = ({
 }: WriteStudentProps) => {
   return (
     <>
-      <WriteContent title="지원자 정보를 입력해 주세요" isChanged={isChanged} onSave={onSave}>
+      <WriteContent
+        title="지원자 정보를 입력해 주세요"
+        isChanged={isChanged}
+        onSave={onSave}
+      >
         <div className="student">
           <div className="student-text">
             <label className="student-text-label">성명</label>

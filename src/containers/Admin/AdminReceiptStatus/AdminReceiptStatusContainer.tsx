@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import ReceiptStatus from "../../../components/Admin/AdminReceiptStatus";
 import useStore from "lib/hooks/useStore";
-import { handleLogin } from "lib/handleErrors";
+import { handleAdmin } from "lib/handleErrors";
 import { useHistory } from "react-router-dom";
 import { Receipt } from "util/types/ReceiptType";
 
@@ -25,7 +25,7 @@ const AdminReceiptStatusContainer = ({}) => {
         setReceiptStatus(res.data);
       })
       .catch((err: Error) => {
-        handleLogin(err, history);
+        handleAdmin(err, history);
       });
   }, []);
 

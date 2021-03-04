@@ -13,6 +13,7 @@ import useQuery from "lib/hooks/useQuery";
 const WriteStudentContainer = ({}) => {
   const { store } = useStore();
 
+  const { handleName } = store.AuthStore;
   const { getStudentInfo, editStudentInfo } = store.WriteStore;
 
   const history = useHistory();
@@ -42,10 +43,13 @@ const WriteStudentContainer = ({}) => {
   const onSave = useCallback(async () => {
     let flag = true;
     if (name !== "" && birth !== "" && sex !== null && studentTel !== "") {
-      await editStudentInfo(name, birth, sex, studentTel).catch((err: Error) => {
-        handleWriteError(err, history);
-        flag = false;
-      });
+      await editStudentInfo(name, birth, sex, studentTel).catch(
+        (err: Error) => {
+          handleWriteError(err, history);
+          flag = false;
+        }
+      );
+      handleName(name);
       setIsChanged(false);
     } else {
       toast.warn("빈칸을 채워주세요.");
@@ -64,7 +68,11 @@ const WriteStudentContainer = ({}) => {
         setStudentTel(studentTel.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"));
       }
       if (studentTel.length === 13) {
-        setStudentTel(studentTel.replace(/-/g, "").replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3"));
+        setStudentTel(
+          studentTel
+            .replace(/-/g, "")
+            .replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")
+        );
       }
     }
   }, [studentTel]);
