@@ -30,32 +30,32 @@ const App = () => {
         <Route exact path="/register" component={RegisterPage} />
         <Route exact path="/register" component={RegisterPage} />
         <Route exact path="/changepw" component={ChangePwPage} />
-        <Route
-          exact
-          path="/admin/receiptstatus"
-          component={ReceiptStatusPage}
-        />
-        <Route exact path="/admin/schoolCity" component={SchoolCityPage} />
         <Route exact path="/find" component={FindPage} />
         <Route exact path="/qna" component={QnaPage} />
         <Route exact path="/faq" component={FaqPage} />
         <Route exact path="/notice" component={NoticePage} />
         <Route
           exact
-          path="/admin/secondscore"
+          path="/admin/receiptStatus"
+          component={ReceiptStatusPage}
+        />
+        <Route exact path="/admin/schoolCity" component={SchoolCityPage} />
+        <Route
+          exact
+          path="/admin/secondScore"
           component={SecondTypeScorePage}
         />
         <Route
           exact
-          path="/admin/interviewscore"
+          path="/admin/interviewScore"
           component={InterViewScorePage}
         />
         <Route exact path="/print" component={WritePrintPage} />\
-        <Route exact path="/admin/userlist" component={UserListPage} />
-        <Route exact path="/admin/userrate" component={UserRatePage} />
+        <Route exact path="/admin/userList" component={UserListPage} />
+        <Route exact path="/admin/userRate" component={UserRatePage} />
         <Route
           exact
-          path="/admin/userlistpassed"
+          path="/admin/userListPassed"
           component={UserListPassedPage}
         />
       </Switch>
