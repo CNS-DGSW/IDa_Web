@@ -181,6 +181,14 @@
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   position: relative;
   .header {
+    &-admin {
+      border: 1px solid black;
+      color: black;
+      &:hover {
+        background: #15216b;
+        color: white;
+      }
+    }
     &-toggle {
       color: black;
     }

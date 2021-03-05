@@ -46,7 +46,9 @@ const Register = ({
     <>
       <AuthContent
         title={"Welcome"}
-        description={"대구소프트웨어고등학교 원서 작성 사이트에 오신 것을 환영합니다."}
+        description={
+          "대구소프트웨어마이스터고등학교 원서 작성 사이트에 오신 것을 환영합니다."
+        }
         contentTitle={"회원가입"}
         footers={
           <>
@@ -56,7 +58,10 @@ const Register = ({
               ) : (
                 <Button onClick={() => handleRegister()}>회원가입</Button>
               )}
-              <span className="Register-box-button-find" onClick={() => history.push("/login")}>
+              <span
+                className="Register-box-button-find"
+                onClick={() => history.push("/login")}
+              >
                 이미 회원이신가요?
               </span>
             </div>
@@ -99,8 +104,18 @@ const Register = ({
               onClick={() => handleEmailSend()}
             />
           </div>
-          <CustomInput type="password" placeholder="비밀번호" value={pw} setValue={setPw} />
-          <CustomInput type="password" placeholder="비밀번호 확인" value={checkPw} setValue={setCheckPw} />
+          <CustomInput
+            type="password"
+            placeholder="비밀번호"
+            value={pw}
+            setValue={setPw}
+          />
+          <CustomInput
+            type="password"
+            placeholder="비밀번호 확인"
+            value={checkPw}
+            setValue={setCheckPw}
+          />
           <CheckBox
             style={{ marginTop: "1rem" }}
             id="agree-all"
