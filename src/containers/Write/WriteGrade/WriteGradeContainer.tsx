@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useLayoutEffect } from "react";
 import { observer } from "mobx-react";
 import WriteGrade from "../../../components/Write/WriteGrades";
 import useStore from "lib/hooks/useStore";
@@ -28,7 +28,12 @@ const WriteGradeContainer = ({}) => {
   const onSave = useCallback(async () => {
     let flag = true;
     if (gradeType !== Grade.GED) {
-      const promises = [editGrade(), editVolunteer(), editAttend(), editAdditional()];
+      const promises = [
+        editGrade(),
+        editVolunteer(),
+        editAttend(),
+        editAdditional(),
+      ];
 
       await Promise.all(promises)
         .then(() => {
@@ -52,7 +57,7 @@ const WriteGradeContainer = ({}) => {
     return flag;
   }, [gradeType]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!gradeType) {
       toast.warn("학교 정보를 먼저 입력해주세요.");
       pageHandle(3);

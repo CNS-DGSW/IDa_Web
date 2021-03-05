@@ -1,9 +1,8 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useLayoutEffect } from "react";
 import { observer } from "mobx-react";
 import WriteAdditional from "components/Write/WriteAdditional";
 import useStore from "lib/hooks/useStore";
 import { useHistory, withRouter } from "react-router-dom";
-import { toast } from "react-toastify";
 import { handleGetWriteError } from "lib/handleErrors";
 
 const WriteGradeAdditionalContainer = ({}) => {
@@ -55,7 +54,7 @@ const WriteGradeAdditionalContainer = ({}) => {
       });
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     getAdditionalCallback();
   }, [getAdditionalCallback]);
 

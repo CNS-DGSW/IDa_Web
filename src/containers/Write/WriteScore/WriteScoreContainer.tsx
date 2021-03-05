@@ -1,4 +1,9 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useState,
+} from "react";
 import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
 import WriteScore from "components/Write/WriteScore";
@@ -36,23 +41,8 @@ const WriteScoreContainer = ({}) => {
           setAbsence(res.data.absence);
           setVolunteer(res.data.volunteer);
           setAdditional(res.data.additional);
-          if (res.data.isGed) {
-            setTotalScore1(res.data.grade1);
-            setTotalScore2(res.data.grade2);
-          } else {
-            setTotalScore1(
-              res.data.grade1 +
-                res.data.absence +
-                res.data.volunteer +
-                res.data.additional
-            );
-            setTotalScore2(
-              res.data.grade2 +
-                res.data.absence +
-                res.data.volunteer +
-                res.data.additional
-            );
-          }
+          setTotalScore1(res.data.totalScore1);
+          setTotalScore2(res.data.totalScore2);
         })
         .catch((err: Error) => {
           handleGetWriteError(err, history);
@@ -60,7 +50,7 @@ const WriteScoreContainer = ({}) => {
     }
   }, [getScore, gradeType]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     getScoreCallback();
   }, [getScoreCallback]);
 

@@ -1,9 +1,17 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useState,
+} from "react";
 import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
 import WriteIntroduction from "../../../components/Write/WriteIntroduction";
 import { useHistory, withRouter } from "react-router-dom";
-import { SelfIntroductionResponse, StudyPlanResponse } from "util/types/Response";
+import {
+  SelfIntroductionResponse,
+  StudyPlanResponse,
+} from "util/types/Response";
 import { toast } from "react-toastify";
 import { handleGetWriteError, handleWriteError } from "lib/handleErrors";
 
@@ -15,12 +23,20 @@ const WriteIntroductionContainer = ({}) => {
   const [studyPlan, setStudyPlan] = useState<string>("");
   const [isChanged, setIsChanged] = useState<boolean>(false);
 
-  const { getSelfIntroduce, editSelfIntroduce, getStudyPlan, editStudyPlan } = store.WriteStore;
+  const {
+    getSelfIntroduce,
+    editSelfIntroduce,
+    getStudyPlan,
+    editStudyPlan,
+  } = store.WriteStore;
 
   const onSave = useCallback(async () => {
     let flag = true;
     if (selfIntroduce && studyPlan) {
-      const promises = [editStudyPlan(studyPlan), editSelfIntroduce(selfIntroduce)];
+      const promises = [
+        editStudyPlan(studyPlan),
+        editSelfIntroduce(selfIntroduce),
+      ];
 
       await Promise.all(promises)
         .then(() => {
@@ -58,7 +74,7 @@ const WriteIntroductionContainer = ({}) => {
       });
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     getSelfIntroduceCallBack();
     getStudyPlanCallBack();
   }, []);

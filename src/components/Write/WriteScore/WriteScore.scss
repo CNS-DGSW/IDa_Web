@@ -7,35 +7,20 @@
   @media screen and (max-width: 500px) {
     font-size: 0.8rem;
   }
-  &-allList {
-    height: 9rem;
-    background-color: $bg-white;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
+  background-color: $bg-white;
+  padding: 0;
 
-    &-head {
-      background-color: $bg-blue;
-      color: $ft-white;
-      display: flex;
-      div {
-        width: 8rem;
-        height: 3rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-    }
-
-    &-body {
-      display: flex;
-      div {
-        width: 8rem;
-        height: 3rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-    }
+  table {
+    width: 100%;
+  }
+  th {
+    background-color: $bg-blue;
+    color: $ft-white;
+    height: 3rem;
+    font-weight: 400;
+  }
+  td {
+    text-align: center;
+    color: black;
   }
 }

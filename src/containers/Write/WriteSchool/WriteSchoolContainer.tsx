@@ -1,4 +1,9 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useState,
+  useLayoutEffect,
+} from "react";
 import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
 import WriteSchool from "../../../components/Write/WriteSchool";
@@ -105,9 +110,9 @@ const WriteSchoolContainer = ({}) => {
       });
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     getSchoolInfoCallback();
-  }, []);
+  }, [getSchoolInfoCallback]);
 
   useEffect(() => {
     if (schoolTel) {

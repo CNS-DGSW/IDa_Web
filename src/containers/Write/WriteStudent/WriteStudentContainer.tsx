@@ -1,4 +1,9 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useState,
+  useLayoutEffect,
+} from "react";
 import { observer } from "mobx-react";
 import WriteStudent from "../../../components/Write/WriteStudent";
 import useStore from "lib/hooks/useStore";
@@ -58,7 +63,7 @@ const WriteStudentContainer = ({}) => {
     return flag;
   }, [name, birth, sex, studentTel]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     getStudentInfoCallback();
   }, [getStudentInfoCallback]);
 

@@ -12,7 +12,11 @@ interface WriteGradeListProps {
   freeSem: FreeSem;
   gradeType: Grade | null;
   addNewGrade: () => void;
-  handleGradesCallback: (idx: number, value: Score, subjectName: string) => void;
+  handleGradesCallback: (
+    idx: number,
+    value: Score,
+    subjectName: string
+  ) => void;
   handleFreeSem: (freeSem: FreeSem) => void;
 }
 
@@ -28,13 +32,19 @@ const WriteGradeList = ({
     <>
       <div className="grade-textBox">
         <p>
-          자유학기제 등으로 교과 성적이 없는 학기일 경우, 모집 요강에 의거하여 해당학기의 성적을 인정하니,
-          테이블 상단의 '자유학기제'를 꼭 선택해 주세요.
+          자유학기제 등으로 교과 성적이 없는 학기일 경우, 모집 요강에 의거하여
+          해당학기의 성적을 인정하니, 테이블 상단의 '자유학기제'를 꼭 선택해
+          주세요.
         </p>
 
-        <p>체육·예술 교과 등 성적이 3등급(우수, 보통, 미흡) 평가로 나오는 교과는 입력하지 않습니다.</p>
+        <p>
+          체육·예술 교과 등 성적이 3등급(우수, 보통, 미흡) 평가로 나오는 교과는
+          입력하지 않습니다.
+        </p>
 
-        <p>과목이 없다면 아래에 있는 과목 추가를 클릭 후 성적을 입력해주세요.</p>
+        <p>
+          과목이 없다면 아래에 있는 과목 추가를 클릭 후 성적을 입력해주세요.
+        </p>
       </div>
 
       <table className="grade-list">
@@ -68,7 +78,9 @@ const WriteGradeList = ({
             <th>
               <button
                 className={freeSem.freeSem11 ? "on" : "off"}
-                onClick={() => handleFreeSem({ ...freeSem, freeSem11: !freeSem.freeSem11 })}
+                onClick={() =>
+                  handleFreeSem({ ...freeSem, freeSem11: !freeSem.freeSem11 })
+                }
               >
                 자유학기제
               </button>
@@ -76,7 +88,9 @@ const WriteGradeList = ({
             <th>
               <button
                 className={freeSem.freeSem12 ? "on" : "off"}
-                onClick={() => handleFreeSem({ ...freeSem, freeSem12: !freeSem.freeSem12 })}
+                onClick={() =>
+                  handleFreeSem({ ...freeSem, freeSem12: !freeSem.freeSem12 })
+                }
               >
                 자유학기제
               </button>
@@ -84,7 +98,9 @@ const WriteGradeList = ({
             <th>
               <button
                 className={freeSem.freeSem21 ? "on" : "off"}
-                onClick={() => handleFreeSem({ ...freeSem, freeSem21: !freeSem.freeSem21 })}
+                onClick={() =>
+                  handleFreeSem({ ...freeSem, freeSem21: !freeSem.freeSem21 })
+                }
               >
                 자유학기제
               </button>
@@ -92,7 +108,9 @@ const WriteGradeList = ({
             <th>
               <button
                 className={freeSem.freeSem22 ? "on" : "off"}
-                onClick={() => handleFreeSem({ ...freeSem, freeSem22: !freeSem.freeSem22 })}
+                onClick={() =>
+                  handleFreeSem({ ...freeSem, freeSem22: !freeSem.freeSem22 })
+                }
               >
                 자유학기제
               </button>
@@ -100,7 +118,9 @@ const WriteGradeList = ({
             <th>
               <button
                 className={freeSem.freeSem31 ? "on" : "off"}
-                onClick={() => handleFreeSem({ ...freeSem, freeSem31: !freeSem.freeSem32 })}
+                onClick={() =>
+                  handleFreeSem({ ...freeSem, freeSem31: !freeSem.freeSem31 })
+                }
               >
                 자유학기제
               </button>
@@ -111,7 +131,8 @@ const WriteGradeList = ({
                 onClick={() =>
                   handleFreeSem({
                     ...freeSem,
-                    freeSem32: gradeType === Grade.UNGRADUATED || !freeSem.freeSem32,
+                    freeSem32:
+                      gradeType === Grade.UNGRADUATED || !freeSem.freeSem32,
                   })
                 }
               >
@@ -164,8 +185,9 @@ const WriteGradeList = ({
 
       <div className="grade-textBox">
         <p>
-          자유학기제 등으로 교과 성적이 없는 학기일 경우, 모집 요강에 의거하여 해당학기의 성적을 인정하니,
-          테이블 상단의 '자유학기제'를 꼭 선택해 주세요.
+          자유학기제 등으로 교과 성적이 없는 학기일 경우, 모집 요강에 의거하여
+          해당학기의 성적을 인정하니, 테이블 상단의 '자유학기제'를 꼭 선택해
+          주세요.
         </p>
       </div>
     </>
