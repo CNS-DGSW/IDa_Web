@@ -19,7 +19,7 @@ const NoticeContainer = () => {
   const { getPosts } = store.BoardStore;
 
   const handleGetPosts = useCallback(async () => {
-    await getPosts(Category.FAQ)
+    await getPosts(Category.QNA)
       .then((res: GetPostsResponse) => {
         setPosts(res.data.posts);
         setFilteredPosts(res.data.posts);
