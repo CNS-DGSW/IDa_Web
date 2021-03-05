@@ -23,15 +23,14 @@ class StatusApi {
     }
   }
 
-
   async cancelSubmit(userIdx: number) {
     try {
       const { data } = await Api.post(
-        `/status/cancelSubmit?userIdx=${userIdx}`  
+        `/status/cancelSubmit?userIdx=${userIdx}`
       );
-      
-        return data;
-      } catch (error) {
+
+      return data;
+    } catch (error) {
       throw new Error(`${error}`);
     }
   }
@@ -40,6 +39,17 @@ class StatusApi {
     try {
       const { data } = await Api.get("/status/getFinalStatus");
 
+      return data;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
+
+  async ChangeArrived(userIdx: number, status: boolean) {
+    try {
+      const { data } = await Api.patch(
+        `/status/changeArrived?userIdx=${userIdx}&status=${status}`
+      );
 
       return data;
     } catch (error) {

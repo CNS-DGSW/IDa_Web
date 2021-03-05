@@ -10,6 +10,7 @@ interface UserListProps {
   schoolStatus: SchoolRatio[];
   setSearch: React.Dispatch<React.SetStateAction<string>>;
   search: string;
+  tryChangeArrived: (userIdx: number, status: boolean) => void;
   tryDownExcel: () => void;
 }
 
@@ -21,6 +22,7 @@ const UserList = ({
   setSearch,
   search,
   tryDownExcel,
+  tryChangeArrived,
 }: UserListProps) => {
   return (
     <>
@@ -52,7 +54,7 @@ const UserList = ({
               <th>연락처</th>
               <th>원서작성</th>
               <th>원서제출</th>
-              <th>최종원서제출</th>
+              <th>우편 도착 여부</th>
               <th>가입날짜</th>
             </tr>
           </thead>
@@ -110,7 +112,34 @@ const UserList = ({
                       <td>{filter.isWriting ? "작성" : "미작성"}</td>
                       <td>{filter.isSubmit ? "제출완료" : "미제출"}</td>
                       <td>
-                        {filter.isPrintedApplicationArrived ? "도착" : "미도착"}
+                        {filter.isPrintedApplicationArrived ? (
+                          <>
+                            <button
+                              className="true"
+                              onClick={() =>
+                                tryChangeArrived(
+                                  filter.idx,
+                                  !filter.isPrintedApplicationArrived
+                                )
+                              }
+                            >
+                              도착
+                            </button>
+                          </>
+                        ) : (
+                          <>
+                            <button
+                              onClick={() =>
+                                tryChangeArrived(
+                                  filter.idx,
+                                  !filter.isPrintedApplicationArrived
+                                )
+                              }
+                            >
+                              미도착
+                            </button>
+                          </>
+                        )}
                       </td>
                       <td>{filter.createdAt}</td>
                     </tr>
@@ -140,7 +169,35 @@ const UserList = ({
                     <td>{i.isWriting ? "작성" : "미작성"}</td>
                     <td>{i.isSubmit ? "제출완료" : "미제출"}</td>
                     <td>
-                      {i.isPrintedApplicationArrived ? "제출완료" : "미제출"}
+                      {i.isPrintedApplicationArrived ? (
+                        <>
+                          <button
+                            className="true"
+                            onClick={() =>
+                              tryChangeArrived(
+                                i.idx,
+                                !i.isPrintedApplicationArrived
+                              )
+                            }
+                          >
+                            도착
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          <button
+                            className="false"
+                            onClick={() =>
+                              tryChangeArrived(
+                                i.idx,
+                                !i.isPrintedApplicationArrived
+                              )
+                            }
+                          >
+                            미도착
+                          </button>
+                        </>
+                      )}
                     </td>
                     <td>{i.createdAt}</td>
                   </tr>

@@ -63,6 +63,36 @@
       height: 2.5rem;
       text-align: center;
     }
+
+    td {
+      button {
+        padding: 0.3rem 0.8rem;
+        width: 5rem;
+        border: none;
+        border-radius: 2px;
+        color: $ft-white;
+        font-weight: 600;
+        transition: 0.5s;
+        &:focus {
+          outline: none;
+        }
+      }
+
+      .true {
+        background-color: $bg-green-100;
+
+        &:hover {
+          background-color: $bg-green-200;
+        }
+      }
+
+      .false {
+        background-color: $bg-yellow-100;
+        &:hover {
+          background-color: $bg-yellow-200;
+        }
+      }
+    }
   }
 }
 
