@@ -78,7 +78,7 @@ const HandlePost = ({
           )}
         </div>
         <div className="handle-post-footer">
-          {category == Category.QNA &&
+          {category === Category.QNA &&
             post.parentIdx === 0 &&
             isAdmin &&
             setIsAnswer &&
@@ -97,7 +97,10 @@ const HandlePost = ({
             )}
           {!selectedIdx || isModify || isAnswer ? (
             <>
-              <div className="handle-post-footer-btn" onClick={() => handleSavePost()}>
+              <div
+                className="handle-post-footer-btn"
+                onClick={() => handleSavePost()}
+              >
                 저장하기
               </div>
             </>

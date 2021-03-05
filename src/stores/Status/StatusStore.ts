@@ -1,7 +1,11 @@
 import StatusApi from "assets/api/StatusApi";
 import { autobind } from "core-decorators";
 import { action, observable } from "mobx";
-import { FinalStatusResponse, ResultStatusResponse } from "util/types/Response";
+import {
+  FinalStatusResponse,
+  Response,
+  ResultStatusResponse,
+} from "util/types/Response";
 
 @autobind
 class StatusStore {
@@ -66,6 +70,24 @@ class StatusStore {
           resolve(response);
         }
       );
+    } catch (error) {
+      return new Promise((resolve, reject: (error: Error) => void) => {
+        reject(error);
+      });
+    }
+  };
+
+  @action
+  changeArrived = async (
+    userIdx: number,
+    status: boolean
+  ): Promise<Response> => {
+    try {
+      const response: Response = await StatusApi.ChangeArrived(userIdx, status);
+
+      return new Promise((resolve: (response: Response) => void, reject) => {
+        resolve(response);
+      });
     } catch (error) {
       return new Promise((resolve, reject: (error: Error) => void) => {
         reject(error);

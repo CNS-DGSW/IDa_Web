@@ -14,6 +14,7 @@ const UserListContainer = ({}) => {
   const history = useHistory();
 
   const { getUserList, getAllUserRatio } = store.AdminStore;
+  const { changeArrived } = store.StatusStore;
 
   const [userStatus, setUserStatus] = useState<List[]>();
   const [cityStatus, setCityStatus] = useState<CityRatio[]>([]);
@@ -45,6 +46,12 @@ const UserListContainer = ({}) => {
       });
   }, []);
 
+  const tryChangeArrived = (userIdx: number, status: boolean) => {
+    changeArrived(userIdx, status).then(() => {
+      tryGetUserList();
+    });
+  };
+
   const tryDownExcel = () => {
     GetReceiptStatus().catch((err) => {
       toast.warn("서버 오류입니다.");
@@ -68,6 +75,7 @@ const UserListContainer = ({}) => {
       cityStatus={cityStatus}
       userStatus={userStatus}
       tryDownExcel={tryDownExcel}
+      tryChangeArrived={tryChangeArrived}
     />
   );
 };
