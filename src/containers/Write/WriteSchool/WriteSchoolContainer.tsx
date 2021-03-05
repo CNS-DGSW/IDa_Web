@@ -23,7 +23,12 @@ const WriteSchoolContainer = ({}) => {
   const [isChanged, setIsChanged] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const { gradeType, handleGrade, editSchoolInfo, getSchoolInfo } = store.WriteStore;
+  const {
+    gradeType,
+    handleGrade,
+    editSchoolInfo,
+    getSchoolInfo,
+  } = store.WriteStore;
 
   const onSave = useCallback(async () => {
     let flag = true;
@@ -31,14 +36,18 @@ const WriteSchoolContainer = ({}) => {
       (gradeType === Grade.GED && graduatedDate) ||
       (cityLocation &&
         cityName &&
-        ((gradeType === Grade.GRADUATED && graduatedDate) || gradeType === Grade.UNGRADUATED) &&
+        ((gradeType === Grade.GRADUATED && graduatedDate) ||
+          gradeType === Grade.UNGRADUATED) &&
         schoolCode &&
         schoolName &&
         schoolTel &&
         teacherName &&
         teacherTel)
     ) {
-      if ((gradeType === Grade.GRADUATED || gradeType === Grade.GED) && Number(graduatedDate) < 2010) {
+      if (
+        (gradeType === Grade.GRADUATED || gradeType === Grade.GED) &&
+        Number(graduatedDate) < 2010
+      ) {
         toast.warn("올바른 년도를 입력해주세요.");
         flag = false;
       }
@@ -85,7 +94,7 @@ const WriteSchoolContainer = ({}) => {
         setCityName(res.data.cityName || "");
         handleGrade(res.data.gradeType);
         setGraduatedDate(res.data.graduatedDate || "");
-        setSchoolCode(res.data.graduatedDate || "");
+        setSchoolCode(res.data.schoolCode || "");
         setSchoolName(res.data.schoolName || "");
         setSchoolTel(res.data.schoolTel || "");
         setTeacherName(res.data.teacherName || "");
@@ -106,7 +115,11 @@ const WriteSchoolContainer = ({}) => {
         setSchoolTel(schoolTel.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"));
       }
       if (schoolTel.length === 13) {
-        setSchoolTel(schoolTel.replace(/-/g, "").replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3"));
+        setSchoolTel(
+          schoolTel
+            .replace(/-/g, "")
+            .replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")
+        );
       }
     }
   }, [schoolTel]);
@@ -117,7 +130,11 @@ const WriteSchoolContainer = ({}) => {
         setTeacherTel(teacherTel.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"));
       }
       if (teacherTel.length === 13) {
-        setTeacherTel(teacherTel.replace(/-/g, "").replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3"));
+        setTeacherTel(
+          teacherTel
+            .replace(/-/g, "")
+            .replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")
+        );
       }
     }
   }, [teacherTel]);

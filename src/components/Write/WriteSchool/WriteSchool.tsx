@@ -8,7 +8,7 @@ import SearchSchoolContainer from "containers/SearchSchool/SearchSchoolContainer
 import NumericInput from "react-numeric-input";
 
 interface WriteSchoolProps {
-  gradeType: Grade | null;  
+  gradeType: Grade | null;
   handleGrade: (Grade: Grade | null) => void;
   cityLocation: string;
   setCityLocation: React.Dispatch<React.SetStateAction<string>>;
@@ -60,7 +60,11 @@ const WriteSchool = ({
 }: WriteSchoolProps) => {
   return (
     <>
-      <WriteContent title="출신학교 및 학력을 입력해 주세요" onSave={onSave} isChanged={isChanged}>
+      <WriteContent
+        title="출신학교 및 학력을 입력해 주세요"
+        onSave={onSave}
+        isChanged={isChanged}
+      >
         <div className="school">
           <div className="school-area">
             <label className="school-area-label">졸업구분</label>
@@ -170,7 +174,7 @@ const WriteSchool = ({
                       }}
                       className="school-schedule-box-area-selectinput"
                     >
-                      <option>선택해주세요</option>
+                      <option value={""}>선택해주세요</option>
                       {City.map((res, idx) => {
                         return (
                           <option key={idx} value={res.cityName}>
@@ -191,7 +195,7 @@ const WriteSchool = ({
                       }}
                       className="school-schedule-box-area-selectinput"
                     >
-                      <option>선택해주세요</option>
+                      <option value={""}>선택해주세요</option>
                       {cityName && (
                         <>
                           {City.find((city) => {
@@ -199,7 +203,11 @@ const WriteSchool = ({
                               return true;
                             }
                           })?.cityLocation.map((res, idx) => {
-                            return <option key={idx}>{res}</option>;
+                            return (
+                              <option key={idx} value={res}>
+                                {res}
+                              </option>
+                            );
                           })}
                         </>
                       )}
