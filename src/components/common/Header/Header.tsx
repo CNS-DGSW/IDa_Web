@@ -104,10 +104,16 @@ const Header = ({
           </NavLink>
           {!login && (
             <>
-              <button onClick={() => history.push("/login")}>로그인</button>
               <button
+                className="header-menu-content-sign"
+                onClick={() => history.push("/login")}
+              >
+                로그인
+              </button>
+              <button
+                className="header-menu-content-sign"
                 onClick={() => history.push("/register")}
-                style={{ marginLeft: "1rem" }}
+                style={{ marginTop: "1.2rem" }}
               >
                 회원가입
               </button>
