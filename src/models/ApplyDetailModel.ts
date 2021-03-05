@@ -2,7 +2,7 @@ import ApplyDetail from "util/enums/ApplyDetail";
 
 const applyDetailModel = {
   common: {
-    description: "일반전형 설명입니다.",
+    description: "일반 전형에 응시한 지원자가 선택합니다.",
   },
   special: [
     {

@@ -34,8 +34,6 @@ const HeaderContainer = ({
 
   const [cookie, setCookie, removeCookie] = useCookies(["refreshToken"]);
 
-  const openStatusModal = () => {};
-
   const HandleLogout = () => {
     tryLogout();
     removeCookie("refreshToken");

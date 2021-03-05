@@ -12,28 +12,28 @@ const DefaultAdminHeader = ({ children }: DefaultAdminHeaderProps) => {
       <div className="Admin">
         <div className="Admin-header">
           <NavLink
-            to="/admin/UserList"
+            to="/admin/userList"
             className="Admin-header-link"
             activeClassName="Admin-header-link-active"
           >
             <span>지원자 현황</span>
           </NavLink>
           <NavLink
-            to="/admin/SchoolCity"
+            to="/admin/schoolCity"
             className="Admin-header-link"
             activeClassName="Admin-header-link-active"
           >
             <span>출신교별 현황</span>
           </NavLink>
           <NavLink
-            to="/admin/UserRate"
+            to="/admin/userRate"
             className="Admin-header-link"
             activeClassName="Admin-header-link-active"
           >
             <span>입학지원자경쟁률</span>
           </NavLink>
           <NavLink
-            to="/admin/receiptstatus"
+            to="/admin/receiptStatus"
             className="Admin-header-link"
             activeClassName="Admin-header-link-active"
           >
@@ -41,7 +41,7 @@ const DefaultAdminHeader = ({ children }: DefaultAdminHeaderProps) => {
           </NavLink>
           <NavLink
             exact
-            to="/admin/secondscore"
+            to="/admin/secondScore"
             className="Admin-header-link"
             activeClassName="Admin-header-link-active"
           >
@@ -49,7 +49,7 @@ const DefaultAdminHeader = ({ children }: DefaultAdminHeaderProps) => {
           </NavLink>
 
           <NavLink
-            to="/admin/interviewscore"
+            to="/admin/interviewScore"
             className="Admin-header-link"
             activeClassName="Admin-header-link-active"
           >
@@ -57,7 +57,7 @@ const DefaultAdminHeader = ({ children }: DefaultAdminHeaderProps) => {
           </NavLink>
 
           <NavLink
-            to="/admin/UserListPassed"
+            to="/admin/userListPassed"
             className="Admin-header-link"
             activeClassName="Admin-header-link-active"
           >

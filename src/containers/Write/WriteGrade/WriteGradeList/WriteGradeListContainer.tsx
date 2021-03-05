@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useLayoutEffect } from "react";
 import { observer } from "mobx-react";
 import WriteGradeList from "components/Write/WriteGradeList";
 import useStore from "lib/hooks/useStore";
@@ -94,7 +94,7 @@ const WriteGradeListContainer = ({}) => {
     [grades]
   );
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     getGradeListCallback();
   }, [getGradeListCallback]);
 

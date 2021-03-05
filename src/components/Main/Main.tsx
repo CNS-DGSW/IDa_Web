@@ -22,7 +22,9 @@ const Main = ({
         <div className="Main-box">
           <div className="Main-content">
             <div className="Main-content-Title">
-              <p className="Main-content-Title-Sub">대구소프트웨어고등학교</p>
+              <p className="Main-content-Title-Sub">
+                대구소프트웨어마이스터고등학교
+              </p>
               <p className="Main-content-Title-Main">2021 입학원서 접수</p>
               <div
                 className="Main-content-btn"

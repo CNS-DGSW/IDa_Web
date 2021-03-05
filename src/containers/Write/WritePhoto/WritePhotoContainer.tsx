@@ -1,4 +1,9 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useState,
+} from "react";
 import { observer } from "mobx-react";
 import WritePhoto from "../../../components/Write/WritePhoto";
 import useStore from "lib/hooks/useStore";
@@ -68,9 +73,9 @@ const WritePhotoContainer = ({}) => {
       });
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     getProfileImageCallback();
-  }, []);
+  }, [getProfileImageCallback]);
 
   useEffect(() => {
     return () => {

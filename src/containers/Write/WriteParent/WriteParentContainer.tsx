@@ -1,4 +1,9 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useState,
+} from "react";
 import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
 import WriteParents from "../../../components/Write/WriteParents";
@@ -32,7 +37,8 @@ const WriteParentContainer = ({}) => {
         extraAddress += data.bname;
       }
       if (data.buildingName !== "") {
-        extraAddress += extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
+        extraAddress +=
+          extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
       }
       fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
     }
@@ -52,7 +58,13 @@ const WriteParentContainer = ({}) => {
       address !== "" &&
       postCode !== ""
     ) {
-      await editParentInfo(address, parentName, parentRelation, parentTel, postCode).catch((err: Error) => {
+      await editParentInfo(
+        address,
+        parentName,
+        parentRelation,
+        parentTel,
+        postCode
+      ).catch((err: Error) => {
         handleWriteError(err, history);
         flag = false;
       });
@@ -78,7 +90,7 @@ const WriteParentContainer = ({}) => {
       });
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     getParentInfoCallback();
   }, [getParentInfoCallback]);
 
@@ -88,7 +100,11 @@ const WriteParentContainer = ({}) => {
         setParentTel(parentTel.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"));
       }
       if (parentTel.length === 13) {
-        setParentTel(parentTel.replace(/-/g, "").replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3"));
+        setParentTel(
+          parentTel
+            .replace(/-/g, "")
+            .replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")
+        );
       }
     }
   }, [parentTel]);

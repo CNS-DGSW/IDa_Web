@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  useLayoutEffect,
+} from "react";
 import { observer } from "mobx-react";
 import WritePrint from "../../../components/Write/WritePrint";
 import useStore from "lib/hooks/useStore";
@@ -11,7 +17,7 @@ import {
   UserInfoResponse,
 } from "util/types/Response";
 import moment from "moment";
-import { handleGetWriteError, handleLogin } from "lib/handleErrors";
+import { handleGetWriteError } from "lib/handleErrors";
 import { useHistory, useLocation, withRouter } from "react-router-dom";
 import Relation from "util/enums/Relation";
 import Apply from "util/enums/Apply";
@@ -312,7 +318,7 @@ const WritePrintContainer = ({}) => {
     }
   }, [search]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     getAllStates();
   }, [getAllStates]);
 

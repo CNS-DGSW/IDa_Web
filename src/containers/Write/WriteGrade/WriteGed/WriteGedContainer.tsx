@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useLayoutEffect } from "react";
 import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
 import { useHistory, withRouter } from "react-router-dom";
@@ -42,7 +42,7 @@ const WriteGedContainer = ({}) => {
       });
   }, [getGed]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     getGedCallback();
   }, [getGedCallback]);
 
