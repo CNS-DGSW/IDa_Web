@@ -20,20 +20,27 @@
     top: 50%;
     transform: translate(-50%, -50%);
     z-index: 100;
-    height: 10rem;
     background-color: white;
     border-radius: 0.2rem;
-    overflow: hidden;
+    @media screen and (max-width: 500px) {
+      width: 70%;
+    }
+    @media screen and (max-width: 320px) {
+      width: 90%;
+    }
     &-top {
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
       padding: 2rem 2rem;
-      height: 60;
+      height: 70%;
       &-result {
         font-size: 1.3rem;
         font-weight: bold;
+        @media screen and (max-width: 320px) {
+          font-size: 1rem;
+        }
       }
     }
     &-bottom {
@@ -42,7 +49,7 @@
       justify-content: flex-end;
       width: 100%;
       background: white;
-      height: 40%;
+      height: 30%;
     }
   }
 }

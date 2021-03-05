@@ -49,10 +49,15 @@
         border-radius: 2px;
         @media screen and (max-width: 500px) {
           margin-bottom: 0.5rem;
+          font-size: 1rem;
         }
       }
       &-content {
         height: 20rem;
+        @media screen and (max-width: 500px) {
+          height: 15rem;
+          font-size: 1rem;
+        }
       }
     }
   }
@@ -67,8 +72,8 @@
       color: white;
       @media screen and (max-width: 500px) {
         font-size: 0.9rem;
-        padding: 0.7rem 0.8rem;
-        margin-right: 1rem;
+        padding: 0.4rem 0.8rem;
+        margin: 0.3rem;
       }
     }
   }

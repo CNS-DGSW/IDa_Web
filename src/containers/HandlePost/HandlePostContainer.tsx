@@ -31,7 +31,13 @@ const HandlePostContainer = ({
   const history = useHistory();
 
   const { isAdmin, email } = store.AuthStore;
-  const { createPost, createAnswer, getPost, deletePost, modifyPost } = store.BoardStore;
+  const {
+    createPost,
+    createAnswer,
+    getPost,
+    deletePost,
+    modifyPost,
+  } = store.BoardStore;
 
   const [isModify, setIsModify] = useState<boolean>(false);
   const [title, setTitle] = useState<string>("");
@@ -141,7 +147,13 @@ const HandlePostContainer = ({
     } else {
       handleCreatePost();
     }
-  }, [handleCreatePost, handleModifyPost, handleCreateAnswer, isAnswer, isModify]);
+  }, [
+    handleCreatePost,
+    handleModifyPost,
+    handleCreateAnswer,
+    isAnswer,
+    isModify,
+  ]);
 
   const handleDeletePost = useCallback(async () => {
     if (idx) {
@@ -219,6 +231,7 @@ const HandlePostContainer = ({
   return (
     <Modal onClose={onClose} className={"handle-post-modal"}>
       <HandlePost
+        idx={idx}
         post={post}
         title={title}
         setTitle={setTitle}

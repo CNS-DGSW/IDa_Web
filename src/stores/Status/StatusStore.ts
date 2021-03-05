@@ -11,7 +11,7 @@ import {
 class StatusStore {
   @observable submit: boolean = false;
   @observable print: boolean = false;
-  @observable pass: boolean | null = false;
+  @observable pass: boolean | null | undefined = undefined;
   @observable statusModal: boolean = false;
 
   @action trySatusModal = () => {
