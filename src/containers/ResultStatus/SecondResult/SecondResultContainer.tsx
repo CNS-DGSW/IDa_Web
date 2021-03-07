@@ -47,7 +47,13 @@ const SecondResultContainer = ({
     getData();
   }, [getData]);
 
-  return <SecondResult comment={comment} secondOpenModal={secondOpenModal} />;
+  return (
+    <>
+      {comment && (
+        <SecondResult comment={comment} secondOpenModal={secondOpenModal} />
+      )}
+    </>
+  );
 };
 
 export default observer(SecondResultContainer);

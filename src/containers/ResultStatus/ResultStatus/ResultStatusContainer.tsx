@@ -9,8 +9,8 @@ interface ResultStatusContainerPropse {}
 const ResultStatusContainer = ({}: ResultStatusContainerPropse) => {
   const { store } = useStore();
   const { tryGetStatus } = store.StatusStore;
-  const [post, setPost] = useState<boolean>(false);
-  const [internet, setInternet] = useState<boolean>(false);
+  const [post, setPost] = useState<boolean | undefined>(undefined);
+  const [internet, setInternet] = useState<boolean | undefined>(undefined);
 
   const { tryCloseModal } = store.AuthStore;
 
@@ -30,11 +30,15 @@ const ResultStatusContainer = ({}: ResultStatusContainerPropse) => {
   }, [getStauts]);
 
   return (
-    <ResultStatus
-      post={post}
-      internet={internet}
-      tryCloseModal={tryCloseModal}
-    />
+    <>
+      {post !== undefined && internet !== undefined && (
+        <ResultStatus
+          post={post}
+          internet={internet}
+          tryCloseModal={tryCloseModal}
+        />
+      )}
+    </>
   );
 };
 

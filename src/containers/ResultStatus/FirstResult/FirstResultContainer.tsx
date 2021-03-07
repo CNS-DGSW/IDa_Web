@@ -64,11 +64,15 @@ const FirstResultContainer = ({
   }, [setCommented, applyCheck]);
 
   return (
-    <FirstResult
-      comment={comment}
-      firstOpenModal={firstOpenModal}
-      applyComment={applyComment}
-    />
+    <>
+      {pass !== undefined && (
+        <FirstResult
+          comment={comment}
+          firstOpenModal={firstOpenModal}
+          applyComment={applyComment}
+        />
+      )}
+    </>
   );
 };
 
