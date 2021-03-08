@@ -2,6 +2,10 @@ import ResultStatusContainer from "containers/ResultStatus/ResultStatus/ResultSt
 import React from "react";
 import { RouteComponentProps, useHistory, withRouter } from "react-router-dom";
 import "./ProfileModalBox.scss";
+import { ReactComponent as LogoutSvg } from "assets/images/logout.svg";
+import { ReactComponent as PasswordSvg } from "assets/images/password.svg";
+import { ReactComponent as PaperSvg } from "assets/images/paper.svg";
+
 interface ProfileModalBoxProps {
   handleOnClick: () => void;
   name: string | undefined;
@@ -19,7 +23,6 @@ const ProfileModalBox = ({
   HandleLogout,
   statusModal,
   trySatusModal,
-  closeSatusModal,
 }: ProfileModalBoxProps & RouteComponentProps) => {
   const history = useHistory();
 
@@ -35,14 +38,14 @@ const ProfileModalBox = ({
           className="ProfileModalBox-status box pointer"
           onClick={() => trySatusModal()}
         >
-          <div className="ProfileModalBox-status-img"></div>
+          <PaperSvg className="ProfileModalSVG" />
           <span className="box-text">원서접수 현황</span>
         </div>
         <div
           onClick={() => history.push("/changepw")}
           className="ProfileModalBox-modify box pointer"
         >
-          <div className="ProfileModalBox-modify-img"></div>
+          <PasswordSvg className="ProfileModalSVG" />
           <span className="box-text">비밀번호 수정</span>
         </div>
 
@@ -52,7 +55,7 @@ const ProfileModalBox = ({
             HandleLogout();
           }}
         >
-          <div className="ProfileModalBox-logout-img"></div>
+          <LogoutSvg className="ProfileModalSVG" />
           <span className="box-text">로그아웃</span>
         </div>
       </div>

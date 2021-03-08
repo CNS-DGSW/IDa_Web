@@ -30,62 +30,8 @@
   }
   &-pencil {
     margin-top: 3px;
-    &-img {
-      background-image: url("../../assets/images/pencil-gray.png");
-      background-repeat: no-repeat;
-      width: 1.4rem;
-      height: 1.4rem;
-      background-size: 1.4rem 1.4rem;
-    }
-    &:hover {
-      .ProfileModalBox-pencil-img {
-        background-image: url("../../assets/images/pencil.png");
-      }
-    }
   }
-  &-status {
-    &-img {
-      background-image: url("../../assets/images/paper-gray.png");
-      background-repeat: no-repeat;
-      width: 1.4rem;
-      height: 1.4rem;
-      background-size: 1.4rem 1.4rem;
-    }
-    &:hover {
-      .ProfileModalBox-status-img {
-        background-image: url("../../assets/images/paper.png");
-      }
-    }
-  }
-  &-modify {
-    &-img {
-      background-image: url("../../assets/images/password-gray.png");
-      background-repeat: no-repeat;
-      width: 1.4rem;
-      height: 1.4rem;
-      background-size: 1.4rem 1.4rem;
-    }
-    &:hover {
-      .ProfileModalBox-modify-img {
-        background-image: url("../../assets/images/password@2x.png");
-      }
-    }
-  }
-  &-logout {
-    margin-bottom: 4px;
-    &-img {
-      background-image: url("../../assets/images/logout-gray.png");
-      background-repeat: no-repeat;
-      width: 1.4rem;
-      height: 1.4rem;
-      background-size: 1.4rem 1.4rem;
-    }
-    &:hover {
-      .ProfileModalBox-logout-img {
-        background-image: url("../../assets/images/logout.png");
-      }
-    }
-  }
+
   &-background {
     z-index: 99;
     position: fixed;
@@ -104,8 +50,14 @@
     font-weight: 600;
   }
   &:hover {
-    color: #0e1f91;
-    background: #eff1fc;
+    color: $bg-blue-150;
+    background: $bg-blue-100;
+  }
+  &:hover {
+    g,
+    path {
+      fill: $bg-blue-150;
+    }
   }
 }
 
@@ -116,4 +68,8 @@
   to {
     opacity: 1;
   }
+}
+.ProfileModalSVG {
+  width: 1.5rem;
+  height: 1.5rem;
 }

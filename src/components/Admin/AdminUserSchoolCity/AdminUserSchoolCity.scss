@@ -21,27 +21,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 1rem;
-    border-radius: 3px;
+    margin-bottom: 1rem;
+    border-radius: 6px;
     border: 1px solid $bd-gray;
-    font-size: 1rem;
     cursor: pointer;
   }
-
   &-list {
     width: 100%;
     border-collapse: collapse;
-
     &-header {
       background-color: $bg-gray-50;
     }
-
-    tr,
-    td,
-    th {
-      border: 1px solid $bd-line;
+    tr {
+      border-bottom: 1px solid $bd-line;
       height: 2.5rem;
-      text-align: center;
     }
   }
 }
