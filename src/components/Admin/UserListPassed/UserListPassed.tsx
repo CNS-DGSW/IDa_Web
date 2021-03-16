@@ -2,6 +2,7 @@ import React from "react";
 import { ListPassed } from "util/types/User";
 import "./UserListPassed.scss";
 import ListPassedCategory from "util/enums/ListPassedCategory";
+import moment from "moment";
 
 interface UserListPassedProps {
   tryDownExcel: (key: string) => void;
@@ -66,7 +67,7 @@ const UserListPassed = ({
                       <td>{i.cityName}</td>
                       <td>{i.studentTel}</td>
                       <td>{i.email}</td>
-                      <td>{i.birth}</td>
+                      <td>{moment(i.birth).format("YYYY-MM-DD")}</td>
                       <td>{i.submitCode}</td>
                       <td>{i.examCode}</td>
                       <td>
@@ -88,7 +89,7 @@ const UserListPassed = ({
                       <td>{i.cityName}</td>
                       <td>{i.studentTel}</td>
                       <td>{i.email}</td>
-                      <td>{i.birth}</td>
+                      <td>{moment(i.birth).format("YYYY-MM-DD")}</td>
                       <td>{i.submitCode}</td>
                       <td>{i.examCode}</td>
                       <td>

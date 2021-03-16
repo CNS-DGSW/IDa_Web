@@ -269,7 +269,7 @@ const ApplicantCompetitionRate = ({
 
           <div className="explanation-second">
             교육청 보고 정보 (해당 내역을 교육청 보고 양식에 알맞게 넣으시면
-            됩니다.
+            됩니다.)
           </div>
         </div>
         <div className="rate">
