@@ -4,7 +4,7 @@ import { refresh, refreshErrorHandle } from "./refresh";
 
 const Api = axios.create({
   baseURL: server,
-  timeout: 100000,
+  timeout: 50000,
   params: {},
 });
 

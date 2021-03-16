@@ -2,6 +2,8 @@ import React from "react";
 import MainContent from "components/common/MainContent";
 import "./Main.scss";
 import { RouteComponentProps, useHistory, withRouter } from "react-router-dom";
+import moment from "moment";
+import { submitEndTime, submitStartTime, finalTime } from "models/submitTime";
 
 interface MainProps {
   handleDownloadApplyInfo: () => void;
@@ -44,11 +46,23 @@ const Main = ({
               <div>
                 <p className="Content-box-area-small">특별/일반전형 원서접수</p>
                 <p className="Content-box-area-bold">
-                  2020. 10. 19.(월) 09:00 ~ 2020. 10. 22.(목) 17:00
+                  {`${moment(submitStartTime)
+                    .locale("ko")
+                    .format("yyyy. MM. DD(ddd) HH:mm")} ~ ${moment(
+                    submitEndTime
+                  )
+                    .locale("ko")
+                    .format("yyyy. MM. DD(ddd) HH:mm")}`}
                 </p>
                 <p className="Content-box-area-small">원서 및 서류제출</p>
                 <p className="Content-box-area-bold">
-                  2020. 10. 19.(월) 09:00 ~ 2020. 10. 22.(목) 17:00
+                  {`${moment(submitStartTime)
+                    .locale("ko")
+                    .format("yyyy. MM. DD(ddd) HH:mm")} ~ ${moment(
+                    submitEndTime
+                  )
+                    .locale("ko")
+                    .format("yyyy. MM. DD(ddd) HH:mm")}`}
                 </p>
                 <p className="Content-box-area-small">
                   우편접수는 원서접수 마감 시간 이내에 도착해야 합니다.
@@ -93,7 +107,9 @@ const Main = ({
               <div>
                 <p className="Content-box-area-small">최종결과 발표</p>
                 <p className="Content-box-area-bold">
-                  {"2020. 10. 19.(월) 09:00"}
+                  {moment(finalTime)
+                    .locale("ko")
+                    .format("yyyy. MM. DD(ddd) HH:mm")}
                 </p>
                 <div className="Content-box-area-btns">
                   <div

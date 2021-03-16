@@ -58,14 +58,14 @@ const InterViewScore = ({
         </select>
 
         <div className="InterViewScore-checkBox-label">
-          <span>면접 점수 &amp; 서식</span>
+          <span>출력용 &amp; 서식</span>
           <button onClick={() => tryDownExcel()} className="buttons">
             다운로드
           </button>
         </div>
 
         <div className="InterViewScore-checkBox-label">
-          <span>소프트웨어역량평가</span>
+          <span>면접 점수</span>
           <label htmlFor="input-file1" className="buttons">
             업로드
           </label>
