@@ -38,7 +38,8 @@ const RegisterContainer = () => {
           toast.success("이메일이 전송되었습니다.");
           setEmailLoading(false);
         })
-        .catch((err: Error) => {
+        .catch((err) => {
+          console.log(err);
           setEmailLoading(false);
           if (err.message.includes("400")) {
             toast.warn("메일 형식이 아닙니다.");
