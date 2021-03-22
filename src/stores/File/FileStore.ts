@@ -7,22 +7,14 @@ import FileDownload from "js-file-download";
 class FileStore {
   @action
   downloadApplyInfo = async () => {
-    try {
-      const response = await FileApi.DownloadApplyInfo();
+    const response = await FileApi.DownloadApplyInfo();
 
-      FileDownload(
-        response,
-        "대구소프트웨어고등학교_2021학년도신입생입학전형요강.hwp"
-      );
+    FileDownload(
+      response,
+      "대구소프트웨어고등학교_2021학년도신입생입학전형요강.hwp"
+    );
 
-      return new Promise((resolve: (response: any) => void, reject) => {
-        resolve(response);
-      });
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 }
 

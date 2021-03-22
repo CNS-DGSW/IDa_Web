@@ -249,59 +249,33 @@ class WriteStore {
 
   @action
   getGed = async (): Promise<GedResponse> => {
-    try {
-      const response: GedResponse = await UserApi.GetGed(this.userIdx);
+    const response: GedResponse = await UserApi.GetGed(this.userIdx);
 
-      return new Promise((resolve: (response: GedResponse) => void, reject) => {
-        resolve(response);
-      });
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
   @action
   editGed = async (): Promise<Response> => {
-    try {
-      const response: Response = await UserApi.EditGed(
-        this.englishScore,
-        this.koreanScore,
-        this.mathScore,
-        this.otherScore,
-        this.scienceScore,
-        this.socialScore,
-        this.userIdx
-      );
+    const response: Response = await UserApi.EditGed(
+      this.englishScore,
+      this.koreanScore,
+      this.mathScore,
+      this.otherScore,
+      this.scienceScore,
+      this.socialScore,
+      this.userIdx
+    );
 
-      return new Promise((resolve: (response: Response) => void, reject) => {
-        resolve(response);
-      });
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
   @action
   getStudentInfo = async (
     userIdx?: number | null
   ): Promise<UserInfoResponse> => {
-    try {
-      const response: UserInfoResponse = await AuthApi.GetInfo(userIdx);
+    const response: UserInfoResponse = await AuthApi.GetInfo(userIdx);
 
-      return new Promise(
-        (resolve: (response: UserInfoResponse) => void, reject) => {
-          resolve(response);
-        }
-      );
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
   @action
@@ -311,98 +285,52 @@ class WriteStore {
     sex: Sex,
     studentTel: string
   ): Promise<Response> => {
-    try {
-      const response: Response = await UserApi.EditUserInfo(
-        name,
-        birth,
-        sex,
-        studentTel,
-        this.userIdx
-      );
+    const response: Response = await UserApi.EditUserInfo(
+      name,
+      birth,
+      sex,
+      studentTel,
+      this.userIdx
+    );
 
-      return new Promise((resolve: (response: Response) => void, reject) => {
-        resolve(response);
-      });
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
   @action
   editProfileImage = async (ProfileImgage: string): Promise<Response> => {
-    try {
-      const response: Response = await UserApi.EditProfileImage(
-        ProfileImgage,
-        this.userIdx
-      );
+    const response: Response = await UserApi.EditProfileImage(
+      ProfileImgage,
+      this.userIdx
+    );
 
-      return new Promise((resolve: (response: Response) => void, reject) => {
-        resolve(response);
-      });
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
   @action
   getProfileImage = async (): Promise<ProfileInfoResponse> => {
-    try {
-      const response: ProfileInfoResponse = await UserApi.GetProfileImage(
-        this.userIdx
-      );
+    const response: ProfileInfoResponse = await UserApi.GetProfileImage(
+      this.userIdx
+    );
 
-      return new Promise(
-        (resolve: (response: ProfileInfoResponse) => void, reject) => {
-          resolve(response);
-        }
-      );
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
   @action
   getApplyType = async (): Promise<ApplyTypeResponse> => {
-    try {
-      const response: ApplyTypeResponse = await UserApi.GetApplyType(
-        this.userIdx
-      );
+    const response: ApplyTypeResponse = await UserApi.GetApplyType(
+      this.userIdx
+    );
 
-      return new Promise(
-        (resolve: (response: ApplyTypeResponse) => void, reject) => {
-          resolve(response);
-        }
-      );
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
   @action
   getParentInfo = async (): Promise<ParentInfoResponse> => {
-    try {
-      const response: ParentInfoResponse = await UserApi.GetParentInfo(
-        this.userIdx
-      );
+    const response: ParentInfoResponse = await UserApi.GetParentInfo(
+      this.userIdx
+    );
 
-      return new Promise(
-        (resolve: (response: ParentInfoResponse) => void, reject) => {
-          resolve(response);
-        }
-      );
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
   @action
@@ -412,23 +340,15 @@ class WriteStore {
     verteransCity?: string,
     verteransNumber?: string
   ): Promise<Response> => {
-    try {
-      const response: Response = await UserApi.EditApplyType(
-        applyType,
-        applyDetailType,
-        verteransCity,
-        verteransNumber,
-        this.userIdx
-      );
+    const response: Response = await UserApi.EditApplyType(
+      applyType,
+      applyDetailType,
+      verteransCity,
+      verteransNumber,
+      this.userIdx
+    );
 
-      return new Promise((resolve: (response: Response) => void, reject) => {
-        resolve(response);
-      });
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
   @action
@@ -439,43 +359,25 @@ class WriteStore {
     parentTel: string,
     postcode: string
   ): Promise<Response> => {
-    try {
-      const response: Response = await UserApi.EditParentInfo(
-        address,
-        parentName,
-        parentRelation,
-        parentTel,
-        postcode,
-        this.userIdx
-      );
+    const response: Response = await UserApi.EditParentInfo(
+      address,
+      parentName,
+      parentRelation,
+      parentTel,
+      postcode,
+      this.userIdx
+    );
 
-      return new Promise((resolve: (response: Response) => void, reject) => {
-        resolve(response);
-      });
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
   @action
   getSchoolInfo = async (): Promise<SchoolInfoResponse> => {
-    try {
-      const response: SchoolInfoResponse = await UserApi.GetSchoolInfo(
-        this.userIdx
-      );
+    const response: SchoolInfoResponse = await UserApi.GetSchoolInfo(
+      this.userIdx
+    );
 
-      return new Promise(
-        (resolve: (response: SchoolInfoResponse) => void, reject) => {
-          resolve(response);
-        }
-      );
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
   @action
@@ -490,302 +392,164 @@ class WriteStore {
     teacherName: string,
     teacherTel: string
   ): Promise<Response> => {
-    try {
-      const response: Response = await UserApi.EditSchoolInfo(
-        cityLocation,
-        cityName,
-        gradeType,
-        graduatedDate,
-        schoolCode,
-        schoolName,
-        schoolTel,
-        teacherName,
-        teacherTel,
-        this.userIdx
-      );
+    const response: Response = await UserApi.EditSchoolInfo(
+      cityLocation,
+      cityName,
+      gradeType,
+      graduatedDate,
+      schoolCode,
+      schoolName,
+      schoolTel,
+      teacherName,
+      teacherTel,
+      this.userIdx
+    );
 
-      return new Promise((resolve: (response: Response) => void, reject) => {
-        resolve(response);
-      });
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
   @action
   upload = async (fileName: File | Blob): Promise<UploadResponse> => {
-    try {
-      const response: UploadResponse = await UserApi.upload(fileName);
+    const response: UploadResponse = await UserApi.upload(fileName);
 
-      return new Promise(
-        (resolve: (response: UploadResponse) => void, reject) => {
-          resolve(response);
-        }
-      );
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
   @action
   editSelfIntroduce = async (selfIntroduction: string): Promise<Response> => {
-    try {
-      const response: Response = await UserApi.EditSelfIntroduce(
-        selfIntroduction,
-        this.userIdx
-      );
+    const response: Response = await UserApi.EditSelfIntroduce(
+      selfIntroduction,
+      this.userIdx
+    );
 
-      return new Promise((resolve: (response: Response) => void, reject) => {
-        resolve(response);
-      });
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
   @action
   getSelfIntroduce = async (): Promise<SelfIntroductionResponse> => {
-    try {
-      const response: SelfIntroductionResponse = await UserApi.GetSelfIntroduce(
-        this.userIdx
-      );
+    const response: SelfIntroductionResponse = await UserApi.GetSelfIntroduce(
+      this.userIdx
+    );
 
-      return new Promise(
-        (resolve: (response: SelfIntroductionResponse) => void, reject) => {
-          resolve(response);
-        }
-      );
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
   @action
   editStudyPlan = async (studyPlan: string): Promise<Response> => {
-    try {
-      const response: Response = await UserApi.EditStudyPlan(
-        studyPlan,
-        this.userIdx
-      );
+    const response: Response = await UserApi.EditStudyPlan(
+      studyPlan,
+      this.userIdx
+    );
 
-      return new Promise((resolve: (response: Response) => void, reject) => {
-        resolve(response);
-      });
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
   @action
   getStudyPlan = async (): Promise<StudyPlanResponse> => {
-    try {
-      const response: StudyPlanResponse = await UserApi.GetStudyPlan(
-        this.userIdx
-      );
+    const response: StudyPlanResponse = await UserApi.GetStudyPlan(
+      this.userIdx
+    );
 
-      return new Promise(
-        (resolve: (response: StudyPlanResponse) => void, reject) => {
-          resolve(response);
-        }
-      );
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
   @action
   editGrade = async (): Promise<Response> => {
-    try {
-      const response: Response = await UserApi.EditGrade(
-        this.freeSem,
-        this.grades,
-        this.userIdx
-      );
+    const response: Response = await UserApi.EditGrade(
+      this.freeSem,
+      this.grades,
+      this.userIdx
+    );
 
-      return new Promise((resolve: (response: Response) => void, reject) => {
-        resolve(response);
-      });
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
   @action
   editAttend = async (): Promise<Response> => {
-    try {
-      const response: Response = await UserApi.EditAttend(
-        this.absence1,
-        this.absence2,
-        this.absence3,
-        this.lateness1,
-        this.lateness2,
-        this.lateness3,
-        this.earlyLeave1,
-        this.earlyLeave2,
-        this.earlyLeave3,
-        this.absenceLecture1,
-        this.absenceLecture2,
-        this.absenceLecture3,
-        this.userIdx
-      );
+    const response: Response = await UserApi.EditAttend(
+      this.absence1,
+      this.absence2,
+      this.absence3,
+      this.lateness1,
+      this.lateness2,
+      this.lateness3,
+      this.earlyLeave1,
+      this.earlyLeave2,
+      this.earlyLeave3,
+      this.absenceLecture1,
+      this.absenceLecture2,
+      this.absenceLecture3,
+      this.userIdx
+    );
 
-      return new Promise((resolve: (response: Response) => void, reject) => {
-        resolve(response);
-      });
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
   @action
   editAdditional = async (): Promise<Response> => {
-    try {
-      const response: Response = await UserApi.EditAdditional(
-        this.leadership11,
-        this.leadership12,
-        this.leadership21,
-        this.leadership22,
-        this.leadership31,
-        this.leadership32,
-        this.prize,
-        this.userIdx
-      );
+    const response: Response = await UserApi.EditAdditional(
+      this.leadership11,
+      this.leadership12,
+      this.leadership21,
+      this.leadership22,
+      this.leadership31,
+      this.leadership32,
+      this.prize,
+      this.userIdx
+    );
 
-      return new Promise((resolve: (response: Response) => void, reject) => {
-        resolve(response);
-      });
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
   @action
   editVolunteer = async (): Promise<Response> => {
-    try {
-      const response: Response = await UserApi.EditVolunteer(
-        this.volunteer1,
-        this.volunteer2,
-        this.volunteer3,
-        this.userIdx
-      );
+    const response: Response = await UserApi.EditVolunteer(
+      this.volunteer1,
+      this.volunteer2,
+      this.volunteer3,
+      this.userIdx
+    );
 
-      console.log(this.volunteer1);
-
-      return new Promise((resolve: (response: Response) => void, reject) => {
-        resolve(response);
-      });
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
   @action
   getAttend = async (): Promise<AttendResponse> => {
-    try {
-      const response: AttendResponse = await UserApi.GetAttend(this.userIdx);
+    const response: AttendResponse = await UserApi.GetAttend(this.userIdx);
 
-      return new Promise(
-        (resolve: (response: AttendResponse) => void, reject) => {
-          resolve(response);
-        }
-      );
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
   @action
   getAdditional = async (): Promise<AdditionalResponse> => {
-    try {
-      const response: AdditionalResponse = await UserApi.GetAdditional(
-        this.userIdx
-      );
+    const response: AdditionalResponse = await UserApi.GetAdditional(
+      this.userIdx
+    );
 
-      return new Promise(
-        (resolve: (response: AdditionalResponse) => void, reject) => {
-          resolve(response);
-        }
-      );
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
   @action
   getVolunteer = async (): Promise<VolunteerResponse> => {
-    try {
-      const response: VolunteerResponse = await UserApi.GetVolunteer(
-        this.userIdx
-      );
+    const response: VolunteerResponse = await UserApi.GetVolunteer(
+      this.userIdx
+    );
 
-      return new Promise(
-        (resolve: (response: VolunteerResponse) => void, reject) => {
-          resolve(response);
-        }
-      );
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
   @action
   searchSchool = async (schoolName: string): Promise<SchoolResponse> => {
-    try {
-      const response: SchoolResponse = await UserApi.SearchSchool(schoolName);
+    const response: SchoolResponse = await UserApi.SearchSchool(schoolName);
 
-      return new Promise(
-        (resolve: (response: SchoolResponse) => void, reject) => {
-          resolve(response);
-        }
-      );
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
   @action
   getGradeList = async (): Promise<GetGradeList> => {
-    try {
-      const response: GetGradeList = await UserApi.GetGrade(this.userIdx);
+    const response: GetGradeList = await UserApi.GetGrade(this.userIdx);
 
-      return new Promise(
-        (resolve: (response: GetGradeList) => void, reject) => {
-          resolve(response);
-        }
-      );
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 }
 
