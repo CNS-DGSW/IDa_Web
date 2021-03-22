@@ -45,7 +45,7 @@ const LoginContainer = () => {
           history.push("/");
         })
         .catch((err) => {
-          if (err.response.status === 401) {
+          if (err.message.includes("401")) {
             passwordInput.current?.focus();
             toast.warn("이메일이나 비밀번호가 다릅니다");
           } else {
