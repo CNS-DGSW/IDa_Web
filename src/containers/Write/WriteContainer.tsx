@@ -29,7 +29,7 @@ const WriteContainer = ({}) => {
 
   return (
     <>
-      <Write page={page} />
+      <Write page={page} pageHandle={pageHandle} />
     </>
   );
 };

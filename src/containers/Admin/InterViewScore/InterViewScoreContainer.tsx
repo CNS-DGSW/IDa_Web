@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import InterViewScore from "components/Admin/InterViewScore";
 import useStore from "lib/hooks/useStore";
-import { InterViewScoreType } from "util/types/Score";
+import { InterViewScoreResponse } from "util/types/Response";
 import ExcelApi from "assets/api/ExcelApi";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
@@ -19,7 +19,7 @@ const InterViewScoreContainer = ({}) => {
     InterViewCategory.COOPERATION
   );
   const [team, setTeam] = useState<string>("0");
-  const [scoreDate, setScoreDate] = useState<InterViewScoreType>();
+  const [scoreDate, setScoreDate] = useState<InterViewScoreResponse>();
   const history = useHistory();
 
   const tryDownExcel = async () => {

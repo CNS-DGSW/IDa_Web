@@ -1,6 +1,6 @@
 import React from "react";
 import "./InterViewScore.scss";
-import { InterViewScoreType } from "util/types/Score";
+import { InterViewScoreResponse } from "util/types/Response";
 import InterViewCategory from "util/enums/InterViewCategory";
 
 interface InterViewScoreProps {
@@ -8,7 +8,7 @@ interface InterViewScoreProps {
   setTeam: React.Dispatch<React.SetStateAction<string>>;
   teamCount: number[] | undefined;
   selectInterView: (index: string) => void;
-  scoreDate: InterViewScoreType | undefined;
+  scoreDate: InterViewScoreResponse | undefined;
   tryDownExcel: () => void;
   uploadFile: (e: React.ChangeEvent<HTMLInputElement>) => void;
   interView: InterViewCategory;

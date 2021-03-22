@@ -23,7 +23,7 @@ const WriteGrades = ({ gradeType, onSave, isChanged }: WriteGradesProps) => {
         isChanged={isChanged}
       >
         <div className="grade">
-          <WriteScoreContainer />
+          <WriteScoreContainer onSave={onSave} />
 
           {gradeType !== Grade.GED ? (
             <>

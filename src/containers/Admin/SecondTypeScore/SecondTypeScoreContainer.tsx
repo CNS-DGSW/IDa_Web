@@ -4,7 +4,7 @@ import SecondTypeScore from "components/Admin/SecondTypeScore";
 import useStore from "lib/hooks/useStore";
 import { useHistory } from "react-router-dom";
 import ExcelApi from "assets/api/ExcelApi";
-import { SecondScoreResponse } from "util/types/Score";
+import { SecondScoreResponse } from "util/types/Response";
 import { toast } from "react-toastify";
 import { handleAdmin } from "lib/handleErrors";
 

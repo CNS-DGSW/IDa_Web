@@ -5,6 +5,7 @@ import FirstResult from "components/ResultStatusCheck/FirstResult";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 import Apply from "util/enums/Apply";
+import { handleLogin } from "lib/handleErrors";
 
 interface FirstResultContainerProps {
   firstOpenModal: () => void;
@@ -34,7 +35,7 @@ const FirstResultContainer = ({
         setApplyComment("특례입학");
       }
     } else if (pass === false) {
-      setComment("불합격입니다.");
+      setComment("안타깝게도 불합격 되었습니다.");
     } else if (pass === null) {
       if (!submit || !print) {
         setComment("미제출 또는 우편미도착 입니다.");
@@ -52,12 +53,7 @@ const FirstResultContainer = ({
         setCommented();
       })
       .catch((err) => {
-        if (err.message.includes("401")) {
-          toast.warn("로그인이 필요합니다.");
-          history.push("/login");
-        } else {
-          toast.warn("서버 오류입니다.");
-        }
+        handleLogin(err, history);
       });
   }, [applyCheck]);
 

@@ -1,6 +1,15 @@
-@import "util/colors.scss";
+@import "../../../util/colors.scss";
 
 .grade {
+  &-refresh {
+    border: 1px solid $bd-gray-700;
+    display: flex;
+    text-align: center;
+    background-color: $bg-writeback;
+    padding: 0.15rem 0.25em;
+    border-radius: 5px;
+    margin-bottom: 0.2rem;
+  }
   @media screen and (max-width: 767px) {
     font-size: 0.9rem;
   }
