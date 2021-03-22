@@ -17,9 +17,12 @@ const FirstResultContainer = ({
   const { store } = useStore();
   const { pass, tryGetStatus, submit, print } = store.StatusStore;
   const [comment, setComment] = useState<string>("");
+  // 합격 불합격 체점중 등등 멘트를 관리하는 state
   const [applyCheck, setApplyCheck] = useState<Apply | null>();
   const [applyComment, setApplyComment] = useState<string>("");
+  // 합격 하였을때 전형을 넣어주는 state
 
+  // state를 이용해서 멘트를 정해주는 함수
   const setCommented = useCallback(() => {
     if (pass) {
       setComment("축하드립니다 합격되었습니다.");
@@ -41,6 +44,7 @@ const FirstResultContainer = ({
     }
   }, [pass, submit, print, applyCheck]);
 
+  // api 받아와서 처리하기
   const getStatus = useCallback(() => {
     tryGetStatus()
       .then((res) => {
@@ -51,6 +55,8 @@ const FirstResultContainer = ({
         if (err.message.includes("401")) {
           toast.warn("로그인이 필요합니다.");
           history.push("/login");
+        } else {
+          toast.warn("서버 오류입니다.");
         }
       });
   }, [applyCheck]);
@@ -65,6 +71,7 @@ const FirstResultContainer = ({
 
   return (
     <>
+      {/* api를 받고 난후 데이터가 오면 보여줌 */}
       {pass !== undefined && (
         <FirstResult
           comment={comment}

@@ -71,6 +71,12 @@ const HeaderContainer = ({
     };
   }, []);
 
+  useEffect(() => {
+    statusModal
+      ? (document.body.style.overflow = "hidden")
+      : (document.body.style.overflow = "unset");
+  }, [statusModal]);
+
   return (
     <>
       <Header

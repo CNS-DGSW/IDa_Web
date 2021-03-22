@@ -49,23 +49,13 @@ class AuthStore {
     email: string,
     password: string
   ): Promise<LoginResponse> => {
-    try {
-      const response = await AuthApi.Login(email, sha256(password));
+    const response = await AuthApi.Login(email, sha256(password));
 
-      if (response.status === 200) {
-        this.login = true;
-      }
-
-      return new Promise(
-        (resolve: (response: LoginResponse) => void, reject) => {
-          resolve(response);
-        }
-      );
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
+    if (response.status === 200) {
+      this.login = true;
     }
+
+    return response;
   };
 
   @action

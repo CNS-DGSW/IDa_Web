@@ -36,12 +36,15 @@ const LoginContainer = () => {
         .then(async (res: LoginResponse) => {
           toast.success("로그인 되었습니다");
           asyncLocalStorage.setItem("accessToken", res.data.accessToken);
-          asyncLocalStorage.setItem("expiresAt", moment().add(1, "hour").format("yyyy-MM-DD HH:mm:ss"));
+          asyncLocalStorage.setItem(
+            "expiresAt",
+            moment().add(1, "hour").format("yyyy-MM-DD HH:mm:ss")
+          );
           setCookie("refreshToken", res.data.refreshToken, { path: "/" });
           setLoginCheck();
           history.push("/");
         })
-        .catch((err: Error) => {
+        .catch((err) => {
           if (err.message.includes("401")) {
             passwordInput.current?.focus();
             toast.warn("이메일이나 비밀번호가 다릅니다");

@@ -2,17 +2,13 @@ import Api from "lib/customAxios";
 
 class AuthApi {
   async Login(email: string, pw: string) {
-    try {
-      const body = {
-        email,
-        pw,
-      };
-      const { data } = await Api.post("/auth/login", body);
+    const body = {
+      email,
+      pw,
+    };
+    const { data } = await Api.post("/auth/login", body);
 
-      return data;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    return data;
   }
   async Register(name: string, email: string, pw: string, birth: string) {
     try {

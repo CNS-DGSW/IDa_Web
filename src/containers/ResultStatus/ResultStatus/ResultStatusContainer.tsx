@@ -13,7 +13,9 @@ const ResultStatusContainer = ({}: ResultStatusContainerPropse) => {
   const [internet, setInternet] = useState<boolean | undefined>(undefined);
 
   const { tryCloseModal } = store.AuthStore;
+  // 헤더에 있어서 모달을 store에서 관리해줌
 
+  // api 받아오기
   const getStauts = useCallback(async () => {
     await tryGetStatus()
       .then((res) => {
@@ -31,6 +33,7 @@ const ResultStatusContainer = ({}: ResultStatusContainerPropse) => {
 
   return (
     <>
+      {/* api를 받고 난후 데이터가 오면 보여줌 */}
       {post !== undefined && internet !== undefined && (
         <ResultStatus
           post={post}
