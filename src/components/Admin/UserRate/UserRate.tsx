@@ -1,6 +1,6 @@
 import React from "react";
 import "./UserRate.scss";
-import { Rate } from "util/types/User";
+import { Rate } from "util/types/UserList";
 import { Report } from "util/types/ReportInfo";
 import ApplyDetail from "util/enums/ApplyDetail";
 

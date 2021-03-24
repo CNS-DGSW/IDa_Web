@@ -1,5 +1,5 @@
 import React from "react";
-import { ListPassed } from "util/types/User";
+import { ListPassed } from "util/types/UserList";
 import "./UserListPassed.scss";
 import ListPassedCategory from "util/enums/ListPassedCategory";
 import moment from "moment";

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import UserRate from "components/Admin/UserRate";
-import { Rate } from "util/types/User";
+import { Rate } from "util/types/UserList";
 import { useHistory } from "react-router-dom";
 import { Report } from "util/types/ReportInfo";
 import { handleAdmin } from "lib/handleErrors";

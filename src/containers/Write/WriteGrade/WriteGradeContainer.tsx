@@ -22,6 +22,8 @@ const WriteGradeContainer = ({}) => {
     editGed,
     isChanged,
     handleIsChanged,
+    getSchoolInfo,
+    handleGrade,
     page,
   } = store.WriteStore;
 
@@ -57,12 +59,19 @@ const WriteGradeContainer = ({}) => {
     return flag;
   }, [gradeType]);
 
+  const checkSchool = useCallback(async () => {
+    await getSchoolInfo().then((res) => {
+      handleGrade(res.data.gradeType);
+      if (!res.data.gradeType) {
+        toast.warn("학교 정보를 먼저 입력해주세요.");
+        pageHandle(3);
+      }
+    });
+  }, []);
+
   useLayoutEffect(() => {
-    if (!gradeType) {
-      toast.warn("학교 정보를 먼저 입력해주세요.");
-      pageHandle(3);
-    }
-  }, [gradeType]);
+    checkSchool();
+  }, [checkSchool]);
 
   useEffect(() => {
     handleIsChanged(false);

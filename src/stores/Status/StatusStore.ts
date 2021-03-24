@@ -39,42 +39,24 @@ class StatusStore {
 
   @action
   tryGetFinalStatus = async (): Promise<FinalStatusResponse> => {
-    try {
-      const response: FinalStatusResponse = await StatusApi.GetFinalStatus();
+    const response: FinalStatusResponse = await StatusApi.GetFinalStatus();
 
-      return new Promise(
-        (resolve: (response: FinalStatusResponse) => void, reject) => {
-          resolve(response);
-        }
-      );
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
   @action
   tryGetStatus = async (
     userIdx?: number | null
   ): Promise<ResultStatusResponse> => {
-    try {
-      const response: ResultStatusResponse = await StatusApi.GetStatus(userIdx);
+    const response: ResultStatusResponse = await StatusApi.GetStatus(userIdx);
 
+    if (response.status === 200) {
       this.submit = response.data.isSubmit;
       this.print = response.data.isPrintedApplicationArrived;
       this.pass = response.data.isPassedFirstApply;
-
-      return new Promise(
-        (resolve: (response: ResultStatusResponse) => void, reject) => {
-          resolve(response);
-        }
-      );
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
     }
+
+    return response;
   };
 
   @action
@@ -82,17 +64,9 @@ class StatusStore {
     userIdx: number,
     status: boolean
   ): Promise<Response> => {
-    try {
-      const response: Response = await StatusApi.ChangeArrived(userIdx, status);
+    const response: Response = await StatusApi.ChangeArrived(userIdx, status);
 
-      return new Promise((resolve: (response: Response) => void, reject) => {
-        resolve(response);
-      });
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 }
 

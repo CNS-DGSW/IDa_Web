@@ -1,5 +1,7 @@
 import React from "react";
+import { BiRefresh } from "react-icons/bi";
 import "./WriteScore.scss";
+import { toast } from "react-toastify";
 
 interface WriteScoreProps {
   grade1: number;
@@ -10,9 +12,13 @@ interface WriteScoreProps {
   additional: number;
   totalScore1: number;
   totalScore2: number;
+  onSave: () => Promise<boolean>;
+  getScoreCallback: () => void;
 }
 
 const WriteScore = ({
+  getScoreCallback,
+  onSave,
   grade1,
   grade2,
   isGed,
@@ -24,6 +30,17 @@ const WriteScore = ({
 }: WriteScoreProps) => {
   return (
     <>
+      <button
+        className="grade-refresh pointer"
+        onClick={async () => {
+          await onSave();
+          getScoreCallback();
+          toast.success("점수가 갱신되었습니다.");
+        }}
+      >
+        <BiRefresh />
+        {"점수 갱신하기"}
+      </button>
       <div className="grade-allList">
         <table>
           <colgroup>

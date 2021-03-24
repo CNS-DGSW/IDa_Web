@@ -4,11 +4,9 @@ import React from "react";
 
 const FaqPage = () => {
   return (
-    <div>
-      <DefaultTemplate>
-        <FaqContainer />
-      </DefaultTemplate>
-    </div>
+    <DefaultTemplate>
+      <FaqContainer />
+    </DefaultTemplate>
   );
 };
 

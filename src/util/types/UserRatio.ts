@@ -9,7 +9,7 @@ export type CityRatio = {
 };
 
 export type DateRatio = {
-  date: string;
+  date: Date;
   registered: number;
   registeredRatio: number;
   submitted: number;

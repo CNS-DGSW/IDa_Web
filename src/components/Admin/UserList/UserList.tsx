@@ -1,6 +1,6 @@
 import React from "react";
 import "./UserList.scss";
-import { List } from "util/types/User";
+import { List } from "util/types/UserList";
 import { CityRatio, DateRatio, SchoolRatio } from "util/types/UserRatio";
 import moment from "moment";
 
