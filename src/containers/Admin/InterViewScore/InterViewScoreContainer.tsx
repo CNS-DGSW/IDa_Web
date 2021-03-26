@@ -12,7 +12,12 @@ import { handleAdmin } from "lib/handleErrors";
 const InterViewScoreContainer = ({}) => {
   const { store } = useStore();
   const { getInterviewScore, getTeam } = store.ScoreStore;
-  const { uploadInterview } = ExcelApi;
+  const {
+    uploadInterview,
+    GetInterviewScoreExcel,
+    getTeamNumber,
+    uploadTeamNumber,
+  } = ExcelApi;
 
   const [teamCount, setTeamCount] = useState<number[]>();
   const [interView, setInterView] = useState<InterViewCategory>(
@@ -23,12 +28,12 @@ const InterViewScoreContainer = ({}) => {
   const history = useHistory();
 
   const tryDownExcel = async () => {
-    await ExcelApi.GetInterviewScoreExcel(
+    await GetInterviewScoreExcel(
       interView,
       team === "0" ? undefined : team
     ).catch((err) => {
       handleAdmin(err, history);
-      if (err.message.includes("404")) {
+      if (err.response?.status === 404) {
         setTeam("0");
       }
     });
@@ -66,6 +71,34 @@ const InterViewScoreContainer = ({}) => {
     [interView]
   );
 
+  const tryGetNumberTeam = () => {
+    getTeamNumber(interView).catch((err) => {
+      handleAdmin(err, history);
+    });
+  };
+
+  const tyrUploadTeam = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (e.target.files && e.target.files.length) {
+        let file = e.target.files[0];
+        uploadTeamNumber(file)
+          .then(() => {
+            toast.success("파일 업로드 되었습니다");
+            tryGetScore();
+            tryGetTeam();
+          })
+          .catch((err) => {
+            if (err.response?.status === 400) {
+              toast.warn("파일을 잘못선택하였습니다");
+            } else if (err.response?.status === 500) {
+              toast.warn("서버 오류입니다.");
+            }
+          });
+      }
+    },
+    [tryGetScore]
+  );
+
   const uploadFile = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       if (e.target.files && e.target.files.length) {
@@ -76,9 +109,9 @@ const InterViewScoreContainer = ({}) => {
             tryGetScore();
           })
           .catch((err) => {
-            if (err.message.includes("400")) {
+            if (err.response?.status === 400) {
               toast.warn("파일을 잘못선택하였습니다");
-            } else if (err.message.includes("500")) {
+            } else if (err.response?.status === 500) {
               toast.warn("서버 오류입니다.");
             }
           });
@@ -105,6 +138,8 @@ const InterViewScoreContainer = ({}) => {
       scoreDate={scoreDate}
       tryDownExcel={tryDownExcel}
       uploadFile={uploadFile}
+      tryGetNumberTeam={tryGetNumberTeam}
+      tyrUploadTeam={tyrUploadTeam}
     />
   );
 };

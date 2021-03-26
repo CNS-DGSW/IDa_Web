@@ -43,7 +43,7 @@ const WriteAdmissionContainer = ({}) => {
         applyDetailType,
         verteransCity,
         verteransNumber
-      ).catch((err: Error) => {
+      ).catch((err) => {
         handleWriteError(err, history);
         flag = false;
       });
@@ -63,7 +63,7 @@ const WriteAdmissionContainer = ({}) => {
         setVerteransCity(res.data.verteransCity || "");
         setVerteransNumber(res.data.verteransNumber || "");
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         handleGetWriteError(err, history);
       });
   }, []);

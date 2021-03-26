@@ -44,12 +44,12 @@ const WritePhotoContainer = ({}) => {
       if (image) {
         await upload(image)
           .then(async (res) => {
-            await editProfileImage(res.data.fileName).catch((err: Error) => {
+            await editProfileImage(res.data.fileName).catch((err) => {
               handleWriteError(err, history);
               flag = false;
             });
           })
-          .catch((err: Error) => {
+          .catch((err) => {
             handleWriteError(err, history);
             flag = false;
           });
@@ -68,7 +68,7 @@ const WritePhotoContainer = ({}) => {
       .then((res: ProfileInfoResponse) => {
         setPreview(res.data.profileImage);
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         handleGetWriteError(err, history);
       });
   }, []);

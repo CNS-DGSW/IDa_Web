@@ -40,7 +40,7 @@ const WriteStudentContainer = ({}) => {
         setSex(res.data.sex);
         setStudentTel(res.data.studentTel || "");
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         handleGetWriteError(err, history);
       });
   }, []);
@@ -48,12 +48,10 @@ const WriteStudentContainer = ({}) => {
   const onSave = useCallback(async () => {
     let flag = true;
     if (name !== "" && birth !== "" && sex !== null && studentTel !== "") {
-      await editStudentInfo(name, birth, sex, studentTel).catch(
-        (err: Error) => {
-          handleWriteError(err, history);
-          flag = false;
-        }
-      );
+      await editStudentInfo(name, birth, sex, studentTel).catch((err) => {
+        handleWriteError(err, history);
+        flag = false;
+      });
       handleName(name);
       setIsChanged(false);
     } else {

@@ -37,7 +37,7 @@ const WriteGedContainer = ({}) => {
         handleEnglishScore(res.data.score.englishScore);
         handleOtherScore(res.data.score.otherScore);
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         handleGetWriteError(err, history);
       });
   }, [getGed]);

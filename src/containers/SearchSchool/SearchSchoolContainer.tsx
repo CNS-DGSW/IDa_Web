@@ -38,7 +38,7 @@ const SearchSchoolContainer = ({
         .then((res: SchoolResponse) => {
           setSchools(res.data.schools);
         })
-        .catch((err: Error) => {
+        .catch((err) => {
           toast.error("서버 오류입니다.");
         });
       setIsLoading(false);

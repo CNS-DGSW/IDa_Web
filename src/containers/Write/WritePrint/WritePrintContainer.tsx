@@ -291,7 +291,7 @@ const WritePrintContainer = ({}) => {
       getStudyPlanCallBack(),
     ];
 
-    await Promise.all(promises).catch((err: Error) => {
+    await Promise.all(promises).catch((err) => {
       handleGetWriteError(err, history);
     });
     setLoading(false);

@@ -24,7 +24,7 @@ const AdminUserSchoolCityContainer = ({}) => {
       .then((res) => {
         setSchoolCity(res.data);
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         handleAdmin(err, history);
       });
   }, []);

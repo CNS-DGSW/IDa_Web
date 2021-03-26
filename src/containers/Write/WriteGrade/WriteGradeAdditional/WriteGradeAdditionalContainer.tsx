@@ -49,7 +49,7 @@ const WriteGradeAdditionalContainer = ({}) => {
         handleLeadership32(res.data.leadership32);
         handlePrize(res.data.prize);
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         handleGetWriteError(err, history);
       });
   }, []);

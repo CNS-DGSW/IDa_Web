@@ -70,7 +70,7 @@ const WriteSchoolContainer = ({}) => {
         .then(() => {
           handleGrade(gradeType);
         })
-        .catch((err: Error) => {
+        .catch((err) => {
           handleWriteError(err, history);
           flag = false;
         });
@@ -105,7 +105,7 @@ const WriteSchoolContainer = ({}) => {
         setTeacherName(res.data.teacherName || "");
         setTeacherTel(res.data.teacherTel || "");
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         handleGetWriteError(err, history);
       });
   }, []);

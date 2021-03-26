@@ -29,7 +29,7 @@ const UserListContainer = ({}) => {
       .then((res) => {
         setUserStatus(res.data);
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         handleAdmin(err, history);
       });
   }, []);
@@ -41,7 +41,7 @@ const UserListContainer = ({}) => {
         setDateStatus(res.data.userDateRatio);
         setSchoolStatus(res.data.userSchoolRatio);
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         handleLogin(err, history);
       });
   }, []);

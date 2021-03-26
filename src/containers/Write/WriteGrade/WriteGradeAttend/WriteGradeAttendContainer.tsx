@@ -58,7 +58,7 @@ const WriteGradeAttendContainer = ({}) => {
         handleAbsenceLecture2(res.data.absenceLecture2);
         handleAbsenceLecture3(res.data.absenceLecture3);
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         handleGetWriteError(err, history);
       });
   }, []);

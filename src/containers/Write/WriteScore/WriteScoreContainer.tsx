@@ -50,7 +50,7 @@ const WriteScoreContainer = ({
           setTotalScore1(res.data.totalScore1);
           setTotalScore2(res.data.totalScore2);
         })
-        .catch((err: Error) => {
+        .catch((err) => {
           handleGetWriteError(err, history);
         });
     }

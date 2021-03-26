@@ -2,59 +2,37 @@ import Api from "lib/customAxios";
 
 class StatusApi {
   async GetStatus(userIdx?: number | null) {
-    try {
-      const query = userIdx ? `?userIdx=${userIdx}` : "";
+    const query = userIdx ? `?userIdx=${userIdx}` : "";
 
-      const { data } = await Api.get(`/status/getStatus${query}`);
+    const { data } = await Api.get(`/status/getStatus${query}`);
 
-      return data;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    return data;
   }
 
   async ChangeSubmit() {
-    try {
-      const { data } = await Api.post("/status/changeSubmit");
+    const { data } = await Api.post("/status/changeSubmit");
 
-      return data;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    return data;
   }
 
   async cancelSubmit(userIdx: number) {
-    try {
-      const { data } = await Api.post(
-        `/status/cancelSubmit?userIdx=${userIdx}`
-      );
+    const { data } = await Api.post(`/status/cancelSubmit?userIdx=${userIdx}`);
 
-      return data;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    return data;
   }
 
   async GetFinalStatus() {
-    try {
-      const { data } = await Api.get("/status/getFinalStatus");
+    const { data } = await Api.get("/status/getFinalStatus");
 
-      return data;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    return data;
   }
 
   async ChangeArrived(userIdx: number, status: boolean) {
-    try {
-      const { data } = await Api.patch(
-        `/status/changeArrived?userIdx=${userIdx}&status=${status}`
-      );
+    const { data } = await Api.patch(
+      `/status/changeArrived?userIdx=${userIdx}&status=${status}`
+    );
 
-      return data;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    return data;
   }
 }
 

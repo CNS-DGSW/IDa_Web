@@ -69,11 +69,11 @@ const HandlePostContainer = ({
           handleGetPosts();
           toast.success("저장되었습니다.");
         })
-        .catch((err: Error) => {
-          if (err.message.includes("410")) {
+        .catch((err) => {
+          if (err.response?.status === 410) {
             toast.warn("로그인이 만료되었습니다.");
             history.push("/login");
-          } else if (err.message.includes("401")) {
+          } else if (err.response?.status === 401) {
             toast.warn("로그인이 필요합니다.");
             history.push("/login");
           } else {
@@ -94,13 +94,13 @@ const HandlePostContainer = ({
             handleGetPosts();
             toast.success("수정되었습니다.");
           })
-          .catch((err: Error) => {
-            if (err.message.includes("403")) {
+          .catch((err) => {
+            if (err.response?.status === 403) {
               toast.warn("권한이 없습니다.");
-            } else if (err.message.includes("410")) {
+            } else if (err.response?.status === 410) {
               toast.warn("로그인이 만료되었습니다.");
               history.push("/login");
-            } else if (err.message.includes("401")) {
+            } else if (err.response?.status === 401) {
               toast.warn("로그인이 필요합니다.");
               history.push("/login");
             } else {
@@ -122,13 +122,13 @@ const HandlePostContainer = ({
             handleGetPosts();
             toast.success("수정되었습니다.");
           })
-          .catch((err: Error) => {
-            if (err.message.includes("403")) {
+          .catch((err) => {
+            if (err.response?.status === 403) {
               toast.warn("권한이 없습니다.");
-            } else if (err.message.includes("410")) {
+            } else if (err.response?.status === 410) {
               toast.warn("로그인이 만료되었습니다.");
               history.push("/login");
-            } else if (err.message.includes("401")) {
+            } else if (err.response?.status === 401) {
               toast.warn("로그인이 필요합니다.");
               history.push("/login");
             } else {
@@ -172,13 +172,13 @@ const HandlePostContainer = ({
               handleGetPosts();
               toast.success("삭제되었습니다.");
             })
-            .catch((err: Error) => {
-              if (err.message.includes("403")) {
+            .catch((err) => {
+              if (err.response?.status === 403) {
                 toast.warn("권한이 없거나 답변이 있어서 실패하였습니다.");
-              } else if (err.message.includes("410")) {
+              } else if (err.response?.status === 410) {
                 toast.warn("로그인이 만료되었습니다.");
                 history.push("/login");
-              } else if (err.message.includes("401")) {
+              } else if (err.response?.status === 401) {
                 toast.warn("로그인이 필요합니다.");
                 history.push("/login");
               } else {
@@ -198,7 +198,7 @@ const HandlePostContainer = ({
           setTitle(res.data.post.title);
           setContent(res.data.post.content);
         })
-        .catch((err: Error) => {
+        .catch((err) => {
           toast.error("서버 오류입니다.");
         });
     }

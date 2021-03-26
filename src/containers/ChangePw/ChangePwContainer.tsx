@@ -25,8 +25,8 @@ const ChangePwContainer = ({}) => {
         .then((res) => {
           history.push("/");
         })
-        .catch((err: Error) => {
-          if (err.message.includes("401")) {
+        .catch((err) => {
+          if (err.response?.status === 401) {
             toast.warn("현재 비밀번호가 다릅니다.");
           } else {
             toast.error("서버 오류입니다");
