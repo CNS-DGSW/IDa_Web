@@ -221,6 +221,8 @@ const WriteSchool = ({
                   <input
                     type="text"
                     maxLength={20}
+                    onPaste={() => false}
+                    autoComplete="off"
                     className="student-select-box-area-textInput"
                     value={schoolTel}
                     onChange={(e) => {
@@ -252,6 +254,7 @@ const WriteSchool = ({
                   <input
                     type="text"
                     maxLength={20}
+                    autoComplete="off"
                     className="student-select-box-area-textInput"
                     value={teacherTel}
                     onChange={(e) => {
