@@ -96,15 +96,15 @@ const WriteContent = ({
             history.push("/");
             toast.success("제출되었습니다.");
           })
-          .catch((err: Error) => {
-            if (err.message.includes("401") || err.message.includes("410")) {
+          .catch((err) => {
+            if (err.response?.status === 401 || err.response?.status === 410) {
               history.push("/login");
               toast.warn("로그인이 필요합니다.");
-            } else if (err.message.includes("406")) {
+            } else if (err.response?.status === 406) {
               toast.warn("원서를 모두 작성하지 않았습니다.");
-            } else if (err.message.includes("409")) {
+            } else if (err.response?.status === 409) {
               toast.warn("이미 제출하셨습니다.");
-            } else if (err.message.includes("403")) {
+            } else if (err.response?.status === 403) {
               toast.warn("제출 기간이 아닙니다.");
             } else {
               toast.error("서버 오류입니다.");

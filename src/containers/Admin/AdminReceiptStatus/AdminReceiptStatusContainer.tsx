@@ -24,7 +24,7 @@ const AdminReceiptStatusContainer = ({}) => {
       .then((res) => {
         setReceiptStatus(res.data);
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         handleAdmin(err, history);
       });
   }, []);

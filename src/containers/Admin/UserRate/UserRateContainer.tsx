@@ -24,7 +24,7 @@ const UserRateContainer = ({}) => {
       .then((res) => {
         setRateStatus(res.data);
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         handleAdmin(err, history);
       });
   }, []);
@@ -34,7 +34,7 @@ const UserRateContainer = ({}) => {
       .then((res) => {
         setReportStatus(res.data);
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         handleAdmin(err, history);
       });
   }, []);

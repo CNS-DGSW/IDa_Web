@@ -64,7 +64,7 @@ const WriteParentContainer = ({}) => {
         parentRelation,
         parentTel,
         postCode
-      ).catch((err: Error) => {
+      ).catch((err) => {
         handleWriteError(err, history);
         flag = false;
       });
@@ -85,7 +85,7 @@ const WriteParentContainer = ({}) => {
         setParentTel(res.data.parentTel || "");
         setPostCode(res.data.postCode || "");
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         handleGetWriteError(err, history);
       });
   }, []);

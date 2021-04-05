@@ -27,7 +27,7 @@ const UserListPassedContainer = ({}) => {
       .then((res) => {
         setPassedStatus(res.data);
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         handleAdmin(err, history);
       });
   }, [listPassed]);

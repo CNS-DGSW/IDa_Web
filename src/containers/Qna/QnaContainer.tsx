@@ -23,7 +23,7 @@ const QnaContainer = ({}) => {
       .then((res: GetPostsResponse) => {
         setPosts(res.data.posts);
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         console.log(err);
       });
   }, []);

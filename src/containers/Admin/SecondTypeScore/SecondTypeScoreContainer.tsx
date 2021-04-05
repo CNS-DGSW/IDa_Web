@@ -77,7 +77,7 @@ const SecondTypeScoreContainer = ({}) => {
               toast.success("파일 업로드 되었습니다");
             })
             .catch((err) => {
-              if (err.message.includes("400")) {
+              if (err.response?.status === 400) {
                 toast.warn("파일을 잘못선택하였습니다");
               }
             });
@@ -88,7 +88,7 @@ const SecondTypeScoreContainer = ({}) => {
               toast.success("파일 업로드 되었습니다");
             })
             .catch((err) => {
-              if (err.message.includes("400")) {
+              if (err.response?.status === 400) {
                 toast.warn("파일을 잘못선택하였습니다");
               }
             });
@@ -100,7 +100,7 @@ const SecondTypeScoreContainer = ({}) => {
               toast.success("파일 업로드 되었습니다");
             })
             .catch((err) => {
-              if (err.message.includes("400")) {
+              if (err.response?.status === 400) {
                 toast.warn("파일을 잘못선택하였습니다");
               }
             });

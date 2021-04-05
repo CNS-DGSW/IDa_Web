@@ -21,17 +21,17 @@ const FindContainer = ({}) => {
 
   const handlePwCode = () => {
     setEmailLoading(true);
-    toast("메일 전송중입니다.");
     tryPwCode(email)
-      .then((res) => {
+      .then(() => {
+        toast("메일 전송중입니다.");
         setEmailLoading(false);
       })
       .catch((err) => {
         setEmailLoading(false);
-        if (err.message.includes("400")) {
-          toast("메일 형식이 아닙니다.");
-        } else if (err.message.includes("404")) {
-          toast("존재하지 않는 메일입니다.");
+        if (err.response?.status === 400) {
+          toast.warn("메일 형식이 아닙니다.");
+        } else if (err.response?.status === 404) {
+          toast.warn("존재하지 않는 메일입니다.");
         } else {
           console.log(err);
         }
@@ -48,7 +48,7 @@ const FindContainer = ({}) => {
           toast("Wow so easy !");
         })
         .catch((err) => {
-          if (err.message.includes("409")) {
+          if (err.response?.status === 409) {
             console.log("메일 인증 해라");
           } else {
             console.log(err);

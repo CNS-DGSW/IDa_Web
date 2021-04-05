@@ -25,7 +25,7 @@ const ResultStatusContainer = ({}: ResultStatusContainerPropse) => {
         setPost(res.data.isSubmit);
         setInternet(res.data.isPrintedApplicationArrived);
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         handleLogin(err, history);
       });
   }, []);

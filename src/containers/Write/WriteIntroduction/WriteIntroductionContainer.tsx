@@ -42,7 +42,7 @@ const WriteIntroductionContainer = ({}) => {
         .then(() => {
           flag = true;
         })
-        .catch((err: Error) => {
+        .catch((err) => {
           handleWriteError(err, history);
           flag = false;
         });
@@ -59,7 +59,7 @@ const WriteIntroductionContainer = ({}) => {
       .then((res: SelfIntroductionResponse) => {
         setSelfIntroduce(res.data.selfIntroduction || "");
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         handleGetWriteError(err, history);
       });
   }, []);
@@ -69,7 +69,7 @@ const WriteIntroductionContainer = ({}) => {
       .then((res: StudyPlanResponse) => {
         setStudyPlan(res.data.studyPlan || "");
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         handleGetWriteError(err, history);
       });
   }, []);

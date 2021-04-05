@@ -24,7 +24,7 @@ const NoticeContainer = () => {
         setPosts(res.data.posts);
         setFilteredPosts(res.data.posts);
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         console.log(err);
       });
   }, []);

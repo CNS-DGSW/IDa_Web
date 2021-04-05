@@ -45,7 +45,7 @@ const HeaderContainer = ({
   const getInfoCallback = useCallback(async () => {
     if (localStorage.getItem("accessToken") && !name && !email) {
       changeLogin(true);
-      await getInfo().catch((err: Error) => {
+      await getInfo().catch((err) => {
         HandleLogout();
       });
     }

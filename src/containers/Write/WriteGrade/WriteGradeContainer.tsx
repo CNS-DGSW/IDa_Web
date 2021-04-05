@@ -41,7 +41,7 @@ const WriteGradeContainer = ({}) => {
         .then(() => {
           handleIsChanged(false);
         })
-        .catch((err: Error) => {
+        .catch((err) => {
           handleWriteError(err, history);
           flag = false;
         });
@@ -50,7 +50,7 @@ const WriteGradeContainer = ({}) => {
         .then(() => {
           handleIsChanged(false);
         })
-        .catch((err: Error) => {
+        .catch((err) => {
           handleWriteError(err, history);
           flag = false;
         });
