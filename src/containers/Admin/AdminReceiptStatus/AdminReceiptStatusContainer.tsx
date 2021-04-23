@@ -14,13 +14,13 @@ const AdminReceiptStatusContainer = ({}) => {
   const [search, setSearch] = useState<string>("");
 
   const {
-    getReceiptSatus,
-    getReceiptSatusExcel,
+    getReceiptStatus,
+    getReceiptStatusExcel,
     handleCancelSubmit,
   } = store.AdminStore;
 
-  const getReceiptSatusCallBack = useCallback(() => {
-    getReceiptSatus()
+  const getReceiptStatusCallBack = useCallback(() => {
+    getReceiptStatus()
       .then((res) => {
         setReceiptStatus(res.data);
       })
@@ -30,8 +30,8 @@ const AdminReceiptStatusContainer = ({}) => {
   }, []);
 
   useEffect(() => {
-    getReceiptSatusCallBack();
-  }, [getReceiptSatusCallBack]);
+    getReceiptStatusCallBack();
+  }, [getReceiptStatusCallBack]);
 
   return (
     <>
@@ -39,7 +39,7 @@ const AdminReceiptStatusContainer = ({}) => {
         receiptStatus={receiptStatus}
         setSearch={setSearch}
         search={search}
-        getReceiptSatusExcel={getReceiptSatusExcel}
+        getReceiptStatusExcel={getReceiptStatusExcel}
         handleCancelSubmit={handleCancelSubmit}
         setReceiptStatus={setReceiptStatus}
       />
