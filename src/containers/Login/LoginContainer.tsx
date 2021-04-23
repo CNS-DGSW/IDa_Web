@@ -11,8 +11,9 @@ import asyncLocalStorage from "lib/asyncStorage";
 
 const LoginContainer = () => {
   const passwordInput = React.useRef<HTMLInputElement>(null);
-
+  // login focus 주는 useRef
   const [check, setCheck] = useState<boolean>(false);
+  // 아이디 저장 체크박스 여부
 
   const [loginSave, setLoginSave] = useState<string | null>("");
   //input들

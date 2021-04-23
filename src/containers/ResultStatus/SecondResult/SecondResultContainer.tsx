@@ -16,8 +16,10 @@ const SecondResultContainer = ({
   const { store } = useStore();
   const { tryGetFinalStatus } = store.StatusStore;
   const [comment, setComment] = useState<string>("");
+  // 합격 여부 불합격 여부 등 멘트를 useState로 관리
 
   const selectComment = useCallback(
+    // pass 여부를 props로 받아와서 comment를 정해주는 함수
     (pass: boolean | null) => {
       if (pass) {
         setComment("합격하셨습니다. 축하드립니다.");
@@ -31,6 +33,7 @@ const SecondResultContainer = ({
   );
 
   const getData = () => {
+    // pass 여부 받아오기
     tryGetFinalStatus()
       .then((res) => {
         selectComment(res.data.isPassed);
@@ -46,6 +49,8 @@ const SecondResultContainer = ({
 
   return (
     <>
+      {/* comment가 업데이트 되면 true가 되어서 모달이 뜨게됨 */}
+      {/* 이렇게 해주는 이유는 comment가 비어있을때 모달이 뜨게되면 아무 멘트없이 빈 모달만 뜨게됨 */}
       {comment && (
         <SecondResult comment={comment} secondOpenModal={secondOpenModal} />
       )}

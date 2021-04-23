@@ -18,7 +18,7 @@ class AdminStore {
   @observable isFinal: boolean = false;
 
   @action
-  getReceiptSatus = async (): Promise<ReceiptResponse> => {
+  getReceiptStatus = async (): Promise<ReceiptResponse> => {
     const response: ReceiptResponse = await AdminApi.GetReceiptStatus();
 
     return response;
@@ -32,7 +32,7 @@ class AdminStore {
   };
 
   @action
-  getReceiptSatusExcel = async (): Promise<any> => {
+  getReceiptStatusExcel = async (): Promise<any> => {
     const response: any = await ExcelApi.GetReceiptStatus();
 
     return response;

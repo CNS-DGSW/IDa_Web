@@ -9,7 +9,7 @@ interface AdminReceiptStatusProps {
   setReceiptStatus: React.Dispatch<React.SetStateAction<Receipt[]>>;
   setSearch: React.Dispatch<React.SetStateAction<string>>;
   search: string;
-  getReceiptSatusExcel: () => Promise<any>;
+  getReceiptStatusExcel: () => Promise<any>;
   handleCancelSubmit: (userIdx: number) => Promise<Response>;
 }
 
@@ -18,14 +18,14 @@ const AdminReceiptStatus = ({
   setReceiptStatus,
   setSearch,
   search,
-  getReceiptSatusExcel,
+  getReceiptStatusExcel,
   handleCancelSubmit,
 }: AdminReceiptStatusProps) => {
   return (
     <>
       <div className="receipt">
         <div className="receipt-title">신입생 입학 전형 원부</div>
-        <div className="receipt-btn" onClick={() => getReceiptSatusExcel()}>
+        <div className="receipt-btn" onClick={() => getReceiptStatusExcel()}>
           현자료 엑셀 내려받기
         </div>
 

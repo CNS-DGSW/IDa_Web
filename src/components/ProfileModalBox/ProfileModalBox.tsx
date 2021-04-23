@@ -12,8 +12,8 @@ interface ProfileModalBoxProps {
   email: string | undefined;
   HandleLogout: () => void;
   statusModal: boolean;
-  trySatusModal: () => void;
-  closeSatusModal: () => void;
+  tryStatusModal: () => void;
+  closeStatusModal: () => void;
 }
 
 const ProfileModalBox = ({
@@ -22,7 +22,7 @@ const ProfileModalBox = ({
   email,
   HandleLogout,
   statusModal,
-  trySatusModal,
+  tryStatusModal,
 }: ProfileModalBoxProps & RouteComponentProps) => {
   const history = useHistory();
 
@@ -36,7 +36,7 @@ const ProfileModalBox = ({
         <hr />
         <div
           className="ProfileModalBox-status box pointer"
-          onClick={() => trySatusModal()}
+          onClick={() => tryStatusModal()}
         >
           <PaperSvg className="ProfileModalSVG" />
           <span className="box-text">원서접수 현황</span>
