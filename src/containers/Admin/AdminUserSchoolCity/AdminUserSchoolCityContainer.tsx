@@ -19,6 +19,7 @@ const AdminUserSchoolCityContainer = ({}) => {
 
   const { getUserSchoolCity, getUserSchoolCityExcel } = store.AdminStore;
 
+  //지역별/출신교별 현황 받기
   const getUserSchoolCityCallBack = useCallback(() => {
     getUserSchoolCity()
       .then((res) => {

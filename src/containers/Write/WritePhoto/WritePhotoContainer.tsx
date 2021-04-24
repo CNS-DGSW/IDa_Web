@@ -22,7 +22,8 @@ const WritePhotoContainer = ({}) => {
 
   const { editProfileImage, getProfileImage, upload } = store.WriteStore;
 
-  function handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {
+  //프로필 미리보기 함수
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let reader = new FileReader();
     if (e.target.files && e.target.files.length) {
       let file = e.target.files[0];
@@ -35,8 +36,9 @@ const WritePhotoContainer = ({}) => {
     } else {
       setPreview("");
     }
-  }
+  };
 
+  //변견사항 저장 함수
   const onSave = useCallback(async () => {
     let flag = true;
     if ((preview !== "" && !isChanged) || image) {
@@ -63,6 +65,7 @@ const WritePhotoContainer = ({}) => {
     return flag;
   }, [preview, isChanged]);
 
+  //프로필 이미지 받아오기
   const getProfileImageCallback = useCallback(() => {
     getProfileImage()
       .then((res: ProfileInfoResponse) => {

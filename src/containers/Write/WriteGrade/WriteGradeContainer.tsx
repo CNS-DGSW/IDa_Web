@@ -27,6 +27,7 @@ const WriteGradeContainer = ({}) => {
     page,
   } = store.WriteStore;
 
+  //변경사항 저장 함수
   const onSave = useCallback(async () => {
     let flag = true;
     if (gradeType !== Grade.GED) {
@@ -59,6 +60,7 @@ const WriteGradeContainer = ({}) => {
     return flag;
   }, [gradeType]);
 
+  //학교정보 확인 함수
   const checkSchool = useCallback(async () => {
     await getSchoolInfo().then((res) => {
       handleGrade(res.data.gradeType);

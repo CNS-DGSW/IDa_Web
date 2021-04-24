@@ -28,6 +28,7 @@ const WriteAdmissionContainer = ({}) => {
   const [verteransNumber, setVerteransNumber] = useState<string>("");
   const [isChanged, setIsChanged] = useState<boolean>(false);
 
+  //변경 사항 저장 함수
   const onSave = useCallback(async () => {
     let flag = true;
     if (applyDetailType && applyType) {
@@ -54,6 +55,7 @@ const WriteAdmissionContainer = ({}) => {
     return flag;
   }, [applyDetailType, applyType, verteransCity, verteransNumber]);
 
+  //유저 정보 받아오는 함수
   const getApplyTypeCallback = useCallback(() => {
     getApplyType()
       .then((res) => {
