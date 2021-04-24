@@ -20,13 +20,19 @@ const InterViewScoreContainer = ({}) => {
   } = ExcelApi;
 
   const [teamCount, setTeamCount] = useState<number[]>();
+  // 팀 수를 저장하는 useState
   const [interView, setInterView] = useState<InterViewCategory>(
     InterViewCategory.COOPERATION
   );
+  // 면접 카테고리를 선택하는 useState 기본은 COOPERATION로 선택되있음
   const [team, setTeam] = useState<string>("0");
+  // 팀 선택 하는 useState
   const [scoreDate, setScoreDate] = useState<InterViewScoreResponse>();
+  // 학생들의 점수를 저장하는 useState
   const history = useHistory();
 
+  // 팀 번호별 점수를 excel 다운받는 함수 0은 전체 팀 점수를 다운받는다.
+  // 전체가 선택되어있으면 team이 0이 되는데 그러면 api를 받을때 undefined를 넘겨준다
   const tryDownExcel = async () => {
     await GetInterviewScoreExcel(
       interView,
@@ -39,6 +45,8 @@ const InterViewScoreContainer = ({}) => {
     });
   };
 
+  // 전체 팀 수를 얻어오는 함수
+  // 카테고리마다 팀 수가 달라서 카테고리를 선택해서 넘겨줘야함
   const tryGetTeam = useCallback(async () => {
     setTeam("0");
     await getTeam(interView)
@@ -50,6 +58,9 @@ const InterViewScoreContainer = ({}) => {
       });
   }, [interView]);
 
+  // 팀 점수 받아오는 함수
+  //카테고리와 팀 번호를 넘겨줘야 한다
+  // 팀번호가 0이면 undefined가 넘어가서 팀 전체를 조회할 수 있다.
   const tryGetScore = useCallback(async () => {
     await getInterviewScore(interView, team === "0" ? undefined : team)
       .then((res) => {
@@ -60,6 +71,8 @@ const InterViewScoreContainer = ({}) => {
       });
   }, [interView, team, teamCount, scoreDate]);
 
+  // 카테고리 선택하는 함수
+  // component 보면 select로 되어있는데 거기의 값이 value가 0 또는 1로 되어있다
   const selectInterView = useCallback(
     (index: string) => {
       if (index === "0") {
@@ -71,12 +84,14 @@ const InterViewScoreContainer = ({}) => {
     [interView]
   );
 
+  // 팀 배치 해주는 서식(excel)을 다운받는 함수
   const tryGetNumberTeam = () => {
     getTeamNumber(interView).catch((err) => {
       handleAdmin(err, history);
     });
   };
 
+  // 팀 수에 맞게 학생을 재배치 한 excel 업로드 하는 함수
   const tyrUploadTeam = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       if (e.target.files && e.target.files.length) {
@@ -99,6 +114,7 @@ const InterViewScoreContainer = ({}) => {
     [tryGetScore]
   );
 
+  // 면접 점수 업로드 하는 함수
   const uploadFile = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       if (e.target.files && e.target.files.length) {

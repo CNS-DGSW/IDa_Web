@@ -11,10 +11,15 @@ import { sha256 } from "js-sha256";
 @autobind
 class AuthStore {
   @observable login: boolean = false;
+  // 로그인인지 확인하는 변수
   @observable isAdmin: boolean = false;
+  // 어드민인지 확인하는 변수
   @observable profileBox: boolean = false;
+  // 헤더에서 프로필 모달 관리하는 변수
   @observable name: string = "";
+  // 이름
   @observable email: string = "";
+  // 이메일
 
   @action
   handleName = (name: string) => {

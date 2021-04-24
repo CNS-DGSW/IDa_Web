@@ -18,8 +18,8 @@ interface HeaderProps {
   theme?: boolean;
   style?: React.CSSProperties;
   statusModal: boolean;
-  trySatusModal: () => void;
-  closeSatusModal: () => void;
+  tryStatusModal: () => void;
+  closeStatusModal: () => void;
 }
 
 const Header = ({
@@ -33,8 +33,8 @@ const Header = ({
   theme,
   style,
   statusModal,
-  trySatusModal,
-  closeSatusModal,
+  tryStatusModal,
+  closeStatusModal,
 }: HeaderProps) => {
   const history = useHistory();
 
@@ -195,8 +195,8 @@ const Header = ({
                       email={email}
                       HandleLogout={HandleLogout}
                       statusModal={statusModal}
-                      trySatusModal={trySatusModal}
-                      closeSatusModal={closeSatusModal}
+                      tryStatusModal={tryStatusModal}
+                      closeStatusModal={closeStatusModal}
                     />
                   </>
                 )}

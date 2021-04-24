@@ -30,7 +30,7 @@ const HeaderContainer = ({
     tryCloseModal,
   } = store.AuthStore;
 
-  const { statusModal, closeSatusModal, trySatusModal } = store.StatusStore;
+  const { statusModal, closeStatusModal, tryStatusModal } = store.StatusStore;
 
   const [cookie, setCookie, removeCookie] = useCookies(["refreshToken"]);
 
@@ -53,7 +53,7 @@ const HeaderContainer = ({
 
   const closeAllModal = () => {
     if (!profileBox) {
-      closeSatusModal();
+      closeStatusModal();
     }
   };
 
@@ -90,8 +90,8 @@ const HeaderContainer = ({
         HandleLogout={HandleLogout}
         style={style}
         statusModal={statusModal}
-        trySatusModal={trySatusModal}
-        closeSatusModal={closeSatusModal}
+        tryStatusModal={tryStatusModal}
+        closeStatusModal={closeStatusModal}
       />
     </>
   );

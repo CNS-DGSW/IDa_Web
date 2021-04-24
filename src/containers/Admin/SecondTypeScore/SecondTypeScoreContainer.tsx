@@ -22,10 +22,13 @@ const SecondTypeScoreContainer = ({}) => {
   } = ExcelApi;
 
   const [scoreDate, setScoreDate] = useState<SecondScoreResponse>();
+  // 2차 전형 점수를 관리하는 useState
   const [select, setSelect] = useState<string>("0");
+  // 업로드 다운로드 선택하는 select
 
   const { getSecondScore } = store.ScoreStore;
 
+  // 2차 전형 점수를 받아오는 함수
   const handleSecondScore = async () => {
     await getSecondScore()
       .then((res) => {
@@ -36,6 +39,7 @@ const SecondTypeScoreContainer = ({}) => {
       });
   };
 
+  // 파일을 다운받는 함수
   const tryDown = (key: string) => {
     switch (key) {
       case "sw":
@@ -64,7 +68,8 @@ const SecondTypeScoreContainer = ({}) => {
     }
   };
 
-  const tryUpload = (
+  // 파일 업로드 하는 함수
+  const tryUpload = async (
     e: React.ChangeEvent<HTMLInputElement>,
     content: string
   ) => {
@@ -72,7 +77,7 @@ const SecondTypeScoreContainer = ({}) => {
       let file = e.target.files[0];
       switch (content) {
         case "sw":
-          uploadSw(file)
+          await uploadSw(file)
             .then(() => {
               toast.success("파일 업로드 되었습니다");
             })
@@ -83,7 +88,7 @@ const SecondTypeScoreContainer = ({}) => {
             });
           break;
         case "job":
-          uploadJob(file)
+          await uploadJob(file)
             .then(() => {
               toast.success("파일 업로드 되었습니다");
             })
@@ -93,9 +98,8 @@ const SecondTypeScoreContainer = ({}) => {
               }
             });
           break;
-
         case "coding":
-          uploadCodingTest(file)
+          await uploadCodingTest(file)
             .then(() => {
               toast.success("파일 업로드 되었습니다");
             })
@@ -106,6 +110,7 @@ const SecondTypeScoreContainer = ({}) => {
             });
           break;
       }
+      handleSecondScore();
     }
   };
 
