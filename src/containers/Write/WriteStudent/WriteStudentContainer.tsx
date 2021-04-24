@@ -47,7 +47,7 @@ const WriteStudentContainer = ({}) => {
 
   const onSave = useCallback(async () => {
     let flag = true;
-    if (name !== "" && birth !== "" && sex !== null && studentTel !== "") {
+    if (name !== "" && birth !== "" && sex !== null) {
       await editStudentInfo(name, birth, sex, studentTel).catch((err) => {
         handleWriteError(err, history);
         flag = false;
