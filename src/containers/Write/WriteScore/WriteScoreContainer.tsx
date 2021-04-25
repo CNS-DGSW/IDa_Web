@@ -37,6 +37,7 @@ const WriteScoreContainer = ({
 
   const [isGed, setIsGed] = useState<boolean>(false);
 
+  //점수 받아오는 함수
   const getScoreCallback = useCallback(() => {
     if (gradeType) {
       getScore(Number(query.get("userIdx")))

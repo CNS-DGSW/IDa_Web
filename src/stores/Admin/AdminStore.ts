@@ -17,6 +17,7 @@ import StatusApi from "assets/api/StatusApi";
 class AdminStore {
   @observable isFinal: boolean = false;
 
+  //입학 한 학생 받아오기
   @action
   getReceiptStatus = async (): Promise<ReceiptResponse> => {
     const response: ReceiptResponse = await AdminApi.GetReceiptStatus();
@@ -24,6 +25,7 @@ class AdminStore {
     return response;
   };
 
+  //지역별 출신교별 현황 받기
   @action
   getUserSchoolCity = async (): Promise<SchoolCityResponse> => {
     const response: SchoolCityResponse = await AdminApi.GetUserSchoolCity();
@@ -31,6 +33,7 @@ class AdminStore {
     return response;
   };
 
+  //입학 전형 원부 엑셀 받기
   @action
   getReceiptStatusExcel = async (): Promise<any> => {
     const response: any = await ExcelApi.GetReceiptStatus();
@@ -38,6 +41,7 @@ class AdminStore {
     return response;
   };
 
+  //지역별 출신교별 형황 엑셀 받기
   @action
   getUserSchoolCityExcel = async (): Promise<any> => {
     const response: any = await ExcelApi.GetUserSchoolCity();
@@ -45,6 +49,7 @@ class AdminStore {
     return response;
   };
 
+  //유저별 원서 제출 취소 설정
   @action
   handleCancelSubmit = async (userIdx: number): Promise<Response> => {
     const response: Response = await StatusApi.cancelSubmit(userIdx);
