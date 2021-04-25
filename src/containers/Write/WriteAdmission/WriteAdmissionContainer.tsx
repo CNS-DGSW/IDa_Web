@@ -1,9 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useState,
-  useLayoutEffect,
-} from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
 import WriteAdmission from "../../../components/Write/WriteAdmission";
@@ -68,7 +63,7 @@ const WriteAdmissionContainer = ({}) => {
       });
   }, []);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     getApplyTypeCallback();
   }, [getApplyTypeCallback]);
 

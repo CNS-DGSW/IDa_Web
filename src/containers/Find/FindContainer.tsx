@@ -3,10 +3,10 @@ import { observer } from "mobx-react";
 import Find from "components/Find";
 import useStore from "lib/hooks/useStore";
 import { useHistory } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const FindContainer = ({}) => {
+const FindContainer = () => {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [newPw, setNewPw] = useState<string>("");
@@ -74,7 +74,6 @@ const FindContainer = ({}) => {
         handlePwCode={handlePwCode}
         handleChangePw={handleChangePw}
       />
-      <ToastContainer />
     </>
   );
 };

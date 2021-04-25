@@ -59,6 +59,7 @@ const HandlePostContainer = ({
     },
   });
 
+  // 게시글 생성
   const handleCreatePost = useCallback(async () => {
     if (!title && !content) {
       toast.warn("빈칸을 채워주세요.");
@@ -83,6 +84,7 @@ const HandlePostContainer = ({
     }
   }, [title, content]);
 
+  // 답변 생성
   const handleCreateAnswer = useCallback(async () => {
     if (idx) {
       if (!content) {
@@ -111,6 +113,7 @@ const HandlePostContainer = ({
     }
   }, [content, isAnswer]);
 
+  // 게시글 수정
   const handleModifyPost = useCallback(async () => {
     if (idx) {
       if (!title && !content) {
@@ -139,6 +142,7 @@ const HandlePostContainer = ({
     }
   }, [title, content, idx]);
 
+  // 게시글 저장
   const handleSavePost = useCallback(() => {
     if (isAnswer) {
       handleCreateAnswer();
@@ -155,6 +159,7 @@ const HandlePostContainer = ({
     isModify,
   ]);
 
+  // 게시글 삭제
   const handleDeletePost = useCallback(async () => {
     if (idx) {
       Swal.fire({
@@ -190,6 +195,7 @@ const HandlePostContainer = ({
     }
   }, [idx]);
 
+  // 게시글 정보 가져오기
   const getPostCallback = useCallback(async () => {
     if (idx) {
       await getPost(idx)

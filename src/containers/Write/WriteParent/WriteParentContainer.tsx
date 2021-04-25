@@ -1,9 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useState,
-} from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
 import WriteParents from "../../../components/Write/WriteParents";
@@ -90,7 +85,7 @@ const WriteParentContainer = ({}) => {
       });
   }, []);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     getParentInfoCallback();
   }, [getParentInfoCallback]);
 

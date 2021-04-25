@@ -34,6 +34,7 @@ const HeaderContainer = ({
 
   const [cookie, setCookie, removeCookie] = useCookies(["refreshToken"]);
 
+  // 로그아웃
   const HandleLogout = () => {
     tryLogout();
     removeCookie("refreshToken");
@@ -42,6 +43,7 @@ const HeaderContainer = ({
     history.push("/");
   };
 
+  // 유저 정보 가져오기
   const getInfoCallback = useCallback(async () => {
     if (localStorage.getItem("accessToken") && !name && !email) {
       changeLogin(true);
@@ -51,6 +53,7 @@ const HeaderContainer = ({
     }
   }, [login]);
 
+  // 프로필 버튼 눌렀을 때 모달 닫기
   const closeAllModal = () => {
     if (!profileBox) {
       closeSatusModal();

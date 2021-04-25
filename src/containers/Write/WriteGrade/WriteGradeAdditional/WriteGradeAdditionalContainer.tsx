@@ -1,10 +1,11 @@
-import React, { useCallback, useLayoutEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { observer } from "mobx-react";
 import WriteAdditional from "components/Write/WriteAdditional";
 import useStore from "lib/hooks/useStore";
 import { useHistory, withRouter } from "react-router-dom";
 import { handleGetWriteError } from "lib/handleErrors";
 
+// 성적 가산점 입력
 const WriteGradeAdditionalContainer = ({}) => {
   const { store } = useStore();
 
@@ -38,6 +39,7 @@ const WriteGradeAdditionalContainer = ({}) => {
     getAdditional,
   } = store.WriteStore;
 
+  // 가산점 조회
   const getAdditionalCallback = useCallback(async () => {
     await getAdditional()
       .then((res) => {
@@ -54,7 +56,7 @@ const WriteGradeAdditionalContainer = ({}) => {
       });
   }, []);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     getAdditionalCallback();
   }, [getAdditionalCallback]);
 

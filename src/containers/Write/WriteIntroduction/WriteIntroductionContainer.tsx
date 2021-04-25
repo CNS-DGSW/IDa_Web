@@ -1,9 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useState,
-} from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
 import WriteIntroduction from "../../../components/Write/WriteIntroduction";
@@ -74,7 +69,7 @@ const WriteIntroductionContainer = ({}) => {
       });
   }, []);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     getSelfIntroduceCallBack();
     getStudyPlanCallBack();
   }, []);

@@ -18,6 +18,7 @@ const FaqContainer = ({}) => {
   const { getPosts } = store.BoardStore;
   const { isAdmin } = store.AuthStore;
 
+  // 게시글 목록 조회
   const handleGetPosts = useCallback(async () => {
     await getPosts(Category.FAQ)
       .then((res: GetPostsResponse) => {
@@ -29,6 +30,7 @@ const FaqContainer = ({}) => {
       });
   }, []);
 
+  // 게시글 검색
   const searchPostFilter = useCallback(() => {
     setFilteredPosts(
       posts.filter((post) => {
