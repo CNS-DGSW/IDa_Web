@@ -20,6 +20,7 @@ const UserListPassedContainer = ({}) => {
 
   const [passedStatus, setPassedStatus] = useState<ListPassed[]>([]);
 
+  // 지원자 합격 여부 받아오기
   const tryGetUserListPassed = useCallback(() => {
     getUserListPassed(
       listPassed === ListPassedCategory.Final ? true : undefined
@@ -32,6 +33,7 @@ const UserListPassedContainer = ({}) => {
       });
   }, [listPassed]);
 
+  // 1차 합격자 또는 2차 합격자 엑셀 다운
   const tryDownExcel = (key: string) => {
     switch (key) {
       case "first":
@@ -48,6 +50,7 @@ const UserListPassedContainer = ({}) => {
     }
   };
 
+  // 1차 또는 최종 카테고리 선택
   const selectListPassed = useCallback(
     (index: string) => {
       if (index === "0") {

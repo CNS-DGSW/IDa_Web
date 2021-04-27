@@ -24,6 +24,7 @@ const UserListContainer = ({}) => {
 
   const { GetReceiptStatus } = ExcelApi;
 
+  // 지원자 현황 받아오기
   const tryGetUserList = useCallback(() => {
     getUserList()
       .then((res) => {
@@ -34,6 +35,7 @@ const UserListContainer = ({}) => {
       });
   }, []);
 
+  // 날짜, 출신학교, 지역 별 비율 받아오기
   const tryGetAllUserRatio = useCallback(() => {
     getAllUserRatio()
       .then((res) => {
@@ -46,12 +48,14 @@ const UserListContainer = ({}) => {
       });
   }, []);
 
+  // 최종 원서 도착 또는 미도착 변경
   const tryChangeArrived = (userIdx: number, status: boolean) => {
     changeArrived(userIdx, status).then(() => {
       tryGetUserList();
     });
   };
 
+  // 엑셀 다운
   const tryDownExcel = () => {
     GetReceiptStatus().catch((err) => {
       toast.warn("서버 오류입니다.");
