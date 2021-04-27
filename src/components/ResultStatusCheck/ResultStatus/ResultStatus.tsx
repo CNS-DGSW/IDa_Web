@@ -2,8 +2,8 @@ import React from "react";
 import "./ResultStatus.scss";
 
 interface ResultStatusProps {
-  post: boolean;
-  internet: boolean;
+  post: boolean | undefined;
+  internet: boolean | undefined;
   tryCloseModal: () => void;
 }
 

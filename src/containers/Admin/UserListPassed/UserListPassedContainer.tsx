@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 import UserListPassed from "components/Admin/UserListPassed";
 import useStore from "lib/hooks/useStore";
 import { useHistory } from "react-router-dom";
-import { ListPassed } from "util/types/User";
+import { ListPassed } from "util/types/UserList";
 import { handleAdmin } from "lib/handleErrors";
 import ExcelApi from "assets/api/ExcelApi";
 import ListPassedCategory from "util/enums/ListPassedCategory";
@@ -27,7 +27,7 @@ const UserListPassedContainer = ({}) => {
       .then((res) => {
         setPassedStatus(res.data);
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         handleAdmin(err, history);
       });
   }, [listPassed]);

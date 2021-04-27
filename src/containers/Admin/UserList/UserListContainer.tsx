@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 import UserListCompoment from "components/Admin/UserList";
 import useStore from "lib/hooks/useStore";
 import { useHistory } from "react-router-dom";
-import { List } from "util/types/User";
+import { List } from "util/types/UserList";
 import { handleAdmin, handleLogin } from "lib/handleErrors";
 import { CityRatio, DateRatio, SchoolRatio } from "util/types/UserRatio";
 import ExcelApi from "assets/api/ExcelApi";
@@ -29,7 +29,7 @@ const UserListContainer = ({}) => {
       .then((res) => {
         setUserStatus(res.data);
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         handleAdmin(err, history);
       });
   }, []);
@@ -41,7 +41,7 @@ const UserListContainer = ({}) => {
         setDateStatus(res.data.userDateRatio);
         setSchoolStatus(res.data.userSchoolRatio);
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         handleLogin(err, history);
       });
   }, []);

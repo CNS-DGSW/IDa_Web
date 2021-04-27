@@ -28,6 +28,7 @@ const WriteAdmissionContainer = ({}) => {
   const [verteransNumber, setVerteransNumber] = useState<string>("");
   const [isChanged, setIsChanged] = useState<boolean>(false);
 
+  //변경 사항 저장 함수
   const onSave = useCallback(async () => {
     let flag = true;
     if (applyDetailType && applyType) {
@@ -43,7 +44,7 @@ const WriteAdmissionContainer = ({}) => {
         applyDetailType,
         verteransCity,
         verteransNumber
-      ).catch((err: Error) => {
+      ).catch((err) => {
         handleWriteError(err, history);
         flag = false;
       });
@@ -54,6 +55,7 @@ const WriteAdmissionContainer = ({}) => {
     return flag;
   }, [applyDetailType, applyType, verteransCity, verteransNumber]);
 
+  //유저 정보 받아오는 함수
   const getApplyTypeCallback = useCallback(() => {
     getApplyType()
       .then((res) => {
@@ -63,7 +65,7 @@ const WriteAdmissionContainer = ({}) => {
         setVerteransCity(res.data.verteransCity || "");
         setVerteransNumber(res.data.verteransNumber || "");
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         handleGetWriteError(err, history);
       });
   }, []);

@@ -17,9 +17,13 @@ interface WriteGradesProps {
 const WriteGrades = ({ gradeType, onSave, isChanged }: WriteGradesProps) => {
   return (
     <>
-      <WriteContent title="성적알림표를 작성해주세요" onSave={onSave} isChanged={isChanged}>
+      <WriteContent
+        title="성적일람표를 작성해주세요"
+        onSave={onSave}
+        isChanged={isChanged}
+      >
         <div className="grade">
-          <WriteScoreContainer />
+          <WriteScoreContainer onSave={onSave} />
 
           {gradeType !== Grade.GED ? (
             <>
@@ -27,8 +31,9 @@ const WriteGrades = ({ gradeType, onSave, isChanged }: WriteGradesProps) => {
               <WriteGradeAttendContainer />
               <div className="grade-textBox">
                 <p>
-                  자유학기제 등으로 교과 성적이 없는 학기일 경우, 모집 요강에 의거하여 해당학기의 성적을
-                  인정하니, 테이블 상단의 '자유학기제'를 꼭 선택해 주세요.
+                  자유학기제 등으로 교과 성적이 없는 학기일 경우, 모집 요강에
+                  의거하여 해당학기의 성적을 인정하니, 테이블 상단의
+                  '자유학기제'를 꼭 선택해 주세요.
                 </p>
               </div>
               <WriteGradeAdditionalContainer />

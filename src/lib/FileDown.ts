@@ -1,5 +1,4 @@
 import fileDownload from "js-file-download";
-import { Response } from "util/types/Response";
 
 const FileDown = (response: any) => {
   const headerLine: string | undefined =

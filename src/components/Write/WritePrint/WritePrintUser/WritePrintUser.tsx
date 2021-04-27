@@ -1,4 +1,5 @@
 import Convertor from "lib/Convertor";
+import { finalTime, firstTime } from "models/submitTime";
 import moment from "moment";
 import "moment/locale/ko";
 import React from "react";
@@ -71,10 +72,10 @@ const WritePrintUser = ({
   totalScore1,
   totalScore2,
 }: WritePrintUserProps) => {
-  const firstPassed = moment("2021-01-01 18:00:00")
+  const firstPassed = moment(firstTime)
     .locale("ko")
     .format("yyyy. MM. DD(ddd) HH:mm");
-  const finalPassed = moment("2021-01-10 18:00:00")
+  const finalPassed = moment(finalTime)
     .locale("ko")
     .format("yyyy. MM. DD(ddd) HH:mm");
   return (

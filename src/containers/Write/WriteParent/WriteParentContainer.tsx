@@ -28,6 +28,7 @@ const WriteParentContainer = ({}) => {
 
   const { editParentInfo, getParentInfo } = store.WriteStore;
 
+  //주소 설정 함수
   const handleComplete = (data: AddressData) => {
     let fullAddress = data.address;
     let extraAddress = "";
@@ -49,6 +50,7 @@ const WriteParentContainer = ({}) => {
     setPostCode(data.zonecode);
   };
 
+  //변경사항 저장 함수
   const onSave = useCallback(async () => {
     let flag = true;
     if (
@@ -64,7 +66,7 @@ const WriteParentContainer = ({}) => {
         parentRelation,
         parentTel,
         postCode
-      ).catch((err: Error) => {
+      ).catch((err) => {
         handleWriteError(err, history);
         flag = false;
       });
@@ -76,6 +78,7 @@ const WriteParentContainer = ({}) => {
     return flag;
   }, [address, parentName, parentRelation, parentTel, postCode]);
 
+  //학부모 정보 받아오기
   const getParentInfoCallback = useCallback(() => {
     getParentInfo()
       .then((res: ParentInfoResponse) => {
@@ -85,7 +88,7 @@ const WriteParentContainer = ({}) => {
         setParentTel(res.data.parentTel || "");
         setPostCode(res.data.postCode || "");
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         handleGetWriteError(err, history);
       });
   }, []);

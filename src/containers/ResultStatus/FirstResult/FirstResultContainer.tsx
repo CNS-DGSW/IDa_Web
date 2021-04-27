@@ -5,6 +5,7 @@ import FirstResult from "components/ResultStatusCheck/FirstResult";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 import Apply from "util/enums/Apply";
+import { handleLogin } from "lib/handleErrors";
 
 interface FirstResultContainerProps {
   firstOpenModal: () => void;
@@ -17,9 +18,12 @@ const FirstResultContainer = ({
   const { store } = useStore();
   const { pass, tryGetStatus, submit, print } = store.StatusStore;
   const [comment, setComment] = useState<string>("");
+  // 합격 불합격 체점중 등등 멘트를 관리하는 state
   const [applyCheck, setApplyCheck] = useState<Apply | null>();
   const [applyComment, setApplyComment] = useState<string>("");
+  // 합격 하였을때 전형을 넣어주는 state
 
+  // state를 이용해서 멘트를 정해주는 함수
   const setCommented = useCallback(() => {
     if (pass) {
       setComment("축하드립니다 합격되었습니다.");
@@ -31,7 +35,7 @@ const FirstResultContainer = ({
         setApplyComment("특례입학");
       }
     } else if (pass === false) {
-      setComment("불합격입니다.");
+      setComment("안타깝게도 불합격 되었습니다.");
     } else if (pass === null) {
       if (!submit || !print) {
         setComment("미제출 또는 우편미도착 입니다.");
@@ -41,6 +45,7 @@ const FirstResultContainer = ({
     }
   }, [pass, submit, print, applyCheck]);
 
+  // api 받아와서 처리하기
   const getStatus = useCallback(() => {
     tryGetStatus()
       .then((res) => {
@@ -48,10 +53,7 @@ const FirstResultContainer = ({
         setCommented();
       })
       .catch((err) => {
-        if (err.message.includes("401")) {
-          toast.warn("로그인이 필요합니다.");
-          history.push("/login");
-        }
+        handleLogin(err, history);
       });
   }, [applyCheck]);
 
@@ -64,11 +66,16 @@ const FirstResultContainer = ({
   }, [setCommented, applyCheck]);
 
   return (
-    <FirstResult
-      comment={comment}
-      firstOpenModal={firstOpenModal}
-      applyComment={applyComment}
-    />
+    <>
+      {/* api를 받고 난후 데이터가 오면 보여줌 */}
+      {pass !== undefined && (
+        <FirstResult
+          comment={comment}
+          firstOpenModal={firstOpenModal}
+          applyComment={applyComment}
+        />
+      )}
+    </>
   );
 };
 

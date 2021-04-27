@@ -35,6 +35,7 @@ const WriteSchoolContainer = ({}) => {
     getSchoolInfo,
   } = store.WriteStore;
 
+  //변경사항 저장 함수
   const onSave = useCallback(async () => {
     let flag = true;
     if (
@@ -70,7 +71,7 @@ const WriteSchoolContainer = ({}) => {
         .then(() => {
           handleGrade(gradeType);
         })
-        .catch((err: Error) => {
+        .catch((err) => {
           handleWriteError(err, history);
           flag = false;
         });
@@ -92,6 +93,7 @@ const WriteSchoolContainer = ({}) => {
     teacherTel,
   ]);
 
+  //학교 정보 받아오기
   const getSchoolInfoCallback = useCallback(() => {
     getSchoolInfo()
       .then((res: SchoolInfoResponse) => {
@@ -105,7 +107,7 @@ const WriteSchoolContainer = ({}) => {
         setTeacherName(res.data.teacherName || "");
         setTeacherTel(res.data.teacherTel || "");
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         handleGetWriteError(err, history);
       });
   }, []);

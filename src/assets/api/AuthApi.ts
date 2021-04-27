@@ -2,102 +2,74 @@ import Api from "lib/customAxios";
 
 class AuthApi {
   async Login(email: string, pw: string) {
-    try {
-      const body = {
-        email,
-        pw,
-      };
-      const { data } = await Api.post("/auth/login", body);
+    const body = {
+      email,
+      pw,
+    };
+    const { data } = await Api.post("/auth/login", body);
 
-      return data;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    return data;
   }
   async Register(name: string, email: string, pw: string, birth: string) {
-    try {
-      const body = {
-        birth,
-        name,
-        email,
-        pw,
-      };
-      const { data } = await Api.post("/auth/register", body);
+    const body = {
+      birth,
+      name,
+      email,
+      pw,
+    };
+    const { data } = await Api.post("/auth/register", body);
 
-      return data;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    return data;
   }
 
   async EmailCode(email: string) {
-    try {
-      const body = {
-        email,
-      };
+    const body = {
+      email,
+    };
 
-      const { data } = await Api.post("/auth/authCode", body);
+    const { data } = await Api.post("/auth/authCode", body);
 
-      return data;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    return data;
   }
 
   async GetInfo(userIdx?: number | null) {
-    try {
-      const query = userIdx ? `?userIdx=${userIdx}` : "";
+    const query = userIdx ? `?userIdx=${userIdx}` : "";
 
-      const { data } = await Api.get(`/user/getInfo${query}`);
+    const { data } = await Api.get(`/user/getInfo${query}`);
 
-      return data;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    return data;
   }
 
   async PwCode(email: string) {
-    try {
-      const body = {
-        email,
-      };
+    const body = {
+      email,
+    };
 
-      const { data } = await Api.post("/auth/pwCode", body);
+    const { data } = await Api.post("/auth/pwCode", body);
 
-      return data;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    return data;
   }
 
   async ChangePwByEmail(code: string, pw: string) {
-    try {
-      const body = {
-        code,
-        pw,
-      };
+    const body = {
+      code,
+      pw,
+    };
 
-      const { data } = await Api.patch("/auth/changePwByEmail", body);
+    const { data } = await Api.patch("/auth/changePwByEmail", body);
 
-      return data;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    return data;
   }
 
   async ChangePw(newPw: string, pw: string) {
-    try {
-      const body = {
-        newPw,
-        pw,
-      };
+    const body = {
+      newPw,
+      pw,
+    };
 
-      const { data } = await Api.patch("/auth/changePw", body);
+    const { data } = await Api.patch("/auth/changePw", body);
 
-      return data;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    return data;
   }
 }
 

@@ -22,9 +22,12 @@ const WriteGradeContainer = ({}) => {
     editGed,
     isChanged,
     handleIsChanged,
+    getSchoolInfo,
+    handleGrade,
     page,
   } = store.WriteStore;
 
+  //변경사항 저장 함수
   const onSave = useCallback(async () => {
     let flag = true;
     if (gradeType !== Grade.GED) {
@@ -39,7 +42,7 @@ const WriteGradeContainer = ({}) => {
         .then(() => {
           handleIsChanged(false);
         })
-        .catch((err: Error) => {
+        .catch((err) => {
           handleWriteError(err, history);
           flag = false;
         });
@@ -48,7 +51,7 @@ const WriteGradeContainer = ({}) => {
         .then(() => {
           handleIsChanged(false);
         })
-        .catch((err: Error) => {
+        .catch((err) => {
           handleWriteError(err, history);
           flag = false;
         });
@@ -57,12 +60,20 @@ const WriteGradeContainer = ({}) => {
     return flag;
   }, [gradeType]);
 
+  //학교정보 확인 함수
+  const checkSchool = useCallback(async () => {
+    await getSchoolInfo().then((res) => {
+      handleGrade(res.data.gradeType);
+      if (!res.data.gradeType) {
+        toast.warn("학교 정보를 먼저 입력해주세요.");
+        pageHandle(3);
+      }
+    });
+  }, []);
+
   useLayoutEffect(() => {
-    if (!gradeType) {
-      toast.warn("학교 정보를 먼저 입력해주세요.");
-      pageHandle(3);
-    }
-  }, [gradeType]);
+    checkSchool();
+  }, [checkSchool]);
 
   useEffect(() => {
     handleIsChanged(false);

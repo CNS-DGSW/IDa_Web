@@ -8,10 +8,16 @@ import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
 import WriteScore from "components/Write/WriteScore";
 import { handleGetWriteError } from "lib/handleErrors";
-import { useHistory, withRouter } from "react-router-dom";
+import { useHistory, withRouter, RouteComponentProps } from "react-router-dom";
 import useQuery from "lib/hooks/useQuery";
 
-const WriteScoreContainer = ({}) => {
+interface WriteScoreContainerProps {
+  onSave: () => Promise<boolean>;
+}
+
+const WriteScoreContainer = ({
+  onSave,
+}: WriteScoreContainerProps & RouteComponentProps) => {
   const { store } = useStore();
 
   const { getScore } = store.ScoreStore;
@@ -31,6 +37,7 @@ const WriteScoreContainer = ({}) => {
 
   const [isGed, setIsGed] = useState<boolean>(false);
 
+  //점수 받아오는 함수
   const getScoreCallback = useCallback(() => {
     if (gradeType) {
       getScore(Number(query.get("userIdx")))
@@ -44,7 +51,7 @@ const WriteScoreContainer = ({}) => {
           setTotalScore1(res.data.totalScore1);
           setTotalScore2(res.data.totalScore2);
         })
-        .catch((err: Error) => {
+        .catch((err) => {
           handleGetWriteError(err, history);
         });
     }
@@ -70,6 +77,8 @@ const WriteScoreContainer = ({}) => {
   return (
     <>
       <WriteScore
+        getScoreCallback={getScoreCallback}
+        onSave={onSave}
         grade1={grade1}
         grade2={grade2}
         isGed={isGed}

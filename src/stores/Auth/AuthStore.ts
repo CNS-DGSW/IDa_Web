@@ -11,10 +11,15 @@ import { sha256 } from "js-sha256";
 @autobind
 class AuthStore {
   @observable login: boolean = false;
+  // 로그인인지 확인하는 변수
   @observable isAdmin: boolean = false;
+  // 어드민인지 확인하는 변수
   @observable profileBox: boolean = false;
+  // 헤더에서 프로필 모달 관리하는 변수
   @observable name: string = "";
+  // 이름
   @observable email: string = "";
+  // 이메일
 
   @action
   handleName = (name: string) => {
@@ -49,23 +54,13 @@ class AuthStore {
     email: string,
     password: string
   ): Promise<LoginResponse> => {
-    try {
-      const response = await AuthApi.Login(email, sha256(password));
+    const response = await AuthApi.Login(email, sha256(password));
 
-      if (response.status === 200) {
-        this.login = true;
-      }
-
-      return new Promise(
-        (resolve: (response: LoginResponse) => void, reject) => {
-          resolve(response);
-        }
-      );
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
+    if (response.status === 200) {
+      this.login = true;
     }
+
+    return response;
   };
 
   @action
@@ -75,107 +70,58 @@ class AuthStore {
     password: string,
     birth: string
   ): Promise<Response> => {
-    try {
-      const response = await AuthApi.Register(
-        name,
-        email,
-        sha256(password),
-        birth
-      );
+    const response = await AuthApi.Register(
+      name,
+      email,
+      sha256(password),
+      birth
+    );
 
-      return new Promise((resolve: (response: Response) => void, reject) => {
-        resolve(response);
-      });
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
   @action
   trySendEmail = async (email: string): Promise<Response> => {
-    try {
-      const response = await AuthApi.EmailCode(email);
+    const response = await AuthApi.EmailCode(email);
 
-      return new Promise((resolve: (response: Response) => void, reject) => {
-        resolve(response);
-      });
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
   @action
   getInfo = async (): Promise<UserInfoResponse> => {
-    try {
-      const response: UserInfoResponse = await AuthApi.GetInfo();
+    const response: UserInfoResponse = await AuthApi.GetInfo();
 
-      if (response.status === 200) {
-        this.login = true;
-        this.email = response.data.email;
-        this.name = response.data.name;
-        this.isAdmin = response.data.isAdmin;
-      }
-
-      return new Promise(
-        (resolve: (response: UserInfoResponse) => void, reject) => {
-          resolve(response);
-        }
-      );
-    } catch (error) {
+    if (response.status === 200) {
+      this.login = true;
+      this.email = response.data.email;
+      this.name = response.data.name;
+      this.isAdmin = response.data.isAdmin;
+    } else {
       this.login = false;
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
     }
+
+    return response;
   };
 
   @action
   tryPwCode = async (email: string): Promise<Response> => {
-    try {
-      const response = await AuthApi.PwCode(email);
+    const response = await AuthApi.PwCode(email);
 
-      return new Promise((resolve: (response: Response) => void, reject) => {
-        resolve(response);
-      });
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
   @action
   tryChangePwByEmail = async (code: string, pw: string): Promise<Response> => {
-    try {
-      const response = await AuthApi.ChangePwByEmail(code, sha256(pw));
+    const response = await AuthApi.ChangePwByEmail(code, sha256(pw));
 
-      return new Promise((resolve: (response: Response) => void, reject) => {
-        resolve(response);
-      });
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
   @action
   tryChangePw = async (newPw: string, pw: string): Promise<Response> => {
-    try {
-      const response = await AuthApi.ChangePwByEmail(sha256(newPw), sha256(pw));
+    const response = await AuthApi.ChangePwByEmail(sha256(newPw), sha256(pw));
 
-      return new Promise((resolve: (response: Response) => void, reject) => {
-        resolve(response);
-      });
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 }
 

@@ -10,15 +10,19 @@ import {
 @autobind
 class StatusStore {
   @observable submit: boolean = false;
+  // 제출여부
   @observable print: boolean = false;
-  @observable pass: boolean | null = false;
+  // 우편 도착 여부
+  @observable pass: boolean | null | undefined = undefined;
+  //1차 합격 여부
   @observable statusModal: boolean = false;
+  // 현황 모달 관리
 
-  @action trySatusModal = () => {
+  @action tryStatusModal = () => {
     this.statusModal = !this.statusModal;
   };
 
-  @action closeSatusModal = () => {
+  @action closeStatusModal = () => {
     this.statusModal = false;
   };
 
@@ -39,42 +43,26 @@ class StatusStore {
 
   @action
   tryGetFinalStatus = async (): Promise<FinalStatusResponse> => {
-    try {
-      const response: FinalStatusResponse = await StatusApi.GetFinalStatus();
+    // 2차(최종) 합격 여부
+    const response: FinalStatusResponse = await StatusApi.GetFinalStatus();
 
-      return new Promise(
-        (resolve: (response: FinalStatusResponse) => void, reject) => {
-          resolve(response);
-        }
-      );
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
   @action
   tryGetStatus = async (
     userIdx?: number | null
   ): Promise<ResultStatusResponse> => {
-    try {
-      const response: ResultStatusResponse = await StatusApi.GetStatus(userIdx);
+    // 1차 합격 여부 및 우편 원서 접수, 인터넷 원서 접수 현황
+    const response: ResultStatusResponse = await StatusApi.GetStatus(userIdx);
 
+    if (response.status === 200) {
       this.submit = response.data.isSubmit;
       this.print = response.data.isPrintedApplicationArrived;
       this.pass = response.data.isPassedFirstApply;
-
-      return new Promise(
-        (resolve: (response: ResultStatusResponse) => void, reject) => {
-          resolve(response);
-        }
-      );
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
     }
+
+    return response;
   };
 
   @action
@@ -82,17 +70,9 @@ class StatusStore {
     userIdx: number,
     status: boolean
   ): Promise<Response> => {
-    try {
-      const response: Response = await StatusApi.ChangeArrived(userIdx, status);
+    const response: Response = await StatusApi.ChangeArrived(userIdx, status);
 
-      return new Promise((resolve: (response: Response) => void, reject) => {
-        resolve(response);
-      });
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 }
 

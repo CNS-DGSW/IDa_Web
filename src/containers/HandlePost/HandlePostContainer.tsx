@@ -31,7 +31,13 @@ const HandlePostContainer = ({
   const history = useHistory();
 
   const { isAdmin, email } = store.AuthStore;
-  const { createPost, createAnswer, getPost, deletePost, modifyPost } = store.BoardStore;
+  const {
+    createPost,
+    createAnswer,
+    getPost,
+    deletePost,
+    modifyPost,
+  } = store.BoardStore;
 
   const [isModify, setIsModify] = useState<boolean>(false);
   const [title, setTitle] = useState<string>("");
@@ -63,11 +69,11 @@ const HandlePostContainer = ({
           handleGetPosts();
           toast.success("저장되었습니다.");
         })
-        .catch((err: Error) => {
-          if (err.message.includes("410")) {
+        .catch((err) => {
+          if (err.response?.status === 410) {
             toast.warn("로그인이 만료되었습니다.");
             history.push("/login");
-          } else if (err.message.includes("401")) {
+          } else if (err.response?.status === 401) {
             toast.warn("로그인이 필요합니다.");
             history.push("/login");
           } else {
@@ -88,13 +94,13 @@ const HandlePostContainer = ({
             handleGetPosts();
             toast.success("수정되었습니다.");
           })
-          .catch((err: Error) => {
-            if (err.message.includes("403")) {
+          .catch((err) => {
+            if (err.response?.status === 403) {
               toast.warn("권한이 없습니다.");
-            } else if (err.message.includes("410")) {
+            } else if (err.response?.status === 410) {
               toast.warn("로그인이 만료되었습니다.");
               history.push("/login");
-            } else if (err.message.includes("401")) {
+            } else if (err.response?.status === 401) {
               toast.warn("로그인이 필요합니다.");
               history.push("/login");
             } else {
@@ -116,13 +122,13 @@ const HandlePostContainer = ({
             handleGetPosts();
             toast.success("수정되었습니다.");
           })
-          .catch((err: Error) => {
-            if (err.message.includes("403")) {
+          .catch((err) => {
+            if (err.response?.status === 403) {
               toast.warn("권한이 없습니다.");
-            } else if (err.message.includes("410")) {
+            } else if (err.response?.status === 410) {
               toast.warn("로그인이 만료되었습니다.");
               history.push("/login");
-            } else if (err.message.includes("401")) {
+            } else if (err.response?.status === 401) {
               toast.warn("로그인이 필요합니다.");
               history.push("/login");
             } else {
@@ -141,7 +147,13 @@ const HandlePostContainer = ({
     } else {
       handleCreatePost();
     }
-  }, [handleCreatePost, handleModifyPost, handleCreateAnswer, isAnswer, isModify]);
+  }, [
+    handleCreatePost,
+    handleModifyPost,
+    handleCreateAnswer,
+    isAnswer,
+    isModify,
+  ]);
 
   const handleDeletePost = useCallback(async () => {
     if (idx) {
@@ -160,13 +172,13 @@ const HandlePostContainer = ({
               handleGetPosts();
               toast.success("삭제되었습니다.");
             })
-            .catch((err: Error) => {
-              if (err.message.includes("403")) {
+            .catch((err) => {
+              if (err.response?.status === 403) {
                 toast.warn("권한이 없거나 답변이 있어서 실패하였습니다.");
-              } else if (err.message.includes("410")) {
+              } else if (err.response?.status === 410) {
                 toast.warn("로그인이 만료되었습니다.");
                 history.push("/login");
-              } else if (err.message.includes("401")) {
+              } else if (err.response?.status === 401) {
                 toast.warn("로그인이 필요합니다.");
                 history.push("/login");
               } else {
@@ -186,7 +198,7 @@ const HandlePostContainer = ({
           setTitle(res.data.post.title);
           setContent(res.data.post.content);
         })
-        .catch((err: Error) => {
+        .catch((err) => {
           toast.error("서버 오류입니다.");
         });
     }
@@ -219,6 +231,7 @@ const HandlePostContainer = ({
   return (
     <Modal onClose={onClose} className={"handle-post-modal"}>
       <HandlePost
+        idx={idx}
         post={post}
         title={title}
         setTitle={setTitle}

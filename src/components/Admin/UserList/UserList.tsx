@@ -1,7 +1,8 @@
 import React from "react";
 import "./UserList.scss";
-import { List } from "util/types/User";
+import { List } from "util/types/UserList";
 import { CityRatio, DateRatio, SchoolRatio } from "util/types/UserRatio";
+import moment from "moment";
 
 interface UserListProps {
   userStatus: List[] | undefined;
@@ -43,6 +44,9 @@ const UserList = ({
             엑셀 다운로드
           </button>
         </div>
+        <div className="userList-subtitle">
+          사용자 이름을 클릭 시 원서 수정을 할 수 있습니다.
+        </div>
         <table className="userList-list">
           <thead>
             <tr className="userList-list-title">
@@ -73,7 +77,14 @@ const UserList = ({
                   )
                   .map((filter, idx) => (
                     <tr key={idx}>
-                      <td>{filter.name}</td>
+                      <td
+                        className="pointer"
+                        onClick={() =>
+                          window.open(`/write?userIdx=${filter.idx}`)
+                        }
+                      >
+                        {filter.name}
+                      </td>
                       <td>
                         {filter.email === null ? (
                           <>지정안됨</>
@@ -99,7 +110,7 @@ const UserList = ({
                         {filter.birth === null ? (
                           <>지정안됨</>
                         ) : (
-                          <>{filter.birth}</>
+                          <>{moment(filter.birth).format("YYYY-MM-DD")}</>
                         )}
                       </td>
                       <td>
@@ -115,7 +126,7 @@ const UserList = ({
                         {filter.isPrintedApplicationArrived ? (
                           <>
                             <button
-                              className="true"
+                              className="true pointer"
                               onClick={() =>
                                 tryChangeArrived(
                                   filter.idx,
@@ -129,6 +140,7 @@ const UserList = ({
                         ) : (
                           <>
                             <button
+                              className="pointer"
                               onClick={() =>
                                 tryChangeArrived(
                                   filter.idx,
@@ -141,12 +153,17 @@ const UserList = ({
                           </>
                         )}
                       </td>
-                      <td>{filter.createdAt}</td>
+                      <td>{moment(filter.createdAt).format("YYYY-M-DD")}</td>
                     </tr>
                   ))
               : userStatus?.map((i, idx) => (
                   <tr key={idx}>
-                    <td>{i.name}</td>
+                    <td
+                      onClick={() => window.open(`/write?userIdx=${i.idx}`)}
+                      className="pointer"
+                    >
+                      {i.name}
+                    </td>
                     <td>{i.email === null ? <>지정안됨</> : <>{i.email}</>}</td>
                     <td>
                       {i.schoolName === null ? (
@@ -158,7 +175,13 @@ const UserList = ({
                     <td>
                       {i.cityName === null ? <>지정안됨</> : <>{i.cityName}</>}
                     </td>
-                    <td>{i.birth === null ? <>지정안됨</> : <>{i.birth}</>}</td>
+                    <td>
+                      {i.birth === null ? (
+                        <>지정안됨</>
+                      ) : (
+                        <>{moment(i.birth).format("YYYY-MM-DD")}</>
+                      )}
+                    </td>
                     <td>
                       {i.studentTel === null ? (
                         <>지정안됨</>
@@ -172,7 +195,7 @@ const UserList = ({
                       {i.isPrintedApplicationArrived ? (
                         <>
                           <button
-                            className="true"
+                            className="true pointer"
                             onClick={() =>
                               tryChangeArrived(
                                 i.idx,
@@ -186,7 +209,7 @@ const UserList = ({
                       ) : (
                         <>
                           <button
-                            className="false"
+                            className="false pointer"
                             onClick={() =>
                               tryChangeArrived(
                                 i.idx,
@@ -199,7 +222,7 @@ const UserList = ({
                         </>
                       )}
                     </td>
-                    <td>{i.createdAt}</td>
+                    <td>{moment(i.createdAt).format("YYYY-MM-DD")}</td>
                   </tr>
                 ))}
           </tbody>

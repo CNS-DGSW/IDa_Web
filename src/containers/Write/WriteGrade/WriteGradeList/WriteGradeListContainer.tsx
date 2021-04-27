@@ -33,7 +33,7 @@ const WriteGradeListContainer = ({}) => {
           handleFreeSem({ ...res.data.freeSem, freeSem32: true });
         }
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         handleGetWriteError(err, history);
       });
   }, [getGradeList, gradeType]);

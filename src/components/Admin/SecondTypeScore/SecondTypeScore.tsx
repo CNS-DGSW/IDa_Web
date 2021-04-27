@@ -1,5 +1,5 @@
 import React from "react";
-import { SecondScoreResponse } from "util/types/Score";
+import { SecondScoreResponse } from "util/types/Response";
 import "./SecondTypeScore.scss";
 
 interface SecondTypeScoreProps {

@@ -4,11 +4,9 @@ import NoticeContainer from "containers/Notice/NoticeContainer";
 
 const NoticePage = () => {
   return (
-    <div>
-      <DefaultTemplate>
-        <NoticeContainer />
-      </DefaultTemplate>
-    </div>
+    <DefaultTemplate>
+      <NoticeContainer />
+    </DefaultTemplate>
   );
 };
 

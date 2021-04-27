@@ -30,7 +30,7 @@ const HeaderContainer = ({
     tryCloseModal,
   } = store.AuthStore;
 
-  const { statusModal, closeSatusModal, trySatusModal } = store.StatusStore;
+  const { statusModal, closeStatusModal, tryStatusModal } = store.StatusStore;
 
   const [cookie, setCookie, removeCookie] = useCookies(["refreshToken"]);
 
@@ -45,7 +45,7 @@ const HeaderContainer = ({
   const getInfoCallback = useCallback(async () => {
     if (localStorage.getItem("accessToken") && !name && !email) {
       changeLogin(true);
-      await getInfo().catch((err: Error) => {
+      await getInfo().catch((err) => {
         HandleLogout();
       });
     }
@@ -53,7 +53,7 @@ const HeaderContainer = ({
 
   const closeAllModal = () => {
     if (!profileBox) {
-      closeSatusModal();
+      closeStatusModal();
     }
   };
 
@@ -71,6 +71,12 @@ const HeaderContainer = ({
     };
   }, []);
 
+  useEffect(() => {
+    statusModal
+      ? (document.body.style.overflow = "hidden")
+      : (document.body.style.overflow = "unset");
+  }, [statusModal]);
+
   return (
     <>
       <Header
@@ -84,8 +90,8 @@ const HeaderContainer = ({
         HandleLogout={HandleLogout}
         style={style}
         statusModal={statusModal}
-        trySatusModal={trySatusModal}
-        closeSatusModal={closeSatusModal}
+        tryStatusModal={tryStatusModal}
+        closeStatusModal={closeStatusModal}
       />
     </>
   );

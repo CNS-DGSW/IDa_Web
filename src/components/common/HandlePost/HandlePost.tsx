@@ -4,6 +4,7 @@ import { PostType } from "util/types/PostType";
 import "./HandlePost.scss";
 
 interface HandlePostProps {
+  idx?: number;
   post: PostType;
   isAnswer?: boolean;
   setIsAnswer?: React.Dispatch<React.SetStateAction<boolean>>;
@@ -22,6 +23,7 @@ interface HandlePostProps {
 }
 
 const HandlePost = ({
+  idx,
   post,
   title,
   setTitle,
@@ -83,7 +85,8 @@ const HandlePost = ({
             isAdmin &&
             setIsAnswer &&
             !isModify &&
-            !isAnswer && (
+            !isAnswer &&
+            idx && (
               <div
                 className="handle-post-footer-btn"
                 onClick={() => {

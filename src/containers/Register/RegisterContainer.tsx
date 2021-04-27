@@ -38,11 +38,12 @@ const RegisterContainer = () => {
           toast.success("이메일이 전송되었습니다.");
           setEmailLoading(false);
         })
-        .catch((err: Error) => {
+        .catch((err) => {
+          console.log(err);
           setEmailLoading(false);
-          if (err.message.includes("400")) {
+          if (err.response?.status === 400) {
             toast.warn("메일 형식이 아닙니다.");
-          } else if (err.message.includes("409")) {
+          } else if (err.response?.status === 409) {
             toast.warn("이미 사용중인 메일입니다.");
           } else {
             toast.error("서버 오류입니다");
@@ -65,14 +66,14 @@ const RegisterContainer = () => {
           toast.success("회원가입이 완료되었습니다.");
           history.push("login");
         })
-        .catch((err: Error) => {
-          if (err.message.includes("403")) {
+        .catch((err) => {
+          if (err.response?.status === 403) {
             toast.warn("이미 원서 제출이 마감되었습니다.");
-          } else if (err.message.includes("409")) {
+          } else if (err.response?.status === 409) {
             toast.warn("이미 사용중인 이메일입니다.");
-          } else if (err.message.includes("401")) {
+          } else if (err.response?.status === 401) {
             toast.warn("메일 인증이 안되었습니다.");
-          } else if (err.message.includes("400")) {
+          } else if (err.response?.status === 400) {
             toast.warn("올바르지 않은 값이 있습니다.");
           } else {
             toast.error("서버 오류입니다");

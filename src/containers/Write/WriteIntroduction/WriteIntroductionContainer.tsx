@@ -30,6 +30,7 @@ const WriteIntroductionContainer = ({}) => {
     editStudyPlan,
   } = store.WriteStore;
 
+  //변경사항 저장 함수
   const onSave = useCallback(async () => {
     let flag = true;
     if (selfIntroduce && studyPlan) {
@@ -42,7 +43,7 @@ const WriteIntroductionContainer = ({}) => {
         .then(() => {
           flag = true;
         })
-        .catch((err: Error) => {
+        .catch((err) => {
           handleWriteError(err, history);
           flag = false;
         });
@@ -54,22 +55,24 @@ const WriteIntroductionContainer = ({}) => {
     return flag;
   }, [selfIntroduce, studyPlan]);
 
+  //자기소개서 받아오는 함수
   const getSelfIntroduceCallBack = useCallback(() => {
     getSelfIntroduce()
       .then((res: SelfIntroductionResponse) => {
         setSelfIntroduce(res.data.selfIntroduction || "");
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         handleGetWriteError(err, history);
       });
   }, []);
 
+  //학업계획서 받아오는 함수
   const getStudyPlanCallBack = useCallback(() => {
     getStudyPlan()
       .then((res: StudyPlanResponse) => {
         setStudyPlan(res.data.studyPlan || "");
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         handleGetWriteError(err, history);
       });
   }, []);

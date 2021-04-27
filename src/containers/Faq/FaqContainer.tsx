@@ -24,7 +24,7 @@ const FaqContainer = ({}) => {
         setPosts(res.data.posts);
         setFilteredPosts(res.data.posts);
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         console.log(err);
       });
   }, []);

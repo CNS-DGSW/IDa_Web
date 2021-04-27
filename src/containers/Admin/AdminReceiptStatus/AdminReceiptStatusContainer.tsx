@@ -14,24 +14,25 @@ const AdminReceiptStatusContainer = ({}) => {
   const [search, setSearch] = useState<string>("");
 
   const {
-    getReceiptSatus,
-    getReceiptSatusExcel,
+    getReceiptStatus,
+    getReceiptStatusExcel,
     handleCancelSubmit,
   } = store.AdminStore;
 
-  const getReceiptSatusCallBack = useCallback(() => {
-    getReceiptSatus()
+  //입학 전형 원부 받아오기
+  const getReceiptStatusCallBack = useCallback(() => {
+    getReceiptStatus()
       .then((res) => {
         setReceiptStatus(res.data);
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         handleAdmin(err, history);
       });
   }, []);
 
   useEffect(() => {
-    getReceiptSatusCallBack();
-  }, [getReceiptSatusCallBack]);
+    getReceiptStatusCallBack();
+  }, [getReceiptStatusCallBack]);
 
   return (
     <>
@@ -39,7 +40,7 @@ const AdminReceiptStatusContainer = ({}) => {
         receiptStatus={receiptStatus}
         setSearch={setSearch}
         search={search}
-        getReceiptSatusExcel={getReceiptSatusExcel}
+        getReceiptStatusExcel={getReceiptStatusExcel}
         handleCancelSubmit={handleCancelSubmit}
         setReceiptStatus={setReceiptStatus}
       />
