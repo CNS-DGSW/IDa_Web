@@ -19,6 +19,7 @@ const UserRateContainer = ({}) => {
 
   const { GetUserRate } = ExcelApi;
 
+  // 입학 지원자 경쟁률 받아오기
   const tryGetUserRate = useCallback(() => {
     getUserRate(true)
       .then((res) => {
@@ -29,6 +30,7 @@ const UserRateContainer = ({}) => {
       });
   }, []);
 
+  // 교육청 보고 정보 받아오기
   const tryGetReportInfo = useCallback(() => {
     getReportInfo()
       .then((res) => {
@@ -39,6 +41,7 @@ const UserRateContainer = ({}) => {
       });
   }, []);
 
+  // 입학 지원자 경쟁률 엑셀 다운
   const tryDownExcel = () => {
     GetUserRate().catch((err) => {
       console.log(err);
