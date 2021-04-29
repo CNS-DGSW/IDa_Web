@@ -1,9 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useState,
-} from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
 import WriteScore from "components/Write/WriteScore";
@@ -57,7 +52,7 @@ const WriteScoreContainer = ({
     }
   }, [getScore, gradeType]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     getScoreCallback();
   }, [getScoreCallback]);
 

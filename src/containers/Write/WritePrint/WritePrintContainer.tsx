@@ -1,10 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  useLayoutEffect,
-} from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { observer } from "mobx-react";
 import WritePrint from "../../../components/Write/WritePrint";
 import useStore from "lib/hooks/useStore";
@@ -53,6 +47,7 @@ const WritePrintContainer = ({}) => {
 
   const componentRef = useRef<HTMLDivElement>(null);
 
+  // 인쇄 페이지에서 모든 정보를 보여줘야 하기 때문에 어쩔 수 없는 state들...
   const [loading, setLoading] = useState<boolean>(true);
   const [name, setName] = useState<string>("");
   const [birth, setBirth] = useState<string>("");
@@ -332,7 +327,7 @@ const WritePrintContainer = ({}) => {
     }
   }, [search]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     getAllStates();
   }, [getAllStates]);
 

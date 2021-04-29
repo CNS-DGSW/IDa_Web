@@ -14,6 +14,7 @@ const MainContainer = () => {
   const [secondResultModal, setSecondResultModal] = useState<boolean>(false);
   // 1,2 차 합격 여부 모달
 
+  // 입학 전형 요강 다운로드
   const handleDownloadApplyInfo = useCallback(() => {
     downloadApplyInfo().catch(() => {
       toast.warn("아직 전형 요강이 등록되지 않았어요.");

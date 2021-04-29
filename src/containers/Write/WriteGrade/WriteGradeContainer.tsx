@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useLayoutEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { observer } from "mobx-react";
 import WriteGrade from "../../../components/Write/WriteGrades";
 import useStore from "lib/hooks/useStore";
@@ -71,7 +71,7 @@ const WriteGradeContainer = ({}) => {
     });
   }, []);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     checkSchool();
   }, [checkSchool]);
 
