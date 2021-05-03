@@ -83,7 +83,7 @@ const SecondTypeScoreContainer = ({}) => {
             })
             .catch((err) => {
               if (err.response?.status === 400) {
-                toast.warn("파일을 잘못선택하였습니다");
+                toast.warning("파일을 잘못선택하였습니다");
               }
             });
           break;
@@ -94,7 +94,7 @@ const SecondTypeScoreContainer = ({}) => {
             })
             .catch((err) => {
               if (err.response?.status === 400) {
-                toast.warn("파일을 잘못선택하였습니다");
+                toast.warning("파일을 잘못선택하였습니다");
               }
             });
           break;
@@ -105,7 +105,7 @@ const SecondTypeScoreContainer = ({}) => {
             })
             .catch((err) => {
               if (err.response?.status === 400) {
-                toast.warn("파일을 잘못선택하였습니다");
+                toast.warning("파일을 잘못선택하였습니다");
               }
             });
           break;

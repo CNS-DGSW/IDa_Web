@@ -67,7 +67,7 @@ const WriteParentContainer = ({}) => {
       });
       setIsChanged(false);
     } else {
-      toast.warn("빈칸을 채워주세요.");
+      toast.warning("빈칸을 채워주세요.");
       flag = false;
     }
     return flag;

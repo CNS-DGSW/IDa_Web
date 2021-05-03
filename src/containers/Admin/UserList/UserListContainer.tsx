@@ -58,7 +58,7 @@ const UserListContainer = ({}) => {
   // 엑셀 다운
   const tryDownExcel = () => {
     GetReceiptStatus().catch((err) => {
-      toast.warn("서버 오류입니다.");
+      toast.error("서버 오류입니다.");
     });
   };
 

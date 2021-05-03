@@ -65,7 +65,7 @@ const WriteGradeContainer = ({}) => {
     await getSchoolInfo().then((res) => {
       handleGrade(res.data.gradeType);
       if (!res.data.gradeType) {
-        toast.warn("학교 정보를 먼저 입력해주세요.");
+        toast.warning("학교 정보를 먼저 입력해주세요.");
         pageHandle(3);
       }
     });

@@ -48,7 +48,7 @@ const WriteGradeListContainer = ({}) => {
 
     // 성적 과목 이름은 중복을 지원하지 않기 때문.
     if (grade) {
-      toast.warn("이전에 추가된 성적을 먼저 작성해주세요.");
+      toast.warning("이전에 추가된 성적을 먼저 작성해주세요.");
       return;
     }
 

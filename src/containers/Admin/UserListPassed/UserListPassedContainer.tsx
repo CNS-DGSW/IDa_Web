@@ -7,6 +7,7 @@ import { ListPassed } from "util/types/UserList";
 import { handleAdmin } from "lib/handleErrors";
 import ExcelApi from "assets/api/ExcelApi";
 import ListPassedCategory from "util/enums/ListPassedCategory";
+import { toast } from "react-toastify";
 
 const UserListPassedContainer = ({}) => {
   const { store } = useStore();
@@ -38,13 +39,13 @@ const UserListPassedContainer = ({}) => {
     switch (key) {
       case "first":
         GetFirstSelection().catch((err) => {
-          console.log(err);
+          toast.error("오류가 발생하였습니다.");
         });
         break;
 
       case "final":
         GetSecondSelection().catch((err) => {
-          console.log(err);
+          toast.error("오류가 발생하였습니다.");
         });
         break;
     }

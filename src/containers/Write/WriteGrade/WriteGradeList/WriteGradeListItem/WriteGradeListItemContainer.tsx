@@ -65,13 +65,13 @@ const WriteGradeListItemContainer = ({
     });
 
     if (flag || isExist) {
-      toast.warn("이미 같은 이름의 요소가 있습니다.");
+      toast.warning("이미 같은 이름의 요소가 있습니다.");
       setValue(prevName);
       return;
     }
 
     if (name === "체육" || name === "미술" || name === "음악") {
-      toast.warn("예체능 분야는 입력하지 않습니다.");
+      toast.warning("예체능 분야는 입력하지 않습니다.");
       setValue(prevName);
       return;
     }
