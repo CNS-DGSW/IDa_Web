@@ -62,7 +62,7 @@ const HandlePostContainer = ({
   // 게시글 생성
   const handleCreatePost = useCallback(async () => {
     if (!title && !content) {
-      toast.warn("빈칸을 채워주세요.");
+      toast.warning("빈칸을 채워주세요.");
     } else {
       await createPost(category, title, content)
         .then((res) => {
@@ -72,10 +72,10 @@ const HandlePostContainer = ({
         })
         .catch((err) => {
           if (err.response?.status === 410) {
-            toast.warn("로그인이 만료되었습니다.");
+            toast.warning("로그인이 만료되었습니다.");
             history.push("/login");
           } else if (err.response?.status === 401) {
-            toast.warn("로그인이 필요합니다.");
+            toast.warning("로그인이 필요합니다.");
             history.push("/login");
           } else {
             toast.error("서버 오류입니다");
@@ -88,7 +88,7 @@ const HandlePostContainer = ({
   const handleCreateAnswer = useCallback(async () => {
     if (idx) {
       if (!content) {
-        toast.warn("빈칸을 채워주세요.");
+        toast.warning("빈칸을 채워주세요.");
       } else {
         await createAnswer(content, idx)
           .then((res) => {
@@ -98,12 +98,12 @@ const HandlePostContainer = ({
           })
           .catch((err) => {
             if (err.response?.status === 403) {
-              toast.warn("권한이 없습니다.");
+              toast.warning("권한이 없습니다.");
             } else if (err.response?.status === 410) {
-              toast.warn("로그인이 만료되었습니다.");
+              toast.warning("로그인이 만료되었습니다.");
               history.push("/login");
             } else if (err.response?.status === 401) {
-              toast.warn("로그인이 필요합니다.");
+              toast.warning("로그인이 필요합니다.");
               history.push("/login");
             } else {
               toast.error("서버 오류입니다");
@@ -117,7 +117,7 @@ const HandlePostContainer = ({
   const handleModifyPost = useCallback(async () => {
     if (idx) {
       if (!title && !content) {
-        toast.warn("빈칸을 채워주세요.");
+        toast.warning("빈칸을 채워주세요.");
       } else {
         await modifyPost(idx, title, content)
           .then((res) => {
@@ -127,12 +127,12 @@ const HandlePostContainer = ({
           })
           .catch((err) => {
             if (err.response?.status === 403) {
-              toast.warn("권한이 없습니다.");
+              toast.warning("권한이 없습니다.");
             } else if (err.response?.status === 410) {
-              toast.warn("로그인이 만료되었습니다.");
+              toast.warning("로그인이 만료되었습니다.");
               history.push("/login");
             } else if (err.response?.status === 401) {
-              toast.warn("로그인이 필요합니다.");
+              toast.warning("로그인이 필요합니다.");
               history.push("/login");
             } else {
               toast.error("서버 오류입니다");
@@ -179,12 +179,12 @@ const HandlePostContainer = ({
             })
             .catch((err) => {
               if (err.response?.status === 403) {
-                toast.warn("권한이 없거나 답변이 있어서 실패하였습니다.");
+                toast.warning("권한이 없거나 답변이 있어서 실패하였습니다.");
               } else if (err.response?.status === 410) {
-                toast.warn("로그인이 만료되었습니다.");
+                toast.warning("로그인이 만료되었습니다.");
                 history.push("/login");
               } else if (err.response?.status === 401) {
-                toast.warn("로그인이 필요합니다.");
+                toast.warning("로그인이 필요합니다.");
                 history.push("/login");
               } else {
                 toast.error("서버 오류입니다");

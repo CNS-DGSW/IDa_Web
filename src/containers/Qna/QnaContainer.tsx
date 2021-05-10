@@ -5,6 +5,7 @@ import useStore from "lib/hooks/useStore";
 import { GetPostsResponse } from "util/types/Response";
 import Category from "util/enums/Category";
 import { PostType } from "util/types/PostType";
+import { toast } from "react-toastify";
 
 const QnaContainer = ({}) => {
   const [posts, setPosts] = useState<PostType[]>([]);
@@ -25,7 +26,7 @@ const QnaContainer = ({}) => {
         setPosts(res.data.posts);
       })
       .catch((err) => {
-        console.log(err);
+        toast.error("오류가 발생하였습니다.");
       });
   }, []);
 

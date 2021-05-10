@@ -49,7 +49,7 @@ const WriteSchoolContainer = ({}) => {
         (gradeType === Grade.GRADUATED || gradeType === Grade.GED) &&
         Number(graduatedDate) < 2010
       ) {
-        toast.warn("올바른 년도를 입력해주세요.");
+        toast.warning("올바른 년도를 입력해주세요.");
         flag = false;
       }
       await editSchoolInfo(
@@ -72,7 +72,7 @@ const WriteSchoolContainer = ({}) => {
         });
       setIsChanged(false);
     } else {
-      toast.warn("빈칸을 채워주세요.");
+      toast.warning("빈칸을 채워주세요.");
       flag = false;
     }
     return flag;

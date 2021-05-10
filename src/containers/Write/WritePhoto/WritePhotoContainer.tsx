@@ -54,7 +54,7 @@ const WritePhotoContainer = ({}) => {
         flag = true;
       }
     } else {
-      toast.warn("빈칸이 있습니다.");
+      toast.warning("빈칸이 있습니다.");
       flag = false;
     }
     return flag;

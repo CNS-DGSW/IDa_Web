@@ -27,24 +27,22 @@ const RegisterContainer = () => {
 
   //email 인증 보내기
   const handleEmailSend = useCallback(async () => {
-    toast.success("이메일이 전송중입니다.");
-    setEmailLoading(true);
     if (!email) {
-      setEmailLoading(false);
-      toast.warn("이메일을 입력해 주세요");
+      toast.warning("이메일을 입력해 주세요");
     } else {
+      setEmailLoading(true);
+      toast.success("이메일이 전송중입니다.");
       await trySendEmail(email)
         .then((res: Response) => {
           toast.success("이메일이 전송되었습니다.");
           setEmailLoading(false);
         })
         .catch((err) => {
-          console.log(err);
           setEmailLoading(false);
           if (err.response?.status === 400) {
-            toast.warn("메일 형식이 아닙니다.");
+            toast.warning("메일 형식이 아닙니다.");
           } else if (err.response?.status === 409) {
-            toast.warn("이미 사용중인 메일입니다.");
+            toast.warning("이미 사용중인 메일입니다.");
           } else {
             toast.error("서버 오류입니다");
           }
@@ -55,11 +53,11 @@ const RegisterContainer = () => {
   //회원가입하기
   const handleRegister = useCallback(async () => {
     if (!email || !pw || !checkPw || !name || !birth) {
-      toast.warn("빈칸이 있습니다.");
+      toast.warning("빈칸이 있습니다.");
     } else if (pw !== checkPw) {
-      toast.warn("비밀번호가 일치하지 않습니다.");
+      toast.warning("비밀번호가 일치하지 않습니다.");
     } else if (!allCheck) {
-      toast.warn("모두 동의를 체크해 주세요");
+      toast.warning("모두 동의를 체크해 주세요");
     } else {
       await tryRegister(name, email, pw, birth)
         .then((res: Response) => {
@@ -68,13 +66,13 @@ const RegisterContainer = () => {
         })
         .catch((err) => {
           if (err.response?.status === 403) {
-            toast.warn("이미 원서 제출이 마감되었습니다.");
+            toast.warning("이미 원서 제출이 마감되었습니다.");
           } else if (err.response?.status === 409) {
-            toast.warn("이미 사용중인 이메일입니다.");
+            toast.warning("이미 사용중인 이메일입니다.");
           } else if (err.response?.status === 401) {
-            toast.warn("메일 인증이 안되었습니다.");
+            toast.warning("메일 인증이 안되었습니다.");
           } else if (err.response?.status === 400) {
-            toast.warn("올바르지 않은 값이 있습니다.");
+            toast.warning("올바르지 않은 값이 있습니다.");
           } else {
             toast.error("서버 오류입니다");
           }
