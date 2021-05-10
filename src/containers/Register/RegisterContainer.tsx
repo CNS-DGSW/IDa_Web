@@ -27,12 +27,11 @@ const RegisterContainer = () => {
 
   //email 인증 보내기
   const handleEmailSend = useCallback(async () => {
-    toast.success("이메일이 전송중입니다.");
-    setEmailLoading(true);
     if (!email) {
-      setEmailLoading(false);
       toast.warning("이메일을 입력해 주세요");
     } else {
+      setEmailLoading(true);
+      toast.success("이메일이 전송중입니다.");
       await trySendEmail(email)
         .then((res: Response) => {
           toast.success("이메일이 전송되었습니다.");
