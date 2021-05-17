@@ -84,14 +84,19 @@ const RegisterContainer = () => {
   useEffect(() => {
     const listener = (e: KeyboardEvent) => {
       if (e.key === "Enter" || e.key === "NumpadEnter") {
-        handleEmailSend();
+        if (name && email && pw && birth && checkPw) {
+          handleRegister();
+        } else {
+          handleEmailSend();
+        }
       }
     };
+
     document.addEventListener("keydown", listener);
     return () => {
       document.removeEventListener("keydown", listener);
     };
-  }, [email]);
+  }, [email, name, pw, checkPw, birth, allCheck]);
 
   return (
     <>
