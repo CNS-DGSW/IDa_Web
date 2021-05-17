@@ -3,8 +3,9 @@ const numberCheck = (input: string, min?: number, max?: number): number => {
   let result = parseFloat(num);
 
   if (num !== "0" && !num.includes(".")) {
-    num = num.replace(/^0/, "");
+    num = num.replace(/^0+/, "");
     result = parseInt(num);
+    console.log(result);
   } else {
     result = parseFloat(num);
   }

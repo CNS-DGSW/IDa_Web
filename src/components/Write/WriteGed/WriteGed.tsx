@@ -53,8 +53,8 @@ const WriteGed = ({
             <td>
               <input
                 type="number"
-                value={koreanScore}
-                step="0.01"
+                value={koreanScore.toString()}
+                step="0.1"
                 onChange={(e) => {
                   handleIsChanged(true);
                   handleKoreanScore(numberCheck(e.target.value || "0"));
@@ -64,8 +64,8 @@ const WriteGed = ({
             <td>
               <input
                 type="number"
-                value={englishScore}
-                step="0.01"
+                value={englishScore.toString()}
+                step="0.1"
                 onChange={(e) => {
                   handleIsChanged(true);
                   handleEnglishScore(numberCheck(e.target.value || "0"));
@@ -75,8 +75,8 @@ const WriteGed = ({
             <td>
               <input
                 type="number"
-                value={mathScore}
-                step="0.01"
+                value={mathScore.toString()}
+                step="0.1"
                 onChange={(e) => {
                   handleIsChanged(true);
                   handleMathScore(numberCheck(e.target.value || "0"));
@@ -86,8 +86,8 @@ const WriteGed = ({
             <td>
               <input
                 type="number"
-                value={socialScore}
-                step="0.01"
+                value={socialScore.toString()}
+                step="0.1"
                 onChange={(e) => {
                   handleIsChanged(true);
                   handleSocialScore(numberCheck(e.target.value || "0"));
@@ -97,8 +97,8 @@ const WriteGed = ({
             <td>
               <input
                 type="number"
-                value={scienceScore}
-                step="0.01"
+                value={scienceScore.toString()}
+                step="0.1"
                 onChange={(e) => {
                   handleIsChanged(true);
                   handleScienceScore(numberCheck(e.target.value || "0"));
@@ -108,8 +108,8 @@ const WriteGed = ({
             <td>
               <input
                 type="number"
-                step="0.01"
-                value={otherScore}
+                step="0.1"
+                value={otherScore.toString()}
                 onChange={(e) => {
                   handleIsChanged(true);
                   handleOtherScore(numberCheck(e.target.value || "0"));

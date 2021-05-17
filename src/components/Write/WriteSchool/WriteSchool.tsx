@@ -274,7 +274,7 @@ const WriteSchool = ({
               <input
                 maxLength={4}
                 className="school-area-textInput"
-                value={graduatedDate}
+                value={graduatedDate.toString()}
                 onChange={(e) =>
                   setGraduatedDate(
                     numberCheck(
@@ -297,7 +297,7 @@ const WriteSchool = ({
                   type="number"
                   maxLength={4}
                   className="school-area-textInput"
-                  value={graduatedDate}
+                  value={graduatedDate.toString()}
                   onChange={(e) =>
                     setGraduatedDate(
                       numberCheck(

@@ -67,7 +67,7 @@ const WriteAdditional = ({
           <div>
             <input
               type="number"
-              value={volunteer1}
+              value={volunteer1.toString()}
               onChange={(e) => {
                 handleVolunteer1(numberCheck(e.target.value, 0, 500));
                 handleIsChanged(true);
@@ -77,7 +77,7 @@ const WriteAdditional = ({
           <div>
             <input
               type="number"
-              value={volunteer2}
+              value={volunteer2.toString()}
               onChange={(e) => {
                 handleVolunteer2(numberCheck(e.target.value, 0, 500));
                 handleIsChanged(true);
@@ -87,7 +87,7 @@ const WriteAdditional = ({
           <div>
             <input
               type="number"
-              value={volunteer3}
+              value={volunteer3.toString()}
               onChange={(e) => {
                 handleVolunteer3(numberCheck(e.target.value, 0, 500));
                 handleIsChanged(true);
@@ -213,7 +213,7 @@ const WriteAdditional = ({
           <div className="leader-content-select">
             <input
               type="number"
-              value={prize}
+              value={prize.toString()}
               onChange={(e) => {
                 handlePrize(numberCheck(e.target.value, 0, 100));
                 handleIsChanged(true);
