@@ -17,7 +17,7 @@ const numberCheck = (input: string, min?: number, max?: number): number => {
     return min;
   }
 
-  return result;
+  return isNaN(result) ? min || 0 : result;
 };
 
 export default numberCheck;
