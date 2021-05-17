@@ -5,6 +5,7 @@ import useStore from "lib/hooks/useStore";
 import { GetPostsResponse } from "util/types/Response";
 import Category from "util/enums/Category";
 import { PostType } from "util/types/PostType";
+import { toast } from "react-toastify";
 
 const FaqContainer = ({}) => {
   const [posts, setPosts] = useState<PostType[]>([]);
@@ -18,6 +19,7 @@ const FaqContainer = ({}) => {
   const { getPosts } = store.BoardStore;
   const { isAdmin } = store.AuthStore;
 
+  // 게시글 목록 조회
   const handleGetPosts = useCallback(async () => {
     await getPosts(Category.FAQ)
       .then((res: GetPostsResponse) => {
@@ -25,10 +27,11 @@ const FaqContainer = ({}) => {
         setFilteredPosts(res.data.posts);
       })
       .catch((err) => {
-        console.log(err);
+        toast.error("오류가 발생하였습니다.");
       });
   }, []);
 
+  // 게시글 검색
   const searchPostFilter = useCallback(() => {
     setFilteredPosts(
       posts.filter((post) => {

@@ -1,9 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useState,
-  useLayoutEffect,
-} from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
 import WriteSchool from "../../../components/Write/WriteSchool";
@@ -35,6 +30,7 @@ const WriteSchoolContainer = ({}) => {
     getSchoolInfo,
   } = store.WriteStore;
 
+  //변경사항 저장 함수
   const onSave = useCallback(async () => {
     let flag = true;
     if (
@@ -53,7 +49,7 @@ const WriteSchoolContainer = ({}) => {
         (gradeType === Grade.GRADUATED || gradeType === Grade.GED) &&
         Number(graduatedDate) < 2010
       ) {
-        toast.warn("올바른 년도를 입력해주세요.");
+        toast.warning("올바른 년도를 입력해주세요.");
         flag = false;
       }
       await editSchoolInfo(
@@ -76,7 +72,7 @@ const WriteSchoolContainer = ({}) => {
         });
       setIsChanged(false);
     } else {
-      toast.warn("빈칸을 채워주세요.");
+      toast.warning("빈칸을 채워주세요.");
       flag = false;
     }
     return flag;
@@ -92,6 +88,7 @@ const WriteSchoolContainer = ({}) => {
     teacherTel,
   ]);
 
+  //학교 정보 받아오기
   const getSchoolInfoCallback = useCallback(() => {
     getSchoolInfo()
       .then((res: SchoolInfoResponse) => {
@@ -110,7 +107,7 @@ const WriteSchoolContainer = ({}) => {
       });
   }, []);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     getSchoolInfoCallback();
   }, [getSchoolInfoCallback]);
 

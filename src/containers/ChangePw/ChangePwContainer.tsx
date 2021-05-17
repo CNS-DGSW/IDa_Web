@@ -29,15 +29,15 @@ const ChangePwContainer = ({}) => {
         })
         .catch((err) => {
           if (err.response?.status === 401) {
-            toast.warn("현재 비밀번호가 다릅니다.");
+            toast.warning("현재 비밀번호가 다릅니다.");
           } else {
             toast.error("서버 오류입니다");
           }
         });
     } else if (changePw === originPw) {
-      toast.warn("같은 비밀번호로 변경할 수 없습니다.");
+      toast.warning("같은 비밀번호로 변경할 수 없습니다.");
     } else {
-      toast.warn("새로운 비밀번호 확인이 다릅니다.");
+      toast.warning("새로운 비밀번호 확인이 다릅니다.");
     }
   }, [checkPw, changePw, originPw]);
 

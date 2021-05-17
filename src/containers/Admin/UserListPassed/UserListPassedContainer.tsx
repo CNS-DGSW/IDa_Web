@@ -7,6 +7,7 @@ import { ListPassed } from "util/types/UserList";
 import { handleAdmin } from "lib/handleErrors";
 import ExcelApi from "assets/api/ExcelApi";
 import ListPassedCategory from "util/enums/ListPassedCategory";
+import { toast } from "react-toastify";
 
 const UserListPassedContainer = ({}) => {
   const { store } = useStore();
@@ -20,6 +21,7 @@ const UserListPassedContainer = ({}) => {
 
   const [passedStatus, setPassedStatus] = useState<ListPassed[]>([]);
 
+  // 지원자 합격 여부 받아오기
   const tryGetUserListPassed = useCallback(() => {
     getUserListPassed(
       listPassed === ListPassedCategory.Final ? true : undefined
@@ -32,22 +34,24 @@ const UserListPassedContainer = ({}) => {
       });
   }, [listPassed]);
 
+  // 1차 합격자 또는 2차 합격자 엑셀 다운
   const tryDownExcel = (key: string) => {
     switch (key) {
       case "first":
         GetFirstSelection().catch((err) => {
-          console.log(err);
+          toast.error("오류가 발생하였습니다.");
         });
         break;
 
       case "final":
         GetSecondSelection().catch((err) => {
-          console.log(err);
+          toast.error("오류가 발생하였습니다.");
         });
         break;
     }
   };
 
+  // 1차 또는 최종 카테고리 선택
   const selectListPassed = useCallback(
     (index: string) => {
       if (index === "0") {

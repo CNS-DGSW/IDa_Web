@@ -59,9 +59,10 @@ const HandlePostContainer = ({
     },
   });
 
+  // 게시글 생성
   const handleCreatePost = useCallback(async () => {
     if (!title && !content) {
-      toast.warn("빈칸을 채워주세요.");
+      toast.warning("빈칸을 채워주세요.");
     } else {
       await createPost(category, title, content)
         .then((res) => {
@@ -71,10 +72,10 @@ const HandlePostContainer = ({
         })
         .catch((err) => {
           if (err.response?.status === 410) {
-            toast.warn("로그인이 만료되었습니다.");
+            toast.warning("로그인이 만료되었습니다.");
             history.push("/login");
           } else if (err.response?.status === 401) {
-            toast.warn("로그인이 필요합니다.");
+            toast.warning("로그인이 필요합니다.");
             history.push("/login");
           } else {
             toast.error("서버 오류입니다");
@@ -83,10 +84,11 @@ const HandlePostContainer = ({
     }
   }, [title, content]);
 
+  // 답변 생성
   const handleCreateAnswer = useCallback(async () => {
     if (idx) {
       if (!content) {
-        toast.warn("빈칸을 채워주세요.");
+        toast.warning("빈칸을 채워주세요.");
       } else {
         await createAnswer(content, idx)
           .then((res) => {
@@ -96,12 +98,12 @@ const HandlePostContainer = ({
           })
           .catch((err) => {
             if (err.response?.status === 403) {
-              toast.warn("권한이 없습니다.");
+              toast.warning("권한이 없습니다.");
             } else if (err.response?.status === 410) {
-              toast.warn("로그인이 만료되었습니다.");
+              toast.warning("로그인이 만료되었습니다.");
               history.push("/login");
             } else if (err.response?.status === 401) {
-              toast.warn("로그인이 필요합니다.");
+              toast.warning("로그인이 필요합니다.");
               history.push("/login");
             } else {
               toast.error("서버 오류입니다");
@@ -111,10 +113,11 @@ const HandlePostContainer = ({
     }
   }, [content, isAnswer]);
 
+  // 게시글 수정
   const handleModifyPost = useCallback(async () => {
     if (idx) {
       if (!title && !content) {
-        toast.warn("빈칸을 채워주세요.");
+        toast.warning("빈칸을 채워주세요.");
       } else {
         await modifyPost(idx, title, content)
           .then((res) => {
@@ -124,12 +127,12 @@ const HandlePostContainer = ({
           })
           .catch((err) => {
             if (err.response?.status === 403) {
-              toast.warn("권한이 없습니다.");
+              toast.warning("권한이 없습니다.");
             } else if (err.response?.status === 410) {
-              toast.warn("로그인이 만료되었습니다.");
+              toast.warning("로그인이 만료되었습니다.");
               history.push("/login");
             } else if (err.response?.status === 401) {
-              toast.warn("로그인이 필요합니다.");
+              toast.warning("로그인이 필요합니다.");
               history.push("/login");
             } else {
               toast.error("서버 오류입니다");
@@ -139,6 +142,7 @@ const HandlePostContainer = ({
     }
   }, [title, content, idx]);
 
+  // 게시글 저장
   const handleSavePost = useCallback(() => {
     if (isAnswer) {
       handleCreateAnswer();
@@ -155,6 +159,7 @@ const HandlePostContainer = ({
     isModify,
   ]);
 
+  // 게시글 삭제
   const handleDeletePost = useCallback(async () => {
     if (idx) {
       Swal.fire({
@@ -174,12 +179,12 @@ const HandlePostContainer = ({
             })
             .catch((err) => {
               if (err.response?.status === 403) {
-                toast.warn("권한이 없거나 답변이 있어서 실패하였습니다.");
+                toast.warning("권한이 없거나 답변이 있어서 실패하였습니다.");
               } else if (err.response?.status === 410) {
-                toast.warn("로그인이 만료되었습니다.");
+                toast.warning("로그인이 만료되었습니다.");
                 history.push("/login");
               } else if (err.response?.status === 401) {
-                toast.warn("로그인이 필요합니다.");
+                toast.warning("로그인이 필요합니다.");
                 history.push("/login");
               } else {
                 toast.error("서버 오류입니다");
@@ -190,6 +195,7 @@ const HandlePostContainer = ({
     }
   }, [idx]);
 
+  // 게시글 정보 가져오기
   const getPostCallback = useCallback(async () => {
     if (idx) {
       await getPost(idx)

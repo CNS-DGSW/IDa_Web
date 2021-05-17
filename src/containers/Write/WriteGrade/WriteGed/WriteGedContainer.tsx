@@ -1,10 +1,11 @@
-import React, { useCallback, useLayoutEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
 import { useHistory, withRouter } from "react-router-dom";
 import WriteGed from "components/Write/WriteGed";
 import { handleGetWriteError } from "lib/handleErrors";
 
+// 검정고시 성적 입력
 const WriteGedContainer = ({}) => {
   const { store } = useStore();
 
@@ -27,6 +28,7 @@ const WriteGedContainer = ({}) => {
     getGed,
   } = store.WriteStore;
 
+  // 검정고시 점수 받아오기
   const getGedCallback = useCallback(async () => {
     await getGed()
       .then((res) => {
@@ -42,7 +44,7 @@ const WriteGedContainer = ({}) => {
       });
   }, [getGed]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     getGedCallback();
   }, [getGedCallback]);
 

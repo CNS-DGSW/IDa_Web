@@ -1,10 +1,11 @@
-import React, { useCallback, useLayoutEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { observer } from "mobx-react";
 import WriteAttend from "components/Write/WriteAttend";
 import useStore from "lib/hooks/useStore";
 import { useHistory, withRouter } from "react-router-dom";
 import { handleGetWriteError } from "lib/handleErrors";
 
+// 출결 입력
 const WriteGradeAttendContainer = ({}) => {
   const { store } = useStore();
 
@@ -42,6 +43,7 @@ const WriteGradeAttendContainer = ({}) => {
     getAttend,
   } = store.WriteStore;
 
+  // 출결 조회
   const getAttendCallback = useCallback(async () => {
     await getAttend()
       .then((res) => {
@@ -63,7 +65,7 @@ const WriteGradeAttendContainer = ({}) => {
       });
   }, []);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     getAttendCallback();
   }, [getAttendCallback]);
 

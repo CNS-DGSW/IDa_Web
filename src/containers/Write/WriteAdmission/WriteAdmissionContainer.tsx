@@ -1,9 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useState,
-  useLayoutEffect,
-} from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
 import WriteAdmission from "../../../components/Write/WriteAdmission";
@@ -28,6 +23,7 @@ const WriteAdmissionContainer = ({}) => {
   const [verteransNumber, setVerteransNumber] = useState<string>("");
   const [isChanged, setIsChanged] = useState<boolean>(false);
 
+  //변경 사항 저장 함수
   const onSave = useCallback(async () => {
     let flag = true;
     if (applyDetailType && applyType) {
@@ -54,6 +50,7 @@ const WriteAdmissionContainer = ({}) => {
     return flag;
   }, [applyDetailType, applyType, verteransCity, verteransNumber]);
 
+  //유저 정보 받아오는 함수
   const getApplyTypeCallback = useCallback(() => {
     getApplyType()
       .then((res) => {
@@ -68,7 +65,7 @@ const WriteAdmissionContainer = ({}) => {
       });
   }, []);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     getApplyTypeCallback();
   }, [getApplyTypeCallback]);
 

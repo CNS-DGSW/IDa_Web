@@ -104,9 +104,9 @@ const InterViewScoreContainer = ({}) => {
           })
           .catch((err) => {
             if (err.response?.status === 400) {
-              toast.warn("파일을 잘못선택하였습니다");
+              toast.warning("파일을 잘못선택하였습니다");
             } else if (err.response?.status === 500) {
-              toast.warn("서버 오류입니다.");
+              toast.error("서버 오류입니다.");
             }
           });
       }
@@ -126,9 +126,9 @@ const InterViewScoreContainer = ({}) => {
           })
           .catch((err) => {
             if (err.response?.status === 400) {
-              toast.warn("파일을 잘못선택하였습니다");
+              toast.warning("파일을 잘못선택하였습니다");
             } else if (err.response?.status === 500) {
-              toast.warn("서버 오류입니다.");
+              toast.error("서버 오류입니다.");
             }
           });
       }

@@ -1,9 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useState,
-} from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
 import WriteScore from "components/Write/WriteScore";
@@ -37,6 +32,7 @@ const WriteScoreContainer = ({
 
   const [isGed, setIsGed] = useState<boolean>(false);
 
+  //점수 받아오는 함수
   const getScoreCallback = useCallback(() => {
     if (gradeType) {
       getScore(Number(query.get("userIdx")))
@@ -56,7 +52,7 @@ const WriteScoreContainer = ({
     }
   }, [getScore, gradeType]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     getScoreCallback();
   }, [getScoreCallback]);
 

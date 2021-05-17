@@ -1,9 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useState,
-} from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
 import WriteIntroduction from "../../../components/Write/WriteIntroduction";
@@ -30,6 +25,7 @@ const WriteIntroductionContainer = ({}) => {
     editStudyPlan,
   } = store.WriteStore;
 
+  //변경사항 저장 함수
   const onSave = useCallback(async () => {
     let flag = true;
     if (selfIntroduce && studyPlan) {
@@ -48,12 +44,13 @@ const WriteIntroductionContainer = ({}) => {
         });
       setIsChanged(false);
     } else {
-      toast.warn("빈칸을 채워주세요.");
+      toast.warning("빈칸을 채워주세요.");
       flag = false;
     }
     return flag;
   }, [selfIntroduce, studyPlan]);
 
+  //자기소개서 받아오는 함수
   const getSelfIntroduceCallBack = useCallback(() => {
     getSelfIntroduce()
       .then((res: SelfIntroductionResponse) => {
@@ -64,6 +61,7 @@ const WriteIntroductionContainer = ({}) => {
       });
   }, []);
 
+  //학업계획서 받아오는 함수
   const getStudyPlanCallBack = useCallback(() => {
     getStudyPlan()
       .then((res: StudyPlanResponse) => {
@@ -74,7 +72,7 @@ const WriteIntroductionContainer = ({}) => {
       });
   }, []);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     getSelfIntroduceCallBack();
     getStudyPlanCallBack();
   }, []);

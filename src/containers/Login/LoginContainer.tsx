@@ -31,7 +31,7 @@ const LoginContainer = () => {
   //로그인
   const handleLogin = async () => {
     if (!id || !password) {
-      toast.warn("아이디 또는 비밀번호를 입력해 주세요");
+      toast.warning("아이디 또는 비밀번호를 입력해 주세요");
     } else {
       await tryLogin(id, password)
         .then(async (res: LoginResponse) => {
@@ -48,7 +48,7 @@ const LoginContainer = () => {
         .catch((err) => {
           if (err.response?.status === 401) {
             passwordInput.current?.focus();
-            toast.warn("이메일이나 비밀번호가 다릅니다");
+            toast.warning("이메일이나 비밀번호가 다릅니다");
           } else {
             toast.error("서버 오류입니다");
           }

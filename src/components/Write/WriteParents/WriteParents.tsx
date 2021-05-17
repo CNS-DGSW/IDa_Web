@@ -38,7 +38,11 @@ const WriteParents = ({
 }: WriteParentsProps) => {
   return (
     <>
-      <WriteContent title="보호자 정보를 입력해 주세요" onSave={onSave} isChanged={isChanged}>
+      <WriteContent
+        title="보호자 정보를 입력해 주세요"
+        onSave={onSave}
+        isChanged={isChanged}
+      >
         <div className="parent">
           <div className="parent-select">
             <div className="parent-select-box">
@@ -82,6 +86,8 @@ const WriteParents = ({
               <label>휴대폰</label>
               <div className="parent-select-box-area">
                 <input
+                  onPaste={() => false}
+                  autoComplete="off"
                   maxLength={20}
                   type="text"
                   className="parent-select-box-area-textInput"
@@ -105,7 +111,12 @@ const WriteParents = ({
             />
             {isOpen === true && (
               <Modal onClose={() => setIsOpen(false)}>
-                <DaumPostcode onComplete={handleComplete} width={"500"} height={"500"} autoClose={true} />
+                <DaumPostcode
+                  onComplete={handleComplete}
+                  width={"500"}
+                  height={"500"}
+                  autoClose={true}
+                />
               </Modal>
             )}
           </div>

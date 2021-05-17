@@ -3,10 +3,10 @@ import { observer } from "mobx-react";
 import Find from "components/Find";
 import useStore from "lib/hooks/useStore";
 import { useHistory } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const FindContainer = ({}) => {
+const FindContainer = () => {
   const [name, setName] = useState<string>("");
   // 이름
   const [email, setEmail] = useState<string>("");
@@ -32,17 +32,17 @@ const FindContainer = ({}) => {
     setEmailLoading(true);
     tryPwCode(email)
       .then(() => {
-        toast("메일 전송중입니다.");
+        toast.success("메일 전송중입니다.");
         setEmailLoading(false);
       })
       .catch((err) => {
         setEmailLoading(false);
         if (err.response?.status === 400) {
-          toast.warn("메일 형식이 아닙니다.");
+          toast.warning("메일 형식이 아닙니다.");
         } else if (err.response?.status === 404) {
-          toast.warn("존재하지 않는 메일입니다.");
+          toast.warning("가입되지 않은 이메일입니다.");
         } else {
-          console.log(err);
+          toast.error("오류가 발생하였습니다.");
         }
       });
   };
@@ -50,18 +50,20 @@ const FindContainer = ({}) => {
   // 새로운 비밀번호, 이메일로 받은 코드 보내주는 함수
   const handleChangePw = () => {
     if (newPw !== checkPw) {
-      toast("Wow so easy !");
+      toast.warning("비밀번호가 일치하지 않습니다.");
     } else {
       tryChangePwByEmail(code, newPw)
         .then((res) => {
           history.push("/login");
-          toast("Wow so easy !");
+          toast.success("변경되었습니다.");
         })
         .catch((err) => {
-          if (err.response?.status === 409) {
-            console.log("메일 인증 해라");
+          if (err.response?.status === 401) {
+            toast.warning("이메일 인증이 되지 않았습니다.");
+          } else if (err.response?.status === 404) {
+            toast.warning("가입되지 않은 이메일입니다.");
           } else {
-            console.log(err);
+            toast.error("오류가 발생하였습니다.");
           }
         });
     }
@@ -84,7 +86,6 @@ const FindContainer = ({}) => {
         handlePwCode={handlePwCode}
         handleChangePw={handleChangePw}
       />
-      <ToastContainer />
     </>
   );
 };

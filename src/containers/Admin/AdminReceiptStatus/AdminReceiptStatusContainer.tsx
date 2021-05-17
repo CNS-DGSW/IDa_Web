@@ -19,6 +19,7 @@ const AdminReceiptStatusContainer = ({}) => {
     handleCancelSubmit,
   } = store.AdminStore;
 
+  //입학 전형 원부 받아오기
   const getReceiptStatusCallBack = useCallback(() => {
     getReceiptStatus()
       .then((res) => {

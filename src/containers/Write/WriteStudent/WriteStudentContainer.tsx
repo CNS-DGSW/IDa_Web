@@ -1,9 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useState,
-  useLayoutEffect,
-} from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import WriteStudent from "../../../components/Write/WriteStudent";
 import useStore from "lib/hooks/useStore";
@@ -47,7 +42,7 @@ const WriteStudentContainer = ({}) => {
 
   const onSave = useCallback(async () => {
     let flag = true;
-    if (name !== "" && birth !== "" && sex !== null && studentTel !== "") {
+    if (name !== "" && birth !== "" && sex !== null) {
       await editStudentInfo(name, birth, sex, studentTel).catch((err) => {
         handleWriteError(err, history);
         flag = false;
@@ -55,13 +50,13 @@ const WriteStudentContainer = ({}) => {
       handleName(name);
       setIsChanged(false);
     } else {
-      toast.warn("빈칸을 채워주세요.");
+      toast.warning("빈칸을 채워주세요.");
       flag = false;
     }
     return flag;
   }, [name, birth, sex, studentTel]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     getStudentInfoCallback();
   }, [getStudentInfoCallback]);
 

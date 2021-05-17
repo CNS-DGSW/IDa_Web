@@ -1,9 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useState,
-} from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
 import WriteParents from "../../../components/Write/WriteParents";
@@ -28,6 +23,7 @@ const WriteParentContainer = ({}) => {
 
   const { editParentInfo, getParentInfo } = store.WriteStore;
 
+  //주소 설정 함수
   const handleComplete = (data: AddressData) => {
     let fullAddress = data.address;
     let extraAddress = "";
@@ -49,6 +45,7 @@ const WriteParentContainer = ({}) => {
     setPostCode(data.zonecode);
   };
 
+  //변경사항 저장 함수
   const onSave = useCallback(async () => {
     let flag = true;
     if (
@@ -70,12 +67,13 @@ const WriteParentContainer = ({}) => {
       });
       setIsChanged(false);
     } else {
-      toast.warn("빈칸을 채워주세요.");
+      toast.warning("빈칸을 채워주세요.");
       flag = false;
     }
     return flag;
   }, [address, parentName, parentRelation, parentTel, postCode]);
 
+  //학부모 정보 받아오기
   const getParentInfoCallback = useCallback(() => {
     getParentInfo()
       .then((res: ParentInfoResponse) => {
@@ -90,7 +88,7 @@ const WriteParentContainer = ({}) => {
       });
   }, []);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     getParentInfoCallback();
   }, [getParentInfoCallback]);
 

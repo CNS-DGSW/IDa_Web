@@ -10,6 +10,7 @@ import Category from "util/enums/Category";
 
 @autobind
 class BoardStore {
+  // 게시글 생성
   @action
   createPost = async (
     category: Category,
@@ -21,6 +22,7 @@ class BoardStore {
     return response;
   };
 
+  // Q&A 답변 생성
   @action
   createAnswer = async (
     content: string,
@@ -31,6 +33,7 @@ class BoardStore {
     return response;
   };
 
+  // 게시글 목록 받아오기
   @action
   getPosts = async (category: Category): Promise<GetPostsResponse> => {
     const response: GetPostsResponse = await PostApi.GetPosts(category);
@@ -38,6 +41,7 @@ class BoardStore {
     return response;
   };
 
+  // 게시글 상세 조회
   @action
   getPost = async (idx: number): Promise<GetPostResponse> => {
     const response: GetPostResponse = await PostApi.GetPost(idx);
@@ -45,6 +49,7 @@ class BoardStore {
     return response;
   };
 
+  // 게시글 삭제
   @action
   deletePost = async (idx: number): Promise<Response> => {
     const response = await PostApi.DeletePost(idx);
@@ -52,6 +57,7 @@ class BoardStore {
     return response;
   };
 
+  // 게시글 수정
   @action
   modifyPost = async (
     idx: number,
