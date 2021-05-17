@@ -1,6 +1,6 @@
 import React from "react";
-import NumericInput from "react-numeric-input";
 import "./WriteAttend.scss";
+import numberCheck from "lib/numberCheck";
 
 interface WriteAdmissionProps {
   absence1: number;
@@ -70,37 +70,31 @@ const WriteAttend = ({
         <div className="addition-attend">
           <div className="addition-attend-grade">미인정출석</div>
           <div>
-            <NumericInput
-              style={false}
-              min={0}
-              max={365}
+            <input
+              type="number"
               value={absence1}
               onChange={(e) => {
-                handleAbsence1(e || 0);
+                handleAbsence1(numberCheck(e.target.value, 0, 365));
                 handleIsChanged(true);
               }}
             />
           </div>
           <div>
-            <NumericInput
-              style={false}
-              min={0}
-              max={365}
+            <input
+              type="number"
               value={absence2}
               onChange={(e) => {
-                handleAbsence2(e || 0);
+                handleAbsence2(numberCheck(e.target.value, 0, 365));
                 handleIsChanged(true);
               }}
             />
           </div>
           <div>
-            <NumericInput
-              style={false}
-              min={0}
-              max={365}
+            <input
+              type="number"
               value={absence3}
               onChange={(e) => {
-                handleAbsence3(e || 0);
+                handleAbsence3(numberCheck(e.target.value, 0, 365));
                 handleIsChanged(true);
               }}
             />
@@ -110,37 +104,31 @@ const WriteAttend = ({
         <div className="addition-attend">
           <div className="addition-attend-grade">미인정지각</div>
           <div>
-            <NumericInput
-              style={false}
-              min={0}
-              max={365}
+            <input
+              type="number"
               value={lateness1}
               onChange={(e) => {
-                handleLateness1(e || 0);
+                handleLateness1(numberCheck(e.target.value, 0, 365));
                 handleIsChanged(true);
               }}
             />
           </div>
           <div>
-            <NumericInput
-              style={false}
-              min={0}
-              max={365}
+            <input
+              type="number"
               value={lateness2}
               onChange={(e) => {
-                handleLateness2(e || 0);
+                handleLateness2(numberCheck(e.target.value, 0, 365));
                 handleIsChanged(true);
               }}
             />
           </div>
           <div>
-            <NumericInput
-              style={false}
-              min={0}
-              max={365}
+            <input
+              type="number"
               value={lateness3}
               onChange={(e) => {
-                handleLateness3(e || 0);
+                handleLateness3(numberCheck(e.target.value, 0, 365));
                 handleIsChanged(true);
               }}
             />
@@ -150,37 +138,31 @@ const WriteAttend = ({
         <div className="addition-attend">
           <div className="addition-attend-grade">미인정조퇴</div>
           <div>
-            <NumericInput
-              style={false}
-              min={0}
-              max={365}
+            <input
+              type="number"
               value={earlyLeave1}
               onChange={(e) => {
-                handleEarlyLeave1(e || 0);
+                handleEarlyLeave1(numberCheck(e.target.value, 0, 365));
                 handleIsChanged(true);
               }}
             />
           </div>
           <div>
-            <NumericInput
-              style={false}
-              min={0}
-              max={365}
+            <input
+              type="number"
               value={earlyLeave2}
               onChange={(e) => {
-                handleEarlyLeave2(e || 0);
+                handleEarlyLeave2(numberCheck(e.target.value, 0, 365));
                 handleIsChanged(true);
               }}
             />
           </div>
           <div>
-            <NumericInput
-              style={false}
-              min={0}
-              max={365}
+            <input
+              type="number"
               value={earlyLeave3}
               onChange={(e) => {
-                handleEarlyLeave3(e || 0);
+                handleEarlyLeave3(numberCheck(e.target.value, 0, 365));
                 handleIsChanged(true);
               }}
             />
@@ -190,37 +172,31 @@ const WriteAttend = ({
         <div className="addition-attend">
           <div className="addition-attend-grade">미인정결과</div>
           <div>
-            <NumericInput
-              style={false}
-              min={0}
-              max={365}
+            <input
+              type="number"
               value={absenceLecture1}
               onChange={(e) => {
-                handleAbsenceLecture1(e || 0);
+                handleAbsenceLecture1(numberCheck(e.target.value, 0, 365));
                 handleIsChanged(true);
               }}
             />
           </div>
           <div>
-            <NumericInput
-              style={false}
-              min={0}
-              max={365}
+            <input
+              type="number"
               value={absenceLecture2}
               onChange={(e) => {
-                handleAbsenceLecture2(e || 0);
+                handleAbsenceLecture2(numberCheck(e.target.value, 0, 365));
                 handleIsChanged(true);
               }}
             />
           </div>
           <div>
-            <NumericInput
-              style={false}
-              min={0}
-              max={365}
+            <input
+              type="number"
               value={absenceLecture3}
               onChange={(e) => {
-                handleAbsenceLecture3(e || 0);
+                handleAbsenceLecture3(numberCheck(e.target.value, 0, 365));
                 handleIsChanged(true);
               }}
             />
