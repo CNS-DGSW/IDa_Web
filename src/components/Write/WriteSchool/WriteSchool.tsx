@@ -279,7 +279,7 @@ const WriteSchool = ({
                   setGraduatedDate(
                     numberCheck(
                       e.target.value,
-                      2000,
+                      0,
                       new Date().getFullYear()
                     ).toString()
                   )
@@ -302,7 +302,7 @@ const WriteSchool = ({
                     setGraduatedDate(
                       numberCheck(
                         e.target.value,
-                        2000,
+                        0,
                         new Date().getFullYear()
                       ).toString()
                     )

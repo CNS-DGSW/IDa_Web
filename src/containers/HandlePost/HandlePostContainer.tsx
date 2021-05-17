@@ -31,13 +31,8 @@ const HandlePostContainer = ({
   const history = useHistory();
 
   const { isAdmin, email } = store.AuthStore;
-  const {
-    createPost,
-    createAnswer,
-    getPost,
-    deletePost,
-    modifyPost,
-  } = store.BoardStore;
+  const { createPost, createAnswer, getPost, deletePost, modifyPost } =
+    store.BoardStore;
 
   const [isModify, setIsModify] = useState<boolean>(false);
   const [title, setTitle] = useState<string>("");
@@ -178,7 +173,9 @@ const HandlePostContainer = ({
               toast.success("삭제되었습니다.");
             })
             .catch((err) => {
-              if (err.response?.status === 403) {
+              if (err.response?.status === 400) {
+                toast.warning("올바르지 않은 값이 있습니다.");
+              } else if (err.response?.status === 403) {
                 toast.warning("권한이 없거나 답변이 있어서 실패하였습니다.");
               } else if (err.response?.status === 410) {
                 toast.warning("로그인이 만료되었습니다.");
