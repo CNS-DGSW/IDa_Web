@@ -23,17 +23,18 @@ const WriteSchoolContainer = ({}) => {
   const [isChanged, setIsChanged] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const {
-    gradeType,
-    handleGrade,
-    editSchoolInfo,
-    getSchoolInfo,
-  } = store.WriteStore;
+  const { gradeType, handleGrade, editSchoolInfo, getSchoolInfo } =
+    store.WriteStore;
 
   //변경사항 저장 함수
   const onSave = useCallback(async () => {
     let flag = true;
-    if (
+    const passRule = /^\d{3}-\d{3,4}-\d{4}$/;
+
+    if (!passRule.test(teacherTel) || !passRule.test(schoolTel)) {
+      toast.warning("올바르지 않은 전화번호입니다. '-' 를 포함하여주세요.");
+      flag = false;
+    } else if (
       (gradeType === Grade.GED && graduatedDate) ||
       (cityLocation &&
         cityName &&
