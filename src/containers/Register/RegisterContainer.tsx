@@ -67,7 +67,11 @@ const RegisterContainer = () => {
           history.push("login");
         })
         .catch((err) => {
-          if (err.response?.status === 403) {
+          if (err.response?.status === 406) {
+            toast.warning(
+              "나이 제한으로 인해 가입이 불가능합니다. 본인 명의로 가입해주세요."
+            );
+          } else if (err.response?.status === 403) {
             toast.warning("이미 원서 제출이 마감되었습니다.");
           } else if (err.response?.status === 409) {
             toast.warning("이미 사용중인 이메일입니다.");
