@@ -73,7 +73,11 @@ const UserList = ({
                       (typeof name.cityName === "string" &&
                         name.cityName.includes(search)) ||
                       (typeof name.schoolName === "string" &&
-                        name.schoolName.includes(search))
+                        name.schoolName.includes(search)) ||
+                      (typeof name.email === "string" &&
+                        name.email.includes(search)) ||
+                      (typeof name.studentTel === "string" &&
+                        name.studentTel.includes(search))
                   )
                   .map((filter, idx) => (
                     <tr key={idx}>

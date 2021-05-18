@@ -72,7 +72,9 @@ const AdminReceiptStatus = ({
                       (typeof name.submitCode === "string" &&
                         name.submitCode.includes(search)) ||
                       (typeof name.schoolName === "string" &&
-                        name.schoolName.includes(search))
+                        name.schoolName.includes(search)) ||
+                      (typeof name.applyTypeString === "string" &&
+                        name.applyTypeString.includes(search))
                   )
                   .map((filteredName, idx) => (
                     <tr key={idx}>
@@ -86,7 +88,7 @@ const AdminReceiptStatus = ({
                       </td>
                       <td>{filteredName.cityName}</td>
                       <td>{filteredName.schoolName}</td>
-                      <td>{filteredName.gradeType}</td>
+                      <td>{Convertor.GradeType(filteredName.gradeType)}</td>
                       <td>{filteredName.applyTypeString}</td>
                       <td>{filteredName.gradeScore}</td>
                       <td>{filteredName.absenceScore}</td>
