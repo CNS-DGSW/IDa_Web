@@ -21,6 +21,8 @@ const WriteContainer = ({}) => {
   useEffect(() => {
     if (Number(query.get("userIdx"))) {
       handleUserIdx(Number(query.get("userIdx")));
+    } else {
+      handleUserIdx(null);
     }
   }, [search]);
 

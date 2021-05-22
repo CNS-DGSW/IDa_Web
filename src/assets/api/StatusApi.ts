@@ -9,8 +9,10 @@ class StatusApi {
     return data;
   }
 
-  async ChangeSubmit() {
-    const { data } = await Api.post("/status/changeSubmit");
+  async ChangeSubmit(userIdx?: number | null) {
+    const { data } = await Api.post(
+      `/status/changeSubmit${userIdx !== null && "?userIdx=" + userIdx}`
+    );
 
     return data;
   }
