@@ -353,7 +353,9 @@ class UserApi {
   }
 
   async SearchSchool(schoolName: string) {
-    const { data } = await Api.get(`/school/searchSchool?query=${schoolName}`);
+    const { data } = await Api.get(
+      encodeURI(`/school/searchSchool?query=${schoolName}`)
+    );
     return data;
   }
 }

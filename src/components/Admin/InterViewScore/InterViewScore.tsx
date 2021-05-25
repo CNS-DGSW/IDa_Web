@@ -64,26 +64,6 @@ const InterViewScore = ({
         </select>
 
         <div className="InterViewScore-checkBox-label">
-          <span>출력용 &amp; 서식</span>
-          <button onClick={() => tryDownExcel()} className="buttons">
-            다운로드
-          </button>
-        </div>
-
-        <div className="InterViewScore-checkBox-label">
-          <span>면접 점수</span>
-          <label htmlFor="input-file1" className="buttons">
-            업로드
-          </label>
-          <input
-            type="file"
-            id="input-file1"
-            className="input-file"
-            onChange={(e) => uploadFile(e)}
-          />
-        </div>
-
-        <div className="InterViewScore-checkBox-label">
           <span>팀 번호 서식 다운로드</span>
           <button onClick={() => tryGetNumberTeam()} className="buttons">
             다운로드
@@ -100,6 +80,26 @@ const InterViewScore = ({
             id="input-file2"
             className="input-file"
             onChange={(e) => tyrUploadTeam(e)}
+          />
+        </div>
+
+        <div className="InterViewScore-checkBox-label">
+          <span>출력용 &amp; 서식</span>
+          <button onClick={() => tryDownExcel()} className="buttons">
+            다운로드
+          </button>
+        </div>
+
+        <div className="InterViewScore-checkBox-label">
+          <span>면접 점수</span>
+          <label htmlFor="input-file1" className="buttons">
+            업로드
+          </label>
+          <input
+            type="file"
+            id="input-file1"
+            className="input-file"
+            onChange={(e) => uploadFile(e)}
           />
         </div>
       </div>
