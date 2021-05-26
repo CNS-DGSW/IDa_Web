@@ -42,7 +42,12 @@ const WriteStudentContainer = ({}) => {
 
   const onSave = useCallback(async () => {
     let flag = true;
-    if (name !== "" && birth !== "" && sex !== null) {
+    const passRule = /^\d{3}-\d{3,4}-\d{4}$/;
+
+    if (!passRule.test(studentTel)) {
+      toast.warning("올바르지 않은 전화번호입니다. '-' 를 포함하여주세요.");
+      flag = false;
+    } else if (name !== "" && birth !== "" && sex !== null) {
       await editStudentInfo(name, birth, sex, studentTel).catch((err) => {
         handleWriteError(err, history);
         flag = false;

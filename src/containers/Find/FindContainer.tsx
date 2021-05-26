@@ -37,7 +37,9 @@ const FindContainer = () => {
       })
       .catch((err) => {
         setEmailLoading(false);
-        if (err.response?.status === 400) {
+        if (err.response?.status === 406) {
+          toast.warning("현재 요청이 너무 많습니다. 잠시 후에 시도하세요.");
+        } else if (err.response?.status === 400) {
           toast.warning("메일 형식이 아닙니다.");
         } else if (err.response?.status === 404) {
           toast.warning("가입되지 않은 이메일입니다.");

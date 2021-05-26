@@ -27,9 +27,9 @@ class StatusStore {
   };
 
   @action
-  changeSubmit = async (): Promise<Response> => {
+  changeSubmit = async (userIdx?: number | null): Promise<Response> => {
     try {
-      const response: Response = await StatusApi.ChangeSubmit();
+      const response: Response = await StatusApi.ChangeSubmit(userIdx);
 
       return new Promise((resolve: (response: Response) => void, reject) => {
         resolve(response);

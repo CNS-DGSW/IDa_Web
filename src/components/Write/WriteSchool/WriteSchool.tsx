@@ -5,7 +5,7 @@ import Grade from "util/enums/Grade";
 import Modal from "components/common/Modal";
 import City from "models/City";
 import SearchSchoolContainer from "containers/SearchSchool/SearchSchoolContainer";
-import NumericInput from "react-numeric-input";
+import numberCheck from "lib/numberCheck";
 
 interface WriteSchoolProps {
   gradeType: Grade | null;
@@ -271,14 +271,19 @@ const WriteSchool = ({
           <div className="school">
             <div className="school-area">
               <label className="school-area-label">졸업년도</label>
-              <NumericInput
-                strict
-                max={new Date().getFullYear()}
-                style={false}
+              <input
                 maxLength={4}
                 className="school-area-textInput"
-                value={graduatedDate}
-                onChange={(e) => setGraduatedDate(e ? e.toString() : "")}
+                value={graduatedDate.toString()}
+                onChange={(e) =>
+                  setGraduatedDate(
+                    numberCheck(
+                      e.target.value,
+                      0,
+                      new Date().getFullYear()
+                    ).toString()
+                  )
+                }
               />
             </div>
           </div>
@@ -288,14 +293,20 @@ const WriteSchool = ({
             <div className="school">
               <div className="school-area">
                 <label className="school-area-label">합격년도</label>
-                <NumericInput
-                  strict
-                  max={new Date().getFullYear()}
-                  style={false}
+                <input
+                  type="number"
                   maxLength={4}
                   className="school-area-textInput"
-                  value={graduatedDate}
-                  onChange={(e) => setGraduatedDate(e ? e.toString() : "")}
+                  value={graduatedDate.toString()}
+                  onChange={(e) =>
+                    setGraduatedDate(
+                      numberCheck(
+                        e.target.value,
+                        0,
+                        new Date().getFullYear()
+                      ).toString()
+                    )
+                  }
                 />
               </div>
             </div>

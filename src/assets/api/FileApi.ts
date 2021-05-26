@@ -1,10 +1,15 @@
 import Api from "lib/customAxios";
+import FileDown from "lib/FileDown";
 
 class FileApi {
   async DownloadApplyInfo() {
-    const { data } = await Api.get("/file/download/apply");
+    const response = await Api.get("/file/download/apply", {
+      responseType: "blob",
+    });
 
-    return data;
+    FileDown(response);
+
+    return response;
   }
 }
 

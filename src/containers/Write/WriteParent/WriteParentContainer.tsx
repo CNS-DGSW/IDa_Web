@@ -48,7 +48,12 @@ const WriteParentContainer = ({}) => {
   //변경사항 저장 함수
   const onSave = useCallback(async () => {
     let flag = true;
-    if (
+    const passRule = /^\d{3}-\d{3,4}-\d{4}$/;
+
+    if (!passRule.test(parentTel)) {
+      toast.warning("올바르지 않은 전화번호입니다. '-' 를 포함하여주세요.");
+      flag = false;
+    } else if (
       parentName !== "" &&
       parentTel !== "" &&
       parentRelation !== null &&

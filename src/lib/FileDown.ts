@@ -10,7 +10,7 @@ const FileDown = (response: any) => {
       startFileNameIndex,
       headerLine.length
     );
-    fileDownload(response.data, decodeURI(filename));
+    fileDownload(response.data, decodeURI(filename.replace(/"/g, "")));
   }
 };
 

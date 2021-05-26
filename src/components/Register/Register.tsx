@@ -79,7 +79,7 @@ const Register = ({
               style={{ width: "44%" }}
             />
             <CustomInput
-              placeholder="ex) 2003-01-28"
+              placeholder={`ex) ${new Date().getFullYear() - 15}-01-01`}
               type="text"
               value={birth}
               setValue={setBirth}

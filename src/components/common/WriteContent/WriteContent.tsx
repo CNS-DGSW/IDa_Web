@@ -10,6 +10,7 @@ import {
   useHistory,
   withRouter,
 } from "react-router-dom";
+import useQuery from "lib/hooks/useQuery";
 
 interface WriteContentProps {
   title: string;
@@ -25,7 +26,7 @@ const WriteContent = ({
   isChanged,
 }: WriteContentProps & RouteComponentProps) => {
   const { store } = useStore();
-  const { page, pageHandle } = store.WriteStore;
+  const { page, pageHandle, userIdx } = store.WriteStore;
   const { changeSubmit } = store.StatusStore;
 
   const history = useHistory();
@@ -53,7 +54,7 @@ const WriteContent = ({
         });
       }
     },
-    [isChanged]
+    [isChanged, page, pageHandle]
   );
 
   const prevPage = useCallback(() => {
@@ -75,7 +76,7 @@ const WriteContent = ({
         }
       });
     }
-  }, [isChanged]);
+  }, [isChanged, page, pageHandle]);
 
   const changeSubmitCallback = useCallback(async () => {
     if (isChanged) {
@@ -91,7 +92,7 @@ const WriteContent = ({
       confirmButtonText: "확인",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await changeSubmit()
+        await changeSubmit(userIdx)
           .then(() => {
             history.push("/");
             toast.success("제출되었습니다.");
@@ -112,7 +113,7 @@ const WriteContent = ({
           });
       }
     });
-  }, [isChanged]);
+  }, [changeSubmit, history, isChanged, userIdx]);
 
   return (
     <>
@@ -133,7 +134,9 @@ const WriteContent = ({
               원서저장
             </div>
             <Link
-              to="/print?auto=false"
+              to={`/print?auto=false${
+                userIdx !== null && "&userIdx=" + userIdx
+              }`}
               target="_blank"
               className="writecontent-children-area-btn preview"
             >
@@ -141,7 +144,7 @@ const WriteContent = ({
             </Link>
             {page === 6 && (
               <Link
-                to="/print"
+                to={`/print${userIdx !== null && "?userIdx=" + userIdx}`}
                 target="_blank"
                 className="writecontent-children-area-btn prev"
               >
