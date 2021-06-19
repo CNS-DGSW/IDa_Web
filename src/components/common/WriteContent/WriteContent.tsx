@@ -10,7 +10,6 @@ import {
   useHistory,
   withRouter,
 } from "react-router-dom";
-import useQuery from "lib/hooks/useQuery";
 
 interface WriteContentProps {
   title: string;
@@ -127,7 +126,6 @@ const WriteContent = ({
               onClick={async () => {
                 if ((await onSave()) === true) {
                   toast.success("저장되었습니다.");
-                  nextPage(true);
                 }
               }}
             >
@@ -135,7 +133,7 @@ const WriteContent = ({
             </div>
             <Link
               to={`/print?auto=false${
-                userIdx !== null && "&userIdx=" + userIdx
+                userIdx !== null ? "&userIdx=" + userIdx : ""
               }`}
               target="_blank"
               className="writecontent-children-area-btn preview"
