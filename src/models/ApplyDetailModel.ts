@@ -86,9 +86,9 @@ const applyDetailModel = {
           description: "순직 공무원의 자녀",
         },
         {
-          name: "장애인(장애인 등록증 5급 이내) 가정 가족 구성원",
+          name: "장애인 가정 가족 구성원",
           value: ApplyDetail.FAMILY_WITH_DISABILITIES,
-          description: "장애의 정도가 심한 장애인 가정 가족 구성원",
+          description: "장애인 가정 가족 구성원",
         },
         {
           name: "농어촌거주",

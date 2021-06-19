@@ -31,8 +31,9 @@
 }
 
 .on {
-  background-color: $bg-blue;
-  color: $ft-white;
+  background-color: $bg-white;
+  border: 1px solid $bd-gray-700;
+  opacity: 0.7;
   width: 90%;
   height: 1.8rem;
   border: none;

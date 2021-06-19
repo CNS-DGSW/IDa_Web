@@ -40,6 +40,22 @@ const WriteStudentContainer = ({}) => {
       });
   }, []);
 
+  // 전화번호 - 추가
+  useEffect(() => {
+    if (studentTel) {
+      if (studentTel.length === 10) {
+        setStudentTel(studentTel.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"));
+      }
+      if (studentTel.length === 13) {
+        setStudentTel(
+          studentTel
+            .replace(/-/g, "")
+            .replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")
+        );
+      }
+    }
+  }, [studentTel]);
+
   const onSave = useCallback(async () => {
     let flag = true;
     const passRule = /^\d{3}-\d{3,4}-\d{4}$/;
@@ -64,21 +80,6 @@ const WriteStudentContainer = ({}) => {
   useEffect(() => {
     getStudentInfoCallback();
   }, [getStudentInfoCallback]);
-
-  useEffect(() => {
-    if (studentTel) {
-      if (studentTel.length === 10) {
-        setStudentTel(studentTel.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"));
-      }
-      if (studentTel.length === 13) {
-        setStudentTel(
-          studentTel
-            .replace(/-/g, "")
-            .replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")
-        );
-      }
-    }
-  }, [studentTel]);
 
   useEffect(() => {
     return () => {

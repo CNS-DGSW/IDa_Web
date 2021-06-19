@@ -37,7 +37,7 @@ const WritePrintParent = ({
   return (
     <div className="print-parent">
       <div className="print-parent-title">
-        2021학년도 사회통합전형 부정입학 방지를 위한
+        {new Date().getFullYear() + 1}학년도 사회통합전형 부정입학 방지를 위한
         <b>학부모 확인서</b>
       </div>
       <table>
@@ -137,10 +137,10 @@ const WritePrintParent = ({
               </div>
               <div>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;보호자
-                : {name} &nbsp;&nbsp;
+                : {parentName} &nbsp;&nbsp;
                 <b className="sign">(서명)</b>
               </div>
-              <div className="footer">
+              <div className="print-footer">
                 대구소프트웨어마이스터고등학교장 귀하
               </div>
             </td>

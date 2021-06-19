@@ -45,6 +45,22 @@ const WriteParentContainer = ({}) => {
     setPostCode(data.zonecode);
   };
 
+  // 전화번호 - 추가
+  useEffect(() => {
+    if (parentTel) {
+      if (parentTel.length === 10) {
+        setParentTel(parentTel.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"));
+      }
+      if (parentTel.length === 13) {
+        setParentTel(
+          parentTel
+            .replace(/-/g, "")
+            .replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")
+        );
+      }
+    }
+  }, [parentTel]);
+
   //변경사항 저장 함수
   const onSave = useCallback(async () => {
     let flag = true;
@@ -96,21 +112,6 @@ const WriteParentContainer = ({}) => {
   useEffect(() => {
     getParentInfoCallback();
   }, [getParentInfoCallback]);
-
-  useEffect(() => {
-    if (parentTel) {
-      if (parentTel.length === 10) {
-        setParentTel(parentTel.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"));
-      }
-      if (parentTel.length === 13) {
-        setParentTel(
-          parentTel
-            .replace(/-/g, "")
-            .replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")
-        );
-      }
-    }
-  }, [parentTel]);
 
   useEffect(() => {
     return () => {

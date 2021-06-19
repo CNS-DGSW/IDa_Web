@@ -64,9 +64,8 @@ const WritePrintContainer = ({}) => {
   const [schoolCode, setSchoolCode] = useState<string>("");
   const [cityName, setCityName] = useState<string>("");
   const [applyType, setApplyType] = useState<Apply | null>(null);
-  const [applyDetailType, setApplyDetailType] = useState<ApplyDetail | null>(
-    null
-  );
+  const [applyDetailType, setApplyDetailType] =
+    useState<ApplyDetail | null>(null);
   const [verteransCity, setVerteransCity] = useState<string>("");
   const [verteransNumber, setVerteransNumber] = useState<string>("");
   const [grade1, setGrade1] = useState<number>(0);
@@ -162,7 +161,7 @@ const WritePrintContainer = ({}) => {
     await getSchoolInfo().then((res: SchoolInfoResponse) => {
       setTeacherName(res.data.teacherName || "");
       setCityName(res.data.cityName || "");
-      setSchoolCode(res.data.graduatedDate || "");
+      setSchoolCode(res.data.schoolCode || "");
       setSchoolName(res.data.schoolName || "");
       setSchoolTel(res.data.schoolTel || "");
       setGradeType(res.data.gradeType || null);
