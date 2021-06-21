@@ -8,6 +8,7 @@ import { ParentInfoResponse } from "util/types/Response";
 import { useHistory, withRouter } from "react-router-dom";
 import { toast } from "react-toastify";
 import { handleGetWriteError, handleWriteError } from "lib/handleErrors";
+import moment from "moment";
 
 const WriteParentContainer = ({}) => {
   const { store } = useStore();
@@ -16,7 +17,9 @@ const WriteParentContainer = ({}) => {
   const [parentName, setParentName] = useState<string>("");
   const [parentRelation, setParentRelation] = useState<Relation | null>(null);
   const [parentTel, setParentTel] = useState<string>("");
+  const [parentBirth, setParentBirth] = useState<string>("");
   const [address, setAddress] = useState<string>("");
+  const [detailAddress, setDetailAddress] = useState<string>("");
   const [postCode, setPostCode] = useState<string>("");
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isChanged, setIsChanged] = useState<boolean>(false);
@@ -45,58 +48,7 @@ const WriteParentContainer = ({}) => {
     setPostCode(data.zonecode);
   };
 
-  //변경사항 저장 함수
-  const onSave = useCallback(async () => {
-    let flag = true;
-    const passRule = /^\d{3}-\d{3,4}-\d{4}$/;
-
-    if (!passRule.test(parentTel)) {
-      toast.warning("올바르지 않은 전화번호입니다. '-' 를 포함하여주세요.");
-      flag = false;
-    } else if (
-      parentName !== "" &&
-      parentTel !== "" &&
-      parentRelation !== null &&
-      address !== "" &&
-      postCode !== ""
-    ) {
-      await editParentInfo(
-        address,
-        parentName,
-        parentRelation,
-        parentTel,
-        postCode
-      ).catch((err) => {
-        handleWriteError(err, history);
-        flag = false;
-      });
-      setIsChanged(false);
-    } else {
-      toast.warning("빈칸을 채워주세요.");
-      flag = false;
-    }
-    return flag;
-  }, [address, parentName, parentRelation, parentTel, postCode]);
-
-  //학부모 정보 받아오기
-  const getParentInfoCallback = useCallback(() => {
-    getParentInfo()
-      .then((res: ParentInfoResponse) => {
-        setAddress(res.data.address || "");
-        setParentName(res.data.parentName || "");
-        setParentRelation(res.data.parentRelation);
-        setParentTel(res.data.parentTel || "");
-        setPostCode(res.data.postCode || "");
-      })
-      .catch((err) => {
-        handleGetWriteError(err, history);
-      });
-  }, []);
-
-  useEffect(() => {
-    getParentInfoCallback();
-  }, [getParentInfoCallback]);
-
+  // 전화번호 - 추가
   useEffect(() => {
     if (parentTel) {
       if (parentTel.length === 10) {
@@ -112,12 +64,84 @@ const WriteParentContainer = ({}) => {
     }
   }, [parentTel]);
 
+  //변경사항 저장 함수
+  const onSave = useCallback(async () => {
+    let flag = true;
+    const passRule = /^\d{3}-\d{3,4}-\d{4}$/;
+
+    if (!passRule.test(parentTel)) {
+      toast.warning("올바르지 않은 전화번호입니다. '-' 를 포함하여주세요.");
+      flag = false;
+    } else if (
+      parentName !== "" &&
+      parentTel !== "" &&
+      parentRelation !== null &&
+      parentBirth !== "" &&
+      address !== "" &&
+      postCode !== ""
+    ) {
+      await editParentInfo(
+        address,
+        parentName,
+        parentRelation,
+        parentBirth,
+        parentTel,
+        detailAddress,
+        postCode
+      ).catch((err) => {
+        handleWriteError(err, history);
+        flag = false;
+      });
+      setIsChanged(false);
+    } else {
+      toast.warning("빈칸을 채워주세요.");
+      flag = false;
+    }
+    return flag;
+  }, [
+    parentTel,
+    parentName,
+    parentRelation,
+    parentBirth,
+    address,
+    postCode,
+    editParentInfo,
+    detailAddress,
+    history,
+  ]);
+
+  //학부모 정보 받아오기
+  const getParentInfoCallback = useCallback(() => {
+    getParentInfo()
+      .then((res: ParentInfoResponse) => {
+        setAddress(res.data.address || "");
+        setParentName(res.data.parentName || "");
+        setParentRelation(res.data.parentRelation);
+        setParentTel(res.data.parentTel || "");
+        setParentBirth(
+          res.data.parentBirth !== null
+            ? moment(res.data.parentBirth).format("yyyy-MM-DD")
+            : ""
+        );
+        setPostCode(res.data.postCode || "");
+        setDetailAddress(res.data.detailAddress || "");
+      })
+      .catch((err) => {
+        handleGetWriteError(err, history);
+      });
+  }, [getParentInfo, history]);
+
+  useEffect(() => {
+    getParentInfoCallback();
+  }, [getParentInfoCallback]);
+
   useEffect(() => {
     return () => {
       setAddress("");
       setParentTel("");
       setParentName("");
       setParentRelation(null);
+      setParentBirth("");
       setPostCode("");
     };
   }, []);
@@ -131,6 +155,10 @@ const WriteParentContainer = ({}) => {
         setParentRelation={setParentRelation}
         parentTel={parentTel}
         setParentTel={setParentTel}
+        parentBirth={parentBirth}
+        setParentBirth={setParentBirth}
+        detailAddress={detailAddress}
+        setDetailAddress={setDetailAddress}
         address={address}
         handleComplete={handleComplete}
         isOpen={isOpen}

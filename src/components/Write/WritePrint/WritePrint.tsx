@@ -40,6 +40,7 @@ interface WritePrintProps {
   name: string;
   birth: string;
   studentTel: string;
+  parentBirth: string;
   parentName: string;
   parentRelation: Relation | null;
   parentTel: string;
@@ -105,6 +106,7 @@ const WritePrint = ({
   name,
   birth,
   studentTel,
+  parentBirth,
   parentName,
   parentRelation,
   parentTel,
@@ -333,6 +335,7 @@ const WritePrint = ({
             <div className="print-page">
               <WritePrintParent
                 name={name}
+                parentBirth={parentBirth}
                 parentName={parentName}
                 birth={birth}
                 parentRelation={parentRelation}

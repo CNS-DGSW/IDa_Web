@@ -111,7 +111,7 @@ const WriteAdditional = ({
             (전교 학생회장, 전교 학생부회장, 학급반장)
           </div>
           <div className="leader-box-text">
-            재학 중 교내 모범상을 수상 <br /> (모범, 선행, 효행, 공로 등)
+            재학 중 교내 모범상을 수상 <br /> (모범, 선행, 효행, 공로, 노력 등)
           </div>
         </div>
 

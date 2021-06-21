@@ -27,7 +27,9 @@ const Main = ({
               <p className="Main-content-Title-Sub">
                 대구소프트웨어마이스터고등학교
               </p>
-              <p className="Main-content-Title-Main">2021 입학원서 접수</p>
+              <p className="Main-content-Title-Main">
+                {new Date().getFullYear() + 1}학년도 신입생 입학원서 접수
+              </p>
               <div
                 className="Main-content-btn"
                 onClick={() => history.push("/Write")}
@@ -65,7 +67,7 @@ const Main = ({
                     .format("yyyy. MM. DD(ddd) HH:mm")}`}
                 </p>
                 <p className="Content-box-area-small">
-                  우편접수는 원서접수 마감 시간 이내에 도착해야 합니다.
+                  서류는 반드시 원서접수 마감 시간 이내에 도착해야 합니다.
                 </p>
               </div>
             </MainContent>

@@ -396,7 +396,11 @@ const WritePrintUser = ({
           대구소프트웨어마이스터고등학교장 귀하
         </b>
       </div>
-      <div className="write-print-user-cut">절취선</div>
+      <div className="write-print-user-cut">
+        <div className="write-print-user-cut-seal" />절
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 취
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 선
+      </div>
 
       <div className="write-print-user-cutting">
         <div className="write-print-user-cutting-area">

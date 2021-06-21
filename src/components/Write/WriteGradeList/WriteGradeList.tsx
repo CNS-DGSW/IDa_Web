@@ -83,6 +83,7 @@ const WriteGradeList = ({
                 }
               >
                 자유학기제
+                {freeSem.freeSem11 ? "o" : "x"}
               </button>
             </th>
             <th>
@@ -93,6 +94,7 @@ const WriteGradeList = ({
                 }
               >
                 자유학기제
+                {freeSem.freeSem12 ? "o" : "x"}
               </button>
             </th>
             <th>
@@ -103,6 +105,7 @@ const WriteGradeList = ({
                 }
               >
                 자유학기제
+                {freeSem.freeSem21 ? "o" : "x"}
               </button>
             </th>
             <th>
@@ -113,6 +116,7 @@ const WriteGradeList = ({
                 }
               >
                 자유학기제
+                {freeSem.freeSem22 ? "o" : "x"}
               </button>
             </th>
             <th>
@@ -123,6 +127,7 @@ const WriteGradeList = ({
                 }
               >
                 자유학기제
+                {freeSem.freeSem31 ? "o" : "x"}
               </button>
             </th>
             <th>
@@ -137,6 +142,7 @@ const WriteGradeList = ({
                 }
               >
                 자유학기제
+                {freeSem.freeSem32 ? "o" : "x"}
               </button>
             </th>
           </tr>

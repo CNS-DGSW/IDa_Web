@@ -10,7 +10,7 @@ interface AdminReceiptStatusProps {
   setSearch: React.Dispatch<React.SetStateAction<string>>;
   search: string;
   getReceiptStatusExcel: () => Promise<any>;
-  handleCancelSubmit: (userIdx: number) => Promise<Response>;
+  handleCancelSubmit: (userIdx: number, name: string) => Promise<void>;
 }
 
 const AdminReceiptStatus = ({
@@ -100,19 +100,9 @@ const AdminReceiptStatus = ({
                         {filteredName.isSubmit ? (
                           <button
                             onClick={() => {
-                              handleCancelSubmit(filteredName.userIdx).then(
-                                (res) => {
-                                  if (res.status === 200) {
-                                    const arr = receiptStatus.slice();
-                                    arr[
-                                      arr.findIndex(
-                                        (data) =>
-                                          data.userIdx === filteredName.userIdx
-                                      )
-                                    ].isSubmit = false;
-                                    setReceiptStatus(arr);
-                                  }
-                                }
+                              handleCancelSubmit(
+                                filteredName.userIdx,
+                                filteredName.name
                               );
                             }}
                           >
@@ -150,17 +140,7 @@ const AdminReceiptStatus = ({
                       {res.isSubmit ? (
                         <button
                           onClick={() => {
-                            handleCancelSubmit(res.userIdx).then((response) => {
-                              if (response.status === 200) {
-                                const arr = receiptStatus.slice();
-                                arr[
-                                  arr.findIndex(
-                                    (data) => data.userIdx === res.userIdx
-                                  )
-                                ].isSubmit = false;
-                                setReceiptStatus(arr);
-                              }
-                            });
+                            handleCancelSubmit(res.userIdx, res.name);
                           }}
                         >
                           제출취소

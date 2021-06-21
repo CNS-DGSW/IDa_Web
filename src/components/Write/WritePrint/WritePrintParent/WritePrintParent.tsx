@@ -9,6 +9,7 @@ import "./WritePrintParent.scss";
 
 interface WritePrintParentProps {
   name: string;
+  parentBirth: string;
   parentName: string;
   parentRelation: Relation | null;
   postCode: string;
@@ -28,6 +29,7 @@ const WritePrintParent = ({
   parentRelation,
   postCode,
   address,
+  parentBirth,
   applyType,
   applyDetailType,
   gradeType,
@@ -37,7 +39,7 @@ const WritePrintParent = ({
   return (
     <div className="print-parent">
       <div className="print-parent-title">
-        2021학년도 사회통합전형 부정입학 방지를 위한
+        {new Date().getFullYear() + 1}학년도 사회통합전형 부정입학 방지를 위한
         <b>학부모 확인서</b>
       </div>
       <table>
@@ -62,7 +64,7 @@ const WritePrintParent = ({
             <td>보호자</td>
             <td>{parentName}</td>
             <td rowSpan={2}>보호자</td>
-            <td rowSpan={2} />
+            <td rowSpan={2}>{parentBirth}</td>
           </tr>
           <tr>
             <td>관계</td>
@@ -110,7 +112,7 @@ const WritePrintParent = ({
                 ) &&
                   `유형 (${Convertor.ApplyDetailType(
                     applyDetailType
-                  )}), 소득분위 (     ) 분위`}
+                  )})\n소득분위 8분위 이하에 (해당됨 □ / 해당되지 않음 □)`}
               </span>
             </td>
           </tr>
@@ -137,10 +139,10 @@ const WritePrintParent = ({
               </div>
               <div>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;보호자
-                : {name} &nbsp;&nbsp;
+                : {parentName} &nbsp;&nbsp;
                 <b className="sign">(서명)</b>
               </div>
-              <div className="footer">
+              <div className="print-footer">
                 대구소프트웨어마이스터고등학교장 귀하
               </div>
             </td>

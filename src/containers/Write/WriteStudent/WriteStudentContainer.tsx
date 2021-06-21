@@ -31,7 +31,11 @@ const WriteStudentContainer = ({}) => {
     await getStudentInfo(Number(query.get("userIdx")))
       .then((res: UserInfoResponse) => {
         setName(res.data.name || "");
-        setBirth(moment(res.data.birth || "").format("yyyy-MM-DD"));
+        setBirth(
+          isNaN(Date.parse(res.data.birth ? res.data.birth.toString() : ""))
+            ? ""
+            : moment(res.data.birth).format("yyyy-MM-DD")
+        );
         setSex(res.data.sex);
         setStudentTel(res.data.studentTel || "");
       })
@@ -39,6 +43,22 @@ const WriteStudentContainer = ({}) => {
         handleGetWriteError(err, history);
       });
   }, []);
+
+  // 전화번호 - 추가
+  useEffect(() => {
+    if (studentTel) {
+      if (studentTel.length === 10) {
+        setStudentTel(studentTel.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"));
+      }
+      if (studentTel.length === 13) {
+        setStudentTel(
+          studentTel
+            .replace(/-/g, "")
+            .replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")
+        );
+      }
+    }
+  }, [studentTel]);
 
   const onSave = useCallback(async () => {
     let flag = true;
@@ -64,21 +84,6 @@ const WriteStudentContainer = ({}) => {
   useEffect(() => {
     getStudentInfoCallback();
   }, [getStudentInfoCallback]);
-
-  useEffect(() => {
-    if (studentTel) {
-      if (studentTel.length === 10) {
-        setStudentTel(studentTel.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"));
-      }
-      if (studentTel.length === 13) {
-        setStudentTel(
-          studentTel
-            .replace(/-/g, "")
-            .replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")
-        );
-      }
-    }
-  }, [studentTel]);
 
   useEffect(() => {
     return () => {

@@ -52,6 +52,14 @@ const RegisterContainer = () => {
     }
   }, [email, emailLoading]);
 
+  useEffect(() => {
+    if (birth) {
+      setBirth(
+        birth.replace(/-/g, "").replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3")
+      );
+    }
+  }, [birth]);
+
   //회원가입하기
   const handleRegister = useCallback(async () => {
     if (!email || !pw || !checkPw || !name || !birth) {

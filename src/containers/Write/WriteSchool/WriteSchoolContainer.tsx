@@ -26,6 +26,36 @@ const WriteSchoolContainer = ({}) => {
   const { gradeType, handleGrade, editSchoolInfo, getSchoolInfo } =
     store.WriteStore;
 
+  useEffect(() => {
+    if (schoolTel) {
+      if (schoolTel.length === 10) {
+        setSchoolTel(schoolTel.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"));
+      }
+      if (schoolTel.length === 13) {
+        setSchoolTel(
+          schoolTel
+            .replace(/-/g, "")
+            .replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")
+        );
+      }
+    }
+  }, [schoolTel]);
+
+  useEffect(() => {
+    if (teacherTel) {
+      if (teacherTel.length === 10) {
+        setTeacherTel(teacherTel.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"));
+      }
+      if (teacherTel.length === 13) {
+        setTeacherTel(
+          teacherTel
+            .replace(/-/g, "")
+            .replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")
+        );
+      }
+    }
+  }, [teacherTel]);
+
   //변경사항 저장 함수
   const onSave = useCallback(async () => {
     let flag = true;
@@ -111,36 +141,6 @@ const WriteSchoolContainer = ({}) => {
   useEffect(() => {
     getSchoolInfoCallback();
   }, [getSchoolInfoCallback]);
-
-  useEffect(() => {
-    if (schoolTel) {
-      if (schoolTel.length === 10) {
-        setSchoolTel(schoolTel.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"));
-      }
-      if (schoolTel.length === 13) {
-        setSchoolTel(
-          schoolTel
-            .replace(/-/g, "")
-            .replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")
-        );
-      }
-    }
-  }, [schoolTel]);
-
-  useEffect(() => {
-    if (teacherTel) {
-      if (teacherTel.length === 10) {
-        setTeacherTel(teacherTel.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"));
-      }
-      if (teacherTel.length === 13) {
-        setTeacherTel(
-          teacherTel
-            .replace(/-/g, "")
-            .replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")
-        );
-      }
-    }
-  }, [teacherTel]);
 
   useEffect(() => {
     return () => {

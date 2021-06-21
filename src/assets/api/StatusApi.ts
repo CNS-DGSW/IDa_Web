@@ -11,7 +11,7 @@ class StatusApi {
 
   async ChangeSubmit(userIdx?: number | null) {
     const { data } = await Api.post(
-      `/status/changeSubmit${userIdx !== null && "?userIdx=" + userIdx}`
+      `/status/changeSubmit${userIdx !== null ? "?userIdx=" + userIdx : ""}`
     );
 
     return data;

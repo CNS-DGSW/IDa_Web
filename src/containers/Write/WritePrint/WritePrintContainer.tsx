@@ -52,6 +52,7 @@ const WritePrintContainer = ({}) => {
   const [name, setName] = useState<string>("");
   const [birth, setBirth] = useState<string>("");
   const [studentTel, setStudentTel] = useState<string>("");
+  const [parentBirth, setParentBirth] = useState<string>("");
   const [parentName, setParentName] = useState<string>("");
   const [parentTel, setParentTel] = useState<string>("");
   const [address, setAddress] = useState<string>("");
@@ -64,9 +65,8 @@ const WritePrintContainer = ({}) => {
   const [schoolCode, setSchoolCode] = useState<string>("");
   const [cityName, setCityName] = useState<string>("");
   const [applyType, setApplyType] = useState<Apply | null>(null);
-  const [applyDetailType, setApplyDetailType] = useState<ApplyDetail | null>(
-    null
-  );
+  const [applyDetailType, setApplyDetailType] =
+    useState<ApplyDetail | null>(null);
   const [verteransCity, setVerteransCity] = useState<string>("");
   const [verteransNumber, setVerteransNumber] = useState<string>("");
   const [grade1, setGrade1] = useState<number>(0);
@@ -133,7 +133,11 @@ const WritePrintContainer = ({}) => {
     await getStudentInfo(Number(query.get("userIdx"))).then(
       (res: UserInfoResponse) => {
         setName(res.data.name || "");
-        setBirth(moment(res.data.birth || "").format("yyyy년 MM월 DD일"));
+        setBirth(
+          isNaN(Date.parse(res.data.birth ? res.data.birth.toString() : ""))
+            ? ""
+            : moment(res.data.birth).format("yyyy년 MM월 DD일")
+        );
         setStudentTel(res.data.studentTel || "");
       }
     );
@@ -153,6 +157,15 @@ const WritePrintContainer = ({}) => {
       setParentName(res.data.parentName || "");
       setParentRelation(res.data.parentRelation);
       setParentTel(res.data.parentTel || "");
+      setParentBirth(
+        isNaN(
+          Date.parse(
+            res.data.parentBirth ? res.data.parentBirth.toString() : ""
+          )
+        )
+          ? ""
+          : moment(res.data.parentBirth).format("yyyy년 MM월 DD일")
+      );
       setPostCode(res.data.postCode || "");
     });
   }, []);
@@ -162,7 +175,7 @@ const WritePrintContainer = ({}) => {
     await getSchoolInfo().then((res: SchoolInfoResponse) => {
       setTeacherName(res.data.teacherName || "");
       setCityName(res.data.cityName || "");
-      setSchoolCode(res.data.graduatedDate || "");
+      setSchoolCode(res.data.schoolCode || "");
       setSchoolName(res.data.schoolName || "");
       setSchoolTel(res.data.schoolTel || "");
       setGradeType(res.data.gradeType || null);
@@ -388,6 +401,7 @@ const WritePrintContainer = ({}) => {
         parentName={parentName}
         parentRelation={parentRelation}
         parentTel={parentTel}
+        parentBirth={parentBirth}
         address={address}
         postCode={postCode}
         cityName={cityName}

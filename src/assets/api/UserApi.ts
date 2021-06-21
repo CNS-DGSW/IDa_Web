@@ -80,7 +80,9 @@ class UserApi {
     address: string,
     parentName: string,
     parentRelation: Relation,
+    parentBirth: string,
     parentTel: string,
+    detailAddress: string,
     postCode: string,
     userIdx?: number | null
   ) {
@@ -89,6 +91,8 @@ class UserApi {
       parentName,
       parentRelation,
       parentTel,
+      parentBirth,
+      detailAddress,
       postCode,
     };
 

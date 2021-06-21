@@ -69,6 +69,8 @@ export interface ParentInfoResponse extends Response {
     address: string;
     parentName: string;
     parentRelation: Relation;
+    detailAddress: string;
+    parentBirth: Date;
     parentTel: string;
     postCode: string;
   };
