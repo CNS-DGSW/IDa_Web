@@ -398,14 +398,18 @@ class WriteStore {
     address: string,
     parentName: string,
     parentRelation: Relation,
+    parentBirth: string,
     parentTel: string,
+    detailAddress: string,
     postcode: string
   ): Promise<Response> => {
     const response: Response = await UserApi.EditParentInfo(
       address,
       parentName,
       parentRelation,
+      parentBirth,
       parentTel,
+      detailAddress,
       postcode,
       this.userIdx
     );

@@ -6,6 +6,10 @@ import WriteContent from "../../common/WriteContent";
 import "./WriteParents.scss";
 
 interface WriteParentsProps {
+  detailAddress: string;
+  setDetailAddress: React.Dispatch<React.SetStateAction<string>>;
+  parentBirth: string;
+  setParentBirth: React.Dispatch<React.SetStateAction<string>>;
   parentName: string;
   setParentName: React.Dispatch<React.SetStateAction<string>>;
   parentRelation: Relation | null;
@@ -22,6 +26,10 @@ interface WriteParentsProps {
 }
 
 const WriteParents = ({
+  detailAddress,
+  setDetailAddress,
+  parentBirth,
+  setParentBirth,
   parentName,
   setParentName,
   parentRelation,
@@ -99,7 +107,22 @@ const WriteParents = ({
                 />
               </div>
             </div>
+            <div className="parent-select-box">
+              <label className="parent-select-box-label">생년월일</label>
+              <div className="student-select-box-area">
+                <input
+                  type="date"
+                  className="student-select-box-area-textInput"
+                  value={parentBirth}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    setParentBirth(e.target.value);
+                    setIsChanged(true);
+                  }}
+                />
+              </div>
+            </div>
           </div>
+
           <div className="parent-text">
             <label>주소</label>
             <input
@@ -119,6 +142,15 @@ const WriteParents = ({
                 />
               </Modal>
             )}
+          </div>
+          <div className="parent-text">
+            <label>상세 주소</label>
+            <input
+              type="text"
+              className="parent-select-box-area-textInput"
+              value={detailAddress}
+              onChange={(e) => setDetailAddress(e.target.value)}
+            />
           </div>
         </div>
       </WriteContent>

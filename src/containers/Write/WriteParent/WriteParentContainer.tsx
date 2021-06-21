@@ -8,6 +8,7 @@ import { ParentInfoResponse } from "util/types/Response";
 import { useHistory, withRouter } from "react-router-dom";
 import { toast } from "react-toastify";
 import { handleGetWriteError, handleWriteError } from "lib/handleErrors";
+import moment from "moment";
 
 const WriteParentContainer = ({}) => {
   const { store } = useStore();
@@ -16,7 +17,9 @@ const WriteParentContainer = ({}) => {
   const [parentName, setParentName] = useState<string>("");
   const [parentRelation, setParentRelation] = useState<Relation | null>(null);
   const [parentTel, setParentTel] = useState<string>("");
+  const [parentBirth, setParentBirth] = useState<string>("");
   const [address, setAddress] = useState<string>("");
+  const [detailAddress, setDetailAddress] = useState<string>("");
   const [postCode, setPostCode] = useState<string>("");
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isChanged, setIsChanged] = useState<boolean>(false);
@@ -73,6 +76,7 @@ const WriteParentContainer = ({}) => {
       parentName !== "" &&
       parentTel !== "" &&
       parentRelation !== null &&
+      parentBirth !== "" &&
       address !== "" &&
       postCode !== ""
     ) {
@@ -80,7 +84,9 @@ const WriteParentContainer = ({}) => {
         address,
         parentName,
         parentRelation,
+        parentBirth,
         parentTel,
+        detailAddress,
         postCode
       ).catch((err) => {
         handleWriteError(err, history);
@@ -92,7 +98,17 @@ const WriteParentContainer = ({}) => {
       flag = false;
     }
     return flag;
-  }, [address, parentName, parentRelation, parentTel, postCode]);
+  }, [
+    parentTel,
+    parentName,
+    parentRelation,
+    parentBirth,
+    address,
+    postCode,
+    editParentInfo,
+    detailAddress,
+    history,
+  ]);
 
   //학부모 정보 받아오기
   const getParentInfoCallback = useCallback(() => {
@@ -102,12 +118,18 @@ const WriteParentContainer = ({}) => {
         setParentName(res.data.parentName || "");
         setParentRelation(res.data.parentRelation);
         setParentTel(res.data.parentTel || "");
+        setParentBirth(
+          res.data.parentBirth !== null
+            ? moment(res.data.parentBirth).format("yyyy-MM-DD")
+            : ""
+        );
         setPostCode(res.data.postCode || "");
+        setDetailAddress(res.data.detailAddress || "");
       })
       .catch((err) => {
         handleGetWriteError(err, history);
       });
-  }, []);
+  }, [getParentInfo, history]);
 
   useEffect(() => {
     getParentInfoCallback();
@@ -119,6 +141,7 @@ const WriteParentContainer = ({}) => {
       setParentTel("");
       setParentName("");
       setParentRelation(null);
+      setParentBirth("");
       setPostCode("");
     };
   }, []);
@@ -132,6 +155,10 @@ const WriteParentContainer = ({}) => {
         setParentRelation={setParentRelation}
         parentTel={parentTel}
         setParentTel={setParentTel}
+        parentBirth={parentBirth}
+        setParentBirth={setParentBirth}
+        detailAddress={detailAddress}
+        setDetailAddress={setDetailAddress}
         address={address}
         handleComplete={handleComplete}
         isOpen={isOpen}

@@ -9,6 +9,7 @@ import "./WritePrintParent.scss";
 
 interface WritePrintParentProps {
   name: string;
+  parentBirth: string;
   parentName: string;
   parentRelation: Relation | null;
   postCode: string;
@@ -28,6 +29,7 @@ const WritePrintParent = ({
   parentRelation,
   postCode,
   address,
+  parentBirth,
   applyType,
   applyDetailType,
   gradeType,
@@ -62,7 +64,7 @@ const WritePrintParent = ({
             <td>보호자</td>
             <td>{parentName}</td>
             <td rowSpan={2}>보호자</td>
-            <td rowSpan={2} />
+            <td rowSpan={2}>{parentBirth}</td>
           </tr>
           <tr>
             <td>관계</td>
@@ -110,7 +112,7 @@ const WritePrintParent = ({
                 ) &&
                   `유형 (${Convertor.ApplyDetailType(
                     applyDetailType
-                  )}), 소득분위 (     ) 분위`}
+                  )})\n소득분위 8분위 이하에 (해당됨 □ / 해당되지 않음 □)`}
               </span>
             </td>
           </tr>

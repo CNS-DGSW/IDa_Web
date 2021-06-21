@@ -52,6 +52,7 @@ const WritePrintContainer = ({}) => {
   const [name, setName] = useState<string>("");
   const [birth, setBirth] = useState<string>("");
   const [studentTel, setStudentTel] = useState<string>("");
+  const [parentBirth, setParentBirth] = useState<string>("");
   const [parentName, setParentName] = useState<string>("");
   const [parentTel, setParentTel] = useState<string>("");
   const [address, setAddress] = useState<string>("");
@@ -132,7 +133,11 @@ const WritePrintContainer = ({}) => {
     await getStudentInfo(Number(query.get("userIdx"))).then(
       (res: UserInfoResponse) => {
         setName(res.data.name || "");
-        setBirth(moment(res.data.birth || "").format("yyyy년 MM월 DD일"));
+        setBirth(
+          isNaN(Date.parse(res.data.birth ? res.data.birth.toString() : ""))
+            ? ""
+            : moment(res.data.birth).format("yyyy년 MM월 DD일")
+        );
         setStudentTel(res.data.studentTel || "");
       }
     );
@@ -152,6 +157,15 @@ const WritePrintContainer = ({}) => {
       setParentName(res.data.parentName || "");
       setParentRelation(res.data.parentRelation);
       setParentTel(res.data.parentTel || "");
+      setParentBirth(
+        isNaN(
+          Date.parse(
+            res.data.parentBirth ? res.data.parentBirth.toString() : ""
+          )
+        )
+          ? ""
+          : moment(res.data.parentBirth).format("yyyy년 MM월 DD일")
+      );
       setPostCode(res.data.postCode || "");
     });
   }, []);
@@ -387,6 +401,7 @@ const WritePrintContainer = ({}) => {
         parentName={parentName}
         parentRelation={parentRelation}
         parentTel={parentTel}
+        parentBirth={parentBirth}
         address={address}
         postCode={postCode}
         cityName={cityName}

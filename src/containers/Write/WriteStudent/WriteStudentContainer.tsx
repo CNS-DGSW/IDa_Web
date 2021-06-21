@@ -31,7 +31,11 @@ const WriteStudentContainer = ({}) => {
     await getStudentInfo(Number(query.get("userIdx")))
       .then((res: UserInfoResponse) => {
         setName(res.data.name || "");
-        setBirth(moment(res.data.birth || "").format("yyyy-MM-DD"));
+        setBirth(
+          isNaN(Date.parse(res.data.birth ? res.data.birth.toString() : ""))
+            ? ""
+            : moment(res.data.birth).format("yyyy-MM-DD")
+        );
         setSex(res.data.sex);
         setStudentTel(res.data.studentTel || "");
       })
