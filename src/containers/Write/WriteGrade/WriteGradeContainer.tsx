@@ -1,9 +1,9 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import WriteGrade from "../../../components/Write/WriteGrades";
 import useStore from "lib/hooks/useStore";
 import { toast } from "react-toastify";
-import { useHistory, withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Grade from "util/enums/Grade";
 import { handleWriteError } from "lib/handleErrors";
 
@@ -27,6 +27,8 @@ const WriteGradeContainer = ({}) => {
     page,
   } = store.WriteStore;
 
+  const [saved, setSaved] = useState<boolean>(false);
+
   //변경사항 저장 함수
   const onSave = useCallback(async () => {
     let flag = true;
@@ -41,6 +43,7 @@ const WriteGradeContainer = ({}) => {
       await Promise.all(promises)
         .then(() => {
           handleIsChanged(false);
+          setSaved(true);
         })
         .catch((err) => {
           handleWriteError(err, history);
@@ -50,6 +53,7 @@ const WriteGradeContainer = ({}) => {
       await editGed()
         .then(() => {
           handleIsChanged(false);
+          setSaved(true);
         })
         .catch((err) => {
           handleWriteError(err, history);
@@ -81,9 +85,15 @@ const WriteGradeContainer = ({}) => {
 
   return (
     <>
-      <WriteGrade gradeType={gradeType} onSave={onSave} isChanged={isChanged} />
+      <WriteGrade
+        saved={saved}
+        setSaved={setSaved}
+        gradeType={gradeType}
+        onSave={onSave}
+        isChanged={isChanged}
+      />
     </>
   );
 };
 
-export default withRouter(observer(WriteGradeContainer));
+export default observer(WriteGradeContainer);

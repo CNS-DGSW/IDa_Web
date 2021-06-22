@@ -6,7 +6,7 @@ import { PostType } from "util/types/PostType";
 import { toast } from "react-toastify";
 import Modal from "components/common/Modal";
 import HandlePost from "components/common/HandlePost";
-import { RouteComponentProps, useHistory, withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 
 interface HandlePostContainerProps {
@@ -25,7 +25,7 @@ const HandlePostContainer = ({
   category,
   onClose,
   handleGetPosts,
-}: HandlePostContainerProps & RouteComponentProps) => {
+}: HandlePostContainerProps) => {
   const { store } = useStore();
 
   const history = useHistory();
@@ -259,4 +259,4 @@ const HandlePostContainer = ({
   );
 };
 
-export default withRouter(observer(HandlePostContainer));
+export default observer(HandlePostContainer);

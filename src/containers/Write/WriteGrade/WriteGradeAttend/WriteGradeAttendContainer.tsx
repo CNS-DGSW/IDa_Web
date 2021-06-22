@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from "react";
 import { observer } from "mobx-react";
 import WriteAttend from "components/Write/WriteAttend";
 import useStore from "lib/hooks/useStore";
-import { useHistory, withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { handleGetWriteError } from "lib/handleErrors";
 
 // 출결 입력
@@ -102,4 +102,4 @@ const WriteGradeAttendContainer = ({}) => {
   );
 };
 
-export default withRouter(observer(WriteGradeAttendContainer));
+export default observer(WriteGradeAttendContainer);

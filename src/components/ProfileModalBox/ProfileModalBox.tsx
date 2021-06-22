@@ -1,6 +1,6 @@
 import ResultStatusContainer from "containers/ResultStatus/ResultStatus/ResultStatusContainer";
 import React from "react";
-import { RouteComponentProps, useHistory, withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "./ProfileModalBox.scss";
 import { ReactComponent as LogoutSvg } from "assets/images/logout.svg";
 import { ReactComponent as PasswordSvg } from "assets/images/password.svg";
@@ -23,7 +23,7 @@ const ProfileModalBox = ({
   HandleLogout,
   statusModal,
   tryStatusModal,
-}: ProfileModalBoxProps & RouteComponentProps) => {
+}: ProfileModalBoxProps) => {
   const history = useHistory();
 
   return (
@@ -70,4 +70,4 @@ const ProfileModalBox = ({
   );
 };
 
-export default withRouter(ProfileModalBox);
+export default ProfileModalBox;

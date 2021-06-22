@@ -42,8 +42,10 @@ const AdminReceiptStatusContainer = ({}) => {
           await handleCancelSubmit(userIdx).then((response) => {
             if (response.status === 200) {
               const arr = receiptStatus.slice();
-              arr[arr.findIndex((data) => data.userIdx === userIdx)].isSubmit =
-                false;
+              const idx = arr.findIndex((data) => data.userIdx === userIdx);
+              arr[idx].isSubmit = false;
+              arr[idx].submitCode = "";
+              arr[idx].examCode = "";
               setReceiptStatus(arr);
             }
           });

@@ -12,7 +12,7 @@ import {
 } from "util/types/Response";
 import moment from "moment";
 import { handleGetWriteError } from "lib/handleErrors";
-import { useHistory, useLocation, withRouter } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import Relation from "util/enums/Relation";
 import Apply from "util/enums/Apply";
 import ApplyDetail from "util/enums/ApplyDetail";
@@ -56,6 +56,7 @@ const WritePrintContainer = ({}) => {
   const [parentName, setParentName] = useState<string>("");
   const [parentTel, setParentTel] = useState<string>("");
   const [address, setAddress] = useState<string>("");
+  const [detailAddress, setDetailAddress] = useState<string>("");
   const [postCode, setPostCode] = useState<string>("");
   const [parentRelation, setParentRelation] = useState<Relation | null>(null);
   const [schoolName, setSchoolName] = useState<string>("");
@@ -119,12 +120,14 @@ const WritePrintContainer = ({}) => {
   const [volunteer2, setVolunteer2] = useState<number>(0);
   const [volunteer3, setVolunteer3] = useState<number>(0);
   const [teacherName, setTeacherName] = useState<string>("");
+  const [isSubmit, setIsSubmit] = useState<boolean>(true);
 
   //수험 번호 받아오는 함수
   const tryGetStatusCallback = useCallback(async () => {
     await tryGetStatus(Number(query.get("userIdx"))).then((res) => {
       setExamCode(res.data.examCode || "");
       setSubmitCode(res.data.submitCode || "");
+      setIsSubmit(res.data.isSubmit);
     });
   }, []);
 
@@ -154,6 +157,7 @@ const WritePrintContainer = ({}) => {
   const getParentInfoCallback = useCallback(async () => {
     await getParentInfo().then((res: ParentInfoResponse) => {
       setAddress(res.data.address || "");
+      setDetailAddress(res.data.detailAddress || "");
       setParentName(res.data.parentName || "");
       setParentRelation(res.data.parentRelation);
       setParentTel(res.data.parentTel || "");
@@ -360,6 +364,8 @@ const WritePrintContainer = ({}) => {
   return (
     <>
       <WritePrint
+        isSubmit={isSubmit}
+        detailAddress={detailAddress}
         teacherName={teacherName}
         absence1={absence1}
         absence2={absence2}
@@ -428,4 +434,4 @@ const WritePrintContainer = ({}) => {
   );
 };
 
-export default withRouter(observer(WritePrintContainer));
+export default observer(WritePrintContainer);

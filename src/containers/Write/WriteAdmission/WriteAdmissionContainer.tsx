@@ -5,7 +5,7 @@ import WriteAdmission from "../../../components/Write/WriteAdmission";
 import Apply from "util/enums/Apply";
 import ApplyDetail from "util/enums/ApplyDetail";
 import { findNameByValue } from "models/ApplyDetailModel";
-import { useHistory, withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { handleGetWriteError, handleWriteError } from "lib/handleErrors";
 
 const WriteAdmissionContainer = ({}) => {
@@ -16,9 +16,8 @@ const WriteAdmissionContainer = ({}) => {
 
   const [applyType, setApplyType] = useState<Apply | null>(null);
   const [special, setSpecial] = useState<string>("");
-  const [applyDetailType, setApplyDetailType] = useState<ApplyDetail | null>(
-    null
-  );
+  const [applyDetailType, setApplyDetailType] =
+    useState<ApplyDetail | null>(null);
   const [verteransCity, setVerteransCity] = useState<string>("");
   const [verteransNumber, setVerteransNumber] = useState<string>("");
   const [isChanged, setIsChanged] = useState<boolean>(false);
@@ -100,4 +99,4 @@ const WriteAdmissionContainer = ({}) => {
   );
 };
 
-export default withRouter(observer(WriteAdmissionContainer));
+export default observer(WriteAdmissionContainer);

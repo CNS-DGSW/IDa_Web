@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
-import { useHistory, withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import WriteGed from "components/Write/WriteGed";
 import { handleGetWriteError } from "lib/handleErrors";
 
@@ -69,4 +69,4 @@ const WriteGedContainer = ({}) => {
   );
 };
 
-export default withRouter(observer(WriteGedContainer));
+export default observer(WriteGedContainer);

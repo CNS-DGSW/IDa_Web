@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 import WritePhoto from "../../../components/Write/WritePhoto";
 import useStore from "lib/hooks/useStore";
 import { ProfileInfoResponse } from "util/types/Response";
-import { useHistory, withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import { handleGetWriteError, handleWriteError } from "lib/handleErrors";
 
@@ -92,4 +92,4 @@ const WritePhotoContainer = ({}) => {
   );
 };
 
-export default withRouter(observer(WritePhotoContainer));
+export default observer(WritePhotoContainer);

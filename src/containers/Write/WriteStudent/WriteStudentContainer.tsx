@@ -5,7 +5,7 @@ import useStore from "lib/hooks/useStore";
 import { UserInfoResponse } from "util/types/Response";
 import Sex from "util/enums/Sex";
 import moment from "moment";
-import { useHistory, withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import { handleWriteError, handleGetWriteError } from "lib/handleErrors";
 import useQuery from "lib/hooks/useQuery";
@@ -113,4 +113,4 @@ const WriteStudentContainer = ({}) => {
   );
 };
 
-export default observer(withRouter(WriteStudentContainer));
+export default observer(WriteStudentContainer);
