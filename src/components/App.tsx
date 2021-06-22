@@ -1,7 +1,6 @@
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense } from "react";
 import { ToastContainer } from "react-toastify";
 import { Route, Switch } from "react-router-dom";
-import { isIE } from "react-device-detect";
 import "react-toastify/dist/ReactToastify.css";
 
 import LoginPage from "pages/LoginPage";
@@ -34,13 +33,6 @@ const InterViewScorePage = React.lazy(
 );
 
 const App = () => {
-  useEffect(() => {
-    if (isIE) {
-      alert("더 이상 이 브라우저를 지원하지 않습니다.");
-      window.location.href = "https://www.google.com/intl/ko/chrome/";
-    }
-  }, []);
-
   return (
     <div className="App">
       <ToastContainer />
