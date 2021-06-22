@@ -29,7 +29,7 @@ enum ApplyDetail {
   // 국가 보훈 대상자
   VERTERANS = "VERTERANS",
   // 한부모 가족 보호 대상자
-  ONE_PARENT = "ONE_PARENT",
+  ONE_PARENT_PROTECT = "ONE_PARENT_PROTECT",
   // 차차상위 계층
   HIGH_WELFARE_RECIPIENTS = "HIGH_WELFARE_RECIPIENTS",
   // 학교장이 추천한 경제적으로 어려운 학생
@@ -66,8 +66,10 @@ enum ApplyDetail {
   HAS_CULTURAL_HERITAGE = "HAS_CULTURAL_HERITAGE",
   // 입양자녀ㆍ입양가족 자녀
   ADOPTED_FAMILY = "ADOPTED_FAMILY",
-  // 한부모가정 자녀 = "", 다자녀가정 자녀
+  // 한부모가정 자녀 다자녀가정 자녀
   MULTI_CHILD_FAMILIES = "MULTI_CHILD_FAMILIES",
+  // 한부모가정 자녀
+  ONE_PARENT = "ONE_PARENT",
 
   /**
    * 특례 입학
