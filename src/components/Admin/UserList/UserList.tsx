@@ -233,84 +233,90 @@ const UserList = ({
         </table>
       </div>
       <div className="allRatio">
-        <table className="allRatio-list">
-          <thead>
-            <tr className="allRatio-list-title">
-              <th>날짜</th>
-              <th>가입</th>
-              <th>비율</th>
-              <th>작성</th>
-              <th>비율</th>
-              <th>제출</th>
-              <th>비율</th>
-            </tr>
-          </thead>
-          <tbody>
-            {dateStatus.map((i, idx) => (
-              <tr key={idx}>
-                <td>{i.date}</td>
-                <td>{i.registered}</td>
-                <td>{i.registeredRatio}</td>
-                <td>{i.writing}</td>
-                <td>{i.writingRatio}</td>
-                <td>{i.submitted}</td>
-                <td>{i.submittedRatio}</td>
+        <div>
+          <table className="allRatio-list">
+            <thead>
+              <tr className="allRatio-list-title">
+                <th>날짜</th>
+                <th>가입</th>
+                <th>비율</th>
+                <th>작성</th>
+                <th>비율</th>
+                <th>제출</th>
+                <th>비율</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-        <table className="allRatio-list">
-          <thead>
-            <tr className="allRatio-list-title">
-              <th>출신중학교</th>
-              <th>가입</th>
-              <th>비율</th>
-              <th>작성</th>
-              <th>비율</th>
-              <th>제출</th>
-              <th>비율</th>
-            </tr>
-          </thead>
-          <tbody>
-            {schoolStatus.map((i, idx) => (
-              <tr key={idx}>
-                <td>{i.schoolName}</td>
-                <td>{i.registered}</td>
-                <td>{i.registeredRatio}</td>
-                <td>{i.writing}</td>
-                <td>{i.writingRatio}</td>
-                <td>{i.submitted}</td>
-                <td>{i.submittedRatio}</td>
+            </thead>
+            <tbody>
+              {dateStatus.map((i, idx) => (
+                <tr key={idx}>
+                  <td>{i.date}</td>
+                  <td>{i.registered}</td>
+                  <td>{i.registeredRatio}</td>
+                  <td>{i.writing}</td>
+                  <td>{i.writingRatio}</td>
+                  <td>{i.submitted}</td>
+                  <td>{i.submittedRatio}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <table className="allRatio-list">
+            <thead>
+              <tr className="allRatio-list-title">
+                <th>출신중학교</th>
+                <th>가입</th>
+                <th>비율</th>
+                <th>작성</th>
+                <th>비율</th>
+                <th>제출</th>
+                <th>비율</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-        <table className="allRatio-list">
-          <thead>
-            <tr className="allRatio-list-title">
-              <th>지역</th>
-              <th>가입</th>
-              <th>비율</th>
-              <th>작성</th>
-              <th>비율</th>
-              <th>제출</th>
-              <th>비율</th>
-            </tr>
-          </thead>
-          <tbody>
-            {cityStatus.map((i, idx) => (
-              <tr key={idx}>
-                <td>{i.cityName}</td>
-                <td>{i.registered}</td>
-                <td>{i.registeredRatio}</td>
-                <td>{i.writing}</td>
-                <td>{i.writingRatio}</td>
-                <td>{i.submitted}</td>
-                <td>{i.submittedRatio}</td>
+            </thead>
+            <tbody>
+              {schoolStatus.map((i, idx) => (
+                <tr key={idx}>
+                  <td>{i.schoolName}</td>
+                  <td>{i.registered}</td>
+                  <td>{i.registeredRatio}</td>
+                  <td>{i.writing}</td>
+                  <td>{i.writingRatio}</td>
+                  <td>{i.submitted}</td>
+                  <td>{i.submittedRatio}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <table className="allRatio-list">
+            <thead>
+              <tr className="allRatio-list-title">
+                <th>지역</th>
+                <th>가입</th>
+                <th>비율</th>
+                <th>작성</th>
+                <th>비율</th>
+                <th>제출</th>
+                <th>비율</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {cityStatus.map((i, idx) => (
+                <tr key={idx}>
+                  <td>{i.cityName}</td>
+                  <td>{i.registered}</td>
+                  <td>{i.registeredRatio}</td>
+                  <td>{i.writing}</td>
+                  <td>{i.writingRatio}</td>
+                  <td>{i.submitted}</td>
+                  <td>{i.submittedRatio}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </>
   );
