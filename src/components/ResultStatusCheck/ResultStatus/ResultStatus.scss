@@ -4,7 +4,6 @@
   position: fixed;
   z-index: 1000;
   display: flex;
-  height: 30%;
   justify-content: center;
   flex-direction: column;
   align-items: center;
@@ -12,14 +11,12 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  @media screen and (max-width: 500px) {
-    height: 37%;
-  }
-  @media screen and (max-width: 500px) {
-    height: 33%;
-  }
+  // @media screen and (max-width: 500px) {
+  // }
+  // @media screen and (max-width: 500px) {
+  // }
   &-status {
-    height: 70%;
+    padding: 2rem 0;
     display: flex;
     flex-direction: column;
     justify-content: center;

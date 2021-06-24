@@ -8,6 +8,29 @@
   padding: 2rem;
   min-width: 1440px;
   font-size: 1rem;
+  &-userAddModal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+    min-width: auto !important;
+    min-height: auto !important;
+    background: none !important;
+    & input {
+      font-size: 1rem;
+      padding: 0.6rem 1rem;
+      margin-top: 0.5rem;
+      border: 1px solid $bg-gray-700;
+      border-radius: 2px;
+      &:focus {
+        border: 1px solid $bg-blue-150;
+        outline: none;
+      }
+      &::placeholder {
+        color: $ft-gray-100;
+      }
+    }
+  }
   &-title {
     font-size: 2rem;
     margin-bottom: 1rem;
@@ -125,6 +148,17 @@
     th {
       border: 1px solid $bd-line;
       height: 2.5rem;
+    }
+  }
+}
+.deleteIcon {
+  cursor: pointer;
+  & svg {
+    width: 1.2rem;
+    height: 1.2rem;
+    transition: 0.1s;
+    &:hover {
+      fill: rgb(211, 2, 2);
     }
   }
 }

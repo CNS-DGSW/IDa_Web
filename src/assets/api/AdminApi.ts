@@ -42,6 +42,24 @@ class AdminApi {
 
     return data;
   }
+
+  async AddUser(email: string, name: string, pw: string, birth: string) {
+    const body = {
+      birth: birth,
+      email: email,
+      name: name,
+      pw: pw,
+    };
+    const { data } = await Api.post("/admin/register", body);
+
+    return data;
+  }
+
+  async DeleteUser(userIdx: number) {
+    const { data } = await Api.delete(`/admin/deleteUser?userIdx=${userIdx}`);
+
+    return data;
+  }
 }
 
 export default new AdminApi();
