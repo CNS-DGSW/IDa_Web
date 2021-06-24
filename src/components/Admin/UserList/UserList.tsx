@@ -3,6 +3,9 @@ import "./UserList.scss";
 import { List } from "util/types/UserList";
 import { CityRatio, DateRatio, SchoolRatio } from "util/types/UserRatio";
 import moment from "moment";
+import Modal from "components/common/Modal";
+import Button from "components/common/Button";
+import { ReactComponent as Delete } from "assets/images/delete.svg";
 
 interface UserListProps {
   userStatus: List[] | undefined;
@@ -13,6 +16,18 @@ interface UserListProps {
   search: string;
   tryChangeArrived: (userIdx: number, status: boolean) => void;
   tryDownExcel: () => void;
+  id: string;
+  setId: React.Dispatch<React.SetStateAction<string>>;
+  pw: string;
+  setPw: React.Dispatch<React.SetStateAction<string>>;
+  name: string;
+  setName: React.Dispatch<React.SetStateAction<string>>;
+  birth: string;
+  setBirth: React.Dispatch<React.SetStateAction<string>>;
+  addUser: () => void;
+  deleteUser: (userIdx: number) => void;
+  modal: boolean;
+  setModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const UserList = ({
@@ -24,10 +39,61 @@ const UserList = ({
   search,
   tryDownExcel,
   tryChangeArrived,
+  id,
+  setId,
+  pw,
+  setPw,
+  name,
+  setName,
+  birth,
+  setBirth,
+  addUser,
+  deleteUser,
+  modal,
+  setModal,
 }: UserListProps) => {
   return (
     <>
       <div className="userList">
+        {modal && (
+          <Modal
+            className="userList-userAddModal"
+            onClose={() => setModal(false)}
+          >
+            <input
+              placeholder="이메일"
+              value={id}
+              onChange={(e) => {
+                setId(e.target.value);
+              }}
+            />
+            <input
+              placeholder="이름"
+              value={name}
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
+            />
+            <input
+              placeholder="ex) 2006-01-01"
+              value={birth}
+              onChange={(e) => {
+                setBirth(e.target.value);
+              }}
+            />
+            <input
+              placeholder="비밀번호"
+              value={pw}
+              type="password"
+              onChange={(e) => {
+                setPw(e.target.value);
+              }}
+            />
+            <Button onClick={addUser} style={{ marginTop: "1rem" }}>
+              회원 추가
+            </Button>
+          </Modal>
+        )}
         <div className="userList-title">지원자 현황</div>
         <div className="userList-search">
           <input
@@ -36,12 +102,17 @@ const UserList = ({
             placeholder="통합검색"
             onChange={(e) => setSearch(e.target.value)}
           />
-
           <button
             className="userList-search-btn"
             onClick={() => tryDownExcel()}
           >
             엑셀 다운로드
+          </button>
+          <button
+            className="userList-search-btn"
+            onClick={() => setModal((prev) => !prev)}
+          >
+            회원 추가
           </button>
         </div>
         <div className="userList-subtitle">
@@ -60,6 +131,7 @@ const UserList = ({
               <th>원서제출</th>
               <th>우편 도착 여부</th>
               <th>가입날짜</th>
+              <th>삭제</th>
             </tr>
           </thead>
           <tbody>
@@ -144,7 +216,7 @@ const UserList = ({
                         ) : (
                           <>
                             <button
-                              className="pointer"
+                              className="false pointer"
                               onClick={() =>
                                 tryChangeArrived(
                                   filter.idx,
@@ -158,6 +230,9 @@ const UserList = ({
                         )}
                       </td>
                       <td>{moment(filter.createdAt).format("YYYY-M-DD")}</td>
+                      <td className="deleteIcon">
+                        <Delete onClick={() => deleteUser(filter.idx)} />
+                      </td>
                     </tr>
                   ))
               : userStatus?.map((i, idx) => (
@@ -227,6 +302,9 @@ const UserList = ({
                       )}
                     </td>
                     <td>{moment(i.createdAt).format("YYYY-MM-DD")}</td>
+                    <td className="deleteIcon">
+                      <Delete onClick={() => deleteUser(i.idx)} />
+                    </td>
                   </tr>
                 ))}
           </tbody>

@@ -12,6 +12,7 @@ import {
 } from "util/types/Response";
 import ExcelApi from "assets/api/ExcelApi";
 import StatusApi from "assets/api/StatusApi";
+import { sha256 } from "js-sha256";
 
 @autobind
 class AdminStore {
@@ -88,6 +89,30 @@ class AdminStore {
   @action
   getAllUserRatio = async (): Promise<AllUserRatio> => {
     const response: AllUserRatio = await AdminApi.GetAllUserRadio();
+
+    return response;
+  };
+
+  @action
+  adminAddUser = async (
+    email: string,
+    name: string,
+    pw: string,
+    birth: string
+  ): Promise<Response> => {
+    const response: Response = await AdminApi.AddUser(
+      email,
+      name,
+      sha256(pw),
+      birth
+    );
+
+    return response;
+  };
+
+  @action
+  adminDeleteUser = async (userIdx: number): Promise<Response> => {
+    const response: Response = await AdminApi.DeleteUser(userIdx);
 
     return response;
   };
