@@ -11,15 +11,12 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  @media screen and (max-width: 500px) {
-    height: 37%;
-  }
-  @media screen and (max-width: 500px) {
-    height: 33%;
-  }
+  // @media screen and (max-width: 500px) {
+  // }
+  // @media screen and (max-width: 500px) {
+  // }
   &-status {
     padding: 2rem 0;
-    height: 70%;
     display: flex;
     flex-direction: column;
     justify-content: center;

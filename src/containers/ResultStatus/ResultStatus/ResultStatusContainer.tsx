@@ -20,7 +20,7 @@ const ResultStatusContainer = ({}: ResultStatusContainerPropse) => {
   // 헤더에 있어서 모달을 store에서 관리해줌
 
   // api 받아오기
-  const getStauts = useCallback(async () => {
+  const getStatus = useCallback(async () => {
     await tryGetStatus()
       .then((res) => {
         setPost(res.data.isSubmit);
@@ -32,8 +32,8 @@ const ResultStatusContainer = ({}: ResultStatusContainerPropse) => {
   }, []);
 
   useEffect(() => {
-    getStauts();
-  }, [getStauts]);
+    getStatus();
+  }, [getStatus]);
 
   return (
     <>

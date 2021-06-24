@@ -24,7 +24,7 @@ interface UserListProps {
   setName: React.Dispatch<React.SetStateAction<string>>;
   birth: string;
   setBirth: React.Dispatch<React.SetStateAction<string>>;
-  addUser: () => void;
+  tryAddUser: () => void;
   deleteUser: (userIdx: number) => void;
   modal: boolean;
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -47,7 +47,7 @@ const UserList = ({
   setName,
   birth,
   setBirth,
-  addUser,
+  tryAddUser,
   deleteUser,
   modal,
   setModal,
@@ -89,7 +89,7 @@ const UserList = ({
                 setPw(e.target.value);
               }}
             />
-            <Button onClick={addUser} style={{ marginTop: "1rem" }}>
+            <Button onClick={tryAddUser} style={{ marginTop: "1rem" }}>
               회원 추가
             </Button>
           </Modal>

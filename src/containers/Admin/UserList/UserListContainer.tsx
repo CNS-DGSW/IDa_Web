@@ -32,7 +32,7 @@ const UserListContainer = ({}) => {
 
   const { GetReceiptStatus } = ExcelApi;
 
-  const addUser = () => {
+  const tryAddUser = () => {
     if (!id || !pw || !birth || !name) {
       toast.warning("빈칸이 있습니다.");
     }
@@ -49,7 +49,7 @@ const UserListContainer = ({}) => {
   const deleteUser = (userIdx: number) => {
     Swal.fire({
       title: "삭제하시겠습니까?",
-      text: "작성된 내용은 모두 삭제됩니다.",
+      text: "회원 정보는 사라집니다.",
       showCancelButton: true,
       icon: "warning",
       cancelButtonText: "취소",
@@ -107,6 +107,19 @@ const UserListContainer = ({}) => {
   };
 
   useEffect(() => {
+    const listener = (e: KeyboardEvent) => {
+      if (e.key === "Enter" || e.key === "NumpadEnter") {
+        tryAddUser();
+      }
+    };
+
+    document.addEventListener("keydown", listener);
+    return () => {
+      document.removeEventListener("keydown", listener);
+    };
+  }, [name, id, pw, birth]);
+
+  useEffect(() => {
     tryGetUserList();
   }, [tryGetUserList]);
 
@@ -132,7 +145,7 @@ const UserListContainer = ({}) => {
       setName={setName}
       birth={birth}
       setBirth={setBirth}
-      addUser={addUser}
+      tryAddUser={tryAddUser}
       deleteUser={deleteUser}
       modal={modal}
       setModal={setModal}
