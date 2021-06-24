@@ -1,7 +1,7 @@
 import React from "react";
 import MainContent from "components/common/MainContent";
 import "./Main.scss";
-import { RouteComponentProps, useHistory, withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import moment from "moment";
 import { submitEndTime, submitStartTime, finalTime } from "models/submitTime";
 
@@ -15,7 +15,7 @@ const Main = ({
   handleDownloadApplyInfo,
   firstOpenModal,
   secondOpenModal,
-}: MainProps & RouteComponentProps) => {
+}: MainProps) => {
   const history = useHistory();
 
   return (
@@ -100,8 +100,9 @@ const Main = ({
                 <p className="Content-box-area-small">
                   문의 사항은 전화주시면 친절히 상담해 드리겠습니다.
                 </p>
-                <p className="Content-box-area-bold">{"053) 231-9226"}</p>
-                <p className="Content-box-area-bold">{"053) 235-3155"}</p>
+                <p className="Content-box-area-bold">
+                  {"053) 231-9226 / 9218 / 9219"}
+                </p>
               </div>
             </MainContent>
 
@@ -136,4 +137,4 @@ const Main = ({
   );
 };
 
-export default withRouter(Main);
+export default Main;

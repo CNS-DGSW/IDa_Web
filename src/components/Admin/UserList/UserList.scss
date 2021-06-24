@@ -107,6 +107,9 @@
   min-width: 1440px;
   align-content: flex-start;
   font-size: 1rem;
+  div {
+    width: 100%;
+  }
   &-list {
     width: 100%;
     text-align: center;

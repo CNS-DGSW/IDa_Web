@@ -139,7 +139,7 @@ class Convertor {
     ) {
       result = "";
     } else if (value !== "마이스터인재전형" && value !== "지역우선전형") {
-      result = `${value}\n(${this.ApplyDetailType(apply)})`;
+      result = `사회통합전형\n(${value}-${this.ApplyDetailType(apply)})`;
     } else {
       result = value;
     }

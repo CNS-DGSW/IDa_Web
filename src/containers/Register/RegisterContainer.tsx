@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { inject, observer } from "mobx-react";
+import { observer } from "mobx-react";
 import Register from "components/Register";
 import { Response } from "util/types/Response";
 import useStore from "lib/hooks/useStore";
-import { useHistory, withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const RegisterContainer = () => {
@@ -135,4 +135,4 @@ const RegisterContainer = () => {
   );
 };
 
-export default withRouter(inject("store")(observer(RegisterContainer)));
+export default observer(RegisterContainer);

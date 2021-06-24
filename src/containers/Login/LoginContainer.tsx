@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 import Login from "components/Login";
 import { LoginResponse } from "../../util/types/Response";
 import useStore from "lib/hooks/useStore";
-import { useHistory, withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { toast } from "react-toastify";
 import moment from "moment";
@@ -118,4 +118,4 @@ const LoginContainer = () => {
   );
 };
 
-export default withRouter(observer(LoginContainer));
+export default observer(LoginContainer);

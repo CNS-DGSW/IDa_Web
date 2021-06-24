@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 import { useBeforeunload } from "react-beforeunload";
 import Write from "components/Write/Write";
 import useStore from "lib/hooks/useStore";
-import { useLocation, withRouter } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import useQuery from "lib/hooks/useQuery";
 
 const WriteContainer = ({}) => {
@@ -40,4 +40,4 @@ const WriteContainer = ({}) => {
   );
 };
 
-export default withRouter(observer(WriteContainer));
+export default observer(WriteContainer);

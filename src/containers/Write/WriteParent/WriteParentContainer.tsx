@@ -5,7 +5,7 @@ import WriteParents from "../../../components/Write/WriteParents";
 import Relation from "util/enums/Relation";
 import { AddressData } from "react-daum-postcode";
 import { ParentInfoResponse } from "util/types/Response";
-import { useHistory, withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import { handleGetWriteError, handleWriteError } from "lib/handleErrors";
 import moment from "moment";
@@ -171,4 +171,4 @@ const WriteParentContainer = ({}) => {
   );
 };
 
-export default withRouter(observer(WriteParentContainer));
+export default observer(WriteParentContainer);

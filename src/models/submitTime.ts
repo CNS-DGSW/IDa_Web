@@ -1,7 +1,7 @@
 import moment from "moment";
 
 // 제출 시작 날짜
-export const submitStartTime = moment("2021-10-18 00:00:00");
+export const submitStartTime = moment("2021-10-18 09:00:00");
 //제출 마감 날짜
 export const submitEndTime = moment("2021-10-21 17:00:00");
 // 1차 합격 발표

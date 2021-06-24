@@ -4,12 +4,7 @@ import useStore from "lib/hooks/useStore";
 import "./WriteContent.scss";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
-import {
-  Link,
-  RouteComponentProps,
-  useHistory,
-  withRouter,
-} from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 interface WriteContentProps {
   title: string;
@@ -23,7 +18,7 @@ const WriteContent = ({
   children,
   onSave,
   isChanged,
-}: WriteContentProps & RouteComponentProps) => {
+}: WriteContentProps) => {
   const { store } = useStore();
   const { page, pageHandle, userIdx } = store.WriteStore;
   const { changeSubmit } = store.StatusStore;
@@ -181,4 +176,4 @@ const WriteContent = ({
   );
 };
 
-export default withRouter(observer(WriteContent));
+export default observer(WriteContent);

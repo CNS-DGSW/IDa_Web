@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
 import WriteSchool from "../../../components/Write/WriteSchool";
 import { SchoolInfoResponse } from "util/types/Response";
-import { useHistory, withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import Grade from "util/enums/Grade";
 import { handleGetWriteError, handleWriteError } from "lib/handleErrors";
@@ -187,4 +187,4 @@ const WriteSchoolContainer = ({}) => {
   );
 };
 
-export default withRouter(observer(WriteSchoolContainer));
+export default observer(WriteSchoolContainer);

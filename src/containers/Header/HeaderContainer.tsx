@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from "react";
 import { observer } from "mobx-react";
 import Header from "components/common/Header";
 import useStore from "lib/hooks/useStore";
-import { RouteComponentProps, useHistory, withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
 interface HeaderContainerProps {
@@ -10,10 +10,7 @@ interface HeaderContainerProps {
   style?: React.CSSProperties;
 }
 
-const HeaderContainer = ({
-  theme,
-  style,
-}: HeaderContainerProps & RouteComponentProps) => {
+const HeaderContainer = ({ theme, style }: HeaderContainerProps) => {
   const { store } = useStore();
   const history = useHistory();
 
@@ -100,4 +97,4 @@ const HeaderContainer = ({
   );
 };
 
-export default withRouter(observer(HeaderContainer));
+export default observer(HeaderContainer);

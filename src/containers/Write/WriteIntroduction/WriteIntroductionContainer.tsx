@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
 import WriteIntroduction from "../../../components/Write/WriteIntroduction";
-import { useHistory, withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import {
   SelfIntroductionResponse,
   StudyPlanResponse,
@@ -18,12 +18,8 @@ const WriteIntroductionContainer = ({}) => {
   const [studyPlan, setStudyPlan] = useState<string>("");
   const [isChanged, setIsChanged] = useState<boolean>(false);
 
-  const {
-    getSelfIntroduce,
-    editSelfIntroduce,
-    getStudyPlan,
-    editStudyPlan,
-  } = store.WriteStore;
+  const { getSelfIntroduce, editSelfIntroduce, getStudyPlan, editStudyPlan } =
+    store.WriteStore;
 
   //변경사항 저장 함수
   const onSave = useCallback(async () => {
@@ -99,4 +95,4 @@ const WriteIntroductionContainer = ({}) => {
   );
 };
 
-export default withRouter(observer(WriteIntroductionContainer));
+export default observer(WriteIntroductionContainer);

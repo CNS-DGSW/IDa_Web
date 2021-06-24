@@ -58,7 +58,7 @@ const applyDetailModel = {
         },
         {
           name: "한부모 가족 보호 대상자",
-          value: ApplyDetail.ONE_PARENT,
+          value: ApplyDetail.ONE_PARENT_PROTECT,
           description: "한부모가족지원법 제5조에 따른 한부모가족보호대상자",
         },
         {
@@ -162,10 +162,14 @@ const applyDetailModel = {
           description: "입양자녀ㆍ입양가족 자녀",
         },
         {
-          name: "한부모가정 자녀, 다자녀가정 자녀",
+          name: "다자녀가정 자녀",
           value: ApplyDetail.MULTI_CHILD_FAMILIES,
-          description:
-            "한부모가정 자녀(기타), 다자녀가정(생존 자녀 3인 이상) 자녀",
+          description: "다자녀가정(생존 자녀 3인 이상) 자녀",
+        },
+        {
+          name: "한부모가정 자녀",
+          value: ApplyDetail.ONE_PARENT,
+          description: "한부모가정 자녀(기타)",
         },
       ],
     },

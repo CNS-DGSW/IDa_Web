@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./DefaultAdminHeader.scss";
+import HeaderContainer from "containers/Header/HeaderContainer";
 
 interface DefaultAdminHeaderProps {
   children: React.ReactNode;
@@ -9,6 +10,7 @@ interface DefaultAdminHeaderProps {
 const DefaultAdminHeader = ({ children }: DefaultAdminHeaderProps) => {
   return (
     <>
+      <HeaderContainer theme={true} />
       <div className="Admin">
         <div className="Admin-header">
           <NavLink
