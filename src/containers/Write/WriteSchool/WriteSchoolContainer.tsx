@@ -61,7 +61,10 @@ const WriteSchoolContainer = ({}) => {
     let flag = true;
     const passRule = /^\d{3}-\d{3,4}-\d{4}$/;
 
-    if (!passRule.test(teacherTel) || !passRule.test(schoolTel)) {
+    if (
+      !(gradeType === Grade.GED) &&
+      (!passRule.test(teacherTel) || !passRule.test(schoolTel))
+    ) {
       toast.warning("올바르지 않은 전화번호입니다. '-' 를 포함하여주세요.");
       flag = false;
     } else if (
