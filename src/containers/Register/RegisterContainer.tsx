@@ -5,6 +5,7 @@ import { Response } from "util/types/Response";
 import useStore from "lib/hooks/useStore";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
+import Agree from "util/enums/Agree";
 
 const RegisterContainer = () => {
   const { store } = useStore();
@@ -24,6 +25,25 @@ const RegisterContainer = () => {
 
   // 로딩
   const [emailLoading, setEmailLoading] = useState<boolean>(false);
+
+  // 동의 약관 모달창 상태들 (개인정보 활용 동의,사이트 이용약관 동의,개인정보 취급방침 동의)
+  const [clickUsingPersonelInfo, setClickUsingPersonelInfo] =
+    useState<boolean>(false);
+  const [clickUsingSite, setClickUsingSite] = useState<boolean>(false);
+  const [clickHandlingPersonelInfo, setClickHandlingPersonelInfo] =
+    useState<boolean>(false);
+
+  const toggleUsingPersonelInfoModal = useCallback(() => {
+    setClickUsingPersonelInfo((v) => !v);
+  }, []);
+
+  const toggleUsingSiteModal = useCallback(() => {
+    setClickUsingSite((v) => !v);
+  }, []);
+
+  const toggleHandlingPersonelInfoModal = useCallback(() => {
+    setClickHandlingPersonelInfo((v) => !v);
+  }, []);
 
   //email 인증 보내기
   const handleEmailSend = useCallback(async () => {
@@ -130,6 +150,12 @@ const RegisterContainer = () => {
         handleEmailSend={handleEmailSend}
         birth={birth}
         setBirth={setBirth}
+        clickUsingPersonelInfo={clickUsingPersonelInfo}
+        clickUsingSite={clickUsingSite}
+        clickHandlingPersonelInfo={clickHandlingPersonelInfo}
+        toggleUsingPersonelInfoModal={toggleUsingPersonelInfoModal}
+        toggleUsingSiteModal={toggleUsingSiteModal}
+        toggleHandlingPersonelInfoModal={toggleHandlingPersonelInfoModal}
       />
     </>
   );

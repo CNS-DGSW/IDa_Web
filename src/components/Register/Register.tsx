@@ -5,6 +5,9 @@ import { useHistory } from "react-router-dom";
 import React from "react";
 import "./Register.scss";
 import AuthContent from "components/common/AuthContent";
+import Agree from "util/enums/Agree";
+import Modal from "components/common/Modal";
+import agreeContract from "models/AgreeContract";
 
 interface RegisterProps {
   allCheck: boolean;
@@ -22,6 +25,12 @@ interface RegisterProps {
   handleEmailSend: () => Promise<void>;
   birth: string;
   setBirth: React.Dispatch<React.SetStateAction<string>>;
+  clickUsingPersonelInfo: boolean;
+  clickUsingSite: boolean;
+  clickHandlingPersonelInfo: boolean;
+  toggleUsingPersonelInfoModal: () => void;
+  toggleUsingSiteModal: () => void;
+  toggleHandlingPersonelInfoModal: () => void;
 }
 
 const Register = ({
@@ -40,11 +49,47 @@ const Register = ({
   handleEmailSend,
   birth,
   setBirth,
+  clickUsingPersonelInfo,
+  clickUsingSite,
+  clickHandlingPersonelInfo,
+  toggleUsingPersonelInfoModal,
+  toggleUsingSiteModal,
+  toggleHandlingPersonelInfoModal,
 }: RegisterProps) => {
   const history = useHistory();
 
   return (
     <>
+      {clickUsingPersonelInfo && (
+        <Modal
+          onClose={toggleUsingPersonelInfoModal}
+          className="handlingPersonelInfo"
+        >
+          <div className="agreeContractModalBox">
+            <h1>{agreeContract.AGREE_USING_PERSONNEL_INFO.title}</h1>
+            <p>{agreeContract.AGREE_USING_PERSONNEL_INFO.content}</p>
+          </div>
+        </Modal>
+      )}
+      {clickUsingSite && (
+        <Modal onClose={toggleUsingSiteModal} className="usingSite">
+          <div className="agreeContractModalBox">
+            <h1>{agreeContract.AGREE_USING_SITE.title}</h1>
+            <p>{agreeContract.AGREE_USING_SITE.content}</p>
+          </div>
+        </Modal>
+      )}
+      {clickHandlingPersonelInfo && (
+        <Modal
+          onClose={toggleHandlingPersonelInfoModal}
+          className="usingPersonelInfo"
+        >
+          <div className="agreeContractModalBox">
+            <h1>{agreeContract.AGREE_HANDLING_PERSONNEL_INFO.title}</h1>
+            <p>{agreeContract.AGREE_HANDLING_PERSONNEL_INFO.content}</p>
+          </div>
+        </Modal>
+      )}
       <AuthContent
         title={"Welcome"}
         description={
@@ -127,15 +172,33 @@ const Register = ({
           <div className="Register-box-agree">
             <div>
               <span>개인정보 처리 및 개인정보 활용 동의 </span>
-              <span className="Register-box-agree-watch"> [보기]</span>
+              <span
+                onClick={toggleUsingPersonelInfoModal}
+                className="Register-box-agree-watch"
+              >
+                {" "}
+                [보기]
+              </span>
             </div>
             <div>
               <span>입학원서 접수 사이트 이용약관 동의 </span>
-              <span className="Register-box-agree-watch"> [보기]</span>
+              <span
+                onClick={toggleUsingSiteModal}
+                className="Register-box-agree-watch"
+              >
+                {" "}
+                [보기]
+              </span>
             </div>
             <div>
               <span>바탕 개인정보 취급방침 동의 </span>
-              <span className="Register-box-agree-watch"> [보기]</span>
+              <span
+                onClick={toggleHandlingPersonelInfoModal}
+                className="Register-box-agree-watch"
+              >
+                {" "}
+                [보기]
+              </span>
             </div>
           </div>
         </div>
