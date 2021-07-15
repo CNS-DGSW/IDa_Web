@@ -14,6 +14,8 @@ import WritePrintSchool from "./WritePrintSchool";
 import WritePrintParent from "./WritePrintParent";
 
 interface WritePrintProps {
+  isSubmit: boolean;
+  detailAddress: string;
   teacherName: string;
   absence1: number;
   absence2: number;
@@ -40,6 +42,7 @@ interface WritePrintProps {
   name: string;
   birth: string;
   studentTel: string;
+  parentBirth: string;
   parentName: string;
   parentRelation: Relation | null;
   parentTel: string;
@@ -79,6 +82,8 @@ interface WritePrintProps {
 }
 
 const WritePrint = ({
+  isSubmit,
+  detailAddress,
   teacherName,
   absence1,
   absence2,
@@ -105,6 +110,7 @@ const WritePrint = ({
   name,
   birth,
   studentTel,
+  parentBirth,
   parentName,
   parentRelation,
   parentTel,
@@ -165,7 +171,7 @@ const WritePrint = ({
             parentName={parentName}
             parentRelation={parentRelation}
             parentTel={parentTel}
-            address={address}
+            address={`${address} ${detailAddress}`}
             postCode={postCode}
             submitCode={submitCode}
             examCode={examCode}
@@ -333,6 +339,7 @@ const WritePrint = ({
             <div className="print-page">
               <WritePrintParent
                 name={name}
+                parentBirth={parentBirth}
                 parentName={parentName}
                 birth={birth}
                 parentRelation={parentRelation}
@@ -346,6 +353,7 @@ const WritePrint = ({
               />
             </div>
           )}
+        {!isSubmit && <div className="print-mark" />}
       </div>
 
       <ReactToPrint

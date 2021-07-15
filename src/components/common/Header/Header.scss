@@ -180,6 +180,14 @@
   background-color: white;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   position: relative;
+  .headerButton {
+    color: #15216b;
+    border: 1px solid #15216b;
+    &:hover {
+      background: #15216b;
+      color: white;
+    }
+  }
   .header {
     &-admin {
       border: 1px solid black;

@@ -19,14 +19,7 @@ const CheckBox = ({
   handleAllCheck,
 }: CheckBoxProps) => {
   return (
-    <div
-      className="CheckBox"
-      style={style}
-      onClick={() => {
-        setValue && setValue(!value);
-        handleAllCheck && handleAllCheck();
-      }}
-    >
+    <div className="CheckBox" style={style}>
       <input
         id={id}
         type="checkbox"
@@ -37,7 +30,14 @@ const CheckBox = ({
         }
       />
       <label htmlFor={id} />
-      <span>{content}</span>
+      <span
+        onClick={() => {
+          setValue && setValue(!value);
+          handleAllCheck && handleAllCheck();
+        }}
+      >
+        {content}
+      </span>
     </div>
   );
 };

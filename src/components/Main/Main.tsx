@@ -1,7 +1,7 @@
 import React from "react";
 import MainContent from "components/common/MainContent";
 import "./Main.scss";
-import { RouteComponentProps, useHistory, withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import moment from "moment";
 import { submitEndTime, submitStartTime, finalTime } from "models/submitTime";
 
@@ -15,7 +15,7 @@ const Main = ({
   handleDownloadApplyInfo,
   firstOpenModal,
   secondOpenModal,
-}: MainProps & RouteComponentProps) => {
+}: MainProps) => {
   const history = useHistory();
 
   return (
@@ -27,7 +27,9 @@ const Main = ({
               <p className="Main-content-Title-Sub">
                 대구소프트웨어마이스터고등학교
               </p>
-              <p className="Main-content-Title-Main">2021 입학원서 접수</p>
+              <p className="Main-content-Title-Main">
+                {new Date().getFullYear() + 1}학년도 신입생 입학원서 접수
+              </p>
               <div
                 className="Main-content-btn"
                 onClick={() => history.push("/Write")}
@@ -65,7 +67,7 @@ const Main = ({
                     .format("yyyy. MM. DD(ddd) HH:mm")}`}
                 </p>
                 <p className="Content-box-area-small">
-                  우편접수는 원서접수 마감 시간 이내에 도착해야 합니다.
+                  서류는 반드시 원서접수 마감 시간 이내에 도착해야 합니다.
                 </p>
               </div>
             </MainContent>
@@ -98,8 +100,9 @@ const Main = ({
                 <p className="Content-box-area-small">
                   문의 사항은 전화주시면 친절히 상담해 드리겠습니다.
                 </p>
-                <p className="Content-box-area-bold">{"053) 231-9226"}</p>
-                <p className="Content-box-area-bold">{"053) 235-3155"}</p>
+                <p className="Content-box-area-bold">
+                  {"053) 231-9226 / 9218 / 9219"}
+                </p>
               </div>
             </MainContent>
 
@@ -134,4 +137,4 @@ const Main = ({
   );
 };
 
-export default withRouter(Main);
+export default Main;

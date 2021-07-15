@@ -1,103 +1,72 @@
 import { action } from "mobx";
 import { autobind } from "core-decorators";
 import PostApi from "../../assets/api/PostApi";
-import { Response, GetPostResponse, GetPostsResponse } from "../../util/types/Response";
+import {
+  Response,
+  GetPostResponse,
+  GetPostsResponse,
+} from "../../util/types/Response";
 import Category from "util/enums/Category";
 
 @autobind
 class BoardStore {
+  // 게시글 생성
   @action
   createPost = async (
     category: Category,
     title: string,
     content: string
   ): Promise<Response> => {
-    try {
-      const response = await PostApi.CreatePost(category, title, content);
+    const response = await PostApi.CreatePost(category, title, content);
 
-      return new Promise((resolve: (response: Response) => void, reject) => {
-        resolve(response);
-      });
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
+  // Q&A 답변 생성
   @action
-  createAnswer = async (content: string, postIdx: number): Promise<Response> => {
-    try {
-      const response = await PostApi.CreateAnswer(content, postIdx);
+  createAnswer = async (
+    content: string,
+    postIdx: number
+  ): Promise<Response> => {
+    const response = await PostApi.CreateAnswer(content, postIdx);
 
-      return new Promise((resolve: (response: Response) => void, reject) => {
-        resolve(response);
-      });
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
+  // 게시글 목록 받아오기
   @action
   getPosts = async (category: Category): Promise<GetPostsResponse> => {
-    try {
-      const response: GetPostsResponse = await PostApi.GetPosts(category);
+    const response: GetPostsResponse = await PostApi.GetPosts(category);
 
-      return new Promise((resolve: (requset: GetPostsResponse) => void, reject) => {
-        resolve(response);
-      });
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
+  // 게시글 상세 조회
   @action
   getPost = async (idx: number): Promise<GetPostResponse> => {
-    try {
-      const response: GetPostResponse = await PostApi.GetPost(idx);
+    const response: GetPostResponse = await PostApi.GetPost(idx);
 
-      return new Promise((resolve: (requset: GetPostResponse) => void, reject) => {
-        resolve(response);
-      });
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
+  // 게시글 삭제
   @action
   deletePost = async (idx: number): Promise<Response> => {
-    try {
-      const response = await PostApi.DeletePost(idx);
+    const response = await PostApi.DeletePost(idx);
 
-      return new Promise((resolve: (response: Response) => void, reject) => {
-        resolve(response);
-      });
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
+  // 게시글 수정
   @action
-  modifyPost = async (idx: number, title: string, content: string): Promise<Response> => {
-    try {
-      const response = await PostApi.ModifyPost(idx, content, title);
+  modifyPost = async (
+    idx: number,
+    title: string,
+    content: string
+  ): Promise<Response> => {
+    const response = await PostApi.ModifyPost(idx, content, title);
 
-      return new Promise((resolve: (response: Response) => void, reject) => {
-        resolve(response);
-      });
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 }
 

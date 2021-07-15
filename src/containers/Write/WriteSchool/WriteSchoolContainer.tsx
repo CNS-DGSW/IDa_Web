@@ -1,14 +1,9 @@
-import React, {
-  useCallback,
-  useEffect,
-  useState,
-  useLayoutEffect,
-} from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
 import WriteSchool from "../../../components/Write/WriteSchool";
 import { SchoolInfoResponse } from "util/types/Response";
-import { useHistory, withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import Grade from "util/enums/Grade";
 import { handleGetWriteError, handleWriteError } from "lib/handleErrors";
@@ -28,91 +23,8 @@ const WriteSchoolContainer = ({}) => {
   const [isChanged, setIsChanged] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const {
-    gradeType,
-    handleGrade,
-    editSchoolInfo,
-    getSchoolInfo,
-  } = store.WriteStore;
-
-  const onSave = useCallback(async () => {
-    let flag = true;
-    if (
-      (gradeType === Grade.GED && graduatedDate) ||
-      (cityLocation &&
-        cityName &&
-        ((gradeType === Grade.GRADUATED && graduatedDate) ||
-          gradeType === Grade.UNGRADUATED) &&
-        schoolCode &&
-        schoolName &&
-        schoolTel &&
-        teacherName &&
-        teacherTel)
-    ) {
-      if (
-        (gradeType === Grade.GRADUATED || gradeType === Grade.GED) &&
-        Number(graduatedDate) < 2010
-      ) {
-        toast.warn("올바른 년도를 입력해주세요.");
-        flag = false;
-      }
-      await editSchoolInfo(
-        cityLocation,
-        cityName,
-        gradeType,
-        graduatedDate,
-        schoolCode,
-        schoolName,
-        schoolTel,
-        teacherName,
-        teacherTel
-      )
-        .then(() => {
-          handleGrade(gradeType);
-        })
-        .catch((err: Error) => {
-          handleWriteError(err, history);
-          flag = false;
-        });
-      setIsChanged(false);
-    } else {
-      toast.warn("빈칸을 채워주세요.");
-      flag = false;
-    }
-    return flag;
-  }, [
-    cityLocation,
-    cityName,
-    gradeType,
-    graduatedDate,
-    schoolCode,
-    schoolName,
-    schoolTel,
-    teacherName,
-    teacherTel,
-  ]);
-
-  const getSchoolInfoCallback = useCallback(() => {
-    getSchoolInfo()
-      .then((res: SchoolInfoResponse) => {
-        setCityLocation(res.data.cityLocation || "");
-        setCityName(res.data.cityName || "");
-        handleGrade(res.data.gradeType);
-        setGraduatedDate(res.data.graduatedDate || "");
-        setSchoolCode(res.data.schoolCode || "");
-        setSchoolName(res.data.schoolName || "");
-        setSchoolTel(res.data.schoolTel || "");
-        setTeacherName(res.data.teacherName || "");
-        setTeacherTel(res.data.teacherTel || "");
-      })
-      .catch((err: Error) => {
-        handleGetWriteError(err, history);
-      });
-  }, []);
-
-  useLayoutEffect(() => {
-    getSchoolInfoCallback();
-  }, [getSchoolInfoCallback]);
+  const { gradeType, handleGrade, editSchoolInfo, getSchoolInfo } =
+    store.WriteStore;
 
   useEffect(() => {
     if (schoolTel) {
@@ -143,6 +55,92 @@ const WriteSchoolContainer = ({}) => {
       }
     }
   }, [teacherTel]);
+
+  //변경사항 저장 함수
+  const onSave = useCallback(async () => {
+    let flag = true;
+    const passRule = /^\d{3}-\d{3,4}-\d{4}$/;
+
+    if (!passRule.test(teacherTel) || !passRule.test(schoolTel)) {
+      toast.warning("올바르지 않은 전화번호입니다. '-' 를 포함하여주세요.");
+      flag = false;
+    } else if (
+      (gradeType === Grade.GED && graduatedDate) ||
+      (cityLocation &&
+        cityName &&
+        ((gradeType === Grade.GRADUATED && graduatedDate) ||
+          gradeType === Grade.UNGRADUATED) &&
+        schoolCode &&
+        schoolName &&
+        schoolTel &&
+        teacherName &&
+        teacherTel)
+    ) {
+      if (
+        (gradeType === Grade.GRADUATED || gradeType === Grade.GED) &&
+        Number(graduatedDate) < 2010
+      ) {
+        toast.warning("올바른 년도를 입력해주세요.");
+        flag = false;
+      }
+      await editSchoolInfo(
+        cityLocation,
+        cityName,
+        gradeType,
+        graduatedDate,
+        schoolCode,
+        schoolName,
+        schoolTel,
+        teacherName,
+        teacherTel
+      )
+        .then(() => {
+          handleGrade(gradeType);
+        })
+        .catch((err) => {
+          handleWriteError(err, history);
+          flag = false;
+        });
+      setIsChanged(false);
+    } else {
+      toast.warning("빈칸을 채워주세요.");
+      flag = false;
+    }
+    return flag;
+  }, [
+    cityLocation,
+    cityName,
+    gradeType,
+    graduatedDate,
+    schoolCode,
+    schoolName,
+    schoolTel,
+    teacherName,
+    teacherTel,
+  ]);
+
+  //학교 정보 받아오기
+  const getSchoolInfoCallback = useCallback(() => {
+    getSchoolInfo()
+      .then((res: SchoolInfoResponse) => {
+        setCityLocation(res.data.cityLocation || "");
+        setCityName(res.data.cityName || "");
+        handleGrade(res.data.gradeType);
+        setGraduatedDate(res.data.graduatedDate || "");
+        setSchoolCode(res.data.schoolCode || "");
+        setSchoolName(res.data.schoolName || "");
+        setSchoolTel(res.data.schoolTel || "");
+        setTeacherName(res.data.teacherName || "");
+        setTeacherTel(res.data.teacherTel || "");
+      })
+      .catch((err) => {
+        handleGetWriteError(err, history);
+      });
+  }, []);
+
+  useEffect(() => {
+    getSchoolInfoCallback();
+  }, [getSchoolInfoCallback]);
 
   useEffect(() => {
     return () => {
@@ -189,4 +187,4 @@ const WriteSchoolContainer = ({}) => {
   );
 };
 
-export default withRouter(observer(WriteSchoolContainer));
+export default observer(WriteSchoolContainer);

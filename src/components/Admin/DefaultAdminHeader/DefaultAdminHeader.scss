@@ -1,18 +1,19 @@
 @import "util/colors.scss";
 
 .Admin {
-  // z-index: 100;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: $bg-gray-10;
   padding: 1rem 0;
+  padding-top: 3rem;
 
   &-header {
     display: flex;
-    width: 70%;
-    justify-content: space-around;
-    font-size: 1.3rem;
+    width: 100%;
+    max-width: 1500px;
+    justify-content: space-between;
+    font-size: 1.1rem;
     &-link {
       text-decoration: none;
       color: gray;

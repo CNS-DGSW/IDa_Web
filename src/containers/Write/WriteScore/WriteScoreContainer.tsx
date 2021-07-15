@@ -1,17 +1,22 @@
-import React, {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useState,
-} from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
 import WriteScore from "components/Write/WriteScore";
 import { handleGetWriteError } from "lib/handleErrors";
-import { useHistory, withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import useQuery from "lib/hooks/useQuery";
 
-const WriteScoreContainer = ({}) => {
+interface WriteScoreContainerProps {
+  onSave: () => Promise<boolean>;
+  saved: boolean;
+  setSaved: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const WriteScoreContainer = ({
+  onSave,
+  saved,
+  setSaved,
+}: WriteScoreContainerProps) => {
   const { store } = useStore();
 
   const { getScore } = store.ScoreStore;
@@ -31,9 +36,10 @@ const WriteScoreContainer = ({}) => {
 
   const [isGed, setIsGed] = useState<boolean>(false);
 
-  const getScoreCallback = useCallback(() => {
+  //점수 받아오는 함수
+  const getScoreCallback = useCallback(async () => {
     if (gradeType) {
-      getScore(Number(query.get("userIdx")))
+      await getScore(Number(query.get("userIdx")))
         .then((res) => {
           setGrade1(res.data.grade1);
           setGrade2(res.data.grade2);
@@ -44,15 +50,22 @@ const WriteScoreContainer = ({}) => {
           setTotalScore1(res.data.totalScore1);
           setTotalScore2(res.data.totalScore2);
         })
-        .catch((err: Error) => {
+        .catch((err) => {
           handleGetWriteError(err, history);
         });
     }
   }, [getScore, gradeType]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     getScoreCallback();
   }, [getScoreCallback]);
+
+  useEffect(() => {
+    if (saved) {
+      getScoreCallback();
+      setSaved(false);
+    }
+  }, [saved]);
 
   useEffect(() => {
     return () => {
@@ -70,6 +83,8 @@ const WriteScoreContainer = ({}) => {
   return (
     <>
       <WriteScore
+        getScoreCallback={getScoreCallback}
+        onSave={onSave}
         grade1={grade1}
         grade2={grade2}
         isGed={isGed}
@@ -83,4 +98,4 @@ const WriteScoreContainer = ({}) => {
   );
 };
 
-export default withRouter(observer(WriteScoreContainer));
+export default observer(WriteScoreContainer);

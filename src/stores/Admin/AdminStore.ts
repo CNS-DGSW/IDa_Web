@@ -12,169 +12,109 @@ import {
 } from "util/types/Response";
 import ExcelApi from "assets/api/ExcelApi";
 import StatusApi from "assets/api/StatusApi";
+import { sha256 } from "js-sha256";
 
 @autobind
 class AdminStore {
   @observable isFinal: boolean = false;
 
+  //입학 한 학생 받아오기
   @action
-  getReceiptSatus = async (): Promise<ReceiptResponse> => {
-    try {
-      const response: ReceiptResponse = await AdminApi.GetReceiptStatus();
+  getReceiptStatus = async (): Promise<ReceiptResponse> => {
+    const response: ReceiptResponse = await AdminApi.GetReceiptStatus();
 
-      return new Promise(
-        (resolve: (response: ReceiptResponse) => void, reject) => {
-          resolve(response);
-        }
-      );
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
+  //지역별 출신교별 현황 받기
   @action
   getUserSchoolCity = async (): Promise<SchoolCityResponse> => {
-    try {
-      const response: SchoolCityResponse = await AdminApi.GetUserSchoolCity();
+    const response: SchoolCityResponse = await AdminApi.GetUserSchoolCity();
 
-      return new Promise(
-        (resolve: (response: SchoolCityResponse) => void, reject) => {
-          resolve(response);
-        }
-      );
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
+  //입학 전형 원부 엑셀 받기
   @action
-  getReceiptSatusExcel = async (): Promise<any> => {
-    try {
-      const response: any = await ExcelApi.GetReceiptStatus();
+  getReceiptStatusExcel = async (): Promise<any> => {
+    const response: any = await ExcelApi.GetReceiptStatus();
 
-      return new Promise((resolve: (response: any) => void, reject) => {
-        resolve(response);
-      });
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
+  //지역별 출신교별 형황 엑셀 받기
   @action
   getUserSchoolCityExcel = async (): Promise<any> => {
-    try {
-      const response: any = await ExcelApi.GetUserSchoolCity();
+    const response: any = await ExcelApi.GetUserSchoolCity();
 
-      return new Promise((resolve: (response: any) => void, reject) => {
-        resolve(response);
-      });
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
+  //유저별 원서 제출 취소 설정
   @action
   handleCancelSubmit = async (userIdx: number): Promise<Response> => {
-    try {
-      const response: Response = await StatusApi.cancelSubmit(userIdx);
+    const response: Response = await StatusApi.cancelSubmit(userIdx);
 
-      return new Promise((resolve: (response: Response) => void, reject) => {
-        resolve(response);
-      });
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
   @action
   getReportInfo = async (): Promise<ReportInfo> => {
-    try {
-      const response: ReportInfo = await AdminApi.GetReportInfo();
+    const response: ReportInfo = await AdminApi.GetReportInfo();
 
-      return new Promise((resolve: (response: ReportInfo) => void, reject) => {
-        resolve(response);
-      });
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
   @action
   getUserListPassed = async (isFinal?: boolean): Promise<UserListPassed> => {
-    try {
-      const response: UserListPassed = await AdminApi.GetUserListPassed(
-        isFinal
-      );
+    const response: UserListPassed = await AdminApi.GetUserListPassed(isFinal);
 
-      return new Promise(
-        (resolve: (response: UserListPassed) => void, reject) => {
-          resolve(response);
-        }
-      );
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
   @action
   getUserRate = async (isFinal?: boolean): Promise<UserRate> => {
-    try {
-      const response: UserRate = await AdminApi.GetUserRate(isFinal);
+    const response: UserRate = await AdminApi.GetUserRate(isFinal);
 
-      return new Promise((resolve: (response: UserRate) => void, reject) => {
-        resolve(response);
-      });
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
   @action
   getUserList = async (): Promise<UserList> => {
-    try {
-      const response: UserList = await AdminApi.GetUserList();
+    const response: UserList = await AdminApi.GetUserList();
 
-      return new Promise((resolve: (response: UserList) => void, reject) => {
-        resolve(response);
-      });
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
   };
 
   @action
   getAllUserRatio = async (): Promise<AllUserRatio> => {
-    try {
-      const response: AllUserRatio = await AdminApi.GetAllUserRadio();
+    const response: AllUserRatio = await AdminApi.GetAllUserRadio();
 
-      return new Promise(
-        (resolve: (response: AllUserRatio) => void, reject) => {
-          resolve(response);
-        }
-      );
-    } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
-        reject(error);
-      });
-    }
+    return response;
+  };
+
+  @action
+  adminAddUser = async (
+    email: string,
+    name: string,
+    pw: string,
+    birth: string
+  ): Promise<Response> => {
+    const response: Response = await AdminApi.AddUser(
+      email,
+      name,
+      sha256(pw),
+      birth
+    );
+
+    return response;
+  };
+
+  @action
+  adminDeleteUser = async (userIdx: number): Promise<Response> => {
+    const response: Response = await AdminApi.DeleteUser(userIdx);
+
+    return response;
   };
 }
 

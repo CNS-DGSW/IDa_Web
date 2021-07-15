@@ -1,10 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  useLayoutEffect,
-} from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { observer } from "mobx-react";
 import WritePrint from "../../../components/Write/WritePrint";
 import useStore from "lib/hooks/useStore";
@@ -18,7 +12,7 @@ import {
 } from "util/types/Response";
 import moment from "moment";
 import { handleGetWriteError } from "lib/handleErrors";
-import { useHistory, useLocation, withRouter } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import Relation from "util/enums/Relation";
 import Apply from "util/enums/Apply";
 import ApplyDetail from "util/enums/ApplyDetail";
@@ -53,13 +47,16 @@ const WritePrintContainer = ({}) => {
 
   const componentRef = useRef<HTMLDivElement>(null);
 
+  // 인쇄 페이지에서 모든 정보를 보여줘야 하기 때문에 어쩔 수 없는 state들...
   const [loading, setLoading] = useState<boolean>(true);
   const [name, setName] = useState<string>("");
   const [birth, setBirth] = useState<string>("");
   const [studentTel, setStudentTel] = useState<string>("");
+  const [parentBirth, setParentBirth] = useState<string>("");
   const [parentName, setParentName] = useState<string>("");
   const [parentTel, setParentTel] = useState<string>("");
   const [address, setAddress] = useState<string>("");
+  const [detailAddress, setDetailAddress] = useState<string>("");
   const [postCode, setPostCode] = useState<string>("");
   const [parentRelation, setParentRelation] = useState<Relation | null>(null);
   const [schoolName, setSchoolName] = useState<string>("");
@@ -69,9 +66,8 @@ const WritePrintContainer = ({}) => {
   const [schoolCode, setSchoolCode] = useState<string>("");
   const [cityName, setCityName] = useState<string>("");
   const [applyType, setApplyType] = useState<Apply | null>(null);
-  const [applyDetailType, setApplyDetailType] = useState<ApplyDetail | null>(
-    null
-  );
+  const [applyDetailType, setApplyDetailType] =
+    useState<ApplyDetail | null>(null);
   const [verteransCity, setVerteransCity] = useState<string>("");
   const [verteransNumber, setVerteransNumber] = useState<string>("");
   const [grade1, setGrade1] = useState<number>(0);
@@ -124,45 +120,66 @@ const WritePrintContainer = ({}) => {
   const [volunteer2, setVolunteer2] = useState<number>(0);
   const [volunteer3, setVolunteer3] = useState<number>(0);
   const [teacherName, setTeacherName] = useState<string>("");
+  const [isSubmit, setIsSubmit] = useState<boolean>(true);
 
+  //수험 번호 받아오는 함수
   const tryGetStatusCallback = useCallback(async () => {
     await tryGetStatus(Number(query.get("userIdx"))).then((res) => {
       setExamCode(res.data.examCode || "");
       setSubmitCode(res.data.submitCode || "");
+      setIsSubmit(res.data.isSubmit);
     });
   }, []);
 
+  //유저 정보 받아오는 함수
   const getStudentInfoCallback = useCallback(async () => {
     await getStudentInfo(Number(query.get("userIdx"))).then(
       (res: UserInfoResponse) => {
         setName(res.data.name || "");
-        setBirth(moment(res.data.birth || "").format("yyyy년 MM월 DD일"));
+        setBirth(
+          isNaN(Date.parse(res.data.birth ? res.data.birth.toString() : ""))
+            ? ""
+            : moment(res.data.birth).format("yyyy년 MM월 DD일")
+        );
         setStudentTel(res.data.studentTel || "");
       }
     );
   }, []);
 
+  //프로필 이미지 받아오는 함수
   const getProfileImageCallback = useCallback(async () => {
     await getProfileImage().then((res: ProfileInfoResponse) => {
       setProfileImage(res.data.profileImage || "");
     });
   }, []);
 
+  //학부모 정보 받아오는 함수
   const getParentInfoCallback = useCallback(async () => {
     await getParentInfo().then((res: ParentInfoResponse) => {
       setAddress(res.data.address || "");
+      setDetailAddress(res.data.detailAddress || "");
       setParentName(res.data.parentName || "");
       setParentRelation(res.data.parentRelation);
       setParentTel(res.data.parentTel || "");
+      setParentBirth(
+        isNaN(
+          Date.parse(
+            res.data.parentBirth ? res.data.parentBirth.toString() : ""
+          )
+        )
+          ? ""
+          : moment(res.data.parentBirth).format("yyyy년 MM월 DD일")
+      );
       setPostCode(res.data.postCode || "");
     });
   }, []);
 
+  //학교 정보 받아오는 함수
   const getSchoolInfoCallback = useCallback(async () => {
     await getSchoolInfo().then((res: SchoolInfoResponse) => {
       setTeacherName(res.data.teacherName || "");
       setCityName(res.data.cityName || "");
-      setSchoolCode(res.data.graduatedDate || "");
+      setSchoolCode(res.data.schoolCode || "");
       setSchoolName(res.data.schoolName || "");
       setSchoolTel(res.data.schoolTel || "");
       setGradeType(res.data.gradeType || null);
@@ -170,6 +187,7 @@ const WritePrintContainer = ({}) => {
     });
   }, []);
 
+  //입학전형 받아오기
   const getApplyTypeCallback = useCallback(async () => {
     await getApplyType().then((res) => {
       setApplyType(res.data.applyType);
@@ -179,6 +197,7 @@ const WritePrintContainer = ({}) => {
     });
   }, []);
 
+  //점수 받아오기
   const getScoreCallback = useCallback(async () => {
     await getScore(Number(query.get("userIdx"))).then((res) => {
       setGrade1(res.data.grade1);
@@ -206,18 +225,21 @@ const WritePrintContainer = ({}) => {
     });
   }, [getScore]);
 
+  //자기소개서 받아오기
   const getSelfIntroduceCallBack = useCallback(async () => {
     await getSelfIntroduce().then((res: SelfIntroductionResponse) => {
       setSelfIntroduce(res.data.selfIntroduction || "");
     });
   }, []);
 
+  //학업계획서 받아오기
   const getStudyPlanCallBack = useCallback(async () => {
     await getStudyPlan().then((res: StudyPlanResponse) => {
       setStudyPlan(res.data.studyPlan || "");
     });
   }, []);
 
+  //자유힉기제 여부 받아오기
   const getGradeCallback = useCallback(async () => {
     await getGradeList().then((res) => {
       setFreeSem(res.data.freeSem);
@@ -225,6 +247,7 @@ const WritePrintContainer = ({}) => {
     });
   }, []);
 
+  //졸업 방식 받아오기
   const getGedCallback = useCallback(async () => {
     await getGed().then((res) => {
       setKoreanScore(res.data.score.koreanScore);
@@ -236,6 +259,7 @@ const WritePrintContainer = ({}) => {
     });
   }, []);
 
+  //출결상황 받아오기
   const getAbttendCallback = useCallback(async () => {
     await getAttend().then((res) => {
       setAbsence1(res.data.absence1);
@@ -253,6 +277,7 @@ const WritePrintContainer = ({}) => {
     });
   }, []);
 
+  //가산점 목록 받아오기
   const getAdditionalCallback = useCallback(async () => {
     await getAdditional().then((res) => {
       setLeadership11(res.data.leadership11);
@@ -265,6 +290,7 @@ const WritePrintContainer = ({}) => {
     });
   }, []);
 
+  //봉사활동 받아오기
   const getVolunteerCallback = useCallback(async () => {
     await getVolunteer().then((res) => {
       setVolunteer1(res.data.volunteer1);
@@ -291,7 +317,7 @@ const WritePrintContainer = ({}) => {
       getStudyPlanCallBack(),
     ];
 
-    await Promise.all(promises).catch((err: Error) => {
+    await Promise.all(promises).catch((err) => {
       handleGetWriteError(err, history);
     });
     setLoading(false);
@@ -318,7 +344,7 @@ const WritePrintContainer = ({}) => {
     }
   }, [search]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     getAllStates();
   }, [getAllStates]);
 
@@ -338,6 +364,8 @@ const WritePrintContainer = ({}) => {
   return (
     <>
       <WritePrint
+        isSubmit={isSubmit}
+        detailAddress={detailAddress}
         teacherName={teacherName}
         absence1={absence1}
         absence2={absence2}
@@ -379,6 +407,7 @@ const WritePrintContainer = ({}) => {
         parentName={parentName}
         parentRelation={parentRelation}
         parentTel={parentTel}
+        parentBirth={parentBirth}
         address={address}
         postCode={postCode}
         cityName={cityName}
@@ -405,4 +434,4 @@ const WritePrintContainer = ({}) => {
   );
 };
 
-export default withRouter(observer(WritePrintContainer));
+export default observer(WritePrintContainer);

@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 import Login from "components/Login";
 import { LoginResponse } from "../../util/types/Response";
 import useStore from "lib/hooks/useStore";
-import { useHistory, withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { toast } from "react-toastify";
 import moment from "moment";
@@ -11,8 +11,9 @@ import asyncLocalStorage from "lib/asyncStorage";
 
 const LoginContainer = () => {
   const passwordInput = React.useRef<HTMLInputElement>(null);
-
+  // login focus 주는 useRef
   const [check, setCheck] = useState<boolean>(false);
+  // 아이디 저장 체크박스 여부
 
   const [loginSave, setLoginSave] = useState<string | null>("");
   //input들
@@ -30,21 +31,24 @@ const LoginContainer = () => {
   //로그인
   const handleLogin = async () => {
     if (!id || !password) {
-      toast.warn("아이디 또는 비밀번호를 입력해 주세요");
+      toast.warning("아이디 또는 비밀번호를 입력해 주세요");
     } else {
       await tryLogin(id, password)
         .then(async (res: LoginResponse) => {
           toast.success("로그인 되었습니다");
           asyncLocalStorage.setItem("accessToken", res.data.accessToken);
-          asyncLocalStorage.setItem("expiresAt", moment().add(1, "hour").format("yyyy-MM-DD HH:mm:ss"));
+          asyncLocalStorage.setItem(
+            "expiresAt",
+            moment().add(1, "hour").format("yyyy-MM-DD HH:mm:ss")
+          );
           setCookie("refreshToken", res.data.refreshToken, { path: "/" });
           setLoginCheck();
           history.push("/");
         })
-        .catch((err: Error) => {
-          if (err.message.includes("401")) {
+        .catch((err) => {
+          if (err.response?.status === 401) {
             passwordInput.current?.focus();
-            toast.warn("이메일이나 비밀번호가 다릅니다");
+            toast.warning("이메일이나 비밀번호가 다릅니다");
           } else {
             toast.error("서버 오류입니다");
           }
@@ -114,4 +118,4 @@ const LoginContainer = () => {
   );
 };
 
-export default withRouter(observer(LoginContainer));
+export default observer(LoginContainer);

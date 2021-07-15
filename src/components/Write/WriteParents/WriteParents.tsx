@@ -6,6 +6,10 @@ import WriteContent from "../../common/WriteContent";
 import "./WriteParents.scss";
 
 interface WriteParentsProps {
+  detailAddress: string;
+  setDetailAddress: React.Dispatch<React.SetStateAction<string>>;
+  parentBirth: string;
+  setParentBirth: React.Dispatch<React.SetStateAction<string>>;
   parentName: string;
   setParentName: React.Dispatch<React.SetStateAction<string>>;
   parentRelation: Relation | null;
@@ -22,6 +26,10 @@ interface WriteParentsProps {
 }
 
 const WriteParents = ({
+  detailAddress,
+  setDetailAddress,
+  parentBirth,
+  setParentBirth,
   parentName,
   setParentName,
   parentRelation,
@@ -38,7 +46,11 @@ const WriteParents = ({
 }: WriteParentsProps) => {
   return (
     <>
-      <WriteContent title="보호자 정보를 입력해 주세요" onSave={onSave} isChanged={isChanged}>
+      <WriteContent
+        title="보호자 정보를 입력해 주세요"
+        onSave={onSave}
+        isChanged={isChanged}
+      >
         <div className="parent">
           <div className="parent-select">
             <div className="parent-select-box">
@@ -82,6 +94,8 @@ const WriteParents = ({
               <label>휴대폰</label>
               <div className="parent-select-box-area">
                 <input
+                  onPaste={() => false}
+                  autoComplete="off"
                   maxLength={20}
                   type="text"
                   className="parent-select-box-area-textInput"
@@ -93,7 +107,22 @@ const WriteParents = ({
                 />
               </div>
             </div>
+            <div className="parent-select-box">
+              <label className="parent-select-box-label">생년월일</label>
+              <div className="student-select-box-area">
+                <input
+                  type="date"
+                  className="student-select-box-area-textInput"
+                  value={parentBirth}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    setParentBirth(e.target.value);
+                    setIsChanged(true);
+                  }}
+                />
+              </div>
+            </div>
           </div>
+
           <div className="parent-text">
             <label>주소</label>
             <input
@@ -105,9 +134,23 @@ const WriteParents = ({
             />
             {isOpen === true && (
               <Modal onClose={() => setIsOpen(false)}>
-                <DaumPostcode onComplete={handleComplete} width={"500"} height={"500"} autoClose={true} />
+                <DaumPostcode
+                  onComplete={handleComplete}
+                  width={"500"}
+                  height={"500"}
+                  autoClose={true}
+                />
               </Modal>
             )}
+          </div>
+          <div className="parent-text">
+            <label>상세 주소</label>
+            <input
+              type="text"
+              className="parent-select-box-area-textInput"
+              value={detailAddress}
+              onChange={(e) => setDetailAddress(e.target.value)}
+            />
           </div>
         </div>
       </WriteContent>

@@ -21,10 +21,34 @@ const applyDetailModel = {
             "국민기초생활보장법 제2조제1호에 따른 수급권자 또는 그 자녀",
         },
         {
-          name: "차상위계층",
-          value: ApplyDetail.WELFARE_RECIPIENTS,
-          description:
-            "국민기초생활보장법 제2조제10호에 따른 차상위계층으로서 교육감이 정하는 사람 또는 그 자녀",
+          name: "(차상위계층) 차상위자활대상자",
+          value: ApplyDetail.RELIANCE_RECIPIENTS,
+          description: "(차상위계층) 차상위자활대상자",
+        },
+        {
+          name: "(차상위계층) 차상위본인부담경감대상자",
+          value: ApplyDetail.SECOND_HIGHEST_DEDUCTIBLE,
+          description: "(차상위계층) 차상위본인부담경감대상자",
+        },
+        {
+          name: "(차상위계층) 차상위장애수당대상자",
+          value: ApplyDetail.DISABILITY_BENEFIT_RECIPIENTS,
+          description: "(차상위계층) 차상위장애수당대상자",
+        },
+        {
+          name: "(차상위계층) 차상위장애연금대상자",
+          value: ApplyDetail.DISABILITY_PENSION_RECIPIENT,
+          description: "(차상위계층) 차상위장애연금대상자",
+        },
+        {
+          name: "(차상위계층) 차상위우선돌봄대상자",
+          value: ApplyDetail.PRIORITY_CARE_RECIPIENT,
+          description: "(차상위계층) 차상위우선돌봄대상자",
+        },
+        {
+          name: "(차상위계층) 교육급여수급자",
+          value: ApplyDetail.EDUCATION_BENEFIT_RECIPIENT,
+          description: "(차상위계층) 교육급여수급자",
         },
         {
           name: "국가보훈대상자",
@@ -34,7 +58,7 @@ const applyDetailModel = {
         },
         {
           name: "한부모 가족 보호 대상자",
-          value: ApplyDetail.ONE_PARENT,
+          value: ApplyDetail.ONE_PARENT_PROTECT,
           description: "한부모가족지원법 제5조에 따른 한부모가족보호대상자",
         },
         {
@@ -76,9 +100,14 @@ const applyDetailModel = {
           description: "아동복지시설수용자(아동복지법 제3조제5호)",
         },
         {
-          name: "소년소녀 가장, 조손가정 자녀",
+          name: "소년소녀 가장",
           value: ApplyDetail.SOCIAL_TEEN_HOUSEHOLDER,
-          description: "소년소녀 가장, 조손가정 자녀",
+          description: "소년소녀 가장",
+        },
+        {
+          name: "조손가정 자녀",
+          value: ApplyDetail.GRANDCHILDREN,
+          description: "조손가정 자녀",
         },
         {
           name: "순직 공무원의 자녀",
@@ -86,9 +115,9 @@ const applyDetailModel = {
           description: "순직 공무원의 자녀",
         },
         {
-          name: "장애인(장애인 등록증 5급 이내) 가정 가족 구성원",
+          name: "장애인 가정 가족 구성원",
           value: ApplyDetail.FAMILY_WITH_DISABILITIES,
-          description: "장애의 정도가 심한 장애인 가정 가족 구성원",
+          description: "장애인 가정 가족 구성원",
         },
         {
           name: "농어촌거주",
@@ -110,8 +139,7 @@ const applyDetailModel = {
         {
           name: "산업재해근로자 자녀",
           value: ApplyDetail.INDUSTRIAL_ACCIDENT_CHILD,
-          description:
-            "경찰(경사 이하)·소방(소방장 이하)·교정(교위 이하) 공무원 자녀",
+          description: "산업재해근로자의 자녀",
         },
         {
           name: "환경미화원 자녀",
@@ -134,17 +162,21 @@ const applyDetailModel = {
           description: "입양자녀ㆍ입양가족 자녀",
         },
         {
-          name: "한부모가정 자녀, 다자녀가정 자녀",
+          name: "다자녀가정 자녀",
           value: ApplyDetail.MULTI_CHILD_FAMILIES,
-          description:
-            "한부모가정 자녀(기타), 다자녀가정(생존 자녀 3인 이상) 자녀",
+          description: "다자녀가정(생존 자녀 3인 이상) 자녀",
+        },
+        {
+          name: "한부모가정 자녀",
+          value: ApplyDetail.ONE_PARENT,
+          description: "한부모가정 자녀(기타)",
         },
       ],
     },
     {
       name: "지역우선전형",
       description:
-        "대구광역시 달성군 구지면, 유가읍, 현풍읍 소재 중학교 졸업예정자나 중학교 또는 중학교 졸업자와 동등의 학력 인정자로서 원서접수일 현재 전 가족이 대구광역시 달성군 구지면, 유가읍, 현풍면에 주민등록이 되어 있고 실제 거주하는 자",
+        "대구광역시 달성군 소재 중학교 졸업예정자, 중학교 졸업자 또는 중학교 졸업자와 동등의 학력 인정자로서 원서 접수일 현재 전 가족이 대구광역시 달성군에 주민등록이 되어 있고 실제 거주하는 자",
       value: ApplyDetail.CITY_FIRST,
     },
   ],

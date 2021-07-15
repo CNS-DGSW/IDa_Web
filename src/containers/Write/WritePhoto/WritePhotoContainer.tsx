@@ -1,14 +1,9 @@
-import React, {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useState,
-} from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import WritePhoto from "../../../components/Write/WritePhoto";
 import useStore from "lib/hooks/useStore";
 import { ProfileInfoResponse } from "util/types/Response";
-import { useHistory, withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import { handleGetWriteError, handleWriteError } from "lib/handleErrors";
 
@@ -22,7 +17,8 @@ const WritePhotoContainer = ({}) => {
 
   const { editProfileImage, getProfileImage, upload } = store.WriteStore;
 
-  function handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {
+  //프로필 미리보기 함수
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let reader = new FileReader();
     if (e.target.files && e.target.files.length) {
       let file = e.target.files[0];
@@ -35,8 +31,9 @@ const WritePhotoContainer = ({}) => {
     } else {
       setPreview("");
     }
-  }
+  };
 
+  //변견사항 저장 함수
   const onSave = useCallback(async () => {
     let flag = true;
     if ((preview !== "" && !isChanged) || image) {
@@ -44,12 +41,12 @@ const WritePhotoContainer = ({}) => {
       if (image) {
         await upload(image)
           .then(async (res) => {
-            await editProfileImage(res.data.fileName).catch((err: Error) => {
+            await editProfileImage(res.data.fileName).catch((err) => {
               handleWriteError(err, history);
               flag = false;
             });
           })
-          .catch((err: Error) => {
+          .catch((err) => {
             handleWriteError(err, history);
             flag = false;
           });
@@ -57,23 +54,24 @@ const WritePhotoContainer = ({}) => {
         flag = true;
       }
     } else {
-      toast.warn("빈칸이 있습니다.");
+      toast.warning("빈칸이 있습니다.");
       flag = false;
     }
     return flag;
   }, [preview, isChanged]);
 
+  //프로필 이미지 받아오기
   const getProfileImageCallback = useCallback(() => {
     getProfileImage()
       .then((res: ProfileInfoResponse) => {
         setPreview(res.data.profileImage);
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         handleGetWriteError(err, history);
       });
   }, []);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     getProfileImageCallback();
   }, [getProfileImageCallback]);
 
@@ -94,4 +92,4 @@ const WritePhotoContainer = ({}) => {
   );
 };
 
-export default withRouter(observer(WritePhotoContainer));
+export default observer(WritePhotoContainer);

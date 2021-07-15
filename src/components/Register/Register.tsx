@@ -1,7 +1,7 @@
 import Button from "components/common/Button";
 import CheckBox from "components/common/CheckBox";
 import CustomInput from "components/common/CustomInput";
-import { useHistory, withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import React from "react";
 import "./Register.scss";
 import AuthContent from "components/common/AuthContent";
@@ -42,6 +42,7 @@ const Register = ({
   setBirth,
 }: RegisterProps) => {
   const history = useHistory();
+
   return (
     <>
       <AuthContent
@@ -79,7 +80,7 @@ const Register = ({
               style={{ width: "44%" }}
             />
             <CustomInput
-              placeholder="ex) 2003-01-28"
+              placeholder={`생년월일 ${new Date().getFullYear() - 15}-01-01`}
               type="text"
               value={birth}
               setValue={setBirth}

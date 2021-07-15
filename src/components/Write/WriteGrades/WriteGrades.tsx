@@ -9,12 +9,20 @@ import WriteGradeListContainer from "containers/Write/WriteGrade/WriteGradeList/
 import WriteGedContainer from "containers/Write/WriteGrade/WriteGed/WriteGedContainer";
 
 interface WriteGradesProps {
+  saved: boolean;
+  setSaved: React.Dispatch<React.SetStateAction<boolean>>;
   gradeType: Grade | null;
   isChanged: boolean;
   onSave: () => Promise<boolean>;
 }
 
-const WriteGrades = ({ gradeType, onSave, isChanged }: WriteGradesProps) => {
+const WriteGrades = ({
+  saved,
+  setSaved,
+  gradeType,
+  onSave,
+  isChanged,
+}: WriteGradesProps) => {
   return (
     <>
       <WriteContent
@@ -23,7 +31,11 @@ const WriteGrades = ({ gradeType, onSave, isChanged }: WriteGradesProps) => {
         isChanged={isChanged}
       >
         <div className="grade">
-          <WriteScoreContainer />
+          <WriteScoreContainer
+            saved={saved}
+            setSaved={setSaved}
+            onSave={onSave}
+          />
 
           {gradeType !== Grade.GED ? (
             <>

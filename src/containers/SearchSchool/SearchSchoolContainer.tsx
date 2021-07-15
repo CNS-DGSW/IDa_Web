@@ -38,8 +38,12 @@ const SearchSchoolContainer = ({
         .then((res: SchoolResponse) => {
           setSchools(res.data.schools);
         })
-        .catch((err: Error) => {
-          toast.error("서버 오류입니다.");
+        .catch((err) => {
+          if (err.response?.status === 404) {
+            toast.warn("검색되지 않았습니다. 직접 학교정보를 입력해주세요.");
+          } else {
+            toast.error("서버 오류입니다.");
+          }
         });
       setIsLoading(false);
     }

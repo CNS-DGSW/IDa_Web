@@ -1,10 +1,11 @@
-import React, { useCallback, useLayoutEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { observer } from "mobx-react";
 import WriteAdditional from "components/Write/WriteAdditional";
 import useStore from "lib/hooks/useStore";
-import { useHistory, withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { handleGetWriteError } from "lib/handleErrors";
 
+// 성적 가산점 입력
 const WriteGradeAdditionalContainer = ({}) => {
   const { store } = useStore();
 
@@ -31,6 +32,7 @@ const WriteGradeAdditionalContainer = ({}) => {
     handleLeadership31,
     handleLeadership32,
     handleVolunteer1,
+    getVolunteer,
     handleVolunteer2,
     handleVolunteer3,
     handlePrize,
@@ -38,6 +40,7 @@ const WriteGradeAdditionalContainer = ({}) => {
     getAdditional,
   } = store.WriteStore;
 
+  // 가산점 조회
   const getAdditionalCallback = useCallback(async () => {
     await getAdditional()
       .then((res) => {
@@ -49,14 +52,27 @@ const WriteGradeAdditionalContainer = ({}) => {
         handleLeadership32(res.data.leadership32);
         handlePrize(res.data.prize);
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         handleGetWriteError(err, history);
       });
   }, []);
 
-  useLayoutEffect(() => {
+  // 봉사시간 조회
+  const getVolunteerCallback = useCallback(() => {
+    getVolunteer().then((res) => {
+      handleVolunteer1(res.data.volunteer1);
+      handleVolunteer2(res.data.volunteer2);
+      handleVolunteer3(res.data.volunteer3);
+    });
+  }, []);
+
+  useEffect(() => {
     getAdditionalCallback();
   }, [getAdditionalCallback]);
+
+  useEffect(() => {
+    getVolunteerCallback();
+  }, [getVolunteerCallback]);
 
   return (
     <>
@@ -88,4 +104,4 @@ const WriteGradeAdditionalContainer = ({}) => {
   );
 };
 
-export default withRouter(observer(WriteGradeAdditionalContainer));
+export default observer(WriteGradeAdditionalContainer);

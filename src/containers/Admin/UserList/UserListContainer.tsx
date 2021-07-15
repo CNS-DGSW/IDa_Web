@@ -1,20 +1,22 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
-import UserListCompoment from "components/Admin/UserList";
+import UserListComponent from "components/Admin/UserList";
 import useStore from "lib/hooks/useStore";
 import { useHistory } from "react-router-dom";
-import { List } from "util/types/User";
+import { List } from "util/types/UserList";
 import { handleAdmin, handleLogin } from "lib/handleErrors";
 import { CityRatio, DateRatio, SchoolRatio } from "util/types/UserRatio";
 import ExcelApi from "assets/api/ExcelApi";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const UserListContainer = ({}) => {
   const { store } = useStore();
   const history = useHistory();
 
-  const { getUserList, getAllUserRatio } = store.AdminStore;
-  const { changeArrived } = store.StatusStore;
+  const { getUserList, getAllUserRatio, adminAddUser, adminDeleteUser } =
+    store.AdminStore;
+  const { changeArrived, changeReview } = store.StatusStore;
 
   const [userStatus, setUserStatus] = useState<List[]>();
   const [cityStatus, setCityStatus] = useState<CityRatio[]>([]);
@@ -22,18 +24,63 @@ const UserListContainer = ({}) => {
   const [schoolStatus, setSchoolStatus] = useState<SchoolRatio[]>([]);
   const [search, setSearch] = useState<string>("");
 
+  const [id, setId] = useState<string>("");
+  const [pw, setPw] = useState<string>("");
+  const [birth, setBirth] = useState<string>("");
+  const [name, setName] = useState<string>("");
+  const [modal, setModal] = useState<boolean>(false);
+
   const { GetReceiptStatus } = ExcelApi;
 
+  const tryAddUser = () => {
+    if (!id || !pw || !birth || !name) {
+      toast.warning("빈칸이 있습니다.");
+    }
+    adminAddUser(id, name, pw, birth)
+      .then(() => {
+        toast.success("회원이 추가되었습니다.");
+        tryGetUserList();
+      })
+      .catch((err) => {
+        handleAdmin(err);
+      });
+  };
+
+  const deleteUser = (userIdx: number) => {
+    Swal.fire({
+      title: "삭제하시겠습니까?",
+      text: "회원 정보는 사라집니다.",
+      showCancelButton: true,
+      icon: "warning",
+      cancelButtonText: "취소",
+      confirmButtonText: "확인",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        adminDeleteUser(userIdx)
+          .then(() => {
+            toast.success("회원이 삭제되었습니다.");
+            tryGetUserList();
+          })
+          .catch((err) => {
+            handleAdmin(err);
+          });
+      }
+    });
+  };
+
+  // 지원자 현황 받아오기
   const tryGetUserList = useCallback(() => {
     getUserList()
       .then((res) => {
+        console.log(res);
         setUserStatus(res.data);
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         handleAdmin(err, history);
       });
   }, []);
 
+  // 날짜, 출신학교, 지역 별 비율 받아오기
   const tryGetAllUserRatio = useCallback(() => {
     getAllUserRatio()
       .then((res) => {
@@ -41,22 +88,43 @@ const UserListContainer = ({}) => {
         setDateStatus(res.data.userDateRatio);
         setSchoolStatus(res.data.userSchoolRatio);
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         handleLogin(err, history);
       });
   }, []);
 
+  // 최종 원서 도착 또는 미도착 변경
   const tryChangeArrived = (userIdx: number, status: boolean) => {
     changeArrived(userIdx, status).then(() => {
       tryGetUserList();
     });
   };
-
-  const tryDownExcel = () => {
-    GetReceiptStatus().catch((err) => {
-      toast.warn("서버 오류입니다.");
+  //최종 원서 검토 예정 또는 검토 완료 변경 이민욱 만듬
+  const tryChangeReview = (userIdx: number, status: boolean) => {
+    changeReview(userIdx, status).then(() => {
+      tryGetUserList();
     });
   };
+
+  // 엑셀 다운
+  const tryDownExcel = () => {
+    GetReceiptStatus().catch((err) => {
+      toast.error("서버 오류입니다.");
+    });
+  };
+
+  useEffect(() => {
+    const listener = (e: KeyboardEvent) => {
+      if (e.key === "Enter" || e.key === "NumpadEnter") {
+        tryAddUser();
+      }
+    };
+
+    document.addEventListener("keydown", listener);
+    return () => {
+      document.removeEventListener("keydown", listener);
+    };
+  }, [name, id, pw, birth]);
 
   useEffect(() => {
     tryGetUserList();
@@ -67,7 +135,7 @@ const UserListContainer = ({}) => {
   }, [tryGetAllUserRatio]);
 
   return (
-    <UserListCompoment
+    <UserListComponent
       search={search}
       setSearch={setSearch}
       dateStatus={dateStatus}
@@ -76,6 +144,19 @@ const UserListContainer = ({}) => {
       userStatus={userStatus}
       tryDownExcel={tryDownExcel}
       tryChangeArrived={tryChangeArrived}
+      id={id}
+      setId={setId}
+      pw={pw}
+      setPw={setPw}
+      name={name}
+      setName={setName}
+      birth={birth}
+      setBirth={setBirth}
+      tryAddUser={tryAddUser}
+      deleteUser={deleteUser}
+      modal={modal}
+      setModal={setModal}
+      tryChangeReview={tryChangeReview}
     />
   );
 };

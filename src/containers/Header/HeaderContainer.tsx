@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from "react";
 import { observer } from "mobx-react";
 import Header from "components/common/Header";
 import useStore from "lib/hooks/useStore";
-import { RouteComponentProps, useHistory, withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
 interface HeaderContainerProps {
@@ -10,10 +10,7 @@ interface HeaderContainerProps {
   style?: React.CSSProperties;
 }
 
-const HeaderContainer = ({
-  theme,
-  style,
-}: HeaderContainerProps & RouteComponentProps) => {
+const HeaderContainer = ({ theme, style }: HeaderContainerProps) => {
   const { store } = useStore();
   const history = useHistory();
 
@@ -30,10 +27,11 @@ const HeaderContainer = ({
     tryCloseModal,
   } = store.AuthStore;
 
-  const { statusModal, closeSatusModal, trySatusModal } = store.StatusStore;
+  const { statusModal, closeStatusModal, tryStatusModal } = store.StatusStore;
 
   const [cookie, setCookie, removeCookie] = useCookies(["refreshToken"]);
 
+  // 로그아웃
   const HandleLogout = () => {
     tryLogout();
     removeCookie("refreshToken");
@@ -42,18 +40,20 @@ const HeaderContainer = ({
     history.push("/");
   };
 
+  // 유저 정보 가져오기
   const getInfoCallback = useCallback(async () => {
     if (localStorage.getItem("accessToken") && !name && !email) {
       changeLogin(true);
-      await getInfo().catch((err: Error) => {
+      await getInfo().catch((err) => {
         HandleLogout();
       });
     }
   }, [login]);
 
+  // 프로필 버튼 눌렀을 때 모달 닫기
   const closeAllModal = () => {
     if (!profileBox) {
-      closeSatusModal();
+      closeStatusModal();
     }
   };
 
@@ -71,6 +71,12 @@ const HeaderContainer = ({
     };
   }, []);
 
+  useEffect(() => {
+    statusModal
+      ? (document.body.style.overflow = "hidden")
+      : (document.body.style.overflow = "unset");
+  }, [statusModal]);
+
   return (
     <>
       <Header
@@ -84,11 +90,11 @@ const HeaderContainer = ({
         HandleLogout={HandleLogout}
         style={style}
         statusModal={statusModal}
-        trySatusModal={trySatusModal}
-        closeSatusModal={closeSatusModal}
+        tryStatusModal={tryStatusModal}
+        closeStatusModal={closeStatusModal}
       />
     </>
   );
 };
 
-export default withRouter(observer(HeaderContainer));
+export default observer(HeaderContainer);

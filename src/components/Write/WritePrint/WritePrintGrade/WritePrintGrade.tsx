@@ -76,7 +76,6 @@ const WritePrintGrade = ({
   otherScore,
   scienceScore,
   socialScore,
-
   absence1,
   absence2,
   absence3,
@@ -117,8 +116,16 @@ const WritePrintGrade = ({
             <th>수험번호</th>
           </tr>
           <tr>
-            <td className="empty">{submitCode}</td>
-            <td className="empty">{examCode}</td>
+            <td>
+              {submitCode ? (
+                submitCode
+              ) : (
+                <>
+                  <br />
+                </>
+              )}
+            </td>
+            <td>{examCode}</td>
           </tr>
         </tbody>
       </table>
@@ -423,7 +430,9 @@ const WritePrintGrade = ({
               </tr>
               <tr>
                 <th>모범상</th>
-                <td>◎ 재학 중 교내 모범상(모범, 선행, 효행, 공로 등)을 수상</td>
+                <td>
+                  ◎ 재학 중 교내 모범상(모범, 선행, 효행, 공로, 노력 등)을 수상
+                </td>
                 <td colSpan={6}>{prize} 건</td>
               </tr>
             </tbody>

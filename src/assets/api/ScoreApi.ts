@@ -2,44 +2,28 @@ import Api from "lib/customAxios";
 
 class ScoreApi {
   async GetScore(userIdx?: number | null) {
-    try {
-      const query = userIdx ? `?userIdx=${userIdx}` : "";
+    const query = userIdx ? `?userIdx=${userIdx}` : "";
 
-      const { data } = await Api.get(`/score/getScore${query}`);
+    const { data } = await Api.get(`/score/getScore${query}`);
 
-      return data;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    return data;
   }
   async GetSecondScore() {
-    try {
-      const { data } = await Api.get("/score/getSecondScore");
-      return data;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    const { data } = await Api.get("/score/getSecondScore");
+    return data;
   }
   async getTeam(category: string) {
-    try {
-      const { data } = await Api.get(
-        `/score/getInterviewTeamNumber?category=${category}`
-      );
-      return data;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    const { data } = await Api.get(
+      `/score/getInterviewTeamNumber?category=${category}`
+    );
+    return data;
   }
   async getInterviewScore(category: string, teamNumber?: string) {
-    try {
-      const team = teamNumber ? `&teamNumber=${teamNumber}` : "";
-      const { data } = await Api.get(
-        `/score/getInterviewScore?category=${category}` + team
-      );
-      return data;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    const team = teamNumber ? `&teamNumber=${teamNumber}` : "";
+    const { data } = await Api.get(
+      `/score/getInterviewScore?category=${category}` + team
+    );
+    return data;
   }
 }
 

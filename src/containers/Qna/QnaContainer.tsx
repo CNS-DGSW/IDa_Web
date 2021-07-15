@@ -5,6 +5,7 @@ import useStore from "lib/hooks/useStore";
 import { GetPostsResponse } from "util/types/Response";
 import Category from "util/enums/Category";
 import { PostType } from "util/types/PostType";
+import { toast } from "react-toastify";
 
 const QnaContainer = ({}) => {
   const [posts, setPosts] = useState<PostType[]>([]);
@@ -18,16 +19,18 @@ const QnaContainer = ({}) => {
   const { isAdmin } = store.AuthStore;
   const { getPosts } = store.BoardStore;
 
+  // 게시글 목록 조회
   const handleGetPosts = useCallback(async () => {
     await getPosts(Category.QNA)
       .then((res: GetPostsResponse) => {
         setPosts(res.data.posts);
       })
-      .catch((err: Error) => {
-        console.log(err);
+      .catch((err) => {
+        toast.error("오류가 발생하였습니다.");
       });
   }, []);
 
+  // 게시글 검색
   const searchPostFilter = useCallback(() => {
     setFilteredPosts(
       posts.filter((post) => {

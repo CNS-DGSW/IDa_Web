@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { inject, observer } from "mobx-react";
+import { observer } from "mobx-react";
 import Register from "components/Register";
 import { Response } from "util/types/Response";
 import useStore from "lib/hooks/useStore";
-import { useHistory, withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const RegisterContainer = () => {
@@ -27,23 +27,24 @@ const RegisterContainer = () => {
 
   //email 인증 보내기
   const handleEmailSend = useCallback(async () => {
-    toast.success("이메일이 전송중입니다.");
-    setEmailLoading(true);
     if (!email) {
-      setEmailLoading(false);
-      toast.warn("이메일을 입력해 주세요");
+      toast.warning("이메일을 입력해 주세요");
     } else {
+      setEmailLoading(true);
+      toast.success("이메일이 전송중입니다.");
       await trySendEmail(email)
         .then((res: Response) => {
           toast.success("이메일이 전송되었습니다.");
           setEmailLoading(false);
         })
-        .catch((err: Error) => {
+        .catch((err) => {
           setEmailLoading(false);
-          if (err.message.includes("400")) {
-            toast.warn("메일 형식이 아닙니다.");
-          } else if (err.message.includes("409")) {
-            toast.warn("이미 사용중인 메일입니다.");
+          if (err.response?.status === 406) {
+            toast.warning("현재 요청이 너무 많습니다. 잠시 후에 시도하세요.");
+          } else if (err.response?.status === 400) {
+            toast.warning("메일 형식이 아닙니다.");
+          } else if (err.response?.status === 409) {
+            toast.warning("이미 사용중인 메일입니다.");
           } else {
             toast.error("서버 오류입니다");
           }
@@ -51,29 +52,41 @@ const RegisterContainer = () => {
     }
   }, [email, emailLoading]);
 
+  useEffect(() => {
+    if (birth) {
+      setBirth(
+        birth.replace(/-/g, "").replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3")
+      );
+    }
+  }, [birth]);
+
   //회원가입하기
   const handleRegister = useCallback(async () => {
     if (!email || !pw || !checkPw || !name || !birth) {
-      toast.warn("빈칸이 있습니다.");
+      toast.warning("빈칸이 있습니다.");
     } else if (pw !== checkPw) {
-      toast.warn("비밀번호가 일치하지 않습니다.");
+      toast.warning("비밀번호가 일치하지 않습니다.");
     } else if (!allCheck) {
-      toast.warn("모두 동의를 체크해 주세요");
+      toast.warning("모두 동의를 체크해 주세요");
     } else {
       await tryRegister(name, email, pw, birth)
         .then((res: Response) => {
           toast.success("회원가입이 완료되었습니다.");
           history.push("login");
         })
-        .catch((err: Error) => {
-          if (err.message.includes("403")) {
-            toast.warn("이미 원서 제출이 마감되었습니다.");
-          } else if (err.message.includes("409")) {
-            toast.warn("이미 사용중인 이메일입니다.");
-          } else if (err.message.includes("401")) {
-            toast.warn("메일 인증이 안되었습니다.");
-          } else if (err.message.includes("400")) {
-            toast.warn("올바르지 않은 값이 있습니다.");
+        .catch((err) => {
+          if (err.response?.status === 406) {
+            toast.warning(
+              "나이 제한으로 인해 가입이 불가능합니다. 본인 명의로 가입해주세요."
+            );
+          } else if (err.response?.status === 403) {
+            toast.warning("이미 원서 제출이 마감되었습니다.");
+          } else if (err.response?.status === 409) {
+            toast.warning("이미 사용중인 이메일입니다.");
+          } else if (err.response?.status === 401) {
+            toast.warning("메일 인증이 안되었습니다.");
+          } else if (err.response?.status === 400) {
+            toast.warning("올바르지 않은 값이 있습니다.");
           } else {
             toast.error("서버 오류입니다");
           }
@@ -85,14 +98,19 @@ const RegisterContainer = () => {
   useEffect(() => {
     const listener = (e: KeyboardEvent) => {
       if (e.key === "Enter" || e.key === "NumpadEnter") {
-        handleEmailSend();
+        if (name && email && pw && birth && checkPw) {
+          handleRegister();
+        } else {
+          handleEmailSend();
+        }
       }
     };
+
     document.addEventListener("keydown", listener);
     return () => {
       document.removeEventListener("keydown", listener);
     };
-  }, [email]);
+  }, [email, name, pw, checkPw, birth, allCheck]);
 
   return (
     <>
@@ -117,4 +135,4 @@ const RegisterContainer = () => {
   );
 };
 
-export default withRouter(inject("store")(observer(RegisterContainer)));
+export default observer(RegisterContainer);

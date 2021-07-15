@@ -2,77 +2,63 @@ import Api from "lib/customAxios";
 
 class AdminApi {
   async GetReceiptStatus() {
-    try {
-      const { data } = await Api.get("/admin/getReceiptStatus");
-
-      return data;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    return (await Api.get("/admin/getReceiptStatus")).data;
   }
 
   async GetUserSchoolCity() {
-    try {
-      const { data } = await Api.get("/admin/getUserSchoolCity");
+    const { data } = await Api.get("/admin/getUserSchoolCity");
 
-      return data;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    return data;
   }
 
   async GetAllUserRadio() {
-    try {
-      const { data } = await Api.get("/admin/getAllUserRatio");
+    const { data } = await Api.get("/admin/getAllUserRatio");
 
-      return data;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    return data;
   }
 
   async GetUserList() {
-    try {
-      const { data } = await Api.get("/admin/getUserList");
+    const { data } = await Api.get("/admin/getUserList");
 
-      return data;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    return data;
   }
 
   async GetUserListPassed(isFinal?: boolean) {
-    try {
-      const query = isFinal ? `?isFinal=${isFinal}` : "";
-      const { data } = await Api.get(`/admin/getUserListPassed${query}`);
+    const query = isFinal ? `?isFinal=${isFinal}` : "";
+    const { data } = await Api.get(`/admin/getUserListPassed${query}`);
 
-      return data;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    return data;
   }
 
   async GetUserRate(isFinal?: boolean) {
-    try {
-      const query = isFinal ? `?isFinal=${isFinal}` : "";
-      const { data } = await Api.get(`/admin/getUserRate${query}`);
+    const query = isFinal ? `?isFinal=${isFinal}` : "";
+    const { data } = await Api.get(`/admin/getUserRate${query}`);
 
-      console.log("ASDAS");
-
-      return data;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    return data;
   }
 
   async GetReportInfo() {
-    try {
-      const { data } = await Api.get("/admin/getReportInfo");
+    const { data } = await Api.get("/admin/getReportInfo");
 
-      return data;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    return data;
+  }
+
+  async AddUser(email: string, name: string, pw: string, birth: string) {
+    const body = {
+      birth: birth,
+      email: email,
+      name: name,
+      pw: pw,
+    };
+    const { data } = await Api.post("/admin/register", body);
+
+    return data;
+  }
+
+  async DeleteUser(userIdx: number) {
+    const { data } = await Api.delete(`/admin/deleteUser?userIdx=${userIdx}`);
+
+    return data;
   }
 }
 

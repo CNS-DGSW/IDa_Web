@@ -1,6 +1,6 @@
 import React from "react";
 import "./InterViewScore.scss";
-import { InterViewScoreType } from "util/types/Score";
+import { InterViewScoreResponse } from "util/types/Response";
 import InterViewCategory from "util/enums/InterViewCategory";
 
 interface InterViewScoreProps {
@@ -8,10 +8,12 @@ interface InterViewScoreProps {
   setTeam: React.Dispatch<React.SetStateAction<string>>;
   teamCount: number[] | undefined;
   selectInterView: (index: string) => void;
-  scoreDate: InterViewScoreType | undefined;
+  scoreDate: InterViewScoreResponse | undefined;
   tryDownExcel: () => void;
   uploadFile: (e: React.ChangeEvent<HTMLInputElement>) => void;
   interView: InterViewCategory;
+  tryGetNumberTeam: () => void;
+  tyrUploadTeam: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const InterViewScore = ({
@@ -23,6 +25,8 @@ const InterViewScore = ({
   scoreDate,
   tryDownExcel,
   uploadFile,
+  tryGetNumberTeam,
+  tyrUploadTeam,
 }: InterViewScoreProps) => {
   return (
     <div className="InterViewScore">
@@ -43,7 +47,9 @@ const InterViewScore = ({
         </select>
         <select
           className="InterViewScore-checkBox-s-op"
-          onChange={(e) => setTeam(e.target.value)}
+          onChange={(e) => {
+            setTeam(e.target.value);
+          }}
           value={team}
         >
           <option className="InterViewScore-checkBox-s-op" value="0">
@@ -51,11 +57,31 @@ const InterViewScore = ({
           </option>
           {teamCount &&
             teamCount.map((i, key) => (
-              <option key={key} value={key + 1}>
+              <option key={key} value={i}>
                 {i}팀
               </option>
             ))}
         </select>
+
+        <div className="InterViewScore-checkBox-label">
+          <span>팀 번호 서식 다운로드</span>
+          <button onClick={() => tryGetNumberTeam()} className="buttons">
+            다운로드
+          </button>
+        </div>
+
+        <div className="InterViewScore-checkBox-label">
+          <span>팀 번호 서식 업로드</span>
+          <label htmlFor="input-file2" className="buttons">
+            업로드
+          </label>
+          <input
+            type="file"
+            id="input-file2"
+            className="input-file"
+            onChange={(e) => tyrUploadTeam(e)}
+          />
+        </div>
 
         <div className="InterViewScore-checkBox-label">
           <span>출력용 &amp; 서식</span>

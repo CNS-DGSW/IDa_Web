@@ -7,6 +7,7 @@ import Apply from "util/enums/Apply";
 import ApplyDetail from "util/enums/ApplyDetail";
 import Grade from "util/enums/Grade";
 import Relation from "util/enums/Relation";
+import Seal from "assets/images/seal.jpg";
 import "./WritePrintUser.scss";
 
 interface WritePrintUserProps {
@@ -83,7 +84,7 @@ const WritePrintUser = ({
       <div className="write-print-user-title">
         {`${
           moment().year() + 1
-        }년도 대구소프트웨어마이스터고등학교 입학원서 제출용`}
+        }학년도 대구소프트웨어마이스터고등학교 입학원서 제출용`}
       </div>
 
       <table className="write-print-user-area">
@@ -267,11 +268,20 @@ const WritePrintUser = ({
           </tr>
           <tr>
             <td className="write-print-user-top-left write-print-user-bottom">
-              {verteransNumber}
+              {applyDetailType === ApplyDetail.VERTERANS && verteransNumber}
             </td>
             <td className="write-print-user-top-left write-print-user-bottom-right">
-              위 지원자는 국가보훈대상자 자녀임을 증명함.
-              <br /> ( {verteransCity} ) 지방보훈청장
+              {applyDetailType === ApplyDetail.VERTERANS ? (
+                <>
+                  위 지원자는 국가보훈대상자 자녀임을 증명함.
+                  <br /> ( {verteransCity} ) 지방보훈청장
+                </>
+              ) : (
+                <>
+                  <br />
+                  <br />
+                </>
+              )}
             </td>
           </tr>
         </tbody>
@@ -396,7 +406,11 @@ const WritePrintUser = ({
           대구소프트웨어마이스터고등학교장 귀하
         </b>
       </div>
-      <div className="write-print-user-cut">절취선</div>
+      <div className="write-print-user-cut">
+        <img className="write-print-user-cut-seal" src={Seal} />절
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 취
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 선
+      </div>
 
       <div className="write-print-user-cutting">
         <div className="write-print-user-cutting-area">

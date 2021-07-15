@@ -5,6 +5,7 @@ import useStore from "lib/hooks/useStore";
 import { handleAdmin } from "lib/handleErrors";
 import { useHistory } from "react-router-dom";
 import { Receipt } from "util/types/ReceiptType";
+import Swal from "sweetalert2";
 
 const AdminReceiptStatusContainer = ({}) => {
   const { store } = useStore();
@@ -13,25 +14,50 @@ const AdminReceiptStatusContainer = ({}) => {
   const [receiptStatus, setReceiptStatus] = useState<Receipt[]>([]);
   const [search, setSearch] = useState<string>("");
 
-  const {
-    getReceiptSatus,
-    getReceiptSatusExcel,
-    handleCancelSubmit,
-  } = store.AdminStore;
+  const { getReceiptStatus, getReceiptStatusExcel, handleCancelSubmit } =
+    store.AdminStore;
 
-  const getReceiptSatusCallBack = useCallback(() => {
-    getReceiptSatus()
+  //입학 전형 원부 받아오기
+  const getReceiptStatusCallBack = useCallback(() => {
+    getReceiptStatus()
       .then((res) => {
         setReceiptStatus(res.data);
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         handleAdmin(err, history);
       });
   }, []);
 
+  const cancelSubmit = useCallback(
+    async (userIdx: number, name: string) => {
+      Swal.fire({
+        title: "주의!!",
+        text: `해당 유저(${name}) 를 제출 취소하시겠습니까?`,
+        showCancelButton: true,
+        icon: "warning",
+        cancelButtonText: "취소",
+        confirmButtonText: "확인",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await handleCancelSubmit(userIdx).then((response) => {
+            if (response.status === 200) {
+              const arr = receiptStatus.slice();
+              const idx = arr.findIndex((data) => data.userIdx === userIdx);
+              arr[idx].isSubmit = false;
+              arr[idx].submitCode = "";
+              arr[idx].examCode = "";
+              setReceiptStatus(arr);
+            }
+          });
+        }
+      });
+    },
+    [receiptStatus]
+  );
+
   useEffect(() => {
-    getReceiptSatusCallBack();
-  }, [getReceiptSatusCallBack]);
+    getReceiptStatusCallBack();
+  }, [getReceiptStatusCallBack]);
 
   return (
     <>
@@ -39,8 +65,8 @@ const AdminReceiptStatusContainer = ({}) => {
         receiptStatus={receiptStatus}
         setSearch={setSearch}
         search={search}
-        getReceiptSatusExcel={getReceiptSatusExcel}
-        handleCancelSubmit={handleCancelSubmit}
+        getReceiptStatusExcel={getReceiptStatusExcel}
+        handleCancelSubmit={cancelSubmit}
         setReceiptStatus={setReceiptStatus}
       />
     </>

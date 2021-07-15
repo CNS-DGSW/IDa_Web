@@ -4,12 +4,7 @@ import useStore from "lib/hooks/useStore";
 import "./WriteContent.scss";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
-import {
-  Link,
-  RouteComponentProps,
-  useHistory,
-  withRouter,
-} from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 interface WriteContentProps {
   title: string;
@@ -23,9 +18,9 @@ const WriteContent = ({
   children,
   onSave,
   isChanged,
-}: WriteContentProps & RouteComponentProps) => {
+}: WriteContentProps) => {
   const { store } = useStore();
-  const { page, pageHandle } = store.WriteStore;
+  const { page, pageHandle, userIdx } = store.WriteStore;
   const { changeSubmit } = store.StatusStore;
 
   const history = useHistory();
@@ -53,7 +48,7 @@ const WriteContent = ({
         });
       }
     },
-    [isChanged]
+    [isChanged, page, pageHandle]
   );
 
   const prevPage = useCallback(() => {
@@ -75,11 +70,11 @@ const WriteContent = ({
         }
       });
     }
-  }, [isChanged]);
+  }, [isChanged, page, pageHandle]);
 
   const changeSubmitCallback = useCallback(async () => {
     if (isChanged) {
-      toast.warn("변경사항이 저장되지 않았습니다.");
+      toast.warning("변경사항이 저장되지 않았습니다.");
       return;
     }
     Swal.fire({
@@ -91,28 +86,28 @@ const WriteContent = ({
       confirmButtonText: "확인",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await changeSubmit()
+        await changeSubmit(userIdx)
           .then(() => {
             history.push("/");
             toast.success("제출되었습니다.");
           })
-          .catch((err: Error) => {
-            if (err.message.includes("401") || err.message.includes("410")) {
+          .catch((err) => {
+            if (err.response?.status === 401 || err.response?.status === 410) {
               history.push("/login");
-              toast.warn("로그인이 필요합니다.");
-            } else if (err.message.includes("406")) {
-              toast.warn("원서를 모두 작성하지 않았습니다.");
-            } else if (err.message.includes("409")) {
-              toast.warn("이미 제출하셨습니다.");
-            } else if (err.message.includes("403")) {
-              toast.warn("제출 기간이 아닙니다.");
+              toast.warning("로그인이 필요합니다.");
+            } else if (err.response?.status === 406) {
+              toast.warning("원서를 모두 작성하지 않았습니다.");
+            } else if (err.response?.status === 409) {
+              toast.warning("이미 제출하셨습니다.");
+            } else if (err.response?.status === 403) {
+              toast.warning("제출 기간이 아닙니다.");
             } else {
               toast.error("서버 오류입니다.");
             }
           });
       }
     });
-  }, [isChanged]);
+  }, [changeSubmit, history, isChanged, userIdx]);
 
   return (
     <>
@@ -126,14 +121,15 @@ const WriteContent = ({
               onClick={async () => {
                 if ((await onSave()) === true) {
                   toast.success("저장되었습니다.");
-                  nextPage(true);
                 }
               }}
             >
               원서저장
             </div>
             <Link
-              to="/print?auto=false"
+              to={`/print?auto=false${
+                userIdx !== null ? "&userIdx=" + userIdx : ""
+              }`}
               target="_blank"
               className="writecontent-children-area-btn preview"
             >
@@ -141,7 +137,7 @@ const WriteContent = ({
             </Link>
             {page === 6 && (
               <Link
-                to="/print"
+                to={`/print${userIdx !== null && "?userIdx=" + userIdx}`}
                 target="_blank"
                 className="writecontent-children-area-btn prev"
               >
@@ -180,4 +176,4 @@ const WriteContent = ({
   );
 };
 
-export default withRouter(observer(WriteContent));
+export default observer(WriteContent);

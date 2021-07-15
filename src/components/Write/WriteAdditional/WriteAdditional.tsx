@@ -1,7 +1,7 @@
 import React from "react";
 import Grade from "util/enums/Grade";
-import NumericInput from "react-numeric-input";
 import "./WriteAdditional.scss";
+import numberCheck from "lib/numberCheck";
 
 interface WriteAdditionalProps {
   leadership11: boolean;
@@ -65,37 +65,31 @@ const WriteAdditional = ({
         <div className="addition-body">
           <div className="addition-body-grade">봉사활동 시간</div>
           <div>
-            <NumericInput
-              value={volunteer1}
-              min={0}
-              max={500}
-              style={false}
+            <input
+              type="number"
+              value={volunteer1.toString()}
               onChange={(e) => {
-                handleVolunteer1(e || 0);
+                handleVolunteer1(numberCheck(e.target.value, 0, 500));
                 handleIsChanged(true);
               }}
             />
           </div>
           <div>
-            <NumericInput
-              value={volunteer2}
-              min={0}
-              max={500}
-              style={false}
+            <input
+              type="number"
+              value={volunteer2.toString()}
               onChange={(e) => {
-                handleVolunteer2(e || 0);
+                handleVolunteer2(numberCheck(e.target.value, 0, 500));
                 handleIsChanged(true);
               }}
             />
           </div>
           <div>
-            <NumericInput
-              min={0}
-              max={500}
-              style={false}
-              value={volunteer3}
+            <input
+              type="number"
+              value={volunteer3.toString()}
               onChange={(e) => {
-                handleVolunteer3(e || 0);
+                handleVolunteer3(numberCheck(e.target.value, 0, 500));
                 handleIsChanged(true);
               }}
             />
@@ -117,7 +111,7 @@ const WriteAdditional = ({
             (전교 학생회장, 전교 학생부회장, 학급반장)
           </div>
           <div className="leader-box-text">
-            재학 중 교내 모범상을 수상 <br /> (모범, 선행, 효행, 공로 등)
+            재학 중 교내 모범상을 수상 <br /> (모범, 선행, 효행, 공로, 노력 등)
           </div>
         </div>
 
@@ -217,13 +211,11 @@ const WriteAdditional = ({
             </div>
           </div>
           <div className="leader-content-select">
-            <NumericInput
-              min={0}
-              max={100}
-              style={false}
-              value={prize}
+            <input
+              type="number"
+              value={prize.toString()}
               onChange={(e) => {
-                handlePrize(e || 0);
+                handlePrize(numberCheck(e.target.value, 0, 100));
                 handleIsChanged(true);
               }}
             />

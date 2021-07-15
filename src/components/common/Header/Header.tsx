@@ -18,8 +18,8 @@ interface HeaderProps {
   theme?: boolean;
   style?: React.CSSProperties;
   statusModal: boolean;
-  trySatusModal: () => void;
-  closeSatusModal: () => void;
+  tryStatusModal: () => void;
+  closeStatusModal: () => void;
 }
 
 const Header = ({
@@ -33,8 +33,8 @@ const Header = ({
   theme,
   style,
   statusModal,
-  trySatusModal,
-  closeSatusModal,
+  tryStatusModal,
+  closeStatusModal,
 }: HeaderProps) => {
   const history = useHistory();
 
@@ -122,105 +122,103 @@ const Header = ({
         </div>
       </div>
       <div className="header-container">
-        <>
-          <div className="header-container-link">
-            {theme ? (
-              <Logo2
-                className="pointer header-container-logo"
-                onClick={() => history.push("/")}
-              />
-            ) : (
-              <Logo1
-                className="pointer header-container-logo"
-                onClick={() => history.push("/")}
-              />
-            )}
-            <NavLink
-              to="/"
-              exact
-              className="header-container-link-item"
-              activeClassName="header-container-link-item-active"
-            >
-              <span>홈</span>
-            </NavLink>
-            <NavLink
-              to="/write"
-              className="header-container-link-item"
-              activeClassName="header-container-link-item-active"
-            >
-              <span>원서접수 </span>
-            </NavLink>
-            <NavLink
-              to="/notice"
-              className="header-container-link-item"
-              activeClassName="header-container-link-item-active"
-            >
-              <span>공지사항</span>
-            </NavLink>
-            <NavLink
-              to="/qna"
-              className="header-container-link-item"
-              activeClassName="header-container-link-item-active"
-            >
-              <span>Q&A</span>
-            </NavLink>
-            <NavLink
-              to="/faq"
-              className="header-container-link-item"
-              activeClassName="header-container-link-item-active"
-            >
-              <span>FAQ</span>
-            </NavLink>
-          </div>
-          <div className="header-container-button">
-            {login ? (
-              <>
-                {isAdmin && (
-                  <button
-                    className="headerButton header-admin"
-                    onClick={() => history.push("/admin/userList")}
-                  >
-                    관리자
-                  </button>
-                )}
-                <Profile
-                  className="header-container-profile pointer"
-                  onClick={() => tryProfileBox()}
-                />
-                {profileBox && (
-                  <>
-                    <ProfileModalBox
-                      handleOnClick={() => tryProfileBox()}
-                      name={name}
-                      email={email}
-                      HandleLogout={HandleLogout}
-                      statusModal={statusModal}
-                      trySatusModal={trySatusModal}
-                      closeSatusModal={closeSatusModal}
-                    />
-                  </>
-                )}
-              </>
-            ) : (
-              <>
+        <div className="header-container-link">
+          {theme ? (
+            <Logo2
+              className="pointer header-container-logo"
+              onClick={() => history.push("/")}
+            />
+          ) : (
+            <Logo1
+              className="pointer header-container-logo"
+              onClick={() => history.push("/")}
+            />
+          )}
+          <NavLink
+            to="/"
+            exact
+            className="header-container-link-item"
+            activeClassName="header-container-link-item-active"
+          >
+            <span>홈</span>
+          </NavLink>
+          <NavLink
+            to="/write"
+            className="header-container-link-item"
+            activeClassName="header-container-link-item-active"
+          >
+            <span>원서접수 </span>
+          </NavLink>
+          <NavLink
+            to="/notice"
+            className="header-container-link-item"
+            activeClassName="header-container-link-item-active"
+          >
+            <span>공지사항</span>
+          </NavLink>
+          <NavLink
+            to="/qna"
+            className="header-container-link-item"
+            activeClassName="header-container-link-item-active"
+          >
+            <span>Q&A</span>
+          </NavLink>
+          <NavLink
+            to="/faq"
+            className="header-container-link-item"
+            activeClassName="header-container-link-item-active"
+          >
+            <span>FAQ</span>
+          </NavLink>
+        </div>
+        <div className="header-container-button">
+          {login ? (
+            <>
+              {isAdmin && (
                 <button
-                  className="headerButton"
-                  onClick={() => history.push("/login")}
+                  className="headerButton header-admin"
+                  onClick={() => history.push("/admin/userList")}
                 >
-                  로그인
+                  관리자
                 </button>
-                <button
-                  className="headerButton"
-                  onClick={() => history.push("/register")}
-                  style={{ marginLeft: "1rem" }}
-                >
-                  회원가입
-                </button>
-              </>
-            )}
-            <HiOutlineMenuAlt3 className="header-toggle" onClick={menuToggle} />
-          </div>
-        </>
+              )}
+              <Profile
+                className="header-container-profile pointer"
+                onClick={() => tryProfileBox()}
+              />
+              {profileBox && (
+                <>
+                  <ProfileModalBox
+                    handleOnClick={() => tryProfileBox()}
+                    name={name}
+                    email={email}
+                    HandleLogout={HandleLogout}
+                    statusModal={statusModal}
+                    tryStatusModal={tryStatusModal}
+                    closeStatusModal={closeStatusModal}
+                  />
+                </>
+              )}
+            </>
+          ) : (
+            <>
+              <button
+                className="headerButton"
+                onClick={() => history.push("/login")}
+              >
+                로그인
+              </button>
+              <button
+                className="headerButton"
+                onClick={() => history.push("/register")}
+                style={{ marginLeft: "1rem" }}
+              >
+                회원가입
+              </button>
+            </>
+          )}
+          <HiOutlineMenuAlt3 className="header-toggle" onClick={menuToggle} />
+        </div>
       </div>
     </header>
   );

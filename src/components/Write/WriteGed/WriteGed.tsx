@@ -1,5 +1,6 @@
 import React from "react";
 import "./WriteGed.scss";
+import numberCheck from "lib/numberCheck";
 
 interface WriteGedProps {
   koreanScore: number;
@@ -52,60 +53,66 @@ const WriteGed = ({
             <td>
               <input
                 type="number"
-                value={koreanScore}
+                value={koreanScore.toString()}
+                step="0.1"
                 onChange={(e) => {
                   handleIsChanged(true);
-                  handleKoreanScore(parseFloat(e.target.value || "0"));
+                  handleKoreanScore(numberCheck(e.target.value || "0"));
                 }}
               />
             </td>
             <td>
               <input
                 type="number"
-                value={englishScore}
+                value={englishScore.toString()}
+                step="0.1"
                 onChange={(e) => {
                   handleIsChanged(true);
-                  handleEnglishScore(parseFloat(e.target.value || "0"));
+                  handleEnglishScore(numberCheck(e.target.value || "0"));
                 }}
               />
             </td>
             <td>
               <input
                 type="number"
-                value={mathScore}
+                value={mathScore.toString()}
+                step="0.1"
                 onChange={(e) => {
                   handleIsChanged(true);
-                  handleMathScore(parseFloat(e.target.value || "0"));
+                  handleMathScore(numberCheck(e.target.value || "0"));
                 }}
               />
             </td>
             <td>
               <input
                 type="number"
-                value={socialScore}
+                value={socialScore.toString()}
+                step="0.1"
                 onChange={(e) => {
                   handleIsChanged(true);
-                  handleSocialScore(parseFloat(e.target.value || "0"));
+                  handleSocialScore(numberCheck(e.target.value || "0"));
                 }}
               />
             </td>
             <td>
               <input
                 type="number"
-                value={scienceScore}
+                value={scienceScore.toString()}
+                step="0.1"
                 onChange={(e) => {
                   handleIsChanged(true);
-                  handleScienceScore(parseFloat(e.target.value || "0"));
+                  handleScienceScore(numberCheck(e.target.value || "0"));
                 }}
               />
             </td>
             <td>
               <input
                 type="number"
-                value={otherScore}
+                step="0.1"
+                value={otherScore.toString()}
                 onChange={(e) => {
                   handleIsChanged(true);
-                  handleOtherScore(parseFloat(e.target.value || "0"));
+                  handleOtherScore(numberCheck(e.target.value || "0"));
                 }}
               />
             </td>

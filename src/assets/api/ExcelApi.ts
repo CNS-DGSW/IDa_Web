@@ -4,193 +4,159 @@ import FileDown from "lib/FileDown";
 
 class ExcelApi {
   async GetSoftWare() {
-    try {
-      const response = await Api.get("/excel/getSwAbility", {
-        responseType: "blob",
-      });
+    const response = await Api.get("/excel/getSwAbility", {
+      responseType: "blob",
+    });
 
-      FileDown(response);
+    FileDown(response);
 
-      return response;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    return response;
   }
   async GetJob() {
-    try {
-      const response = await Api.get("/excel/getJobAptitude", {
-        responseType: "blob",
-      });
+    const response = await Api.get("/excel/getJobAptitude", {
+      responseType: "blob",
+    });
 
-      FileDown(response);
+    FileDown(response);
 
-      return response;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    return response;
   }
   async GetCodingTest() {
-    try {
-      const response = await Api.get("/excel/getCodingTest", {
-        responseType: "blob",
-      });
+    const response = await Api.get("/excel/getCodingTest", {
+      responseType: "blob",
+    });
 
-      FileDown(response);
+    FileDown(response);
 
-      return response;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    return response;
   }
   async GetSecondScoreExcel() {
-    try {
-      const response = await Api.get("/excel/getSecondSelection", {
-        responseType: "blob",
-      });
+    const response = await Api.get("/excel/getSecondSelection", {
+      responseType: "blob",
+    });
 
-      FileDown(response);
+    FileDown(response);
 
-      return response;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    return response;
   }
 
   async GetInterviewScoreExcel(category: string, team?: string) {
-    try {
-      const teamNumber = team ? `&teamNumber=${team}` : "";
+    const teamNumber = team ? `&teamNumber=${team}` : "";
 
-      const response = await Api.get(
-        `/excel/getInterviewScore?category=${category}` + teamNumber,
-        {
-          responseType: "blob",
-        }
-      );
+    const response = await Api.get(
+      `/excel/getInterviewScore?category=${category}` + teamNumber,
+      {
+        responseType: "blob",
+      }
+    );
 
-      FileDown(response);
+    FileDown(response);
 
-      return response;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    return response;
   }
 
   async GetUserSchoolCity() {
-    try {
-      const response = await Api.get("/excel/getUserSchoolCity", {
-        responseType: "blob",
-      });
+    const response = await Api.get("/excel/getUserSchoolCity", {
+      responseType: "blob",
+    });
 
-      FileDown(response);
+    FileDown(response);
 
-      return response;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    return response;
   }
 
   async uploadCodingTest(file: File) {
-    try {
-      const formData = new FormData();
-      formData.append("file", file);
+    const formData = new FormData();
+    formData.append("file", file);
 
-      const response = await Api.post(`/excel/uploadCodingTest`, formData);
+    const response = await Api.post(`/excel/uploadCodingTest`, formData);
 
-      return response;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    return response;
   }
 
   async uploadInterview(file: File) {
-    try {
-      const formData = new FormData();
-      formData.append("file", file);
+    const formData = new FormData();
+    formData.append("file", file);
 
-      const response = await Api.post(`/excel/uploadInterviewScore`, formData);
+    const response = await Api.post(`/excel/uploadInterviewScore`, formData);
 
-      return response;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    return response;
   }
 
   async uploadJob(file: File) {
-    try {
-      const formData = new FormData();
-      formData.append("file", file);
+    const formData = new FormData();
+    formData.append("file", file);
 
-      const response = await Api.post(`/excel/uploadJobAptitude`, formData);
+    const response = await Api.post(`/excel/uploadJobAptitude`, formData);
 
-      return response;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    return response;
   }
 
   async uploadSw(file: File) {
-    try {
-      const formData = new FormData();
-      formData.append("file", file);
+    const formData = new FormData();
+    formData.append("file", file);
 
-      const response = await Api.post(`/excel/uploadSwAbility`, formData);
+    const response = await Api.post(`/excel/uploadSwAbility`, formData);
 
-      return response;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    return response;
   }
   async GetReceiptStatus() {
-    try {
-      const response = await Api.get("/excel/getReceiptStatus", {
-        responseType: "blob",
-      });
+    const response = await Api.get("/excel/getReceiptStatus", {
+      responseType: "blob",
+    });
 
-      FileDown(response);
+    FileDown(response);
 
-      return response;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    return response;
   }
   async GetFirstSelection() {
-    try {
-      const response = await Api.get("/excel/getFirstSelection", {
-        responseType: "blob",
-      });
+    const response = await Api.get("/excel/getFirstSelection", {
+      responseType: "blob",
+    });
 
-      FileDown(response);
+    FileDown(response);
 
-      return response;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    return response;
   }
   async GetSecondSelection() {
-    try {
-      const response = await Api.get("/excel/getSecondSelection", {
-        responseType: "blob",
-      });
+    const response = await Api.get("/excel/getSecondSelection", {
+      responseType: "blob",
+    });
 
-      FileDown(response);
+    FileDown(response);
 
-      return response;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    return response;
   }
   async GetUserRate() {
-    try {
-      const response = await Api.get("/excel/getUserRate", {
+    const response = await Api.get("/excel/getUserRate", {
+      responseType: "blob",
+    });
+
+    FileDown(response);
+
+    return response;
+  }
+
+  async getTeamNumber(category: string) {
+    const response = await Api.get(
+      `/excel/getTeamNumber?category=${category}`,
+      {
         responseType: "blob",
-      });
+      }
+    );
 
-      FileDown(response);
+    FileDown(response);
 
-      return response;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    return response;
+  }
+
+  async uploadTeamNumber(file: File) {
+    const formData = new FormData();
+    formData.append("file", file);
+
+    const response = await Api.post(`/excel/uploadTeamNumber`, formData);
+
+    return response;
   }
 }
 export default new ExcelApi();

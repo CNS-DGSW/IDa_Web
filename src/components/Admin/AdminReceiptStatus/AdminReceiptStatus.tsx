@@ -9,8 +9,8 @@ interface AdminReceiptStatusProps {
   setReceiptStatus: React.Dispatch<React.SetStateAction<Receipt[]>>;
   setSearch: React.Dispatch<React.SetStateAction<string>>;
   search: string;
-  getReceiptSatusExcel: () => Promise<any>;
-  handleCancelSubmit: (userIdx: number) => Promise<Response>;
+  getReceiptStatusExcel: () => Promise<any>;
+  handleCancelSubmit: (userIdx: number, name: string) => Promise<void>;
 }
 
 const AdminReceiptStatus = ({
@@ -18,14 +18,14 @@ const AdminReceiptStatus = ({
   setReceiptStatus,
   setSearch,
   search,
-  getReceiptSatusExcel,
+  getReceiptStatusExcel,
   handleCancelSubmit,
 }: AdminReceiptStatusProps) => {
   return (
     <>
       <div className="receipt">
         <div className="receipt-title">신입생 입학 전형 원부</div>
-        <div className="receipt-btn" onClick={() => getReceiptSatusExcel()}>
+        <div className="receipt-btn" onClick={() => getReceiptStatusExcel()}>
           현자료 엑셀 내려받기
         </div>
 
@@ -72,7 +72,9 @@ const AdminReceiptStatus = ({
                       (typeof name.submitCode === "string" &&
                         name.submitCode.includes(search)) ||
                       (typeof name.schoolName === "string" &&
-                        name.schoolName.includes(search))
+                        name.schoolName.includes(search)) ||
+                      (typeof name.applyTypeString === "string" &&
+                        name.applyTypeString.includes(search))
                   )
                   .map((filteredName, idx) => (
                     <tr key={idx}>
@@ -86,7 +88,7 @@ const AdminReceiptStatus = ({
                       </td>
                       <td>{filteredName.cityName}</td>
                       <td>{filteredName.schoolName}</td>
-                      <td>{filteredName.gradeType}</td>
+                      <td>{Convertor.GradeType(filteredName.gradeType)}</td>
                       <td>{filteredName.applyTypeString}</td>
                       <td>{filteredName.gradeScore}</td>
                       <td>{filteredName.absenceScore}</td>
@@ -98,19 +100,9 @@ const AdminReceiptStatus = ({
                         {filteredName.isSubmit ? (
                           <button
                             onClick={() => {
-                              handleCancelSubmit(filteredName.userIdx).then(
-                                (res) => {
-                                  if (res.status === 200) {
-                                    const arr = receiptStatus.slice();
-                                    arr[
-                                      arr.findIndex(
-                                        (data) =>
-                                          data.userIdx === filteredName.userIdx
-                                      )
-                                    ].isSubmit = false;
-                                    setReceiptStatus(arr);
-                                  }
-                                }
+                              handleCancelSubmit(
+                                filteredName.userIdx,
+                                filteredName.name
                               );
                             }}
                           >
@@ -148,17 +140,7 @@ const AdminReceiptStatus = ({
                       {res.isSubmit ? (
                         <button
                           onClick={() => {
-                            handleCancelSubmit(res.userIdx).then((response) => {
-                              if (response.status === 200) {
-                                const arr = receiptStatus.slice();
-                                arr[
-                                  arr.findIndex(
-                                    (data) => data.userIdx === res.userIdx
-                                  )
-                                ].isSubmit = false;
-                                setReceiptStatus(arr);
-                              }
-                            });
+                            handleCancelSubmit(res.userIdx, res.name);
                           }}
                         >
                           제출취소

@@ -1,5 +1,4 @@
 import fileDownload from "js-file-download";
-import { Response } from "util/types/Response";
 
 const FileDown = (response: any) => {
   const headerLine: string | undefined =
@@ -11,7 +10,7 @@ const FileDown = (response: any) => {
       startFileNameIndex,
       headerLine.length
     );
-    fileDownload(response.data, decodeURI(filename));
+    fileDownload(response.data, decodeURI(filename.replace(/"/g, "")));
   }
 };
 

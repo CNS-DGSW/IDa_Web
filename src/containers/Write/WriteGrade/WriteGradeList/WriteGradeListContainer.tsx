@@ -1,14 +1,15 @@
-import React, { useCallback, useEffect, useLayoutEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { observer } from "mobx-react";
 import WriteGradeList from "components/Write/WriteGradeList";
 import useStore from "lib/hooks/useStore";
 import Grade from "util/enums/Grade";
 import { toast } from "react-toastify";
-import { useHistory, withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Score from "util/enums/Score";
 import updateSemGrade from "lib/updateSemGrade";
 import { handleGetWriteError } from "lib/handleErrors";
 
+// 성적 리스트
 const WriteGradeListContainer = ({}) => {
   const { store } = useStore();
 
@@ -24,6 +25,7 @@ const WriteGradeListContainer = ({}) => {
     handleIsChanged,
   } = store.WriteStore;
 
+  // 성적 리스트 조회
   const getGradeListCallback = useCallback(async () => {
     await getGradeList()
       .then((res) => {
@@ -33,18 +35,20 @@ const WriteGradeListContainer = ({}) => {
           handleFreeSem({ ...res.data.freeSem, freeSem32: true });
         }
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         handleGetWriteError(err, history);
       });
   }, [getGradeList, gradeType]);
 
+  // 성적 리스트에 새로운 과목 추가
   const addNewGrade = () => {
     let grade = grades.find((grade) => {
       return grade.subjectName === "";
     });
 
+    // 성적 과목 이름은 중복을 지원하지 않기 때문.
     if (grade) {
-      toast.warn("이전에 추가된 성적을 먼저 작성해주세요.");
+      toast.warning("이전에 추가된 성적을 먼저 작성해주세요.");
       return;
     }
 
@@ -61,6 +65,7 @@ const WriteGradeListContainer = ({}) => {
     handleGrades([...grades, grade]);
   };
 
+  // 해당 과목 성적 수정
   const handleGradesCallback = useCallback(
     (idx: number, value: Score, subjectName: string) => {
       const gradeIdx = grades.findIndex((grade) => {
@@ -94,7 +99,7 @@ const WriteGradeListContainer = ({}) => {
     [grades]
   );
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     getGradeListCallback();
   }, [getGradeListCallback]);
 
@@ -112,4 +117,4 @@ const WriteGradeListContainer = ({}) => {
   );
 };
 
-export default withRouter(observer(WriteGradeListContainer));
+export default observer(WriteGradeListContainer);

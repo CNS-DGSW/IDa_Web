@@ -10,7 +10,11 @@ import { toast } from "react-toastify";
 interface WriteGradeListItemContainer {
   model: string;
   isNew?: boolean;
-  handleGradesCallback: (idx: number, value: Score, subjectName: string) => void;
+  handleGradesCallback: (
+    idx: number,
+    value: Score,
+    subjectName: string
+  ) => void;
   filtered?: ScoreGrade;
 }
 
@@ -22,10 +26,17 @@ const WriteGradeListItemContainer = ({
 }: WriteGradeListItemContainer) => {
   const { store } = useStore();
 
-  const { gradeType, handleIsChanged, grades, handleGrades, freeSem } = store.WriteStore;
+  const {
+    gradeType,
+    handleIsChanged,
+    grades,
+    handleGrades,
+    freeSem,
+  } = store.WriteStore;
 
   const [value, setValue] = useState<string>("");
 
+  // 성적 리스트 중 한 과목 삭제
   const deleteGrade = (model: string) => {
     const gradeIdx = grades.findIndex((grade) => {
       return grade.subjectName === model;
@@ -33,9 +44,13 @@ const WriteGradeListItemContainer = ({
 
     if (gradeIdx === -1) return;
 
-    handleGrades([...grades.slice(0, gradeIdx), ...grades.slice(gradeIdx + 1, grades.length)]);
+    handleGrades([
+      ...grades.slice(0, gradeIdx),
+      ...grades.slice(gradeIdx + 1, grades.length),
+    ]);
   };
 
+  // 성적 과목 이름 변경
   const handleNameChange = (prevName: string, name: string) => {
     let flag = false;
     for (let i in gradeListModel) {
@@ -50,13 +65,13 @@ const WriteGradeListItemContainer = ({
     });
 
     if (flag || isExist) {
-      toast.warn("이미 같은 이름의 요소가 있습니다.");
+      toast.warning("이미 같은 이름의 요소가 있습니다.");
       setValue(prevName);
       return;
     }
 
     if (name === "체육" || name === "미술" || name === "음악") {
-      toast.warn("예체능 분야는 입력하지 않습니다.");
+      toast.warning("예체능 분야는 입력하지 않습니다.");
       setValue(prevName);
       return;
     }
@@ -71,7 +86,11 @@ const WriteGradeListItemContainer = ({
 
     if (grade && gradeIdx !== -1) {
       grade.subjectName = name;
-      handleGrades([...grades.slice(0, gradeIdx), grade, ...grades.slice(gradeIdx + 1, grades.length)]);
+      handleGrades([
+        ...grades.slice(0, gradeIdx),
+        grade,
+        ...grades.slice(gradeIdx + 1, grades.length),
+      ]);
     }
   };
 

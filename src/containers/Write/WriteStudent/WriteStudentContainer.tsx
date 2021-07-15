@@ -1,16 +1,11 @@
-import React, {
-  useCallback,
-  useEffect,
-  useState,
-  useLayoutEffect,
-} from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import WriteStudent from "../../../components/Write/WriteStudent";
 import useStore from "lib/hooks/useStore";
 import { UserInfoResponse } from "util/types/Response";
 import Sex from "util/enums/Sex";
 import moment from "moment";
-import { useHistory, withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import { handleWriteError, handleGetWriteError } from "lib/handleErrors";
 import useQuery from "lib/hooks/useQuery";
@@ -36,37 +31,20 @@ const WriteStudentContainer = ({}) => {
     await getStudentInfo(Number(query.get("userIdx")))
       .then((res: UserInfoResponse) => {
         setName(res.data.name || "");
-        setBirth(moment(res.data.birth || "").format("yyyy-MM-DD"));
+        setBirth(
+          isNaN(Date.parse(res.data.birth ? res.data.birth.toString() : ""))
+            ? ""
+            : moment(res.data.birth).format("yyyy-MM-DD")
+        );
         setSex(res.data.sex);
         setStudentTel(res.data.studentTel || "");
       })
-      .catch((err: Error) => {
+      .catch((err) => {
         handleGetWriteError(err, history);
       });
   }, []);
 
-  const onSave = useCallback(async () => {
-    let flag = true;
-    if (name !== "" && birth !== "" && sex !== null && studentTel !== "") {
-      await editStudentInfo(name, birth, sex, studentTel).catch(
-        (err: Error) => {
-          handleWriteError(err, history);
-          flag = false;
-        }
-      );
-      handleName(name);
-      setIsChanged(false);
-    } else {
-      toast.warn("빈칸을 채워주세요.");
-      flag = false;
-    }
-    return flag;
-  }, [name, birth, sex, studentTel]);
-
-  useLayoutEffect(() => {
-    getStudentInfoCallback();
-  }, [getStudentInfoCallback]);
-
+  // 전화번호 - 추가
   useEffect(() => {
     if (studentTel) {
       if (studentTel.length === 10) {
@@ -81,6 +59,31 @@ const WriteStudentContainer = ({}) => {
       }
     }
   }, [studentTel]);
+
+  const onSave = useCallback(async () => {
+    let flag = true;
+    const passRule = /^\d{3}-\d{3,4}-\d{4}$/;
+
+    if (!passRule.test(studentTel)) {
+      toast.warning("올바르지 않은 전화번호입니다. '-' 를 포함하여주세요.");
+      flag = false;
+    } else if (name !== "" && birth !== "" && sex !== null) {
+      await editStudentInfo(name, birth, sex, studentTel).catch((err) => {
+        handleWriteError(err, history);
+        flag = false;
+      });
+      handleName(name);
+      setIsChanged(false);
+    } else {
+      toast.warning("빈칸을 채워주세요.");
+      flag = false;
+    }
+    return flag;
+  }, [name, birth, sex, studentTel]);
+
+  useEffect(() => {
+    getStudentInfoCallback();
+  }, [getStudentInfoCallback]);
 
   useEffect(() => {
     return () => {
@@ -110,4 +113,4 @@ const WriteStudentContainer = ({}) => {
   );
 };
 
-export default observer(withRouter(WriteStudentContainer));
+export default observer(WriteStudentContainer);
