@@ -68,7 +68,7 @@ const WriteAttend = ({
         </div>
 
         <div className="addition-attend">
-          <div className="addition-attend-grade">미인정출석</div>
+          <div className="addition-attend-grade">미인정결석</div>
           <div>
             <input
               type="number"
