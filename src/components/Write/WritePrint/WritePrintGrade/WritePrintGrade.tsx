@@ -345,17 +345,33 @@ const WritePrintGrade = ({
               </tr>
               <tr>
                 <td>{absence1}</td>
+                <td>{lateness1}</td>
+                <td>{earlyLeave1}</td>
+                <td>{absenceLecture1}</td>
+                <td>{absence2}</td>
+                <td>{lateness2}</td>
+                <td>{earlyLeave2}</td>
+                <td>{absenceLecture2}</td>
+                <td>{absence3}</td>
+                <td>{lateness3}</td>
+                <td>{earlyLeave3}</td>
+                <td>{absenceLecture3}</td>
+
+                {/* <td>{absence1}</td>
                 <td>{absence2}</td>
                 <td>{absence3}</td>
+
                 <td>{lateness1}</td>
                 <td>{lateness2}</td>
                 <td>{lateness3}</td>
+
                 <td>{earlyLeave1}</td>
                 <td>{earlyLeave2}</td>
                 <td>{earlyLeave3}</td>
+
                 <td>{absenceLecture1}</td>
                 <td>{absenceLecture2}</td>
-                <td>{absenceLecture3}</td>
+                <td>{absenceLecture3}</td> */}
               </tr>
             </tbody>
           </table>
