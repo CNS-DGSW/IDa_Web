@@ -16,7 +16,8 @@ const UserListContainer = ({}) => {
 
   const { getUserList, getAllUserRatio, adminAddUser, adminDeleteUser } =
     store.AdminStore;
-  const { changeArrived } = store.StatusStore;
+
+  const { changeArrived, changeReview } = store.StatusStore;
 
   const [userStatus, setUserStatus] = useState<List[]>();
   const [cityStatus, setCityStatus] = useState<CityRatio[]>([]);
@@ -99,6 +100,13 @@ const UserListContainer = ({}) => {
     });
   };
 
+  //최종 원서 검토 예정 또는 검토 완료 변경 이민욱 만듬
+  const tryChangeReview = (userIdx: number, status: boolean) => {
+    changeReview(userIdx, status).then(() => {
+      tryGetUserList();
+    });
+  };
+
   // 엑셀 다운
   const tryDownExcel = () => {
     GetReceiptStatus().catch((err) => {
@@ -149,6 +157,7 @@ const UserListContainer = ({}) => {
       deleteUser={deleteUser}
       modal={modal}
       setModal={setModal}
+      tryChangeReview={tryChangeReview}
     />
   );
 };

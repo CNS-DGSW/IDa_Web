@@ -3,11 +3,17 @@ import "./ResultStatus.scss";
 
 interface ResultStatusProps {
   post: boolean | undefined;
+  checkedPost: boolean | undefined;
   internet: boolean | undefined;
   tryCloseModal: () => void;
 }
 
-const ResultStatus = ({ post, internet, tryCloseModal }: ResultStatusProps) => {
+const ResultStatus = ({
+  post, //  우편 원서 접수 현황
+  checkedPost, //  우편 원서 검토 현황
+  internet, // 인터넷 원서 접수 현황
+  tryCloseModal, // 모달 상태 함수
+}: ResultStatusProps) => {
   return (
     <>
       <div className="ResultStatus">
@@ -17,7 +23,7 @@ const ResultStatus = ({ post, internet, tryCloseModal }: ResultStatusProps) => {
             <div className="ResultStatus-status-web-span check-span">
               <span>인터넷 원서 접수</span>
             </div>
-            {post ? (
+            {internet ? (
               <div className="ResultStatus-status-web-result check-result-success">
                 완료
               </div>
@@ -31,13 +37,22 @@ const ResultStatus = ({ post, internet, tryCloseModal }: ResultStatusProps) => {
             <div className="ResultStatus-status-post-span check-span">
               <span>우편 원서 접수</span>
             </div>
-            {internet ? (
+            {post ? (
               <div className="ResultStatus-status-web-result check-result-success">
                 완료
               </div>
             ) : (
               <div className="ResultStatus-status-web-result check-result-fail">
                 미완료
+              </div>
+            )}
+            {checkedPost ? (
+              <div className="ResultStatus-status-web-result check-result-success">
+                검토중
+              </div>
+            ) : (
+              <div className="ResultStatus-status-web-result check-result-fail">
+                검토예정
               </div>
             )}
           </div>
