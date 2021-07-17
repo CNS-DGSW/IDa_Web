@@ -30,11 +30,17 @@ const WriteIntroduction = ({
       >
         <div className="intro">
           <div className="intro-textBox">
-            <p>자기소개서 및 학업계획서는 전형 성적에 반영되지 않으며 구슬 면접 참고 자료로 활용됩니다.</p>
+            <p>
+              자기소개서 및 학업계획서는 전형 성적에 반영되지 않으며 구슬 면접
+              참고 자료로 활용됩니다.
+            </p>
 
             <p>파일을 모두 다운 받으신 후 양식에 따라 작성해주시면 됩니다.</p>
 
-            <p>파일을 모두 작성하신 후엔 파일 선택 또는 업로드란에 파일을 끌어다 놓아주세요.</p>
+            <p>
+              파일을 모두 작성하신 후엔 파일 선택 또는 업로드란에 파일을 끌어다
+              놓아주세요.
+            </p>
           </div>
 
           <label>자기소개서 ({selfIntroduce.length}/1500)</label>
@@ -45,6 +51,7 @@ const WriteIntroduction = ({
             onChange={(e) => {
               setSelfIntroduce(e.target.value);
               setIsChanged(true);
+              console.log(selfIntroduce);
             }}
           ></textarea>
 

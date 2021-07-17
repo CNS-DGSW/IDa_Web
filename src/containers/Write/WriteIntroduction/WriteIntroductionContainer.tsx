@@ -26,9 +26,10 @@ const WriteIntroductionContainer = ({}) => {
     let flag = true;
     if (selfIntroduce && studyPlan) {
       const promises = [
-        editStudyPlan(studyPlan),
-        editSelfIntroduce(selfIntroduce),
+        editStudyPlan(studyPlan).then(() => editSelfIntroduce(selfIntroduce)),
       ];
+
+      console.log(studyPlan);
 
       await Promise.all(promises)
         .then(() => {
@@ -43,6 +44,7 @@ const WriteIntroductionContainer = ({}) => {
       toast.warning("빈칸을 채워주세요.");
       flag = false;
     }
+    getSelfIntroduce().then((current) => console.log(current));
     return flag;
   }, [selfIntroduce, studyPlan]);
 

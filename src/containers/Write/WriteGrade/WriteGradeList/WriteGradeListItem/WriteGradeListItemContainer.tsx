@@ -26,13 +26,8 @@ const WriteGradeListItemContainer = ({
 }: WriteGradeListItemContainer) => {
   const { store } = useStore();
 
-  const {
-    gradeType,
-    handleIsChanged,
-    grades,
-    handleGrades,
-    freeSem,
-  } = store.WriteStore;
+  const { gradeType, handleIsChanged, grades, handleGrades, freeSem } =
+    store.WriteStore;
 
   const [value, setValue] = useState<string>("");
 
@@ -70,11 +65,12 @@ const WriteGradeListItemContainer = ({
       return;
     }
 
-    if (name === "체육" || name === "미술" || name === "음악") {
-      toast.warning("예체능 분야는 입력하지 않습니다.");
-      setValue(prevName);
-      return;
-    }
+    //2021년 부터 예체능 허용
+    // if (name === "체육" || name === "미술" || name === "음악") {
+    //   toast.warning("예체능 분야는 입력하지 않습니다.");
+    //   setValue(prevName);
+    //   return;
+    // }
 
     const gradeIdx = grades.findIndex((grade) => {
       return grade.subjectName === prevName;
@@ -110,6 +106,7 @@ const WriteGradeListItemContainer = ({
         gradeType={gradeType}
         filtered={filtered}
         isNew={isNew}
+        model={model}
         deleteGrade={deleteGrade}
       />
     </>
