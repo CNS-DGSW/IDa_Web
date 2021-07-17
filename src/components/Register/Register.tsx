@@ -125,7 +125,7 @@ const Register = ({
               style={{ width: "44%" }}
             />
             <CustomInput
-              placeholder={`생년월일 ${new Date().getFullYear() - 15}-01-01`}
+              placeholder={`생년월일 ${new Date().getFullYear() - 15}0101`}
               type="text"
               value={birth}
               setValue={setBirth}

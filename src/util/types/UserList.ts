@@ -13,6 +13,7 @@ export type List = {
   name: string;
   schoolName: string;
   studentTel: string;
+  isPrintedApplicationCheck: boolean;
 };
 
 export type ListPassed = {

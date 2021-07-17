@@ -14,6 +14,10 @@ const ResultStatusContainer = ({}: ResultStatusContainerPropse) => {
   const { tryGetStatus } = store.StatusStore;
   const [post, setPost] = useState<boolean | undefined>(undefined);
   // 우편 접수 현황
+  const [checkedPost, setCheckedPost] = useState<boolean | undefined>(
+    undefined
+  );
+  // 우편 검토 현황
   const [internet, setInternet] = useState<boolean | undefined>(undefined);
   // 인터넷 원서 접수 현황
   const { tryCloseModal } = store.AuthStore;
@@ -23,8 +27,9 @@ const ResultStatusContainer = ({}: ResultStatusContainerPropse) => {
   const getStatus = useCallback(async () => {
     await tryGetStatus()
       .then((res) => {
-        setPost(res.data.isSubmit);
-        setInternet(res.data.isPrintedApplicationArrived);
+        setInternet(res.data.isSubmit); // 인터넷 원서 접수 현황
+        setPost(res.data.isPrintedApplicationArrived); // 우편 원서 접수 현황
+        setCheckedPost(res.data.isPrintedApplicationCheck); // 우편 원서 검토 현황
       })
       .catch((err) => {
         handleLogin(err, history);
@@ -42,6 +47,7 @@ const ResultStatusContainer = ({}: ResultStatusContainerPropse) => {
         // !post로 안하는 이유는 우편 접수가 아직 안되있으면 서버에서 false로 주기 때문
         <ResultStatus
           post={post}
+          checkedPost={checkedPost}
           internet={internet}
           tryCloseModal={tryCloseModal}
         />

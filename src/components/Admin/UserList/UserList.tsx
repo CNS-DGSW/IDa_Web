@@ -28,6 +28,7 @@ interface UserListProps {
   deleteUser: (userIdx: number) => void;
   modal: boolean;
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
+  tryChangeReview: (userIdx: number, status: boolean) => void;
 }
 
 const UserList = ({
@@ -51,6 +52,7 @@ const UserList = ({
   deleteUser,
   modal,
   setModal,
+  tryChangeReview,
 }: UserListProps) => {
   return (
     <>
@@ -130,6 +132,7 @@ const UserList = ({
               <th>원서작성</th>
               <th>원서제출</th>
               <th>우편 도착 여부</th>
+              <th>서류 검토</th>
               <th>가입날짜</th>
               <th>삭제</th>
             </tr>
@@ -229,7 +232,38 @@ const UserList = ({
                           </>
                         )}
                       </td>
-                      <td>{moment(filter.createdAt).format("YYYY-M-DD")}</td>
+                      <td>
+                        {filter.isPrintedApplicationCheck ? (
+                          <>
+                            <button
+                              className="true pointer"
+                              onClick={() =>
+                                tryChangeReview(
+                                  filter.idx,
+                                  !filter.isPrintedApplicationCheck
+                                )
+                              }
+                            >
+                              검토 완료
+                            </button>
+                          </>
+                        ) : (
+                          <>
+                            <button
+                              className="false pointer"
+                              onClick={() =>
+                                tryChangeReview(
+                                  filter.idx,
+                                  !filter.isPrintedApplicationCheck
+                                )
+                              }
+                            >
+                              검토 예정
+                            </button>
+                          </>
+                        )}
+                      </td>
+                      <td>{moment(filter.createdAt).format("YYYY-MM-DD")}</td>
                       <td className="deleteIcon">
                         <Delete onClick={() => deleteUser(filter.idx)} />
                       </td>
@@ -297,6 +331,37 @@ const UserList = ({
                             }
                           >
                             미도착
+                          </button>
+                        </>
+                      )}
+                    </td>
+                    <td>
+                      {i.isPrintedApplicationCheck ? (
+                        <>
+                          <button
+                            className="true pointer"
+                            onClick={() =>
+                              tryChangeReview(
+                                i.idx,
+                                !i.isPrintedApplicationCheck
+                              )
+                            }
+                          >
+                            검토 완료
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          <button
+                            className="false pointer"
+                            onClick={() =>
+                              tryChangeReview(
+                                i.idx,
+                                !i.isPrintedApplicationCheck
+                              )
+                            }
+                          >
+                            검토 예정
                           </button>
                         </>
                       )}
