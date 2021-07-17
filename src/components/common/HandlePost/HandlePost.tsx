@@ -69,13 +69,33 @@ const HandlePost = ({
           <span>내용</span>
           {selectedIdx && !isModify && !isAnswer ? (
             <div className="handle-post-content-item-box handle-post-content-item-content">
-              {post.content}
+              {post.content.split("").map((c) => {
+                if (c === "\n")
+                  // content 중에 '\n' 있으면 <br />태그를 넣는다.
+                  return (
+                    <span>
+                      {c}
+                      <br />
+                    </span>
+                  );
+                if (c === "\t") return <span className="tap"></span>; // content 중에 '\t'가 있으면 <span className="tap">를 넣는다.
+                return c;
+              })}
             </div>
           ) : (
             <textarea
+              tabIndex={-1}
               className="handle-post-content-item-box handle-post-content-item-content"
               value={content}
-              onChange={(e) => setContent(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Tab") {
+                  e.preventDefault(); // tap 넘기 방지
+                  setContent(content + "\t"); // 기존 content에 '\t'추가
+                }
+              }}
+              onChange={(e) => {
+                setContent(e.target.value);
+              }}
             />
           )}
         </div>
