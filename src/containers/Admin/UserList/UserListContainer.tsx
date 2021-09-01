@@ -16,6 +16,7 @@ const UserListContainer = ({}) => {
 
   const { getUserList, getAllUserRatio, adminAddUser, adminDeleteUser } =
     store.AdminStore;
+
   const { changeArrived, changeReview } = store.StatusStore;
 
   const [userStatus, setUserStatus] = useState<List[]>();
@@ -72,7 +73,6 @@ const UserListContainer = ({}) => {
   const tryGetUserList = useCallback(() => {
     getUserList()
       .then((res) => {
-        console.log(res);
         setUserStatus(res.data);
       })
       .catch((err) => {
@@ -99,6 +99,7 @@ const UserListContainer = ({}) => {
       tryGetUserList();
     });
   };
+
   //최종 원서 검토 예정 또는 검토 완료 변경 이민욱 만듬
   const tryChangeReview = (userIdx: number, status: boolean) => {
     changeReview(userIdx, status).then(() => {

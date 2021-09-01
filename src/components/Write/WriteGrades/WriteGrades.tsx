@@ -41,13 +41,6 @@ const WriteGrades = ({
             <>
               <WriteGradeListContainer />
               <WriteGradeAttendContainer />
-              <div className="grade-textBox">
-                <p>
-                  자유학기제 등으로 교과 성적이 없는 학기일 경우, 모집 요강에
-                  의거하여 해당학기의 성적을 인정하니, 테이블 상단의
-                  '자유학기제'를 꼭 선택해 주세요.
-                </p>
-              </div>
               <WriteGradeAdditionalContainer />
             </>
           ) : (

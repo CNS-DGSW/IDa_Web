@@ -38,8 +38,7 @@ const WriteGradeList = ({
         </p>
 
         <p>
-          체육·예술 교과 등 성적이 3등급(우수[A], 보통[B], 미흡[C]) 평가로
-          나오는 교과는 입력하지 않습니다.
+        체육․예술 교과 등 성적이 3등급 (A(우수), B(보통), C(미흡)) 평가로 나오는 교과의 성적도 입력함.
         </p>
 
         <p>
@@ -187,14 +186,6 @@ const WriteGradeList = ({
 
       <div className="add pointer" onClick={() => addNewGrade()}>
         과목 추가
-      </div>
-
-      <div className="grade-textBox">
-        <p>
-          자유학기제 등으로 교과 성적이 없는 학기일 경우, 모집 요강에 의거하여
-          해당학기의 성적을 인정하니, 테이블 상단의 '자유학기제'를 꼭 선택해
-          주세요.
-        </p>
       </div>
     </>
   );

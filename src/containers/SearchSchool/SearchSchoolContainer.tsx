@@ -6,6 +6,7 @@ import Schools from "util/types/Schools";
 import { SchoolResponse } from "util/types/Response";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 interface SearchSchoolContainerProps {
   setSchoolName: React.Dispatch<React.SetStateAction<string>>;
@@ -27,14 +28,15 @@ const SearchSchoolContainer = ({
 
   const { searchSchool } = store.WriteStore;
 
+  const [city,setCity] = useState<string>("");
   const [search, setSearch] = useState<string>("");
   const [schools, setSchools] = useState<Schools[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const getSchoolsCallback = useCallback(async () => {
-    if (search) {
+    if (search&&city) {
       setIsLoading(true);
-      await searchSchool(search)
+      await searchSchool(search,city)
         .then((res: SchoolResponse) => {
           setSchools(res.data.schools);
         })
@@ -49,6 +51,14 @@ const SearchSchoolContainer = ({
     }
   }, [search]);
 
+  const checkCityValue = () => {
+    if(city === ""){
+      Swal.fire({
+        title:'시/도를 먼저 선택해주세요'
+      })
+    }
+  }
+
   return (
     <>
       <SearchSchool
@@ -62,6 +72,9 @@ const SearchSchoolContainer = ({
         setSchoolTel={setSchoolTel}
         setSchoolCode={setSchoolCode}
         setIsOpen={setIsOpen}
+        city={city}
+        setCity={setCity}
+        checkCityValue={checkCityValue}
       />
     </>
   );

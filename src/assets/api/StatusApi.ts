@@ -5,7 +5,7 @@ class StatusApi {
     const query = userIdx ? `?userIdx=${userIdx}` : "";
 
     const { data } = await Api.get(`/status/getStatus${query}`);
-
+    console.log("getStatus API", data);
     return data;
   }
 
@@ -41,7 +41,7 @@ class StatusApi {
     const { data } = await Api.patch(
       `/status/changeCheck?userIdx=${userIdx}&status=${status}`
     );
-    console.log(data);
+    console.log("API", data);
     return data;
   }
 }

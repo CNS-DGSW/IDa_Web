@@ -7,7 +7,9 @@ const gradeListModel = [
   "과학",
   "기술·가정",
   "영어",
-  "정보",
+  "체육",
+  "음악",
+  "미술",
 ];
 
 export default gradeListModel;
