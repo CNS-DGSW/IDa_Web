@@ -600,9 +600,14 @@ class WriteStore {
 
   //학교 검색
   @action
-  searchSchool = async (schoolName: string,city: string): Promise<SchoolResponse> => {
-    const response: SchoolResponse = await UserApi.SearchSchool(schoolName,city);
-
+  searchSchool = async (
+    schoolName: string,
+    city: string
+  ): Promise<SchoolResponse> => {
+    const response: SchoolResponse = await UserApi.SearchSchool(
+      schoolName,
+      city
+    );
     return response;
   };
 

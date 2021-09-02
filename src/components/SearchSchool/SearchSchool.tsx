@@ -13,8 +13,8 @@ interface SearchSchoolProps {
   setSchoolCode: React.Dispatch<React.SetStateAction<string>>;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setIsChanged: React.Dispatch<React.SetStateAction<boolean>>;
-  city:string;
-  setCity:React.Dispatch<React.SetStateAction<string>>;
+  city: string;
+  setCity: React.Dispatch<React.SetStateAction<string>>;
   checkCityValue: () => void;
 }
 
@@ -31,13 +31,17 @@ const SearchSchool = ({
   setIsChanged,
   city,
   setCity,
-  checkCityValue
+  checkCityValue,
 }: SearchSchoolProps) => {
-  
   return (
     <>
       <div className="search">
-      <select name="citys" id="city-select" onChange={(e)=> setCity(e.target.value)}>
+        <select
+          name="citys"
+          id="city-select"
+          onChange={(e) => setCity(e.target.value)}
+          className="school-schedule-box-area-selectinput modal-search-city"
+        >
           <option value="">시/도를 선택해주세요</option>
           <option value="01">서울특별시</option>
           <option value="02">부산광역시</option>
@@ -57,12 +61,12 @@ const SearchSchool = ({
           <option value="16">경상남도</option>
           <option value="17">제주특별자치도</option>
         </select>
-        {
-          city === "" ?(
-          <div style={{display:"none"}}>
+        <div style={city === "" ? { display: "none" } : { display: "block" }}>
           <input
             type="text"
-            onChange={(e) =>  {console.log(city); setSearch(e.target.value)}}
+            onChange={(e) => {
+              setSearch(e.target.value);
+            }}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 getSchoolsCallback();
@@ -71,7 +75,7 @@ const SearchSchool = ({
             placeholder="학교 검색"
             className="search-input"
           />
-  
+
           <div className="search-list">
             {search ? (
               isLoading ? (
@@ -81,7 +85,7 @@ const SearchSchool = ({
                   다소 오래 걸릴 수 있습니다.
                 </div>
               ) : (
-                schools.map((res,index) => {
+                schools.map((res, index) => {
                   return (
                     <div
                       className="searchSchool"
@@ -98,8 +102,9 @@ const SearchSchool = ({
                         <div>{res.schoolName}</div>
                         <div>{res.schoolCode}</div>
                       </div>
-                      <div className="searchSchool-text">{null}</div>
-                      <div className="searchSchool-text">{res.schoolLocation}</div>
+                      <div className="searchSchool-text">
+                        {res.schoolLocation}
+                      </div>
                     </div>
                   );
                 })
@@ -112,65 +117,7 @@ const SearchSchool = ({
               </div>
             )}
           </div>
-          </div>
-          ):(
-            <>
-            <input
-          type="text"
-          onChange={(e) =>  {console.log(city); setSearch(e.target.value)}}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-                    getSchoolsCallback();
-            }
-          }}
-          placeholder="학교 검색"
-          className="search-input"
-        />
-
-        <div className="search-list">
-          {search ? (
-            isLoading ? (
-              <div className="search-list-load">
-                검색중입니다
-                <br />
-                다소 오래 걸릴 수 있습니다.
-              </div>
-            ) : (
-              schools.map((res,index) => {
-                return (
-                  <div
-                    className="searchSchool"
-                    key={index}
-                    onClick={() => {
-                      setSchoolName(res.schoolName);
-                      setSchoolTel("");
-                      setSchoolCode(res.schoolCode);
-                      setIsChanged(true);
-                      setIsOpen(false);
-                    }}
-                  >
-                    <div className="searchSchool-head">
-                      <div>{res.schoolName}</div>
-                      <div>{res.schoolCode}</div>
-                    </div>
-                    <div className="searchSchool-text">{null}</div>
-                    <div className="searchSchool-text">{res.schoolLocation}</div>
-                  </div>
-                );
-              })
-            )
-          ) : (
-            <div className="search-list-load">
-              학교를 검색해 주세요
-              <br />
-              (엔터 시 검색이 됩니다)
-            </div>
-          )}
         </div>
-        </>
-          )
-        }
-        
       </div>
     </>
   );
