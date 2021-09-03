@@ -356,9 +356,11 @@ class UserApi {
     return data;
   }
 
+
   async SearchSchool(schoolName: string,city: string) {
     const { data } = await Api.get(
       encodeURI(`/school/searchSchool?orgName=${schoolName}&lctnScCode=${city}`)
+
     );
     return data;
   }

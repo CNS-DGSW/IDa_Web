@@ -55,6 +55,15 @@ const ResultStatus = ({
                 검토예정
               </div>
             )}
+            {checkedPost ? (
+              <div className="ResultStatus-status-web-result check-result-success">
+                검토중
+              </div>
+            ) : (
+              <div className="ResultStatus-status-web-result check-result-fail">
+                검토예정
+              </div>
+            )}
           </div>
         </div>
       </div>
