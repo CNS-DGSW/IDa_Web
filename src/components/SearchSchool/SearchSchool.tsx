@@ -51,15 +51,15 @@ const SearchSchool = ({
           <option value="06">대전광역시</option>
           <option value="07">울산광역시</option>
           <option value="08">세종특별자치시</option>
-          <option value="09">경기도</option>
-          <option value="10">강원도</option>
-          <option value="11">충청북도</option>
-          <option value="12">충청남도</option>
-          <option value="13">전라북도</option>
-          <option value="14">전라남도</option>
-          <option value="15">경상북도</option>
-          <option value="16">경상남도</option>
-          <option value="17">제주특별자치도</option>
+          <option value="10">경기도</option>
+          <option value="11">강원도</option>
+          <option value="12">충청북도</option>
+          <option value="13">충청남도</option>
+          <option value="14">전라북도</option>
+          <option value="15">전라남도</option>
+          <option value="16">경상북도</option>
+          <option value="17">경상남도</option>
+          <option value="18">제주특별자치도</option>
         </select>
         <div style={city === "" ? { display: "none" } : { display: "block" }}>
           <input
