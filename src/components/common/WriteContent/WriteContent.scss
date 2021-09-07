@@ -1,7 +1,10 @@
 @import "util/colors.scss";
 
 .writecontent {
-  width: 100%;
+  // position: fixed;
+  // top: 0;
+  // right: 10%;
+  // width: 100%;
   padding: 4rem;
 
   @media screen and (max-width: 970px) {
