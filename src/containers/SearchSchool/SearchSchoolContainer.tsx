@@ -28,15 +28,15 @@ const SearchSchoolContainer = ({
 
   const { searchSchool } = store.WriteStore;
 
-  const [city,setCity] = useState<string>("");
+  const [city, setCity] = useState<string>("");
   const [search, setSearch] = useState<string>("");
   const [schools, setSchools] = useState<Schools[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const getSchoolsCallback = useCallback(async () => {
-    if (search&&city) {
+    if (search && city) {
       setIsLoading(true);
-      await searchSchool(search,city)
+      await searchSchool(search, city)
         .then((res: SchoolResponse) => {
           setSchools(res.data.schools);
         })
@@ -49,15 +49,15 @@ const SearchSchoolContainer = ({
         });
       setIsLoading(false);
     }
-  }, [search]);
+  }, [search, city]);
 
   const checkCityValue = () => {
-    if(city === ""){
+    if (city === "") {
       Swal.fire({
-        title:'시/도를 먼저 선택해주세요'
-      })
+        title: "시/도를 먼저 선택해주세요",
+      });
     }
-  }
+  };
 
   return (
     <>
