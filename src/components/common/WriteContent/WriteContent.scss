@@ -1,10 +1,6 @@
 @import "util/colors.scss";
 
 .writecontent {
-  // position: fixed;
-  // top: 0;
-  // right: 10%;
-  // width: 100%;
   padding: 4rem;
 
   @media screen and (max-width: 970px) {
@@ -43,17 +39,20 @@
     }
 
     &-area {
-      width: 24%;
+      width: 16%;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 0 1rem;
+      position: fixed;
+      right: 14%;
 
-      @media screen and (max-width: 970px) {
+      @media screen and (max-width: 950px) {
         margin-top: 2.5rem;
         width: 100%;
         flex-direction: row;
         padding: 0;
+        position: inherit;
       }
 
       &-btn {
