@@ -121,6 +121,8 @@ const RegisterContainer = () => {
             toast.warning("메일 인증이 안되었습니다.");
           } else if (err.response?.status === 400) {
             toast.warning("올바르지 않은 값이 있습니다.");
+          } else if (err.response?.status === 410) {
+            toast.warning("이미 사용중인 실명인증입니다.");
           } else {
             toast.error("서버 오류입니다");
           }
