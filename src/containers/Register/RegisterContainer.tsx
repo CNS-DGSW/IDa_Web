@@ -96,12 +96,14 @@ const RegisterContainer = () => {
 
     if (!email || !pw || !checkPw || !name || !birth) {
       toast.warning("빈칸이 있습니다.");
+    } else if (!isAuth) {
+      toast.warning("실명 인증을 하지 않았습니다.");
+    } else if (pw.length < 8) {
+      toast.warning("비밀번호가 8자리 이상이여야 합니다.");
     } else if (pw !== checkPw) {
       toast.warning("비밀번호가 일치하지 않습니다.");
     } else if (!allCheck) {
       toast.warning("모두 동의를 체크해 주세요");
-    } else if (!isAuth) {
-      toast.warning("실명 인증을 하지 않았습니다.");
     } else {
       await tryRegister(name, email, pw, birth, duplicateInfo)
         .then((res: Response) => {
