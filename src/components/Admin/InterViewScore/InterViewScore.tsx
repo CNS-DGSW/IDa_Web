@@ -119,6 +119,7 @@ const InterViewScore = ({
                 <>
                   <th>평가요소6</th>
                   <th>평가요소7</th>
+                  <th>평가요소8</th>
                 </>
               )}
               <th>점수</th>
@@ -140,6 +141,7 @@ const InterViewScore = ({
                   <>
                     <td>{i.evaluationFactor6}</td>
                     <td>{i.evaluationFactor7}</td>
+                    <td>{i.evaluationFactor8}</td>
                   </>
                 )}
                 <td>{i.calcScore}</td>
@@ -150,7 +152,8 @@ const InterViewScore = ({
                     i.evaluationFactor4 +
                     i.evaluationFactor5 +
                     (i.evaluationFactor6 !== null ? i.evaluationFactor6 : 0) +
-                    (i.evaluationFactor7 !== null ? i.evaluationFactor7 : 0)}
+                    (i.evaluationFactor7 !== null ? i.evaluationFactor7 : 0) +
+                    (i.evaluationFactor8 !== null ? i.evaluationFactor8 : 0)}
                 </td>
               </tr>
             ))}

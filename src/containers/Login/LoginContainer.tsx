@@ -30,8 +30,21 @@ const LoginContainer = () => {
 
   //로그인
   const handleLogin = async () => {
+    const regId =
+      /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
     if (!id || !password) {
-      toast.warning("아이디 또는 비밀번호를 입력해 주세요");
+      if (!id) {
+        toast.warning("아이디를 입력해주세요");
+      } else if (!password) {
+        toast.warning("비밀번호를 입력해주세요");
+        console.log(regId.test(id));
+      } else {
+        toast.warning("아이디와 비밀번호가 입력되지 않았습니다");
+      }
+    } else if (!regId.test(id)) {
+      toast.warning("이메일 형식이 아닙니다.");
+    } else if (password.length < 8) {
+      toast.warning("비밀번호를 8자 이상 입력해주세요");
     } else {
       await tryLogin(id, password)
         .then(async (res: LoginResponse) => {
