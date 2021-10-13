@@ -44,8 +44,8 @@ const App = () => {
           <Route exact path="/register" component={RegisterPage} />
           <Route exact path="/changepw" component={ChangePwPage} />
           <Route exact path="/find" component={FindPage} />
-          <Route exact path="/qna" component={QnaPage} />
-          <Route exact path="/faq" component={FaqPage} />
+          {/* <Route exact path="/qna" component={QnaPage} />
+          <Route exact path="/faq" component={FaqPage} /> */}
           <Route exact path="/notice" component={NoticePage} />
           <Route
             exact
