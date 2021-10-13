@@ -285,6 +285,7 @@ export interface InterViewScoreResponse extends Response {
       evaluationFactor5: number;
       evaluationFactor6: number | null;
       evaluationFactor7: number | null;
+      evaluationFactor8: number | null;
       examCode: number;
       interviewCategory: InterViewCategory;
       userName: string;
