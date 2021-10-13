@@ -13,6 +13,9 @@ const RegisterContainer = () => {
 
   const history = useHistory();
 
+  // 실명인증 상태
+  const [isAuth, setIsAuth] = useState<boolean>(false);
+
   //모두동의 체크박스
   const [allCheck, setAllCheck] = useState<boolean>(false);
 
@@ -22,6 +25,7 @@ const RegisterContainer = () => {
   const [pw, setPw] = useState<string>("");
   const [checkPw, setCheckPw] = useState<string>("");
   const [birth, setBirth] = useState<string>("");
+  const [duplicateInfo, setDuplicateInfo] = useState<string>("");
 
   // 로딩
   const [emailLoading, setEmailLoading] = useState<boolean>(false);
@@ -82,14 +86,24 @@ const RegisterContainer = () => {
 
   //회원가입하기
   const handleRegister = useCallback(async () => {
+    console.log("email", email);
+    console.log("pw", pw);
+    console.log("checkPw", checkPw);
+    console.log("name", name);
+    console.log("birth", birth);
+    console.log("duplicateInfo", duplicateInfo);
+    console.log("isAuth", isAuth);
+
     if (!email || !pw || !checkPw || !name || !birth) {
       toast.warning("빈칸이 있습니다.");
     } else if (pw !== checkPw) {
       toast.warning("비밀번호가 일치하지 않습니다.");
     } else if (!allCheck) {
       toast.warning("모두 동의를 체크해 주세요");
+    } else if (!isAuth) {
+      toast.warning("실명 인증을 하지 않았습니다.");
     } else {
-      await tryRegister(name, email, pw, birth)
+      await tryRegister(name, email, pw, birth, duplicateInfo)
         .then((res: Response) => {
           toast.success("회원가입이 완료되었습니다.");
           history.push("login");
@@ -107,12 +121,14 @@ const RegisterContainer = () => {
             toast.warning("메일 인증이 안되었습니다.");
           } else if (err.response?.status === 400) {
             toast.warning("올바르지 않은 값이 있습니다.");
+          } else if (err.response?.status === 410) {
+            toast.warning("이미 사용중인 실명인증입니다.");
           } else {
             toast.error("서버 오류입니다");
           }
         });
     }
-  }, [name, email, pw, checkPw, allCheck]);
+  }, [name, email, pw, checkPw, allCheck, birth, isAuth, duplicateInfo]);
 
   //이메일인증 enter처리
   useEffect(() => {
@@ -135,6 +151,8 @@ const RegisterContainer = () => {
   return (
     <>
       <Register
+        isAuth={isAuth}
+        setIsAuth={setIsAuth}
         allCheck={allCheck}
         setAllCheck={setAllCheck}
         name={name}
@@ -145,6 +163,8 @@ const RegisterContainer = () => {
         setPw={setPw}
         checkPw={checkPw}
         setCheckPw={setCheckPw}
+        duplicateInfo={duplicateInfo}
+        setDuplicateInfo={setDuplicateInfo}
         handleRegister={handleRegister}
         emailLoading={emailLoading}
         handleEmailSend={handleEmailSend}

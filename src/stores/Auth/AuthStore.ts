@@ -68,13 +68,15 @@ class AuthStore {
     name: string,
     email: string,
     password: string,
-    birth: string
+    birth: string,
+    duplicateInfo: string
   ): Promise<Response> => {
     const response = await AuthApi.Register(
       name,
       email,
       sha256(password),
-      birth
+      birth,
+      duplicateInfo
     );
 
     return response;

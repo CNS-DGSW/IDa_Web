@@ -87,3 +87,22 @@
   p {
   }
 }
+
+.verifyBox {
+  p {
+    font-size: 0.8rem;
+    color: $bg-blue-150;
+  }
+  .chooseMethodButtonBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+.verifiedBox {
+  color: $bd-blue;
+  // font-weight: bold;
+  background-color: rgb(232, 240, 254);
+  padding: 0.7rem 0.8rem;
+  text-align: center;
+}
