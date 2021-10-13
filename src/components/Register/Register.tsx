@@ -76,15 +76,16 @@ const Register = ({
         >
           <div className="agreeContractModalBox">
             <h1>{agreeContract.AGREE_USING_PERSONNEL_INFO.title}</h1>
-            <p>{agreeContract.AGREE_USING_PERSONNEL_INFO.content}</p>
+            <br />
+            <pre>{agreeContract.AGREE_USING_PERSONNEL_INFO.content}</pre>
           </div>
         </Modal>
       )}
-      {clickUsingSite && (
+      {/* {clickUsingSite && (
         <Modal onClose={toggleUsingSiteModal} className="usingSite">
           <div className="agreeContractModalBox">
             <h1>{agreeContract.AGREE_USING_SITE.title}</h1>
-            <p>{agreeContract.AGREE_USING_SITE.content}</p>
+            <pre>{agreeContract.AGREE_USING_SITE.content}</pre>
           </div>
         </Modal>
       )}
@@ -95,10 +96,10 @@ const Register = ({
         >
           <div className="agreeContractModalBox">
             <h1>{agreeContract.AGREE_HANDLING_PERSONNEL_INFO.title}</h1>
-            <p>{agreeContract.AGREE_HANDLING_PERSONNEL_INFO.content}</p>
+            <pre>{agreeContract.AGREE_HANDLING_PERSONNEL_INFO.content}</pre>
           </div>
         </Modal>
-      )}
+      )} */}
       <AuthContent
         title={"Welcome"}
         description={
@@ -187,7 +188,7 @@ const Register = ({
           <CheckBox
             style={{ marginTop: "1rem" }}
             id="agree-all"
-            content={"모두 동의"}
+            content={"개인정보 활용 동의"}
             value={allCheck}
             setValue={setAllCheck}
           />
@@ -202,7 +203,7 @@ const Register = ({
                 [보기]
               </span>
             </div>
-            <div>
+            {/* <div>
               <span>입학원서 접수 사이트 이용약관 동의 </span>
               <span
                 onClick={toggleUsingSiteModal}
@@ -221,7 +222,7 @@ const Register = ({
                 {" "}
                 [보기]
               </span>
-            </div>
+            </div> */}
           </div>
         </div>
       </AuthContent>
