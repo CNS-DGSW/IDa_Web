@@ -140,7 +140,8 @@ const Register = ({
               placeholder="이름"
               type="text"
               value={name}
-              setValue={setName}
+              // setValue={setName}
+              setValue={() => {}}
               maxLength={45}
               style={{ width: "44%" }}
             />
@@ -148,7 +149,8 @@ const Register = ({
               placeholder={`생년월일 ${new Date().getFullYear() - 15}0101`}
               type="text"
               value={birth}
-              setValue={setBirth}
+              // setValue={setBirth}
+              setValue={() => {}}
               maxLength={10}
               style={{ width: "55%" }}
             />
