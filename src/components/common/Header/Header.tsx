@@ -88,7 +88,7 @@ const Header = ({
           >
             <span>공지사항</span>
           </NavLink>
-          <NavLink
+          {/* <NavLink
             to="/qna"
             className="header-menu-content-item"
             activeClassName="header-menu-content-item-active"
@@ -101,7 +101,7 @@ const Header = ({
             activeClassName="header-menu-content-item-active"
           >
             <span>FAQ</span>
-          </NavLink>
+          </NavLink> */}
           {!login && (
             <>
               <button
@@ -156,7 +156,7 @@ const Header = ({
           >
             <span>공지사항</span>
           </NavLink>
-          <NavLink
+          {/* <NavLink
             to="/qna"
             className="header-container-link-item"
             activeClassName="header-container-link-item-active"
@@ -169,7 +169,7 @@ const Header = ({
             activeClassName="header-container-link-item-active"
           >
             <span>FAQ</span>
-          </NavLink>
+          </NavLink> */}
         </div>
         <div className="header-container-button">
           {login ? (
