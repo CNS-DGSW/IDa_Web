@@ -88,20 +88,7 @@ const Header = ({
           >
             <span>공지사항</span>
           </NavLink>
-          {/* <NavLink
-            to="/qna"
-            className="header-menu-content-item"
-            activeClassName="header-menu-content-item-active"
-          >
-            <span>Q&A</span>
-          </NavLink>
-          <NavLink
-            to="/faq"
-            className="header-menu-content-item"
-            activeClassName="header-menu-content-item-active"
-          >
-            <span>FAQ</span>
-          </NavLink> */}
+
           {!login && (
             <>
               <button
@@ -156,20 +143,6 @@ const Header = ({
           >
             <span>공지사항</span>
           </NavLink>
-          {/* <NavLink
-            to="/qna"
-            className="header-container-link-item"
-            activeClassName="header-container-link-item-active"
-          >
-            <span>Q&A</span>
-          </NavLink>
-          <NavLink
-            to="/faq"
-            className="header-container-link-item"
-            activeClassName="header-container-link-item-active"
-          >
-            <span>FAQ</span>
-          </NavLink> */}
         </div>
         <div className="header-container-button">
           {login ? (
