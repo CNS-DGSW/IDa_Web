@@ -1,7 +1,6 @@
 import React from "react";
 import "./Header.scss";
 import { ReactComponent as Profile } from "assets/images/profile.svg";
-import { ReactComponent as Dot } from "assets/images/dot.svg";
 import ProfileModalBox from "components/ProfileModalBox";
 import { NavLink, useHistory } from "react-router-dom";
 import { ReactComponent as Logo1 } from "assets/images/logo-1.svg";
@@ -157,10 +156,6 @@ const Header = ({
                 </button>
               )}
               <Profile
-                className="header-container-profile pointer"
-                onClick={() => tryProfileBox()}
-              />
-              <Dot
                 className="header-container-profile pointer"
                 onClick={() => tryProfileBox()}
               />

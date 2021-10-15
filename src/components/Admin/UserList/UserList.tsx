@@ -242,10 +242,10 @@ const UserList = ({
                             tryChangeReview(filter.idx, e.target.value)
                           }
                         >
-                          <option value={UserPrintStatus.CHECKING}>
+                          <option value={UserPrintStatus.EXPECTED}>
                             검토예정
                           </option>
-                          <option value={UserPrintStatus.EXPECTED}>
+                          <option value={UserPrintStatus.CHECKING}>
                             검토중
                           </option>
                           <option value={UserPrintStatus.INCOMPLETE}>
@@ -333,10 +333,10 @@ const UserList = ({
                         value={i.applicationChecked}
                         onChange={(e) => tryChangeReview(i.idx, e.target.value)}
                       >
-                        <option value={UserPrintStatus.CHECKING}>
+                        <option value={UserPrintStatus.EXPECTED}>
                           검토예정
                         </option>
-                        <option value={UserPrintStatus.EXPECTED}>검토중</option>
+                        <option value={UserPrintStatus.CHECKING}>검토중</option>
                         <option value={UserPrintStatus.INCOMPLETE}>
                           서류미비
                         </option>
