@@ -43,12 +43,19 @@ class AdminApi {
     return data;
   }
 
-  async AddUser(email: string, name: string, pw: string, birth: string) {
+  async AddUser(
+    email: string,
+    name: string,
+    pw: string,
+    birth: string,
+    duplicateInfo: string
+  ) {
     const body = {
       birth: birth,
       email: email,
       name: name,
       pw: pw,
+      duplicateInfo: duplicateInfo,
     };
     const { data } = await Api.post("/admin/register", body);
 
