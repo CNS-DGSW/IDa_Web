@@ -36,15 +36,18 @@ const UserListContainer = ({}) => {
   const tryAddUser = () => {
     if (!id || !pw || !birth || !name) {
       toast.warning("빈칸이 있습니다.");
+    } else if (pw.length < 8) {
+      toast.warning("비밀번호는 8자리 이상이여야 합니다.");
+    } else {
+      adminAddUser(id, name, pw, birth)
+        .then(() => {
+          toast.success("회원이 추가되었습니다.");
+          tryGetUserList();
+        })
+        .catch((err) => {
+          handleAdmin(err);
+        });
     }
-    adminAddUser(id, name, pw, birth)
-      .then(() => {
-        toast.success("회원이 추가되었습니다.");
-        tryGetUserList();
-      })
-      .catch((err) => {
-        handleAdmin(err);
-      });
   };
 
   const deleteUser = (userIdx: number) => {
@@ -134,6 +137,14 @@ const UserListContainer = ({}) => {
   useEffect(() => {
     tryGetAllUserRatio();
   }, [tryGetAllUserRatio]);
+
+  useEffect(() => {
+    if (birth) {
+      setBirth(
+        birth.replace(/-/g, "").replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3")
+      );
+    }
+  }, [birth]);
 
   return (
     <UserListComponent

@@ -81,25 +81,7 @@ const Register = ({
           </div>
         </Modal>
       )}
-      {/* {clickUsingSite && (
-        <Modal onClose={toggleUsingSiteModal} className="usingSite">
-          <div className="agreeContractModalBox">
-            <h1>{agreeContract.AGREE_USING_SITE.title}</h1>
-            <pre>{agreeContract.AGREE_USING_SITE.content}</pre>
-          </div>
-        </Modal>
-      )}
-      {clickHandlingPersonelInfo && (
-        <Modal
-          onClose={toggleHandlingPersonelInfoModal}
-          className="usingPersonelInfo"
-        >
-          <div className="agreeContractModalBox">
-            <h1>{agreeContract.AGREE_HANDLING_PERSONNEL_INFO.title}</h1>
-            <pre>{agreeContract.AGREE_HANDLING_PERSONNEL_INFO.content}</pre>
-          </div>
-        </Modal>
-      )} */}
+
       <AuthContent
         title={"Welcome"}
         description={
