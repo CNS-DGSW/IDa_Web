@@ -30,7 +30,9 @@ const InterViewScore = ({
 }: InterViewScoreProps) => {
   return (
     <div className="InterViewScore">
-      <span className="InterViewScore-title">2차전형 면접 점수 확인</span>
+      <span className="InterViewScore-title">
+        2차전형 (창의 협업, 구술 면접) 점수
+      </span>
       <div className="InterViewScore-checkBox">
         <select
           className="InterViewScore-checkBox-s-op"
@@ -39,10 +41,12 @@ const InterViewScore = ({
           }}
         >
           <option value="0" className="InterViewScore-checkBox-s-op">
-            그룹면접
+            {/* 그룹면접 */}
+            창의 협업
           </option>
           <option value="1" className="InterViewScore-checkBox-s-op">
-            심층면접
+            {/* 심층면접 */}
+            구술면접
           </option>
         </select>
         <select
