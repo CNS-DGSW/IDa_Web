@@ -9,6 +9,7 @@ import { CityRatio, DateRatio, SchoolRatio } from "util/types/UserRatio";
 import ExcelApi from "assets/api/ExcelApi";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import UserPrintStatus from "util/enums/UserPrintStatus";
 
 const UserListContainer = ({}) => {
   const { store } = useStore();
@@ -104,7 +105,7 @@ const UserListContainer = ({}) => {
   };
 
   //최종 원서 검토 예정 또는 검토 완료 변경 이민욱 만듬
-  const tryChangeReview = (userIdx: number, status: boolean) => {
+  const tryChangeReview = (userIdx: number, status: string) => {
     changeReview(userIdx, status).then(() => {
       tryGetUserList();
     });
