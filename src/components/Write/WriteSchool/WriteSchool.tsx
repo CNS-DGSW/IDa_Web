@@ -233,38 +233,39 @@ const WriteSchool = ({
                 </div>
               </div>
             </div>
-
-            <div className="school-schedule">
-              <div className="school-schedule-box">
-                <label>담임 성명</label>
-                <input
-                  maxLength={45}
-                  type="text"
-                  className="school-schedule-box-textInput"
-                  value={teacherName}
-                  onChange={(e) => {
-                    setTeacherName(e.target.value);
-                    setIsChanged(true);
-                  }}
-                />
-              </div>
-              <div className="school-schedule-box">
-                <label>담임 연락처</label>
-                <div className="student-select-box-area">
+            {gradeType === Grade.UNGRADUATED && (
+              <div className="school-schedule">
+                <div className="school-schedule-box">
+                  <label>담임 성명</label>
                   <input
+                    maxLength={45}
                     type="text"
-                    maxLength={20}
-                    autoComplete="off"
-                    className="student-select-box-area-textInput"
-                    value={teacherTel}
+                    className="school-schedule-box-textInput"
+                    value={teacherName}
                     onChange={(e) => {
-                      setTeacherTel(e.target.value);
+                      setTeacherName(e.target.value);
                       setIsChanged(true);
                     }}
                   />
                 </div>
+                <div className="school-schedule-box">
+                  <label>담임 연락처</label>
+                  <div className="student-select-box-area">
+                    <input
+                      type="text"
+                      maxLength={20}
+                      autoComplete="off"
+                      className="student-select-box-area-textInput"
+                      value={teacherTel}
+                      onChange={(e) => {
+                        setTeacherTel(e.target.value);
+                        setIsChanged(true);
+                      }}
+                    />
+                  </div>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         )}
         {gradeType === Grade.GRADUATED && (

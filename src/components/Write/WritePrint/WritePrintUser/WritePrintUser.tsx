@@ -376,7 +376,7 @@ const WritePrintUser = ({
           <b>
             보호자 : <b style={{ letterSpacing: "5px" }}>{parentName}</b> (인)
           </b>
-          {gradeType !== Grade.GED && (
+          {gradeType === Grade.UNGRADUATED && (
             <b>
               담임교사 : <b style={{ letterSpacing: "5px" }}>{teacherName}</b>{" "}
               (인)
