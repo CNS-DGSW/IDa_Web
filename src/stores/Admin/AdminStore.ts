@@ -100,11 +100,13 @@ class AdminStore {
     pw: string,
     birth: string
   ): Promise<Response> => {
+    const duplicateInfo: string = Math.random().toString(36).substr(2, 11);
     const response: Response = await AdminApi.AddUser(
       email,
       name,
       sha256(pw),
-      birth
+      birth,
+      duplicateInfo
     );
 
     return response;
