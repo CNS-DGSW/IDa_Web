@@ -86,13 +86,13 @@ const RegisterContainer = () => {
 
   //회원가입하기
   const handleRegister = useCallback(async () => {
-    console.log("email", email);
-    console.log("pw", pw);
-    console.log("checkPw", checkPw);
-    console.log("name", name);
-    console.log("birth", birth);
-    console.log("duplicateInfo", duplicateInfo);
-    console.log("isAuth", isAuth);
+    // console.log("email", email);
+    // console.log("pw", pw);
+    // console.log("checkPw", checkPw);
+    // console.log("name", name);
+    // console.log("birth", birth);
+    // console.log("duplicateInfo", duplicateInfo);
+    // console.log("isAuth", isAuth);
 
     if (!email || !pw || !checkPw || !name || !birth) {
       toast.warning("빈칸이 있습니다.");

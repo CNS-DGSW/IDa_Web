@@ -77,14 +77,15 @@ const UserList = ({
               }}
             />
             <input
-              placeholder="ex) 2006-01-01"
+              placeholder="ex) 20060101"
               value={birth}
               onChange={(e) => {
                 setBirth(e.target.value);
               }}
+              autoComplete="new-password"
             />
             <input
-              placeholder="비밀번호"
+              placeholder="비밀번호 8자리 이상"
               value={pw}
               type="password"
               onChange={(e) => {
