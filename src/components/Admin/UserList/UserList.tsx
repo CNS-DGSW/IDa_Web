@@ -6,6 +6,7 @@ import moment from "moment";
 import Modal from "components/common/Modal";
 import Button from "components/common/Button";
 import { ReactComponent as Delete } from "assets/images/delete.svg";
+import UserPrintStatus from "util/enums/UserPrintStatus";
 
 interface UserListProps {
   userStatus: List[] | undefined;
@@ -28,7 +29,7 @@ interface UserListProps {
   deleteUser: (userIdx: number) => void;
   modal: boolean;
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
-  tryChangeReview: (userIdx: number, status: boolean) => void;
+  tryChangeReview: (userIdx: number, status: string) => void;
 }
 
 const UserList = ({
@@ -54,6 +55,7 @@ const UserList = ({
   setModal,
   tryChangeReview,
 }: UserListProps) => {
+  console.log(userStatus);
   return (
     <>
       <div className="userList">
@@ -77,14 +79,15 @@ const UserList = ({
               }}
             />
             <input
-              placeholder="ex) 2006-01-01"
+              placeholder="ex) 20060101"
               value={birth}
               onChange={(e) => {
                 setBirth(e.target.value);
               }}
+              autoComplete="new-password"
             />
             <input
-              placeholder="비밀번호"
+              placeholder="비밀번호 8자리 이상"
               value={pw}
               type="password"
               onChange={(e) => {
@@ -233,35 +236,25 @@ const UserList = ({
                         )}
                       </td>
                       <td>
-                        {filter.isPrintedApplicationCheck ? (
-                          <>
-                            <button
-                              className="true pointer"
-                              onClick={() =>
-                                tryChangeReview(
-                                  filter.idx,
-                                  !filter.isPrintedApplicationCheck
-                                )
-                              }
-                            >
-                              검토 완료
-                            </button>
-                          </>
-                        ) : (
-                          <>
-                            <button
-                              className="false pointer"
-                              onClick={() =>
-                                tryChangeReview(
-                                  filter.idx,
-                                  !filter.isPrintedApplicationCheck
-                                )
-                              }
-                            >
-                              검토 예정
-                            </button>
-                          </>
-                        )}
+                        <select
+                          value={filter.applicationChecked}
+                          onChange={(e) =>
+                            tryChangeReview(filter.idx, e.target.value)
+                          }
+                        >
+                          <option value={UserPrintStatus.EXPECTED}>
+                            검토예정
+                          </option>
+                          <option value={UserPrintStatus.CHECKING}>
+                            검토중
+                          </option>
+                          <option value={UserPrintStatus.INCOMPLETE}>
+                            서류미비
+                          </option>
+                          <option value={UserPrintStatus.SUCCEED}>
+                            검토완료
+                          </option>
+                        </select>
                       </td>
                       <td>{moment(filter.createdAt).format("YYYY-MM-DD")}</td>
                       <td className="deleteIcon">
@@ -336,35 +329,21 @@ const UserList = ({
                       )}
                     </td>
                     <td>
-                      {i.isPrintedApplicationCheck ? (
-                        <>
-                          <button
-                            className="true pointer"
-                            onClick={() =>
-                              tryChangeReview(
-                                i.idx,
-                                !i.isPrintedApplicationCheck
-                              )
-                            }
-                          >
-                            검토 완료
-                          </button>
-                        </>
-                      ) : (
-                        <>
-                          <button
-                            className="false pointer"
-                            onClick={() =>
-                              tryChangeReview(
-                                i.idx,
-                                !i.isPrintedApplicationCheck
-                              )
-                            }
-                          >
-                            검토 예정
-                          </button>
-                        </>
-                      )}
+                      <select
+                        value={i.applicationChecked}
+                        onChange={(e) => tryChangeReview(i.idx, e.target.value)}
+                      >
+                        <option value={UserPrintStatus.EXPECTED}>
+                          검토예정
+                        </option>
+                        <option value={UserPrintStatus.CHECKING}>검토중</option>
+                        <option value={UserPrintStatus.INCOMPLETE}>
+                          서류미비
+                        </option>
+                        <option value={UserPrintStatus.SUCCEED}>
+                          검토완료
+                        </option>
+                      </select>
                     </td>
                     <td>{moment(i.createdAt).format("YYYY-MM-DD")}</td>
                     <td className="deleteIcon">

@@ -202,7 +202,7 @@ export interface ResultStatusResponse extends Response {
   data: {
     examCode: string;
     isPrintedApplicationArrived: boolean;
-    isPrintedApplicationCheck: boolean;
+    applicationChecked: boolean | string;
     isPassedFirstApply: boolean | null;
     firstApplyDetailType: ApplyDetail | null;
     firstApplyType: Apply | null;

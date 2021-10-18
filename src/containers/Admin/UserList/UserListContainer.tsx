@@ -9,6 +9,7 @@ import { CityRatio, DateRatio, SchoolRatio } from "util/types/UserRatio";
 import ExcelApi from "assets/api/ExcelApi";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import UserPrintStatus from "util/enums/UserPrintStatus";
 
 const UserListContainer = ({}) => {
   const { store } = useStore();
@@ -36,15 +37,18 @@ const UserListContainer = ({}) => {
   const tryAddUser = () => {
     if (!id || !pw || !birth || !name) {
       toast.warning("빈칸이 있습니다.");
+    } else if (pw.length < 8) {
+      toast.warning("비밀번호는 8자리 이상이여야 합니다.");
+    } else {
+      adminAddUser(id, name, pw, birth)
+        .then(() => {
+          toast.success("회원이 추가되었습니다.");
+          tryGetUserList();
+        })
+        .catch((err) => {
+          handleAdmin(err);
+        });
     }
-    adminAddUser(id, name, pw, birth)
-      .then(() => {
-        toast.success("회원이 추가되었습니다.");
-        tryGetUserList();
-      })
-      .catch((err) => {
-        handleAdmin(err);
-      });
   };
 
   const deleteUser = (userIdx: number) => {
@@ -101,7 +105,7 @@ const UserListContainer = ({}) => {
   };
 
   //최종 원서 검토 예정 또는 검토 완료 변경 이민욱 만듬
-  const tryChangeReview = (userIdx: number, status: boolean) => {
+  const tryChangeReview = (userIdx: number, status: string) => {
     changeReview(userIdx, status).then(() => {
       tryGetUserList();
     });
@@ -134,6 +138,14 @@ const UserListContainer = ({}) => {
   useEffect(() => {
     tryGetAllUserRatio();
   }, [tryGetAllUserRatio]);
+
+  useEffect(() => {
+    if (birth) {
+      setBirth(
+        birth.replace(/-/g, "").replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3")
+      );
+    }
+  }, [birth]);
 
   return (
     <UserListComponent

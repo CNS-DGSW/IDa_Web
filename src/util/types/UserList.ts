@@ -1,5 +1,6 @@
 import Apply from "util/enums/Apply";
 import ApplyDetail from "util/enums/ApplyDetail";
+import UserPrintStatus from "util/enums/UserPrintStatus";
 
 export type List = {
   birth: Date;
@@ -13,7 +14,7 @@ export type List = {
   name: string;
   schoolName: string;
   studentTel: string;
-  isPrintedApplicationCheck: boolean;
+  applicationChecked: string;
 };
 
 export type ListPassed = {

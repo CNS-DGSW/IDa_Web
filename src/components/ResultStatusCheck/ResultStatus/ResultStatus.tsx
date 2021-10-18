@@ -1,9 +1,10 @@
 import React from "react";
 import "./ResultStatus.scss";
+import UserPrintStatus from "util/enums/UserPrintStatus";
 
 interface ResultStatusProps {
   post: boolean | undefined;
-  checkedPost: boolean | undefined;
+  checkedPost: boolean | string | undefined;
   internet: boolean | undefined;
   tryCloseModal: () => void;
 }
@@ -46,13 +47,22 @@ const ResultStatus = ({
                 미도착
               </div>
             )}
-            {checkedPost ? (
+          </div>
+          <div className="ResultStatus-status-post check">
+            <div className="ResultStatus-status-post-span check-span">
+              <span>서류 검토</span>
+            </div>
+            {checkedPost == UserPrintStatus.SUCCEED ? (
               <div className="ResultStatus-status-web-result check-result-success">
-                검토중
+                검토완료
               </div>
             ) : (
               <div className="ResultStatus-status-web-result check-result-fail">
-                검토예정
+                {checkedPost == UserPrintStatus.EXPECTED && "검토예정"}
+                {checkedPost == UserPrintStatus.CHECKING && "검토중"}
+                {checkedPost == UserPrintStatus.INCOMPLETE && "서류미비"}
+                {/* {checkedPost == UserPrintStatus.SUCCEED && "검토완료"} */}
+                {/* 검토예정 */}
               </div>
             )}
           </div>

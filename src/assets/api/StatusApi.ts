@@ -1,11 +1,11 @@
 import Api from "lib/customAxios";
+import UserPrintStatus from "util/enums/UserPrintStatus";
 
 class StatusApi {
   async GetStatus(userIdx?: number | null) {
     const query = userIdx ? `?userIdx=${userIdx}` : "";
 
     const { data } = await Api.get(`/status/getStatus${query}`);
-    console.log("getStatus API", data);
     return data;
   }
 
@@ -37,11 +37,10 @@ class StatusApi {
     return data;
   }
 
-  async ChangeReview(userIdx: number, status: boolean) {
+  async ChangeReview(userIdx: number, status: string) {
     const { data } = await Api.patch(
       `/status/changeCheck?userIdx=${userIdx}&status=${status}`
     );
-    console.log("API", data);
     return data;
   }
 }
