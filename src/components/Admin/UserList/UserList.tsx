@@ -202,7 +202,13 @@ const UserList = ({
                           <>{filter.studentTel}</>
                         )}
                       </td>
-                      <td>{filter.isWriting ? "작성" : "미작성"}</td>
+                      <td>
+                        {filter.isSubmit && !filter.isWriting
+                          ? "작성불가"
+                          : filter.isWriting
+                          ? "작성"
+                          : "미작성"}
+                      </td>
                       <td>{filter.isSubmit ? "제출완료" : "미제출"}</td>
                       <td>
                         {filter.isPrintedApplicationArrived ? (
@@ -295,7 +301,13 @@ const UserList = ({
                         <>{i.studentTel}</>
                       )}
                     </td>
-                    <td>{i.isWriting ? "작성" : "미작성"}</td>
+                    <td>
+                      {i.isSubmit && !i.isWriting
+                        ? "작성불가"
+                        : i.isWriting
+                        ? "작성"
+                        : "미작성"}
+                    </td>
                     <td>{i.isSubmit ? "제출완료" : "미제출"}</td>
                     <td>
                       {i.isPrintedApplicationArrived ? (
