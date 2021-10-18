@@ -54,6 +54,7 @@
       }
       &-content {
         height: 20rem;
+        overflow-y: auto;
         @media screen and (max-width: 500px) {
           height: 15rem;
           font-size: 1rem;
