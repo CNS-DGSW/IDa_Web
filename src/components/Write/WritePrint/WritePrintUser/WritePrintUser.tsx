@@ -314,7 +314,7 @@ const WritePrintUser = ({
             >
               일반전형
             </th>
-            <td className="write-print-user-top-left">{grade1}</td>
+            <td className="write-print-user-top-left">{grade1.toFixed(3)}</td>
             <td className="write-print-user-top-left">
               {gradeType === Grade.GED ? "X" : absence}
             </td>
@@ -325,7 +325,7 @@ const WritePrintUser = ({
               {gradeType === Grade.GED ? "X" : additional}
             </td>
             <td className="write-print-user-top-left write-print-user-right">
-              {totalScore1}
+              {totalScore1.toFixed(3)}
             </td>
           </tr>
           <tr>
@@ -340,7 +340,7 @@ const WritePrintUser = ({
               특별전형
             </th>
             <td className="write-print-user-top-left write-print-user-bottom">
-              {grade2}
+              {grade2.toFixed(3)}
             </td>
             <td className="write-print-user-top-left write-print-user-bottom">
               {gradeType === Grade.GED ? "X" : absence}
@@ -352,7 +352,7 @@ const WritePrintUser = ({
               {gradeType === Grade.GED ? "X" : additional}
             </td>
             <td className="write-print-user-top-left write-print-user-bottom-right">
-              {totalScore2}
+              {totalScore2.toFixed(3)}
             </td>
           </tr>
         </tbody>
