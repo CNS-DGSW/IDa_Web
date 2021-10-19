@@ -233,6 +233,9 @@ export interface UserList extends Response {
 export interface UserListPassed extends Response {
   data: ListPassed[];
 }
+export interface ViewFirstStudent extends Response {
+  data: boolean;
+}
 
 export interface UserRate extends Response {
   data: Rate[];
