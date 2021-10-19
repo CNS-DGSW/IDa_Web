@@ -27,21 +27,21 @@
   &-finalBtn {
     display: flex;
   }
-  button {
-    width: 12rem;
-    height: 2.5rem;
-    background-color: $bg-gray-50;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 1rem 1rem 0rem 1rem;
-    border-radius: 3px;
-    border: 1px solid $bd-gray;
-    font-size: 1rem;
-    &:hover {
-      background-color: $bg-gray-100;
-      cursor: pointer;
-    }
+}
+.header-btn {
+  width: 12rem;
+  height: 2.5rem;
+  background-color: $bg-gray-50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 1rem 0rem 1rem;
+  border-radius: 3px;
+  border: 1px solid $bd-gray;
+  font-size: 1rem;
+  &:hover {
+    background-color: $bg-gray-100;
+    cursor: pointer;
   }
 }
 

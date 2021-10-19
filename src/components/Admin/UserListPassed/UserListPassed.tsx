@@ -36,7 +36,7 @@ const UserListPassed = ({
           {firstData ? (
             <>
               <button
-                className="firstDataTrue"
+                className="header-btn true"
                 onClick={() => tryChangeFirstStudent()}
               >
                 1차 합격 확인가능
@@ -45,7 +45,7 @@ const UserListPassed = ({
           ) : (
             <>
               <button
-                className="firstDataFalse"
+                className="header-btn false"
                 onClick={() => tryChangeFirstStudent()}
               >
                 1차 합격 확인 불가능
@@ -60,6 +60,7 @@ const UserListPassed = ({
           {secondData ? (
             <>
               <button
+                className="header-btn true"
                 onClick={() => {
                   tryChangeSecondStudent();
                 }}
@@ -70,6 +71,7 @@ const UserListPassed = ({
           ) : (
             <>
               <button
+                className="header-btn false"
                 onClick={() => {
                   tryChangeSecondStudent();
                 }}
