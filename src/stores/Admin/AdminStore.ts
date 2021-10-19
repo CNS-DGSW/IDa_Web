@@ -1,6 +1,10 @@
 import { action, observable } from "mobx";
 import { autobind } from "core-decorators";
 import AdminApi from "../../assets/api/AdminApi";
+import ApplyType from "util/enums/Apply";
+import ApplyDetailType from "util/enums/ApplyDetail";
+import { UserResult as UserResultType } from "util/types/UserResult";
+
 import {
   AllUserRatio,
   ReceiptResponse,
@@ -10,6 +14,7 @@ import {
   UserListPassed,
   UserRate,
   ViewFirstStudent,
+  UserReulstListResponse,
 } from "util/types/Response";
 import ExcelApi from "assets/api/ExcelApi";
 import StatusApi from "assets/api/StatusApi";
@@ -129,6 +134,43 @@ class AdminStore {
   @action
   adminChangeFirstStudent = async (): Promise<ViewFirstStudent> => {
     const response: ViewFirstStudent = await AdminApi.changeFirstStudent();
+    return response;
+  };
+
+  @action
+  getUserResultList = async (): Promise<UserReulstListResponse> => {
+    const response: UserReulstListResponse = await AdminApi.GetUserResultList();
+
+    return response;
+  };
+
+  @action
+  changeFirstApplyStatus = async (
+    userIdx: number,
+    applyType: ApplyType,
+    applyDetailType: ApplyDetailType
+  ) => {
+    const response: Response = await AdminApi.ChangeFirstApplyStatus(
+      userIdx,
+      applyType,
+      applyDetailType
+    );
+
+    return response;
+  };
+
+  @action
+  changeSecondApplyStatus = async (
+    userIdx: number,
+    applyType: ApplyType,
+    applyDetailType: ApplyDetailType
+  ) => {
+    const response: Response = await AdminApi.ChangeSecondApplyStatus(
+      userIdx,
+      applyType,
+      applyDetailType
+    );
+
     return response;
   };
 }

@@ -13,6 +13,7 @@ import { CityRatio, DateRatio, SchoolRatio } from "./UserRatio";
 import { List, ListPassed, Rate } from "./UserList";
 import { Report } from "./ReportInfo";
 import InterViewCategory from "util/enums/InterViewCategory";
+import { UserResult as UserResultType } from "util/types/UserResult";
 
 export type Response = {
   status: number;
@@ -243,6 +244,10 @@ export interface UserRate extends Response {
 
 export interface ReportInfo extends Response {
   data: Report[];
+}
+
+export interface UserReulstListResponse extends Response {
+  data: UserResultType[];
 }
 
 export interface SecondScoreResponse extends Response {

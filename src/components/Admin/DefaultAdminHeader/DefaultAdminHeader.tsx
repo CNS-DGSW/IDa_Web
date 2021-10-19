@@ -65,6 +65,14 @@ const DefaultAdminHeader = ({ children }: DefaultAdminHeaderProps) => {
           >
             <span>1차/최종 합격 여부</span>
           </NavLink>
+
+          <NavLink
+            to="/admin/userResultPage"
+            className="Admin-header-link"
+            activeClassName="Admin-header-link-active"
+          >
+            <span>결과 변경</span>
+          </NavLink>
         </div>
       </div>
       {children}
