@@ -197,6 +197,20 @@ class AdminStore {
     );
     return response;
   };
+
+  @action
+  setFirstSelection = async () => {
+    const response: Response = await AdminApi.SetFirstSelection();
+
+    return response;
+  };
+
+  @action
+  setSecondSelection = async () => {
+    const response: Response = await AdminApi.SetFirstSelection();
+
+    return response;
+  };
 }
 
 export default AdminStore;

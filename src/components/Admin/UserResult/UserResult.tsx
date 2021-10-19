@@ -14,6 +14,8 @@ interface UserResultProps {
   tryChangeSecondResultStatus: (userIdx: number) => void;
   onChangeFirstApply: (userId: number, status: string) => void;
   onChangeSecondApply: (userId: number, status: string) => void;
+  onClickSetFirstSelection: () => void;
+  onClickSetSecondSelection: () => void;
 }
 
 const UserResult = ({
@@ -22,179 +24,188 @@ const UserResult = ({
   tryChangeSecondResultStatus,
   onChangeFirstApply,
   onChangeSecondApply,
+  onClickSetFirstSelection,
+  onClickSetSecondSelection,
 }: UserResultProps) => {
   return (
-    <table className="table-list">
-      <thead>
-        <tr className="table-list-title">
-          <th>순번</th>
-          <th>이름</th>
-          <th>아이디</th>
-          <th>1차 전형</th>
-          <th>1차 합격</th>
-          <th>2차 전형</th>
-          <th>2차 합격</th>
-        </tr>
-      </thead>
-      <tbody>
-        {userResultList.map((userResult, idx) => (
-          <tr key={idx}>
-            <td>
-              <NavLink to={`write?userIdx=${userResult.idx}`}>
-                {userResult.idx}
-              </NavLink>
-            </td>
-            <td>
-              <NavLink to={`write?userIdx=${userResult.idx}`}>
-                {userResult.name}
-              </NavLink>
-            </td>
-            <td>
-              <NavLink to={`write?userIdx=${userResult.idx}`}>
-                {userResult.email}
-              </NavLink>
-            </td>
-
-            {/* 1차 전형 */}
-            <td>
-              <b>
-                {findApplyByString(userResult.firstApplyType) +
-                  "-" +
-                  (userResult.firstApplyType === ApplyType.COMMON
-                    ? "일반 전형"
-                    : findNameByValue(userResult.firstApplyDetailType))}
-              </b>
-              <br />
-              <select
-                onChange={(e) => {
-                  onChangeFirstApply(userResult.idx, e.target.value);
-                }}
-              >
-                {" "}
-                <option value={ApplyType.COMMON + "-" + ApplyDetailType.COMMON}>
-                  -
-                </option>
-                <option value={ApplyType.COMMON + "-" + ApplyDetailType.COMMON}>
-                  일반 전형 - 일반 전형
-                </option>
-                {applyDetailModel.special.map((apply, i) => {
-                  if (apply.models !== undefined) {
-                    const applyName = apply.name;
-                    return apply.models.map((model, k) => (
-                      <option
-                        key={k}
-                        value={ApplyType.SPECIAL + "-" + model.value}
-                      >
-                        특별 전형 - {applyName} - {model.name}
-                      </option>
-                    ));
-                  }
-                  return (
-                    <option
-                      key={i}
-                      value={ApplyType.SPECIAL + "-" + apply.value}
-                    >
-                      특별 전형 - {apply.name}
-                    </option>
-                  );
-                })}
-                {applyDetailModel.other.models.map((apply) => (
-                  <option value={ApplyType.OTHER + "-" + apply.value}>
-                    특례 입학 - {apply.name}
-                  </option>
-                ))}
-              </select>
-            </td>
-            <td>
-              {userResult.isPassedFirstApply ? (
-                <button
-                  className="_button true pointer"
-                  onClick={() => tryChangeFirstResultStatus(userResult.idx)}
-                >
-                  합격
-                </button>
-              ) : (
-                <button
-                  className="_button false pointer"
-                  onClick={() => tryChangeFirstResultStatus(userResult.idx)}
-                >
-                  불합격
-                </button>
-              )}
-            </td>
-            {/* 2차 전형 */}
-            <td>
-              {" "}
-              <b>
-                {findApplyByString(userResult.finalApplyType) +
-                  "-" +
-                  (userResult.finalApplyType === ApplyType.COMMON
-                    ? "일반 전형"
-                    : findNameByValue(userResult.finalApplyDetailType))}
-              </b>
-              <br />
-              <select
-                onChange={(e) => {
-                  onChangeSecondApply(userResult.idx, e.target.value);
-                }}
-              >
-                {" "}
-                <option value={ApplyType.COMMON + "-" + ApplyDetailType.COMMON}>
-                  -
-                </option>
-                <option value={ApplyType.COMMON + "-" + ApplyDetailType.COMMON}>
-                  일반 전형 - 일반 전형
-                </option>
-                {applyDetailModel.special.map((apply, i) => {
-                  if (apply.models !== undefined) {
-                    const applyName = apply.name;
-                    return apply.models.map((model, k) => (
-                      <option
-                        key={k}
-                        value={ApplyType.SPECIAL + "-" + model.value}
-                      >
-                        특별 전형 - {applyName} - {model.name}
-                      </option>
-                    ));
-                  }
-                  return (
-                    <option
-                      key={i}
-                      value={ApplyType.SPECIAL + "-" + apply.value}
-                    >
-                      특별 전형 - {apply.name}
-                    </option>
-                  );
-                })}
-                {applyDetailModel.other.models.map((apply) => (
-                  <option value={ApplyType.OTHER + "-" + apply.value}>
-                    특례 입학 - {apply.name}
-                  </option>
-                ))}
-              </select>
-            </td>
-            <td>
-              {" "}
-              {userResult.isPassedSecondApply ? (
-                <button
-                  className="_button true pointer"
-                  onClick={() => tryChangeSecondResultStatus(userResult.idx)}
-                >
-                  합격
-                </button>
-              ) : (
-                <button
-                  className="_button false pointer"
-                  onClick={() => tryChangeSecondResultStatus(userResult.idx)}
-                >
-                  불합격
-                </button>
-              )}
-            </td>
+    <>
+      <div>
+        <button onClick={onClickSetFirstSelection} className="_button false">
+          1차 합격 산출
+        </button>
+        {"    "}
+        <button onClick={onClickSetSecondSelection} className="_button false">
+          2차 합격 산출
+        </button>
+      </div>
+      <table className="table-list">
+        <thead>
+          <tr className="table-list-title">
+            <th>순번</th>
+            <th>이름</th>
+            <th>아이디</th>
+            <th>1차 전형</th>
+            <th>1차 합격</th>
+            <th>2차 전형</th>
+            <th>2차 합격</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {userResultList.map((userResult, idx) => (
+            <tr key={idx}>
+              <td>
+                <a target="_blank" href={`/write?userIdx=${userResult.idx}`}>
+                  {userResult.idx}
+                </a>
+              </td>
+              <td>
+                <a target="_blank" href={`/write?userIdx=${userResult.idx}`}>
+                  {userResult.name}
+                </a>
+              </td>
+              <td>
+                <a target="_blank" href={`/write?userIdx=${userResult.idx}`}>
+                  {userResult.email}
+                </a>
+              </td>
+
+              {/* 1차 전형 */}
+              <td>
+                <b>{userResult.firstApplyTypeString}</b>
+                <br />
+                <select
+                  onChange={(e) => {
+                    onChangeFirstApply(userResult.idx, e.target.value);
+                  }}
+                >
+                  {" "}
+                  <option
+                    value={ApplyType.COMMON + "-" + ApplyDetailType.COMMON}
+                  >
+                    -
+                  </option>
+                  <option
+                    value={ApplyType.COMMON + "-" + ApplyDetailType.COMMON}
+                  >
+                    일반 전형 - 일반 전형
+                  </option>
+                  {applyDetailModel.special.map((apply, i) => {
+                    if (apply.models !== undefined) {
+                      const applyName = apply.name;
+                      return apply.models.map((model, k) => (
+                        <option
+                          key={k}
+                          value={ApplyType.SPECIAL + "-" + model.value}
+                        >
+                          특별 전형 - {applyName} - {model.name}
+                        </option>
+                      ));
+                    }
+                    return (
+                      <option
+                        key={i}
+                        value={ApplyType.SPECIAL + "-" + apply.value}
+                      >
+                        특별 전형 - {apply.name}
+                      </option>
+                    );
+                  })}
+                  {applyDetailModel.other.models.map((apply) => (
+                    <option value={ApplyType.OTHER + "-" + apply.value}>
+                      특례 입학 - {apply.name}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td>
+                {userResult.isPassedFirstApply ? (
+                  <button
+                    className="_button true pointer"
+                    onClick={() => tryChangeFirstResultStatus(userResult.idx)}
+                  >
+                    합격
+                  </button>
+                ) : (
+                  <button
+                    className="_button false pointer"
+                    onClick={() => tryChangeFirstResultStatus(userResult.idx)}
+                  >
+                    불합격
+                  </button>
+                )}
+              </td>
+              {/* 2차 전형 */}
+              <td>
+                {" "}
+                <b>{userResult.finalApplyTypeString}</b>
+                <br />
+                <select
+                  onChange={(e) => {
+                    onChangeSecondApply(userResult.idx, e.target.value);
+                  }}
+                >
+                  {" "}
+                  <option
+                    value={ApplyType.COMMON + "-" + ApplyDetailType.COMMON}
+                  >
+                    -
+                  </option>
+                  <option
+                    value={ApplyType.COMMON + "-" + ApplyDetailType.COMMON}
+                  >
+                    일반 전형 - 일반 전형
+                  </option>
+                  {applyDetailModel.special.map((apply, i) => {
+                    if (apply.models !== undefined) {
+                      const applyName = apply.name;
+                      return apply.models.map((model, k) => (
+                        <option
+                          key={k}
+                          value={ApplyType.SPECIAL + "-" + model.value}
+                        >
+                          특별 전형 - {applyName} - {model.name}
+                        </option>
+                      ));
+                    }
+                    return (
+                      <option
+                        key={i}
+                        value={ApplyType.SPECIAL + "-" + apply.value}
+                      >
+                        특별 전형 - {apply.name}
+                      </option>
+                    );
+                  })}
+                  {applyDetailModel.other.models.map((apply) => (
+                    <option value={ApplyType.OTHER + "-" + apply.value}>
+                      특례 입학 - {apply.name}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td>
+                {" "}
+                {userResult.isPassedSecondApply ? (
+                  <button
+                    className="_button true pointer"
+                    onClick={() => tryChangeSecondResultStatus(userResult.idx)}
+                  >
+                    합격
+                  </button>
+                ) : (
+                  <button
+                    className="_button false pointer"
+                    onClick={() => tryChangeSecondResultStatus(userResult.idx)}
+                  >
+                    불합격
+                  </button>
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
   );
 };
 

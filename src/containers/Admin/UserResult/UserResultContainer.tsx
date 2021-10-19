@@ -19,6 +19,8 @@ const UserRateContainer = ({}) => {
     changeSecondApplyStatus,
     changeSecondResultStatus,
     changeFirstResultStatus,
+    setFirstSelection,
+    setSecondSelection,
   } = store.AdminStore;
 
   const [userResultList, setUserResultList] = useState<UserResultType[]>([]);
@@ -69,6 +71,18 @@ const UserRateContainer = ({}) => {
     });
   }, []);
 
+  const onClickSetFirstSelection = useCallback(() => {
+    setFirstSelection().then(() => {
+      tryGetUserResultList();
+    });
+  }, []);
+
+  const onClickSetSecondSelection = useCallback(() => {
+    setSecondSelection().then(() => {
+      tryGetUserResultList();
+    });
+  }, []);
+
   return (
     <UserResult
       userResultList={userResultList}
@@ -76,6 +90,8 @@ const UserRateContainer = ({}) => {
       onChangeSecondApply={onChangeSecondApply}
       tryChangeFirstResultStatus={tryChangeFirstResultStatus}
       tryChangeSecondResultStatus={tryChangeSecondResultStatus}
+      onClickSetFirstSelection={onClickSetFirstSelection}
+      onClickSetSecondSelection={onClickSetSecondSelection}
     />
   );
 };
