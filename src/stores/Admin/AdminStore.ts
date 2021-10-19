@@ -185,6 +185,21 @@ class AdminStore {
 
     return response;
   };
+
+  @action
+  changeApplyStatus = async (
+    userIdx: number,
+    apply: ApplyType,
+    applyDetail: ApplyDetailType
+  ) => {
+    // const response: Response = await AdminApi.ChangeApplyStatus(
+    //   userIdx,
+    //   apply,
+    //   applyDetail
+    // );
+    let response = {};
+    return response;
+  };
 }
 
 export default AdminStore;
