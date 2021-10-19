@@ -15,6 +15,7 @@ import {
   UserRate,
   ViewFirstStudent,
   UserReulstListResponse,
+  ViewSecondStudent,
 } from "util/types/Response";
 import ExcelApi from "assets/api/ExcelApi";
 import StatusApi from "assets/api/StatusApi";
@@ -134,6 +135,17 @@ class AdminStore {
   @action
   adminChangeFirstStudent = async (): Promise<ViewFirstStudent> => {
     const response: ViewFirstStudent = await AdminApi.changeFirstStudent();
+    return response;
+  };
+  @action
+  getViewSecondStudent = async (): Promise<ViewSecondStudent> => {
+    const response: ViewSecondStudent = await AdminApi.viewSecondStudent();
+    return response;
+  };
+
+  @action
+  adminChangeSecondStudent = async (): Promise<ViewSecondStudent> => {
+    const response: ViewSecondStudent = await AdminApi.changeSecondStudent();
     return response;
   };
 
