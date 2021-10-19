@@ -136,6 +136,18 @@ class AdminApi {
 
     return data;
   }
+
+  async SetFirstSelection() {
+    const { data } = await Api.post(`/score/setFirstSelection`);
+
+    return data;
+  }
+
+  async SetSecondSelection() {
+    const { data } = await Api.post(`/score/setSecondSelection`);
+
+    return data;
+  }
 }
 
 export default new AdminApi();
