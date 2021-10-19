@@ -51,7 +51,6 @@ const WriteIntroduction = ({
             onChange={(e) => {
               setSelfIntroduce(e.target.value);
               setIsChanged(true);
-              console.log(selfIntroduce);
             }}
           ></textarea>
 
