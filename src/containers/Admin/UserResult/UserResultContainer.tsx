@@ -17,7 +17,8 @@ const UserRateContainer = ({}) => {
     getUserResultList,
     changeFirstApplyStatus,
     changeSecondApplyStatus,
-    changeApplyStatus,
+    changeSecondResultStatus,
+    changeFirstResultStatus,
   } = store.AdminStore;
 
   const [userResultList, setUserResultList] = useState<UserResultType[]>([]);
@@ -26,6 +27,7 @@ const UserRateContainer = ({}) => {
   const tryGetUserResultList = useCallback(() => {
     getUserResultList()
       .then((res) => {
+        console.log(res.data);
         setUserResultList(res.data);
       })
       .catch((err) => {
@@ -37,32 +39,32 @@ const UserRateContainer = ({}) => {
     tryGetUserResultList();
   }, [tryGetUserResultList]);
 
-  const tryChangeFirstApplyStatus = (
-    userIdx: number,
-    apply: Apply,
-    applyDetail: ApplyDetail
-  ) => {
-    changeFirstApplyStatus(userIdx, apply, applyDetail).then(() => {
-      tryGetUserResultList();
-    });
-  };
-
-  const tryChangeSecondApplyStatus = (
-    userIdx: number,
-    apply: Apply,
-    applyDetail: ApplyDetail
-  ) => {
-    changeSecondApplyStatus(userIdx, apply, applyDetail).then(() => {
-      tryGetUserResultList();
-    });
-  };
-
-  const onChangeApply = useCallback((userId, status) => {
+  const onChangeFirstApply = useCallback((userId, status) => {
     const apply = status.split("-")[0];
     const applyDetail = status.split("-")[1];
 
-    console.log(userId, apply, applyDetail);
-    changeApplyStatus(userId, apply, applyDetail).then(() => {
+    changeFirstApplyStatus(userId, apply, applyDetail).then(() => {
+      tryGetUserResultList();
+    });
+  }, []);
+
+  const onChangeSecondApply = useCallback((userId, status) => {
+    const apply = status.split("-")[0];
+    const applyDetail = status.split("-")[1];
+
+    changeSecondApplyStatus(userId, apply, applyDetail).then(() => {
+      tryGetUserResultList();
+    });
+  }, []);
+
+  const tryChangeFirstResultStatus = useCallback((userIdx: number) => {
+    changeFirstResultStatus(userIdx).then(() => {
+      tryGetUserResultList();
+    });
+  }, []);
+
+  const tryChangeSecondResultStatus = useCallback((userIdx: number) => {
+    changeSecondResultStatus(userIdx).then(() => {
       tryGetUserResultList();
     });
   }, []);
@@ -70,9 +72,10 @@ const UserRateContainer = ({}) => {
   return (
     <UserResult
       userResultList={userResultList}
-      tryChangeFirstApplyStatus={tryChangeFirstApplyStatus}
-      tryChangeSecondApplyStatus={tryChangeSecondApplyStatus}
-      onChangeApply={onChangeApply}
+      onChangeFirstApply={onChangeFirstApply}
+      onChangeSecondApply={onChangeSecondApply}
+      tryChangeFirstResultStatus={tryChangeFirstResultStatus}
+      tryChangeSecondResultStatus={tryChangeSecondResultStatus}
     />
   );
 };

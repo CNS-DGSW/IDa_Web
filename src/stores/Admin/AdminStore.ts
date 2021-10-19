@@ -157,47 +157,44 @@ class AdminStore {
   };
 
   @action
+  changeFirstResultStatus = async (userIdx: number) => {
+    const response: Response = await AdminApi.ChangeFirstResultStatus(userIdx);
+
+    return response;
+  };
+
+  @action
+  changeSecondResultStatus = async (userIdx: number) => {
+    const response: Response = await AdminApi.ChangeSecondResultStatus(userIdx);
+
+    return response;
+  };
+
+  @action
   changeFirstApplyStatus = async (
     userIdx: number,
-    applyType: ApplyType,
-    applyDetailType: ApplyDetailType
+    apply: ApplyType,
+    applyDetail: ApplyDetailType
   ) => {
     const response: Response = await AdminApi.ChangeFirstApplyStatus(
       userIdx,
-      applyType,
-      applyDetailType
+      apply,
+      applyDetail
     );
-
     return response;
   };
 
   @action
   changeSecondApplyStatus = async (
     userIdx: number,
-    applyType: ApplyType,
-    applyDetailType: ApplyDetailType
-  ) => {
-    const response: Response = await AdminApi.ChangeSecondApplyStatus(
-      userIdx,
-      applyType,
-      applyDetailType
-    );
-
-    return response;
-  };
-
-  @action
-  changeApplyStatus = async (
-    userIdx: number,
     apply: ApplyType,
     applyDetail: ApplyDetailType
   ) => {
-    // const response: Response = await AdminApi.ChangeApplyStatus(
-    //   userIdx,
-    //   apply,
-    //   applyDetail
-    // );
-    let response = {};
+    const response: Response = await AdminApi.ChangeSecondApplyStatus(
+      userIdx,
+      apply,
+      applyDetail
+    );
     return response;
   };
 }

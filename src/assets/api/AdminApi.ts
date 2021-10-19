@@ -97,6 +97,18 @@ class AdminApi {
     return data;
   }
 
+  async ChangeFirstResultStatus(userIdx: number) {
+    const { data } = await Api.patch(`/status/setFirstSelection/${userIdx}`);
+
+    return data;
+  }
+
+  async ChangeSecondResultStatus(userIdx: number) {
+    const { data } = await Api.patch(`/status/setSecondSelection/${userIdx}`);
+
+    return data;
+  }
+
   async ChangeFirstApplyStatus(
     userIdx: number,
     applyType: ApplyType,
@@ -104,7 +116,7 @@ class AdminApi {
   ) {
     const body = { applyType, applyDetailType };
     const { data } = await Api.patch(
-      `/score/setFirstSelection/${userIdx}`,
+      `/user/setFirstSelectionType/${userIdx}`,
       body
     );
 
@@ -118,22 +130,11 @@ class AdminApi {
   ) {
     const body = { applyType, applyDetailType };
     const { data } = await Api.patch(
-      `/score/setSecondSelection/${userIdx}`,
+      `/user/setSecondSelectionType/${userIdx}`,
       body
     );
 
     return data;
-  }
-
-  async ChangeApplyStatus(
-    userIdx: number,
-    applyType: ApplyType,
-    applyDetailType: ApplyDetailType
-  ) {
-    const body = { applyType, applyDetailType };
-    // const { data } = await Api.patch(`changeApplyStatusApi`, body);
-
-    return { data: 1 };
   }
 }
 
