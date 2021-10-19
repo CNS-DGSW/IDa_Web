@@ -21,6 +21,12 @@
     margin-bottom: 1rem;
     font-weight: 600;
   }
+  &-firstBtn {
+    display: flex;
+  }
+  &-finalBtn {
+    display: flex;
+  }
   button {
     width: 12rem;
     height: 2.5rem;

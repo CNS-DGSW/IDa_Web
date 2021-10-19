@@ -12,12 +12,14 @@ import { toast } from "react-toastify";
 const UserListPassedContainer = ({}) => {
   const { store } = useStore();
   const history = useHistory();
-  const { getUserListPassed } = store.AdminStore;
+  const { getUserListPassed, getViewFirstStudent, adminChangeFirstStudent } =
+    store.AdminStore;
 
   const { GetFirstSelection, GetSecondSelection } = ExcelApi;
   const [listPassed, setListPassed] = useState<ListPassedCategory>(
     ListPassedCategory.First
   );
+  const [data, setData] = useState<boolean>(false);
 
   const [passedStatus, setPassedStatus] = useState<ListPassed[]>([]);
 
@@ -63,10 +65,25 @@ const UserListPassedContainer = ({}) => {
     [listPassed]
   );
 
+  const tryViewFirstStudent = useCallback(() => {
+    getViewFirstStudent().then((res) => {
+      setData(res.data);
+    });
+  }, [getViewFirstStudent, setData]);
+  const tryChangeFirstStudent = useCallback(() => {
+    adminChangeFirstStudent().then((res) => {
+      tryViewFirstStudent();
+      console.log(res);
+    });
+  }, [adminChangeFirstStudent, tryViewFirstStudent]);
+
   useEffect(() => {
     tryGetUserListPassed();
   }, [tryGetUserListPassed]);
 
+  useEffect(() => {
+    tryViewFirstStudent();
+  }, [tryViewFirstStudent]);
   return (
     <>
       <UserListPassed
@@ -74,6 +91,8 @@ const UserListPassedContainer = ({}) => {
         passedStatus={passedStatus}
         selectListPassed={selectListPassed}
         listPassed={listPassed}
+        data={data}
+        tryChangeFirstStudent={tryChangeFirstStudent}
       />
     </>
   );

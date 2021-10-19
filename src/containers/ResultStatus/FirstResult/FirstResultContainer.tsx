@@ -17,6 +17,8 @@ const FirstResultContainer = ({
   const history = useHistory();
   const { store } = useStore();
   const { pass, tryGetStatus, submit, print } = store.StatusStore;
+  const [errStatus, setErrStatus] = useState<number>(0);
+  const status: number = 403;
   const [comment, setComment] = useState<string>("");
   // 합격 불합격 체점중 등등 멘트를 관리하는 state
   const [applyCheck, setApplyCheck] = useState<Apply | null>();
@@ -53,9 +55,14 @@ const FirstResultContainer = ({
         setCommented();
       })
       .catch((err) => {
-        handleLogin(err, history);
+        setErrStatus(err.response.status);
+        if (errStatus === 403) {
+          setComment("아직 확인 불가능 합니다.");
+        } else {
+          handleLogin(err, history);
+        }
       });
-  }, [applyCheck]);
+  }, [applyCheck, errStatus]);
 
   useEffect(() => {
     getStatus();
@@ -68,13 +75,14 @@ const FirstResultContainer = ({
   return (
     <>
       {/* api를 받고 난후 데이터가 오면 보여줌 */}
-      {pass !== undefined && (
-        <FirstResult
-          comment={comment}
-          firstOpenModal={firstOpenModal}
-          applyComment={applyComment}
-        />
-      )}
+      {/* {pass !== undefined ?
+        errStatus === status && ( */}
+      <FirstResult
+        comment={comment}
+        firstOpenModal={firstOpenModal}
+        applyComment={applyComment}
+      />
+      {/* )} */}
     </>
   );
 };
