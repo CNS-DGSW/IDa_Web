@@ -98,22 +98,40 @@ const UserListPassed = ({
         <table className="passed-list">
           <thead>
             <tr className="passed-list-title">
-              <th>순번</th>
-              <th>이름</th>
-              <th>출신학교</th>
-              <th>지역</th>
-              <th>전화번호</th>
-              <th>이메일</th>
-              <th>생년월일</th>
-              <th>접수번호</th>
-              <th>수험번호</th>
-              <th>지원전형</th>
-              <th>합격전형</th>
+              {listPassed === ListPassedCategory.Final && (
+                <>
+                  <th>순번</th>
+                  <th>이름</th>
+                  <th>출신학교</th>
+                  <th>지역</th>
+                  <th>전화번호</th>
+                  <th>이메일</th>
+                  <th>생년월일</th>
+                  <th>접수번호</th>
+                  <th>수험번호</th>
+                  <th>1차 합격전형</th>
+                  <th>합격전형</th>
+                </>
+              )}
+              {listPassed === ListPassedCategory.First && (
+                <>
+                  <th>순번</th>
+                  <th>이름</th>
+                  <th>출신학교</th>
+                  <th>지역</th>
+                  <th>전화번호</th>
+                  <th>이메일</th>
+                  <th>생년월일</th>
+                  <th>접수번호</th>
+                  <th>수험번호</th>
+                  <th>지원전형</th>
+                  <th>합격전형</th>
+                </>
+              )}
             </tr>
           </thead>
           <tbody>
             {passedStatus.map((i, idx) => {
-              console.log(i);
               return (
                 <tr key={idx}>
                   {listPassed === ListPassedCategory.Final && (
@@ -127,15 +145,8 @@ const UserListPassed = ({
                       <td>{moment(i.birth).format("YYYY-MM-DD")}</td>
                       <td>{i.submitCode}</td>
                       <td>{i.examCode}</td>
-                      <td>
-                        {i.firstApplyType === "COMMON" && "1차: 일반전형"}
-                        {i.firstApplyType === "OTHER" && "1차: 특례입학"}
-                        {i.firstApplyType === "SPECIAL" && "1차: 특별전형"}
-                        <br />
-                        {i.finalApplyType === "COMMON" && "2차: 일반전형"}
-                        {i.finalApplyType === "OTHER" && "2차: 특례입학"}
-                        {i.finalApplyType === "SPECIAL" && "2차: 특별전형"}
-                      </td>
+                      <td>{i.firstApplyType}</td>
+                      <td>{i.finalApplyType}</td>
                     </>
                   )}
                   {listPassed === ListPassedCategory.First && (

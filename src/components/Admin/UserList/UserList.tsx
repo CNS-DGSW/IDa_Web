@@ -55,7 +55,6 @@ const UserList = ({
   setModal,
   tryChangeReview,
 }: UserListProps) => {
-  console.log(userStatus);
   return (
     <>
       <div className="userList">
