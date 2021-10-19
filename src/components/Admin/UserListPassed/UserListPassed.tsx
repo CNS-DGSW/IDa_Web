@@ -3,6 +3,7 @@ import { ListPassed } from "util/types/UserList";
 import "./UserListPassed.scss";
 import ListPassedCategory from "util/enums/ListPassedCategory";
 import moment from "moment";
+import applyDetailModel from "models/ApplyDetailModel";
 
 interface UserListPassedProps {
   tryDownExcel: (key: string) => void;
@@ -106,11 +107,13 @@ const UserListPassed = ({
               <th>생년월일</th>
               <th>접수번호</th>
               <th>수험번호</th>
+              <th>지원전형</th>
               <th>합격전형</th>
             </tr>
           </thead>
           <tbody>
             {passedStatus.map((i, idx) => {
+              console.log(i);
               return (
                 <tr key={idx}>
                   {listPassed === ListPassedCategory.Final && (
@@ -146,11 +149,8 @@ const UserListPassed = ({
                       <td>{moment(i.birth).format("YYYY-MM-DD")}</td>
                       <td>{i.submitCode}</td>
                       <td>{i.examCode}</td>
-                      <td>
-                        {i.firstApplyType === "COMMON" && "1차: 일반전형"}
-                        {i.firstApplyType === "OTHER" && "1차: 특례입학"}
-                        {i.firstApplyType === "SPECIAL" && "1차: 특별전형"}
-                      </td>
+                      <td>{i.applyType}</td>
+                      <td>{i.firstApplyType}</td>
                     </>
                   )}
                 </tr>
