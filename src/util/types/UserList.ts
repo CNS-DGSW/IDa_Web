@@ -31,6 +31,7 @@ export type ListPassed = {
   schoolName: string;
   studentTel: string;
   submitCode: string;
+  applyType: string;
 };
 
 export type Rate = {
