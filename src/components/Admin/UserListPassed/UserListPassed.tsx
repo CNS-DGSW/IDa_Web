@@ -137,7 +137,11 @@ const UserListPassed = ({
                   {listPassed === ListPassedCategory.Final && (
                     <>
                       <td>{i.idx}</td>
-                      <td>{i.name}</td>
+                      <td>
+                        <a target="_blank" href={`/write?userIdx=${i.idx}`}>
+                          {i.name}
+                        </a>
+                      </td>
                       <td>{i.schoolName}</td>
                       <td>{i.cityName}</td>
                       <td>{i.studentTel}</td>
@@ -152,7 +156,11 @@ const UserListPassed = ({
                   {listPassed === ListPassedCategory.First && (
                     <>
                       <td>{i.idx}</td>
-                      <td>{i.name}</td>
+                      <td>
+                        <a target="_blank" href={`/write?userIdx=${i.idx}`}>
+                          {i.name}
+                        </a>
+                      </td>
                       <td>{i.schoolName}</td>
                       <td>{i.cityName}</td>
                       <td>{i.studentTel}</td>
