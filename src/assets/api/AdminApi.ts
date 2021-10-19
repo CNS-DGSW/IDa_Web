@@ -70,6 +70,16 @@ class AdminApi {
 
     return data;
   }
+
+  async viewFirstStudent() {
+    const { data } = await Api.get(`/apply/firstState`);
+    return data;
+  }
+
+  async changeFirstStudent() {
+    const { data } = await Api.patch(`/apply/firstState`);
+    return data;
+  }
 }
 
 export default new AdminApi();

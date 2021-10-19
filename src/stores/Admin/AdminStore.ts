@@ -13,6 +13,7 @@ import {
   UserList,
   UserListPassed,
   UserRate,
+  ViewFirstStudent,
 } from "util/types/Response";
 import ExcelApi from "assets/api/ExcelApi";
 import StatusApi from "assets/api/StatusApi";
@@ -120,6 +121,18 @@ class AdminStore {
   adminDeleteUser = async (userIdx: number): Promise<Response> => {
     const response: Response = await AdminApi.DeleteUser(userIdx);
 
+    return response;
+  };
+
+  @action
+  getViewFirstStudent = async (): Promise<ViewFirstStudent> => {
+    const response: ViewFirstStudent = await AdminApi.viewFirstStudent();
+    return response;
+  };
+
+  @action
+  adminChangeFirstStudent = async (): Promise<ViewFirstStudent> => {
+    const response: ViewFirstStudent = await AdminApi.changeFirstStudent();
     return response;
   };
 }

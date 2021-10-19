@@ -9,6 +9,8 @@ interface UserListPassedProps {
   passedStatus: ListPassed[];
   selectListPassed: (index: string) => void;
   listPassed: ListPassedCategory;
+  data: boolean;
+  tryChangeFirstStudent: () => void;
 }
 
 const UserListPassed = ({
@@ -16,17 +18,43 @@ const UserListPassed = ({
   passedStatus,
   selectListPassed,
   listPassed,
+  data,
+  tryChangeFirstStudent,
 }: UserListPassedProps) => {
   return (
     <>
       <div className="listPassed">
         <span className="listPassed-title">1차 / 최종 합격 여부</span>
-        <button onClick={() => tryDownExcel("first")} className="header-btn">
-          1차 합격 엑셀
-        </button>
-        <button onClick={() => tryDownExcel("final")} className="header-btn">
-          최종 합격 엑셀
-        </button>
+        <div className="listPassed-firstBtn">
+          <button onClick={() => tryDownExcel("first")} className="header-btn">
+            1차 합격 엑셀
+          </button>
+          {data ? (
+            <>
+              <button
+                className="firstDataTrue"
+                onClick={() => tryChangeFirstStudent()}
+              >
+                1차 합격 확인가능
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                className="firstDataFalse"
+                onClick={() => tryChangeFirstStudent()}
+              >
+                1차 합격 확인 불가능
+              </button>
+            </>
+          )}
+        </div>
+        <div className="listPassed-finalBtn">
+          <button onClick={() => tryDownExcel("final")} className="header-btn">
+            최종 합격 엑셀
+          </button>
+          <button>최종 합격 확인가능</button>
+        </div>
         <select
           className="listPassed-select"
           onChange={(e) => {
