@@ -25,9 +25,9 @@ const UserResult = ({
   tryChangeSecondApplyStatus,
 }: UserResultProps) => {
   return (
-    <table className="allRatio-list">
+    <table className="table-list">
       <thead>
-        <tr className="allRatio-list-title">
+        <tr className="table-list-title">
           <th>순번</th>
           <th>이름</th>
           <th>아이디</th>

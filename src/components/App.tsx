@@ -32,6 +32,10 @@ const InterViewScorePage = React.lazy(
   () => import("pages/AdminPage/InterViewScorePage")
 );
 
+const UserResultPage = React.lazy(
+  () => import("pages/AdminPage/UserResultPage")
+);
+
 const App = () => {
   return (
     <div className="App">
@@ -70,6 +74,11 @@ const App = () => {
             exact
             path="/admin/userListPassed"
             component={UserListPassedPage}
+          />
+          <Route
+            exact
+            path="/admin/userResultPage"
+            component={UserResultPage}
           />
         </Suspense>
       </Switch>
