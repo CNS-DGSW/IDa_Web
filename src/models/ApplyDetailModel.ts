@@ -213,7 +213,7 @@ const applyDetailModel = {
 
 const findNameByValue = (value?: ApplyDetail | null): string => {
   if (value === null || value === undefined || value === ApplyDetail.COMMON) {
-    return "";
+    return "일반 전형";
   }
 
   const specialDefault = applyDetailModel.special.find((model) => {
