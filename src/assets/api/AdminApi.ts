@@ -1,4 +1,7 @@
 import Api from "lib/customAxios";
+import ApplyType from "util/enums/Apply";
+import ApplyDetailType from "util/enums/ApplyDetail";
+import { UserResult as UserResultType } from "util/types/UserResult";
 
 class AdminApi {
   async GetReceiptStatus() {

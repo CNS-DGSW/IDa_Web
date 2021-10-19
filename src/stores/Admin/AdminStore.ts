@@ -1,6 +1,10 @@
 import { action, observable } from "mobx";
 import { autobind } from "core-decorators";
 import AdminApi from "../../assets/api/AdminApi";
+import ApplyType from "util/enums/Apply";
+import ApplyDetailType from "util/enums/ApplyDetail";
+import { UserResult as UserResultType } from "util/types/UserResult";
+
 import {
   AllUserRatio,
   ReceiptResponse,
