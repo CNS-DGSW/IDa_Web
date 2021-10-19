@@ -124,6 +124,17 @@ class AdminApi {
 
     return data;
   }
+
+  async ChangeApplyStatus(
+    userIdx: number,
+    applyType: ApplyType,
+    applyDetailType: ApplyDetailType
+  ) {
+    const body = { applyType, applyDetailType };
+    // const { data } = await Api.patch(`changeApplyStatusApi`, body);
+
+    return { data: 1 };
+  }
 }
 
 export default new AdminApi();
