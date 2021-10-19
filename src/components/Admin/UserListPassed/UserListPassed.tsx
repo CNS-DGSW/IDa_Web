@@ -9,8 +9,10 @@ interface UserListPassedProps {
   passedStatus: ListPassed[];
   selectListPassed: (index: string) => void;
   listPassed: ListPassedCategory;
-  data: boolean;
+  firstData: boolean;
+  secondData: boolean;
   tryChangeFirstStudent: () => void;
+  tryChangeSecondStudent: () => void;
 }
 
 const UserListPassed = ({
@@ -18,8 +20,10 @@ const UserListPassed = ({
   passedStatus,
   selectListPassed,
   listPassed,
-  data,
+  firstData,
+  secondData,
   tryChangeFirstStudent,
+  tryChangeSecondStudent,
 }: UserListPassedProps) => {
   return (
     <>
@@ -29,7 +33,7 @@ const UserListPassed = ({
           <button onClick={() => tryDownExcel("first")} className="header-btn">
             1차 합격 엑셀
           </button>
-          {data ? (
+          {firstData ? (
             <>
               <button
                 className="firstDataTrue"
@@ -53,7 +57,27 @@ const UserListPassed = ({
           <button onClick={() => tryDownExcel("final")} className="header-btn">
             최종 합격 엑셀
           </button>
-          <button>최종 합격 확인가능</button>
+          {secondData ? (
+            <>
+              <button
+                onClick={() => {
+                  tryChangeSecondStudent();
+                }}
+              >
+                최종 합격 확인가능
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                onClick={() => {
+                  tryChangeSecondStudent();
+                }}
+              >
+                최종 합격 확인 불가능
+              </button>
+            </>
+          )}
         </div>
         <select
           className="listPassed-select"

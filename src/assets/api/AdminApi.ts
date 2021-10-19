@@ -81,6 +81,16 @@ class AdminApi {
     return data;
   }
 
+  async viewSecondStudent() {
+    const { data } = await Api.get(`/apply/secondState`);
+    return data;
+  }
+
+  async changeSecondStudent() {
+    const { data } = await Api.patch(`/apply/secondState`);
+    return data;
+  }
+
   async GetUserResultList() {
     const { data } = await Api.get("/admin/getUserListPassedState");
 

@@ -12,14 +12,20 @@ import { toast } from "react-toastify";
 const UserListPassedContainer = ({}) => {
   const { store } = useStore();
   const history = useHistory();
-  const { getUserListPassed, getViewFirstStudent, adminChangeFirstStudent } =
-    store.AdminStore;
+  const {
+    getUserListPassed,
+    getViewFirstStudent,
+    adminChangeFirstStudent,
+    getViewSecondStudent,
+    adminChangeSecondStudent,
+  } = store.AdminStore;
 
   const { GetFirstSelection, GetSecondSelection } = ExcelApi;
   const [listPassed, setListPassed] = useState<ListPassedCategory>(
     ListPassedCategory.First
   );
-  const [data, setData] = useState<boolean>(false);
+  const [firstData, setFirstData] = useState<boolean>(false);
+  const [secondData, setSecondData] = useState<boolean>(false);
 
   const [passedStatus, setPassedStatus] = useState<ListPassed[]>([]);
 
@@ -67,15 +73,29 @@ const UserListPassedContainer = ({}) => {
 
   const tryViewFirstStudent = useCallback(() => {
     getViewFirstStudent().then((res) => {
-      setData(res.data);
+      setFirstData(res.data);
     });
-  }, [getViewFirstStudent, setData]);
+  }, [getViewFirstStudent, setFirstData]);
+
   const tryChangeFirstStudent = useCallback(() => {
     adminChangeFirstStudent().then((res) => {
       tryViewFirstStudent();
       console.log(res);
     });
   }, [adminChangeFirstStudent, tryViewFirstStudent]);
+
+  const tryViewSecondStudent = useCallback(() => {
+    getViewSecondStudent().then((res) => {
+      setSecondData(res.data);
+    });
+  }, [getViewSecondStudent, setSecondData]);
+
+  const tryChangeSecondStudent = useCallback(() => {
+    adminChangeSecondStudent().then((res) => {
+      tryViewSecondStudent();
+      console.log(res);
+    });
+  }, [adminChangeSecondStudent, tryViewSecondStudent]);
 
   useEffect(() => {
     tryGetUserListPassed();
@@ -84,6 +104,10 @@ const UserListPassedContainer = ({}) => {
   useEffect(() => {
     tryViewFirstStudent();
   }, [tryViewFirstStudent]);
+
+  useEffect(() => {
+    tryViewSecondStudent();
+  }, [tryChangeSecondStudent]);
   return (
     <>
       <UserListPassed
@@ -91,8 +115,10 @@ const UserListPassedContainer = ({}) => {
         passedStatus={passedStatus}
         selectListPassed={selectListPassed}
         listPassed={listPassed}
-        data={data}
+        firstData={firstData}
+        secondData={secondData}
         tryChangeFirstStudent={tryChangeFirstStudent}
+        tryChangeSecondStudent={tryChangeSecondStudent}
       />
     </>
   );
