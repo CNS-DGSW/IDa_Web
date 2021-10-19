@@ -1,4 +1,7 @@
 import Api from "lib/customAxios";
+import ApplyType from "util/enums/Apply";
+import ApplyDetailType from "util/enums/ApplyDetail";
+import { UserResult as UserResultType } from "util/types/UserResult";
 
 class AdminApi {
   async GetReceiptStatus() {
@@ -75,6 +78,40 @@ class AdminApi {
 
   async changeFirstStudent() {
     const { data } = await Api.patch(`/apply/firstState`);
+    return data;
+  }
+
+  async GetUserResultList() {
+    const { data } = await Api.get("/admin/getUserListPassedState");
+
+    return data;
+  }
+
+  async ChangeFirstApplyStatus(
+    userIdx: number,
+    applyType: ApplyType,
+    applyDetailType: ApplyDetailType
+  ) {
+    const body = { applyType, applyDetailType };
+    const { data } = await Api.patch(
+      `/score/setFirstSelection/${userIdx}`,
+      body
+    );
+
+    return data;
+  }
+
+  async ChangeSecondApplyStatus(
+    userIdx: number,
+    applyType: ApplyType,
+    applyDetailType: ApplyDetailType
+  ) {
+    const body = { applyType, applyDetailType };
+    const { data } = await Api.patch(
+      `/score/setSecondSelection/${userIdx}`,
+      body
+    );
+
     return data;
   }
 }
