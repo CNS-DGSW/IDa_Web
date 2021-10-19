@@ -11,4 +11,6 @@ export type UserResult = {
   finalApplyDetailType: ApplyDetail;
   isPassedFirstApply: boolean;
   isPassedSecondApply: boolean;
+  finalApplyTypeString: string;
+  firstApplyTypeString: string;
 };

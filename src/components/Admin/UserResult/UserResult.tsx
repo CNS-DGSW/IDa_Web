@@ -71,13 +71,7 @@ const UserResult = ({
 
               {/* 1차 전형 */}
               <td>
-                <b>
-                  {findApplyByString(userResult.firstApplyType) +
-                    "-" +
-                    (userResult.firstApplyType === ApplyType.COMMON
-                      ? "일반 전형"
-                      : findNameByValue(userResult.firstApplyDetailType))}
-                </b>
+                <b>{userResult.firstApplyTypeString}</b>
                 <br />
                 <select
                   onChange={(e) => {
@@ -143,13 +137,7 @@ const UserResult = ({
               {/* 2차 전형 */}
               <td>
                 {" "}
-                <b>
-                  {findApplyByString(userResult.finalApplyType) +
-                    "-" +
-                    (userResult.finalApplyType === ApplyType.COMMON
-                      ? "일반 전형"
-                      : findNameByValue(userResult.finalApplyDetailType))}
-                </b>
+                <b>{userResult.finalApplyTypeString}</b>
                 <br />
                 <select
                   onChange={(e) => {
