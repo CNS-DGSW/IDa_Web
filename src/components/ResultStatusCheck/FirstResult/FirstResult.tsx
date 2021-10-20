@@ -3,7 +3,7 @@ import React from "react";
 import "./FirstResult.scss";
 
 interface FirstResultProps {
-  comment: string;
+  comment: string | undefined;
   firstOpenModal: () => void;
   applyComment: string;
 }

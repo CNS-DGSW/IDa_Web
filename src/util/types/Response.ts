@@ -209,6 +209,7 @@ export interface ResultStatusResponse extends Response {
     firstApplyType: Apply | null;
     isSubmit: boolean;
     submitCode: string;
+    canAccess: boolean;
   };
 }
 

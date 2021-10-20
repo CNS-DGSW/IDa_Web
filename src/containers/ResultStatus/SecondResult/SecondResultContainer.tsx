@@ -7,10 +7,14 @@ import { handleLogin } from "lib/handleErrors";
 
 interface SecondResultContainerProps {
   secondOpenModal: () => void;
+  modalLoading: boolean;
+  setModalLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const SecondResultContainer = ({
   secondOpenModal,
+  modalLoading,
+  setModalLoading,
 }: SecondResultContainerProps) => {
   const history = useHistory();
   const { store } = useStore();
@@ -37,6 +41,7 @@ const SecondResultContainer = ({
     tryGetFinalStatus()
       .then((res) => {
         selectComment(res.data.isPassed);
+        setModalLoading(false);
       })
       .catch((err) => {
         handleLogin(err, history);
@@ -47,13 +52,16 @@ const SecondResultContainer = ({
     getData();
   }, [getData]);
 
+  if (modalLoading) {
+    return <></>;
+  }
   return (
     <>
       {/* comment가 업데이트 되면 true가 되어서 모달이 뜨게됨 */}
       {/* 이렇게 해주는 이유는 comment가 비어있을때 모달이 뜨게되면 아무 멘트없이 빈 모달만 뜨게됨 */}
-      {comment && (
-        <SecondResult comment={comment} secondOpenModal={secondOpenModal} />
-      )}
+      {/* {comment && ( */}
+      <SecondResult comment={comment} secondOpenModal={secondOpenModal} />
+      {/* )} */}
     </>
   );
 };
