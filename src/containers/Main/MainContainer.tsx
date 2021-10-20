@@ -14,6 +14,8 @@ const MainContainer = () => {
   const [secondResultModal, setSecondResultModal] = useState<boolean>(false);
   // 1,2 차 합격 여부 모달
 
+  const [modalLoading, setModalLoading] = useState<boolean>(true);
+
   // 입학 전형 요강 다운로드
   const handleDownloadApplyInfo = useCallback(() => {
     downloadApplyInfo().catch(() => {
@@ -22,11 +24,13 @@ const MainContainer = () => {
   }, [downloadApplyInfo]);
 
   const firstOpenModal = useCallback(() => {
+    setModalLoading(true);
     setFirstResultModal(!firstResultModal);
   }, [firstResultModal]);
   // 모달 true false 하는것
 
   const secondOpenModal = useCallback(() => {
+    setModalLoading(true);
     setSecondResultModal(!secondResultModal);
   }, [secondResultModal]);
   // 모달 true false 하는것
@@ -43,6 +47,9 @@ const MainContainer = () => {
     scrollHiden();
   }, [firstResultModal, secondResultModal]);
 
+  useEffect(() => {
+    console.log("~~", modalLoading);
+  }, [modalLoading]);
   return (
     <>
       <Main
@@ -51,11 +58,19 @@ const MainContainer = () => {
         secondOpenModal={secondOpenModal}
       />
       {firstResultModal && (
-        <FirstResultContainer firstOpenModal={firstOpenModal} />
+        <FirstResultContainer
+          modalLoading={modalLoading}
+          setModalLoading={setModalLoading}
+          firstOpenModal={firstOpenModal}
+        />
       )}
 
       {secondResultModal && (
-        <SecondResultContainer secondOpenModal={secondOpenModal} />
+        <SecondResultContainer
+          modalLoading={modalLoading}
+          setModalLoading={setModalLoading}
+          secondOpenModal={secondOpenModal}
+        />
       )}
     </>
   );

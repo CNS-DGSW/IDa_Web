@@ -16,9 +16,11 @@ class StatusStore {
   // 우편 도착 여부
   @observable checkedPrint: boolean | string = false;
   // 우편 검토 여부
-  @observable pass: boolean | null | undefined = undefined;
+  @observable pass: boolean | null | undefined | string = undefined;
   //1차 합격 여부
   @observable statusModal: boolean = false;
+  //1차 확인 여부
+  @observable canAccess: boolean = false;
   // 현황 모달 관리
 
   @action tryStatusModal = () => {
@@ -59,12 +61,14 @@ class StatusStore {
     // 1차 합격 여부 및 우편 원서 접수, 인터넷 원서 접수 현황
     const response: ResultStatusResponse = await StatusApi.GetStatus(userIdx);
 
-    if (response.status === 200) {
-      this.submit = response.data.isSubmit; // 인터넷 원서 접수 현홍
-      this.print = response.data.isPrintedApplicationArrived; //  우편 원서 접수 현황
-      this.checkedPrint = response.data.applicationChecked; //  우편 원서 검토 현황
-      this.pass = response.data.isPassedFirstApply; // 1차 합격 여부
-    }
+    console.log(">>", response.data.isPassedFirstApply);
+    // if (response.status === 200) {
+    this.submit = response.data.isSubmit; // 인터넷 원서 접수 현홍
+    this.print = response.data.isPrintedApplicationArrived; //  우편 원서 접수 현황
+    this.checkedPrint = response.data.applicationChecked; //  우편 원서 검토 현황
+    this.pass = response.data.isPassedFirstApply; // 1차 합격 여부
+    this.canAccess = response.data.canAccess;
+    // }
 
     return response;
   };
