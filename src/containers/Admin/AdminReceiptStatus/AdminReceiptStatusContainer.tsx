@@ -21,6 +21,13 @@ const AdminReceiptStatusContainer = ({}) => {
   const getReceiptStatusCallBack = useCallback(() => {
     getReceiptStatus()
       .then((res) => {
+        // console.log(
+        //   res.data
+        //     .sort((a, b) => {
+        //       return a.totalScore - b.totalScore;
+        //     })
+        //     .map((user) => user.totalScore)
+        // );
         setReceiptStatus(res.data);
       })
       .catch((err) => {

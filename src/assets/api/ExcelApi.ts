@@ -101,7 +101,7 @@ class ExcelApi {
     return response;
   }
   async GetReceiptStatus() {
-    const response = await Api.get("/excel/getReceiptStatus", {
+    const response = await Api.get("/excel/getUserInfo", {
       responseType: "blob",
     });
 
