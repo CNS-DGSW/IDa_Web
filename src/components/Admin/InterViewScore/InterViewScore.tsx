@@ -95,7 +95,11 @@ const InterViewScore = ({
         </div>
 
         <div className="InterViewScore-checkBox-label">
-          <span>면접 점수</span>
+          <span>
+            {interView === InterViewCategory.INTERVIEW
+              ? "구술 면접 점수"
+              : "창의 협업 점수"}
+          </span>
           <label htmlFor="input-file1" className="buttons">
             업로드
           </label>
@@ -126,7 +130,12 @@ const InterViewScore = ({
                   <th>평가요소8</th>
                 </>
               )}
-              <th>점수</th>
+              <th>
+                {" "}
+                {interView === InterViewCategory.INTERVIEW
+                  ? "구술 면접 점수"
+                  : "창의 협업 점수"}
+              </th>
               <th>합산점수</th>
             </tr>
           </thead>
