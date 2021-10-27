@@ -111,6 +111,7 @@ const SecondTypeScore = ({
         <table className="SecondScore-table-list">
           <thead>
             <tr className="SecondScore-table-list-title">
+              <th>순번</th>
               <th>수험번호</th>
               <th>이름</th>
               <th>학력</th>
@@ -133,6 +134,8 @@ const SecondTypeScore = ({
           <tbody>
             {scoreDate?.data.map((i, key) => (
               <tr key={key}>
+                <td>{key + 1}</td>
+                {/* 순번 */}
                 <td>{i.examCode}</td>
                 {/* 수험번호 */}
                 <td>{i.userName}</td>

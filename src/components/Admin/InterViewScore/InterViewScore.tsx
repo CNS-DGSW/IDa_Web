@@ -115,6 +115,7 @@ const InterViewScore = ({
         <table className="InterViewScore-table-list">
           <thead>
             <tr className="InterViewScore-table-list-title">
+              <th>순번</th>
               <th>수험번호</th>
               <th>이름</th>
               <th>참석여부</th>
@@ -142,6 +143,7 @@ const InterViewScore = ({
           <tbody>
             {scoreDate?.data.map((i, key) => (
               <tr key={key}>
+                <td>{key + 1}</td>
                 <td>{i.examCode}</td>
                 <td>{i.userName}</td>
                 <td>{i.examCode}</td>

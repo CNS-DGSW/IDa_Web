@@ -55,7 +55,8 @@ const UserResult = ({
             <tr key={idx}>
               <td>
                 <a target="_blank" href={`/write?userIdx=${userResult.idx}`}>
-                  {userResult.idx}
+                  {idx + 1}
+                  {/* 보이는 id와 실제 이동되는 쿼리의 값이 다름 */}
                 </a>
               </td>
               <td>

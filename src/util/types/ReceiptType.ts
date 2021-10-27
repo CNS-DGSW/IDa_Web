@@ -18,7 +18,8 @@ export type Receipt = {
   name: string;
   schoolName: string;
   submitCode: string;
-  totalScore: number;
+  commonTotalScore: number;
+  specialTotalScore: number;
   userIdx: number;
   volunteerScore: number;
 };
