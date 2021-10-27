@@ -136,7 +136,7 @@ const UserListPassed = ({
                 <tr key={idx}>
                   {listPassed === ListPassedCategory.Final && (
                     <>
-                      <td>{i.idx}</td>
+                      <td>{idx + 1}</td>
                       <td>
                         <a target="_blank" href={`/write?userIdx=${i.idx}`}>
                           {i.name}
@@ -155,7 +155,7 @@ const UserListPassed = ({
                   )}
                   {listPassed === ListPassedCategory.First && (
                     <>
-                      <td>{i.idx}</td>
+                      <td>{idx + 1}</td>
                       <td>
                         <a target="_blank" href={`/write?userIdx=${i.idx}`}>
                           {i.name}

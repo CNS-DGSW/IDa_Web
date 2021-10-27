@@ -125,6 +125,7 @@ const UserList = ({
         <table className="userList-list">
           <thead>
             <tr className="userList-list-title">
+              <th>순번</th>
               <th>성명</th>
               <th>아이디</th>
               <th>출신학교</th>
@@ -158,6 +159,7 @@ const UserList = ({
                   )
                   .map((filter, idx) => (
                     <tr key={idx}>
+                      <td>{idx + 1}</td>
                       <td
                         className="pointer"
                         onClick={() =>
@@ -269,6 +271,7 @@ const UserList = ({
                   ))
               : userStatus?.map((i, idx) => (
                   <tr key={idx}>
+                    <td>{idx + 1}</td>
                     <td
                       onClick={() => window.open(`/write?userIdx=${i.idx}`)}
                       className="pointer"

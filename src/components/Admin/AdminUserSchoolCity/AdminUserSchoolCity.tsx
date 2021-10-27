@@ -48,7 +48,8 @@ const AdminUserSchoolCity = ({
             {schoolCity.map((res, idx) => {
               return (
                 <tr key={idx}>
-                  <td>{res.idx}</td>
+                  <td>{idx + 1}</td>
+                  {/* 순번 */}
                   <td>{res.cityName}</td>
                   <td>{res.schoolName}</td>
                   <td>{res.ungraduatedMen}</td>
