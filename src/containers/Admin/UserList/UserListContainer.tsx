@@ -32,7 +32,7 @@ const UserListContainer = ({}) => {
   const [name, setName] = useState<string>("");
   const [modal, setModal] = useState<boolean>(false);
 
-  const { GetReceiptStatus } = ExcelApi;
+  const { GetUserList } = ExcelApi;
 
   const tryAddUser = () => {
     if (!id || !pw || !birth || !name) {
@@ -113,7 +113,7 @@ const UserListContainer = ({}) => {
 
   // 엑셀 다운
   const tryDownExcel = () => {
-    GetReceiptStatus().catch((err) => {
+    GetUserList().catch((err) => {
       toast.error("서버 오류입니다.");
     });
   };

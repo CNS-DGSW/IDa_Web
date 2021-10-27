@@ -100,6 +100,17 @@ class ExcelApi {
 
     return response;
   }
+
+  async GetUserList() {
+    const response = await Api.get("/excel/getReceiptStatus", {
+      responseType: "blob",
+    });
+
+    FileDown(response);
+
+    return response;
+  }
+
   async GetReceiptStatus() {
     const response = await Api.get("/excel/getUserInfo", {
       responseType: "blob",
