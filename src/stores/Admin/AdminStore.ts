@@ -207,7 +207,7 @@ class AdminStore {
 
   @action
   setSecondSelection = async () => {
-    const response: Response = await AdminApi.SetFirstSelection();
+    const response: Response = await AdminApi.SetSecondSelection();
 
     return response;
   };
