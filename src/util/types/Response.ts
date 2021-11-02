@@ -215,9 +215,19 @@ export interface ResultStatusResponse extends Response {
 
 export interface FinalStatusResponse extends Response {
   data: {
-    finalApplyDetailType: Apply;
-    finalApplyType: Apply;
-    isPassed: true | null;
+    // finalApplyDetailType: Apply;
+    // finalApplyType: Apply;
+    // isPassed: true | null;
+    isPassed?: boolean | null;
+    examCode?: number | null;
+    name?: string | null;
+    gradeType?: string | null;
+    sex?: string | null;
+    birth?: string | null;
+    area?: string | null;
+    school?: string | null;
+    finalApplyType?: string | null;
+    finalApplyDetailType?: string | null;
   };
 }
 export interface AllUserRatio extends Response {

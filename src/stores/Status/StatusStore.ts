@@ -2,6 +2,8 @@ import StatusApi from "assets/api/StatusApi";
 import { autobind } from "core-decorators";
 import { action, observable } from "mobx";
 import UserPrintStatus from "util/enums/UserPrintStatus";
+import Apply from "util/enums/Apply";
+import ApplyDetail from "util/enums/ApplyDetail";
 import {
   FinalStatusResponse,
   Response,
@@ -22,6 +24,16 @@ class StatusStore {
   //1차 확인 여부
   @observable canAccess: boolean = false;
   // 현황 모달 관리
+  @observable isPassed?: boolean | null;
+  @observable examCode?: number | null;
+  @observable name?: string | null;
+  @observable sex?: string | null;
+  @observable birth?: string | null;
+  @observable area?: string | null;
+  @observable school?: string | null;
+  @observable gradeType?: string | null;
+  @observable finalApplyType?: string | null;
+  @observable finalApplyDetailType?: string | null;
 
   @action tryStatusModal = () => {
     this.statusModal = !this.statusModal;
@@ -49,7 +61,19 @@ class StatusStore {
   @action
   tryGetFinalStatus = async (): Promise<FinalStatusResponse> => {
     // 2차(최종) 합격 여부
+
     const response: FinalStatusResponse = await StatusApi.GetFinalStatus();
+
+    this.isPassed = response.data.isPassed;
+    this.examCode = response.data.examCode;
+    this.name = response.data.name;
+    this.sex = response.data.sex;
+    this.birth = response.data.birth;
+    this.gradeType = response.data.gradeType;
+    this.area = response.data.area;
+    this.school = response.data.school;
+    this.finalApplyType = response.data.finalApplyType;
+    this.finalApplyDetailType = response.data.finalApplyDetailType;
 
     return response;
   };
