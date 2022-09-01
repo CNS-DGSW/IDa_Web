@@ -14,7 +14,7 @@ const RegisterContainer = () => {
   const history = useHistory();
 
   // 실명인증 상태
-  const [isAuth, setIsAuth] = useState<boolean>(false);
+  const [isAuth, setIsAuth] = useState<boolean>(true);
 
   //모두동의 체크박스
   const [allCheck, setAllCheck] = useState<boolean>(false);
