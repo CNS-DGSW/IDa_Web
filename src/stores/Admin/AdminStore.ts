@@ -19,7 +19,6 @@ import {
 } from "util/types/Response";
 import ExcelApi from "assets/api/ExcelApi";
 import StatusApi from "assets/api/StatusApi";
-import { sha256 } from "js-sha256";
 
 @autobind
 class AdminStore {
