@@ -25,7 +25,7 @@ class AuthApi {
       name,
       email,
       pw,
-      duplicateInfo: String(Math.random()),
+      duplicateInfo: Math.random().toString(),
     };
     const { data } = await Api.post("/auth/register", body);
 
