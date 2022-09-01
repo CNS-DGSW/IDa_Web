@@ -54,7 +54,7 @@ class AuthStore {
     email: string,
     password: string
   ): Promise<LoginResponse> => {
-    const response = await AuthApi.Login(email, sha256(password));
+    const response = await AuthApi.Login(email, password);
 
     if (response.status === 200) {
       this.login = true;
@@ -74,7 +74,7 @@ class AuthStore {
     const response = await AuthApi.Register(
       name,
       email,
-      sha256(password),
+      password,
       birth,
       duplicateInfo
     );

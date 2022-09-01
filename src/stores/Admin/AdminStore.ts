@@ -111,7 +111,7 @@ class AdminStore {
     const response: Response = await AdminApi.AddUser(
       email,
       name,
-      sha256(pw),
+      pw,
       birth,
       duplicateInfo
     );
