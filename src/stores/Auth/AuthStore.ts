@@ -114,14 +114,14 @@ class AuthStore {
 
   @action
   tryChangePwByEmail = async (code: string, pw: string): Promise<Response> => {
-    const response = await AuthApi.ChangePwByEmail(code, sha256(pw));
+    const response = await AuthApi.ChangePwByEmail(code, pw);
 
     return response;
   };
 
   @action
   tryChangePw = async (newPw: string, pw: string): Promise<Response> => {
-    const response = await AuthApi.ChangePw(sha256(newPw), sha256(pw));
+    const response = await AuthApi.ChangePw(newPw, pw);
 
     return response;
   };
