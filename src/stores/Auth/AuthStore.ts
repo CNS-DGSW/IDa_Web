@@ -54,7 +54,7 @@ class AuthStore {
     email: string,
     password: string
   ): Promise<LoginResponse> => {
-    const response = await AuthApi.Login(email, sha256(password));
+    const response = await AuthApi.Login(email, password);
 
     if (response.status === 200) {
       this.login = true;
@@ -74,7 +74,7 @@ class AuthStore {
     const response = await AuthApi.Register(
       name,
       email,
-      sha256(password),
+      password,
       birth,
       duplicateInfo
     );
@@ -114,14 +114,14 @@ class AuthStore {
 
   @action
   tryChangePwByEmail = async (code: string, pw: string): Promise<Response> => {
-    const response = await AuthApi.ChangePwByEmail(code, sha256(pw));
+    const response = await AuthApi.ChangePwByEmail(code, pw);
 
     return response;
   };
 
   @action
   tryChangePw = async (newPw: string, pw: string): Promise<Response> => {
-    const response = await AuthApi.ChangePw(sha256(newPw), sha256(pw));
+    const response = await AuthApi.ChangePw(newPw, pw);
 
     return response;
   };
