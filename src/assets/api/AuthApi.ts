@@ -10,6 +10,9 @@ class AuthApi {
 
     return data;
   }
+
+  // 랜덤 duplicateInfo
+  // todo
   async Register(
     name: string,
     email: string,
@@ -22,7 +25,7 @@ class AuthApi {
       name,
       email,
       pw,
-      duplicateInfo,
+      duplicateInfo: String(Math.random()),
     };
     const { data } = await Api.post("/auth/register", body);
 
