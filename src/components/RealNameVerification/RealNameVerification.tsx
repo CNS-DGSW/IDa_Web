@@ -30,9 +30,38 @@ const RealNameVerification = ({
     }
   });
 
+  /**
+   * 휴대폰 본인 인증
+   */
   const onClickPhoneButton = useCallback(() => {
-    window.open("http://www.mhaa.kr:8080/dgsw/r21/name_auth_dgsw?type=p");
+    // @ts-ignore
+    const { IMP } = window;
+    IMP.init("imp00000000");
+
+    /* 2. 본인인증 데이터 정의하기 */
+    const data = {
+      merchant_uid: `mid_${new Date().getTime()}`, // 주문번호
+      company: "아임포트", // 회사명 또는 URL
+      carrier: "SKT", // 통신사
+      name: "홍길동", // 이름
+      phone: "01012341234", // 전화번호
+    };
+
+    /* 4. 본인인증 창 호출하기 */
+    IMP.certification(data, callback);
+
+    // window.open("http://www.mhaa.kr:8080/dgsw/r21/name_auth_dgsw?type=p");
   }, []);
+
+  const callback = (response: any) => {
+    const { success, merchant_uid, error_msg } = response;
+
+    if (success) {
+      alert("본인인증 성공");
+    } else {
+      alert(`본인인증 실패: ${error_msg}`);
+    }
+  };
 
   const onClickIpinButton = useCallback(() => {
     window.open("http://www.mhaa.kr:8080/dgsw/r21/name_auth_dgsw?type=i");
