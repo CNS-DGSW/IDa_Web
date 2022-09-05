@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
 import FirstResult from "components/ResultStatusCheck/FirstResult";
-import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 import Apply from "util/enums/Apply";
 import { handleLogin } from "lib/handleErrors";
@@ -22,10 +21,9 @@ const FirstResultContainer = ({
   const { store } = useStore();
   const { canAccess, pass, tryGetStatus, submit, print } = store.StatusStore;
   const [errStatus, setErrStatus] = useState<number>(0);
-  const status: number = 403;
   const [comment, setComment] = useState<string | undefined>("");
   // 합격 불합격 체점중 등등 멘트를 관리하는 state
-  const [applyCheck, setApplyCheck] = useState<Apply | null>();
+  const [applyCheck, setApplyCheck] = useState<Apply | null>(null);
   const [applyComment, setApplyComment] = useState<string>("");
   // 합격 하였을때 전형을 넣어주는 state
 

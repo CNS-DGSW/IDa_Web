@@ -1,5 +1,4 @@
-import { useHistory } from "react-router-dom";
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback } from "react";
 import "./RealNameVerification.scss";
 import CustomInput from "components/common/CustomInput";
 

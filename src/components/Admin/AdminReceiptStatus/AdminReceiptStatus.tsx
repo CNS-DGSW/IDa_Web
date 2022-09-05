@@ -6,7 +6,6 @@ import "./AdminReceiptStatus.scss";
 
 interface AdminReceiptStatusProps {
   receiptStatus: Receipt[];
-  setReceiptStatus: React.Dispatch<React.SetStateAction<Receipt[]>>;
   setSearch: React.Dispatch<React.SetStateAction<string>>;
   search: string;
   getReceiptStatusExcel: () => Promise<any>;
@@ -15,7 +14,6 @@ interface AdminReceiptStatusProps {
 
 const AdminReceiptStatus = ({
   receiptStatus,
-  setReceiptStatus,
   setSearch,
   search,
   getReceiptStatusExcel,

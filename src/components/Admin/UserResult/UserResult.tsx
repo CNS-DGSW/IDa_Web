@@ -2,11 +2,8 @@ import React from "react";
 import "./UserResult.scss";
 import ApplyType from "util/enums/Apply";
 import ApplyDetailType from "util/enums/ApplyDetail";
-import { findNameByValue } from "models/ApplyDetailModel";
-import { findApplyByString } from "util/enums/Apply";
 import { UserResult as UserResultType } from "util/types/UserResult";
 import applyDetailModel from "models/ApplyDetailModel";
-import { NavLink } from "react-router-dom";
 
 interface UserResultProps {
   userResultList: UserResultType[];

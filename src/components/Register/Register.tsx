@@ -5,7 +5,6 @@ import { useHistory } from "react-router-dom";
 import React from "react";
 import "./Register.scss";
 import AuthContent from "components/common/AuthContent";
-import Agree from "util/enums/Agree";
 import Modal from "components/common/Modal";
 import agreeContract from "models/AgreeContract";
 import RealNameVerification from "components/RealNameVerification";

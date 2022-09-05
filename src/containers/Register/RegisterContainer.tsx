@@ -5,7 +5,6 @@ import { Response } from "util/types/Response";
 import useStore from "lib/hooks/useStore";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
-import Agree from "util/enums/Agree";
 
 const RegisterContainer = () => {
   const { store } = useStore();
