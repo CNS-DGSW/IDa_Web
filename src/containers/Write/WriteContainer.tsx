@@ -3,17 +3,22 @@ import { observer } from "mobx-react";
 import { useBeforeunload } from "react-beforeunload";
 import Write from "components/Write/Write";
 import useStore from "lib/hooks/useStore";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import useQuery from "lib/hooks/useQuery";
 
 const WriteContainer = ({}) => {
   const { store } = useStore();
   const { page, pageHandle, handleUserIdx } = store.WriteStore;
+  const { login } = store.AuthStore;
   const { search } = useLocation();
   const query = useQuery();
+  const histroy = useHistory();
 
   // 웹 사이트에 변경점이 있을 때 뒤로가기, 새로고침 시 경고 띄우기
   useBeforeunload((event) => event.preventDefault());
+
+  // 로그인 안하고 원서접수 클릭시 로그인 창으로 이동
+  !login && histroy.push("/login");
 
   // 만약 ?userIdx=${userIdx} 로 접속을 했으면 관리자가 다른사람 원서 수정하는 것으로 판단.
   // 서버에 요청도 userIdx를 포함하여 보내야 하기 때문에 전역으로 userIdx를 관리
