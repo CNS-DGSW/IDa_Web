@@ -37,7 +37,6 @@ const Header = ({
   closeStatusModal,
 }: HeaderProps) => {
   const history = useHistory();
-  console.log(login);
 
   const menuToggle = () => {
     const header = document.getElementById("header");
@@ -75,9 +74,8 @@ const Header = ({
           >
             <span>홈</span>
           </NavLink>
-
           <NavLink
-            to={login ? "/login" : "/write"}
+            to="/write"
             className="header-menu-content-item"
             activeClassName="header-menu-content-item-active"
           >
@@ -132,7 +130,7 @@ const Header = ({
             <span>홈</span>
           </NavLink>
           <NavLink
-            to={!login ? "/login" : "/write"}
+            to="/write"
             className="header-container-link-item"
             activeClassName="header-container-link-item-active"
           >
