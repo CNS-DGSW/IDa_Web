@@ -75,7 +75,7 @@ const HandlePostContainer = ({
             toast.warning("로그인이 필요합니다.");
             history.push("/login");
           } else {
-            toast.error("서버 오류입니다");
+            toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
           }
         });
     }

@@ -7,7 +7,7 @@ import Category from "util/enums/Category";
 import { PostType } from "util/types/PostType";
 import { toast } from "react-toastify";
 
-const FaqContainer = ({}) => {
+const FaqContainer = () => {
   const [posts, setPosts] = useState<PostType[]>([]);
   const [filteredPosts, setFilteredPosts] = useState<PostType[]>([]);
   const [search, setSearch] = useState<string>("");
@@ -27,7 +27,11 @@ const FaqContainer = ({}) => {
         setFilteredPosts(res.data.posts);
       })
       .catch((err) => {
-        toast.error("오류가 발생하였습니다.");
+        if (err.response?.status === 401) {
+          toast.warning("잘못된 값입니다. 다시 시도해 주세요");
+        } else {
+          toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
+        }
       });
   }, []);
 
