@@ -18,7 +18,7 @@ const WriteContainer = ({}) => {
   useBeforeunload((event) => event.preventDefault());
 
   // 로그인 안하고 원서접수 클릭시 로그인 창으로 이동
-  // !login && histroy.push("/login");
+  !login && histroy.push("/login");
 
   // 만약 ?userIdx=${userIdx} 로 접속을 했으면 관리자가 다른사람 원서 수정하는 것으로 판단.
   // 서버에 요청도 userIdx를 포함하여 보내야 하기 때문에 전역으로 userIdx를 관리
