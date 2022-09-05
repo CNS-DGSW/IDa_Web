@@ -17,6 +17,16 @@ interface WriteProps {
 }
 
 const Write = ({ page, pageHandle }: WriteProps) => {
+  const pages = [
+    "지원자 정보",
+    "보호자 정보",
+    "사진 등록",
+    "학교 정보",
+    "전형 선택",
+    "성적 계산",
+    "자기소개서",
+  ];
+
   let nowPage = useMemo(() => {
     let nowPage = <WriteStudent />;
 
@@ -44,13 +54,13 @@ const Write = ({ page, pageHandle }: WriteProps) => {
       <div className="write">
         <div className="write-box">
           <Steps current={page}>
-            <Steps.Step onClick={() => pageHandle(0)} className="pointer" />
-            <Steps.Step onClick={() => pageHandle(1)} className="pointer" />
-            <Steps.Step onClick={() => pageHandle(2)} className="pointer" />
-            <Steps.Step onClick={() => pageHandle(3)} className="pointer" />
-            <Steps.Step onClick={() => pageHandle(4)} className="pointer" />
-            <Steps.Step onClick={() => pageHandle(5)} className="pointer" />
-            <Steps.Step onClick={() => pageHandle(6)} className="pointer" />
+            {pages.map((title, idx) => (
+              <Steps.Step
+                title={title}
+                onClick={() => pageHandle(idx)}
+                className="pointer"
+              />
+            ))}
           </Steps>
           {nowPage}
         </div>
