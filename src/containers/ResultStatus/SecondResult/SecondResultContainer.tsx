@@ -4,7 +4,6 @@ import useStore from "lib/hooks/useStore";
 import SecondResult from "components/ResultStatusCheck/SecondResult";
 import { useHistory } from "react-router-dom";
 import { handleLogin } from "lib/handleErrors";
-import { FinalStatusResponse } from "util/types/Response";
 
 interface SecondResultContainerProps {
   secondOpenModal: () => void;

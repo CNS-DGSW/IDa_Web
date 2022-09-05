@@ -74,7 +74,6 @@ const AdminReceiptStatusContainer = ({}) => {
         search={search}
         getReceiptStatusExcel={getReceiptStatusExcel}
         handleCancelSubmit={cancelSubmit}
-        setReceiptStatus={setReceiptStatus}
       />
     </>
   );

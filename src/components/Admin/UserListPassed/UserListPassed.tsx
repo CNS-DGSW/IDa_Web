@@ -3,7 +3,6 @@ import { ListPassed } from "util/types/UserList";
 import "./UserListPassed.scss";
 import ListPassedCategory from "util/enums/ListPassedCategory";
 import moment from "moment";
-import applyDetailModel from "models/ApplyDetailModel";
 
 interface UserListPassedProps {
   tryDownExcel: (key: string) => void;

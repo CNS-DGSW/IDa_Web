@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { observer } from "mobx-react";
 import SearchSchool from "../../components/SearchSchool";
 import useStore from "lib/hooks/useStore";
