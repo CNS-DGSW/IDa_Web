@@ -38,7 +38,6 @@ class AuthApi {
     };
 
     const { data } = await Api.post("/auth/authCode", body);
-
     return data;
   }
 
