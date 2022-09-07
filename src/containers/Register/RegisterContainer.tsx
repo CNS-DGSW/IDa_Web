@@ -62,7 +62,9 @@ const RegisterContainer = () => {
           setEmailLoading(false);
         })
         .catch((err) => {
-          console.log(err);
+          console.log(err.response);
+          console.log(err.response?.status);
+
           setEmailLoading(false);
           if (err.response?.status === 406) {
             toast.warning("현재 요청이 너무 많습니다. 잠시 후에 시도하세요.");
