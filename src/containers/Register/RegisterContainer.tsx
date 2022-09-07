@@ -62,6 +62,7 @@ const RegisterContainer = () => {
           setEmailLoading(false);
         })
         .catch((err) => {
+          console.log(err);
           console.log(err.response);
           console.log(err.response?.status);
 
