@@ -130,6 +130,8 @@ const RegisterContainer = () => {
           } else if (err.response?.status === 410) {
             toast.warning("이미 사용중인 실명인증입니다.");
           } else {
+            console.log("error");
+            console.log(err);
             toast.error("서버 오류입니다");
           }
         });
