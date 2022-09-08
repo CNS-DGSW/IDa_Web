@@ -7,6 +7,7 @@ class AuthApi {
       pw,
     };
     const { data } = await Api.post("/auth/login", body);
+    console.log(data);
 
     return data;
   }
