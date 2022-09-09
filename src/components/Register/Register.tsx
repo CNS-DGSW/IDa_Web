@@ -17,6 +17,10 @@ interface RegisterProps {
   setAllCheck: React.Dispatch<React.SetStateAction<boolean>>;
   name: string;
   setName: React.Dispatch<React.SetStateAction<string>>;
+  birth: string;
+  setBirth: React.Dispatch<React.SetStateAction<string>>;
+  phoneNum:string;
+  setPhoneNum:React.Dispatch<React.SetStateAction<string>>;
   email: string;
   setEmail: React.Dispatch<React.SetStateAction<string>>;
   pw: string;
@@ -28,8 +32,6 @@ interface RegisterProps {
   handleRegister: () => Promise<void>;
   emailLoading: boolean;
   handleEmailSend: () => Promise<void>;
-  birth: string;
-  setBirth: React.Dispatch<React.SetStateAction<string>>;
   clickUsingPersonelInfo: boolean;
   clickUsingSite: boolean;
   clickHandlingPersonelInfo: boolean;
@@ -45,6 +47,10 @@ const Register = ({
   setAllCheck,
   name,
   setName,
+  birth,
+  setBirth,
+  phoneNum,
+  setPhoneNum,
   email,
   setEmail,
   pw,
@@ -56,8 +62,6 @@ const Register = ({
   handleRegister,
   emailLoading,
   handleEmailSend,
-  birth,
-  setBirth,
   clickUsingPersonelInfo,
   clickUsingSite,
   clickHandlingPersonelInfo,
@@ -138,8 +142,20 @@ const Register = ({
               style={{ width: "55%" }}
             />
           </div>
-          <div className="Register-box-form-info">
-            
+          <div className="Register-box-form-phone">
+            <CustomInput
+              placeholder="전화번호"
+              type="tel"
+              value={phoneNum}
+              setValue={setPhoneNum}
+              style={{width:"50%"}}
+            />
+            <CustomInput
+              type="button"
+              value="인증번호 받기"
+              className="Register-box-form-btn"
+              style={{width:"49%", outline:"none"}}
+            />
           </div>
           <div className="Register-box-form-email">
             <CustomInput
@@ -153,7 +169,7 @@ const Register = ({
             <CustomInput
               type="button"
               value="인증"
-              className="Register-box-form-email-btn"
+              className="Register-box-form-btn"
               style={{ width: "29%", outline: "none" }}
               onClick={() => handleEmailSend()}
             />

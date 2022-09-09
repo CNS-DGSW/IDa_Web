@@ -22,6 +22,7 @@ const RegisterContainer = () => {
   // 정보들 받는 input들
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
+  const [phoneNum,setPhoneNum] = useState<string>("");
   const [pw, setPw] = useState<string>("");
   const [checkPw, setCheckPw] = useState<string>("");
   const [birth, setBirth] = useState<string>("");
@@ -76,6 +77,7 @@ const RegisterContainer = () => {
     }
   }, [email, emailLoading]);
 
+  // 생년월일 onChange
   useEffect(() => {
     if (birth) {
       setBirth(
@@ -83,6 +85,16 @@ const RegisterContainer = () => {
       );
     }
   }, [birth]);
+
+  // 전화번호 onChange
+  useEffect(() => {
+    if (phoneNum.length === 10) {
+      setPhoneNum(phoneNum.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3'));
+    }
+    if (phoneNum.length === 13) {
+      setPhoneNum(phoneNum.replace(/-/g, '').replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3'));
+    }
+  },[phoneNum])
 
   //회원가입하기
   const handleRegister = useCallback(async () => {
@@ -159,6 +171,10 @@ const RegisterContainer = () => {
         setAllCheck={setAllCheck}
         name={name}
         setName={setName}
+        birth={birth}
+        setBirth={setBirth}
+        phoneNum={phoneNum}
+        setPhoneNum={setPhoneNum}
         email={email}
         setEmail={setEmail}
         pw={pw}
@@ -170,8 +186,6 @@ const RegisterContainer = () => {
         handleRegister={handleRegister}
         emailLoading={emailLoading}
         handleEmailSend={handleEmailSend}
-        birth={birth}
-        setBirth={setBirth}
         clickUsingPersonelInfo={clickUsingPersonelInfo}
         clickUsingSite={clickUsingSite}
         clickHandlingPersonelInfo={clickHandlingPersonelInfo}

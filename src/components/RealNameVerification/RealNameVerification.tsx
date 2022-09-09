@@ -53,14 +53,14 @@ const RealNameVerification = ({
           <CustomInput
             type="button"
             value="휴대폰 본인 인증"
-            className="Register-box-form-email-btn chooseMethodButton"
+            className="Register-box-form-btn chooseMethodButton"
             style={{ width: "49.5%", outline: "none" }}
             onClick={onClickPhoneButton}
           />
           <CustomInput
             type="button"
             value="아이핀 인증"
-            className="Register-box-form-email-btn chooseMethodButton"
+            className="Register-box-form-btn chooseMethodButton"
             style={{ width: "49.5%", outline: "none" }}
             onClick={onClickIpinButton}
           />

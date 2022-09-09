@@ -34,14 +34,20 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        &-btn {
-          background-color: $bg-blue;
-          color: $ft-white;
-          cursor: pointer;
-          height: 100%;
-          &:hover {
-            background-color: $bg-light-bule;
-          }
+      }
+      &-phone{
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      &-btn {
+        background-color: $bg-blue;
+        color: $ft-white;
+        cursor: pointer;
+        height: 100%;
+        &:hover {
+          background-color: $bg-light-bule;
         }
       }
     }
