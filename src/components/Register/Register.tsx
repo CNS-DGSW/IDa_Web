@@ -138,6 +138,9 @@ const Register = ({
               style={{ width: "55%" }}
             />
           </div>
+          <div className="Register-box-form-info">
+            
+          </div>
           <div className="Register-box-form-email">
             <CustomInput
               style={{ width: "70%" }}
