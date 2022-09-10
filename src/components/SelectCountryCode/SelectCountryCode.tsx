@@ -12,7 +12,7 @@ const SelectCountryCode = ({
 }:SelectCountryCodeTyoe) => {
     return (
         <>
-         <select id="nationNo" name="nationNo" className="wrapper" aria-label="전화번호 입력" defaultValue={value} onChange={(e) => setValue(e.target.value)} >
+         <select id="nationNo" name="nationNo" className="SelectCountryCode-wrapper" aria-label="전화번호 입력" defaultValue={value} onChange={(e) => setValue(e.target.value)} >
         <option value="233">가나 +233</option>
         <option value="241">가봉 +241</option>
         <option value="592">가이아나 +592</option>

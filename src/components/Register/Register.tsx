@@ -171,16 +171,20 @@ const Register = ({
               style={{width:"49%", outline:"none"}}
             />
           </div>
-          {/* <CustomInput
-            type="text"
-            placeholder="인증번호"
-            value={phoneCheck}
-            setValue={setPhoneCheck}
-          /> */}
+          <div className="Register-box-form-phone">
           <VerificationNumber
             value={phoneCheck}
             setValue={setPhoneCheck}
+            counter={"어떤 값"}
           />
+          {/* onClick필요 */}
+          <CustomInput
+            type="button"
+            value="인증"
+            className="Register-box-form-btn"
+            style={{width:"29%", outline:"none"}}
+          />
+          </div>
           <div className="Register-box-form-email">
             <CustomInput
               style={{ width: "70%" }}
