@@ -23,6 +23,7 @@ const RegisterContainer = () => {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [phoneNum,setPhoneNum] = useState<string>("");
+  const [phoneCheck,setPhoneCheck] = useState<string>("");
   const [pw, setPw] = useState<string>("");
   const [checkPw, setCheckPw] = useState<string>("");
   const [birth, setBirth] = useState<string>("");
@@ -175,6 +176,8 @@ const RegisterContainer = () => {
         setBirth={setBirth}
         phoneNum={phoneNum}
         setPhoneNum={setPhoneNum}
+        phoneCheck={phoneCheck}
+        setPhoneCheck={setPhoneCheck}
         email={email}
         setEmail={setEmail}
         pw={pw}

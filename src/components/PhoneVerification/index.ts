@@ -1,1 +1,1 @@
-export { default } from "./PhoneVertification";
+export { default } from "./PhoneVerification";

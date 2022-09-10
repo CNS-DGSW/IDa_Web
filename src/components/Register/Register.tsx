@@ -9,6 +9,7 @@ import Agree from "util/enums/Agree";
 import Modal from "components/common/Modal";
 import agreeContract from "models/AgreeContract";
 import RealNameVerification from "components/RealNameVerification";
+import PhoneVerification from "components/PhoneVerification"
 
 interface RegisterProps {
   isAuth: boolean;
@@ -21,6 +22,8 @@ interface RegisterProps {
   setBirth: React.Dispatch<React.SetStateAction<string>>;
   phoneNum:string;
   setPhoneNum:React.Dispatch<React.SetStateAction<string>>;
+  phoneCheck:string;
+  setPhoneCheck:React.Dispatch<React.SetStateAction<string>>;
   email: string;
   setEmail: React.Dispatch<React.SetStateAction<string>>;
   pw: string;
@@ -50,6 +53,8 @@ const Register = ({
   birth,
   setBirth,
   phoneNum,
+  phoneCheck,
+  setPhoneCheck,
   setPhoneNum,
   email,
   setEmail,
@@ -127,8 +132,8 @@ const Register = ({
               placeholder="이름"
               type="text"
               value={name}
-              // setValue={setName}
-              setValue={() => {}}
+              setValue={setName}
+              // setValue={() => {}}
               maxLength={45}
               style={{ width: "44%" }}
             />
@@ -136,8 +141,8 @@ const Register = ({
               placeholder={`생년월일 ${new Date().getFullYear() - 15}0101`}
               type="text"
               value={birth}
-              // setValue={setBirth}
-              setValue={() => {}}
+              setValue={setBirth}
+              // setValue={() => {}}
               maxLength={10}
               style={{ width: "55%" }}
             />
@@ -157,6 +162,9 @@ const Register = ({
               style={{width:"49%", outline:"none"}}
             />
           </div>
+          <PhoneVerification
+
+          />
           <div className="Register-box-form-email">
             <CustomInput
               style={{ width: "70%" }}
@@ -174,6 +182,11 @@ const Register = ({
               onClick={() => handleEmailSend()}
             />
           </div>
+          {/* <CustomInput
+            type="text"
+            value="인증번호"
+
+          /> */}
           <CustomInput
             type="password"
             placeholder="비밀번호"
