@@ -14,20 +14,23 @@ interface VerificationNumberType {
  */
 const VerificationNumber = ({
     value,
-    setValue
+    setValue,
+    counter
 }:VerificationNumberType) => {
+
     return (
         <div className='VerificationNumber-wrapper'>
             <CustomInput
-                style={{margin:"0px" ,border:"0px", width:"80%"}}
+                style={{margin:"0px" , width:"100%"}}
                 value={value}
                 setValue={setValue}
                 type="text"
                 placeholder='인증번호'
             />
-            <div>
-                
-            </div>
+            {counter !== "0:00" &&
+            <div className='VerificationNumber-counter'>
+                {counter}
+            </div>}
         </div>
     );
 };

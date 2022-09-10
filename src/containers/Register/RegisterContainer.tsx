@@ -30,6 +30,9 @@ const RegisterContainer = () => {
   const [birth, setBirth] = useState<string>("");
   const [duplicateInfo, setDuplicateInfo] = useState<string>("");
 
+  // 
+  const [counter,setCounter] = useState<string>("");
+
   // 로딩
   const [emailLoading, setEmailLoading] = useState<boolean>(false);
 
@@ -181,6 +184,7 @@ const RegisterContainer = () => {
         setPhoneNum={setPhoneNum}
         phoneCheck={phoneCheck}
         setPhoneCheck={setPhoneCheck}
+        counter={counter}
         email={email}
         setEmail={setEmail}
         pw={pw}

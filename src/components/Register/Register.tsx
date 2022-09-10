@@ -27,6 +27,7 @@ interface RegisterProps {
   setPhoneNum:React.Dispatch<React.SetStateAction<string>>;
   phoneCheck:string;
   setPhoneCheck:React.Dispatch<React.SetStateAction<string>>;
+  counter:string;
   email: string;
   setEmail: React.Dispatch<React.SetStateAction<string>>;
   pw: string;
@@ -35,6 +36,7 @@ interface RegisterProps {
   setCheckPw: React.Dispatch<React.SetStateAction<string>>;
   duplicateInfo: string;
   setDuplicateInfo: React.Dispatch<React.SetStateAction<string>>;
+  handlePhoneCheck:() => void;
   handleRegister: () => Promise<void>;
   emailLoading: boolean;
   handleEmailSend: () => Promise<void>;
@@ -58,9 +60,10 @@ const Register = ({
   countryCode,
   setCountryCode,
   phoneNum,
+  setPhoneNum,
   phoneCheck,
   setPhoneCheck,
-  setPhoneNum,
+  counter,
   email,
   setEmail,
   pw,
@@ -69,6 +72,7 @@ const Register = ({
   setCheckPw,
   duplicateInfo,
   setDuplicateInfo,
+  handlePhoneCheck,
   handleRegister,
   emailLoading,
   handleEmailSend,
@@ -169,13 +173,14 @@ const Register = ({
               value="인증번호 받기"
               className="Register-box-form-btn"
               style={{width:"49%", outline:"none"}}
+              onClick={handlePhoneCheck}
             />
           </div>
           <div className="Register-box-form-phone">
           <VerificationNumber
             value={phoneCheck}
             setValue={setPhoneCheck}
-            counter={"어떤 값"}
+            counter={"0:00"}
           />
           {/* onClick필요 */}
           <CustomInput
@@ -202,11 +207,6 @@ const Register = ({
               onClick={() => handleEmailSend()}
             />
           </div>
-          {/* <CustomInput
-            type="text"
-            value="인증번호"
-
-          /> */}
           <CustomInput
             type="password"
             placeholder="비밀번호"

@@ -3,8 +3,19 @@
         width:70%;
         display: flex;
         position: relative;
-        border-radius: 2px;
-        border: 1.1px solid #7d7d7d;
-        // background-color: blue;
     }
+    &-counter{
+        width:30%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        pointer-events: none;
+        font-size: 0.9rem;
+        color:rgb(54, 54, 54);
+        position: absolute;
+        right:0px;
+        top:0px;
+        height:100%;
+    }
+
 }
