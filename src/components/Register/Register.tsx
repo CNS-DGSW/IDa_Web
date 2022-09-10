@@ -9,7 +9,7 @@ import Agree from "util/enums/Agree";
 import Modal from "components/common/Modal";
 import agreeContract from "models/AgreeContract";
 import RealNameVerification from "components/RealNameVerification";
-import PhoneVerification from "components/PhoneVerification"
+import SelectCountryCode from "components/SelectCountryCode"
 
 interface RegisterProps {
   isAuth: boolean;
@@ -147,6 +147,7 @@ const Register = ({
               style={{ width: "55%" }}
             />
           </div>
+          <SelectCountryCode/>
           <div className="Register-box-form-phone">
             <CustomInput
               placeholder="전화번호"
@@ -162,8 +163,11 @@ const Register = ({
               style={{width:"49%", outline:"none"}}
             />
           </div>
-          <PhoneVerification
-
+          <CustomInput
+            type="text"
+            placeholder="인증번호"
+            value={phoneCheck}
+            setValue={setPhoneCheck}
           />
           <div className="Register-box-form-email">
             <CustomInput
