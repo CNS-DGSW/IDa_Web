@@ -29,6 +29,16 @@ class AuthApi {
     return data;
   }
 
+  async PhoneNum(countryCode:string,phoneNum:string){
+    const body = {
+      "phoneNumber":countryCode + "-" + phoneNum,
+    }
+
+    const {data} = await Api.post(`/auth/mobile-auth`,body);
+
+    return data;
+  }
+
   async EmailCode(email: string) {
     const body = {
       email,

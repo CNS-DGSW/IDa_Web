@@ -7,9 +7,13 @@ import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import Agree from "util/enums/Agree";
 
+/**
+ * 
+ * @todo useCallBack삭제
+ */
 const RegisterContainer = () => {
   const { store } = useStore();
-  const { tryRegister, trySendEmail } = store.AuthStore;
+  const { tryRegister, trySendEmail, trySendPhone } = store.AuthStore;
 
   const history = useHistory();
 
@@ -54,6 +58,23 @@ const RegisterContainer = () => {
   const toggleHandlingPersonelInfoModal = useCallback(() => {
     setClickHandlingPersonelInfo((v) => !v);
   }, []);
+
+  // 전화번호 인증 눌렀을 때 함수
+  const handlePhoneNumSend = async () => {
+    if(!phoneCheck){
+      toast.warning("전화번호를 입력해 주세요");
+    } else {
+      toast.success("메시지 전송중입니다.");
+      await trySendPhone(countryCode,phoneNum)
+      .then((res:Response) => {
+        toast.success("메시지가 전송되었습니다");
+
+      })
+      .catch((err) => {
+
+      })
+    }
+  }
 
   //email 인증 보내기
   const handleEmailSend = useCallback(async () => {
@@ -193,6 +214,7 @@ const RegisterContainer = () => {
         setCheckPw={setCheckPw}
         duplicateInfo={duplicateInfo}
         setDuplicateInfo={setDuplicateInfo}
+        handlePhoneNumSend={handlePhoneNumSend}
         handleRegister={handleRegister}
         emailLoading={emailLoading}
         handleEmailSend={handleEmailSend}

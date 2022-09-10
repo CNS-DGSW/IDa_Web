@@ -36,7 +36,7 @@ interface RegisterProps {
   setCheckPw: React.Dispatch<React.SetStateAction<string>>;
   duplicateInfo: string;
   setDuplicateInfo: React.Dispatch<React.SetStateAction<string>>;
-  handlePhoneCheck:() => void;
+  handlePhoneNumSend:() => void;
   handleRegister: () => Promise<void>;
   emailLoading: boolean;
   handleEmailSend: () => Promise<void>;
@@ -48,6 +48,9 @@ interface RegisterProps {
   toggleHandlingPersonelInfoModal: () => void;
 }
 
+/**
+ * @todo state들을 하나로 받는다 
+ */
 const Register = ({
   isAuth,
   setIsAuth,
@@ -72,7 +75,7 @@ const Register = ({
   setCheckPw,
   duplicateInfo,
   setDuplicateInfo,
-  handlePhoneCheck,
+  handlePhoneNumSend,
   handleRegister,
   emailLoading,
   handleEmailSend,
@@ -173,14 +176,14 @@ const Register = ({
               value="인증번호 받기"
               className="Register-box-form-btn"
               style={{width:"49%", outline:"none"}}
-              onClick={handlePhoneCheck}
+              onClick={handlePhoneNumSend}
             />
           </div>
           <div className="Register-box-form-phone">
           <VerificationNumber
             value={phoneCheck}
             setValue={setPhoneCheck}
-            counter={"0:00"}
+            counter={"0:01"}
           />
           {/* onClick필요 */}
           <CustomInput

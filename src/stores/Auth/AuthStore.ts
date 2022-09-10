@@ -83,6 +83,13 @@ class AuthStore {
   };
 
   @action
+  trySendPhone = async(countryCode:string,phoneNum:string):Promise<Response> => {
+    const response = await AuthApi.PhoneNum(countryCode,phoneNum);
+
+    return response
+  }
+
+  @action
   trySendEmail = async (email: string): Promise<Response> => {
     const response = await AuthApi.EmailCode(email);
 
