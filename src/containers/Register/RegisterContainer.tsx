@@ -60,7 +60,7 @@ const RegisterContainer = () => {
 
   // 전화번호 인증 눌렀을 때 함수
   const handlePhoneNumSend = async () => {
-    if(!phoneCheck){
+    if(!phoneNum){
       toast.warning("전화번호를 입력해 주세요");
     } else {
       setLoading(true);

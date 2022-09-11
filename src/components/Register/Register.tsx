@@ -20,11 +20,11 @@ interface RegisterProps {
   setName: React.Dispatch<React.SetStateAction<string>>;
   birth: string;
   setBirth: React.Dispatch<React.SetStateAction<string>>;
-  phoneNum:string;
-  setPhoneNum:React.Dispatch<React.SetStateAction<string>>;
-  phoneCheck:string;
-  setPhoneCheck:React.Dispatch<React.SetStateAction<string>>;
-  counter:string;
+  phoneNum: string;
+  setPhoneNum: React.Dispatch<React.SetStateAction<string>>;
+  phoneCheck: string;
+  setPhoneCheck: React.Dispatch<React.SetStateAction<string>>;
+  counter: string;
   email: string;
   setEmail: React.Dispatch<React.SetStateAction<string>>;
   pw: string;
@@ -33,7 +33,7 @@ interface RegisterProps {
   setCheckPw: React.Dispatch<React.SetStateAction<string>>;
   duplicateInfo: string;
   setDuplicateInfo: React.Dispatch<React.SetStateAction<string>>;
-  handlePhoneNumSend:() => void;
+  handlePhoneNumSend: () => void;
   handleRegister: () => Promise<void>;
   loading: boolean;
   handleEmailSend: () => Promise<void>;
@@ -46,7 +46,7 @@ interface RegisterProps {
 }
 
 /**
- * @todo state들을 하나로 받는다 
+ * @todo state들을 하나로 받는다
  */
 const Register = ({
   isAuth,
@@ -155,36 +155,6 @@ const Register = ({
             />
           </div>
 
-          <div className="Register-box-form-phone">
-            <CustomInput
-              placeholder="전화번호"
-              type="tel"
-              value={phoneNum}
-              setValue={setPhoneNum}
-              style={{width:"50%"}}
-            />
-            <CustomInput
-              type="button"
-              value="인증번호 받기"
-              className="Register-box-form-btn"
-              style={{width:"49%", outline:"none"}}
-              onClick={handlePhoneNumSend}
-            />
-          </div>
-          <div className="Register-box-form-phone">
-          <VerificationNumber
-            value={phoneCheck}
-            setValue={setPhoneCheck}
-            counter={"0:01"}
-          />
-          {/* onClick필요 */}
-          <CustomInput
-            type="button"
-            value="인증"
-            className="Register-box-form-btn"
-            style={{width:"29%", outline:"none"}}
-          />
-          </div>
           <div className="Register-box-form-email">
             <CustomInput
               style={{ width: "70%" }}
@@ -214,6 +184,39 @@ const Register = ({
             value={checkPw}
             setValue={setCheckPw}
           />
+
+          <div className="Register-box-form-phone">
+            <CustomInput
+              placeholder="전화번호"
+              type="tel"
+              value={phoneNum}
+              setValue={setPhoneNum}
+              style={{ width: "50%" }}
+            />
+            <CustomInput
+              type="button"
+              value="인증번호 받기"
+              className="Register-box-form-btn"
+              style={{ width: "49%", outline: "none" }}
+              onClick={handlePhoneNumSend}
+            />
+          </div>
+
+          <div className="Register-box-form-phone">
+            <VerificationNumber
+              value={phoneCheck}
+              setValue={setPhoneCheck}
+              counter={"0:01"}
+            />
+            {/* onClick필요 */}
+            <CustomInput
+              type="button"
+              value="인증"
+              className="Register-box-form-btn"
+              style={{ width: "29%", outline: "none" }}
+            />
+          </div>
+
           <CheckBox
             style={{ marginTop: "1rem" }}
             id="agree-all"
