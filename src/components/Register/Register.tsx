@@ -191,7 +191,7 @@ const Register = ({
             <VerificationNumber
               value={phoneCheck}
               setValue={setPhoneCheck}
-              counter={"0:01"}
+              counter={counter}
             />
             {/* onClick필요 */}
             <CustomInput

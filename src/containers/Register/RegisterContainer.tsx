@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import Agree from "util/enums/Agree";
 
 /**
- * 
+ *
  * @todo useCallBack삭제
  */
 const RegisterContainer = () => {
@@ -23,15 +23,15 @@ const RegisterContainer = () => {
   // 정보들 받는 input들
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
-  const [phoneNum,setPhoneNum] = useState<string>("");
-  const [phoneCheck,setPhoneCheck] = useState<string>("");
+  const [phoneNum, setPhoneNum] = useState<string>("");
+  const [phoneCheck, setPhoneCheck] = useState<string>("");
   const [pw, setPw] = useState<string>("");
   const [checkPw, setCheckPw] = useState<string>("");
   const [birth, setBirth] = useState<string>("");
   const [duplicateInfo, setDuplicateInfo] = useState<string>("");
 
-  // 
-  const [counter,setCounter] = useState<string>("");
+  // 휴대폰 인증 카운터
+  const [counter, setCounter] = useState<string>("");
 
   // 로딩
   const [loading, setLoading] = useState<boolean>(false);
@@ -55,26 +55,48 @@ const RegisterContainer = () => {
     setClickHandlingPersonelInfo((v) => !v);
   }, []);
 
+  let timerId;
+  /** @do 전화번호 인증을 눌렀을 때 카운터 생성 함수(초단위계산) */
+  const makeSecCounter = (
+    counterSetter: React.Dispatch<React.SetStateAction<string>>,
+    limitTime: number,
+    runningTime: number
+  ) => {
+    let limitT = limitTime;
+    let timerId = setInterval(() => {
+      counterSetter(`${Math.floor(limitT / 60)}:${limitT % 60}`);
+      limitT -= runningTime;
+      if (limitT < 0) {
+        counterSetter("0:00");
+        clearInterval(timerId);
+      }
+    }, runningTime * 1000);
+  };
+
   // 전화번호 인증 눌렀을 때 함수
   const handlePhoneNumSend = async () => {
-    if(!phoneNum){
+    if (!phoneNum) {
       toast.warning("전화번호를 입력해 주세요");
     } else {
       setLoading(true);
+      var highestIntervalId = setInterval(";");
+      for (var i = 0; i < highestIntervalId; i++) {
+        clearInterval(i);
+      }
+      makeSecCounter(setCounter, 10, 1);
       toast.success("메시지 전송중입니다.");
+      // makeSecCounter(setCounter,300,1)
       await trySendPhone(phoneNum)
-      .then((res:Response) => {
-        toast.success("메시지가 전송되었습니다");
-        setLoading(false);
-      })
-      .catch((err) => {
-        setLoading(false);
-        const errMsg = err.response?.this.state;
-      })
+        .then((res: Response) => {
+          toast.success("메시지가 전송되었습니다");
+          setLoading(false);
+        })
+        .catch((err) => {
+          setLoading(false);
+          const errMsg = err.response?.this.state;
+        });
     }
-  }
-
-  
+  };
 
   //email 인증 보내기
   const handleEmailSend = useCallback(async () => {
@@ -115,12 +137,14 @@ const RegisterContainer = () => {
   // 전화번호 onChange
   useEffect(() => {
     if (phoneNum.length === 10) {
-      setPhoneNum(phoneNum.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3'));
+      setPhoneNum(phoneNum.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"));
     }
     if (phoneNum.length === 13) {
-      setPhoneNum(phoneNum.replace(/-/g, '').replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3'));
+      setPhoneNum(
+        phoneNum.replace(/-/g, "").replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")
+      );
     }
-  },[phoneNum])
+  }, [phoneNum]);
 
   //회원가입하기
   const handleRegister = useCallback(async () => {
