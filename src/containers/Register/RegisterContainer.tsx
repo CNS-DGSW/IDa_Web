@@ -17,9 +17,6 @@ const RegisterContainer = () => {
 
   const history = useHistory();
 
-  // 실명인증 상태
-  const [isAuth, setIsAuth] = useState<boolean>(false);
-
   //모두동의 체크박스
   const [allCheck, setAllCheck] = useState<boolean>(false);
 
@@ -77,6 +74,8 @@ const RegisterContainer = () => {
     }
   }
 
+  
+
   //email 인증 보내기
   const handleEmailSend = useCallback(async () => {
     if (!email) {
@@ -131,12 +130,9 @@ const RegisterContainer = () => {
     // console.log("name", name);
     // console.log("birth", birth);
     // console.log("duplicateInfo", duplicateInfo);
-    // console.log("isAuth", isAuth);
 
     if (!email || !pw || !checkPw || !name || !birth) {
       toast.warning("빈칸이 있습니다.");
-    } else if (!isAuth) {
-      toast.warning("실명 인증을 하지 않았습니다.");
     } else if (pw.length < 8) {
       toast.warning("비밀번호가 8자리 이상이여야 합니다.");
     } else if (pw !== checkPw) {
@@ -169,7 +165,7 @@ const RegisterContainer = () => {
           }
         });
     }
-  }, [name, email, pw, checkPw, allCheck, birth, isAuth, duplicateInfo]);
+  }, [name, email, pw, checkPw, allCheck, birth, duplicateInfo]);
 
   //이메일인증 enter처리
   useEffect(() => {
@@ -192,8 +188,6 @@ const RegisterContainer = () => {
   return (
     <>
       <Register
-        isAuth={isAuth}
-        setIsAuth={setIsAuth}
         allCheck={allCheck}
         setAllCheck={setAllCheck}
         name={name}

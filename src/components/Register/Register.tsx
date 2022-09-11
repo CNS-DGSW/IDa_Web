@@ -8,12 +8,9 @@ import AuthContent from "components/common/AuthContent";
 import Agree from "util/enums/Agree";
 import Modal from "components/common/Modal";
 import agreeContract from "models/AgreeContract";
-import RealNameVerification from "components/RealNameVerification";
 import VerificationNumber from "components/VerificationNumber";
 
 interface RegisterProps {
-  isAuth: boolean;
-  setIsAuth: React.Dispatch<React.SetStateAction<boolean>>;
   allCheck: boolean;
   setAllCheck: React.Dispatch<React.SetStateAction<boolean>>;
   name: string;
@@ -49,8 +46,6 @@ interface RegisterProps {
  * @todo state들을 하나로 받는다
  */
 const Register = ({
-  isAuth,
-  setIsAuth,
   allCheck,
   setAllCheck,
   name,
@@ -123,17 +118,7 @@ const Register = ({
         }
       >
         <div className="Register-box-form">
-          {isAuth ? (
-            <div className="verifiedBox">실명인증 확인</div>
-          ) : (
-            <RealNameVerification
-              setName={setName}
-              setBirth={setBirth}
-              setIsAuth={setIsAuth}
-              duplicateInfo={duplicateInfo}
-              setDuplicateInfo={setDuplicateInfo}
-            />
-          )}
+
           <div className="Register-box-form-info">
             <CustomInput
               placeholder="이름"
