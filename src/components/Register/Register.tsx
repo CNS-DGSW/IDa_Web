@@ -9,7 +9,6 @@ import Agree from "util/enums/Agree";
 import Modal from "components/common/Modal";
 import agreeContract from "models/AgreeContract";
 import RealNameVerification from "components/RealNameVerification";
-import SelectCountryCode from "components/SelectCountryCode"
 import VerificationNumber from "components/VerificationNumber";
 
 interface RegisterProps {
@@ -21,8 +20,6 @@ interface RegisterProps {
   setName: React.Dispatch<React.SetStateAction<string>>;
   birth: string;
   setBirth: React.Dispatch<React.SetStateAction<string>>;
-  countryCode:string;
-  setCountryCode:React.Dispatch<React.SetStateAction<string>>;
   phoneNum:string;
   setPhoneNum:React.Dispatch<React.SetStateAction<string>>;
   phoneCheck:string;
@@ -60,8 +57,6 @@ const Register = ({
   setName,
   birth,
   setBirth,
-  countryCode,
-  setCountryCode,
   phoneNum,
   setPhoneNum,
   phoneCheck,
@@ -159,10 +154,7 @@ const Register = ({
               style={{ width: "55%" }}
             />
           </div>
-          <SelectCountryCode
-            value={countryCode}
-            setValue={setCountryCode}
-          />
+
           <div className="Register-box-form-phone">
             <CustomInput
               placeholder="전화번호"

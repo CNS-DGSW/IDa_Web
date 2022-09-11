@@ -26,7 +26,6 @@ const RegisterContainer = () => {
   // 정보들 받는 input들
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
-  const [countryCode,setCountryCode] = useState<string>("82");
   const [phoneNum,setPhoneNum] = useState<string>("");
   const [phoneCheck,setPhoneCheck] = useState<string>("");
   const [pw, setPw] = useState<string>("");
@@ -66,7 +65,7 @@ const RegisterContainer = () => {
     } else {
       setLoading(true);
       toast.success("메시지 전송중입니다.");
-      await trySendPhone(countryCode,phoneNum)
+      await trySendPhone(phoneNum)
       .then((res:Response) => {
         toast.success("메시지가 전송되었습니다");
         setLoading(false);
@@ -201,8 +200,6 @@ const RegisterContainer = () => {
         setName={setName}
         birth={birth}
         setBirth={setBirth}
-        countryCode={countryCode}
-        setCountryCode={setCountryCode}
         phoneNum={phoneNum}
         setPhoneNum={setPhoneNum}
         phoneCheck={phoneCheck}

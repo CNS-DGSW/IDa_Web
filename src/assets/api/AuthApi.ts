@@ -29,7 +29,7 @@ class AuthApi {
     return data;
   }
 
-  async PhoneNum(countryCode:string,phoneNumber:string){
+  async PhoneNum(phoneNumber:string){
     const body = {
       phoneNumber,
     }
