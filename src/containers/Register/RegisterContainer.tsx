@@ -55,7 +55,6 @@ const RegisterContainer = () => {
     setClickHandlingPersonelInfo((v) => !v);
   }, []);
 
-  let timerId;
   /** @do 전화번호 인증을 눌렀을 때 카운터 생성 함수(초단위계산) */
   const makeSecCounter = (
     counterSetter: React.Dispatch<React.SetStateAction<string>>,
@@ -73,8 +72,13 @@ const RegisterContainer = () => {
     }, runningTime * 1000);
   };
 
-  // 전화번호 인증 눌렀을 때 함수
-  const handlePhoneNumSend = async () => {
+  useEffect(() => {
+    console.log(phoneNum)
+  },[phoneNum])
+
+  // 전화번호로 인증번호 요청
+  const handlePhoneNumSend  = async () => {
+    console.log(phoneNum)
     if (!phoneNum) {
       toast.warning("전화번호를 입력해 주세요");
     } else {
@@ -83,7 +87,7 @@ const RegisterContainer = () => {
       for (var i = 0; i < highestIntervalId; i++) {
         clearInterval(i);
       }
-      makeSecCounter(setCounter, 10, 1);
+      makeSecCounter(setCounter, 300, 1);
       toast.success("메시지 전송중입니다.");
       // makeSecCounter(setCounter,300,1)
       await trySendPhone(phoneNum)
@@ -96,10 +100,11 @@ const RegisterContainer = () => {
           const errMsg = err.response?.this.state;
         });
     }
-  };
+  }
 
   //email 인증 보내기
   const handleEmailSend = useCallback(async () => {
+    console.log(email)
     if (!email) {
       toast.warning("이메일을 입력해 주세요");
     } else {
@@ -148,12 +153,12 @@ const RegisterContainer = () => {
 
   //회원가입하기
   const handleRegister = useCallback(async () => {
-    // console.log("email", email);
-    // console.log("pw", pw);
-    // console.log("checkPw", checkPw);
-    // console.log("name", name);
-    // console.log("birth", birth);
-    // console.log("duplicateInfo", duplicateInfo);
+    console.log("email", email);
+    console.log("pw", pw);
+    console.log("checkPw", checkPw);
+    console.log("name", name);
+    console.log("birth", birth);
+    console.log("duplicateInfo", duplicateInfo);
 
     if (!email || !pw || !checkPw || !name || !birth) {
       toast.warning("빈칸이 있습니다.");
@@ -191,23 +196,41 @@ const RegisterContainer = () => {
     }
   }, [name, email, pw, checkPw, allCheck, birth, duplicateInfo]);
 
+  
   //이메일인증 enter처리
+  /**@todo enter할 때 이메일, 또는 전화인증 할건가*/
   useEffect(() => {
-    const listener = (e: KeyboardEvent) => {
-      if (e.key === "Enter" || e.key === "NumpadEnter") {
-        if (name && email && pw && birth && checkPw) {
-          handleRegister();
-        } else {
+    const listener = (e:KeyboardEvent) => {
+      const target = e.target as HTMLInputElement
+      const placeholder = target.placeholder
+      // type이 button인 요소는 placeholder가 없기 때문에 or에 추가
+      if ((e.key === "Enter" || e.key === "NumpadEnter") && target.placeholder){
+        if (placeholder === "전화번호"){
+          handlePhoneNumSend();
+        } else if (placeholder === "이메일") {
           handleEmailSend();
+        } else {
+          handleRegister();
         }
       }
-    };
+    }
+
+    /**@todo 예전 listener, enter일 때 어떻게 처리할지 정하기*/
+    // const listener = (e: KeyboardEvent) => {
+    //   if (e.key === "Enter" || e.key === "NumpadEnter") {
+    //     if (name && email && pw && birth && checkPw) {
+    //       handleRegister();
+    //     } else {
+    //       handleEmailSend();
+    //     }
+    //   }
+    // };
 
     document.addEventListener("keydown", listener);
     return () => {
       document.removeEventListener("keydown", listener);
     };
-  }, [email, name, pw, checkPw, birth, allCheck]);
+  }, [email, name, pw, checkPw, birth, allCheck, phoneNum]);
 
   return (
     <>
