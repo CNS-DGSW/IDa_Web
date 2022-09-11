@@ -38,7 +38,7 @@ const RegisterContainer = () => {
   const [counter,setCounter] = useState<string>("");
 
   // 로딩
-  const [emailLoading, setEmailLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   // 동의 약관 모달창 상태들 (개인정보 활용 동의,사이트 이용약관 동의,개인정보 취급방침 동의)
   const [clickUsingPersonelInfo, setClickUsingPersonelInfo] =
@@ -64,14 +64,16 @@ const RegisterContainer = () => {
     if(!phoneCheck){
       toast.warning("전화번호를 입력해 주세요");
     } else {
+      setLoading(true);
       toast.success("메시지 전송중입니다.");
       await trySendPhone(countryCode,phoneNum)
       .then((res:Response) => {
         toast.success("메시지가 전송되었습니다");
-
+        setLoading(false);
       })
       .catch((err) => {
-
+        setLoading(false);
+        const errMsg = err.response?.this.state;
       })
     }
   }
@@ -81,15 +83,15 @@ const RegisterContainer = () => {
     if (!email) {
       toast.warning("이메일을 입력해 주세요");
     } else {
-      setEmailLoading(true);
+      setLoading(true);
       toast.success("이메일이 전송중입니다.");
       await trySendEmail(email)
         .then((res: Response) => {
           toast.success("이메일이 전송되었습니다.");
-          setEmailLoading(false);
+          setLoading(false);
         })
         .catch((err) => {
-          setEmailLoading(false);
+          setLoading(false);
           if (err.response?.status === 406) {
             toast.warning("현재 요청이 너무 많습니다. 잠시 후에 시도하세요.");
           } else if (err.response?.status === 400) {
@@ -101,7 +103,7 @@ const RegisterContainer = () => {
           }
         });
     }
-  }, [email, emailLoading]);
+  }, [email, loading]);
 
   // 생년월일 onChange
   useEffect(() => {
@@ -216,7 +218,7 @@ const RegisterContainer = () => {
         setDuplicateInfo={setDuplicateInfo}
         handlePhoneNumSend={handlePhoneNumSend}
         handleRegister={handleRegister}
-        emailLoading={emailLoading}
+        loading={loading}
         handleEmailSend={handleEmailSend}
         clickUsingPersonelInfo={clickUsingPersonelInfo}
         clickUsingSite={clickUsingSite}

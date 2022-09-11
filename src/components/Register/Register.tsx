@@ -38,7 +38,7 @@ interface RegisterProps {
   setDuplicateInfo: React.Dispatch<React.SetStateAction<string>>;
   handlePhoneNumSend:() => void;
   handleRegister: () => Promise<void>;
-  emailLoading: boolean;
+  loading: boolean;
   handleEmailSend: () => Promise<void>;
   clickUsingPersonelInfo: boolean;
   clickUsingSite: boolean;
@@ -77,7 +77,7 @@ const Register = ({
   setDuplicateInfo,
   handlePhoneNumSend,
   handleRegister,
-  emailLoading,
+  loading,
   handleEmailSend,
   clickUsingPersonelInfo,
   clickUsingSite,
@@ -112,7 +112,7 @@ const Register = ({
         footers={
           <>
             <div className="Register-box-button">
-              {emailLoading ? (
+              {loading ? (
                 <Button style={{ background: "#808de5" }}>기다려주세요</Button>
               ) : (
                 <Button onClick={() => handleRegister()}>회원가입</Button>
