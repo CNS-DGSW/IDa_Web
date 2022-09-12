@@ -24,7 +24,7 @@ const RegisterContainer = () => {
   const [pw, setPw] = useState<string>("");
   const [checkPw, setCheckPw] = useState<string>("");
   const [birth, setBirth] = useState<string>("");
-  const [duplicateInfo, setDuplicateInfo] = useState<string>("");
+  // 휴대폰 인증 로직이 생긴다면 state추가 필요
 
   // 휴대폰 인증 카운터
   const [counter, setCounter] = useState<string>("");
@@ -51,7 +51,7 @@ const RegisterContainer = () => {
     setClickHandlingPersonelInfo((v) => !v);
   }, []);
 
-  /** @do 전화번호 인증을 눌렀을 때 카운터 생성 함수(초단위계산) */
+  /** 전화번호 인증을 눌렀을 때 카운터 생성 함수(초단위계산) */
   const makeSecCounter = (
     counterSetter: React.Dispatch<React.SetStateAction<string>>,
     limitTime: number,
@@ -92,6 +92,7 @@ const RegisterContainer = () => {
         .catch((err) => {
           setLoading(false);
           const errMsg = err.response?.this.state;
+          // 통신할 때 에러핸들링
         });
     }
   }
@@ -152,8 +153,8 @@ const RegisterContainer = () => {
     console.log("checkPw", checkPw);
     console.log("name", name);
     console.log("birth", birth);
-    console.log("duplicateInfo", duplicateInfo);
 
+    
     if (!email || !pw || !checkPw || !name || !birth) {
       toast.warning("빈칸이 있습니다.");
     } else if (pw.length < 8) {
@@ -163,7 +164,7 @@ const RegisterContainer = () => {
     } else if (!allCheck) {
       toast.warning("모두 동의를 체크해 주세요");
     } else {
-      await tryRegister(name, email, pw, birth, duplicateInfo)
+      await tryRegister(name, birth, email, pw, phoneNum)
         .then((res: Response) => {
           toast.success("회원가입이 완료되었습니다.");
           history.push("login");
@@ -188,9 +189,12 @@ const RegisterContainer = () => {
           }
         });
     }
-  }, [name, email, pw, checkPw, allCheck, birth, duplicateInfo]);
-
+  }, [name, birth, email, pw, checkPw,phoneNum, allCheck]);
   
+  useEffect(() => {
+    console.log(loading)
+  },[loading])
+
   //이메일인증 enter처리
   useEffect(() => {
     const listener = (e:KeyboardEvent) => {
@@ -244,8 +248,6 @@ const RegisterContainer = () => {
         setPw={setPw}
         checkPw={checkPw}
         setCheckPw={setCheckPw}
-        duplicateInfo={duplicateInfo}
-        setDuplicateInfo={setDuplicateInfo}
         handlePhoneNumSend={handlePhoneNumSend}
         handleRegister={handleRegister}
         loading={loading}

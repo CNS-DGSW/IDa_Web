@@ -39,6 +39,7 @@
     &-description {
       font-size: 1.2rem;
       text-align: center;
+      word-break: keep-all;
       @media screen and (max-width: 500px) {
         font-size: 1rem;
       }

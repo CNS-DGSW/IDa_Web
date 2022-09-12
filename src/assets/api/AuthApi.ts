@@ -12,17 +12,17 @@ class AuthApi {
   }
   async Register(
     name: string,
+    birth: string,
     email: string,
     pw: string,
-    birth: string,
-    duplicateInfo: string
+    phoneNum:string,
   ) {
     const body = {
-      birth,
       name,
+      birth,
       email,
       pw,
-      duplicateInfo,
+      phoneNum,
     };
     const { data } = await Api.post("/auth/register", body);
 

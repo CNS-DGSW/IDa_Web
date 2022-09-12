@@ -28,8 +28,6 @@ interface RegisterProps {
   setPw: React.Dispatch<React.SetStateAction<string>>;
   checkPw: string;
   setCheckPw: React.Dispatch<React.SetStateAction<string>>;
-  duplicateInfo: string;
-  setDuplicateInfo: React.Dispatch<React.SetStateAction<string>>;
   handlePhoneNumSend: () => void;
   handleRegister: () => Promise<void>;
   loading: boolean;
@@ -60,8 +58,6 @@ const Register = ({
   setPw,
   checkPw,
   setCheckPw,
-  duplicateInfo,
-  setDuplicateInfo,
   handlePhoneNumSend,
   handleRegister,
   loading,
