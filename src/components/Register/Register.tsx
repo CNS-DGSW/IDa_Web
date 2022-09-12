@@ -42,9 +42,6 @@ interface RegisterProps {
   toggleHandlingPersonelInfoModal: () => void;
 }
 
-/**
- * @todo state들을 하나로 받는다
- */
 const Register = ({
   allCheck,
   setAllCheck,

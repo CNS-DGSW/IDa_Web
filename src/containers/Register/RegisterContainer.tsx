@@ -7,10 +7,6 @@ import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import Agree from "util/enums/Agree";
 
-/**
- *
- * @todo useCallBack삭제
- */
 const RegisterContainer = () => {
   const { store } = useStore();
   const { tryRegister, trySendEmail, trySendPhone } = store.AuthStore;
@@ -63,7 +59,9 @@ const RegisterContainer = () => {
   ) => {
     let limitT = limitTime;
     let timerId = setInterval(() => {
-      counterSetter(`${Math.floor(limitT / 60)}:${limitT % 60}`);
+      counterSetter(
+        `${Math.floor(limitT / 60)}:${`${limitT % 60}`.padStart(2,"0")}`
+        );
       limitT -= runningTime;
       if (limitT < 0) {
         counterSetter("0:00");
@@ -71,10 +69,6 @@ const RegisterContainer = () => {
       }
     }, runningTime * 1000);
   };
-
-  useEffect(() => {
-    console.log(phoneNum)
-  },[phoneNum])
 
   // 전화번호로 인증번호 요청
   const handlePhoneNumSend  = async () => {
@@ -198,7 +192,6 @@ const RegisterContainer = () => {
 
   
   //이메일인증 enter처리
-  /**@todo enter할 때 이메일, 또는 전화인증 할건가*/
   useEffect(() => {
     const listener = (e:KeyboardEvent) => {
       const target = e.target as HTMLInputElement
@@ -215,7 +208,6 @@ const RegisterContainer = () => {
       }
     }
 
-    /**@todo 예전 listener, enter일 때 어떻게 처리할지 정하기*/
     // const listener = (e: KeyboardEvent) => {
     //   if (e.key === "Enter" || e.key === "NumpadEnter") {
     //     if (name && email && pw && birth && checkPw) {
