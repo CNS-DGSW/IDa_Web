@@ -7,8 +7,6 @@ import React, { useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 const MainContainer = () => {
-  console.log("박성환 돼지");
-
   const { store } = useStore();
   const { downloadApplyInfo } = store.FileStore;
 

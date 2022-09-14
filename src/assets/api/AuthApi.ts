@@ -7,8 +7,6 @@ class AuthApi {
       pw,
     };
     const { data } = await Api.post("/auth/login", body);
-    console.log(data);
-
     return data;
   }
 
@@ -19,7 +17,7 @@ class AuthApi {
     birth: string,
     email: string,
     pw: string,
-    phoneNum:string,
+    phoneNum: string,
   ) {
     const body = {
       name,
@@ -33,12 +31,12 @@ class AuthApi {
     return data;
   }
 
-  async PhoneNum(phoneNumber:string){
+  async PhoneNum(phoneNumber: string) {
     const body = {
       phoneNumber,
     }
 
-    const {data} = await Api.post(`/auth/mobile-auth`,body);
+    const { data } = await Api.post(`/auth/mobile-auth`, body);
 
     return data;
   }
