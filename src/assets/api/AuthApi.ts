@@ -7,9 +7,13 @@ class AuthApi {
       pw,
     };
     const { data } = await Api.post("/auth/login", body);
+    console.log(data);
 
     return data;
   }
+
+  // 랜덤 duplicateInfo
+  // todo
   async Register(
     name: string,
     birth: string,
@@ -45,7 +49,6 @@ class AuthApi {
     };
 
     const { data } = await Api.post("/auth/authCode", body);
-
     return data;
   }
 

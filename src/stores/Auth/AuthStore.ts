@@ -6,7 +6,6 @@ import {
   Response,
   UserInfoResponse,
 } from "../../util/types/Response";
-import { sha256 } from "js-sha256";
 
 @autobind
 class AuthStore {

@@ -19,7 +19,6 @@ import {
 } from "util/types/Response";
 import ExcelApi from "assets/api/ExcelApi";
 import StatusApi from "assets/api/StatusApi";
-import { sha256 } from "js-sha256";
 
 @autobind
 class AdminStore {
@@ -111,7 +110,7 @@ class AdminStore {
     const response: Response = await AdminApi.AddUser(
       email,
       name,
-      sha256(pw),
+      pw,
       birth,
       duplicateInfo
     );

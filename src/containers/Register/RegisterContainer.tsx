@@ -170,6 +170,9 @@ const RegisterContainer = () => {
           history.push("login");
         })
         .catch((err) => {
+          console.log(err);
+          console.log(err.response);
+
           if (err.response?.status === 406) {
             toast.warning(
               "나이 제한으로 인해 가입이 불가능합니다. 본인 명의로 가입해주세요."
@@ -185,6 +188,8 @@ const RegisterContainer = () => {
           } else if (err.response?.status === 410) {
             toast.warning("이미 사용중인 실명인증입니다.");
           } else {
+            console.log("error");
+            console.log(err);
             toast.error("서버 오류입니다");
           }
         });
