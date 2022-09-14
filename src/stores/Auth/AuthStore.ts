@@ -65,21 +65,28 @@ class AuthStore {
   @action
   tryRegister = async (
     name: string,
+    birth: string,
     email: string,
     password: string,
-    birth: string,
-    duplicateInfo: string
+    phoneNum:string,
   ): Promise<Response> => {
     const response = await AuthApi.Register(
       name,
+      birth,
       email,
       password,
-      birth,
-      duplicateInfo
+      phoneNum,
     );
 
     return response;
   };
+
+  @action
+  trySendPhone = async(phoneNum:string):Promise<Response> => {
+    const response = await AuthApi.PhoneNum(phoneNum);
+
+    return response
+  }
 
   @action
   trySendEmail = async (email: string): Promise<Response> => {

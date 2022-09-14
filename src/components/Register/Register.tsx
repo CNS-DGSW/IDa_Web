@@ -8,28 +8,30 @@ import AuthContent from "components/common/AuthContent";
 import Agree from "util/enums/Agree";
 import Modal from "components/common/Modal";
 import agreeContract from "models/AgreeContract";
-import RealNameVerification from "components/RealNameVerification";
+import VerificationNumber from "components/VerificationNumber";
 
 interface RegisterProps {
-  isAuth: boolean;
-  setIsAuth: React.Dispatch<React.SetStateAction<boolean>>;
   allCheck: boolean;
   setAllCheck: React.Dispatch<React.SetStateAction<boolean>>;
   name: string;
   setName: React.Dispatch<React.SetStateAction<string>>;
+  birth: string;
+  setBirth: React.Dispatch<React.SetStateAction<string>>;
+  phoneNum: string;
+  setPhoneNum: React.Dispatch<React.SetStateAction<string>>;
+  phoneCheck: string;
+  setPhoneCheck: React.Dispatch<React.SetStateAction<string>>;
+  counter: string;
   email: string;
   setEmail: React.Dispatch<React.SetStateAction<string>>;
   pw: string;
   setPw: React.Dispatch<React.SetStateAction<string>>;
   checkPw: string;
   setCheckPw: React.Dispatch<React.SetStateAction<string>>;
-  duplicateInfo: string;
-  setDuplicateInfo: React.Dispatch<React.SetStateAction<string>>;
+  handlePhoneNumSend: () => void;
   handleRegister: () => Promise<void>;
-  emailLoading: boolean;
+  loading: boolean;
   handleEmailSend: () => Promise<void>;
-  birth: string;
-  setBirth: React.Dispatch<React.SetStateAction<string>>;
   clickUsingPersonelInfo: boolean;
   clickUsingSite: boolean;
   clickHandlingPersonelInfo: boolean;
@@ -39,25 +41,27 @@ interface RegisterProps {
 }
 
 const Register = ({
-  isAuth,
-  setIsAuth,
   allCheck,
   setAllCheck,
   name,
   setName,
+  birth,
+  setBirth,
+  phoneNum,
+  setPhoneNum,
+  phoneCheck,
+  setPhoneCheck,
+  counter,
   email,
   setEmail,
   pw,
   setPw,
   checkPw,
   setCheckPw,
-  duplicateInfo,
-  setDuplicateInfo,
+  handlePhoneNumSend,
   handleRegister,
-  emailLoading,
+  loading,
   handleEmailSend,
-  birth,
-  setBirth,
   clickUsingPersonelInfo,
   clickUsingSite,
   clickHandlingPersonelInfo,
@@ -91,7 +95,7 @@ const Register = ({
         footers={
           <>
             <div className="Register-box-button">
-              {emailLoading ? (
+              {loading ? (
                 <Button style={{ background: "#808de5" }}>기다려주세요</Button>
               ) : (
                 <Button onClick={() => handleRegister()}>회원가입</Button>
@@ -107,17 +111,7 @@ const Register = ({
         }
       >
         <div className="Register-box-form">
-          {isAuth ? (
-            <div className="verifiedBox">실명인증 확인</div>
-          ) : (
-            <RealNameVerification
-              setName={setName}
-              setBirth={setBirth}
-              setIsAuth={setIsAuth}
-              duplicateInfo={duplicateInfo}
-              setDuplicateInfo={setDuplicateInfo}
-            />
-          )}
+
           <div className="Register-box-form-info">
             <CustomInput
               placeholder="이름"
@@ -138,6 +132,7 @@ const Register = ({
               style={{ width: "55%" }}
             />
           </div>
+
           <div className="Register-box-form-email">
             <CustomInput
               style={{ width: "70%" }}
@@ -150,7 +145,7 @@ const Register = ({
             <CustomInput
               type="button"
               value="인증"
-              className="Register-box-form-email-btn"
+              className="Register-box-form-btn"
               style={{ width: "29%", outline: "none" }}
               onClick={() => handleEmailSend()}
             />
@@ -167,6 +162,39 @@ const Register = ({
             value={checkPw}
             setValue={setCheckPw}
           />
+
+          <div className="Register-box-form-phone">
+            <CustomInput
+              placeholder="전화번호"
+              type="tel"
+              value={phoneNum}
+              setValue={setPhoneNum}
+              style={{ width: "50%" }}
+            />
+            <CustomInput
+              type="button"
+              value="인증번호 받기"
+              className="Register-box-form-btn"
+              style={{ width: "49%", outline: "none" }}
+              onClick={handlePhoneNumSend}
+            />
+          </div>
+
+          <div className="Register-box-form-phone">
+            <VerificationNumber
+              value={phoneCheck}
+              setValue={setPhoneCheck}
+              counter={counter}
+            />
+            {/* onClick필요 */}
+            <CustomInput
+              type="button"
+              value="인증"
+              className="Register-box-form-btn"
+              style={{ width: "29%", outline: "none" }}
+            />
+          </div>
+
           <CheckBox
             style={{ marginTop: "1rem" }}
             id="agree-all"

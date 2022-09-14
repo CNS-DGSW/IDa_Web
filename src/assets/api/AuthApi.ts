@@ -16,19 +16,29 @@ class AuthApi {
   // todo
   async Register(
     name: string,
+    birth: string,
     email: string,
     pw: string,
-    birth: string,
-    duplicateInfo: string
+    phoneNum:string,
   ) {
     const body = {
-      birth,
       name,
+      birth,
       email,
       pw,
-      duplicateInfo: Math.random().toString(),
+      phoneNum,
     };
     const { data } = await Api.post("/auth/register", body);
+
+    return data;
+  }
+
+  async PhoneNum(phoneNumber:string){
+    const body = {
+      phoneNumber,
+    }
+
+    const {data} = await Api.post(`/auth/mobile-auth`,body);
 
     return data;
   }

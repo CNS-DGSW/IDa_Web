@@ -9,12 +9,9 @@ import Agree from "util/enums/Agree";
 
 const RegisterContainer = () => {
   const { store } = useStore();
-  const { tryRegister, trySendEmail } = store.AuthStore;
+  const { tryRegister, trySendEmail, trySendPhone } = store.AuthStore;
 
   const history = useHistory();
-
-  // 실명인증 상태
-  const [isAuth, setIsAuth] = useState<boolean>(true);
 
   //모두동의 체크박스
   const [allCheck, setAllCheck] = useState<boolean>(false);
@@ -22,13 +19,18 @@ const RegisterContainer = () => {
   // 정보들 받는 input들
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
+  const [phoneNum, setPhoneNum] = useState<string>("");
+  const [phoneCheck, setPhoneCheck] = useState<string>("");
   const [pw, setPw] = useState<string>("");
   const [checkPw, setCheckPw] = useState<string>("");
   const [birth, setBirth] = useState<string>("");
-  const [duplicateInfo, setDuplicateInfo] = useState<string>("");
+  // 휴대폰 인증 로직이 생긴다면 state추가 필요
+
+  // 휴대폰 인증 카운터
+  const [counter, setCounter] = useState<string>("");
 
   // 로딩
-  const [emailLoading, setEmailLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   // 동의 약관 모달창 상태들 (개인정보 활용 동의,사이트 이용약관 동의,개인정보 취급방침 동의)
   const [clickUsingPersonelInfo, setClickUsingPersonelInfo] =
@@ -49,24 +51,67 @@ const RegisterContainer = () => {
     setClickHandlingPersonelInfo((v) => !v);
   }, []);
 
+  /** 전화번호 인증을 눌렀을 때 카운터 생성 함수(초단위계산) */
+  const makeSecCounter = (
+    counterSetter: React.Dispatch<React.SetStateAction<string>>,
+    limitTime: number,
+    runningTime: number
+  ) => {
+    let limitT = limitTime;
+    let timerId = setInterval(() => {
+      counterSetter(
+        `${Math.floor(limitT / 60)}:${`${limitT % 60}`.padStart(2,"0")}`
+        );
+      limitT -= runningTime;
+      if (limitT < 0) {
+        counterSetter("0:00");
+        clearInterval(timerId);
+      }
+    }, runningTime * 1000);
+  };
+
+  // 전화번호로 인증번호 요청
+  const handlePhoneNumSend  = async () => {
+    console.log(phoneNum)
+    if (!phoneNum) {
+      toast.warning("전화번호를 입력해 주세요");
+    } else {
+      setLoading(true);
+      var highestIntervalId = setInterval(";");
+      for (var i = 0; i < highestIntervalId; i++) {
+        clearInterval(i);
+      }
+      makeSecCounter(setCounter, 300, 1);
+      toast.success("메시지 전송중입니다.");
+      // makeSecCounter(setCounter,300,1)
+      await trySendPhone(phoneNum)
+        .then((res: Response) => {
+          toast.success("메시지가 전송되었습니다");
+          setLoading(false);
+        })
+        .catch((err) => {
+          setLoading(false);
+          const errMsg = err.response?.this.state;
+          // 통신할 때 에러핸들링
+        });
+    }
+  }
+
   //email 인증 보내기
   const handleEmailSend = useCallback(async () => {
+    console.log(email)
     if (!email) {
       toast.warning("이메일을 입력해 주세요");
     } else {
-      setEmailLoading(true);
+      setLoading(true);
       toast.success("이메일이 전송중입니다.");
       await trySendEmail(email)
         .then((res: Response) => {
           toast.success("이메일이 전송되었습니다.");
-          setEmailLoading(false);
+          setLoading(false);
         })
         .catch((err) => {
-          console.log(err);
-          console.log(err.response);
-          console.log(err.response?.status);
-
-          setEmailLoading(false);
+          setLoading(false);
           if (err.response?.status === 406) {
             toast.warning("현재 요청이 너무 많습니다. 잠시 후에 시도하세요.");
           } else if (err.response?.status === 400) {
@@ -78,8 +123,9 @@ const RegisterContainer = () => {
           }
         });
     }
-  }, [email, emailLoading]);
+  }, [email, loading]);
 
+  // 생년월일 onChange
   useEffect(() => {
     if (birth) {
       setBirth(
@@ -88,20 +134,29 @@ const RegisterContainer = () => {
     }
   }, [birth]);
 
+  // 전화번호 onChange
+  useEffect(() => {
+    if (phoneNum.length === 10) {
+      setPhoneNum(phoneNum.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"));
+    }
+    if (phoneNum.length === 13) {
+      setPhoneNum(
+        phoneNum.replace(/-/g, "").replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")
+      );
+    }
+  }, [phoneNum]);
+
   //회원가입하기
   const handleRegister = useCallback(async () => {
-    // console.log("email", email);
-    // console.log("pw", pw);
-    // console.log("checkPw", checkPw);
-    // console.log("name", name);
-    // console.log("birth", birth);
-    // console.log("duplicateInfo", duplicateInfo);
-    // console.log("isAuth", isAuth);
+    console.log("email", email);
+    console.log("pw", pw);
+    console.log("checkPw", checkPw);
+    console.log("name", name);
+    console.log("birth", birth);
 
+    
     if (!email || !pw || !checkPw || !name || !birth) {
       toast.warning("빈칸이 있습니다.");
-    } else if (!isAuth) {
-      toast.warning("실명 인증을 하지 않았습니다.");
     } else if (pw.length < 8) {
       toast.warning("비밀번호가 8자리 이상이여야 합니다.");
     } else if (pw !== checkPw) {
@@ -109,7 +164,7 @@ const RegisterContainer = () => {
     } else if (!allCheck) {
       toast.warning("모두 동의를 체크해 주세요");
     } else {
-      await tryRegister(name, email, pw, birth, duplicateInfo)
+      await tryRegister(name, birth, email, pw, phoneNum)
         .then((res: Response) => {
           toast.success("회원가입이 완료되었습니다.");
           history.push("login");
@@ -139,48 +194,69 @@ const RegisterContainer = () => {
           }
         });
     }
-  }, [name, email, pw, checkPw, allCheck, birth, isAuth, duplicateInfo]);
+  }, [name, birth, email, pw, checkPw,phoneNum, allCheck]);
+  
+  useEffect(() => {
+    console.log(loading)
+  },[loading])
 
   //이메일인증 enter처리
   useEffect(() => {
-    const listener = (e: KeyboardEvent) => {
-      if (e.key === "Enter" || e.key === "NumpadEnter") {
-        if (name && email && pw && birth && checkPw) {
-          handleRegister();
-        } else {
+    const listener = (e:KeyboardEvent) => {
+      const target = e.target as HTMLInputElement
+      const placeholder = target.placeholder
+      // type이 button인 요소는 placeholder가 없기 때문에 or에 추가
+      if ((e.key === "Enter" || e.key === "NumpadEnter") && target.placeholder){
+        if (placeholder === "전화번호"){
+          handlePhoneNumSend();
+        } else if (placeholder === "이메일") {
           handleEmailSend();
+        } else {
+          handleRegister();
         }
       }
-    };
+    }
+
+    // const listener = (e: KeyboardEvent) => {
+    //   if (e.key === "Enter" || e.key === "NumpadEnter") {
+    //     if (name && email && pw && birth && checkPw) {
+    //       handleRegister();
+    //     } else {
+    //       handleEmailSend();
+    //     }
+    //   }
+    // };
 
     document.addEventListener("keydown", listener);
     return () => {
       document.removeEventListener("keydown", listener);
     };
-  }, [email, name, pw, checkPw, birth, allCheck]);
+  }, [email, name, pw, checkPw, birth, allCheck, phoneNum]);
 
   return (
     <>
       <Register
-        isAuth={isAuth}
-        setIsAuth={setIsAuth}
         allCheck={allCheck}
         setAllCheck={setAllCheck}
         name={name}
         setName={setName}
+        birth={birth}
+        setBirth={setBirth}
+        phoneNum={phoneNum}
+        setPhoneNum={setPhoneNum}
+        phoneCheck={phoneCheck}
+        setPhoneCheck={setPhoneCheck}
+        counter={counter}
         email={email}
         setEmail={setEmail}
         pw={pw}
         setPw={setPw}
         checkPw={checkPw}
         setCheckPw={setCheckPw}
-        duplicateInfo={duplicateInfo}
-        setDuplicateInfo={setDuplicateInfo}
+        handlePhoneNumSend={handlePhoneNumSend}
         handleRegister={handleRegister}
-        emailLoading={emailLoading}
+        loading={loading}
         handleEmailSend={handleEmailSend}
-        birth={birth}
-        setBirth={setBirth}
         clickUsingPersonelInfo={clickUsingPersonelInfo}
         clickUsingSite={clickUsingSite}
         clickHandlingPersonelInfo={clickHandlingPersonelInfo}
