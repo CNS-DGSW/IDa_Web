@@ -111,32 +111,31 @@ const Register = ({
         }
       >
         <div className="Register-box-form">
-
           <div className="Register-box-form-temp-small">이름</div>
-            <CustomInput
-              placeholder="이름"
-              type="text"
-              value={name}
-              setValue={setName}
-              maxLength={45}
-              style={{ width: "100%" }}
-            />
-            <div className="Register-box-form-temp-small">생년월일</div>
-            <CustomInput
-              placeholder={`생년월일 ${new Date().getFullYear() - 15}0101`}
-              type="text"
-              value={birth}
-              setValue={setBirth}
-              maxLength={10}
-              style={{ width: "100%" }}
-            />
+          <CustomInput
+            placeholder="이름"
+            type="text"
+            value={name}
+            setValue={setName}
+            maxLength={45}
+            style={{ width: "100%" }}
+          />
+          <div className="Register-box-form-temp-small">생년월일</div>
+          <CustomInput
+            placeholder={`생년월일 ${new Date().getFullYear() - 15}0101`}
+            type="text"
+            value={birth}
+            setValue={setBirth}
+            maxLength={10}
+            style={{ width: "100%" }}
+          />
 
           <div className="Register-box-form-temp-big">이메일</div>
           <div className="Register-box-form-email">
             <CustomInput
               style={{ width: "70%" }}
               type="text"
-              placeholder="이메일"
+              placeholder="이메일(아이디)"
               maxLength={100}
               value={email}
               setValue={setEmail}
@@ -163,11 +162,11 @@ const Register = ({
             value={checkPw}
             setValue={setCheckPw}
           />
-          
+
           <div className="Register-box-form-temp-big">휴대전화</div>
           <div className="Register-box-form-phone">
             <CustomInput
-              placeholder="전화번호"
+              placeholder="휴대폰 번호"
               type="tel"
               value={phoneNum}
               setValue={setPhoneNum}
@@ -182,11 +181,13 @@ const Register = ({
             />
           </div>
 
-            <VerificationNumber
-              value={phoneCheck}
-              setValue={setPhoneCheck}
-              counter={counter}
-            />
+          <VerificationNumber
+            value={phoneCheck}
+            setValue={setPhoneCheck}
+            counter={counter}
+          />
+
+          {/* <CustomInput /> */}
 
           <CheckBox
             style={{ marginTop: "1rem" }}

@@ -60,8 +60,8 @@ const RegisterContainer = () => {
     let limitT = limitTime;
     let timerId = setInterval(() => {
       counterSetter(
-        `${Math.floor(limitT / 60)}:${`${limitT % 60}`.padStart(2,"0")}`
-        );
+        `${Math.floor(limitT / 60)}:${`${limitT % 60}`.padStart(2, "0")}`
+      );
       limitT -= runningTime;
       if (limitT < 0) {
         counterSetter("0:00");
@@ -71,8 +71,8 @@ const RegisterContainer = () => {
   };
 
   // 전화번호로 인증번호 요청
-  const handlePhoneNumSend  = async () => {
-    console.log(phoneNum)
+  const handlePhoneNumSend = async () => {
+    console.log(phoneNum);
     if (!phoneNum) {
       toast.warning("전화번호를 입력해 주세요");
     } else {
@@ -95,11 +95,11 @@ const RegisterContainer = () => {
           // 통신할 때 에러핸들링
         });
     }
-  }
+  };
 
   //email 인증 보내기
   const handleEmailSend = useCallback(async () => {
-    console.log(email)
+    console.log(email);
     if (!email) {
       toast.warning("이메일을 입력해 주세요");
     } else {
@@ -153,10 +153,18 @@ const RegisterContainer = () => {
     console.log("email", email);
     console.log("pw", pw);
     console.log("checkPw", checkPw);
-    console.log("phoneNum",phoneNum)
-    console.log("phoneCheck",phoneCheck)
-    
-    if (!email || !pw || !checkPw || !name || !birth || !phoneNum || !phoneCheck) {
+    console.log("phoneNum", phoneNum);
+    console.log("phoneCheck", phoneCheck);
+
+    if (
+      !email ||
+      !pw ||
+      !checkPw ||
+      !name ||
+      !birth ||
+      !phoneNum ||
+      !phoneCheck
+    ) {
       toast.warning("빈칸이 있습니다.");
     } else if (pw.length < 8) {
       toast.warning("비밀번호가 8자리 이상이여야 합니다.");
@@ -165,13 +173,12 @@ const RegisterContainer = () => {
     } else if (!allCheck) {
       toast.warning("모두 동의를 체크해 주세요");
     } else {
-      await tryRegister(name, birth, email, pw, phoneNum,phoneCheck)
+      await tryRegister(name, birth, email, pw, phoneNum, phoneCheck)
         .then((res: Response) => {
           toast.success("회원가입이 완료되었습니다.");
           history.push("login");
         })
         .catch((err) => {
-
           if (err.response?.status === 406) {
             toast.warning(
               "나이 제한으로 인해 가입이 불가능합니다. 본인 명의로 가입해주세요."
@@ -181,7 +188,7 @@ const RegisterContainer = () => {
           } else if (err.response?.status === 409) {
             toast.warning("이미 사용중인 이메일입니다.");
           } else if (err.response?.status === 401) {
-            toast.warning(`${err.response?.data.message}`)
+            toast.warning(`${err.response?.data.message}`);
           } else if (err.response?.status === 400) {
             toast.warning("올바르지 않은 값이 있습니다.");
           } else if (err.response?.status === 410) {
@@ -193,20 +200,23 @@ const RegisterContainer = () => {
           }
         });
     }
-  }, [name, birth, email, pw, checkPw,phoneNum, allCheck]);
-  
+  }, [name, birth, email, pw, checkPw, phoneNum, allCheck, phoneCheck]);
+
   useEffect(() => {
-    console.log(loading)
-  },[loading])
+    console.log(loading);
+  }, [loading]);
 
   //이메일인증 enter처리
   useEffect(() => {
-    const listener = (e:KeyboardEvent) => {
-      const target = e.target as HTMLInputElement
-      const placeholder = target.placeholder
+    const listener = (e: KeyboardEvent) => {
+      const target = e.target as HTMLInputElement;
+      const placeholder = target.placeholder;
       // type이 button인 요소는 placeholder가 없기 때문에 or에 추가
-      if ((e.key === "Enter" || e.key === "NumpadEnter") && target.placeholder){
-        if (placeholder === "전화번호"){
+      if (
+        (e.key === "Enter" || e.key === "NumpadEnter") &&
+        target.placeholder
+      ) {
+        if (placeholder === "전화번호") {
           handlePhoneNumSend();
         } else if (placeholder === "이메일") {
           handleEmailSend();
@@ -214,7 +224,7 @@ const RegisterContainer = () => {
           handleRegister();
         }
       }
-    }
+    };
 
     // const listener = (e: KeyboardEvent) => {
     //   if (e.key === "Enter" || e.key === "NumpadEnter") {
@@ -230,7 +240,7 @@ const RegisterContainer = () => {
     return () => {
       document.removeEventListener("keydown", listener);
     };
-  }, [email, name, pw, checkPw, birth, allCheck, phoneNum]);
+  }, [email, name, pw, checkPw, birth, allCheck, phoneNum, phoneCheck]);
 
   return (
     <>

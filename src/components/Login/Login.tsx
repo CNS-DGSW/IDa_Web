@@ -51,7 +51,7 @@ const Login = ({
       >
         <div className="Login-box-form">
           <CustomInput
-            placeholder="이메일"
+            placeholder="이메일(아이디)"
             type="text"
             value={id}
             setValue={setId}
