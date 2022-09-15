@@ -182,7 +182,7 @@ const RegisterContainer = () => {
           } else if (err.response.status === 409) {
             toast.warning("이미 사용중인 이메일입니다.");
           } else if (err.response.status === 401) {
-            toast.warning(`${err.reponse.message}`)
+            toast.warning(`${err.response.message}`)
           } else if (err.response.status === 400) {
             toast.warning("올바르지 않은 값이 있습니다.");
           } else if (err.response.status === 410) {
