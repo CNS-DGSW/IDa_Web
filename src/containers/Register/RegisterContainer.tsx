@@ -148,12 +148,13 @@ const RegisterContainer = () => {
 
   //회원가입하기
   const handleRegister = useCallback(async () => {
+    console.log("name", name);
+    console.log("birth", birth);
     console.log("email", email);
     console.log("pw", pw);
     console.log("checkPw", checkPw);
-    console.log("name", name);
-    console.log("birth", birth);
-
+    console.log("phoneNum",phoneNum)
+    console.log("phoneCheck",phoneCheck)
     
     if (!email || !pw || !checkPw || !name || !birth) {
       toast.warning("빈칸이 있습니다.");
@@ -164,7 +165,7 @@ const RegisterContainer = () => {
     } else if (!allCheck) {
       toast.warning("모두 동의를 체크해 주세요");
     } else {
-      await tryRegister(name, birth, email, pw, phoneNum)
+      await tryRegister(name, birth, email, pw, phoneNum,phoneCheck)
         .then((res: Response) => {
           toast.success("회원가입이 완료되었습니다.");
           history.push("login");
