@@ -88,5 +88,7 @@
         }
       ]
     ]
-  }
+  },
+    "proxy":"https://server.dgswhs.kro.kr/"
+  
 }
