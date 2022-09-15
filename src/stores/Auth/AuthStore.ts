@@ -69,6 +69,7 @@ class AuthStore {
     email: string,
     password: string,
     phoneNum:string,
+    phoneCheck:string,
   ): Promise<Response> => {
     const response = await AuthApi.Register(
       name,
@@ -76,6 +77,7 @@ class AuthStore {
       email,
       password,
       phoneNum,
+      phoneCheck
     );
 
     return response;

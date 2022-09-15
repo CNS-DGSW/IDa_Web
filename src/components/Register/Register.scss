@@ -50,6 +50,14 @@
           background-color: $bg-light-bule;
         }
       }
+      &-temp{
+        &-big{
+          margin-top: 30px;
+        }
+        &-small{
+          margin-top: 5px;
+        }
+      }
     }
     &-agree {
       font-size: 0.7rem;
@@ -92,8 +100,6 @@
   overflow: scroll;
   h1 {
     font-size: 1rem;
-  }
-  p {
   }
 }
 
