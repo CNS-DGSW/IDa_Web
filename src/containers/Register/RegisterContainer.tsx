@@ -171,6 +171,14 @@ const RegisterContainer = () => {
           history.push("login");
         })
         .catch((err) => {
+          console.log(err)
+          console.log(err.response)
+          console.log(err.response?.status)
+          console.log(err.response?.messag)
+          console.log(err.response.status)
+          console.log(err.response.messag)
+
+
           if (err.response?.status === 406) {
             toast.warning(
               "나이 제한으로 인해 가입이 불가능합니다. 본인 명의로 가입해주세요."
