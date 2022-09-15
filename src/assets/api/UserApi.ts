@@ -127,7 +127,7 @@ class UserApi {
       cityLocation,
       cityName,
       gradeType,
-      graduatedDate,
+      graduatedDate: `${new Date().getFullYear() + 1}`,
       schoolCode,
       schoolName,
       schoolTel,
@@ -357,7 +357,7 @@ class UserApi {
   }
 
 
-  async SearchSchool(schoolName: string,city: string) {
+  async SearchSchool(schoolName: string, city: string) {
     const { data } = await Api.get(
       encodeURI(`/school/searchSchool?orgName=${schoolName}&lctnScCode=${city}`)
 
