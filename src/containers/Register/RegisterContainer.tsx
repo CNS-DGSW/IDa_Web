@@ -171,6 +171,8 @@ const RegisterContainer = () => {
           history.push("login");
         })
         .catch((err) => {
+          console.log(err)
+
           if (err.response.status === 406) {
             toast.warning(
               "나이 제한으로 인해 가입이 불가능합니다. 본인 명의로 가입해주세요."
@@ -180,7 +182,7 @@ const RegisterContainer = () => {
           } else if (err.response.status === 409) {
             toast.warning("이미 사용중인 이메일입니다.");
           } else if (err.response.status === 401) {
-            toast.warning(err.response.message);
+            toast.warning(`${err.reponse.message}`)
           } else if (err.response.status === 400) {
             toast.warning("올바르지 않은 값이 있습니다.");
           } else if (err.response.status === 410) {
