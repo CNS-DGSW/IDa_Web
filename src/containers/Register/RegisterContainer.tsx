@@ -172,6 +172,9 @@ const RegisterContainer = () => {
         })
         .catch((err) => {
           const {status,message} = err.reponse
+          console.log(status)
+          console.log(message)
+
 
           if (status === 406) {
             toast.warning(
