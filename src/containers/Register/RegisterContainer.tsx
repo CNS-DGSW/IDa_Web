@@ -171,24 +171,19 @@ const RegisterContainer = () => {
           history.push("login");
         })
         .catch((err) => {
-          const {status,message} = err.reponse
-          console.log(status)
-          console.log(message)
-
-
-          if (status === 406) {
+          if (err.response.status === 406) {
             toast.warning(
               "나이 제한으로 인해 가입이 불가능합니다. 본인 명의로 가입해주세요."
             );
-          } else if (status === 403) {
+          } else if (err.response.status === 403) {
             toast.warning("이미 원서 제출이 마감되었습니다.");
-          } else if (status === 409) {
+          } else if (err.response.status === 409) {
             toast.warning("이미 사용중인 이메일입니다.");
-          } else if (status === 401) {
-            toast.warning(message);
-          } else if (status === 400) {
+          } else if (err.response.status === 401) {
+            toast.warning(err.response.message);
+          } else if (err.response.status === 400) {
             toast.warning("올바르지 않은 값이 있습니다.");
-          } else if (status === 410) {
+          } else if (err.response.status === 410) {
             toast.warning("이미 사용중인 실명인증입니다.");
           } else {
             console.log("error");
