@@ -112,27 +112,26 @@ const Register = ({
       >
         <div className="Register-box-form">
 
-          <div className="Register-box-form-info">
+          <div className="Register-box-form-temp-small">이름</div>
             <CustomInput
               placeholder="이름"
               type="text"
               value={name}
               setValue={setName}
-              // setValue={() => {}}
               maxLength={45}
-              style={{ width: "44%" }}
+              style={{ width: "100%" }}
             />
+            <div className="Register-box-form-temp-small">생년월일</div>
             <CustomInput
               placeholder={`생년월일 ${new Date().getFullYear() - 15}0101`}
               type="text"
               value={birth}
               setValue={setBirth}
-              // setValue={() => {}}
               maxLength={10}
-              style={{ width: "55%" }}
+              style={{ width: "100%" }}
             />
-          </div>
 
+          <div className="Register-box-form-temp-big">이메일</div>
           <div className="Register-box-form-email">
             <CustomInput
               style={{ width: "70%" }}
@@ -150,6 +149,8 @@ const Register = ({
               onClick={() => handleEmailSend()}
             />
           </div>
+
+          <div className="Register-box-form-temp-big">비밀번호</div>
           <CustomInput
             type="password"
             placeholder="비밀번호"
@@ -162,38 +163,30 @@ const Register = ({
             value={checkPw}
             setValue={setCheckPw}
           />
-
+          
+          <div className="Register-box-form-temp-big">휴대전화</div>
           <div className="Register-box-form-phone">
             <CustomInput
               placeholder="전화번호"
               type="tel"
               value={phoneNum}
               setValue={setPhoneNum}
-              style={{ width: "50%" }}
+              style={{ width: "70%" }}
             />
             <CustomInput
               type="button"
-              value="인증번호 받기"
+              value={counter === "0:00" ? "인증" : "재전송"}
               className="Register-box-form-btn"
-              style={{ width: "49%", outline: "none" }}
+              style={{ width: "29%", outline: "none" }}
               onClick={handlePhoneNumSend}
             />
           </div>
 
-          <div className="Register-box-form-phone">
             <VerificationNumber
               value={phoneCheck}
               setValue={setPhoneCheck}
               counter={counter}
             />
-            {/* onClick필요 */}
-            <CustomInput
-              type="button"
-              value="인증"
-              className="Register-box-form-btn"
-              style={{ width: "29%", outline: "none" }}
-            />
-          </div>
 
           <CheckBox
             style={{ marginTop: "1rem" }}

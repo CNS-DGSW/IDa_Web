@@ -27,7 +27,7 @@ const RegisterContainer = () => {
   // 휴대폰 인증 로직이 생긴다면 state추가 필요
 
   // 휴대폰 인증 카운터
-  const [counter, setCounter] = useState<string>("");
+  const [counter, setCounter] = useState<string>("0:00");
 
   // 로딩
   const [loading, setLoading] = useState<boolean>(false);
