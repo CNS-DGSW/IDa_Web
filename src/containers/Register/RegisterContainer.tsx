@@ -171,13 +171,6 @@ const RegisterContainer = () => {
           history.push("login");
         })
         .catch((err) => {
-          console.log(err)
-          console.log(err.response)
-          console.log(err.response?.status)
-          console.log(err.response?.messag)
-          console.log(err.response.status)
-          console.log(err.response.messag)
-
 
           if (err.response?.status === 406) {
             toast.warning(
@@ -188,7 +181,7 @@ const RegisterContainer = () => {
           } else if (err.response?.status === 409) {
             toast.warning("이미 사용중인 이메일입니다.");
           } else if (err.response?.status === 401) {
-            toast.warning(`${err.response?.message}`)
+            toast.warning(`${err.response?.data.message}`)
           } else if (err.response?.status === 400) {
             toast.warning("올바르지 않은 값이 있습니다.");
           } else if (err.response?.status === 410) {
