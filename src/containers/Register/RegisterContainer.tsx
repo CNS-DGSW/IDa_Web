@@ -156,7 +156,7 @@ const RegisterContainer = () => {
     console.log("phoneNum",phoneNum)
     console.log("phoneCheck",phoneCheck)
     
-    if (!email || !pw || !checkPw || !name || !birth) {
+    if (!email || !pw || !checkPw || !name || !birth || !phoneNum || !phoneCheck) {
       toast.warning("빈칸이 있습니다.");
     } else if (pw.length < 8) {
       toast.warning("비밀번호가 8자리 이상이여야 합니다.");
@@ -171,22 +171,21 @@ const RegisterContainer = () => {
           history.push("login");
         })
         .catch((err) => {
-          console.log(err);
-          console.log(err.response);
+          const {status,message} = err.reponse
 
-          if (err.response?.status === 406) {
+          if (status === 406) {
             toast.warning(
               "나이 제한으로 인해 가입이 불가능합니다. 본인 명의로 가입해주세요."
             );
-          } else if (err.response?.status === 403) {
+          } else if (status === 403) {
             toast.warning("이미 원서 제출이 마감되었습니다.");
-          } else if (err.response?.status === 409) {
+          } else if (status === 409) {
             toast.warning("이미 사용중인 이메일입니다.");
-          } else if (err.response?.status === 401) {
-            toast.warning("메일 인증이 안되었습니다.");
-          } else if (err.response?.status === 400) {
+          } else if (status === 401) {
+            toast.warning(message);
+          } else if (status === 400) {
             toast.warning("올바르지 않은 값이 있습니다.");
-          } else if (err.response?.status === 410) {
+          } else if (status === 410) {
             toast.warning("이미 사용중인 실명인증입니다.");
           } else {
             console.log("error");
