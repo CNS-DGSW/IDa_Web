@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { observer } from "mobx-react";
 import WritePrint from "../../../components/Write/WritePrint";
 import useStore from "lib/hooks/useStore";
@@ -123,11 +129,12 @@ const WritePrintContainer = ({}) => {
   const [teacherName, setTeacherName] = useState<string>("");
   const [isSubmit, setIsSubmit] = useState<boolean>(true);
 
-  useEffect(() => {
-    alert("모든 출력물은 단면 인쇄해 주세요");
+  useLayoutEffect(() => {
+    !search && alert("모든 출력물은 단면 인쇄해 주세요");
   }, []);
   //수험 번호 받아오는 함수
   const tryGetStatusCallback = useCallback(async () => {
+    setIsSubmit(false);
     await tryGetStatus(Number(query.get("userIdx"))).then((res) => {
       setExamCode(res.data.examCode || "");
       setSubmitCode(res.data.submitCode || "");
