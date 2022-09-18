@@ -57,6 +57,7 @@ const Write = ({ page, pageHandle }: WriteProps) => {
             {pages.map((title, idx) => (
               <Steps.Step
                 title={title}
+                key={idx}
                 onClick={() => pageHandle(idx)}
                 className="pointer"
               />

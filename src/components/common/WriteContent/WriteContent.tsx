@@ -131,14 +131,16 @@ const WriteContent = ({
                 userIdx !== null ? "&userIdx=" + userIdx : ""
               }`}
               target="_blank"
+              rel="noopener noeferrer"
               className="writecontent-children-area-btn preview"
             >
               원서 미리보기
             </Link>
             {page === 6 && (
               <Link
-                to={`/print${userIdx !== null && "?userIdx=" + userIdx}`}
+                to={`/print${userIdx !== null ? "?userIdx=" + userIdx : ""}`}
                 target="_blank"
+                rel="noopener noeferrer"
                 className="writecontent-children-area-btn prev"
               >
                 원서 출력
