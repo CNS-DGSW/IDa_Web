@@ -12,7 +12,7 @@ const applyDetailModel = {
       value: ApplyDetail.MEISTER,
     },
     {
-      name: "기회균등전형",
+      name: "사회통합전형\n(기회균등전형)",
       models: [
         {
           name: "국민기초생활수급자",
@@ -76,7 +76,7 @@ const applyDetailModel = {
       ],
     },
     {
-      name: "사회다양성전형",
+      name: "사회통합전형\n(사회다양성 전형)",
       models: [
         {
           name: "특수교육대상자",
