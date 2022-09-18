@@ -261,9 +261,12 @@ const WritePrint = ({
             <tbody>
               <tr>
                 <td colSpan={7} className="print-table-title print-table-none">
-                  <div style={{ marginBottom: "15px" }}>자기소개서</div>
+                  <div style={{ marginBottom: "15px" }}>
+                    자기소개서 및 학업계획서
+                  </div>
                 </td>
               </tr>
+
               <tr>
                 <td>{gradeType === Grade.GED ? "고입검정" : schoolName}</td>
                 <th>접수번호</th>
@@ -286,36 +289,6 @@ const WritePrint = ({
                   {selfIntroduce}
                 </td>
               </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div className="print-page">
-          <table className="print-table">
-            <colgroup>
-              <col width="initial" />
-              <col width="70" />
-              <col width="100" />
-              <col width="70" />
-              <col width="100" />
-              <col width="70" />
-              <col width="100" />
-            </colgroup>
-            <tbody>
-              <tr>
-                <td colSpan={7} className="print-table-title print-table-none">
-                  <div style={{ marginBottom: "15px" }}>학업계획서</div>
-                </td>
-              </tr>
-              <tr>
-                <td>{gradeType === Grade.GED ? "고입검정" : schoolName}</td>
-                <th>접수번호</th>
-                <td>{submitCode}</td>
-                <th>수험번호</th>
-                <td>{examCode}</td>
-                <th>성명</th>
-                <td>{name} &nbsp; (인)</td>
-              </tr>
               <tr>
                 <td colSpan={7} className="print-table-none empty"></td>
               </tr>
@@ -324,6 +297,7 @@ const WritePrint = ({
                   학업계획서
                 </th>
               </tr>
+
               <tr>
                 <td style={{ textAlign: "left" }} colSpan={7}>
                   {studyPlan}

@@ -72,7 +72,6 @@ const RegisterContainer = () => {
 
   // 전화번호로 인증번호 요청
   const handlePhoneNumSend = async () => {
-    console.log(phoneNum);
     if (!phoneNum) {
       toast.warning("전화번호를 입력해 주세요");
     } else {
@@ -99,7 +98,6 @@ const RegisterContainer = () => {
 
   //email 인증 보내기
   const handleEmailSend = useCallback(async () => {
-    console.log(email);
     if (!email) {
       toast.warning("이메일을 입력해 주세요");
     } else {
@@ -148,14 +146,6 @@ const RegisterContainer = () => {
 
   //회원가입하기
   const handleRegister = useCallback(async () => {
-    console.log("name", name);
-    console.log("birth", birth);
-    console.log("email", email);
-    console.log("pw", pw);
-    console.log("checkPw", checkPw);
-    console.log("phoneNum", phoneNum);
-    console.log("phoneCheck", phoneCheck);
-
     if (
       !email ||
       !pw ||
@@ -195,7 +185,6 @@ const RegisterContainer = () => {
             toast.warning("이미 사용중인 실명인증입니다.");
           } else {
             console.log("error");
-            console.log(err);
             toast.error("서버 오류입니다");
           }
         });
