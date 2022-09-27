@@ -34,7 +34,7 @@ const Main = ({
                 className="Main-content-btn"
                 onClick={() => history.push("/Write")}
               >
-                원서 접수
+                원서 접수하기
               </div>
             </div>
           </div>
