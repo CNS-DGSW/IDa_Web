@@ -34,7 +34,7 @@ const WriteContent = ({
       } else {
         Swal.fire({
           title: "이동하시겠습니까?",
-          html: "수정된 내용이 저장되지 않았습니다. <br/>원서 저장을 눌러 주세요",
+          html: "수정된 내용이 저장되지 않았습니다.<p style='color:red;font-weight: 700;'>원서 저장을 눌러 주세요</p>",
           showCancelButton: true,
           icon: "warning",
           cancelButtonText: "취소",
