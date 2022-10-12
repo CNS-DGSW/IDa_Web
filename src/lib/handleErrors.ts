@@ -11,9 +11,7 @@ const handleWriteError = (err: AxiosError, history?: History) => {
   } else if (err.response?.status === 400) {
     toast.warning("올바르지 않은 값이 있습니다.");
   } else if (err.response?.status === 500) {
-    toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요.");
-  } else if (err.response?.status === 413) {
-    toast.warning("파일이 커서 저장에 실패합니다.")
+    toast.error("파일이 커서 저장에 실패합니다");
   }
 };
 
