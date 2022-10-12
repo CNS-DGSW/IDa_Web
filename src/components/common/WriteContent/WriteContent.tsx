@@ -88,7 +88,9 @@ const WriteContent = ({
             } else if (err.response?.status === 403) {
               toast.warning("제출 기간이 아닙니다.");
             } else {
-              toast.error("서버 오류입니다.");
+              toast.error(
+                "서버 오류입니다. 잠시 후 다시 시도해주세요. 다시 시도해 주세요"
+              );
             }
           });
       }

@@ -44,25 +44,25 @@ const SecondTypeScoreContainer = ({}) => {
     switch (key) {
       case "sw":
         GetSoftWare().catch((err) => {
-          toast.error("서버 오류입니다");
+          toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
         });
         break;
 
       case "job":
         GetJob().catch((err) => {
-          toast.error("서버 오류입니다");
+          toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
         });
         break;
 
       case "coding":
         GetCodingTest().catch((err) => {
-          toast.error("서버 오류입니다");
+          toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
         });
         break;
 
       case "secondScore":
         GetSecondScoreExcel().catch((err) => {
-          toast.error("서버 오류입니다");
+          toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
         });
         break;
     }

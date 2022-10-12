@@ -44,7 +44,7 @@ const SearchSchoolContainer = ({
           if (err.response?.status === 404) {
             toast.warn("검색되지 않았습니다. 직접 학교정보를 입력해주세요.");
           } else {
-            toast.error("서버 오류입니다.");
+            toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요.");
           }
         });
       setIsLoading(false);

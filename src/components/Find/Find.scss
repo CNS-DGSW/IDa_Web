@@ -19,6 +19,8 @@
 
 .FindPw {
   &-form {
+    display: flex;
+    flex-direction: column;
     &-text {
       color: $ft-darklightblue;
       font-weight: 600;

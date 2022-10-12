@@ -114,7 +114,7 @@ const UserListContainer = ({}) => {
   // 엑셀 다운
   const tryDownExcel = () => {
     GetUserList().catch((err) => {
-      toast.error("서버 오류입니다.");
+      toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요.");
     });
   };
 

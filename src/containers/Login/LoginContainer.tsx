@@ -54,12 +54,11 @@ const LoginContainer = () => {
           history.push("/");
         })
         .catch((err) => {
-          console.log(err);
           if (err.response?.status === 401) {
             passwordInput.current?.focus();
             toast.warning("이메일이나 비밀번호가 다릅니다");
           } else {
-            toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
+            toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요.");
           }
         });
     }

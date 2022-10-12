@@ -299,6 +299,7 @@ const WriteSchool = ({
                 <input
                   type="number"
                   maxLength={4}
+                  max={new Date().getFullYear()}
                   className="school-area-textInput"
                   value={graduatedDate.toString()}
                   onChange={(e) =>

@@ -117,7 +117,7 @@ const RegisterContainer = () => {
           } else if (err.response?.status === 409) {
             toast.warning("이미 사용중인 메일입니다.");
           } else {
-            toast.error("서버 오류입니다");
+            toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
           }
         });
     }
@@ -185,7 +185,7 @@ const RegisterContainer = () => {
             toast.warning("이미 사용중인 실명인증입니다.");
           } else {
             console.log("error");
-            toast.error("서버 오류입니다");
+            toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
           }
         });
     }
