@@ -33,19 +33,12 @@ const WriteContent = ({
         }
       } else {
         Swal.fire({
-          title: "이동하시겠습니까?",
+          title: "원서가 저장되지 않았습니다!",
           html: "수정된 내용이 저장되지 않았습니다.<p style='color:red;font-weight: 700;'>원서 저장을 눌러 주세요</p>",
-          showCancelButton: true,
+          showCancelButton: false,
           icon: "warning",
-          cancelButtonText: "취소",
           confirmButtonText: "확인",
-        }).then(async (result) => {
-          if (result.isConfirmed) {
-            if (page !== 6) {
-              pageHandle(page + 1);
-            }
-          }
-        });
+        }).then(async (result) => {});
       }
     },
     [isChanged, page, pageHandle]
@@ -56,19 +49,12 @@ const WriteContent = ({
       pageHandle(page - 1);
     } else {
       Swal.fire({
-        title: "이동하시겠습니까?",
-        html: "수정된 내용이 저장되지 않았습니다. <br/>원서 저장을 눌러 주세요",
-        showCancelButton: true,
+        title: "원서가 저장되지 않았습니다!",
+        html: "수정된 내용이 저장되지 않았습니다.<p style='color:red;font-weight: 700;'>원서 저장을 눌러 주세요</p>",
+        showCancelButton: false,
         icon: "warning",
-        cancelButtonText: "취소",
         confirmButtonText: "확인",
-      }).then(async (result) => {
-        if (result.isConfirmed) {
-          if (page !== 0) {
-            pageHandle(page - 1);
-          }
-        }
-      });
+      }).then(async (result) => {});
     }
   }, [isChanged, page, pageHandle]);
 
@@ -166,7 +152,9 @@ const WriteContent = ({
             {page !== 0 && (
               <div
                 className="writecontent-children-area-btn prev"
-                onClick={prevPage}
+                onClick={() => {
+                  prevPage();
+                }}
               >
                 이전
               </div>
