@@ -46,6 +46,12 @@ const Login = ({
             >
               비밀번호를 잊으셨나요?
             </span>
+            <label
+              style={{ textAlign: "center", width: "370px", fontSize: "12px" }}
+            >
+              이메일은 학교 번호로 문의(053-231-9226, 9218, 9219)하시기
+              바랍니다.
+            </label>
           </div>
         }
       >

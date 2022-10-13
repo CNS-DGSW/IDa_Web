@@ -49,9 +49,6 @@ const Find = ({
       }
     >
       <div className="FindPw-form">
-        <label style={{ textAlign: "center" }}>
-          이메일 찾기는 학교로 문의 해주세요
-        </label>
         <div className="FindPw-form-email">
           <CustomInput
             placeholder="이메일"
