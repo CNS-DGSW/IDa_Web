@@ -20,6 +20,14 @@ const ChangePwContainer = ({}) => {
 
   const history = useHistory();
 
+  const checkPasswordValidate = () => {
+    if (changePw.length > 8 && checkPw.length > 8) {
+      handleTryChangePw();
+    } else {
+      toast.warning("비밀번호는 8자리 이상이어야 합니다.");
+    }
+  };
+
   // 비밀번호 바꾸는 함수
   const handleTryChangePw = useCallback(async () => {
     if (checkPw === changePw && changePw !== originPw) {
@@ -59,7 +67,7 @@ const ChangePwContainer = ({}) => {
         setChangePw={setChangePw}
         checkPw={checkPw}
         setCheckPw={setCheckPw}
-        handleTryChangePw={handleTryChangePw}
+        handleTryChangePw={checkPasswordValidate}
       />
     </>
   );
