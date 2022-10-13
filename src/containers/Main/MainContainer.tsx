@@ -47,9 +47,7 @@ const MainContainer = () => {
     scrollHiden();
   }, [firstResultModal, secondResultModal]);
 
-  useEffect(() => {
-    console.log("~~", modalLoading);
-  }, [modalLoading]);
+  useEffect(() => {}, [modalLoading]);
   return (
     <>
       <Main

@@ -10,6 +10,7 @@ const gradeListModel = [
   "체육",
   "음악",
   "미술",
+  "정보",
 ];
 
 export default gradeListModel;

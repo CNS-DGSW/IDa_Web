@@ -106,7 +106,7 @@ const InterViewScoreContainer = ({}) => {
             if (err.response?.status === 400) {
               toast.warning("파일을 잘못선택하였습니다");
             } else if (err.response?.status === 500) {
-              toast.error("서버 오류입니다.");
+              toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요.");
             }
           });
       }
@@ -128,7 +128,7 @@ const InterViewScoreContainer = ({}) => {
             if (err.response?.status === 400) {
               toast.warning("파일을 잘못선택하였습니다");
             } else if (err.response?.status === 500) {
-              toast.error("서버 오류입니다.");
+              toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요.");
             }
           });
       }

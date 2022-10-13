@@ -52,7 +52,7 @@ class StatusStore {
         resolve(response);
       });
     } catch (error) {
-      return new Promise((resolve, reject: (error: Error) => void) => {
+      return new Promise((resolve, reject: (error: unknown) => void) => {
         reject(error);
       });
     }

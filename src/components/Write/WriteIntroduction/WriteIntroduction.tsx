@@ -31,7 +31,7 @@ const WriteIntroduction = ({
         <div className="intro">
           <div className="intro-textBox">
             <p>
-              자기소개서 및 학업계획서는 전형 성적에 반영되지 않으며 구슬 면접
+              자기소개서 및 학업계획서는 전형 성적에 반영되지 않으며 구술 면접
               참고 자료로 활용됩니다.
             </p>
 

@@ -1,0 +1,21 @@
+.VerificationNumber {
+    &-wrapper {
+        width:100%;
+        display: flex;
+        position: relative;
+    }
+    &-counter{
+        width:30%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        pointer-events: none;
+        font-size: 0.9rem;
+        color:rgb(54, 54, 54);
+        position: absolute;
+        right:0px;
+        top:0px;
+        height:100%;
+    }
+
+}

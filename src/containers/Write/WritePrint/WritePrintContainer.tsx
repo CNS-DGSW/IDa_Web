@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { observer } from "mobx-react";
 import WritePrint from "../../../components/Write/WritePrint";
 import useStore from "lib/hooks/useStore";
@@ -66,8 +72,9 @@ const WritePrintContainer = ({}) => {
   const [schoolCode, setSchoolCode] = useState<string>("");
   const [cityName, setCityName] = useState<string>("");
   const [applyType, setApplyType] = useState<Apply | null>(null);
-  const [applyDetailType, setApplyDetailType] =
-    useState<ApplyDetail | null>(null);
+  const [applyDetailType, setApplyDetailType] = useState<ApplyDetail | null>(
+    null
+  );
   const [verteransCity, setVerteransCity] = useState<string>("");
   const [verteransNumber, setVerteransNumber] = useState<string>("");
   const [grade1, setGrade1] = useState<number>(0);
@@ -122,8 +129,12 @@ const WritePrintContainer = ({}) => {
   const [teacherName, setTeacherName] = useState<string>("");
   const [isSubmit, setIsSubmit] = useState<boolean>(true);
 
+  useLayoutEffect(() => {
+    !search && alert("모든 출력물은 단면 인쇄해 주세요");
+  }, []);
   //수험 번호 받아오는 함수
   const tryGetStatusCallback = useCallback(async () => {
+    setIsSubmit(false);
     await tryGetStatus(Number(query.get("userIdx"))).then((res) => {
       setExamCode(res.data.examCode || "");
       setSubmitCode(res.data.submitCode || "");

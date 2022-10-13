@@ -44,14 +44,20 @@ const Login = ({
               className="Login-box-button-find"
               onClick={() => history.push("/find")}
             >
-              아이디 혹은 비밀번호를 잊으셨나요?
+              비밀번호를 잊으셨나요?
             </span>
+            <label
+              style={{ textAlign: "center", width: "370px", fontSize: "12px" }}
+            >
+              이메일은 학교 번호로 문의(053-231-9226, 9218, 9219)하시기
+              바랍니다.
+            </label>
           </div>
         }
       >
         <div className="Login-box-form">
           <CustomInput
-            placeholder="이메일"
+            placeholder="이메일(아이디)"
             type="text"
             value={id}
             setValue={setId}

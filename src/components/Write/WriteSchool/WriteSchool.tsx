@@ -137,6 +137,7 @@ const WriteSchool = ({
                     type="text"
                     className="school-schedule-box-search-textInput"
                     value={schoolName}
+                    disabled={true}
                     onChange={(e) => {
                       setSchoolName(e.target.value);
                       setIsChanged(true);
@@ -153,6 +154,7 @@ const WriteSchool = ({
                   className="school-schedule-box-textInput"
                   value={schoolCode}
                   maxLength={10}
+                  disabled={true}
                   onChange={(e) => {
                     setSchoolCode(e.target.value);
                     setIsChanged(true);
@@ -297,6 +299,7 @@ const WriteSchool = ({
                 <input
                   type="number"
                   maxLength={4}
+                  max={new Date().getFullYear()}
                   className="school-area-textInput"
                   value={graduatedDate.toString()}
                   onChange={(e) =>

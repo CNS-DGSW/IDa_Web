@@ -75,7 +75,7 @@ const HandlePostContainer = ({
             toast.warning("로그인이 필요합니다.");
             history.push("/login");
           } else {
-            toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
+            toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요.");
           }
         });
     }
@@ -105,7 +105,7 @@ const HandlePostContainer = ({
               toast.warning("로그인이 필요합니다.");
               history.push("/login");
             } else {
-              toast.error("서버 오류입니다");
+              toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
             }
           });
       }
@@ -136,7 +136,7 @@ const HandlePostContainer = ({
               toast.warning("로그인이 필요합니다.");
               history.push("/login");
             } else {
-              toast.error("서버 오류입니다");
+              toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
             }
           });
       }
@@ -188,7 +188,7 @@ const HandlePostContainer = ({
                 toast.warning("로그인이 필요합니다.");
                 history.push("/login");
               } else {
-                toast.error("서버 오류입니다");
+                toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
               }
             });
         }
@@ -206,7 +206,7 @@ const HandlePostContainer = ({
           setContent(res.data.post.content);
         })
         .catch((err) => {
-          toast.error("서버 오류입니다.");
+          toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요.");
         });
     }
   }, [getPost, idx]);

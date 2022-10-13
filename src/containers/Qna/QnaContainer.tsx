@@ -29,7 +29,7 @@ const QnaContainer = ({}) => {
         if (err.response?.status === 401) {
           toast.warning("불러오는데 실패하였습니다. 다시 시도해 주세요.");
         } else {
-          toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
+          toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요.");
         }
       });
   }, []);

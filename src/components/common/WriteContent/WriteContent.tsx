@@ -33,19 +33,12 @@ const WriteContent = ({
         }
       } else {
         Swal.fire({
-          title: "이동하시겠습니까?",
-          text: "수정된 내용이 저장되지 않았습니다.",
-          showCancelButton: true,
+          title: "원서가 저장되지 않았습니다!",
+          html: "수정된 내용이 저장되지 않았습니다.<p style='color:red;font-weight: 700;'>원서 저장을 눌러 주세요</p>",
+          showCancelButton: false,
           icon: "warning",
-          cancelButtonText: "취소",
           confirmButtonText: "확인",
-        }).then(async (result) => {
-          if (result.isConfirmed) {
-            if (page !== 6) {
-              pageHandle(page + 1);
-            }
-          }
-        });
+        }).then(async (result) => {});
       }
     },
     [isChanged, page, pageHandle]
@@ -56,19 +49,12 @@ const WriteContent = ({
       pageHandle(page - 1);
     } else {
       Swal.fire({
-        title: "이동하시겠습니까?",
-        text: "수정된 내용이 저장되지 않았습니다.",
-        showCancelButton: true,
+        title: "원서가 저장되지 않았습니다!",
+        html: "수정된 내용이 저장되지 않았습니다.<p style='color:red;font-weight: 700;'>원서 저장을 눌러 주세요</p>",
+        showCancelButton: false,
         icon: "warning",
-        cancelButtonText: "취소",
         confirmButtonText: "확인",
-      }).then(async (result) => {
-        if (result.isConfirmed) {
-          if (page !== 0) {
-            pageHandle(page - 1);
-          }
-        }
-      });
+      }).then(async (result) => {});
     }
   }, [isChanged, page, pageHandle]);
 
@@ -102,7 +88,9 @@ const WriteContent = ({
             } else if (err.response?.status === 403) {
               toast.warning("제출 기간이 아닙니다.");
             } else {
-              toast.error("서버 오류입니다.");
+              toast.error(
+                "서버 오류입니다. 잠시 후 다시 시도해주세요. 다시 시도해 주세요"
+              );
             }
           });
       }
@@ -131,14 +119,16 @@ const WriteContent = ({
                 userIdx !== null ? "&userIdx=" + userIdx : ""
               }`}
               target="_blank"
+              rel="noopener noeferrer"
               className="writecontent-children-area-btn preview"
             >
               원서 미리보기
             </Link>
             {page === 6 && (
               <Link
-                to={`/print${userIdx !== null && "?userIdx=" + userIdx}`}
+                to={`/print${userIdx !== null ? "?userIdx=" + userIdx : ""}`}
                 target="_blank"
+                rel="noopener noeferrer"
                 className="writecontent-children-area-btn prev"
               >
                 원서 출력
@@ -164,7 +154,9 @@ const WriteContent = ({
             {page !== 0 && (
               <div
                 className="writecontent-children-area-btn prev"
-                onClick={prevPage}
+                onClick={() => {
+                  prevPage();
+                }}
               >
                 이전
               </div>

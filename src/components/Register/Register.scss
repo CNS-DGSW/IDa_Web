@@ -29,19 +29,33 @@
           width: 33%;
         }
       }
+      &-phone{
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
       &-email {
         position: relative;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        &-btn {
-          background-color: $bg-blue;
-          color: $ft-white;
-          cursor: pointer;
-          height: 100%;
-          &:hover {
-            background-color: $bg-light-bule;
-          }
+      }
+      &-btn {
+        background-color: $bg-blue;
+        color: $ft-white;
+        cursor: pointer;
+        height: 100%;
+        &:hover {
+          background-color: $bg-light-bule;
+        }
+      }
+      &-temp{
+        &-big{
+          margin-top: 30px;
+        }
+        &-small{
+          margin-top: 5px;
         }
       }
     }
@@ -86,8 +100,6 @@
   overflow: scroll;
   h1 {
     font-size: 1rem;
-  }
-  p {
   }
 }
 

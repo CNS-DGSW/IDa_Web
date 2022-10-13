@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import { handleGetWriteError, handleWriteError } from "lib/handleErrors";
 
-const WritePhotoContainer = ({}) => {
+const WritePhotoContainer = () => {
   const { store } = useStore();
   const history = useHistory();
 

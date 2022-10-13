@@ -24,7 +24,7 @@ const WritePhoto = ({
       >
         <div className="photo">
           {preview ? (
-            <img src={preview.toString()} className="photo-preview" />
+            <img src={preview.toString()} className="photo-preview" alt="img" />
           ) : (
             <div className="photo-preview">미리보기</div>
           )}

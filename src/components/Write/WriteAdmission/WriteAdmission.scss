@@ -141,10 +141,11 @@
 
       &-box2 {
         display: flex;
+        text-align: center;
         align-items: center;
         justify-content: space-between;
         width: 23%;
-        height: 2.6rem;
+        height: 3rem;
         font-size: 0.9rem;
         font-weight: 300;
         padding: 0 0.6rem;
@@ -152,6 +153,7 @@
         border-radius: 2px;
         background-color: $bg-white;
         cursor: pointer;
+        white-space: pre-wrap;
         @media screen and (max-width: 767px) {
           font-size: 0.7rem;
           height: 2rem;

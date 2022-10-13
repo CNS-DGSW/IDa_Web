@@ -7,24 +7,36 @@ class AuthApi {
       pw,
     };
     const { data } = await Api.post("/auth/login", body);
+    return data;
+  }
+
+  async Register(
+    name: string,
+    birth: string,
+    email: string,
+    pw: string,
+    studentTel:string,
+    telAuthCode:string
+  ) {
+    const body = {
+      email,
+      pw,
+      name,
+      studentTel,
+      birth,
+      telAuthCode,
+    };
+    const { data } = await Api.post("/auth/register", body);
 
     return data;
   }
-  async Register(
-    name: string,
-    email: string,
-    pw: string,
-    birth: string,
-    duplicateInfo: string
-  ) {
+
+  async PhoneNum(phoneNumber: string) {
     const body = {
-      birth,
-      name,
-      email,
-      pw,
-      duplicateInfo,
-    };
-    const { data } = await Api.post("/auth/register", body);
+      phoneNumber,
+    }
+
+    const { data } = await Api.post(`/auth/mobile-auth`, body);
 
     return data;
   }
@@ -35,7 +47,6 @@ class AuthApi {
     };
 
     const { data } = await Api.post("/auth/authCode", body);
-
     return data;
   }
 

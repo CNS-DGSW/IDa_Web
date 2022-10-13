@@ -50,7 +50,12 @@ const Find = ({
     >
       <div className="FindPw-form">
         <div className="FindPw-form-email">
-          <CustomInput placeholder="이메일" setValue={setEmail} value={email} style={{ width: "78%" }} />
+          <CustomInput
+            placeholder="이메일"
+            setValue={setEmail}
+            value={email}
+            style={{ width: "78%" }}
+          />
           <CustomInput
             type="button"
             value="인증"
@@ -61,9 +66,23 @@ const Find = ({
             }}
           />
         </div>
-        <CustomInput placeholder="이메일 인증 코드" setValue={setCode} value={code} />
-        <CustomInput placeholder="새로운 비밀번호" setValue={setNewPw} value={newPw} />
-        <CustomInput placeholder="새로운 비밀번호 확인" setValue={setCheckPw} value={checkPw} />
+        <CustomInput
+          placeholder="이메일 인증 코드"
+          setValue={setCode}
+          value={code}
+        />
+        <CustomInput
+          placeholder="새로운 비밀번호"
+          type="password"
+          setValue={setNewPw}
+          value={newPw}
+        />
+        <CustomInput
+          type="password"
+          placeholder="새로운 비밀번호 확인"
+          setValue={setCheckPw}
+          value={checkPw}
+        />
       </div>
     </AuthContent>
   );

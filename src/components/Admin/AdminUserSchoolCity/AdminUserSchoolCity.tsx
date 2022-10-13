@@ -36,7 +36,7 @@ const AdminUserSchoolCity = ({
               <th>지역</th>
               <th>학교명</th>
               <th>예정(남)</th>
-              <th>예장(여)</th>
+              <th>예정(여)</th>
               <th>졸업(남)</th>
               <th>졸업(여)</th>
               <th>남</th>

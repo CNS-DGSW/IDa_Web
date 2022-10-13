@@ -43,7 +43,7 @@
       height: 123px;
     }
     &-mark {
-      border: 2px solid #ccc;
+      border: 2px solid #8f8d8d;
       width: 40px;
       height: 40px;
       text-align: center;
@@ -57,7 +57,8 @@
         position: relative;
         top: 10px;
         font-size: 11px;
-        color: #ddd;
+        color: #8f8d8d;
+        font-weight: 1000;
         line-height: 10px;
       }
     }
