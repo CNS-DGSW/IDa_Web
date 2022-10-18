@@ -91,9 +91,27 @@ const UserListContainer = ({}) => {
       });
   }, []);
 
-
   useEffect(() => {
-    console.log(userStatus)
+    if (userStatus !== undefined){
+      let submiteValue:number=0;
+      let postArrivedValue:number=0;
+      let checked:number=0;
+
+      userStatus.forEach((i) => {
+        // 제출 인원
+        if (i.isSubmit) {submiteValue++}
+        if (i.isPrintedApplicationArrived) {postArrivedValue++}
+        if (i.applicationChecked === "SUCCEED") {checked++}
+      })
+
+        setResult({
+          "총가입인원":userStatus.length,
+          "제출인원":submiteValue,
+          "우편도착인원":postArrivedValue,
+          "검토완료인원":checked,
+      })
+    }
+
   },[userStatus])
 
   // 날짜, 출신학교, 지역 별 비율 받아오기
