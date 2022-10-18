@@ -84,6 +84,10 @@ const UserListContainer = ({}) => {
       });
   }, []);
 
+  useEffect(() => {
+    console.log(userStatus)
+  },[userStatus])
+
   // 날짜, 출신학교, 지역 별 비율 받아오기
   const tryGetAllUserRatio = useCallback(() => {
     getAllUserRatio()
