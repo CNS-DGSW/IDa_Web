@@ -33,16 +33,18 @@ const FirstResultContainer = ({
   const setCommented = useCallback(() => {
     if (canAccess) {
       if (pass) {
-        setComment("축하드립니다 합격되었습니다.");
-        if (applyCheck === Apply.SPECIAL) {
-          setApplyComment("특별전형");
-        } else if (applyCheck === Apply.COMMON) {
-          setApplyComment("일반전형");
-        } else if (applyCheck === Apply.OTHER) {
-          setApplyComment("특례입학");
-        }
+        // setComment("축하드립니다 합격되었습니다.");
+        // if (applyCheck === Apply.SPECIAL) {
+        //   setApplyComment("특별전형");
+        // } else if (applyCheck === Apply.COMMON) {
+        //   setApplyComment("일반전형");
+        // } else if (applyCheck === Apply.OTHER) {
+        //   setApplyComment("특례입학");
+        // }
+        setComment("점수 체점중입니다.");
       } else if (pass === false) {
-        setComment("안타깝게도 불합격 되었습니다.");
+        // setComment("안타깝게도 불합격 되었습니다.");
+        setComment("점수 체점중입니다.");
       } else if (pass === null) {
         if (!submit || !print) {
           setComment("미제출 또는 우편미도착 입니다.");
