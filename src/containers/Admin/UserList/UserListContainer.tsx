@@ -32,7 +32,12 @@ const UserListContainer = ({}) => {
   const [name, setName] = useState<string>("");
   const [modal, setModal] = useState<boolean>(false);
 
-  const [result,setResult] = useState<Object>({
+  const [userResult,setUserResult] = useState<{
+    totalValue:number,
+    submiteValue:number,
+    postArrivedValue:number,
+    checkedValue:number
+  }>({
     totalValue:0,
     submiteValue:0,
     postArrivedValue:0,
@@ -104,7 +109,7 @@ const UserListContainer = ({}) => {
         if (i.applicationChecked === "SUCCEED") {checkedValue++}
       })
 
-        setResult({
+        setUserResult({
           totalValue:userStatus.length,
           submiteValue:submiteValue,
           postArrivedValue:postArrivedValue,
@@ -200,7 +205,7 @@ const UserListContainer = ({}) => {
       modal={modal}
       setModal={setModal}
       tryChangeReview={tryChangeReview}
-      result={result}
+      userResult={userResult}
     />
   );
 };
