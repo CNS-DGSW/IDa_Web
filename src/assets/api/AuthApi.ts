@@ -15,8 +15,8 @@ class AuthApi {
     birth: string,
     email: string,
     pw: string,
-    studentTel:string,
-    telAuthCode:string
+    studentTel: string,
+    telAuthCode: string
   ) {
     const body = {
       email,
@@ -24,7 +24,7 @@ class AuthApi {
       name,
       studentTel,
       birth,
-      telAuthCode,
+      telAuthCode: "",
     };
     const { data } = await Api.post("/auth/register", body);
 

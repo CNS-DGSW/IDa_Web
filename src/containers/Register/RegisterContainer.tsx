@@ -189,7 +189,7 @@ const RegisterContainer = () => {
           }
         });
     }
-  }, [name, birth, email, pw, checkPw, phoneNum, allCheck, phoneCheck]);
+  }, [name, birth, email, pw, checkPw, phoneNum, allCheck]);
 
   useEffect(() => {
     console.log(loading);
