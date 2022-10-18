@@ -30,7 +30,12 @@ interface UserListProps {
   modal: boolean;
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
   tryChangeReview: (userIdx: number, status: string) => void;
-  result:Object;
+  userResult:{
+    totalValue:number,
+    submiteValue:number,
+    postArrivedValue:number,
+    checkedValue:number
+  };
 }
 
 const UserList = ({
@@ -55,7 +60,7 @@ const UserList = ({
   modal,
   setModal,
   tryChangeReview,
-  result
+  userResult
 }: UserListProps) => {
   return (
     <>
@@ -133,10 +138,10 @@ const UserList = ({
               </thead>
               <tbody>
                 <tr>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>1</td>
+                  <td>{userResult.totalValue}</td>
+                  <td>{userResult.submiteValue}</td>
+                  <td>{userResult.postArrivedValue}</td>
+                  <td>{userResult.checkedValue}</td>
                 </tr>
               </tbody>
           </table>
