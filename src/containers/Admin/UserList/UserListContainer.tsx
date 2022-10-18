@@ -32,6 +32,13 @@ const UserListContainer = ({}) => {
   const [name, setName] = useState<string>("");
   const [modal, setModal] = useState<boolean>(false);
 
+  const [result,setResult] = useState<Object>({
+    "총가입인원":0,
+    "제출인원":0,
+    "우편도착인원":0,
+    "검토완료인원":0,
+  });
+
   const { GetUserList } = ExcelApi;
 
   const tryAddUser = () => {
@@ -83,6 +90,7 @@ const UserListContainer = ({}) => {
         handleAdmin(err, history);
       });
   }, []);
+
 
   useEffect(() => {
     console.log(userStatus)
@@ -174,6 +182,7 @@ const UserListContainer = ({}) => {
       modal={modal}
       setModal={setModal}
       tryChangeReview={tryChangeReview}
+      result={result}
     />
   );
 };
