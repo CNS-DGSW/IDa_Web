@@ -4,12 +4,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   background-color: $bg-Main-color;
   color: $ft-white;
   padding: 4rem 1rem 2rem 1rem;
   font-size: 0.9rem;
   &-wrap {
     margin: 0.1rem 0rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   @media screen and (max-width: 500px) {
     font-size: 0.7rem;
