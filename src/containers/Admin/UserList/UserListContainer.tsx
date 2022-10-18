@@ -33,10 +33,10 @@ const UserListContainer = ({}) => {
   const [modal, setModal] = useState<boolean>(false);
 
   const [result,setResult] = useState<Object>({
-    "총가입인원":0,
-    "제출인원":0,
-    "우편도착인원":0,
-    "검토완료인원":0,
+    totalValue:0,
+    submiteValue:0,
+    postArrivedValue:0,
+    checkedValue:0,
   });
 
   const { GetUserList } = ExcelApi;
@@ -95,20 +95,20 @@ const UserListContainer = ({}) => {
     if (userStatus !== undefined){
       let submiteValue:number=0;
       let postArrivedValue:number=0;
-      let checked:number=0;
+      let checkedValue:number=0;
 
       userStatus.forEach((i) => {
         // 제출 인원
         if (i.isSubmit) {submiteValue++}
         if (i.isPrintedApplicationArrived) {postArrivedValue++}
-        if (i.applicationChecked === "SUCCEED") {checked++}
+        if (i.applicationChecked === "SUCCEED") {checkedValue++}
       })
 
         setResult({
-          "총가입인원":userStatus.length,
-          "제출인원":submiteValue,
-          "우편도착인원":postArrivedValue,
-          "검토완료인원":checked,
+          totalValue:userStatus.length,
+          submiteValue:submiteValue,
+          postArrivedValue:postArrivedValue,
+          checkedValue:checkedValue,
       })
     }
 
