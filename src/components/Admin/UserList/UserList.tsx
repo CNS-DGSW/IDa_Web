@@ -119,6 +119,26 @@ const UserList = ({
             회원 추가
           </button>
         </div>
+        <div className="userList-resultWrapper">
+          <table className="userList-list">
+              <thead>
+                <tr className="userList-list-title">
+                  <th>총 가입인원</th>
+                  <th>제출 인원</th>
+                  <th>우편 도착 인원</th>
+                  <th>검토 완료 인원</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                </tr>
+              </tbody>
+          </table>
+        </div>
         <div className="userList-subtitle">
           사용자 이름을 클릭 시 원서 수정을 할 수 있습니다.
         </div>
