@@ -30,6 +30,7 @@ interface UserListProps {
   modal: boolean;
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
   tryChangeReview: (userIdx: number, status: string) => void;
+  result:Object;
 }
 
 const UserList = ({
@@ -54,6 +55,7 @@ const UserList = ({
   modal,
   setModal,
   tryChangeReview,
+  result
 }: UserListProps) => {
   return (
     <>
