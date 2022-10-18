@@ -31,7 +31,7 @@ const FirstResultContainer = ({
 
   // state를 이용해서 멘트를 정해주는 함수
   const setCommented = useCallback(() => {
-    if (canAccess) {
+    if (!canAccess) {
       if (pass) {
         setComment("축하드립니다 합격되었습니다.");
         if (applyCheck === Apply.SPECIAL) {
