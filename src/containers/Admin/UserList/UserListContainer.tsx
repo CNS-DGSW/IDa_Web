@@ -32,6 +32,18 @@ const UserListContainer = ({}) => {
   const [name, setName] = useState<string>("");
   const [modal, setModal] = useState<boolean>(false);
 
+  const [userResult,setUserResult] = useState<{
+    totalValue:number,
+    submiteValue:number,
+    postArrivedValue:number,
+    checkedValue:number
+  }>({
+    totalValue:0,
+    submiteValue:0,
+    postArrivedValue:0,
+    checkedValue:0,
+  });
+
   const { GetUserList } = ExcelApi;
 
   const tryAddUser = () => {
@@ -83,6 +95,29 @@ const UserListContainer = ({}) => {
         handleAdmin(err, history);
       });
   }, []);
+
+  useEffect(() => {
+    if (userStatus !== undefined){
+      let submiteValue:number=0;
+      let postArrivedValue:number=0;
+      let checkedValue:number=0;
+
+      userStatus.forEach((i) => {
+        // 제출 인원
+        if (i.isSubmit) {submiteValue++}
+        if (i.isPrintedApplicationArrived) {postArrivedValue++}
+        if (i.applicationChecked === "SUCCEED") {checkedValue++}
+      })
+
+        setUserResult({
+          totalValue:userStatus.length,
+          submiteValue:submiteValue,
+          postArrivedValue:postArrivedValue,
+          checkedValue:checkedValue,
+      })
+    }
+
+  },[userStatus])
 
   // 날짜, 출신학교, 지역 별 비율 받아오기
   const tryGetAllUserRatio = useCallback(() => {
@@ -170,6 +205,7 @@ const UserListContainer = ({}) => {
       modal={modal}
       setModal={setModal}
       tryChangeReview={tryChangeReview}
+      userResult={userResult}
     />
   );
 };
