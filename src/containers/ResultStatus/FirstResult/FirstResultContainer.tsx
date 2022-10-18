@@ -52,7 +52,7 @@ const FirstResultContainer = ({
       } else {
         setComment(pass);
       }
-    } else {
+    } else if (canAccess) {
       setComment("기다려주세요. 아직 결과가 나오지 않았습니다.");
     }
     // setModalLoading(false);
