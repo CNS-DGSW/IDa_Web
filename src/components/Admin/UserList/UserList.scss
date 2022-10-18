@@ -80,6 +80,10 @@
     width: 100%;
     border-collapse: collapse;
 
+    &-resultWrapper {
+      width:500px;
+    }
+
     &-title {
       background-color: $bg-gray-50;
     }
