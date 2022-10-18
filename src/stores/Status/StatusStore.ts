@@ -93,7 +93,17 @@ class StatusStore {
     this.pass = response.data.isPassedFirstApply; // 1차 합격 여부
     this.canAccess = response.data.canAccess;
     // }
-
+    console.log(
+      "server:",
+      "pass",
+      this.pass,
+      "can:",
+      this.canAccess,
+      "submit:",
+      this.submit,
+      "print:",
+      this.print
+    );
     return response;
   };
 
