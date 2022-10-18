@@ -24,7 +24,7 @@ class AuthApi {
       name,
       studentTel,
       birth,
-      telAuthCode: "",
+      telAuthCode: "1234",
     };
     const { data } = await Api.post("/auth/register", body);
 
