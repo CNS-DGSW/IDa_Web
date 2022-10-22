@@ -31,6 +31,17 @@ const FirstResultContainer = ({
 
   // state를 이용해서 멘트를 정해주는 함수
   const setCommented = useCallback(() => {
+    console.log(
+      "pass",
+      pass,
+      "can:",
+      canAccess,
+      "submit:",
+      submit,
+      "print:",
+      print
+    );
+
     if (canAccess) {
       if (pass) {
         setComment("축하드립니다 합격되었습니다.");
@@ -50,7 +61,7 @@ const FirstResultContainer = ({
           setComment("점수 체점중입니다.");
         }
       } else {
-        setComment(pass);
+        setComment("점수 체점중입니다.");
       }
     } else {
       setComment("기다려주세요. 아직 결과가 나오지 않았습니다.");

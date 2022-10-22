@@ -146,15 +146,7 @@ const RegisterContainer = () => {
 
   //회원가입하기
   const handleRegister = useCallback(async () => {
-    if (
-      !email ||
-      !pw ||
-      !checkPw ||
-      !name ||
-      !birth ||
-      !phoneNum ||
-      !phoneCheck
-    ) {
+    if (!email || !pw || !checkPw || !name || !birth || !phoneNum) {
       toast.warning("빈칸이 있습니다.");
     } else if (pw.length < 8) {
       toast.warning("비밀번호가 8자리 이상이여야 합니다.");
@@ -189,7 +181,7 @@ const RegisterContainer = () => {
           }
         });
     }
-  }, [name, birth, email, pw, checkPw, phoneNum, allCheck, phoneCheck]);
+  }, [name, birth, email, pw, checkPw, phoneNum, allCheck]);
 
   useEffect(() => {
     console.log(loading);

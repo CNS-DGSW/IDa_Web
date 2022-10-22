@@ -170,22 +170,22 @@ const Register = ({
               type="tel"
               value={phoneNum}
               setValue={setPhoneNum}
-              style={{ width: "70%" }}
+              style={{ width: "100%" }}
             />
-            <CustomInput
+            {/* <CustomInput
               type="button"
               value={counter === "0:00" ? "인증" : "재전송"}
               className="Register-box-form-btn"
               style={{ width: "29%", outline: "none" }}
               onClick={handlePhoneNumSend}
-            />
+            /> */}
           </div>
 
-          <VerificationNumber
+          {/* <VerificationNumber
             value={phoneCheck}
             setValue={setPhoneCheck}
             counter={counter}
-          />
+          /> */}
 
           {/* <CustomInput /> */}
 
