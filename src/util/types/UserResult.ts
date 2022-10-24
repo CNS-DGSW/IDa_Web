@@ -14,4 +14,5 @@ export type UserResult = {
   finalApplyTypeString: string;
   firstApplyTypeString: string;
   submitCode: string
+  examCode: string
 };

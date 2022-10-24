@@ -41,7 +41,7 @@ const UserResult = ({
       <table className="table-list">
         <thead>
           <tr className="table-list-title">
-            <th>접수 번호</th>
+            <th>수험 번호</th>
             <th>이름</th>
             <th>아이디</th>
             <th>1차 전형</th>
@@ -55,7 +55,7 @@ const UserResult = ({
             <tr key={idx}>
               <td>
                 <a target="_blank" href={`/write?userIdx=${userResult.idx}`}>
-                  {userResult.submitCode}
+                  {userResult.examCode}
                   {/* 보이는 id와 실제 이동되는 쿼리의 값이 다름 */}
                 </a>
               </td>
