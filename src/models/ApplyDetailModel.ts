@@ -51,12 +51,6 @@ const applyDetailModel = {
           description: "(차상위계층) 교육급여수급자",
         },
         {
-          name: "국가보훈대상자",
-          value: ApplyDetail.VERTERANS,
-          description:
-            "국가보훈기본법 제3조제2호의 국가보훈대상자 또는 그 자녀",
-        },
-        {
           name: "한부모 가족 보호 대상자",
           value: ApplyDetail.ONE_PARENT_PROTECT,
           description: "한부모가족지원법 제5조에 따른 한부모가족보호대상자",
@@ -214,8 +208,8 @@ const applyDetailModel = {
     models: [
       {
         name: "(정원외)국가 보훈 대상자",
-        value: ApplyDetail.NATIONAL_VETERAN,
-        description: "",
+        value: ApplyDetail.VERTERANS,
+        description: "국가보훈기본법 제3조제2호의 국가보훈대상자 또는 그 자녀",
       },
     ],
   },

@@ -186,9 +186,9 @@ const UserResult = ({
                     return (
                       <option
                         key={i}
-                        value={ApplyType.NATIONAL + "-" + apply.value}
+                        value={ApplyType.SPECIAL + "-" + apply.value}
                       >
-                        특별 전형 - {applyDetailModel.national.name} -{" "}
+                        국가 보훈 대상자 - {applyDetailModel.national.name} -{" "}
                         {apply.name}
                       </option>
                     );
