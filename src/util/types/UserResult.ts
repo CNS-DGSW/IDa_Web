@@ -13,4 +13,5 @@ export type UserResult = {
   isPassedSecondApply: boolean;
   finalApplyTypeString: string;
   firstApplyTypeString: string;
+  submitCode: string
 };
