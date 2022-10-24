@@ -88,5 +88,7 @@ enum ApplyDetail {
   NORTH_KOREAN_DEFECTORS = "NORTH_KOREAN_DEFECTORS",
   // 외국 학교 전학자
   FOREIGN_SCHOOL = "FOREIGN_SCHOOL",
+  // 국가 보훈 대상자
+  NATIONAL_VETERAN = "NATIONAL_VETERAN",
 }
 export default ApplyDetail;

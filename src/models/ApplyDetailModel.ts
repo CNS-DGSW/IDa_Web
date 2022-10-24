@@ -209,6 +209,16 @@ const applyDetailModel = {
       },
     ],
   },
+  national: {
+    name: "국가 보훈 대상자",
+    models: [
+      {
+        name: "(정원외)국가 보훈 대상자",
+        value: ApplyDetail.NATIONAL_VETERAN,
+        description: "",
+      },
+    ],
+  },
 };
 
 const findNameByValue = (value?: ApplyDetail | null): string => {

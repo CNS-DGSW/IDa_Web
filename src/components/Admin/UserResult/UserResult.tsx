@@ -182,6 +182,17 @@ const UserResult = ({
                       특례 입학 - {apply.name}
                     </option>
                   ))}
+                  {applyDetailModel.national.models.map((apply, i) => {
+                    return (
+                      <option
+                        key={i}
+                        value={ApplyType.NATIONAL + "-" + apply.value}
+                      >
+                        특별 전형 - {applyDetailModel.national.name} -{" "}
+                        {apply.name}
+                      </option>
+                    );
+                  })}
                 </select>
               </td>
               <td>
