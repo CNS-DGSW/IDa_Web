@@ -51,12 +51,6 @@ const applyDetailModel = {
           description: "(차상위계층) 교육급여수급자",
         },
         {
-          name: "국가보훈대상자",
-          value: ApplyDetail.VERTERANS,
-          description:
-            "국가보훈기본법 제3조제2호의 국가보훈대상자 또는 그 자녀",
-        },
-        {
           name: "한부모 가족 보호 대상자",
           value: ApplyDetail.ONE_PARENT_PROTECT,
           description: "한부모가족지원법 제5조에 따른 한부모가족보호대상자",
@@ -206,6 +200,16 @@ const applyDetailModel = {
         value: ApplyDetail.FOREIGN_SCHOOL,
         description:
           "외국인 학생이거나 외국의 학교에서 2년 이상 재학하고 귀국하여 국내의 중학교에 전학 또는 편입학하여 졸업한 학생 또는 정부의 초청 또는 추천에 의하여 귀국한 과학기술자 및 교수요원의 자녀",
+      },
+    ],
+  },
+  national: {
+    name: "국가 보훈 대상자",
+    models: [
+      {
+        name: "(정원외)국가 보훈 대상자",
+        value: ApplyDetail.VERTERANS,
+        description: "국가보훈기본법 제3조제2호의 국가보훈대상자 또는 그 자녀",
       },
     ],
   },
