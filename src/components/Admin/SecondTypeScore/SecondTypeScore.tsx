@@ -165,7 +165,7 @@ const SecondTypeScore = ({
                 {/* 직무적성 */}
                 <td>{i.interviewScore}</td>
                 {/* 면접 점수 */}
-                <td>{i.swAbilityScore}</td>
+                {/* <td>{i.swAbilityScore}</td> */}
                 {/* sw역량 */}
                 <td>{i.cooperationScore}</td>
                 {/* 창의협업역량 */}
