@@ -146,7 +146,7 @@ const InterViewScore = ({
                 <td>{key + 1}</td>
                 <td>{i.examCode}</td>
                 <td>{i.userName}</td>
-                <td>{i.examCode}</td>
+                <td>{i.isAttend ? "참석" : "미참석"}</td>
                 <td>{i.evaluationFactor1}</td>
                 <td>{i.evaluationFactor2}</td>
                 <td>{i.evaluationFactor3}</td>
