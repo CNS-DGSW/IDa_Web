@@ -121,11 +121,11 @@ const SecondTypeScore = ({
               <th>출결</th>
               <th>봉사</th>
               <th>가산점</th>
-              <th>면접</th>
-              <th>창의협업역량</th>
-              <th>심층면접</th>
+              {/* <th>면접</th> */}
               <th>직무적성</th>
+              <th>창의협업역량</th>
               <th>sw역량</th>
+              <th>심층면접</th>
               <th>합계</th>
               <th>합격여부</th>
               <th>최종합격전형</th>
