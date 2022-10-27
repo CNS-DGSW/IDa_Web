@@ -42,20 +42,32 @@ const DefaultAdminHeader = ({ children }: DefaultAdminHeaderProps) => {
             <span>신입생 입학 전형 원부</span>
           </NavLink>
           <NavLink
+            to="/admin/detailScore"
+            className="Admin-header-link"
+            activeClassName="Admin-header-link-active"
+          >
+            <span style={{ textAlign: "center", display: "flex" }}>
+              2차 전형 점수 관리 <br></br>(sw 역량, 직무능력, 코딩테스트)
+            </span>
+          </NavLink>
+          <NavLink
+            to="/admin/interviewScore"
+            className="Admin-header-link"
+            activeClassName="Admin-header-link-active"
+          >
+            <span style={{ textAlign: "center", display: "flex" }}>
+              2차 전형 면접 점수
+              <br />
+              (창의협업, 구술면접)
+            </span>
+          </NavLink>
+          <NavLink
             exact
             to="/admin/secondScore"
             className="Admin-header-link"
             activeClassName="Admin-header-link-active"
           >
             <span>2차 전형 점수 관리</span>
-          </NavLink>
-
-          <NavLink
-            to="/admin/interviewScore"
-            className="Admin-header-link"
-            activeClassName="Admin-header-link-active"
-          >
-            <span>2차 전형 면접 점수</span>
           </NavLink>
 
           <NavLink

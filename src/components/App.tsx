@@ -8,8 +8,8 @@ import MainPage from "pages/MainPage";
 import RegisterPage from "pages/RegisterPage";
 import ChangePwPage from "pages/ChangePwPage";
 import FindPage from "pages/FindPage";
-import QnaPage from "pages/QnaPage";
-import FaqPage from "pages/FaqPage";
+// import QnaPage from "pages/QnaPage";
+// import FaqPage from "pages/FaqPage";
 import WritePrintPage from "pages/WritePrintPage";
 import NoticePage from "pages/NoticePage";
 import WritePage from "pages/WritePage";
@@ -17,6 +17,11 @@ import WritePage from "pages/WritePage";
 const SecondTypeScorePage = React.lazy(
   () => import("pages/AdminPage/SecondTypeScorePage")
 );
+
+const SecondDetailSocre = React.lazy(
+  () => import("pages/AdminPage/SecondDetailScore")
+);
+
 const ReceiptStatusPage = React.lazy(
   () => import("pages/AdminPage/AdminReceiptStatusPage")
 );
@@ -79,6 +84,11 @@ const App = () => {
             exact
             path="/admin/userResultPage"
             component={UserResultPage}
+          />
+          <Route
+            exact
+            path="/admin/detailScore"
+            component={SecondDetailSocre}
           />
         </Suspense>
       </Switch>

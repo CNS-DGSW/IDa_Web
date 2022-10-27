@@ -131,13 +131,13 @@ const InterViewScore = ({
                   <th>평가요소8</th>
                 </>
               )}
+              <th>평가요소 합산점수</th>
               <th>
                 {" "}
                 {interView === InterViewCategory.INTERVIEW
-                  ? "구술 면접 점수"
-                  : "창의 협업 점수"}
+                  ? "전형별 구술 면접 점수"
+                  : "전형별 창의 협업 점수"}
               </th>
-              <th>합산점수</th>
             </tr>
           </thead>
           <tbody>
@@ -146,7 +146,7 @@ const InterViewScore = ({
                 <td>{key + 1}</td>
                 <td>{i.examCode}</td>
                 <td>{i.userName}</td>
-                <td>{i.examCode}</td>
+                <td>{i.isAttend ? "참석" : "미참석"}</td>
                 <td>{i.evaluationFactor1}</td>
                 <td>{i.evaluationFactor2}</td>
                 <td>{i.evaluationFactor3}</td>
@@ -159,7 +159,6 @@ const InterViewScore = ({
                     <td>{i.evaluationFactor8}</td>
                   </>
                 )}
-                <td>{i.calcScore}</td>
                 <td>
                   {i.evaluationFactor1 +
                     i.evaluationFactor2 +
@@ -170,6 +169,7 @@ const InterViewScore = ({
                     (i.evaluationFactor7 !== null ? i.evaluationFactor7 : 0) +
                     (i.evaluationFactor8 !== null ? i.evaluationFactor8 : 0)}
                 </td>
+                <td>{i.calcScore}</td>
               </tr>
             ))}
           </tbody>

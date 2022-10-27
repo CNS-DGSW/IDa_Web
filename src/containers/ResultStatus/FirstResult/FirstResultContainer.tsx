@@ -24,7 +24,7 @@ const FirstResultContainer = ({
   const [errStatus, setErrStatus] = useState<number>(0);
   const status: number = 403;
   const [comment, setComment] = useState<string | undefined>("");
-  // 합격 불합격 체점중 등등 멘트를 관리하는 state
+  // 합격 불합격 채점중 등등 멘트를 관리하는 state
   const [applyCheck, setApplyCheck] = useState<Apply | null>();
   const [applyComment, setApplyComment] = useState<string>("");
   // 합격 하였을때 전형을 넣어주는 state
@@ -58,10 +58,10 @@ const FirstResultContainer = ({
         if (!submit || !print) {
           setComment("미제출 또는 우편미도착 입니다.");
         } else {
-          setComment("점수 체점중입니다.");
+          setComment("점수 채점중입니다.");
         }
       } else {
-        setComment("점수 체점중입니다.");
+        setComment("점수 채점중입니다.");
       }
     } else {
       setComment("기다려주세요. 아직 결과가 나오지 않았습니다.");
