@@ -170,9 +170,9 @@ const SecondTypeScore = ({
                 {/* 창의협업역량 */}
                 <td>{i.totalInterviewScore}</td>
                 {/* 심층면접 */}
-                <td>{i.totalScore}</td>
-                {/* 코딩테스트 */}
                 <td>{i.codingTestScore}</td>
+                {/* 코딩테스트 */}
+                <td>{i.totalScore}</td>
                 {/* 합계 */}
                 <td>
                   {i.isPassed === true
