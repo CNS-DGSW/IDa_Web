@@ -21,7 +21,7 @@ const SecondTypeScore = ({
     <div className="SecondScore">
       <span className="SecondScore-title">2차 전형 점수 관리</span>
       <div className="SecondScore-buttons">
-        {/* <select
+        <select
           className="SecondScore-buttons-s-op"
           name=""
           id=""
@@ -35,10 +35,10 @@ const SecondTypeScore = ({
           <option className="SecondScore-buttons-s-op" value={"1"}>
             업로드
           </option>
-        </select> */}
+        </select>
         {select === "0" ? (
           <>
-            {/* <div className="SecondScore-buttons-download">
+            <div className="SecondScore-buttons-download">
               <span>소프트웨어역량평가</span>
               <button className="buttons" onClick={() => tryDown("sw")}>
                 서식 다운로드
@@ -54,15 +54,6 @@ const SecondTypeScore = ({
               <span>코딩테스트</span>
               <button className="buttons" onClick={() => tryDown("coding")}>
                 서식 다운로드
-              </button>
-            </div> */}
-            <div className="SecondScore-buttons-download">
-              <span>최종 결과 다운로드</span>
-              <button
-                className="buttons"
-                onClick={() => tryDown("secondScore")}
-              >
-                엑셀 다운로드
               </button>
             </div>
           </>
@@ -123,13 +114,13 @@ const SecondTypeScore = ({
               <th>가산점</th>
               {/* <th>면접</th> */}
               <th>직무적성</th>
-              <th>창의협업역량</th>
+              {/* <th>창의협업역량</th> */}
               <th>sw역량</th>
-              <th>심층면접</th>
+              {/* <th>심층면접</th> */}
               <th>코딩테스트</th>
               <th>합계</th>
-              <th>합격여부</th>
-              <th>최종합격전형</th>
+              {/* <th>합격여부</th> */}
+              {/* <th>최종합격전형</th> */}
             </tr>
           </thead>
           <tbody>
@@ -166,28 +157,10 @@ const SecondTypeScore = ({
                 {/* 직무적성 */}
                 <td>{i.swAbilityScore}</td>
                 {/* sw역량 */}
-                <td>{i.cooperationScore}</td>
-                {/* 창의협업역량 */}
-                <td>{i.totalInterviewScore}</td>
-                {/* 심층면접 */}
-                <td>{i.totalScore}</td>
-                {/* 코딩테스트 */}
                 <td>{i.codingTestScore}</td>
+                {/* 코딩테스트 */}
+                <td>{i.totalScore}</td>
                 {/* 합계 */}
-                <td>
-                  {i.isPassed === true
-                    ? "합격"
-                    : i.isPassed === false
-                    ? "불합격"
-                    : ""}
-                </td>
-                {/* 합격여부 */}
-                <td>
-                  {i.finalApplyType === "COMMON" && "일반전형"}
-                  {i.finalApplyType === "SPECIAL" && "특별전형"}
-                  {i.finalApplyType === "OTHER" && "특례입학"}
-                </td>
-                {/* 최종합격전형 */}
               </tr>
             ))}
           </tbody>
