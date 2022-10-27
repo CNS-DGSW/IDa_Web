@@ -47,7 +47,11 @@ const DefaultAdminHeader = ({ children }: DefaultAdminHeaderProps) => {
             className="Admin-header-link"
             activeClassName="Admin-header-link-active"
           >
-            <span>2차 전형 점수 관리</span>
+            <span style={{ textAlign: "center", display: "flex" }}>
+              2차 전형 점수 관리
+              <br />
+              (SW역량, 직무능력, 코딩테스트)
+            </span>
           </NavLink>
 
           <NavLink
@@ -55,7 +59,11 @@ const DefaultAdminHeader = ({ children }: DefaultAdminHeaderProps) => {
             className="Admin-header-link"
             activeClassName="Admin-header-link-active"
           >
-            <span>2차 전형 면접 점수</span>
+            <span style={{ textAlign: "center", display: "flex" }}>
+              2차 전형 면접 점수
+              <br />
+              (창의협업, 구술면접)
+            </span>
           </NavLink>
 
           <NavLink
