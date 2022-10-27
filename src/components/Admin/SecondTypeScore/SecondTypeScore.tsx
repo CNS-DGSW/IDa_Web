@@ -121,7 +121,6 @@ const SecondTypeScore = ({
               <th>출결</th>
               <th>봉사</th>
               <th>가산점</th>
-              {/* <th>면접</th> */}
               <th>직무적성</th>
               <th>창의협업역량</th>
               <th>sw역량</th>
@@ -164,10 +163,10 @@ const SecondTypeScore = ({
                 {/* 가산점 */}
                 <td>{i.jobAptitudeScore}</td>
                 {/* 직무적성 */}
-                <td>{i.swAbilityScore}</td>
-                {/* sw역량 */}
                 <td>{i.cooperationScore}</td>
                 {/* 창의협업역량 */}
+                <td>{i.swAbilityScore}</td>
+                {/* sw역량 */}
                 <td>{i.totalInterviewScore}</td>
                 {/* 심층면접 */}
                 <td>{i.codingTestScore}</td>
