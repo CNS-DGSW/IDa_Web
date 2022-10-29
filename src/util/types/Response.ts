@@ -308,6 +308,9 @@ export interface InterViewScoreResponse extends Response {
       evaluationFactor6: number | null;
       evaluationFactor7: number | null;
       evaluationFactor8: number | null;
+      evaluationFactor9: number | null;
+      evaluationFactor10: number | null;
+
       examCode: number;
       isAttend: boolean;
       interviewCategory: InterViewCategory;
