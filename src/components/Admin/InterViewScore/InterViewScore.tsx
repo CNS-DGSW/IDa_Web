@@ -15,7 +15,7 @@ interface InterViewScoreProps {
   tryGetNumberTeam: () => void;
   tyrUploadTeam: (e: React.ChangeEvent<HTMLInputElement>) => void;
   attend: string;
-  selectAttend: (e: React.FormEvent<HTMLOptionElement>) => void;
+  selectAttend: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
 const InterViewScore = ({
@@ -154,10 +154,10 @@ const InterViewScore = ({
                 <td>{i.userName}</td>
                 {/* <td>{i.isAttend ? "참석" : "미참석"}</td> */}
                 <td>
-                  <option value={attend} onChange={(e) => selectAttend(e)}>
-                    <select>참석</select>
-                    <select>미참석</select>
-                  </option>
+                  <select value={attend} onChange={(e) => selectAttend(e)}>
+                    <option>참석</option>
+                    <option>미참석</option>
+                  </select>
                 </td>
                 <td>{i.evaluationFactor1}</td>
                 <td>{i.evaluationFactor2}</td>

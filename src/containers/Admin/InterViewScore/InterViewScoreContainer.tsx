@@ -139,9 +139,8 @@ const InterViewScoreContainer = ({}) => {
   );
 
   //참석여부 컬럼에서 참석, 미참석 선택 하는 함수
-  const selectAttend = (e: React.FormEvent<HTMLOptionElement>) => {
-    const result = (e.target as HTMLSelectElement).value;
-    setAttend(result);
+  const selectAttend = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setAttend(e.target.value);
   };
 
   useEffect(() => {
