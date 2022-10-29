@@ -14,6 +14,8 @@ interface InterViewScoreProps {
   interView: InterViewCategory;
   tryGetNumberTeam: () => void;
   tyrUploadTeam: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  attend: string;
+  selectAttend: (e: React.FormEvent<HTMLOptionElement>) => void;
 }
 
 const InterViewScore = ({
@@ -27,6 +29,8 @@ const InterViewScore = ({
   uploadFile,
   tryGetNumberTeam,
   tyrUploadTeam,
+  attend,
+  selectAttend,
 }: InterViewScoreProps) => {
   return (
     <div className="InterViewScore">
@@ -146,7 +150,13 @@ const InterViewScore = ({
                 <td>{key + 1}</td>
                 <td>{i.examCode}</td>
                 <td>{i.userName}</td>
-                <td>{i.isAttend ? "참석" : "미참석"}</td>
+                {/* <td>{i.isAttend ? "참석" : "미참석"}</td> */}
+                <td>
+                  <option value={attend} onChange={(e) => selectAttend(e)}>
+                    <select>참석</select>
+                    <select>미참석</select>
+                  </option>
+                </td>
                 <td>{i.evaluationFactor1}</td>
                 <td>{i.evaluationFactor2}</td>
                 <td>{i.evaluationFactor3}</td>
