@@ -139,7 +139,7 @@ const InterViewScore = ({
               <th>
                 {" "}
                 {interView === InterViewCategory.INTERVIEW
-                  ? "전형별 구술 면접 점수"
+                  ? "총점"
                   : "전형별 창의 협업 점수"}
               </th>
             </tr>
