@@ -135,7 +135,7 @@ const InterViewScore = ({
                   <th>평가요소8</th>
                 </>
               )}
-              <th>평가요소 합산점수</th>
+              {/* <th>평가요소 합산점수</th> */}
               <th>
                 {" "}
                 {interView === InterViewCategory.INTERVIEW
@@ -169,7 +169,7 @@ const InterViewScore = ({
                     <td>{i.evaluationFactor8}</td>
                   </>
                 )}
-                <td>
+                {/* <td>
                   {i.evaluationFactor1 +
                     i.evaluationFactor2 +
                     i.evaluationFactor3 +
@@ -178,7 +178,7 @@ const InterViewScore = ({
                     (i.evaluationFactor6 !== null ? i.evaluationFactor6 : 0) +
                     (i.evaluationFactor7 !== null ? i.evaluationFactor7 : 0) +
                     (i.evaluationFactor8 !== null ? i.evaluationFactor8 : 0)}
-                </td>
+                </td> */}
                 <td>{i.calcScore}</td>
               </tr>
             ))}
