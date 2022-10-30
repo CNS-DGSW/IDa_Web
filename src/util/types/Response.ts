@@ -282,6 +282,7 @@ export interface SecondScoreResponse extends Response {
       interviewScore: number;
       jobAptitudeScore: number;
       swAbilityScore: number;
+      schoolName: string
       totalInterviewScore: number;
       totalScore: number;
       userIdx: number;
