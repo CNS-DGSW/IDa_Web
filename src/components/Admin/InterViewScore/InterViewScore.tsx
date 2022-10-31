@@ -183,7 +183,7 @@ const InterViewScore = ({
                     (i.evaluationFactor7 !== null ? i.evaluationFactor7 : 0) +
                     (i.evaluationFactor8 !== null ? i.evaluationFactor8 : 0)}
                 </td> */}
-                <td>{i.calcScore}</td>
+                <td>{i.totalScore}</td>
               </tr>
             ))}
           </tbody>
