@@ -311,7 +311,7 @@ export interface InterViewScoreResponse extends Response {
       evaluationFactor8: number | null;
       evaluationFactor9: number | null;
       evaluationFactor10: number | null;
-
+      totalScore: number;
       examCode: number;
       isAttend: boolean;
       interviewCategory: InterViewCategory;
