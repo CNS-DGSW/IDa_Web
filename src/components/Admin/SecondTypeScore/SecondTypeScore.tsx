@@ -116,12 +116,12 @@ const SecondTypeScore = ({
               <th>이름</th>
               <th>학력</th>
               <th>지역</th>
+              <th>학교</th>
               <th>1차합격전형</th>
               <th>교과</th>
               <th>출결</th>
               <th>봉사</th>
               <th>가산점</th>
-              {/* <th>면접</th> */}
               <th>직무적성</th>
               <th>창의협업역량</th>
               <th>sw역량</th>
@@ -148,6 +148,7 @@ const SecondTypeScore = ({
                 {/* 학력 */}
                 <td>{i.cityName}</td>
                 {/* 지역 */}
+                <th>{i.schoolName}</th>
                 <td>
                   {i.applyType === "COMMON" && "일반전형"}
                   {i.applyType === "SPECIAL" && "특별전형"}
@@ -164,10 +165,10 @@ const SecondTypeScore = ({
                 {/* 가산점 */}
                 <td>{i.jobAptitudeScore}</td>
                 {/* 직무적성 */}
-                <td>{i.swAbilityScore}</td>
-                {/* sw역량 */}
                 <td>{i.cooperationScore}</td>
                 {/* 창의협업역량 */}
+                <td>{i.swAbilityScore}</td>
+                {/* sw역량 */}
                 <td>{i.totalInterviewScore}</td>
                 {/* 심층면접 */}
                 <td>{i.codingTestScore}</td>

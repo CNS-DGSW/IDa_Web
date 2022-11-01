@@ -45,7 +45,7 @@ const SecondResultContainer = ({
       } else if (pass === false) {
         setComment("불합격입니다. 수고하셨습니다.");
       } else if (pass === null) {
-        setComment("기다려주세요. 아직 결과가 나오지 않았습니다.");
+        setComment("합격 발표일은 11월 2일 오전 10시입니다.");
       }
     },
     [comment]

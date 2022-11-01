@@ -159,7 +159,7 @@ const SecondTypeScore = ({
                 {/* sw역량 */}
                 <td>{i.codingTestScore}</td>
                 {/* 코딩테스트 */}
-                <td>{i.totalScore}</td>
+                <td>{i.totalScore === 0 ? i.totalScore : "X"}</td>
                 {/* 합계 */}
               </tr>
             ))}

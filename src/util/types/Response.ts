@@ -282,6 +282,7 @@ export interface SecondScoreResponse extends Response {
       interviewScore: number;
       jobAptitudeScore: number;
       swAbilityScore: number;
+      schoolName: string
       totalInterviewScore: number;
       totalScore: number;
       userIdx: number;
@@ -308,6 +309,9 @@ export interface InterViewScoreResponse extends Response {
       evaluationFactor6: number | null;
       evaluationFactor7: number | null;
       evaluationFactor8: number | null;
+      evaluationFactor9: number | null;
+      evaluationFactor10: number | null;
+      totalScore: number;
       examCode: number;
       isAttend: boolean;
       interviewCategory: InterViewCategory;

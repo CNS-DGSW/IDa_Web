@@ -29,6 +29,8 @@ const InterViewScoreContainer = ({}) => {
   // 팀 선택 하는 useState
   const [scoreDate, setScoreDate] = useState<InterViewScoreResponse>();
   // 학생들의 점수를 저장하는 useState
+  const [attend, setAttend] = useState<string>("참석");
+  // 학생들의 참석여부를 저장하는 useState
   const history = useHistory();
 
   // 팀 번호별 점수를 excel 다운받는 함수 0은 전체 팀 점수를 다운받는다.
@@ -136,6 +138,11 @@ const InterViewScoreContainer = ({}) => {
     [tryGetScore]
   );
 
+  //참석여부 컬럼에서 참석, 미참석 선택 하는 함수
+  const selectAttend = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setAttend(e.target.value);
+  };
+
   useEffect(() => {
     tryGetTeam();
   }, [interView]);
@@ -156,6 +163,8 @@ const InterViewScoreContainer = ({}) => {
       uploadFile={uploadFile}
       tryGetNumberTeam={tryGetNumberTeam}
       tyrUploadTeam={tyrUploadTeam}
+      attend={attend}
+      selectAttend={selectAttend}
     />
   );
 };

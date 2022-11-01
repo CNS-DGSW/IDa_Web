@@ -14,6 +14,8 @@ interface InterViewScoreProps {
   interView: InterViewCategory;
   tryGetNumberTeam: () => void;
   tyrUploadTeam: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  attend: string;
+  selectAttend: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
 const InterViewScore = ({
@@ -27,6 +29,8 @@ const InterViewScore = ({
   uploadFile,
   tryGetNumberTeam,
   tyrUploadTeam,
+  attend,
+  selectAttend,
 }: InterViewScoreProps) => {
   return (
     <div className="InterViewScore">
@@ -129,13 +133,15 @@ const InterViewScore = ({
                   <th>평가요소6</th>
                   <th>평가요소7</th>
                   <th>평가요소8</th>
+                  <th>평가요소9</th>
+                  <th>평가요소10</th>
                 </>
               )}
-              <th>평가요소 합산점수</th>
+              {/* <th>평가요소 합산점수</th> */}
               <th>
                 {" "}
                 {interView === InterViewCategory.INTERVIEW
-                  ? "전형별 구술 면접 점수"
+                  ? "총점"
                   : "전형별 창의 협업 점수"}
               </th>
             </tr>
@@ -146,7 +152,13 @@ const InterViewScore = ({
                 <td>{key + 1}</td>
                 <td>{i.examCode}</td>
                 <td>{i.userName}</td>
-                <td>{i.isAttend ? "참석" : "미참석"}</td>
+                {/* <td>{i.isAttend ? "참석" : "미참석"}</td> */}
+                <td>
+                  <select value={attend} onChange={(e) => selectAttend(e)}>
+                    <option>참석</option>
+                    <option>미참석</option>
+                  </select>
+                </td>
                 <td>{i.evaluationFactor1}</td>
                 <td>{i.evaluationFactor2}</td>
                 <td>{i.evaluationFactor3}</td>
@@ -157,9 +169,11 @@ const InterViewScore = ({
                     <td>{i.evaluationFactor6}</td>
                     <td>{i.evaluationFactor7}</td>
                     <td>{i.evaluationFactor8}</td>
+                    <td>{i.evaluationFactor9}</td>
+                    <td>{i.evaluationFactor10}</td>
                   </>
                 )}
-                <td>
+                {/* <td>
                   {i.evaluationFactor1 +
                     i.evaluationFactor2 +
                     i.evaluationFactor3 +
@@ -168,8 +182,8 @@ const InterViewScore = ({
                     (i.evaluationFactor6 !== null ? i.evaluationFactor6 : 0) +
                     (i.evaluationFactor7 !== null ? i.evaluationFactor7 : 0) +
                     (i.evaluationFactor8 !== null ? i.evaluationFactor8 : 0)}
-                </td>
-                <td>{i.calcScore}</td>
+                </td> */}
+                <td>{i.totalScore}</td>
               </tr>
             ))}
           </tbody>
