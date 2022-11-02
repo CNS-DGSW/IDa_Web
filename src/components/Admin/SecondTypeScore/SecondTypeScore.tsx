@@ -171,7 +171,8 @@ const SecondTypeScore = ({
                 {/* sw역량 */}
                 <td>{i.totalInterviewScore}</td>
                 {/* 심층면접 */}
-                <td>{i.codingTestScore}</td>
+                <td>{i.codingTestScore !== 0 ? i.codingTestScore : "X"}</td>
+
                 {/* 코딩테스트 */}
                 <td>{i.totalScore}</td>
                 {/* 합계 */}
