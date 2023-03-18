@@ -157,9 +157,9 @@ const SecondTypeScore = ({
                 {/* 직무적성 */}
                 <td>{i.swAbilityScore}</td>
                 {/* sw역량 */}
-                <td>{i.codingTestScore}</td>
+                <td>{i.codingTestScore !== 0 ? i.codingTestScore : "X"}</td>
                 {/* 코딩테스트 */}
-                <td>{i.totalScore === 0 ? i.totalScore : "X"}</td>
+                <td>{i.totalScore}</td>
                 {/* 합계 */}
               </tr>
             ))}
