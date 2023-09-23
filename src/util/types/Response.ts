@@ -267,26 +267,34 @@ export interface UserReulstListResponse extends Response {
 export interface SecondScoreResponse extends Response {
   data: [
     {
+      // 출결
       absenceScore: number;
+      // 가산점
       additionalScore: number;
       applyDetailType: Apply | null;
       applyType: Apply | null;
       cityName: string;
+      // 컴퓨팅 사고 역량
       codingTestScore: number;
+      // 창의협업역량
       cooperationScore: number;
       examCode: number;
       finalApplyDetailType: Apply | null;
       finalApplyType: Apply | null;
+      // 교과
       gradeScore: number;
       gradeType: Grade | null;
       interviewScore: number;
-      jobAptitudeScore: number;
+      // 직무적성 소양평가
       swAbilityScore: number;
+      // 학업 및 진로역량
+      jobAptitudeScore: number;
       schoolName: string
       totalInterviewScore: number;
       totalScore: number;
       userIdx: number;
       userName: string;
+      // 봉사
       volunteerScore: number;
       isPassed: boolean | null;
     }

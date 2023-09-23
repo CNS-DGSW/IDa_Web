@@ -16,8 +16,8 @@ const SecondTypeScoreContainer = ({}) => {
     GetJob,
     GetCodingTest,
     GetSecondScoreExcel,
-    uploadSw,
-    uploadCodingTest,
+    uploadStu,
+    uploadComputing,
     uploadJob,
   } = ExcelApi;
 
@@ -76,17 +76,6 @@ const SecondTypeScoreContainer = ({}) => {
     if (e.target.files && e.target.files.length) {
       let file = e.target.files[0];
       switch (content) {
-        case "sw":
-          await uploadSw(file)
-            .then(() => {
-              toast.success("파일 업로드 되었습니다");
-            })
-            .catch((err) => {
-              if (err.response?.status === 400) {
-                toast.warning("파일을 잘못선택하였습니다");
-              }
-            });
-          break;
         case "job":
           await uploadJob(file)
             .then(() => {
@@ -98,8 +87,19 @@ const SecondTypeScoreContainer = ({}) => {
               }
             });
           break;
-        case "coding":
-          await uploadCodingTest(file)
+        case "stu":
+          await uploadStu(file)
+            .then(() => {
+              toast.success("파일 업로드 되었습니다");
+            })
+            .catch((err) => {
+              if (err.response?.status === 400) {
+                toast.warning("파일을 잘못선택하였습니다");
+              }
+            });
+          break;
+        case "computing":
+          await uploadComputing(file)
             .then(() => {
               toast.success("파일 업로드 되었습니다");
             })

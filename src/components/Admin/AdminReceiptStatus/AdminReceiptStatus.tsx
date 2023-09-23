@@ -52,8 +52,7 @@ const AdminReceiptStatus = ({
               <th>출결</th>
               <th>봉사</th>
               <th>가산점</th>
-              <th>점수합계/일반</th>
-              <th>점수합계/특별</th>
+              <th>점수합계</th>
               <th>최종제출여부</th>
               <th>제출취소</th>
               <th>원서출력</th>
@@ -97,8 +96,6 @@ const AdminReceiptStatus = ({
                       <td>{filteredName.additionalScore}</td>
                       <td>{filteredName.commonTotalScore}</td>
                       {/* 점수 합계/일반 */}
-                      <td>{filteredName.specialTotalScore}</td>
-                      {/* 점수 합계/특별 */}
                       <td>{filteredName.isSubmit ? "제출완료" : "미제출"}</td>
                       <td>
                         {filteredName.isSubmit ? (
@@ -140,8 +137,6 @@ const AdminReceiptStatus = ({
                     <td>{res.additionalScore}</td>
                     <td>{res.commonTotalScore}</td>
                     {/* 점수 합계/일반 */}
-                    <td>{res.specialTotalScore}</td>
-                    {/* 점수 합계/특별 */}
                     <td>{res.isSubmit ? "제출완료" : "미제출"}</td>
                     <td>
                       {res.isSubmit ? (

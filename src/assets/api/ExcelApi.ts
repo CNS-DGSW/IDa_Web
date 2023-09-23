@@ -65,7 +65,7 @@ class ExcelApi {
     return response;
   }
 
-  async uploadCodingTest(file: File) {
+  async uploadComputing(file: File) {
     const formData = new FormData();
     formData.append("file", file);
 
@@ -74,7 +74,7 @@ class ExcelApi {
     return response;
   }
 
-  async uploadInterview(file: File) {
+  async uploadStu(file: File) {
     const formData = new FormData();
     formData.append("file", file);
 

@@ -69,7 +69,7 @@ const SecondTypeScore = ({
         ) : (
           <>
             <div className="SecondScore-buttons-upload">
-              <span>소프트웨어역량평가</span>
+              <span>직무적성 소양평가</span>
               <label htmlFor="input-file1" className="buttons">
                 업로드
               </label>
@@ -77,11 +77,11 @@ const SecondTypeScore = ({
                 type="file"
                 id="input-file1"
                 className="input-file"
-                onChange={(e) => tryUpload(e, "sw")}
+                onChange={(e) => tryUpload(e, "job")}
               />
             </div>
             <div className="SecondScore-buttons-upload">
-              <span>직무능력검사</span>
+              <span>학업 및 진로역량</span>
               <label htmlFor="input-file2" className="buttons">
                 업로드
               </label>
@@ -89,11 +89,11 @@ const SecondTypeScore = ({
                 type="file"
                 id="input-file2"
                 className="input-file"
-                onChange={(e) => tryUpload(e, "job")}
+                onChange={(e) => tryUpload(e, "stu")}
               />
             </div>
             <div className="SecondScore-buttons-upload">
-              <span>코딩테스트</span>
+              <span>컴퓨팅 사고 역량</span>
               <label htmlFor="input-file3" className="buttons">
                 업로드
               </label>
@@ -101,7 +101,7 @@ const SecondTypeScore = ({
                 type="file"
                 id="input-file3"
                 className="input-file"
-                onChange={(e) => tryUpload(e, "coding")}
+                onChange={(e) => tryUpload(e, "computing")}
               />
             </div>
           </>
@@ -122,11 +122,9 @@ const SecondTypeScore = ({
               <th>출결</th>
               <th>봉사</th>
               <th>가산점</th>
-              <th>직무적성</th>
-              <th>창의협업역량</th>
-              <th>sw역량</th>
-              <th>심층면접</th>
-              <th>코딩테스트</th>
+              <th>직무적성 소양평가</th>
+              <th>학업 및 진로역량</th>
+              <th>컴퓨팅 사고 역량</th>
               <th>합계</th>
               <th>합격여부</th>
               <th>최종합격전형</th>
@@ -163,16 +161,12 @@ const SecondTypeScore = ({
                 {/* 봉사 */}
                 <td>{i.additionalScore}</td>
                 {/* 가산점 */}
-                <td>{i.jobAptitudeScore}</td>
-                {/* 직무적성 */}
-                <td>{i.cooperationScore}</td>
-                {/* 창의협업역량 */}
                 <td>{i.swAbilityScore}</td>
-                {/* sw역량 */}
-                <td>{i.totalInterviewScore}</td>
-                {/* 심층면접 */}
+                {/* 직무적성 소양평가 */}
+                <td>{i.jobAptitudeScore}</td>
+                {/* 학업 및 진로역량 */}
                 <td>{i.codingTestScore}</td>
-                {/* 코딩테스트 */}
+                {/* 컴퓨팅 사고 역량 */}
                 <td>{i.totalScore}</td>
                 {/* 합계 */}
                 <td>
