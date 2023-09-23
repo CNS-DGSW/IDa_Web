@@ -35,7 +35,7 @@ const InterViewScore = ({
   return (
     <div className="InterViewScore">
       <span className="InterViewScore-title">
-        2차전형 (창의 협업, 구술 면접) 점수
+        2차전형
       </span>
       <div className="InterViewScore-checkBox">
         <select
