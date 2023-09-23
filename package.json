@@ -2,6 +2,9 @@
   "name": "ida_web",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "^20.3.0"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -89,6 +92,5 @@
       ]
     ]
   },
-    "proxy":"https://server.dgswhs.kro.kr/"
-  
+  "proxy": "https://server.dgswhs.kro.kr/"
 }
