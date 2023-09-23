@@ -101,7 +101,7 @@ const Main = ({
                   문의 사항은 전화주시면 친절히 상담해 드리겠습니다.
                 </p>
                 <p className="Content-box-area-bold">
-                  {"053) 231-9226 / 9218 / 9219"}
+                  {"053) 231-9218 / 9219 "}
                 </p>
               </div>
             </MainContent>
