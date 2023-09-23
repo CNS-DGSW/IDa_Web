@@ -19,7 +19,7 @@ const SecondTypeScore = ({
 }: SecondTypeScoreProps) => {
   return (
     <div className="SecondScore">
-      <span className="SecondScore-title">2차 전형 점수 관리</span>
+      <span className="SecondScore-title">최종 결과</span>
       <div className="SecondScore-buttons">
         {/* <select
           className="SecondScore-buttons-s-op"
@@ -67,7 +67,7 @@ const SecondTypeScore = ({
             </div>
           </>
         ) : (
-          <>
+            <>
             <div className="SecondScore-buttons-upload">
               <span>직무적성 소양평가</span>
               <label htmlFor="input-file1" className="buttons">
@@ -104,8 +104,9 @@ const SecondTypeScore = ({
                 onChange={(e) => tryUpload(e, "computing")}
               />
             </div>
-          </>
-        )}
+          </> 
+          )
+        }
       </div>
       <div className="SecondScore-table">
         <table className="SecondScore-table-list">

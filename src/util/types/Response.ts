@@ -275,7 +275,7 @@ export interface SecondScoreResponse extends Response {
       applyType: Apply | null;
       cityName: string;
       // 컴퓨팅 사고 역량
-      codingTestScore: number;
+      computingScore: number;
       // 창의협업역량
       cooperationScore: number;
       examCode: number;
@@ -285,9 +285,9 @@ export interface SecondScoreResponse extends Response {
       gradeScore: number;
       gradeType: Grade | null;
       interviewScore: number;
-      // 직무적성 소양평가
-      swAbilityScore: number;
       // 학업 및 진로역량
+      studyScore: number;
+      // 직무적성 소양평가
       jobAptitudeScore: number;
       schoolName: string
       totalInterviewScore: number;

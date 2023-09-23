@@ -12,9 +12,9 @@ const SecondTypeScoreContainer = ({}) => {
   const history = useHistory();
   const { store } = useStore();
   const {
-    GetSoftWare,
+    GetStudyScore,
     GetJob,
-    GetCodingTest,
+    GetComputingScore,
     GetSecondScoreExcel,
     uploadSw,
     uploadComputing,
@@ -42,8 +42,8 @@ const SecondTypeScoreContainer = ({}) => {
   // 파일을 다운받는 함수
   const tryDown = (key: string) => {
     switch (key) {
-      case "sw":
-        GetSoftWare().catch((err) => {
+      case "stu":
+        GetStudyScore().catch((err) => {
           toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
         });
         break;
@@ -54,8 +54,8 @@ const SecondTypeScoreContainer = ({}) => {
         });
         break;
 
-      case "coding":
-        GetCodingTest().catch((err) => {
+      case "compputing":
+        GetComputingScore().catch((err) => {
           toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
         });
         break;
@@ -76,7 +76,7 @@ const SecondTypeScoreContainer = ({}) => {
     if (e.target.files && e.target.files.length) {
       let file = e.target.files[0];
       switch (content) {
-        case "job":
+        case "sw":
           await uploadSw(file)
             .then(() => {
               toast.success("파일 업로드 되었습니다");
@@ -87,7 +87,7 @@ const SecondTypeScoreContainer = ({}) => {
               }
             });
           break;
-        case "stu":
+        case "job":
           await uploadJob(file)
             .then(() => {
               toast.success("파일 업로드 되었습니다");
@@ -98,7 +98,7 @@ const SecondTypeScoreContainer = ({}) => {
               }
             });
           break;
-        case "computing":
+        case "coding":
           await uploadComputing(file)
             .then(() => {
               toast.success("파일 업로드 되었습니다");

@@ -52,7 +52,7 @@ const SecondTypeScore = ({
             </div>
             <div className="SecondScore-buttons-download">
               <span>컴퓨팅 사고 역량</span>
-              <button className="buttons" onClick={() => tryDown("computing")}>
+              <button className="buttons" onClick={() => tryDown("compputing")}>
                 서식 다운로드
               </button>
             </div>
@@ -68,7 +68,7 @@ const SecondTypeScore = ({
                 type="file"
                 id="input-file1"
                 className="input-file"
-                onChange={(e) => tryUpload(e, "stu")}
+                onChange={(e) => tryUpload(e, "job")}
               />
             </div>
             <div className="SecondScore-buttons-upload">
@@ -80,7 +80,7 @@ const SecondTypeScore = ({
                 type="file"
                 id="input-file2"
                 className="input-file"
-                onChange={(e) => tryUpload(e, "job")}
+                onChange={(e) => tryUpload(e, "stu")}
               />
             </div>
             <div className="SecondScore-buttons-upload">
@@ -153,13 +153,13 @@ const SecondTypeScore = ({
                 {/* 봉사 */}
                 <td>{i.additionalScore}</td>
                 {/* 가산점 */}
-                <td>{i.interviewScore}</td>
-                {/* 직무적성 소양평가 수정 전 */}
                 <td>{i.jobAptitudeScore}</td>
-                {/* 학업 및 진로역량 수정 전 */}
-                <td>{i.codingTestScore}</td>
-                {/* 컴퓨팅 사고 역량 수정 전 */}
-                <td>{i.totalScore === 0 ? i.totalScore : "X"}</td>
+                {/* 직무적성 소양평가 */}
+                <td>{i.studyScore}</td>
+                {/* 학업 및 진로역량 */}
+                <td>{i.computingScore}</td>
+                {/* 컴퓨팅 사고 역량 */}
+                <td>{i.totalScore}</td>
                 {/* 합계 */}
               </tr>
             ))}

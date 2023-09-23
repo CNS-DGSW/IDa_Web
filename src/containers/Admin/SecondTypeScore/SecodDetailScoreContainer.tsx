@@ -12,9 +12,9 @@ const SecondTypeScoreContainer = ({}) => {
   const history = useHistory();
   const { store } = useStore();
   const {
-    GetSoftWare,
+    GetStudyScore,
     GetJob,
-    GetCodingTest,
+    GetComputingScore,
     GetSecondScoreExcel,
     uploadStu,
     uploadComputing,
@@ -33,6 +33,7 @@ const SecondTypeScoreContainer = ({}) => {
     await getSecondScore()
       .then((res) => {
         setScoreDate(res);
+        console.log(scoreDate)
       })
       .catch((err) => {
         handleAdmin(err, history);
@@ -42,8 +43,8 @@ const SecondTypeScoreContainer = ({}) => {
   // 파일을 다운받는 함수
   const tryDown = (key: string) => {
     switch (key) {
-      case "sw":
-        GetSoftWare().catch((err) => {
+      case "stu":
+        GetStudyScore().catch((err) => {
           toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
         });
         break;
@@ -54,8 +55,8 @@ const SecondTypeScoreContainer = ({}) => {
         });
         break;
 
-      case "coding":
-        GetCodingTest().catch((err) => {
+      case "compputing":
+        GetComputingScore().catch((err) => {
           toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
         });
         break;
