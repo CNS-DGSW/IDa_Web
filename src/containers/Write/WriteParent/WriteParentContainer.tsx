@@ -3,6 +3,7 @@ import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
 import WriteParents from "../../../components/Write/WriteParents";
 import Relation from "util/enums/Relation";
+//타입을 안에 넣으면 ,이거 넣으라함 / 타입을 밖에 빼면 = 넣으라함
 import { type Address } from "react-daum-postcode";
 import { ParentInfoResponse } from "util/types/Response";
 import { useNavigate } from "react-router-dom";

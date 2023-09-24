@@ -1,4 +1,5 @@
 import { AxiosError } from "axios";
+//타입을 안에 넣으면 ,이거 넣으라함 / 타입을 밖에 빼면 = 넣으라함
 import { type NavigateFunction } from "react-router-dom";
 import { toast } from "react-toastify";
 
