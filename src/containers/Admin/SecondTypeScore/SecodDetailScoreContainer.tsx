@@ -12,12 +12,12 @@ const SecondTypeScoreContainer = ({}) => {
   const history = useHistory();
   const { store } = useStore();
   const {
-    GetSoftWare,
+    GetStudyScore,
     GetJob,
-    GetCodingTest,
+    GetComputingScore,
     GetSecondScoreExcel,
-    uploadSw,
-    uploadCodingTest,
+    uploadStu,
+    uploadComputing,
     uploadJob,
   } = ExcelApi;
 
@@ -33,6 +33,7 @@ const SecondTypeScoreContainer = ({}) => {
     await getSecondScore()
       .then((res) => {
         setScoreDate(res);
+        console.log(scoreDate)
       })
       .catch((err) => {
         handleAdmin(err, history);
@@ -42,8 +43,8 @@ const SecondTypeScoreContainer = ({}) => {
   // 파일을 다운받는 함수
   const tryDown = (key: string) => {
     switch (key) {
-      case "sw":
-        GetSoftWare().catch((err) => {
+      case "stu":
+        GetStudyScore().catch((err) => {
           toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
         });
         break;
@@ -54,8 +55,8 @@ const SecondTypeScoreContainer = ({}) => {
         });
         break;
 
-      case "coding":
-        GetCodingTest().catch((err) => {
+      case "compputing":
+        GetComputingScore().catch((err) => {
           toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
         });
         break;
@@ -76,17 +77,6 @@ const SecondTypeScoreContainer = ({}) => {
     if (e.target.files && e.target.files.length) {
       let file = e.target.files[0];
       switch (content) {
-        case "sw":
-          await uploadSw(file)
-            .then(() => {
-              toast.success("파일 업로드 되었습니다");
-            })
-            .catch((err) => {
-              if (err.response?.status === 400) {
-                toast.warning("파일을 잘못선택하였습니다");
-              }
-            });
-          break;
         case "job":
           await uploadJob(file)
             .then(() => {
@@ -98,8 +88,19 @@ const SecondTypeScoreContainer = ({}) => {
               }
             });
           break;
-        case "coding":
-          await uploadCodingTest(file)
+        case "stu":
+          await uploadStu(file)
+            .then(() => {
+              toast.success("파일 업로드 되었습니다");
+            })
+            .catch((err) => {
+              if (err.response?.status === 400) {
+                toast.warning("파일을 잘못선택하였습니다");
+              }
+            });
+          break;
+        case "computing":
+          await uploadComputing(file)
             .then(() => {
               toast.success("파일 업로드 되었습니다");
             })

@@ -340,7 +340,7 @@ const WritePrintUser = ({
               특별전형
             </th>
             <td className="write-print-user-top-left write-print-user-bottom">
-              {grade2.toFixed(3)}
+              {grade1.toFixed(3)}
             </td>
             <td className="write-print-user-top-left write-print-user-bottom">
               {gradeType === Grade.GED ? "X" : absence}
