@@ -1,7 +1,11 @@
 import axios, { AxiosRequestConfig } from "axios";
 import Cookie from "js-cookie";
 import { RefreshTokenResponse } from "util/types/Response";
+<<<<<<< Updated upstream
 import cpmfogInfo from "config/config.json";
+=======
+import configInfo from "config/config.json";
+>>>>>>> Stashed changes
 import moment from "moment";
 
 const refresh = async (config: AxiosRequestConfig): Promise<AxiosRequestConfig> => {
@@ -12,7 +16,11 @@ const refresh = async (config: AxiosRequestConfig): Promise<AxiosRequestConfig> 
     const body = {
       refreshToken,
     };
+<<<<<<< Updated upstream
     const { data } = await axios.post(`${cpmfogInfo.server}/auth/token`, body);
+=======
+    const { data } = await axios.post(`${configInfo.server}/auth/token`, body);
+>>>>>>> Stashed changes
     const res: RefreshTokenResponse = data;
 
     token = res.data.accessToken;
