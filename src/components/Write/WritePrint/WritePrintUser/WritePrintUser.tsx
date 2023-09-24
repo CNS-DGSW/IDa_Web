@@ -298,7 +298,7 @@ const WritePrintUser = ({
         </colgroup>
         <tbody>
           <tr>
-            <th className="write-print-user-top-left">전형구분</th>
+            <th className="write-print-user-top-left"></th>
             <th className="write-print-user-top-left">교과성적</th>
             <th className="write-print-user-top-left">출결상황</th>
             <th className="write-print-user-top-left">봉사활동</th>
@@ -312,7 +312,7 @@ const WritePrintUser = ({
               className="write-print-user-top-left"
               id={applyType === Apply.COMMON ? "selected-apply" : ""}
             >
-              일반전형
+              성적
             </th>
             <td className="write-print-user-top-left">{grade1.toFixed(3)}</td>
             <td className="write-print-user-top-left">
@@ -326,33 +326,6 @@ const WritePrintUser = ({
             </td>
             <td className="write-print-user-top-left write-print-user-right">
               {totalScore1.toFixed(3)}
-            </td>
-          </tr>
-          <tr>
-            <th
-              className="write-print-user-top-left write-print-user-bottom"
-              id={
-                applyType === Apply.SPECIAL || applyType === Apply.OTHER
-                  ? "selected-apply"
-                  : ""
-              }
-            >
-              특별전형
-            </th>
-            <td className="write-print-user-top-left write-print-user-bottom">
-              {grade2.toFixed(3)}
-            </td>
-            <td className="write-print-user-top-left write-print-user-bottom">
-              {gradeType === Grade.GED ? "X" : absence}
-            </td>
-            <td className="write-print-user-top-left write-print-user-bottom">
-              {gradeType === Grade.GED ? "X" : volunteer}
-            </td>
-            <td className="write-print-user-top-left write-print-user-bottom">
-              {gradeType === Grade.GED ? "X" : additional}
-            </td>
-            <td className="write-print-user-top-left write-print-user-bottom-right">
-              {totalScore2.toFixed(3)}
             </td>
           </tr>
         </tbody>

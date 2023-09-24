@@ -43,23 +43,23 @@ const SearchSchool = ({
           className="school-schedule-box-area-selectinput modal-search-city"
         >
           <option value="">시/도를 선택해주세요</option>
-          <option value="01">서울특별시</option>
-          <option value="02">부산광역시</option>
-          <option value="03">대구광역시</option>
-          <option value="04">인천광역시</option>
-          <option value="05">광주광역시</option>
-          <option value="06">대전광역시</option>
-          <option value="07">울산광역시</option>
-          <option value="08">세종특별자치시</option>
-          <option value="10">경기도</option>
-          <option value="11">강원도</option>
-          <option value="12">충청북도</option>
-          <option value="13">충청남도</option>
-          <option value="14">전라북도</option>
-          <option value="15">전라남도</option>
-          <option value="16">경상북도</option>
-          <option value="17">경상남도</option>
-          <option value="18">제주특별자치도</option>
+          <option value="서울특별시">서울특별시</option>
+          <option value="부산광역시">부산광역시</option>
+          <option value="대구광역시">대구광역시</option>
+          <option value="인천광역시">인천광역시</option>
+          <option value="광주광역시">광주광역시</option>
+          <option value="대전광역시">대전광역시</option>
+          <option value="울산광역시">울산광역시</option>
+          <option value="세종특별자치시">세종특별자치시</option>
+          <option value="경기도">경기도</option>
+          <option value="강원도">강원도</option>
+          <option value="충청북도">충청북도</option>
+          <option value="충청남도">충청남도</option>
+          <option value="전라북도">전라북도</option>
+          <option value="전라남도">전라남도</option>
+          <option value="경상북도">경상북도</option>
+          <option value="경상남도">경상남도</option>
+          <option value="제주특별자치도">제주특별자치도</option>
         </select>
         <div style={city === "" ? { display: "none" } : { display: "block" }}>
           <input
@@ -91,19 +91,19 @@ const SearchSchool = ({
                       className="searchSchool"
                       key={index}
                       onClick={() => {
-                        setSchoolName(res.schoolName);
+                        setSchoolName(res.name);
                         setSchoolTel("");
-                        setSchoolCode(res.schoolCode);
+                        setSchoolCode(res.code);
                         setIsChanged(true);
                         setIsOpen(false);
                       }}
                     >
                       <div className="searchSchool-head">
-                        <div>{res.schoolName}</div>
-                        <div>{res.schoolCode}</div>
+                        <div>{res.name}</div>
+                        <div>{res.code}</div>
                       </div>
                       <div className="searchSchool-text">
-                        {res.schoolLocation}
+                        {res.location}
                       </div>
                     </div>
                   );

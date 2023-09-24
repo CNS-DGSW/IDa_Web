@@ -190,8 +190,8 @@ const WritePrintContainer = ({}) => {
     await getSchoolInfo().then((res: SchoolInfoResponse) => {
       setTeacherName(res.data.teacherName || "");
       setCityName(res.data.cityName || "");
-      setSchoolCode(res.data.schoolCode || "");
-      setSchoolName(res.data.schoolName || "");
+      setSchoolCode(res.data.code || "");
+      setSchoolName(res.data.name || "");
       setSchoolTel(res.data.schoolTel || "");
       setGradeType(res.data.gradeType || null);
       setGraduatedDate(res.data.graduatedDate || "");

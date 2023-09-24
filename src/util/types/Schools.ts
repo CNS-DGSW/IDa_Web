@@ -1,7 +1,7 @@
 type SchoolsType = {
-  schoolCode: string;
-  schoolLocation: string;
-  schoolName: string;
+  code: string;
+  location: string;
+  name: string;
 };
 
 export default SchoolsType;
