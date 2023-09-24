@@ -145,9 +145,9 @@ const WriteSchoolContainer = ({}) => {
       });
   }, []);
 
-  useEffect(() => {
-    getSchoolInfoCallback();
-  }, [getSchoolInfoCallback]);
+  // useEffect(() => {
+  //   getSchoolInfoCallback();
+  // }, [getSchoolInfoCallback]);
 
   useEffect(() => {
     return () => {
