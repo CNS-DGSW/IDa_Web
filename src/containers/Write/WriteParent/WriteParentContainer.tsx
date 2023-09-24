@@ -5,14 +5,14 @@ import WriteParents from "../../../components/Write/WriteParents";
 import Relation from "util/enums/Relation";
 import { AddressData } from "react-daum-postcode";
 import { ParentInfoResponse } from "util/types/Response";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { handleGetWriteError, handleWriteError } from "lib/handleErrors";
 import moment from "moment";
 
 const WriteParentContainer = ({}) => {
   const { store } = useStore();
-  const history = useHistory();
+  const history = useNavigate();
 
   const [parentName, setParentName] = useState<string>("");
   const [parentRelation, setParentRelation] = useState<Relation | null>(null);

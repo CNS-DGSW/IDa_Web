@@ -47,49 +47,31 @@ const App = () => {
       <ToastContainer />
       <Routes>
         <Suspense fallback={<></>}>
-          <Route path="/" element={<MainPage/>} />
-          <Route path="/login" element={<LoginPage/>} />
-          <Route path="/write" element={<WritePage/>} />
-          <Route path="/register" element={<RegisterPage/>} />
-          <Route path="/changepw" element={<ChangePwPage/>} />
-          <Route path="/find" element={<FindPage/>} />
+          <Route path="/" element={<MainPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/write" element={<WritePage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/changepw" element={<ChangePwPage />} />
+          <Route path="/find" element={<FindPage />} />
           {/* <Route exact path="/qna" component={QnaPage} />
           <Route exact path="/faq" component={FaqPage} /> */}
-          <Route  path="/notice" element={<NoticePage/>} />
+          <Route path="/notice" element={<NoticePage />} />
+          <Route path="/admin/receiptStatus" element={<ReceiptStatusPage />} />
+          <Route path="/admin/schoolCity" element={<SchoolCityPage />} />
+          <Route path="/admin/secondScore" element={<SecondTypeScorePage />} />
           <Route
-            
-            path="/admin/receiptStatus"
-            element={<ReceiptStatusPage/>}
-          />
-          <Route  path="/admin/schoolCity" element={<SchoolCityPage/>} />
-          <Route
-            
-            path="/admin/secondScore"
-            element={<SecondTypeScorePage/>}
-          />
-          <Route
-            
             path="/admin/interviewScore"
-            element={<InterViewScorePage/>}
+            element={<InterViewScorePage />}
           />
-          <Route  path="/print" element={<WritePrintPage/>} />
-          <Route  path="/admin/userList" element={<UserListPage/>} />
-          <Route  path="/admin/userRate" element={<UserRatePage/>} />
+          <Route path="/print" element={<WritePrintPage />} />
+          <Route path="/admin/userList" element={<UserListPage />} />
+          <Route path="/admin/userRate" element={<UserRatePage />} />
           <Route
-            
             path="/admin/userListPassed"
-            element={<UserListPassedPage/>}
+            element={<UserListPassedPage />}
           />
-          <Route
-            
-            path="/admin/userResultPage"
-            element={<UserResultPage/>}
-          />
-          <Route
-            
-            path="/admin/detailScore"
-            element={<SecondDetailSocre/>}
-          />
+          <Route path="/admin/userResultPage" element={<UserResultPage />} />
+          <Route path="/admin/detailScore" element={<SecondDetailSocre />} />
         </Suspense>
       </Routes>
     </div>

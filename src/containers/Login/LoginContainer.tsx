@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 import Login from "components/Login";
 import { LoginResponse } from "../../util/types/Response";
 import useStore from "lib/hooks/useStore";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { toast } from "react-toastify";
 import moment from "moment";
@@ -21,7 +21,7 @@ const LoginContainer = () => {
   const [password, setPassword] = useState<string>("");
 
   const { store } = useStore();
-  const history = useHistory();
+  const history = useNavigate();
 
   //api 불러오기
   const { tryLogin } = store.AuthStore;
@@ -51,7 +51,7 @@ const LoginContainer = () => {
           );
           setCookie("refreshToken", res.data.refreshToken, { path: "/" });
           setLoginCheck();
-          history.push("/");
+          history("/");
         })
         .catch((err) => {
           if (err.response?.status === 401) {

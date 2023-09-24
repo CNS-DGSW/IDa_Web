@@ -6,7 +6,7 @@ import { PostType } from "util/types/PostType";
 import { toast } from "react-toastify";
 import Modal from "components/common/Modal";
 import HandlePost from "components/common/HandlePost";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 interface HandlePostContainerProps {
@@ -28,7 +28,7 @@ const HandlePostContainer = ({
 }: HandlePostContainerProps) => {
   const { store } = useStore();
 
-  const history = useHistory();
+  const history = useNavigate();
 
   const { isAdmin, email } = store.AuthStore;
   const { createPost, createAnswer, getPost, deletePost, modifyPost } =
@@ -70,10 +70,10 @@ const HandlePostContainer = ({
             toast.warning("올바르지 않은 값이 있습니다.");
           } else if (err.response?.status === 410) {
             toast.warning("로그인이 만료되었습니다.");
-            history.push("/login");
+            history("/login");
           } else if (err.response?.status === 401) {
             toast.warning("로그인이 필요합니다.");
-            history.push("/login");
+            history("/login");
           } else {
             toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요.");
           }
@@ -100,10 +100,10 @@ const HandlePostContainer = ({
               toast.warning("권한이 없습니다.");
             } else if (err.response?.status === 410) {
               toast.warning("로그인이 만료되었습니다.");
-              history.push("/login");
+              history("/login");
             } else if (err.response?.status === 401) {
               toast.warning("로그인이 필요합니다.");
-              history.push("/login");
+              history("/login");
             } else {
               toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
             }
@@ -131,10 +131,10 @@ const HandlePostContainer = ({
               toast.warning("권한이 없습니다.");
             } else if (err.response?.status === 410) {
               toast.warning("로그인이 만료되었습니다.");
-              history.push("/login");
+              history("/login");
             } else if (err.response?.status === 401) {
               toast.warning("로그인이 필요합니다.");
-              history.push("/login");
+              history("/login");
             } else {
               toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
             }
@@ -183,10 +183,10 @@ const HandlePostContainer = ({
                 toast.warning("권한이 없거나 답변이 있어서 실패하였습니다.");
               } else if (err.response?.status === 410) {
                 toast.warning("로그인이 만료되었습니다.");
-                history.push("/login");
+                history("/login");
               } else if (err.response?.status === 401) {
                 toast.warning("로그인이 필요합니다.");
-                history.push("/login");
+                history("/login");
               } else {
                 toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
               }

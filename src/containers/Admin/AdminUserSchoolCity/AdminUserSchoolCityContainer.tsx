@@ -4,6 +4,7 @@ import UserSchoolCity from "../../../components/Admin/AdminUserSchoolCity";
 import useStore from "lib/hooks/useStore";
 import { SchoolCity } from "util/types/SchoolCity";
 import { handleAdmin } from "lib/handleErrors";
+import { useNavigate } from "react-router-dom";
 
 const AdminUserSchoolCityContainer = ({}) => {
   let totalUngraduatedWomen = 0;
@@ -11,7 +12,7 @@ const AdminUserSchoolCityContainer = ({}) => {
   let totalGraduatedWomen = 0;
   let totalGraduatedMen = 0;
 
-  const history = useHistory();
+  const history = useNavigate();
   const { store } = useStore();
 
   const [schoolCity, setSchoolCity] = useState<SchoolCity[]>([]);

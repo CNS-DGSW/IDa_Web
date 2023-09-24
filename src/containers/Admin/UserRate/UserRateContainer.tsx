@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import UserRate from "components/Admin/UserRate";
 import { Rate } from "util/types/UserList";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Report } from "util/types/ReportInfo";
 import { handleAdmin } from "lib/handleErrors";
 import useStore from "lib/hooks/useStore";
@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 
 const UserRateContainer = ({}) => {
   const { store } = useStore();
-  const history = useHistory();
+  const history = useNavigate();
 
   const [rateStatus, setRateStatus] = useState<Rate[]>([]);
   const [reportStatus, setReportStatus] = useState<Report[]>([]);
