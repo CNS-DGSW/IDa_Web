@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from "react";
 import { observer } from "mobx-react";
 import Header from "components/common/Header";
 import useStore from "lib/hooks/useStore";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
 interface HeaderContainerProps {
@@ -12,7 +12,7 @@ interface HeaderContainerProps {
 
 const HeaderContainer = ({ theme, style }: HeaderContainerProps) => {
   const { store } = useStore();
-  const history = useHistory();
+  const history = useNavigate();
 
   const {
     getInfo,
@@ -37,7 +37,7 @@ const HeaderContainer = ({ theme, style }: HeaderContainerProps) => {
     removeCookie("refreshToken");
     localStorage.removeItem("accessToken");
     localStorage.removeItem("expireAt");
-    history.push("/");
+    history("/");
   };
 
   // 유저 정보 가져오기

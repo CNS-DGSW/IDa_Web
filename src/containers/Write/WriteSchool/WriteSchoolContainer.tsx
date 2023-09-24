@@ -3,14 +3,14 @@ import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
 import WriteSchool from "../../../components/Write/WriteSchool";
 import { SchoolInfoResponse } from "util/types/Response";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Grade from "util/enums/Grade";
 import { handleGetWriteError, handleWriteError } from "lib/handleErrors";
 
 const WriteSchoolContainer = ({}) => {
   const { store } = useStore();
-  const history = useHistory();
+  const history = useNavigate();
 
   const [cityLocation, setCityLocation] = useState<string>("");
   const [cityName, setCityName] = useState<string>("");

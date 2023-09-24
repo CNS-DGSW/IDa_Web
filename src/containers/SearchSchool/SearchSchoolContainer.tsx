@@ -4,7 +4,7 @@ import SearchSchool from "../../components/SearchSchool";
 import useStore from "lib/hooks/useStore";
 import Schools from "util/types/Schools";
 import { SchoolResponse } from "util/types/Response";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 
@@ -24,7 +24,7 @@ const SearchSchoolContainer = ({
   setIsChanged,
 }: SearchSchoolContainerProps) => {
   const { store } = useStore();
-  const history = useHistory();
+  const history = useNavigate();
 
   const { searchSchool } = store.WriteStore;
 

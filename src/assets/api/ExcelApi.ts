@@ -4,7 +4,7 @@ import FileDown from "lib/FileDown";
 
 class ExcelApi {
   async GetStudyScore() {
-    console.log(1)
+    console.log(1);
     const response = await Api.get("/excel/getStudyScore", {
       responseType: "blob",
     });
@@ -14,7 +14,7 @@ class ExcelApi {
     return response;
   }
   async GetJob() {
-    console.log(2)
+    console.log(2);
     const response = await Api.get("/excel/getJobAptitude", {
       responseType: "blob",
     });
@@ -24,7 +24,7 @@ class ExcelApi {
     return response;
   }
   async GetComputingScore() {
-    console.log(3)
+    console.log(3);
     const response = await Api.get("/excel/getComputingScore", {
       responseType: "blob",
     });

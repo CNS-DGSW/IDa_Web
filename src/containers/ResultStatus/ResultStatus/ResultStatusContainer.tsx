@@ -3,12 +3,12 @@ import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
 import ResultStatus from "components/ResultStatusCheck/ResultStatus";
 import { handleLogin } from "lib/handleErrors";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface ResultStatusContainerPropse {}
 
 const ResultStatusContainer = ({}: ResultStatusContainerPropse) => {
-  const history = useHistory();
+  const history = useNavigate();
 
   const { store } = useStore();
   const { tryGetStatus } = store.StatusStore;

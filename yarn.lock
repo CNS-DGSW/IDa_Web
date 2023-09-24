@@ -7604,7 +7604,7 @@ __metadata:
     js-cookie: ^2.2.1
     js-file-download: ^0.4.12
     js-sha256: ^0.9.0
-    mobx: 4.7.0
+    mobx: ^6.10.2
     mobx-react: ^9.0.1
     moment: ^2.29.1
     rc-steps: ^4.1.3
@@ -7612,7 +7612,7 @@ __metadata:
     react-app-rewired: ^2.1.6
     react-beforeunload: ^2.4.0
     react-cookie: ^4.0.3
-    react-daum-postcode: ^2.0.2
+    react-daum-postcode: ^3.1.3
     react-dom: 17
     react-icons: ^3.10.0
     react-notifications: ^1.7.2
@@ -9718,10 +9718,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mobx@npm:4.7.0":
-  version: 4.7.0
-  resolution: "mobx@npm:4.7.0"
-  checksum: a6eb95405e073ed466025e302c47a2fa5a8a04c9485056157e3748216b839a8530cb4d22ecab11c294018b096422924cee6c9364d5810936cb214a6a1b473379
+"mobx@npm:^6.10.2":
+  version: 6.10.2
+  resolution: "mobx@npm:6.10.2"
+  checksum: 14d6f1db4e3a61c823510ea130229c96bd4958b77d81057ac1abc6a439703eaf3ea2289192ef205b4250d3adb1d83a439ad56d5e53f2b967c6e62a6bccc23d8a
   languageName: node
   linkType: hard
 
@@ -11540,13 +11540,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-daum-postcode@npm:^2.0.2":
-  version: 2.0.6
-  resolution: "react-daum-postcode@npm:2.0.6"
-  dependencies:
-    prop-types: ^15.6.2
-    react: ^16.4.2
-  checksum: 2749711e5c3174d6234985943384b4b90be28a24ae36260dab07b69c97f5f87bf2e046bc8c8241a640e4761a92c8fb65e22dd9649103196f8f50a3770592f778
+"react-daum-postcode@npm:^3.1.3":
+  version: 3.1.3
+  resolution: "react-daum-postcode@npm:3.1.3"
+  peerDependencies:
+    react: ">=16.8.0"
+  checksum: 559c2463b30d023f5e21072c3dc08f3de51cf58ad8f0ea13241330e3a65158c1b2747530b6f37adfde92029d83a7d0201ad580400079155e27ec06e8c9a0591f
   languageName: node
   linkType: hard
 
@@ -11798,17 +11797,6 @@ __metadata:
     loose-envify: ^1.1.0
     object-assign: ^4.1.1
   checksum: b254cc17ce3011788330f7bbf383ab653c6848902d7936a87b09d835d091e3f295f7e9dd1597c6daac5dc80f90e778c8230218ba8ad599f74adcc11e33b9d61b
-  languageName: node
-  linkType: hard
-
-"react@npm:^16.4.2":
-  version: 16.14.0
-  resolution: "react@npm:16.14.0"
-  dependencies:
-    loose-envify: ^1.1.0
-    object-assign: ^4.1.1
-    prop-types: ^15.6.2
-  checksum: 8484f3ecb13414526f2a7412190575fc134da785c02695eb92bb6028c930bfe1c238d7be2a125088fec663cc7cda0a3623373c46807cf2c281f49c34b79881ac
   languageName: node
   linkType: hard
 

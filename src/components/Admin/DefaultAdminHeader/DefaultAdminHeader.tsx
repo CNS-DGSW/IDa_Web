@@ -13,39 +13,19 @@ const DefaultAdminHeader = ({ children }: DefaultAdminHeaderProps) => {
       <HeaderContainer theme={true} />
       <div className="Admin">
         <div className="Admin-header">
-          <NavLink
-            to="/admin/userList"
-            className="Admin-header-link"
-            activeClassName="Admin-header-link-active"
-          >
+          <NavLink to="/admin/userList" className="Admin-header-link">
             <span>지원자 현황</span>
           </NavLink>
-          <NavLink
-            to="/admin/schoolCity"
-            className="Admin-header-link"
-            activeClassName="Admin-header-link-active"
-          >
+          <NavLink to="/admin/schoolCity" className="Admin-header-link">
             <span>출신교별 현황</span>
           </NavLink>
-          <NavLink
-            to="/admin/userRate"
-            className="Admin-header-link"
-            activeClassName="Admin-header-link-active"
-          >
+          <NavLink to="/admin/userRate" className="Admin-header-link">
             <span>입학지원자경쟁률</span>
           </NavLink>
-          <NavLink
-            to="/admin/receiptStatus"
-            className="Admin-header-link"
-            activeClassName="Admin-header-link-active"
-          >
+          <NavLink to="/admin/receiptStatus" className="Admin-header-link">
             <span>신입생 입학 전형 원부</span>
           </NavLink>
-          <NavLink
-            to="/admin/detailScore"
-            className="Admin-header-link"
-            activeClassName="Admin-header-link-active"
-          >
+          <NavLink to="/admin/detailScore" className="Admin-header-link">
             <span style={{ textAlign: "center", display: "flex" }}>
               2차 전형 점수 관리 <br></br>(직무적성, 학업 및 진로, 컴퓨팅 사고)
             </span>
@@ -53,7 +33,7 @@ const DefaultAdminHeader = ({ children }: DefaultAdminHeaderProps) => {
           {/* <NavLink
             to="/admin/interviewScore"
             className="Admin-header-link"
-            activeClassName="Admin-header-link-active"
+            
           >
             <span style={{ textAlign: "center", display: "flex" }}>
               2차 전형 면접 점수
@@ -61,28 +41,15 @@ const DefaultAdminHeader = ({ children }: DefaultAdminHeaderProps) => {
               (창의협업, 구술면접)
             </span>
           </NavLink>*/}
-          <NavLink
-            exact
-            to="/admin/secondScore"
-            className="Admin-header-link"
-            activeClassName="Admin-header-link-active"
-          >
+          <NavLink to="/admin/secondScore" className="Admin-header-link">
             <span>최종 결과</span>
           </NavLink>
 
-          <NavLink
-            to="/admin/userListPassed"
-            className="Admin-header-link"
-            activeClassName="Admin-header-link-active"
-          >
+          <NavLink to="/admin/userListPassed" className="Admin-header-link">
             <span>1차/최종 합격 여부</span>
           </NavLink>
 
-          <NavLink
-            to="/admin/userResultPage"
-            className="Admin-header-link"
-            activeClassName="Admin-header-link-active"
-          >
+          <NavLink to="/admin/userResultPage" className="Admin-header-link">
             <span>결과 변경</span>
           </NavLink>
         </div>

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useStore from "lib/hooks/useStore";
 import UserResult from "components/Admin/UserResult";
 import { handleAdmin } from "lib/handleErrors";
@@ -10,7 +10,7 @@ import { observer } from "mobx-react";
 import { findNameByValue } from "models/ApplyDetailModel";
 
 const UserRateContainer = ({}) => {
-  const history = useHistory();
+  const history = useNavigate();
 
   const { store } = useStore();
   const {

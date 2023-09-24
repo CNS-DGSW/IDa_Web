@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 import Register from "components/Register";
 import { Response } from "util/types/Response";
 import useStore from "lib/hooks/useStore";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Agree from "util/enums/Agree";
 
@@ -11,7 +11,7 @@ const RegisterContainer = () => {
   const { store } = useStore();
   const { tryRegister, trySendEmail, trySendPhone } = store.AuthStore;
 
-  const history = useHistory();
+  const history = useNavigate();
 
   //모두동의 체크박스
   const [allCheck, setAllCheck] = useState<boolean>(false);
@@ -158,7 +158,7 @@ const RegisterContainer = () => {
       await tryRegister(name, birth, email, pw, phoneNum, phoneCheck)
         .then((res: Response) => {
           toast.success("회원가입이 완료되었습니다.");
-          history.push("login");
+          history("login");
         })
         .catch((err) => {
           if (err.response?.status === 406) {

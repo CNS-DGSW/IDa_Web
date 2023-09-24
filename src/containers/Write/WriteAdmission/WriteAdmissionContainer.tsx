@@ -5,19 +5,20 @@ import WriteAdmission from "../../../components/Write/WriteAdmission";
 import Apply from "util/enums/Apply";
 import ApplyDetail from "util/enums/ApplyDetail";
 import { findNameByValue } from "models/ApplyDetailModel";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { handleGetWriteError, handleWriteError } from "lib/handleErrors";
 
 const WriteAdmissionContainer = ({}) => {
   const { store } = useStore();
   const { getApplyType, editApplyType } = store.WriteStore;
 
-  const history = useHistory();
+  const history = useNavigate();
 
   const [applyType, setApplyType] = useState<Apply | null>(null);
   const [special, setSpecial] = useState<string>("");
-  const [applyDetailType, setApplyDetailType] =
-    useState<ApplyDetail | null>(null);
+  const [applyDetailType, setApplyDetailType] = useState<ApplyDetail | null>(
+    null
+  );
   const [verteransCity, setVerteransCity] = useState<string>("");
   const [verteransNumber, setVerteransNumber] = useState<string>("");
   const [isChanged, setIsChanged] = useState<boolean>(false);
