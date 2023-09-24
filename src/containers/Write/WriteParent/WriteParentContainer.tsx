@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
 import WriteParents from "../../../components/Write/WriteParents";
 import Relation from "util/enums/Relation";
-import { AddressData } from "react-daum-postcode";
+import { type Address } from "react-daum-postcode";
 import { ParentInfoResponse } from "util/types/Response";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -27,7 +27,7 @@ const WriteParentContainer = ({}) => {
   const { editParentInfo, getParentInfo } = store.WriteStore;
 
   //주소 설정 함수
-  const handleComplete = (data: AddressData) => {
+  const handleComplete = (data: Address) => {
     let fullAddress = data.address;
     let extraAddress = "";
 

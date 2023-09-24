@@ -1,6 +1,5 @@
 import { AxiosError } from "axios";
-import { History } from "history";
-import { NavigateFunction } from "react-router";
+import { type NavigateFunction } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const handleWriteError = (err: AxiosError, navigate?: NavigateFunction) => {
