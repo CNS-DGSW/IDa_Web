@@ -38,7 +38,8 @@ const SearchSchoolContainer = ({
       setIsLoading(true);
       await searchSchool(search, city)
         .then((res: SchoolResponse) => {
-          setSchools(res.data.schools);
+          setSchools(res.data);
+          console.log(schools)
         })
         .catch((err) => {
           if (err.response?.status === 404) {

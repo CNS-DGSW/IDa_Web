@@ -186,9 +186,7 @@ export interface VolunteerResponse extends Response {
 }
 
 export interface SchoolResponse extends Response {
-  data: {
-    schools: Schools[];
-  };
+  data: Schools[];
 }
 
 export interface ReceiptResponse extends Response {

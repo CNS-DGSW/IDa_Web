@@ -608,6 +608,7 @@ class WriteStore {
       schoolName,
       city
     );
+    console.log(response)
     return response;
   };
 
