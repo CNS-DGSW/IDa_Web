@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import { ToastContainer } from "react-toastify";
-import { Route, Switch } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
 import LoginPage from "pages/LoginPage";
@@ -45,53 +45,53 @@ const App = () => {
   return (
     <div className="App">
       <ToastContainer />
-      <Switch>
+      <Routes>
         <Suspense fallback={<></>}>
-          <Route exact path="/" component={MainPage} />
-          <Route exact path="/login" component={LoginPage} />
-          <Route exact path="/write" component={WritePage} />
-          <Route exact path="/register" component={RegisterPage} />
-          <Route exact path="/changepw" component={ChangePwPage} />
-          <Route exact path="/find" component={FindPage} />
+          <Route path="/" element={<MainPage/>} />
+          <Route path="/login" element={<LoginPage/>} />
+          <Route path="/write" element={<WritePage/>} />
+          <Route path="/register" element={<RegisterPage/>} />
+          <Route path="/changepw" element={<ChangePwPage/>} />
+          <Route path="/find" element={<FindPage/>} />
           {/* <Route exact path="/qna" component={QnaPage} />
           <Route exact path="/faq" component={FaqPage} /> */}
-          <Route exact path="/notice" component={NoticePage} />
+          <Route  path="/notice" element={<NoticePage/>} />
           <Route
-            exact
+            
             path="/admin/receiptStatus"
-            component={ReceiptStatusPage}
+            element={<ReceiptStatusPage/>}
           />
-          <Route exact path="/admin/schoolCity" component={SchoolCityPage} />
+          <Route  path="/admin/schoolCity" element={<SchoolCityPage/>} />
           <Route
-            exact
+            
             path="/admin/secondScore"
-            component={SecondTypeScorePage}
+            element={<SecondTypeScorePage/>}
           />
           <Route
-            exact
+            
             path="/admin/interviewScore"
-            component={InterViewScorePage}
+            element={<InterViewScorePage/>}
           />
-          <Route exact path="/print" component={WritePrintPage} />
-          <Route exact path="/admin/userList" component={UserListPage} />
-          <Route exact path="/admin/userRate" component={UserRatePage} />
+          <Route  path="/print" element={<WritePrintPage/>} />
+          <Route  path="/admin/userList" element={<UserListPage/>} />
+          <Route  path="/admin/userRate" element={<UserRatePage/>} />
           <Route
-            exact
+            
             path="/admin/userListPassed"
-            component={UserListPassedPage}
+            element={<UserListPassedPage/>}
           />
           <Route
-            exact
+            
             path="/admin/userResultPage"
-            component={UserResultPage}
+            element={<UserResultPage/>}
           />
           <Route
-            exact
+            
             path="/admin/detailScore"
-            component={SecondDetailSocre}
+            element={<SecondDetailSocre/>}
           />
         </Suspense>
-      </Switch>
+      </Routes>
     </div>
   );
 };

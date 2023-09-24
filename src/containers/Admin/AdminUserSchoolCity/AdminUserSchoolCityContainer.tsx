@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import UserSchoolCity from "../../../components/Admin/AdminUserSchoolCity";
-import { useHistory } from "react-router-dom";
 import useStore from "lib/hooks/useStore";
 import { SchoolCity } from "util/types/SchoolCity";
 import { handleAdmin } from "lib/handleErrors";

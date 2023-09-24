@@ -3,8 +3,8 @@ import Button from "components/common/Button";
 import CheckBox from "components/common/CheckBox";
 import CustomInput from "components/common/CustomInput";
 import React from "react";
-import { useHistory } from "react-router-dom";
 import "./Login.scss";
+import { useNavigate } from "react-router";
 
 interface LoginProps {
   check: boolean;
@@ -27,7 +27,7 @@ const Login = ({
   handleLogin,
   passwordInput,
 }: LoginProps) => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -42,7 +42,7 @@ const Login = ({
             <Button onClick={() => handleLogin()}>로그인</Button>
             <span
               className="Login-box-button-find"
-              onClick={() => history.push("/find")}
+              onClick={() => navigate("/find")}
             >
               비밀번호를 잊으셨나요?
             </span>

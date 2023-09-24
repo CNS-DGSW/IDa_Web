@@ -1,9 +1,9 @@
 import axios from "axios";
-import { server } from "config/config.json";
+import configInfo from "config/config.json";
 import { refresh, refreshErrorHandle } from "./refresh";
 
 const Api = axios.create({
-  baseURL: server,
+  baseURL: configInfo.baseUrl,
   params: {},
 });
 

@@ -162,11 +162,11 @@ const SecondTypeScore = ({
                 {/* 봉사 */}
                 <td>{i.additionalScore}</td>
                 {/* 가산점 */}
-                <td>{i.swAbilityScore}</td>
+                <td>{i.jobAptitudeScore}</td>
                 {/* 직무적성 소양평가 */}
                 <td>{i.jobAptitudeScore}</td>
                 {/* 학업 및 진로역량 */}
-                <td>{i.codingTestScore}</td>
+                <td>{i.computingScore}</td>
                 {/* 컴퓨팅 사고 역량 */}
                 <td>{i.totalScore}</td>
                 {/* 합계 */}

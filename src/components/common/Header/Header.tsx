@@ -2,7 +2,7 @@ import React from "react";
 import "./Header.scss";
 import { ReactComponent as Profile } from "assets/images/profile.svg";
 import ProfileModalBox from "components/ProfileModalBox";
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { ReactComponent as Logo1 } from "assets/images/logo-1.svg";
 import { ReactComponent as Logo2 } from "assets/images/logo-2.svg";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
@@ -36,7 +36,7 @@ const Header = ({
   tryStatusModal,
   closeStatusModal,
 }: HeaderProps) => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const menuToggle = () => {
     const header = document.getElementById("header");
@@ -68,23 +68,25 @@ const Header = ({
           <div className="header-menu-content-category">카테고리</div>
           <NavLink
             to="/"
-            exact
-            className="header-menu-content-item"
-            activeClassName="header-menu-content-item-active"
+            className={(name) =>
+              name.isActive ? "header-menu-content-item-active" : "header-menu-content-item"
+            }
           >
             <span>홈</span>
           </NavLink>
           <NavLink
             to="/write"
-            className="header-menu-content-item"
-            activeClassName="header-menu-content-item-active"
+            className={(name) =>
+              name.isActive ? "header-menu-content-item-active" : "header-menu-content-item"
+            }
           >
             <span>원서접수</span>
           </NavLink>
           <NavLink
             to="/notice"
-            className="header-menu-content-item"
-            activeClassName="header-menu-content-item-active"
+            className={(name) =>
+              name.isActive ? "header-menu-content-item-active" : "header-menu-content-item"
+            }
           >
             <span>공지사항</span>
           </NavLink>
@@ -93,13 +95,13 @@ const Header = ({
             <>
               <button
                 className="header-menu-content-sign"
-                onClick={() => history.push("/login")}
+                onClick={() => navigate("/login")}
               >
                 로그인
               </button>
               <button
                 className="header-menu-content-sign"
-                onClick={() => history.push("/register")}
+                onClick={() => navigate("/register")}
                 style={{ marginTop: "1.2rem" }}
               >
                 회원가입
@@ -113,33 +115,35 @@ const Header = ({
           {theme ? (
             <Logo2
               className="pointer header-container-logo"
-              onClick={() => history.push("/")}
+              onClick={() => navigate("/")}
             />
           ) : (
             <Logo1
               className="pointer header-container-logo"
-              onClick={() => history.push("/")}
+              onClick={() => navigate("/")}
             />
           )}
           <NavLink
             to="/"
-            exact
-            className="header-container-link-item"
-            activeClassName="header-container-link-item-active"
+            className={(name) =>
+              name.isActive ? "header-container-link-item-active" : "header-container-link-item"
+            }
           >
             <span>홈</span>
           </NavLink>
           <NavLink
             to="/write"
-            className="header-container-link-item"
-            activeClassName="header-container-link-item-active"
+            className={(name) =>
+              name.isActive ? "header-container-link-item-active" : "header-container-link-item"
+            }
           >
             <span>원서접수 </span>
           </NavLink>
           <NavLink
             to="/notice"
-            className="header-container-link-item"
-            activeClassName="header-container-link-item-active"
+            className={(name) =>
+              name.isActive ? "header-container-link-item-active" : "header-container-link-item"
+            }
           >
             <span>공지사항</span>
           </NavLink>
@@ -150,7 +154,7 @@ const Header = ({
               {isAdmin && (
                 <button
                   className="headerButton header-admin"
-                  onClick={() => history.push("/admin/userList")}
+                  onClick={() => navigate("/admin/userList")}
                 >
                   관리자
                 </button>
@@ -177,13 +181,13 @@ const Header = ({
             <>
               <button
                 className="headerButton"
-                onClick={() => history.push("/login")}
+                onClick={() => navigate("/login")}
               >
                 로그인
               </button>
               <button
                 className="headerButton"
-                onClick={() => history.push("/register")}
+                onClick={() => navigate("/register")}
                 style={{ marginLeft: "1rem" }}
               >
                 회원가입

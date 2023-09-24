@@ -3,13 +3,13 @@ import { observer } from "mobx-react";
 import ReceiptStatus from "../../../components/Admin/AdminReceiptStatus";
 import useStore from "lib/hooks/useStore";
 import { handleAdmin } from "lib/handleErrors";
-import { useHistory } from "react-router-dom";
 import { Receipt } from "util/types/ReceiptType";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router";
 
 const AdminReceiptStatusContainer = ({}) => {
   const { store } = useStore();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const [receiptStatus, setReceiptStatus] = useState<Receipt[]>([]);
   const [search, setSearch] = useState<string>("");
@@ -31,7 +31,7 @@ const AdminReceiptStatusContainer = ({}) => {
         setReceiptStatus(res.data);
       })
       .catch((err) => {
-        handleAdmin(err, history);
+        handleAdmin(err, navigate);
       });
   }, []);
 

@@ -1,7 +1,6 @@
 import Button from "components/common/Button";
 import CheckBox from "components/common/CheckBox";
 import CustomInput from "components/common/CustomInput";
-import { useHistory } from "react-router-dom";
 import React from "react";
 import "./Register.scss";
 import AuthContent from "components/common/AuthContent";
@@ -9,6 +8,7 @@ import Agree from "util/enums/Agree";
 import Modal from "components/common/Modal";
 import agreeContract from "models/AgreeContract";
 import VerificationNumber from "components/VerificationNumber";
+import { useNavigate } from "react-router";
 
 interface RegisterProps {
   allCheck: boolean;
@@ -69,7 +69,7 @@ const Register = ({
   toggleUsingSiteModal,
   toggleHandlingPersonelInfoModal,
 }: RegisterProps) => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -102,7 +102,7 @@ const Register = ({
               )}
               <span
                 className="Register-box-button-find"
-                onClick={() => history.push("/login")}
+                onClick={() => navigate("/login")}
               >
                 이미 회원이신가요?
               </span>

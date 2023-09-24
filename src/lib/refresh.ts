@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
 import Cookie from "js-cookie";
 import { RefreshTokenResponse } from "util/types/Response";
-import { server } from "config/config.json";
+import configInfo from "config/config.json";
 import moment from "moment";
 
 const refresh = async (config: AxiosRequestConfig): Promise<AxiosRequestConfig> => {
@@ -12,7 +12,7 @@ const refresh = async (config: AxiosRequestConfig): Promise<AxiosRequestConfig> 
     const body = {
       refreshToken,
     };
-    const { data } = await axios.post(`${server}/auth/token`, body);
+    const { data } = await axios.post(`${configInfo.baseUrl}/auth/token`, body);
     const res: RefreshTokenResponse = data;
 
     token = res.data.accessToken;

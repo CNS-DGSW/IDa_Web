@@ -4,7 +4,7 @@ import useStore from "lib/hooks/useStore";
 import "./WriteContent.scss";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface WriteContentProps {
   title: string;
@@ -23,7 +23,7 @@ const WriteContent = ({
   const { page, pageHandle, userIdx } = store.WriteStore;
   const { changeSubmit } = store.StatusStore;
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const nextPage = useCallback(
     (skip?: boolean) => {
@@ -74,12 +74,12 @@ const WriteContent = ({
       if (result.isConfirmed) {
         await changeSubmit(userIdx)
           .then(() => {
-            history.push("/");
+            navigate("/");
             toast.success("제출되었습니다.");
           })
           .catch((err) => {
             if (err.response?.status === 401 || err.response?.status === 410) {
-              history.push("/login");
+              navigate("/login");
               toast.warning("로그인이 필요합니다.");
             } else if (err.response?.status === 406) {
               toast.warning("원서를 모두 작성하지 않았습니다.");
@@ -95,7 +95,7 @@ const WriteContent = ({
           });
       }
     });
-  }, [changeSubmit, history, isChanged, userIdx]);
+  }, [changeSubmit, navigate, isChanged, userIdx]);
 
   return (
     <>

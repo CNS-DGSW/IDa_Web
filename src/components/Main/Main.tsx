@@ -1,9 +1,9 @@
 import React from "react";
 import MainContent from "components/common/MainContent";
 import "./Main.scss";
-import { useHistory } from "react-router-dom";
 import moment from "moment";
 import { submitEndTime, submitStartTime, finalTime } from "models/submitTime";
+import { useNavigate } from "react-router";
 
 interface MainProps {
   handleDownloadApplyInfo: () => void;
@@ -16,7 +16,7 @@ const Main = ({
   firstOpenModal,
   secondOpenModal,
 }: MainProps) => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -32,7 +32,7 @@ const Main = ({
               </p>
               <div
                 className="Main-content-btn"
-                onClick={() => history.push("/Write")}
+                onClick={() => navigate("/Write")}
               >
                 원서 접수하기
               </div>

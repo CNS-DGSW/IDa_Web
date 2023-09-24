@@ -1,10 +1,10 @@
 import ResultStatusContainer from "containers/ResultStatus/ResultStatus/ResultStatusContainer";
 import React from "react";
-import { useHistory } from "react-router-dom";
 import "./ProfileModalBox.scss";
 import { ReactComponent as LogoutSvg } from "assets/images/logout.svg";
 import { ReactComponent as PasswordSvg } from "assets/images/password.svg";
 import { ReactComponent as PaperSvg } from "assets/images/paper.svg";
+import { useNavigate } from "react-router";
 
 interface ProfileModalBoxProps {
   handleOnClick: () => void;
@@ -24,7 +24,7 @@ const ProfileModalBox = ({
   statusModal,
   tryStatusModal,
 }: ProfileModalBoxProps) => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -42,7 +42,7 @@ const ProfileModalBox = ({
           <span className="box-text">원서접수 현황</span>
         </div>
         <div
-          onClick={() => history.push("/changepw")}
+          onClick={() => navigate("/changepw")}
           className="ProfileModalBox-modify box pointer"
         >
           <PasswordSvg className="ProfileModalSVG" />
