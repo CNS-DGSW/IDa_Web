@@ -267,6 +267,8 @@ export interface UserReulstListResponse extends Response {
 export interface SecondScoreResponse extends Response {
   data: [
     {
+      computingScore: number;
+      studyScore: number;
       absenceScore: number;
       additionalScore: number;
       applyDetailType: Apply | null;

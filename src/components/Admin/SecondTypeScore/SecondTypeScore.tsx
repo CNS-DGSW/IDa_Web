@@ -19,7 +19,7 @@ const SecondTypeScore = ({
 }: SecondTypeScoreProps) => {
   return (
     <div className="SecondScore">
-      <span className="SecondScore-title">2차 전형 점수 관리</span>
+      <span className="SecondScore-title">최종 결과</span>
       <div className="SecondScore-buttons">
         {/* <select
           className="SecondScore-buttons-s-op"
@@ -67,7 +67,9 @@ const SecondTypeScore = ({
             </div>
           </>
         ) : (
-          <>
+          <></>
+        )}
+{/*          <>
             <div className="SecondScore-buttons-upload">
               <span>소프트웨어역량평가</span>
               <label htmlFor="input-file1" className="buttons">
@@ -104,8 +106,7 @@ const SecondTypeScore = ({
                 onChange={(e) => tryUpload(e, "coding")}
               />
             </div>
-          </>
-        )}
+        </>*/}
       </div>
       <div className="SecondScore-table">
         <table className="SecondScore-table-list">
@@ -122,11 +123,9 @@ const SecondTypeScore = ({
               <th>출결</th>
               <th>봉사</th>
               <th>가산점</th>
-              <th>직무적성</th>
-              <th>창의협업역량</th>
-              <th>sw역량</th>
-              <th>심층면접</th>
-              <th>코딩테스트</th>
+              <th>직무적성 소양평가</th>
+              <th>학업 및 진로역량</th>
+              <th>컴퓨팅 사고 역량</th>
               <th>합계</th>
               <th>합격여부</th>
               <th>최종합격전형</th>
@@ -164,15 +163,11 @@ const SecondTypeScore = ({
                 <td>{i.additionalScore}</td>
                 {/* 가산점 */}
                 <td>{i.jobAptitudeScore}</td>
-                {/* 직무적성 */}
-                <td>{i.cooperationScore}</td>
-                {/* 창의협업역량 */}
-                <td>{i.swAbilityScore}</td>
-                {/* sw역량 */}
-                <td>{i.totalInterviewScore}</td>
-                {/* 심층면접 */}
-                <td>{i.codingTestScore}</td>
-                {/* 코딩테스트 */}
+                {/* 직무적성 소양평가 */}
+                <td>{i.studyScore}</td>
+                {/* 학업 및 진로역량 */}
+                <td>{i.computingScore}</td>
+                {/* 컴퓨팅 사고 역량 */}
                 <td>{i.totalScore}</td>
                 {/* 합계 */}
                 <td>
