@@ -33,6 +33,7 @@ const SecondTypeScoreContainer = ({}) => {
     await getSecondScore()
       .then((res) => {
         setScoreDate(res);
+        console.log(scoreDate)
       })
       .catch((err) => {
         handleAdmin(err, history);

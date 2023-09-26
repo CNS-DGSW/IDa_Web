@@ -19,7 +19,7 @@ const SecondTypeScore = ({
 }: SecondTypeScoreProps) => {
   return (
     <div className="SecondScore">
-      <span className="SecondScore-title">2차 전형 점수 관리</span>
+      <span className="SecondScore-title" style={{textAlign:"center"}}>2차 전형 점수 관리 <br></br>(직무적성, 학업 및 진로, 컴퓨팅 사고)</span>
       <div className="SecondScore-buttons">
         <select
           className="SecondScore-buttons-s-op"
@@ -52,7 +52,11 @@ const SecondTypeScore = ({
             </div>
             <div className="SecondScore-buttons-download">
               <span>컴퓨팅 사고 역량</span>
+<<<<<<< HEAD
               <button className="buttons" onClick={() => tryDown("computing")}>
+=======
+              <button className="buttons" onClick={() => tryDown("compputing")}>
+>>>>>>> develop
                 서식 다운로드
               </button>
             </div>
