@@ -1,4 +1,3 @@
-
 import { autobind } from "core-decorators";
 import AuthApi from "assets/api/AuthApi";
 import {
@@ -26,7 +25,7 @@ import Apply from "util/enums/Apply";
 import ApplyDetail from "util/enums/ApplyDetail";
 import FreeSemType from "util/types/FreeSem";
 import ScoreGrade from "util/types/ScoreGrade";
-import { _autoAction, observable } from "mobx";
+import { action, observable } from "mobx";
 
 @autobind
 class WriteStore {
@@ -38,7 +37,6 @@ class WriteStore {
   @observable gradeType: Grade | null = null;
   //원서 내용이 수정됬는지 여부
   @observable isChanged: boolean = false;
-
   //영어점수
   @observable englishScore: number = 0;
   //국어점수
@@ -96,192 +94,193 @@ class WriteStore {
   @observable volunteer3: number = 0;
 
   //유저번호 설정
-  @_autoAction
+  @action
   handleUserIdx = (userIdx: number | null) => {
     this.userIdx = userIdx;
   };
 
   //각 과목 점수 설정 (국, 수, 사, 과, 영, 기타)
-  @_autoAction
+  @action
   handleEnglishScore = (englishScore: number) => {
     this.englishScore = englishScore;
   };
 
-  @_autoAction
+  @action
   handleKoreanScore = (koreanScore: number) => {
     this.koreanScore = koreanScore;
   };
 
-  @_autoAction
+  @action
   handleMathScore = (mathScore: number) => {
     this.mathScore = mathScore;
   };
 
-  @_autoAction
+  @action
   handleScienceScore = (scienceScore: number) => {
     this.scienceScore = scienceScore;
   };
 
-  @_autoAction
+  @action
   handleSocialScore = (socialScore: number) => {
     this.socialScore = socialScore;
   };
 
-  @_autoAction
+  @action
   handleOtherScore = (otherScore: number) => {
     this.otherScore = otherScore;
   };
 
   //변경 여부 설정
-  @_autoAction
+  @action
   handleIsChanged = (value: boolean) => {
     this.isChanged = value;
   };
 
   //페이지 번호 설정
-  @_autoAction
+  @action
   pageHandle = (page: number) => {
     this.page = page;
   };
 
   //점수 배열 설정
-  @_autoAction
+  @action
   handleGrades = (grades: ScoreGrade[]) => {
     this.grades = grades;
   };
 
   //자유학기제 여부 설정
-  @_autoAction
+  @action
   handleFreeSem = (freeSem: FreeSemType) => {
     this.freeSem = freeSem;
   };
 
   //졸업 방식 설정
-  @_autoAction
+  @action
   handleGrade = (gradeType: Grade | null) => {
     this.gradeType = gradeType;
   };
 
   //학년별 미인정 출석
-  @_autoAction
+  @action
   handleAbsence1 = (absence1: number) => {
     this.absence1 = absence1;
   };
 
-  @_autoAction
+  @action
   handleAbsence2 = (absence2: number) => {
     this.absence2 = absence2;
   };
 
-  @_autoAction
+  @action
   handleAbsence3 = (absence3: number) => {
     this.absence3 = absence3;
   };
 
   //학년별 미인정 지각
-  @_autoAction
+  @action
   handleLateness1 = (lateness1: number) => {
     this.lateness1 = lateness1;
   };
 
-  @_autoAction
+  @action
   handleLateness2 = (lateness2: number) => {
     this.lateness2 = lateness2;
   };
 
-  @_autoAction
+  @action
   handleLateness3 = (lateness3: number) => {
     this.lateness3 = lateness3;
   };
 
   //학년별 미인정 조퇴
-  @_autoAction
+  @action
   handleEarlyLeave1 = (earlyLeave1: number) => {
     this.earlyLeave1 = earlyLeave1;
   };
 
-  @_autoAction
+  @action
   handleEarlyLeave2 = (earlyLeave2: number) => {
     this.earlyLeave2 = earlyLeave2;
   };
 
-  @_autoAction
+  @action
   handleEarlyLeave3 = (earlyLeave3: number) => {
     this.earlyLeave3 = earlyLeave3;
   };
 
   //학년별 미인정 결과
-  @_autoAction
+  @action
   handleAbsenceLecture1 = (absenceLecture1: number) => {
     this.absenceLecture1 = absenceLecture1;
   };
 
-  @_autoAction
+  @action
   handleAbsenceLecture2 = (absenceLecture2: number) => {
     this.absenceLecture2 = absenceLecture2;
   };
 
-  @_autoAction
+  @action
   handleAbsenceLecture3 = (absenceLecture3: number) => {
     this.absenceLecture3 = absenceLecture3;
   };
 
   //학기별 학생임원 여부 설정
-  @_autoAction
+  @action
   handleLeadership11 = (leadership11: boolean) => {
     this.leadership11 = leadership11;
   };
 
-  @_autoAction
+  @action
   handleLeadership12 = (leadership12: boolean) => {
     this.leadership12 = leadership12;
   };
 
-  @_autoAction
+  @action
   handleLeadership21 = (leadership21: boolean) => {
     this.leadership21 = leadership21;
   };
 
-  @_autoAction
+  @action
   handleLeadership22 = (leadership22: boolean) => {
     this.leadership22 = leadership22;
   };
 
-  @_autoAction
+  @action
   handleLeadership31 = (leadership31: boolean) => {
     this.leadership31 = leadership31;
   };
 
-  @_autoAction
+  @action
   handleLeadership32 = (leadership32: boolean) => {
     this.leadership32 = leadership32;
   };
 
   //모범상 개수 설정
-  @_autoAction
+  @action
   handlePrize = (prize: number) => {
     this.prize = prize;
   };
 
   //학년별 봉사 시간 설정
-  @_autoAction
+  @action
   handleVolunteer1 = (volunteer1: number) => {
     this.volunteer1 = volunteer1;
   };
 
-  @_autoAction
+  @action
   handleVolunteer2 = (volunteer2: number) => {
     this.volunteer2 = volunteer2;
   };
 
-  @_autoAction
+  @action
   handleVolunteer3 = (volunteer3: number) => {
     this.volunteer3 = volunteer3;
   };
+  //여기까지 안해도됨
 
   //API 사용
   //점수 서버에서 받아오기
-  @_autoAction
+  @action
   getGed = async (): Promise<GedResponse> => {
     const response: GedResponse = await UserApi.GetGed(this.userIdx);
 
@@ -289,7 +288,7 @@ class WriteStore {
   };
 
   //점수 설정
-  @_autoAction
+  @action
   editGed = async (): Promise<Response> => {
     const response: Response = await UserApi.EditGed(
       this.englishScore,
@@ -305,7 +304,7 @@ class WriteStore {
   };
 
   //유저 번호에 해방하는 정보 가져오기
-  @_autoAction
+  @action
   getStudentInfo = async (
     userIdx?: number | null
   ): Promise<UserInfoResponse> => {
@@ -315,7 +314,7 @@ class WriteStore {
   };
 
   //유저 정보 설정
-  @_autoAction
+  @action
   editStudentInfo = async (
     name: string,
     birth: string,
@@ -334,7 +333,7 @@ class WriteStore {
   };
 
   //프로필 이미지 설정
-  @_autoAction
+  @action
   editProfileImage = async (ProfileImgage: string): Promise<Response> => {
     const response: Response = await UserApi.EditProfileImage(
       ProfileImgage,
@@ -345,7 +344,7 @@ class WriteStore {
   };
 
   //프로필 이미지 받기
-  @_autoAction
+  @action
   getProfileImage = async (): Promise<ProfileInfoResponse> => {
     const response: ProfileInfoResponse = await UserApi.GetProfileImage(
       this.userIdx
@@ -355,7 +354,7 @@ class WriteStore {
   };
 
   //입학 전형 받아오기
-  @_autoAction
+  @action
   getApplyType = async (): Promise<ApplyTypeResponse> => {
     const response: ApplyTypeResponse = await UserApi.GetApplyType(
       this.userIdx
@@ -365,7 +364,7 @@ class WriteStore {
   };
 
   //학부모 정보 받아오기
-  @_autoAction
+  @action
   getParentInfo = async (): Promise<ParentInfoResponse> => {
     const response: ParentInfoResponse = await UserApi.GetParentInfo(
       this.userIdx
@@ -375,7 +374,7 @@ class WriteStore {
   };
 
   //입학 전형 설정
-  @_autoAction
+  @action
   editApplyType = async (
     applyType: Apply,
     applyDetailType: ApplyDetail,
@@ -394,7 +393,7 @@ class WriteStore {
   };
 
   //학부모 정보 설정
-  @_autoAction
+  @action
   editParentInfo = async (
     address: string,
     parentName: string,
@@ -419,7 +418,7 @@ class WriteStore {
   };
 
   //학교 정보 받기
-  @_autoAction
+  @action
   getSchoolInfo = async (): Promise<SchoolInfoResponse> => {
     const response: SchoolInfoResponse = await UserApi.GetSchoolInfo(
       this.userIdx
@@ -429,7 +428,7 @@ class WriteStore {
   };
 
   //학교 정보 설정
-  @_autoAction
+  @action
   editSchoolInfo = async (
     cityLocation: string,
     cityName: string,
@@ -458,7 +457,7 @@ class WriteStore {
   };
 
   //프로필 이미지 업로드
-  @_autoAction
+  @action
   upload = async (fileName: File | Blob): Promise<UploadResponse> => {
     const response: UploadResponse = await UserApi.upload(fileName);
 
@@ -466,7 +465,7 @@ class WriteStore {
   };
 
   //자기소개서 설정
-  @_autoAction
+  @action
   editSelfIntroduce = async (selfIntroduction: string): Promise<Response> => {
     const response: Response = await UserApi.EditSelfIntroduce(
       selfIntroduction,
@@ -477,7 +476,7 @@ class WriteStore {
   };
 
   //자기소개서 받기
-  @_autoAction
+  @action
   getSelfIntroduce = async (): Promise<SelfIntroductionResponse> => {
     const response: SelfIntroductionResponse = await UserApi.GetSelfIntroduce(
       this.userIdx
@@ -487,7 +486,7 @@ class WriteStore {
   };
 
   //학업계획서 설정
-  @_autoAction
+  @action
   editStudyPlan = async (studyPlan: string): Promise<Response> => {
     const response: Response = await UserApi.EditStudyPlan(
       studyPlan,
@@ -498,7 +497,7 @@ class WriteStore {
   };
 
   //학업계획서 받기
-  @_autoAction
+  @action
   getStudyPlan = async (): Promise<StudyPlanResponse> => {
     const response: StudyPlanResponse = await UserApi.GetStudyPlan(
       this.userIdx
@@ -508,7 +507,7 @@ class WriteStore {
   };
 
   //유저별 점수 및 자유학기제 설정
-  @_autoAction
+  @action
   editGrade = async (): Promise<Response> => {
     const response: Response = await UserApi.EditGrade(
       this.freeSem,
@@ -520,7 +519,7 @@ class WriteStore {
   };
 
   //유저별 출결상황 설정
-  @_autoAction
+  @action
   editAttend = async (): Promise<Response> => {
     const response: Response = await UserApi.EditAttend(
       this.absence1,
@@ -542,7 +541,7 @@ class WriteStore {
   };
 
   //유저별 가산점 설정
-  @_autoAction
+  @action
   editAdditional = async (): Promise<Response> => {
     const response: Response = await UserApi.EditAdditional(
       this.leadership11,
@@ -559,7 +558,7 @@ class WriteStore {
   };
 
   //유저별 봉사활동 점수
-  @_autoAction
+  @action
   editVolunteer = async (): Promise<Response> => {
     const response: Response = await UserApi.EditVolunteer(
       this.volunteer1,
@@ -572,7 +571,7 @@ class WriteStore {
   };
 
   //출결상황 받기
-  @_autoAction
+  @action
   getAttend = async (): Promise<AttendResponse> => {
     const response: AttendResponse = await UserApi.GetAttend(this.userIdx);
 
@@ -580,7 +579,7 @@ class WriteStore {
   };
 
   //가산점 받기
-  @_autoAction
+  @action
   getAdditional = async (): Promise<AdditionalResponse> => {
     const response: AdditionalResponse = await UserApi.GetAdditional(
       this.userIdx
@@ -590,7 +589,7 @@ class WriteStore {
   };
 
   //봉사활동 받기
-  @_autoAction
+  @action
   getVolunteer = async (): Promise<VolunteerResponse> => {
     const response: VolunteerResponse = await UserApi.GetVolunteer(
       this.userIdx
@@ -600,7 +599,7 @@ class WriteStore {
   };
 
   //학교 검색
-  @_autoAction
+  @action
   searchSchool = async (
     schoolName: string,
     city: string
@@ -609,12 +608,12 @@ class WriteStore {
       schoolName,
       city
     );
-    console.log(response)
+    console.log(response);
     return response;
   };
 
   //자유학기제 여부 및 점수 받기
-  @_autoAction
+  @action
   getGradeList = async (): Promise<GetGradeList> => {
     const response: GetGradeList = await UserApi.GetGrade(this.userIdx);
 
