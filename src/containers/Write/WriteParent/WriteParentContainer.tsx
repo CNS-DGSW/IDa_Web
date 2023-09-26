@@ -17,7 +17,7 @@ const WriteParentContainer = ({}) => {
   const [parentName, setParentName] = useState<string>("");
   const [parentRelation, setParentRelation] = useState<Relation | null>(null);
   const [parentTel, setParentTel] = useState<string>("");
-  const [parentBirth, setParentBirth] = useState<string>("1978");
+  const [parentBirth, setParentBirth] = useState<string>("1978-01-01");
   const [address, setAddress] = useState<string>("");
   const [detailAddress, setDetailAddress] = useState<string>("");
   const [postCode, setPostCode] = useState<string>("");

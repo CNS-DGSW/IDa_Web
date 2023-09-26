@@ -113,7 +113,7 @@ const WriteParents = ({
                 <input
                   type="date"
                   className="student-select-box-area-textInput"
-                  value={parentBirth}
+                  value={"1978-01-01"}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                     setParentBirth(e.target.value);
                     setIsChanged(true);

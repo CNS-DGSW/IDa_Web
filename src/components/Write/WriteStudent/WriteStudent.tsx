@@ -58,10 +58,11 @@ const WriteStudent = ({
                 <input
                   type="date"
                   className="student-select-box-area-textInput"
-                  value={birth}
+                  value={"2008-01-01"}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                     setBirth(e.target.value);
                     setIsChanged(true);
+                    console.log(e.target.value);
                   }}
                 />
               </div>
