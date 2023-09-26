@@ -1,6 +1,6 @@
 import StatusApi from "assets/api/StatusApi";
 import { autobind } from "core-decorators";
-import { action, observable } from "mobx";
+import { _autoAction, observable } from "mobx";
 import UserPrintStatus from "util/enums/UserPrintStatus";
 import Apply from "util/enums/Apply";
 import ApplyDetail from "util/enums/ApplyDetail";
@@ -35,15 +35,15 @@ class StatusStore {
   @observable finalApplyType?: string | null;
   @observable finalApplyDetailType?: string | null;
 
-  @action tryStatusModal = () => {
+  @_autoAction tryStatusModal = () => {
     this.statusModal = !this.statusModal;
   };
 
-  @action closeStatusModal = () => {
+  @_autoAction closeStatusModal = () => {
     this.statusModal = false;
   };
 
-  @action
+  @_autoAction
   changeSubmit = async (userIdx?: number | null): Promise<Response> => {
     try {
       const response: Response = await StatusApi.ChangeSubmit(userIdx);
@@ -58,7 +58,7 @@ class StatusStore {
     }
   };
 
-  @action
+  @_autoAction
   tryGetFinalStatus = async (): Promise<FinalStatusResponse> => {
     // 2차(최종) 합격 여부
 
@@ -78,7 +78,7 @@ class StatusStore {
     return response;
   };
 
-  @action
+  @_autoAction
   tryGetStatus = async (
     userIdx?: number | null
   ): Promise<ResultStatusResponse> => {
@@ -107,7 +107,7 @@ class StatusStore {
     return response;
   };
 
-  @action
+  @_autoAction
   changeArrived = async (
     userIdx: number,
     status: boolean
@@ -117,7 +117,7 @@ class StatusStore {
     return response;
   };
 
-  @action
+  @_autoAction
   changeReview = async (userIdx: number, status: string): Promise<Response> => {
     //최종 원서 검토 예정 검토 완료 변경 이민욱
     const response: Response = await StatusApi.ChangeReview(userIdx, status);

@@ -1,4 +1,4 @@
-import { action, observable } from "mobx";
+import { _autoAction, observable } from "mobx";
 import { autobind } from "core-decorators";
 import AuthApi from "../../assets/api/AuthApi";
 import {
@@ -20,17 +20,17 @@ class AuthStore {
   @observable email: string = "";
   // 이메일
 
-  @action
+  @_autoAction
   handleName = (name: string) => {
     this.name = name;
   };
 
-  @action
+  @_autoAction
   tryProfileBox = () => {
     this.profileBox = !this.profileBox;
   };
 
-  @action
+  @_autoAction
   tryLogout = () => {
     this.login = false;
     this.profileBox = false;
@@ -39,7 +39,7 @@ class AuthStore {
     this.isAdmin = false;
   };
 
-  @action
+  @_autoAction
   tryCloseModal = () => {
     this.profileBox = false;
   };
@@ -48,7 +48,7 @@ class AuthStore {
     this.login = login;
   };
 
-  @action
+  @_autoAction
   tryLogin = async (
     email: string,
     password: string
@@ -62,7 +62,7 @@ class AuthStore {
     return response;
   };
 
-  @action
+  @_autoAction
   tryRegister = async (
     name: string,
     birth: string,
@@ -83,21 +83,21 @@ class AuthStore {
     return response;
   };
 
-  @action
+  @_autoAction
   trySendPhone = async (phoneNum: string): Promise<Response> => {
     const response = await AuthApi.PhoneNum(phoneNum);
 
-    return response
-  }
+    return response;
+  };
 
-  @action
+  @_autoAction
   trySendEmail = async (email: string): Promise<Response> => {
     const response = await AuthApi.EmailCode(email);
 
     return response;
   };
 
-  @action
+  @_autoAction
   getInfo = async (): Promise<UserInfoResponse> => {
     const response: UserInfoResponse = await AuthApi.GetInfo();
 
@@ -113,21 +113,21 @@ class AuthStore {
     return response;
   };
 
-  @action
+  @_autoAction
   tryPwCode = async (email: string): Promise<Response> => {
     const response = await AuthApi.PwCode(email);
 
     return response;
   };
 
-  @action
+  @_autoAction
   tryChangePwByEmail = async (code: string, pw: string): Promise<Response> => {
     const response = await AuthApi.ChangePwByEmail(code, pw);
 
     return response;
   };
 
-  @action
+  @_autoAction
   tryChangePw = async (newPw: string, pw: string): Promise<Response> => {
     const response = await AuthApi.ChangePw(newPw, pw);
 

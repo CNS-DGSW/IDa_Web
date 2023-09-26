@@ -45,16 +45,14 @@ const App = () => {
   return (
     <div className="App">
       <ToastContainer />
-      <Routes>
-        <Suspense fallback={<></>}>
+      <Suspense fallback={<></>}>
+        <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/write" element={<WritePage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/changepw" element={<ChangePwPage />} />
           <Route path="/find" element={<FindPage />} />
-          {/* <Route  path="/qna" element={QnaPage} />
-          <Route  path="/faq" element={FaqPage} /> */}
           <Route path="/notice" element={<NoticePage />} />
           <Route path="/admin/receiptStatus" element={<ReceiptStatusPage />} />
           <Route path="/admin/schoolCity" element={<SchoolCityPage />} />
@@ -72,10 +70,14 @@ const App = () => {
           />
           <Route path="/admin/userResultPage" element={<UserResultPage />} />
           <Route path="/admin/detailScore" element={<SecondDetailSocre />} />
-        </Suspense>
-      </Routes>
+        </Routes>
+      </Suspense>
     </div>
   );
 };
 
+{
+  /* <Route  path="/qna" element={QnaPage} />
+          <Route  path="/faq" element={FaqPage} /> */
+}
 export default App;
