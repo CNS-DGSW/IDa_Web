@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import WriteGed from "components/Write/WriteGed";
 import { handleGetWriteError } from "lib/handleErrors";
 
@@ -9,7 +9,7 @@ import { handleGetWriteError } from "lib/handleErrors";
 const WriteGedContainer = ({}) => {
   const { store } = useStore();
 
-  const history = useHistory();
+  const history = useNavigate();
 
   const {
     koreanScore,

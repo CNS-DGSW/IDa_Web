@@ -2,14 +2,14 @@ import React, { useCallback, useEffect } from "react";
 import { observer } from "mobx-react";
 import WriteAttend from "components/Write/WriteAttend";
 import useStore from "lib/hooks/useStore";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { handleGetWriteError } from "lib/handleErrors";
 
 // 출결 입력
 const WriteGradeAttendContainer = ({}) => {
   const { store } = useStore();
 
-  const history = useHistory();
+  const history = useNavigate();
 
   const {
     absence1,

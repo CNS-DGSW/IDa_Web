@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { observer } from "mobx-react";
 import Find from "components/Find";
 import useStore from "lib/hooks/useStore";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -21,7 +21,7 @@ const FindContainer = () => {
   // 메일이 성공적으로 보낼때까지의 로딩
 
   const { store } = useStore();
-  const history = useHistory();
+  const history = useNavigate();
 
   const { tryChangePwByEmail, tryPwCode } = store.AuthStore;
   // tryPwCode는 메일로 코드 받는 action
@@ -56,7 +56,7 @@ const FindContainer = () => {
     } else {
       tryChangePwByEmail(code, newPw)
         .then((res) => {
-          history.push("/login");
+          history("/login");
           toast.success("변경되었습니다.");
         })
         .catch((err) => {

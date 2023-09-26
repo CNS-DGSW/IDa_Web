@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
 import FirstResult from "components/ResultStatusCheck/FirstResult";
 import { toast } from "react-toastify";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Apply from "util/enums/Apply";
 import { handleLogin } from "lib/handleErrors";
 
@@ -18,7 +18,7 @@ const FirstResultContainer = ({
   modalLoading,
   setModalLoading,
 }: FirstResultContainerProps) => {
-  const history = useHistory();
+  const history = useNavigate();
   const { store } = useStore();
   const { canAccess, pass, tryGetStatus, submit, print } = store.StatusStore;
   const [errStatus, setErrStatus] = useState<number>(0);

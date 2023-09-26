@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import SecondTypeScore from "components/Admin/SecondTypeScore";
 import useStore from "lib/hooks/useStore";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ExcelApi from "assets/api/ExcelApi";
 import { SecondScoreResponse } from "util/types/Response";
 import { toast } from "react-toastify";
 import { handleAdmin } from "lib/handleErrors";
 
 const SecondTypeScoreContainer = ({}) => {
-  const history = useHistory();
+  const history = useNavigate();
   const { store } = useStore();
   const {
     GetStudyScore,

@@ -2,14 +2,14 @@ import React, { useCallback, useEffect } from "react";
 import { observer } from "mobx-react";
 import WriteAdditional from "components/Write/WriteAdditional";
 import useStore from "lib/hooks/useStore";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { handleGetWriteError } from "lib/handleErrors";
 
 // 성적 가산점 입력
 const WriteGradeAdditionalContainer = ({}) => {
   const { store } = useStore();
 
-  const history = useHistory();
+  const history = useNavigate();
 
   const {
     leadership11,

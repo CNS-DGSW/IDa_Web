@@ -4,7 +4,7 @@ import WriteGradeList from "components/Write/WriteGradeList";
 import useStore from "lib/hooks/useStore";
 import Grade from "util/enums/Grade";
 import { toast } from "react-toastify";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Score from "util/enums/Score";
 import updateSemGrade from "lib/updateSemGrade";
 import { handleGetWriteError } from "lib/handleErrors";
@@ -13,7 +13,7 @@ import { handleGetWriteError } from "lib/handleErrors";
 const WriteGradeListContainer = ({}) => {
   const { store } = useStore();
 
-  const history = useHistory();
+  const history = useNavigate();
 
   const {
     gradeType,
