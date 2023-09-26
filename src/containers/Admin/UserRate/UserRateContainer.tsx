@@ -5,28 +5,25 @@ import { Rate } from "util/types/UserList";
 import { useNavigate } from "react-router-dom";
 import { Report } from "util/types/ReportInfo";
 import { handleAdmin } from "lib/handleErrors";
-import useStore from "lib/hooks/useStore";
 import ExcelApi from "assets/api/ExcelApi";
 import { toast } from "react-toastify";
+import { getReportInfo, getUserRate } from "stores/Admin/util";
 
 const UserRateContainer = ({}) => {
-  const { store } = useStore();
   const history = useNavigate();
 
   const [rateStatus, setRateStatus] = useState<Rate[]>([]);
   const [reportStatus, setReportStatus] = useState<Report[]>([]);
-
-  const { getReportInfo, getUserRate } = store.AdminStore;
 
   const { GetUserRate } = ExcelApi;
 
   // 입학 지원자 경쟁률 받아오기
   const tryGetUserRate = useCallback(() => {
     getUserRate(true)
-      .then((res) => {
+      .then((res: any) => {
         setRateStatus(res.data);
       })
-      .catch((err) => {
+      .catch((err: any) => {
         handleAdmin(err, history);
       });
   }, []);
@@ -34,10 +31,10 @@ const UserRateContainer = ({}) => {
   // 교육청 보고 정보 받아오기
   const tryGetReportInfo = useCallback(() => {
     getReportInfo()
-      .then((res) => {
+      .then((res: any) => {
         setReportStatus(res.data);
       })
-      .catch((err) => {
+      .catch((err: any) => {
         handleAdmin(err, history);
       });
   }, []);

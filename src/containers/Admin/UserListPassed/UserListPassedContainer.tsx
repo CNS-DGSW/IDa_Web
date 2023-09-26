@@ -8,17 +8,16 @@ import { handleAdmin } from "lib/handleErrors";
 import ExcelApi from "assets/api/ExcelApi";
 import ListPassedCategory from "util/enums/ListPassedCategory";
 import { toast } from "react-toastify";
+import {
+  adminChangeFirstStudent,
+  adminChangeSecondStudent,
+  getUserListPassed,
+  getViewFirstStudent,
+  getViewSecondStudent,
+} from "stores/Admin/util";
 
 const UserListPassedContainer = ({}) => {
-  const { store } = useStore();
   const history = useNavigate();
-  const {
-    getUserListPassed,
-    getViewFirstStudent,
-    adminChangeFirstStudent,
-    getViewSecondStudent,
-    adminChangeSecondStudent,
-  } = store.AdminStore;
 
   const { GetFirstSelection, GetSecondSelection } = ExcelApi;
   const [listPassed, setListPassed] = useState<ListPassedCategory>(
@@ -34,10 +33,10 @@ const UserListPassedContainer = ({}) => {
     getUserListPassed(
       listPassed === ListPassedCategory.Final ? true : undefined
     )
-      .then((res) => {
+      .then((res: any) => {
         setPassedStatus(res.data);
       })
-      .catch((err) => {
+      .catch((err: any) => {
         handleAdmin(err, history);
       });
   }, [listPassed]);
@@ -72,26 +71,26 @@ const UserListPassedContainer = ({}) => {
   );
 
   const tryViewFirstStudent = useCallback(() => {
-    getViewFirstStudent().then((res) => {
+    getViewFirstStudent().then((res: any) => {
       setFirstData(res.data);
     });
   }, [getViewFirstStudent, setFirstData]);
 
   const tryChangeFirstStudent = useCallback(() => {
-    adminChangeFirstStudent().then((res) => {
+    adminChangeFirstStudent().then((res: any) => {
       tryViewFirstStudent();
       console.log(res);
     });
   }, [adminChangeFirstStudent, tryViewFirstStudent]);
 
   const tryViewSecondStudent = useCallback(() => {
-    getViewSecondStudent().then((res) => {
+    getViewSecondStudent().then((res: any) => {
       setSecondData(res.data);
     });
   }, [getViewSecondStudent, setSecondData]);
 
   const tryChangeSecondStudent = useCallback(() => {
-    adminChangeSecondStudent().then((res) => {
+    adminChangeSecondStudent().then((res: any) => {
       tryViewSecondStudent();
       console.log(res);
     });

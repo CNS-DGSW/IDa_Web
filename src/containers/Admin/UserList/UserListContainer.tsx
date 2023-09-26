@@ -9,14 +9,16 @@ import { CityRatio, DateRatio, SchoolRatio } from "util/types/UserRatio";
 import ExcelApi from "assets/api/ExcelApi";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
-import UserPrintStatus from "util/enums/UserPrintStatus";
+import {
+  adminAddUser,
+  adminDeleteUser,
+  getAllUserRatio,
+  getUserList,
+} from "stores/Admin/util";
 
 const UserListContainer = ({}) => {
   const { store } = useStore();
   const history = useNavigate();
-
-  const { getUserList, getAllUserRatio, adminAddUser, adminDeleteUser } =
-    store.AdminStore;
 
   const { changeArrived, changeReview } = store.StatusStore;
 
@@ -57,7 +59,7 @@ const UserListContainer = ({}) => {
           toast.success("회원이 추가되었습니다.");
           tryGetUserList();
         })
-        .catch((err) => {
+        .catch((err: any) => {
           handleAdmin(err);
         });
     }
@@ -78,7 +80,7 @@ const UserListContainer = ({}) => {
             toast.success("회원이 삭제되었습니다.");
             tryGetUserList();
           })
-          .catch((err) => {
+          .catch((err: any) => {
             handleAdmin(err);
           });
       }
@@ -88,10 +90,10 @@ const UserListContainer = ({}) => {
   // 지원자 현황 받아오기
   const tryGetUserList = useCallback(() => {
     getUserList()
-      .then((res) => {
+      .then((res: any) => {
         setUserStatus(res.data);
       })
-      .catch((err) => {
+      .catch((err: any) => {
         handleAdmin(err, history);
       });
   }, []);
@@ -127,12 +129,12 @@ const UserListContainer = ({}) => {
   // 날짜, 출신학교, 지역 별 비율 받아오기
   const tryGetAllUserRatio = useCallback(() => {
     getAllUserRatio()
-      .then((res) => {
+      .then((res: any) => {
         setCityStatus(res.data.userCityRatio);
         setDateStatus(res.data.userDateRatio);
         setSchoolStatus(res.data.userSchoolRatio);
       })
-      .catch((err) => {
+      .catch((err: any) => {
         handleLogin(err, history);
       });
   }, []);
@@ -153,7 +155,7 @@ const UserListContainer = ({}) => {
 
   // 엑셀 다운
   const tryDownExcel = () => {
-    GetUserList().catch((err) => {
+    GetUserList().catch((err: any) => {
       toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요.");
     });
   };

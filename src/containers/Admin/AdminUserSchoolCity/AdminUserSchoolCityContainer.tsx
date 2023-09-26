@@ -2,9 +2,9 @@ import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import UserSchoolCity from "../../../components/Admin/AdminUserSchoolCity";
 import { useNavigate } from "react-router-dom";
-import useStore from "lib/hooks/useStore";
 import { SchoolCity } from "util/types/SchoolCity";
 import { handleAdmin } from "lib/handleErrors";
+import { getUserSchoolCity, getUserSchoolCityExcel } from "stores/Admin/util";
 
 const AdminUserSchoolCityContainer = ({}) => {
   let totalUngraduatedWomen = 0;
@@ -13,19 +13,16 @@ const AdminUserSchoolCityContainer = ({}) => {
   let totalGraduatedMen = 0;
 
   const history = useNavigate();
-  const { store } = useStore();
 
   const [schoolCity, setSchoolCity] = useState<SchoolCity[]>([]);
-
-  const { getUserSchoolCity, getUserSchoolCityExcel } = store.AdminStore;
 
   //지역별/출신교별 현황 받기
   const getUserSchoolCityCallBack = useCallback(() => {
     getUserSchoolCity()
-      .then((res) => {
+      .then((res: any) => {
         setSchoolCity(res.data);
       })
-      .catch((err) => {
+      .catch((err: any) => {
         handleAdmin(err, history);
       });
   }, []);

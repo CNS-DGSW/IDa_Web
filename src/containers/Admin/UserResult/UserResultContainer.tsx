@@ -1,27 +1,21 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useStore from "lib/hooks/useStore";
 import UserResult from "components/Admin/UserResult";
 import { handleAdmin } from "lib/handleErrors";
-import Apply from "util/enums/Apply";
-import ApplyDetail from "util/enums/ApplyDetail";
 import { UserResult as UserResultType } from "util/types/UserResult";
 import { observer } from "mobx-react";
-import { findNameByValue } from "models/ApplyDetailModel";
+import {
+  changeFirstApplyStatus,
+  changeFirstResultStatus,
+  changeSecondApplyStatus,
+  changeSecondResultStatus,
+  getUserResultList,
+  setFirstSelection,
+  setSecondSelection,
+} from "stores/Admin/util";
 
 const UserRateContainer = ({}) => {
   const history = useNavigate();
-
-  const { store } = useStore();
-  const {
-    getUserResultList,
-    changeFirstApplyStatus,
-    changeSecondApplyStatus,
-    changeSecondResultStatus,
-    changeFirstResultStatus,
-    setFirstSelection,
-    setSecondSelection,
-  } = store.AdminStore;
 
   const [userResultList, setUserResultList] = useState<UserResultType[]>([]);
 

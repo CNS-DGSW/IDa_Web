@@ -1,22 +1,21 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import ReceiptStatus from "../../../components/Admin/AdminReceiptStatus";
-import useStore from "lib/hooks/useStore";
 import { handleAdmin } from "lib/handleErrors";
 import { useNavigate } from "react-router-dom";
 import { Receipt } from "util/types/ReceiptType";
 import Swal from "sweetalert2";
+import {
+  getReceiptStatus,
+  getReceiptStatusExcel,
+  handleCancelSubmit,
+} from "stores/Admin/util";
 
 const AdminReceiptStatusContainer = ({}) => {
-  const { store } = useStore();
   const history = useNavigate();
 
   const [receiptStatus, setReceiptStatus] = useState<Receipt[]>([]);
   const [search, setSearch] = useState<string>("");
-
-  const { getReceiptStatus, getReceiptStatusExcel, handleCancelSubmit } =
-    store.AdminStore;
-
   //입학 전형 원부 받아오기
   const getReceiptStatusCallBack = useCallback(() => {
     getReceiptStatus()
