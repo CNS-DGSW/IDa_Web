@@ -2,13 +2,14 @@ import React, { useEffect } from "react";
 import { observer } from "mobx-react";
 import { useBeforeunload } from "react-beforeunload";
 import Write from "components/Write/Write";
-import useStore from "lib/hooks/useStore";
 import { useLocation, useNavigate } from "react-router-dom";
 import useQuery from "lib/hooks/useQuery";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { pageAtom, userIdxAtom } from "stores/Write/WriteAtom";
 
 const WriteContainer = ({}) => {
-  const { store } = useStore();
-  const { page, pageHandle, handleUserIdx } = store.WriteStore;
+  const [page, setPage] = useRecoilState(pageAtom);
+  const setUserIdx = useSetRecoilState(userIdxAtom);
   const { search } = useLocation();
   const query = useQuery();
   const histroy = useNavigate();
@@ -21,22 +22,22 @@ const WriteContainer = ({}) => {
   // 하지만 403 오류 발생시 "/"" 경로로 이동
   useEffect(() => {
     if (Number(query.get("userIdx"))) {
-      handleUserIdx(Number(query.get("userIdx")));
+      setUserIdx(Number(query.get("userIdx")));
     } else {
-      handleUserIdx(null);
+      setUserIdx(null);
     }
   }, [search]);
 
   useEffect(() => {
     return () => {
-      pageHandle(0);
-      handleUserIdx(null);
+      setPage(0);
+      setUserIdx(null);
     };
   }, []);
 
   return (
     <>
-      <Write page={page} pageHandle={pageHandle} />
+      <Write page={page} pageHandle={(value: number) => setPage(value)} />
     </>
   );
 };

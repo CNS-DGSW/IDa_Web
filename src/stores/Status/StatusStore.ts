@@ -1,8 +1,5 @@
 import StatusApi from "assets/api/StatusApi";
 import { autobind } from "core-decorators";
-import UserPrintStatus from "util/enums/UserPrintStatus";
-import Apply from "util/enums/Apply";
-import ApplyDetail from "util/enums/ApplyDetail";
 import {
   FinalStatusResponse,
   Response,

@@ -1,12 +1,12 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { observer } from "mobx-react";
 import SearchSchool from "../../components/SearchSchool";
-import useStore from "lib/hooks/useStore";
 import Schools from "util/types/Schools";
 import { SchoolResponse } from "util/types/Response";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import { searchSchool } from "stores/Write/util";
 
 interface SearchSchoolContainerProps {
   setSchoolName: React.Dispatch<React.SetStateAction<string>>;
@@ -23,10 +23,7 @@ const SearchSchoolContainer = ({
   setIsOpen,
   setIsChanged,
 }: SearchSchoolContainerProps) => {
-  const { store } = useStore();
   const history = useNavigate();
-
-  const { searchSchool } = store.WriteStore;
 
   const [city, setCity] = useState<string>("");
   const [search, setSearch] = useState<string>("");
@@ -39,9 +36,9 @@ const SearchSchoolContainer = ({
       await searchSchool(search, city)
         .then((res: SchoolResponse) => {
           setSchools(res.data);
-          console.log(schools)
+          console.log(schools);
         })
-        .catch((err) => {
+        .catch((err: any) => {
           if (err.response?.status === 404) {
             toast.warn("검색되지 않았습니다. 직접 학교정보를 입력해주세요.");
           } else {

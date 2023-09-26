@@ -1,43 +1,43 @@
 import React, { useCallback, useEffect } from "react";
 import { observer } from "mobx-react";
-import useStore from "lib/hooks/useStore";
 import { useNavigate } from "react-router-dom";
 import WriteGed from "components/Write/WriteGed";
 import { handleGetWriteError } from "lib/handleErrors";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import {
+  englishScoreAtom,
+  getGed,
+  isChangedAtom,
+  koreanScoreAtom,
+  mathScoreAtom,
+  otherScoreAtom,
+  scienceScoreAtom,
+  socialScoreAtom,
+} from "stores/Write/WriteAtom";
 
 // 검정고시 성적 입력
 const WriteGedContainer = ({}) => {
-  const { store } = useStore();
-
   const history = useNavigate();
 
-  const {
-    koreanScore,
-    mathScore,
-    socialScore,
-    scienceScore,
-    englishScore,
-    otherScore,
-    handleKoreanScore,
-    handleMathScore,
-    handleSocialScore,
-    handleScienceScore,
-    handleEnglishScore,
-    handleOtherScore,
-    handleIsChanged,
-    getGed,
-  } = store.WriteStore;
+  const [koreanScore, setKoreanScore] = useRecoilState(koreanScoreAtom);
+  const [mathScore, setMathScore] = useRecoilState(mathScoreAtom);
+  const [socialScore, setSocialScore] = useRecoilState(socialScoreAtom);
+  const [scienceScore, setScienceScore] = useRecoilState(scienceScoreAtom);
+  const [englishScore, setEnglishScore] = useRecoilState(englishScoreAtom);
+  const [otherScore, setOtherScore] = useRecoilState(otherScoreAtom);
+  const setIsChanged = useSetRecoilState(isChangedAtom);
+  const getGedAtom = useRecoilValue(getGed);
 
   // 검정고시 점수 받아오기
   const getGedCallback = useCallback(async () => {
-    await getGed()
-      .then((res) => {
-        handleKoreanScore(res.data.score.koreanScore);
-        handleMathScore(res.data.score.mathScore);
-        handleSocialScore(res.data.score.socialScore);
-        handleScienceScore(res.data.score.scienceScore);
-        handleEnglishScore(res.data.score.englishScore);
-        handleOtherScore(res.data.score.otherScore);
+    await getGedAtom()
+      .then((res: any) => {
+        setKoreanScore(res.data.score.koreanScore);
+        setMathScore(res.data.score.mathScore);
+        setSocialScore(res.data.score.socialScore);
+        setScienceScore(res.data.score.scienceScore);
+        setEnglishScore(res.data.score.englishScore);
+        setOtherScore(res.data.score.otherScore);
       })
       .catch((err) => {
         handleGetWriteError(err, history);
@@ -52,18 +52,18 @@ const WriteGedContainer = ({}) => {
     <>
       <WriteGed
         koreanScore={koreanScore}
-        handleKoreanScore={handleKoreanScore}
+        handleKoreanScore={(value: number) => setKoreanScore(value)}
         englishScore={englishScore}
-        handleEnglishScore={handleEnglishScore}
+        handleEnglishScore={(value: number) => setEnglishScore(value)}
         mathScore={mathScore}
-        handleMathScore={handleMathScore}
+        handleMathScore={(value: number) => setMathScore(value)}
         socialScore={socialScore}
-        handleSocialScore={handleSocialScore}
+        handleSocialScore={(value: number) => setSocialScore(value)}
         scienceScore={scienceScore}
-        handleScienceScore={handleScienceScore}
+        handleScienceScore={(value: number) => setScienceScore(value)}
         otherScore={otherScore}
-        handleOtherScore={handleOtherScore}
-        handleIsChanged={handleIsChanged}
+        handleOtherScore={(value: number) => setKoreanScore(value)}
+        handleIsChanged={(value: boolean) => setIsChanged(value)}
       />
     </>
   );

@@ -1,5 +1,5 @@
 import AuthApi from "assets/api/AuthApi";
-import { LoginResponse, UserInfoResponse } from "util/types/Response";
+import { LoginResponse } from "util/types/Response";
 
 const tryLogin = async (
   email: string,

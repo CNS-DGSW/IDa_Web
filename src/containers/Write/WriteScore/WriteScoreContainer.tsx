@@ -5,6 +5,8 @@ import WriteScore from "components/Write/WriteScore";
 import { handleGetWriteError } from "lib/handleErrors";
 import { useNavigate } from "react-router-dom";
 import useQuery from "lib/hooks/useQuery";
+import { useRecoilValue } from "recoil";
+import { gradeTypeAtom } from "stores/Write/WriteAtom";
 
 interface WriteScoreContainerProps {
   onSave: () => Promise<boolean>;
@@ -20,7 +22,7 @@ const WriteScoreContainer = ({
   const { store } = useStore();
 
   const { getScore } = store.ScoreStore;
-  const { gradeType } = store.WriteStore;
+  const gradeType = useRecoilValue(gradeTypeAtom);
 
   const history = useNavigate();
 

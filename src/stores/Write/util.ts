@@ -1,8 +1,10 @@
 import AuthApi from "assets/api/AuthApi";
 import UserApi from "assets/api/UserApi";
-import Sex from "util/enums/Sex";
-import { UploadResponse, UserInfoResponse } from "util/types/Response";
-import { useRecoilValue } from "recoil";
+import {
+  SchoolResponse,
+  UploadResponse,
+  UserInfoResponse,
+} from "util/types/Response";
 
 const getStudentInfo = async (
   userIdx?: number | null
@@ -11,25 +13,18 @@ const getStudentInfo = async (
   return response;
 };
 
-const editStudentInfo = async (
-  name: string,
-  birth: string,
-  sex: Sex,
-  studentTel: string
-): Promise<Response> => {
-  const userIdx: number = 0;
-  const response: Response = await UserApi.EditUserInfo(
-    name,
-    birth,
-    sex,
-    studentTel,
-    userIdx
-  );
-
-  return response;
-};
-
 const upload = async (fileName: File | Blob): Promise<UploadResponse> => {
   const response: UploadResponse = await UserApi.upload(fileName);
   return response;
 };
+
+const searchSchool = async (
+  schoolName: string,
+  city: string
+): Promise<SchoolResponse> => {
+  const response: SchoolResponse = await UserApi.SearchSchool(schoolName, city);
+  console.log(response);
+  return response;
+};
+
+export { getStudentInfo, upload, searchSchool };

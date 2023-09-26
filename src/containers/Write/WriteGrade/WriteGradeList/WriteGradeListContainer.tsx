@@ -1,48 +1,50 @@
 import React, { useCallback, useEffect } from "react";
 import { observer } from "mobx-react";
 import WriteGradeList from "components/Write/WriteGradeList";
-import useStore from "lib/hooks/useStore";
 import Grade from "util/enums/Grade";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import Score from "util/enums/Score";
 import updateSemGrade from "lib/updateSemGrade";
 import { handleGetWriteError } from "lib/handleErrors";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import {
+  freeSemAtom,
+  getGradeList,
+  gradeTypeAtom,
+  gradesAtom,
+  isChangedAtom,
+} from "stores/Write/WriteAtom";
+import FreeSemType from "util/types/FreeSem";
 
 // 성적 리스트
 const WriteGradeListContainer = ({}) => {
-  const { store } = useStore();
-
   const history = useNavigate();
 
-  const {
-    gradeType,
-    getGradeList,
-    grades,
-    handleGrades,
-    freeSem,
-    handleFreeSem,
-    handleIsChanged,
-  } = store.WriteStore;
+  const gradeType = useRecoilValue(gradeTypeAtom);
+  const getGradeListAtom = useRecoilValue(getGradeList);
+  const [grades, setGrades] = useRecoilState(gradesAtom);
+  const [freeSem, setFreeSem] = useRecoilState(freeSemAtom);
+  const setIsChanged = useSetRecoilState(isChangedAtom);
 
   // 성적 리스트 조회
   const getGradeListCallback = useCallback(async () => {
-    await getGradeList()
-      .then((res) => {
-        handleGrades(res.data.grade);
-        handleFreeSem(res.data.freeSem);
+    await getGradeListAtom()
+      .then((res: any) => {
+        setGrades(res.data.grade);
+        setFreeSem(res.data.freeSem);
         if (gradeType === Grade.UNGRADUATED) {
-          handleFreeSem({ ...res.data.freeSem, freeSem32: true });
+          setFreeSem({ ...res.data.freeSem, freeSem32: true });
         }
       })
-      .catch((err) => {
+      .catch((err: any) => {
         handleGetWriteError(err, history);
       });
   }, [getGradeList, gradeType]);
 
   // 성적 리스트에 새로운 과목 추가
   const addNewGrade = () => {
-    let grade = grades.find((grade) => {
+    let grade = grades.find((grade: any) => {
       return grade.subjectName === "";
     });
 
@@ -62,17 +64,17 @@ const WriteGradeListContainer = ({}) => {
       subjectName: "",
     };
 
-    handleGrades([...grades, grade]);
+    setGrades([...grades, grade]);
   };
 
   // 해당 과목 성적 수정
   const handleGradesCallback = useCallback(
     (idx: number, value: Score, subjectName: string) => {
-      const gradeIdx = grades.findIndex((grade) => {
+      const gradeIdx = grades.findIndex((grade: any) => {
         return grade.subjectName === subjectName;
       });
 
-      let grade = grades.find((grade) => {
+      let grade = grades.find((grade: any) => {
         return grade.subjectName === subjectName;
       });
       if (grade === undefined)
@@ -86,15 +88,15 @@ const WriteGradeListContainer = ({}) => {
           subjectName,
         };
       if (gradeIdx !== -1) {
-        handleGrades([
+        setGrades([
           ...grades.slice(0, gradeIdx),
           updateSemGrade(idx, value, grade),
           ...grades.slice(gradeIdx + 1, grades.length),
         ]);
       } else {
-        handleGrades([...grades, updateSemGrade(idx, value, grade)]);
+        setGrades([...grades, updateSemGrade(idx, value, grade)]);
       }
-      handleIsChanged(true);
+      setIsChanged(true);
     },
     [grades]
   );
@@ -110,7 +112,7 @@ const WriteGradeListContainer = ({}) => {
         gradeType={gradeType}
         freeSem={freeSem}
         handleGradesCallback={handleGradesCallback}
-        handleFreeSem={handleFreeSem}
+        handleFreeSem={(value: FreeSemType) => setFreeSem(value)}
         addNewGrade={addNewGrade}
       />
     </>

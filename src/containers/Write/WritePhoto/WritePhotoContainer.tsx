@@ -6,17 +6,19 @@ import { ProfileInfoResponse } from "util/types/Response";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { handleGetWriteError, handleWriteError } from "lib/handleErrors";
+import { upload } from "stores/Write/util";
+import { useRecoilValue } from "recoil";
+import { editProfileImage, getProfileImage } from "stores/Write/WriteAtom";
 
 const WritePhotoContainer = () => {
-  const { store } = useStore();
   const history = useNavigate();
 
   const [preview, setPreview] = useState<string | ArrayBuffer | null>("");
   const [image, setImage] = useState<File | Blob | null>();
   const [isChanged, setIsChanged] = useState<boolean>(false);
 
-  const { editProfileImage, getProfileImage, upload } = store.WriteStore;
-
+  const getProfileImageAtom = useRecoilValue(getProfileImage);
+  const editProfileImageAtom = useRecoilValue(editProfileImage);
   //프로필 미리보기 함수
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let reader = new FileReader();
@@ -40,13 +42,13 @@ const WritePhotoContainer = () => {
       setIsChanged(false);
       if (image) {
         await upload(image)
-          .then(async (res) => {
-            await editProfileImage(res.data.fileName).catch((err) => {
+          .then(async (res: any) => {
+            await editProfileImageAtom(res.data.fileName).catch((err: any) => {
               handleWriteError(err, history);
               flag = false;
             });
           })
-          .catch((err) => {
+          .catch((err: any) => {
             handleWriteError(err, history);
             flag = false;
           });
@@ -62,11 +64,11 @@ const WritePhotoContainer = () => {
 
   //프로필 이미지 받아오기
   const getProfileImageCallback = useCallback(() => {
-    getProfileImage()
+    getProfileImageAtom()
       .then((res: ProfileInfoResponse) => {
         setPreview(res.data.profileImage);
       })
-      .catch((err) => {
+      .catch((err: any) => {
         handleGetWriteError(err, history);
       });
   }, []);

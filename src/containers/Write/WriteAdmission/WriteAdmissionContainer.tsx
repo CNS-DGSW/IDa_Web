@@ -1,16 +1,17 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
-import useStore from "lib/hooks/useStore";
 import WriteAdmission from "../../../components/Write/WriteAdmission";
 import Apply from "util/enums/Apply";
 import ApplyDetail from "util/enums/ApplyDetail";
 import { findNameByValue } from "models/ApplyDetailModel";
 import { useNavigate } from "react-router-dom";
 import { handleGetWriteError, handleWriteError } from "lib/handleErrors";
+import { useRecoilValue } from "recoil";
+import { editApplyType, getApplyType } from "stores/Write/WriteAtom";
 
 const WriteAdmissionContainer = ({}) => {
-  const { store } = useStore();
-  const { getApplyType, editApplyType } = store.WriteStore;
+  const getApplyTypeAtom = useRecoilValue(getApplyType);
+  const editApplyTypeAtom = useRecoilValue(editApplyType);
 
   const history = useNavigate();
 
@@ -34,12 +35,12 @@ const WriteAdmissionContainer = ({}) => {
       ) {
         flag = false;
       }
-      await editApplyType(
+      await editApplyTypeAtom(
         applyType,
         applyDetailType,
         verteransCity,
         verteransNumber
-      ).catch((err) => {
+      ).catch((err: any) => {
         handleWriteError(err, history);
         flag = false;
       });
@@ -52,15 +53,15 @@ const WriteAdmissionContainer = ({}) => {
 
   //유저 정보 받아오는 함수
   const getApplyTypeCallback = useCallback(() => {
-    getApplyType()
-      .then((res) => {
+    getApplyTypeAtom()
+      .then((res: any) => {
         setApplyType(res.data.applyType);
         setApplyDetailType(res.data.applyDetailType);
         setSpecial(findNameByValue(res.data.applyDetailType));
         setVerteransCity(res.data.verteransCity || "");
         setVerteransNumber(res.data.verteransNumber || "");
       })
-      .catch((err) => {
+      .catch((err: any) => {
         handleGetWriteError(err, history);
       });
   }, []);

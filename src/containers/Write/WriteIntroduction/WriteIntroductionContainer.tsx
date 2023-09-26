@@ -9,6 +9,13 @@ import {
 } from "util/types/Response";
 import { toast } from "react-toastify";
 import { handleGetWriteError, handleWriteError } from "lib/handleErrors";
+import { useRecoilValue } from "recoil";
+import {
+  editSelfIntroduce,
+  editStudyPlan,
+  getSelfIntroduce,
+  getStudyPlan,
+} from "stores/Write/WriteAtom";
 
 const WriteIntroductionContainer = ({}) => {
   const { store } = useStore();
@@ -18,15 +25,19 @@ const WriteIntroductionContainer = ({}) => {
   const [studyPlan, setStudyPlan] = useState<string>("");
   const [isChanged, setIsChanged] = useState<boolean>(false);
 
-  const { getSelfIntroduce, editSelfIntroduce, getStudyPlan, editStudyPlan } =
-    store.WriteStore;
+  const getSelfIntroduceAtom = useRecoilValue(getSelfIntroduce);
+  const editSelfIntroduceAtom = useRecoilValue(editSelfIntroduce);
+  const getStudyPlanAtom = useRecoilValue(getStudyPlan);
+  const editStudyPlanAtom = useRecoilValue(editStudyPlan);
 
   //변경사항 저장 함수
   const onSave = useCallback(async () => {
     let flag = true;
     if (selfIntroduce && studyPlan) {
       const promises = [
-        editStudyPlan(studyPlan).then(() => editSelfIntroduce(selfIntroduce)),
+        editStudyPlanAtom(studyPlan).then(() =>
+          editSelfIntroduceAtom(selfIntroduce)
+        ),
       ];
 
       console.log(studyPlan);
@@ -35,7 +46,7 @@ const WriteIntroductionContainer = ({}) => {
         .then(() => {
           flag = true;
         })
-        .catch((err) => {
+        .catch((err: any) => {
           handleWriteError(err, history);
           flag = false;
         });
@@ -44,28 +55,28 @@ const WriteIntroductionContainer = ({}) => {
       toast.warning("빈칸을 채워주세요.");
       flag = false;
     }
-    getSelfIntroduce().then((current) => console.log(current));
+    getSelfIntroduceAtom().then((current: any) => console.log(current));
     return flag;
   }, [selfIntroduce, studyPlan]);
 
   //자기소개서 받아오는 함수
   const getSelfIntroduceCallBack = useCallback(() => {
-    getSelfIntroduce()
+    getSelfIntroduceAtom()
       .then((res: SelfIntroductionResponse) => {
         setSelfIntroduce(res.data.selfIntroduction || "");
       })
-      .catch((err) => {
+      .catch((err: any) => {
         handleGetWriteError(err, history);
       });
   }, []);
 
   //학업계획서 받아오는 함수
   const getStudyPlanCallBack = useCallback(() => {
-    getStudyPlan()
+    getStudyPlanAtom()
       .then((res: StudyPlanResponse) => {
         setStudyPlan(res.data.studyPlan || "");
       })
-      .catch((err) => {
+      .catch((err: any) => {
         handleGetWriteError(err, history);
       });
   }, []);

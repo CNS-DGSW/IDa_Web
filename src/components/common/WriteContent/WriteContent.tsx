@@ -5,6 +5,8 @@ import "./WriteContent.scss";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { pageAtom, userIdxAtom } from "stores/Write/WriteAtom";
 
 interface WriteContentProps {
   title: string;
@@ -20,7 +22,8 @@ const WriteContent = ({
   isChanged,
 }: WriteContentProps) => {
   const { store } = useStore();
-  const { page, pageHandle, userIdx } = store.WriteStore;
+  const [page, setPage] = useRecoilState(pageAtom);
+  const userIdx = useRecoilValue(userIdxAtom);
   const { changeSubmit } = store.StatusStore;
 
   const history = useNavigate();
@@ -29,7 +32,7 @@ const WriteContent = ({
     (skip?: boolean) => {
       if (!isChanged || skip) {
         if (page !== 6) {
-          pageHandle(page + 1);
+          setPage(page + 1);
         }
       } else {
         Swal.fire({
@@ -41,12 +44,12 @@ const WriteContent = ({
         }).then(async (result) => {});
       }
     },
-    [isChanged, page, pageHandle]
+    [isChanged, page, setPage]
   );
 
   const prevPage = useCallback(() => {
     if (!isChanged && page !== 0) {
-      pageHandle(page - 1);
+      setPage(page - 1);
     } else {
       Swal.fire({
         title: "원서가 저장되지 않았습니다!",
@@ -56,7 +59,7 @@ const WriteContent = ({
         confirmButtonText: "확인",
       }).then(async (result) => {});
     }
-  }, [isChanged, page, pageHandle]);
+  }, [isChanged, page, setPage]);
 
   const changeSubmitCallback = useCallback(async () => {
     if (isChanged) {

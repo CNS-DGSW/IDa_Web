@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import WriteGradeListItem from "components/Write/WriteGradeList/WriteGradeListItem";
-import useStore from "lib/hooks/useStore";
 import Score from "util/enums/Score";
 import ScoreGrade from "util/types/ScoreGrade";
 import gradeListModel from "models/GradeListModel";
 import { toast } from "react-toastify";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import {
+  freeSemAtom,
+  gradeTypeAtom,
+  gradesAtom,
+  isChangedAtom,
+} from "stores/Write/WriteAtom";
 
 interface WriteGradeListItemContainer {
   model: string;
@@ -24,22 +30,22 @@ const WriteGradeListItemContainer = ({
   model,
   filtered,
 }: WriteGradeListItemContainer) => {
-  const { store } = useStore();
-
-  const { gradeType, handleIsChanged, grades, handleGrades, freeSem } =
-    store.WriteStore;
+  const gradeType = useRecoilValue(gradeTypeAtom);
+  const setIsChanged = useSetRecoilState(isChangedAtom);
+  const [grades, setGraeds] = useRecoilState(gradesAtom);
+  const freeSem = useRecoilValue(freeSemAtom);
 
   const [value, setValue] = useState<string>("");
 
   // 성적 리스트 중 한 과목 삭제
   const deleteGrade = (model: string) => {
-    const gradeIdx = grades.findIndex((grade) => {
+    const gradeIdx = grades.findIndex((grade: any) => {
       return grade.subjectName === model;
     });
 
     if (gradeIdx === -1) return;
 
-    handleGrades([
+    setGraeds([
       ...grades.slice(0, gradeIdx),
       ...grades.slice(gradeIdx + 1, grades.length),
     ]);
@@ -55,7 +61,7 @@ const WriteGradeListItemContainer = ({
       }
     }
 
-    const isExist = grades.find((grade) => {
+    const isExist = grades.find((grade: any) => {
       return grade.subjectName === name;
     });
 
@@ -72,17 +78,17 @@ const WriteGradeListItemContainer = ({
     //   return;
     // }
 
-    const gradeIdx = grades.findIndex((grade) => {
+    const gradeIdx = grades.findIndex((grade: any) => {
       return grade.subjectName === prevName;
     });
 
-    let grade = grades.find((grade) => {
+    let grade = grades.find((grade: any) => {
       return grade.subjectName === prevName;
     });
 
     if (grade && gradeIdx !== -1) {
       grade.subjectName = name;
-      handleGrades([
+      setGraeds([
         ...grades.slice(0, gradeIdx),
         grade,
         ...grades.slice(gradeIdx + 1, grades.length),
@@ -102,7 +108,7 @@ const WriteGradeListItemContainer = ({
         value={value}
         setValue={setValue}
         handleNameChange={handleNameChange}
-        handleIsChanged={handleIsChanged}
+        handleIsChanged={(value: boolean) => setIsChanged(value)}
         gradeType={gradeType}
         filtered={filtered}
         isNew={isNew}

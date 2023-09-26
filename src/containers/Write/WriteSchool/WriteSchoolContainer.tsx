@@ -1,15 +1,14 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
-import useStore from "lib/hooks/useStore";
 import WriteSchool from "../../../components/Write/WriteSchool";
-import { SchoolInfoResponse } from "util/types/Response";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Grade from "util/enums/Grade";
-import { handleGetWriteError, handleWriteError } from "lib/handleErrors";
+import { handleWriteError } from "lib/handleErrors";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { editSchoolInfo, gradeTypeAtom } from "stores/Write/WriteAtom";
 
 const WriteSchoolContainer = ({}) => {
-  const { store } = useStore();
   const history = useNavigate();
 
   const [cityLocation, setCityLocation] = useState<string>("");
@@ -23,8 +22,8 @@ const WriteSchoolContainer = ({}) => {
   const [isChanged, setIsChanged] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const { gradeType, handleGrade, editSchoolInfo, getSchoolInfo } =
-    store.WriteStore;
+  const [gradeType, setGradeType] = useRecoilState(gradeTypeAtom);
+  const editSchoolInfoAtom = useRecoilValue(editSchoolInfo);
 
   useEffect(() => {
     if (schoolTel) {
@@ -90,7 +89,7 @@ const WriteSchoolContainer = ({}) => {
         toast.warning("올바른 년도를 입력해주세요.");
         flag = false;
       }
-      await editSchoolInfo(
+      await editSchoolInfoAtom(
         cityLocation,
         cityName,
         gradeType,
@@ -102,9 +101,9 @@ const WriteSchoolContainer = ({}) => {
         teacherTel
       )
         .then(() => {
-          handleGrade(gradeType);
+          setGradeType(gradeType);
         })
-        .catch((err) => {
+        .catch((err: any) => {
           handleWriteError(err, history);
           flag = false;
         });
@@ -140,7 +139,7 @@ const WriteSchoolContainer = ({}) => {
   //       setTeacherName(res.data.teacherName || "");
   //       setTeacherTel(res.data.teacherTel || "");
   //     })
-  //     .catch((err) => {
+  //     .catch((err:any) => {
   //       handleGetWriteError(err, history);
   //     });
   // }, []);
@@ -168,7 +167,9 @@ const WriteSchoolContainer = ({}) => {
       <WriteSchool
         isChanged={isChanged}
         gradeType={gradeType}
-        handleGrade={handleGrade}
+        handleGrade={() => {
+          setGradeType(gradeType);
+        }}
         cityLocation={cityLocation}
         setCityLocation={setCityLocation}
         cityName={cityName}

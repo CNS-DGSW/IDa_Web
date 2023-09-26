@@ -26,25 +26,38 @@ import Grade from "util/enums/Grade";
 import FreeSemType from "util/types/FreeSem";
 import ScoreGrade from "util/types/ScoreGrade";
 import useQuery from "lib/hooks/useQuery";
+import { getStudentInfo } from "stores/Write/util";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import {
+  getAdditional,
+  getApplyType,
+  getAttend,
+  getGed,
+  getGradeList,
+  getParentInfo,
+  getProfileImage,
+  getSchoolInfo,
+  getSelfIntroduce,
+  getStudyPlan,
+  getVolunteer,
+  userIdxAtom,
+} from "stores/Write/WriteAtom";
 
 const WritePrintContainer = ({}) => {
   const history = useNavigate();
   const { store } = useStore();
-  const {
-    getStudentInfo,
-    getParentInfo,
-    getSchoolInfo,
-    getApplyType,
-    getSelfIntroduce,
-    getStudyPlan,
-    getProfileImage,
-    getGradeList,
-    getGed,
-    getAttend,
-    getVolunteer,
-    getAdditional,
-    handleUserIdx,
-  } = store.WriteStore;
+  const getParentInfoAtom = useRecoilValue(getParentInfo);
+  const getSchoolInfoAtom = useRecoilValue(getSchoolInfo);
+  const getApplyTypeAtom = useRecoilValue(getApplyType);
+  const getSelfIntroduceAtom = useRecoilValue(getSelfIntroduce);
+  const getStudyPlanAtom = useRecoilValue(getStudyPlan);
+  const getProfileImageAtom = useRecoilValue(getProfileImage);
+  const getGradeListAtom = useRecoilValue(getGradeList);
+  const getGedAtom = useRecoilValue(getGed);
+  const getAttendAtom = useRecoilValue(getAttend);
+  const getVolunteerAtom = useRecoilValue(getVolunteer);
+  const getAdditionalAtom = useRecoilValue(getAdditional);
+  const handleUserIdxAtom = useSetRecoilState(userIdxAtom);
   const { getScore } = store.ScoreStore;
   const { tryGetStatus } = store.StatusStore;
 
@@ -135,7 +148,7 @@ const WritePrintContainer = ({}) => {
   //수험 번호 받아오는 함수
   const tryGetStatusCallback = useCallback(async () => {
     setIsSubmit(false);
-    await tryGetStatus(Number(query.get("userIdx"))).then((res) => {
+    await tryGetStatus(Number(query.get("userIdx"))).then((res: any) => {
       setExamCode(res.data.examCode || "");
       setSubmitCode(res.data.submitCode || "");
       setIsSubmit(res.data.isSubmit);
@@ -159,14 +172,14 @@ const WritePrintContainer = ({}) => {
 
   //프로필 이미지 받아오는 함수
   const getProfileImageCallback = useCallback(async () => {
-    await getProfileImage().then((res: ProfileInfoResponse) => {
+    await getProfileImageAtom().then((res: ProfileInfoResponse) => {
       setProfileImage(res.data.profileImage || "");
     });
   }, []);
 
   //학부모 정보 받아오는 함수
   const getParentInfoCallback = useCallback(async () => {
-    await getParentInfo().then((res: ParentInfoResponse) => {
+    await getParentInfoAtom().then((res: ParentInfoResponse) => {
       setAddress(res.data.address || "");
       setDetailAddress(res.data.detailAddress || "");
       setParentName(res.data.parentName || "");
@@ -187,7 +200,7 @@ const WritePrintContainer = ({}) => {
 
   //학교 정보 받아오는 함수
   const getSchoolInfoCallback = useCallback(async () => {
-    await getSchoolInfo().then((res: SchoolInfoResponse) => {
+    await getSchoolInfoAtom().then((res: SchoolInfoResponse) => {
       setTeacherName(res.data.teacherName || "");
       setCityName(res.data.cityName || "");
       setSchoolCode(res.data.schoolCode || "");
@@ -196,12 +209,12 @@ const WritePrintContainer = ({}) => {
       setGradeType(res.data.gradeType || null);
       setGraduatedDate(res.data.graduatedDate || "");
     });
-    console.log(schoolCode)
+    console.log(schoolCode);
   }, []);
 
   //입학전형 받아오기
   const getApplyTypeCallback = useCallback(async () => {
-    await getApplyType().then((res) => {
+    await getApplyTypeAtom().then((res: any) => {
       setApplyType(res.data.applyType);
       setApplyDetailType(res.data.applyDetailType);
       setVerteransCity(res.data.verteransCity || "");
@@ -211,7 +224,7 @@ const WritePrintContainer = ({}) => {
 
   //점수 받아오기
   const getScoreCallback = useCallback(async () => {
-    await getScore(Number(query.get("userIdx"))).then((res) => {
+    await getScore(Number(query.get("userIdx"))).then((res: any) => {
       setGrade1(res.data.grade1);
       setGrade2(res.data.grade2);
       setAbsence(res.data.absence);
@@ -239,21 +252,21 @@ const WritePrintContainer = ({}) => {
 
   //자기소개서 받아오기
   const getSelfIntroduceCallBack = useCallback(async () => {
-    await getSelfIntroduce().then((res: SelfIntroductionResponse) => {
+    await getSelfIntroduceAtom().then((res: SelfIntroductionResponse) => {
       setSelfIntroduce(res.data.selfIntroduction || "");
     });
   }, []);
 
   //학업계획서 받아오기
   const getStudyPlanCallBack = useCallback(async () => {
-    await getStudyPlan().then((res: StudyPlanResponse) => {
+    await getStudyPlanAtom().then((res: StudyPlanResponse) => {
       setStudyPlan(res.data.studyPlan || "");
     });
   }, []);
 
   //자유힉기제 여부 받아오기
   const getGradeCallback = useCallback(async () => {
-    await getGradeList().then((res) => {
+    await getGradeListAtom().then((res: any) => {
       setFreeSem(res.data.freeSem);
       setGrades(res.data.grade);
     });
@@ -261,7 +274,7 @@ const WritePrintContainer = ({}) => {
 
   //졸업 방식 받아오기
   const getGedCallback = useCallback(async () => {
-    await getGed().then((res) => {
+    await getGedAtom().then((res: any) => {
       setKoreanScore(res.data.score.koreanScore);
       setEnglishScore(res.data.score.englishScore);
       setMathScore(res.data.score.mathScore);
@@ -273,7 +286,7 @@ const WritePrintContainer = ({}) => {
 
   //출결상황 받아오기
   const getAbttendCallback = useCallback(async () => {
-    await getAttend().then((res) => {
+    await getAttendAtom().then((res: any) => {
       setAbsence1(res.data.absence1);
       setAbsence2(res.data.absence2);
       setAbsence3(res.data.absence3);
@@ -291,7 +304,7 @@ const WritePrintContainer = ({}) => {
 
   //가산점 목록 받아오기
   const getAdditionalCallback = useCallback(async () => {
-    await getAdditional().then((res) => {
+    await getAdditionalAtom().then((res: any) => {
       setLeadership11(res.data.leadership11);
       setLeadership12(res.data.leadership12);
       setLeadership21(res.data.leadership21);
@@ -304,7 +317,7 @@ const WritePrintContainer = ({}) => {
 
   //봉사활동 받아오기
   const getVolunteerCallback = useCallback(async () => {
-    await getVolunteer().then((res) => {
+    await getVolunteerAtom().then((res: any) => {
       setVolunteer1(res.data.volunteer1);
       setVolunteer2(res.data.volunteer2);
       setVolunteer3(res.data.volunteer3);
@@ -352,7 +365,7 @@ const WritePrintContainer = ({}) => {
 
   useEffect(() => {
     if (query.get("userIdx")) {
-      handleUserIdx(Number(query.get("userIdx")));
+      handleUserIdxAtom(Number(query.get("userIdx")));
     }
   }, [search]);
 

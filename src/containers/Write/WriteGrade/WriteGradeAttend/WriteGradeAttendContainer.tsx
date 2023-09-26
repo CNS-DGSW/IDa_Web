@@ -1,66 +1,64 @@
 import React, { useCallback, useEffect } from "react";
 import { observer } from "mobx-react";
 import WriteAttend from "components/Write/WriteAttend";
-import useStore from "lib/hooks/useStore";
 import { useNavigate } from "react-router-dom";
 import { handleGetWriteError } from "lib/handleErrors";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import {
+  absence1Atom,
+  absence2Atom,
+  absence3Atom,
+  absenceLecture1Atom,
+  absenceLecture2Atom,
+  absenceLecture3Atom,
+  earlyLeave1Atom,
+  earlyLeave2Atom,
+  earlyLeave3Atom,
+  getAttend,
+  isChangedAtom,
+  lateness1Atom,
+  lateness2Atom,
+  lateness3Atom,
+} from "stores/Write/WriteAtom";
 
 // 출결 입력
 const WriteGradeAttendContainer = ({}) => {
-  const { store } = useStore();
-
   const history = useNavigate();
-
-  const {
-    absence1,
-    absence2,
-    absence3,
-    lateness1,
-    lateness2,
-    lateness3,
-    earlyLeave1,
-    earlyLeave2,
-    earlyLeave3,
-    absenceLecture1,
-    absenceLecture2,
-    absenceLecture3,
-  } = store.WriteStore;
-
-  const {
-    handleAbsence1,
-    handleAbsence2,
-    handleAbsence3,
-    handleLateness1,
-    handleLateness2,
-    handleLateness3,
-    handleEarlyLeave1,
-    handleEarlyLeave2,
-    handleEarlyLeave3,
-    handleAbsenceLecture1,
-    handleAbsenceLecture2,
-    handleAbsenceLecture3,
-    handleIsChanged,
-    getAttend,
-  } = store.WriteStore;
-
+  const setIsChanged = useSetRecoilState(isChangedAtom);
+  const [absence1, setAbsence1] = useRecoilState(absence1Atom);
+  const [absence2, setAbsence2] = useRecoilState(absence2Atom);
+  const [absence3, setAbsence3] = useRecoilState(absence3Atom);
+  const [lateness1, setLateness1] = useRecoilState(lateness1Atom);
+  const [lateness2, setLateness2] = useRecoilState(lateness2Atom);
+  const [lateness3, setLateness3] = useRecoilState(lateness3Atom);
+  const [earlyLeave1, setEarlyLeave1] = useRecoilState(earlyLeave1Atom);
+  const [earlyLeave2, setEarlyLeave2] = useRecoilState(earlyLeave2Atom);
+  const [earlyLeave3, setEarlyLeave3] = useRecoilState(earlyLeave3Atom);
+  const [absenceLecture1, setAbsenceLecture1] =
+    useRecoilState(absenceLecture1Atom);
+  const [absenceLecture2, setAbsenceLecture2] =
+    useRecoilState(absenceLecture2Atom);
+  const [absenceLecture3, setAbsenceLecture3] =
+    useRecoilState(absenceLecture3Atom);
+  const getAttendAtom = useRecoilValue(getAttend);
   // 출결 조회
   const getAttendCallback = useCallback(async () => {
-    await getAttend()
-      .then((res) => {
-        handleAbsence1(res.data.absence1);
-        handleAbsence2(res.data.absence2);
-        handleAbsence3(res.data.absence3);
-        handleLateness1(res.data.lateness1);
-        handleLateness2(res.data.lateness2);
-        handleLateness3(res.data.lateness3);
-        handleEarlyLeave1(res.data.earlyLeave1);
-        handleEarlyLeave2(res.data.earlyLeave2);
-        handleEarlyLeave3(res.data.earlyLeave3);
-        handleAbsenceLecture1(res.data.absenceLecture1);
-        handleAbsenceLecture2(res.data.absenceLecture2);
-        handleAbsenceLecture3(res.data.absenceLecture3);
+    await getAttendAtom()
+      .then((res: any) => {
+        setAbsence1(res.data.absence1);
+        setAbsence2(res.data.absence2);
+        setAbsence3(res.data.absence3);
+        setLateness1(res.data.lateness1);
+        setLateness2(res.data.lateness2);
+        setLateness3(res.data.lateness3);
+        setEarlyLeave1(res.data.earlyLeave1);
+        setEarlyLeave2(res.data.earlyLeave2);
+        setEarlyLeave3(res.data.earlyLeave3);
+        setAbsenceLecture1(res.data.absenceLecture1);
+        setAbsenceLecture2(res.data.absenceLecture2);
+        setAbsenceLecture3(res.data.absenceLecture3);
       })
-      .catch((err) => {
+      .catch((err: any) => {
         handleGetWriteError(err, history);
       });
   }, []);
@@ -84,19 +82,19 @@ const WriteGradeAttendContainer = ({}) => {
         absenceLecture1={absenceLecture1}
         absenceLecture2={absenceLecture2}
         absenceLecture3={absenceLecture3}
-        handleIsChanged={handleIsChanged}
-        handleAbsence1={handleAbsence1}
-        handleAbsence2={handleAbsence2}
-        handleAbsence3={handleAbsence3}
-        handleLateness1={handleLateness1}
-        handleLateness2={handleLateness2}
-        handleLateness3={handleLateness3}
-        handleEarlyLeave1={handleEarlyLeave1}
-        handleEarlyLeave2={handleEarlyLeave2}
-        handleEarlyLeave3={handleEarlyLeave3}
-        handleAbsenceLecture1={handleAbsenceLecture1}
-        handleAbsenceLecture2={handleAbsenceLecture2}
-        handleAbsenceLecture3={handleAbsenceLecture3}
+        handleIsChanged={(value: boolean) => setIsChanged(value)}
+        handleAbsence1={(value: number) => setAbsence1(value)}
+        handleAbsence2={(value: number) => setAbsence2(value)}
+        handleAbsence3={(value: number) => setAbsence3(value)}
+        handleLateness1={(value: number) => setLateness1(value)}
+        handleLateness2={(value: number) => setLateness2(value)}
+        handleLateness3={(value: number) => setLateness3(value)}
+        handleEarlyLeave1={(value: number) => setEarlyLeave1(value)}
+        handleEarlyLeave2={(value: number) => setEarlyLeave2(value)}
+        handleEarlyLeave3={(value: number) => setEarlyLeave3(value)}
+        handleAbsenceLecture1={(value: number) => setAbsenceLecture1(value)}
+        handleAbsenceLecture2={(value: number) => setAbsenceLecture2(value)}
+        handleAbsenceLecture3={(value: number) => setAbsenceLecture3(value)}
       />
     </>
   );

@@ -9,9 +9,10 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { handleGetWriteError, handleWriteError } from "lib/handleErrors";
 import moment from "moment";
+import { useRecoilValue } from "recoil";
+import { editParentInfo, getParentInfo } from "stores/Write/WriteAtom";
 
 const WriteParentContainer = ({}) => {
-  const { store } = useStore();
   const history = useNavigate();
 
   const [parentName, setParentName] = useState<string>("");
@@ -24,7 +25,8 @@ const WriteParentContainer = ({}) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isChanged, setIsChanged] = useState<boolean>(false);
 
-  const { editParentInfo, getParentInfo } = store.WriteStore;
+  const editParentInfoAtom = useRecoilValue(editParentInfo);
+  const getParentInfoAtom = useRecoilValue(getParentInfo);
 
   //주소 설정 함수
   const handleComplete = (data: any) => {
@@ -80,7 +82,7 @@ const WriteParentContainer = ({}) => {
       address !== "" &&
       postCode !== ""
     ) {
-      await editParentInfo(
+      await editParentInfoAtom(
         address,
         parentName,
         parentRelation,
@@ -88,7 +90,7 @@ const WriteParentContainer = ({}) => {
         parentTel,
         detailAddress,
         postCode
-      ).catch((err) => {
+      ).catch((err: any) => {
         handleWriteError(err, history);
         flag = false;
       });
@@ -112,7 +114,7 @@ const WriteParentContainer = ({}) => {
 
   //학부모 정보 받아오기
   const getParentInfoCallback = useCallback(() => {
-    getParentInfo()
+    getParentInfoAtom()
       .then((res: ParentInfoResponse) => {
         setAddress(res.data.address || "");
         setParentName(res.data.parentName || "");
@@ -126,7 +128,7 @@ const WriteParentContainer = ({}) => {
         setPostCode(res.data.postCode || "");
         setDetailAddress(res.data.detailAddress || "");
       })
-      .catch((err) => {
+      .catch((err: any) => {
         handleGetWriteError(err, history);
       });
   }, [getParentInfo, history]);

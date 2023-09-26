@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import WriteStudent from "../../../components/Write/WriteStudent";
-import useStore from "lib/hooks/useStore";
 import { UserInfoResponse } from "util/types/Response";
 import Sex from "util/enums/Sex";
 import moment from "moment";
@@ -9,14 +8,15 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { handleWriteError, handleGetWriteError } from "lib/handleErrors";
 import useQuery from "lib/hooks/useQuery";
-import { useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { nameAtom } from "stores/Auth/AuthAtom";
+import { editStudentInfo } from "stores/Write/WriteAtom";
+import { getStudentInfo } from "stores/Write/util";
 
 const WriteStudentContainer = ({}) => {
-  const { store } = useStore();
-
   const setNameAtom = useSetRecoilState<string>(nameAtom);
-  const { getStudentInfo, editStudentInfo } = store.WriteStore;
+  const editStudentInfoAtom = useRecoilValue(editStudentInfo);
+  // const { getStudentInfo, editStudentInfo } = store.WriteStore;
 
   const history = useNavigate();
 
@@ -41,7 +41,7 @@ const WriteStudentContainer = ({}) => {
         setSex(res.data.sex);
         setStudentTel(res.data.studentTel || "");
       })
-      .catch((err) => {
+      .catch((err: any) => {
         handleGetWriteError(err, history);
       });
   }, []);
@@ -70,10 +70,12 @@ const WriteStudentContainer = ({}) => {
       toast.warning("올바르지 않은 전화번호입니다. '-' 를 포함하여주세요.");
       flag = false;
     } else if (name !== "" && birth !== "" && sex !== null) {
-      await editStudentInfo(name, birth, sex, studentTel).catch((err) => {
-        handleWriteError(err, history);
-        flag = false;
-      });
+      await editStudentInfoAtom(name, birth, sex, studentTel).catch(
+        (err: any) => {
+          handleWriteError(err, history);
+          flag = false;
+        }
+      );
 
       setNameAtom(name);
       setIsChanged(false);

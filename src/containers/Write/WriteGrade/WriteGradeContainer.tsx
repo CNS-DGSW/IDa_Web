@@ -6,27 +6,33 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import Grade from "util/enums/Grade";
 import { handleWriteError } from "lib/handleErrors";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import {
+  editAdditional,
+  editAttend,
+  editGed,
+  editGrade,
+  editVolunteer,
+  getSchoolInfo,
+  gradeTypeAtom,
+  gradesAtom,
+  isChangedAtom,
+  pageAtom,
+} from "stores/Write/WriteAtom";
 
 const WriteGradeContainer = ({}) => {
-  const { store } = useStore();
-
   const history = useNavigate();
 
-  const {
-    pageHandle,
-    gradeType,
-    editGrade,
-    editAdditional,
-    editAttend,
-    editVolunteer,
-    editGed,
-    isChanged,
-    handleIsChanged,
-    getSchoolInfo,
-    handleGrade,
-    page,
-  } = store.WriteStore;
-
+  const [page, setPage] = useRecoilState(pageAtom);
+  const gradeType = useRecoilValue(gradeTypeAtom);
+  const [isChanged, setIsChanged] = useRecoilState(isChangedAtom);
+  const editVolunteerAtom = useRecoilValue(editVolunteer);
+  const editGradeAtom = useRecoilValue(editGrade);
+  const editAdditionalAtom = useRecoilValue(editAdditional);
+  const editAttendAtom = useRecoilValue(editAttend);
+  const editGedAtom = useRecoilValue(editGed);
+  const getSchoolInfoAtom = useRecoilValue(getSchoolInfo);
+  const setGrades = useSetRecoilState(gradesAtom);
   const [saved, setSaved] = useState<boolean>(false);
 
   //변경사항 저장 함수
@@ -34,15 +40,15 @@ const WriteGradeContainer = ({}) => {
     let flag = true;
     if (gradeType !== Grade.GED) {
       const promises = [
-        editGrade(),
-        editVolunteer(),
-        editAttend(),
-        editAdditional(),
+        editGradeAtom(),
+        editVolunteerAtom(),
+        editAttendAtom(),
+        editAdditionalAtom(),
       ];
 
       await Promise.all(promises)
         .then(() => {
-          handleIsChanged(false);
+          setIsChanged(false);
           setSaved(true);
         })
         .catch((err) => {
@@ -50,12 +56,12 @@ const WriteGradeContainer = ({}) => {
           flag = false;
         });
     } else {
-      await editGed()
+      await editGedAtom()
         .then(() => {
-          handleIsChanged(false);
+          setIsChanged(false);
           setSaved(true);
         })
-        .catch((err) => {
+        .catch((err: any) => {
           handleWriteError(err, history);
           flag = false;
         });
@@ -66,11 +72,11 @@ const WriteGradeContainer = ({}) => {
 
   //학교정보 확인 함수
   const checkSchool = useCallback(async () => {
-    await getSchoolInfo().then((res) => {
-      handleGrade(res.data.gradeType);
+    await getSchoolInfoAtom().then((res: any) => {
+      setGrades(res.data.gradeType);
       if (!res.data.gradeType) {
         toast.warning("학교 정보를 먼저 입력해주세요.");
-        pageHandle(3);
+        setPage(3);
       }
     });
   }, []);
@@ -80,7 +86,7 @@ const WriteGradeContainer = ({}) => {
   // }, [checkSchool]);
 
   useEffect(() => {
-    handleIsChanged(false);
+    setIsChanged(false);
   }, [page]);
 
   return (
