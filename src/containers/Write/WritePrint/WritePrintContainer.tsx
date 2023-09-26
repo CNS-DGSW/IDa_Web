@@ -150,7 +150,7 @@ const WritePrintContainer = ({}) => {
         setBirth(
           isNaN(Date.parse(res.data.birth ? res.data.birth.toString() : ""))
             ? ""
-            : moment(res.data.birth).format("yyyy년 MM월 DD일")
+            : moment(res.data.birth).format("yyyy. MM. DD.")
         );
         setStudentTel(res.data.studentTel || "");
       }
@@ -179,7 +179,7 @@ const WritePrintContainer = ({}) => {
           )
         )
           ? ""
-          : moment(res.data.parentBirth).format("yyyy년 MM월 DD일")
+          : moment(res.data.parentBirth).format("yyyy. MM. DD.")
       );
       setPostCode(res.data.postCode || "");
     });

@@ -75,10 +75,10 @@ const WritePrintUser = ({
 }: WritePrintUserProps) => {
   const firstPassed = moment(firstTime)
     .locale("ko")
-    .format("yyyy. MM. DD(ddd) HH:mm");
+    .format("yyyy. MM. DD.(ddd) HH:mm");
   const finalPassed = moment(finalTime)
     .locale("ko")
-    .format("yyyy. MM. DD(ddd) HH:mm");
+    .format("yyyy. MM. DD.(ddd) HH:mm");
   return (
     <div className="write-print-user">
       <div className="write-print-user-title">
@@ -339,7 +339,7 @@ const WritePrintUser = ({
         서약합니다.
         <br />
         <br />
-        {moment().format("yyyy년    MM월    DD일")}
+        {moment().format("yyyy.    MM.    DD.")}
         <br />
         <br />
         <span>
@@ -425,14 +425,6 @@ const WritePrintUser = ({
               </tr>
               <tr>
                 <th className="write-print-user-top-left">
-                  생&nbsp;년&nbsp;월&nbsp;일
-                </th>
-                <td className="write-print-user-top-left write-print-user-right">
-                  {birth}
-                </td>
-              </tr>
-              <tr>
-                <th className="write-print-user-top-left">
                   성&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;명
                 </th>
                 <td className="write-print-user-top-left write-print-user-right">
@@ -445,6 +437,14 @@ const WritePrintUser = ({
                 </th>
                 <td className="write-print-user-top-left write-print-user-right">
                   {gradeType === Grade.GED ? "고입검정" : schoolName}
+                </td>
+              </tr>
+              <tr>
+                <th className="write-print-user-top-left">
+                  생&nbsp;년&nbsp;월&nbsp;일
+                </th>
+                <td className="write-print-user-top-left write-print-user-right">
+                  {birth}
                 </td>
               </tr>
               <tr>
