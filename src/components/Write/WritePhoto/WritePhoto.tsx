@@ -39,7 +39,7 @@ const WritePhoto = ({
             onChange={handleImageChange}
             accept=".jpg, .jpeg, .gif, .png"
           />
-          <div>* 2MB 이내의 png, jpg, jpeg, gif 사진을 등록해주세요.</div>
+          <div>* 10MB 이내의 png, jpg, jpeg, gif 사진을 등록해주세요.</div>
         </div>
       </WriteContent>
     </>
