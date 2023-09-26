@@ -141,7 +141,7 @@ const WriteParentContainer = ({}) => {
       setParentTel("");
       setParentName("");
       setParentRelation(null);
-      setParentBirth("");
+      setParentBirth("1978-01-01");
       setPostCode("");
     };
   }, []);

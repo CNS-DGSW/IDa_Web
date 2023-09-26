@@ -88,7 +88,7 @@ const WriteStudentContainer = ({}) => {
   useEffect(() => {
     return () => {
       setName("");
-      setBirth("");
+      setBirth("2008-01-01");
       setSex(null);
       setStudentTel("");
     };
