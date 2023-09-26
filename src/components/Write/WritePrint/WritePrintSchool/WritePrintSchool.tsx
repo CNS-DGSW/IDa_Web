@@ -22,7 +22,7 @@ const WritePrintSchool = ({
         {Convertor.ApplyDetailTypeInfo(applyDetailType)})의 지원자로 추천합니다.
       </div>
       <div className="print-school-date">
-        {moment().format("yyyy년 MM월 DD일")}
+        {moment().format("yyyy. MM. DD.")}
       </div>
       <div className="print-school-footer">{schoolName}장 (직인)</div>
     </div>

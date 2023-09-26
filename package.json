@@ -71,7 +71,7 @@
     "core-decorators": "^0.20.0",
     "customize-cra": "^1.0.0",
     "gulp-sass": "^5.1.0",
-    "react-app-rewired": "^2.1.6",
+    "react-app-rewired": "2.1.6",
     "sass": "^1.49.9"
   },
   "babel": {
