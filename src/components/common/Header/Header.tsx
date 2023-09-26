@@ -140,8 +140,6 @@ const Header = ({
                     name={name}
                     email={email}
                     HandleLogout={HandleLogout}
-                    statusModal={statusModal}
-                    tryStatusModal={tryStatusModal}
                     closeStatusModal={closeStatusModal}
                   />
                 </>

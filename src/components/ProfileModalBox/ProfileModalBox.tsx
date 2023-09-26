@@ -5,14 +5,14 @@ import "./ProfileModalBox.scss";
 import { ReactComponent as LogoutSvg } from "assets/images/logout.svg";
 import { ReactComponent as PasswordSvg } from "assets/images/password.svg";
 import { ReactComponent as PaperSvg } from "assets/images/paper.svg";
+import { useRecoilState } from "recoil";
+import { applyBox } from "stores/Auth/AuthAtom";
 
 interface ProfileModalBoxProps {
   handleOnClick: () => void;
   name: string | undefined;
   email: string | undefined;
   HandleLogout: () => void;
-  statusModal: boolean;
-  tryStatusModal: () => void;
   closeStatusModal: () => void;
 }
 
@@ -21,10 +21,9 @@ const ProfileModalBox = ({
   name,
   email,
   HandleLogout,
-  statusModal,
-  tryStatusModal,
 }: ProfileModalBoxProps) => {
   const history = useNavigate();
+  const [applyAtom, setApplyAtom] = useRecoilState<boolean>(applyBox);
 
   return (
     <>
@@ -36,7 +35,7 @@ const ProfileModalBox = ({
         <hr />
         <div
           className="ProfileModalBox-status box pointer"
-          onClick={() => tryStatusModal()}
+          onClick={() => setApplyAtom(true)}
         >
           <PaperSvg className="ProfileModalSVG" />
           <span className="box-text">원서접수 현황</span>
@@ -65,7 +64,7 @@ const ProfileModalBox = ({
           handleOnClick();
         }}
       ></div>
-      {statusModal ? <ResultStatusContainer /> : <></>}
+      {applyAtom ? <ResultStatusContainer /> : <></>}
     </>
   );
 };
