@@ -77,7 +77,7 @@ const WriteScore = ({
           </thead>
           <tbody>
             <tr>
-              <td>일반전형</td>
+              <td style={{ paddingTop: "30px" }}>점수확인</td>
               <td>{grade1}</td>
               {!isGed && (
                 <>
@@ -89,7 +89,7 @@ const WriteScore = ({
               <td>{totalScore1}</td>
             </tr>
             <tr>
-              <td>특별전형</td>
+              <td></td>
               <td>{grade2}</td>
               {!isGed && (
                 <>
