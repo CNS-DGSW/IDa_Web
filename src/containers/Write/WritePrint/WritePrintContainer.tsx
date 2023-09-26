@@ -18,7 +18,7 @@ import {
 } from "util/types/Response";
 import moment from "moment";
 import { handleGetWriteError } from "lib/handleErrors";
-import { useHistory, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Relation from "util/enums/Relation";
 import Apply from "util/enums/Apply";
 import ApplyDetail from "util/enums/ApplyDetail";
@@ -28,7 +28,7 @@ import ScoreGrade from "util/types/ScoreGrade";
 import useQuery from "lib/hooks/useQuery";
 
 const WritePrintContainer = ({}) => {
-  const history = useHistory();
+  const history = useNavigate();
   const { store } = useStore();
   const {
     getStudentInfo,

@@ -5,7 +5,7 @@ import useStore from "lib/hooks/useStore";
 import { UserInfoResponse } from "util/types/Response";
 import Sex from "util/enums/Sex";
 import moment from "moment";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { handleWriteError, handleGetWriteError } from "lib/handleErrors";
 import useQuery from "lib/hooks/useQuery";
@@ -16,7 +16,7 @@ const WriteStudentContainer = ({}) => {
   const { handleName } = store.AuthStore;
   const { getStudentInfo, editStudentInfo } = store.WriteStore;
 
-  const history = useHistory();
+  const history = useNavigate();
 
   const [name, setName] = useState<string>("");
   const [birth, setBirth] = useState<string>("");

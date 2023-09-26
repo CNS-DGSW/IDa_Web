@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
 import WriteIntroduction from "../../../components/Write/WriteIntroduction";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   SelfIntroductionResponse,
   StudyPlanResponse,
@@ -12,7 +12,7 @@ import { handleGetWriteError, handleWriteError } from "lib/handleErrors";
 
 const WriteIntroductionContainer = ({}) => {
   const { store } = useStore();
-  const history = useHistory();
+  const history = useNavigate();
 
   const [selfIntroduce, setSelfIntroduce] = useState<string>("");
   const [studyPlan, setStudyPlan] = useState<string>("");

@@ -3,13 +3,13 @@ import { observer } from "mobx-react";
 import WritePhoto from "../../../components/Write/WritePhoto";
 import useStore from "lib/hooks/useStore";
 import { ProfileInfoResponse } from "util/types/Response";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { handleGetWriteError, handleWriteError } from "lib/handleErrors";
 
 const WritePhotoContainer = () => {
   const { store } = useStore();
-  const history = useHistory();
+  const history = useNavigate();
 
   const [preview, setPreview] = useState<string | ArrayBuffer | null>("");
   const [image, setImage] = useState<File | Blob | null>();
