@@ -116,7 +116,9 @@ const UserResult = ({
                       특례 입학 - {apply.name}
                     </option>
                   ))}
-                  {applyDetailModel.national.models.map((apply, i) => {
+                  {/* 
+                  // 풀면 오류, 국가 보훈 대상은 사회통합전형(기회균등전형)으로 신청  
+                  applyDetailModel.national.models.map((apply, i) => {
                     return (
                       <option
                         key={i}
@@ -125,7 +127,7 @@ const UserResult = ({
                         {applyDetailModel.national.name} - {apply.name}
                       </option>
                     );
-                  })}
+                  }) */}
                 </select>
               </td>
               <td>
@@ -192,7 +194,9 @@ const UserResult = ({
                       특례 입학 - {apply.name}
                     </option>
                   ))}
-                  {applyDetailModel.national.models.map((apply, i) => {
+                  {/*
+                  // 풀면 오류, 국가 보훈 대상은 사회통합전형(기회균등전형)으로 신청  
+                  applyDetailModel.national.models.map((apply, i) => {
                     return (
                       <option
                         key={i}
@@ -201,7 +205,7 @@ const UserResult = ({
                         {applyDetailModel.national.name} - {apply.name}
                       </option>
                     );
-                  })}
+                  }) */}
                 </select>
               </td>
               <td>

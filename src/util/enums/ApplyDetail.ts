@@ -70,6 +70,8 @@ enum ApplyDetail {
   MULTI_CHILD_FAMILIES = "MULTI_CHILD_FAMILIES",
   // 한부모가정 자녀
   ONE_PARENT = "ONE_PARENT",
+  // 
+  NO_PARENT = "NO_PARENT",
 
   /**
    * 특례 입학
