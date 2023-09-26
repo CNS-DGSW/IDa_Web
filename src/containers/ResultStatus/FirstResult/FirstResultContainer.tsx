@@ -1,11 +1,19 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
-import useStore from "lib/hooks/useStore";
 import FirstResult from "components/ResultStatusCheck/FirstResult";
-import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import Apply from "util/enums/Apply";
 import { handleLogin } from "lib/handleErrors";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import {
+  canAccessAtom,
+  checkedPrintAtom,
+  passAtom,
+  printAtom,
+  submitAtom,
+} from "stores/Status/StatusAtom";
+import StatusApi from "assets/api/StatusApi";
+import { ResultStatusResponse } from "util/types/Response";
 
 interface FirstResultContainerProps {
   firstOpenModal: () => void;
@@ -18,9 +26,35 @@ const FirstResultContainer = ({
   modalLoading,
   setModalLoading,
 }: FirstResultContainerProps) => {
+  const setSubmit = useSetRecoilState(submitAtom);
+  const setPrint = useSetRecoilState(printAtom);
+  const setCheckedPrint = useSetRecoilState(checkedPrintAtom);
+  const setPass = useSetRecoilState(passAtom);
+  const setCanAccess = useSetRecoilState(canAccessAtom);
+  const tryGetStatus = async (
+    userIdx?: number | null
+  ): Promise<ResultStatusResponse> => {
+    // 1차 합격 여부 및 우편 원서 접수, 인터넷 원서 접수 현황
+    const response: ResultStatusResponse = await StatusApi.GetStatus(userIdx);
+
+    console.log(">>", response.data.isPassedFirstApply);
+
+    // if (response.status === 200) {
+    setSubmit(response.data.isSubmit); // 인터넷 원서 접수 현홍
+    setPrint(response.data.isPrintedApplicationArrived); //  우편 원서 접수 현황
+    setCheckedPrint(response.data.applicationChecked); //  우편 원서 검토 현황
+    setPass(response.data.isPassedFirstApply); // 1차 합격 여부
+    setCanAccess(response.data.canAccess);
+    // }
+
+    return response;
+  };
+
   const history = useNavigate();
-  const { store } = useStore();
-  const { canAccess, pass, tryGetStatus, submit, print } = store.StatusStore;
+  const canAccess = useRecoilValue(canAccessAtom);
+  const pass = useRecoilValue(passAtom);
+  const submit = useRecoilValue(submitAtom);
+  const print = useRecoilValue(printAtom);
   const [errStatus, setErrStatus] = useState<number>(0);
   const status: number = 403;
   const [comment, setComment] = useState<string | undefined>("");

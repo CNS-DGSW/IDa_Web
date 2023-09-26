@@ -219,7 +219,7 @@ export interface FinalStatusResponse extends Response {
     isPassed?: boolean | null;
     examCode?: number | null;
     name?: string | null;
-    gradeType?: string | null;
+    gradeType?: Grade | null;
     sex?: string | null;
     birth?: string | null;
     area?: string | null;
@@ -287,7 +287,7 @@ export interface SecondScoreResponse extends Response {
       studyScore: number;
       // 직무적성 소양평가
       jobAptitudeScore: number;
-      schoolName: string
+      schoolName: string;
       totalInterviewScore: number;
       totalScore: number;
       userIdx: number;

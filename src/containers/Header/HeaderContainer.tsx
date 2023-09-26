@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect } from "react";
 import { observer } from "mobx-react";
 import Header from "components/common/Header";
-import useStore from "lib/hooks/useStore";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import {
@@ -14,6 +13,7 @@ import {
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { UserInfoResponse } from "util/types/Response";
 import AuthApi from "assets/api/AuthApi";
+import { statusModalAtom } from "stores/Status/StatusAtom";
 
 interface HeaderContainerProps {
   theme?: boolean;
@@ -21,7 +21,6 @@ interface HeaderContainerProps {
 }
 
 const HeaderContainer = ({ theme, style }: HeaderContainerProps) => {
-  const { store } = useStore();
   const history = useNavigate();
   const changeLoginAtom = useSetRecoilState<boolean>(loginAtom);
   const [isAdminValue, setIsAdminAtom] = useRecoilState(isAdminAtom);
@@ -35,7 +34,7 @@ const HeaderContainer = ({ theme, style }: HeaderContainerProps) => {
   //   tryCloseModal,
   // } = store.AuthStore;
 
-  const { statusModal, closeStatusModal, tryStatusModal } = store.StatusStore;
+  const [statusModal, setStatusModal] = useRecoilState(statusModalAtom);
 
   const [cookie, setCookie, removeCookie] = useCookies(["refreshToken"]);
 
@@ -78,7 +77,7 @@ const HeaderContainer = ({ theme, style }: HeaderContainerProps) => {
   // 프로필 버튼 눌렀을 때 모달 닫기
   const closeAllModal = () => {
     if (!profileBox) {
-      closeStatusModal();
+      setStatusModal(false);
     }
   };
 
@@ -117,8 +116,8 @@ const HeaderContainer = ({ theme, style }: HeaderContainerProps) => {
         HandleLogout={HandleLogout}
         style={style}
         statusModal={statusModal}
-        tryStatusModal={tryStatusModal}
-        closeStatusModal={closeStatusModal}
+        tryStatusModal={() => setStatusModal(!statusModal)}
+        closeStatusModal={() => setStatusModal(false)}
       />
     </>
   );

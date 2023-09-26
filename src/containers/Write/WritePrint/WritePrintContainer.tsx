@@ -11,6 +11,7 @@ import useStore from "lib/hooks/useStore";
 import {
   ParentInfoResponse,
   ProfileInfoResponse,
+  ResultStatusResponse,
   SchoolInfoResponse,
   SelfIntroductionResponse,
   StudyPlanResponse,
@@ -42,8 +43,39 @@ import {
   getVolunteer,
   userIdxAtom,
 } from "stores/Write/WriteAtom";
+import StatusApi from "assets/api/StatusApi";
+import {
+  canAccessAtom,
+  checkedPrintAtom,
+  passAtom,
+  printAtom,
+  submitAtom,
+} from "stores/Status/StatusAtom";
 
 const WritePrintContainer = ({}) => {
+  const setSubmit = useSetRecoilState(submitAtom);
+  const setPrint = useSetRecoilState(printAtom);
+  const setCheckedPrint = useSetRecoilState(checkedPrintAtom);
+  const setPass = useSetRecoilState(passAtom);
+  const setCanAccess = useSetRecoilState(canAccessAtom);
+  const tryGetStatus = async (
+    userIdx?: number | null
+  ): Promise<ResultStatusResponse> => {
+    // 1차 합격 여부 및 우편 원서 접수, 인터넷 원서 접수 현황
+    const response: ResultStatusResponse = await StatusApi.GetStatus(userIdx);
+
+    console.log(">>", response.data.isPassedFirstApply);
+    // if (response.status === 200) {
+    setSubmit(response.data.isSubmit); // 인터넷 원서 접수 현홍
+    setPrint(response.data.isPrintedApplicationArrived); //  우편 원서 접수 현황
+    setCheckedPrint(response.data.applicationChecked); //  우편 원서 검토 현황
+    setPass(response.data.isPassedFirstApply); // 1차 합격 여부
+    setCanAccess(response.data.canAccess);
+    // }
+
+    return response;
+  };
+
   const history = useNavigate();
   const { store } = useStore();
   const getParentInfoAtom = useRecoilValue(getParentInfo);
@@ -59,8 +91,6 @@ const WritePrintContainer = ({}) => {
   const getAdditionalAtom = useRecoilValue(getAdditional);
   const handleUserIdxAtom = useSetRecoilState(userIdxAtom);
   const { getScore } = store.ScoreStore;
-  const { tryGetStatus } = store.StatusStore;
-
   const query = useQuery();
   const { search } = useLocation();
 

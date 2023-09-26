@@ -1,12 +1,12 @@
 import { observer } from "mobx-react";
 import React, { useCallback } from "react";
-import useStore from "lib/hooks/useStore";
 import "./WriteContent.scss";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { pageAtom, userIdxAtom } from "stores/Write/WriteAtom";
+import { changeSubmit } from "stores/Status/util";
 
 interface WriteContentProps {
   title: string;
@@ -21,11 +21,8 @@ const WriteContent = ({
   onSave,
   isChanged,
 }: WriteContentProps) => {
-  const { store } = useStore();
   const [page, setPage] = useRecoilState(pageAtom);
   const userIdx = useRecoilValue(userIdxAtom);
-  const { changeSubmit } = store.StatusStore;
-
   const history = useNavigate();
 
   const nextPage = useCallback(

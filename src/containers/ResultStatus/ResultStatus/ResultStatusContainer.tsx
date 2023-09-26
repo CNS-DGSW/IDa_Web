@@ -1,20 +1,49 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
-import useStore from "lib/hooks/useStore";
 import ResultStatus from "components/ResultStatusCheck/ResultStatus";
 import { handleLogin } from "lib/handleErrors";
 import { useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { applyBox } from "stores/Auth/AuthAtom";
+import {
+  canAccessAtom,
+  checkedPrintAtom,
+  passAtom,
+  printAtom,
+  submitAtom,
+} from "stores/Status/StatusAtom";
+import { ResultStatusResponse } from "util/types/Response";
+import StatusApi from "assets/api/StatusApi";
 
 interface ResultStatusContainerPropse {}
 
 const ResultStatusContainer = ({}: ResultStatusContainerPropse) => {
+  const [submit, setSubmit] = useRecoilState(submitAtom);
+  const [print, setPrint] = useRecoilState(printAtom);
+  const [checkedPrint, setCheckedPrint] = useRecoilState(checkedPrintAtom);
+  const setPass = useSetRecoilState(passAtom);
+  const setCanAccess = useSetRecoilState(canAccessAtom);
+
+  const tryGetStatus = async (
+    userIdx?: number | null
+  ): Promise<ResultStatusResponse> => {
+    // 1차 합격 여부 및 우편 원서 접수, 인터넷 원서 접수 현황
+    const response: ResultStatusResponse = await StatusApi.GetStatus(userIdx);
+
+    console.log(">>", response.data.isPassedFirstApply);
+    // if (response.status === 200) {
+    setSubmit(response.data.isSubmit); // 인터넷 원서 접수 현홍
+    setPrint(response.data.isPrintedApplicationArrived); //  우편 원서 접수 현황
+    setCheckedPrint(response.data.applicationChecked); //  우편 원서 검토 현황
+    setPass(response.data.isPassedFirstApply); // 1차 합격 여부
+    setCanAccess(response.data.canAccess);
+    // }
+
+    return response;
+  };
   const history = useNavigate();
 
   const [applyBoxAtom, setApplyBoxAtom] = useRecoilState<boolean>(applyBox);
-  const { store } = useStore();
-  const { tryGetStatus } = store.StatusStore;
   const [post, setPost] = useState<boolean | undefined>(undefined);
   // 우편 접수 현황
   const [checkedPost, setCheckedPost] = useState<boolean | string | undefined>(
@@ -30,7 +59,6 @@ const ResultStatusContainer = ({}: ResultStatusContainerPropse) => {
     await tryGetStatus()
       .then((res) => {
         console.log("from getStatus() ", res);
-        const { submit, print, checkedPrint } = store.StatusStore;
         console.log(submit, res.data.isSubmit);
         console.log(print, res.data.isPrintedApplicationArrived);
         console.log(checkedPrint, res.data.applicationChecked);

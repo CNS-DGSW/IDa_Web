@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import UserListComponent from "components/Admin/UserList";
-import useStore from "lib/hooks/useStore";
 import { useNavigate } from "react-router-dom";
 import { List } from "util/types/UserList";
 import { handleAdmin, handleLogin } from "lib/handleErrors";
@@ -15,12 +14,10 @@ import {
   getAllUserRatio,
   getUserList,
 } from "stores/Admin/util";
+import { changeArrived, changeReview } from "stores/Status/util";
 
 const UserListContainer = ({}) => {
-  const { store } = useStore();
   const history = useNavigate();
-
-  const { changeArrived, changeReview } = store.StatusStore;
 
   const [userStatus, setUserStatus] = useState<List[]>();
   const [cityStatus, setCityStatus] = useState<CityRatio[]>([]);
