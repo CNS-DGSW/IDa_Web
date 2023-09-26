@@ -310,7 +310,7 @@ const WritePrintUser = ({
           <tr>
             <th
               className="write-print-user-top-left"
-              id={applyType === Apply.COMMON ? "selected-apply" : ""}
+              // id={applyType === Apply.COMMON ? "selected-apply" : ""}
             >
               성적
             </th>
