@@ -19,7 +19,7 @@ const WriteStudentContainer = ({}) => {
   const history = useNavigate();
 
   const [name, setName] = useState<string>("");
-  const [birth, setBirth] = useState<string>("2008-01-01");
+  const [birth, setBirth] = useState<string>("");
   const [sex, setSex] = useState<Sex | null>(null);
   const [studentTel, setStudentTel] = useState<string>("");
 
@@ -88,7 +88,7 @@ const WriteStudentContainer = ({}) => {
   useEffect(() => {
     return () => {
       setName("");
-      setBirth("2008-01-01");
+      setBirth("");
       setSex(null);
       setStudentTel("");
     };
