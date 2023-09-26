@@ -3,12 +3,9 @@ import { observer } from "mobx-react";
 import ChangePw from "components/ChangePw/ChangePw";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import useStore from "lib/hooks/useStore";
+import { tryChangePw } from "stores/Auth/useAuth";
 
 const ChangePwContainer = ({}) => {
-  const { store } = useStore();
-
-  const { tryChangePw } = store.AuthStore;
   // 비밀번호 바꾸는 action
 
   const [originPw, setOriginPw] = useState<string>("");
@@ -36,7 +33,7 @@ const ChangePwContainer = ({}) => {
           toast.success("비밀번호가 변경되었습니다.");
           history("/");
         })
-        .catch((err) => {
+        .catch((err: any) => {
           if (err.response?.status === 401) {
             toast.warning("현재 비밀번호가 다릅니다.");
           } else {

@@ -29,7 +29,7 @@ class AuthStore {
   tryProfileBox = () => {
     this.profileBox = !this.profileBox;
   };
-
+  /*
   @_autoAction
   tryLogout = () => {
     this.login = false;
@@ -133,6 +133,7 @@ class AuthStore {
 
     return response;
   };
+  */
 }
 
 export default AuthStore;

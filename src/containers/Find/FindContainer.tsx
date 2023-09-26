@@ -5,6 +5,7 @@ import useStore from "lib/hooks/useStore";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { tryChangePwByEmail, tryPwCode } from "stores/Auth/useAuth";
 
 const FindContainer = () => {
   const [name, setName] = useState<string>("");
@@ -23,7 +24,6 @@ const FindContainer = () => {
   const { store } = useStore();
   const history = useNavigate();
 
-  const { tryChangePwByEmail, tryPwCode } = store.AuthStore;
   // tryPwCode는 메일로 코드 받는 action
   //  trychangebyemail 은 메일로 받은 code랑 새로운 비밀번호 보내주는 action
 
@@ -31,11 +31,11 @@ const FindContainer = () => {
   const handlePwCode = () => {
     setEmailLoading(true);
     tryPwCode(email)
-      .then(() => {
+      .then((_) => {
         toast.success("메일 전송중입니다.");
         setEmailLoading(false);
       })
-      .catch((err) => {
+      .catch((err: any) => {
         setEmailLoading(false);
         if (err.response?.status === 406) {
           toast.warning("현재 요청이 너무 많습니다. 잠시 후에 시도하세요.");
@@ -55,11 +55,11 @@ const FindContainer = () => {
       toast.warning("비밀번호가 일치하지 않습니다.");
     } else {
       tryChangePwByEmail(code, newPw)
-        .then((res) => {
+        .then((_) => {
           history("/login");
           toast.success("변경되었습니다.");
         })
-        .catch((err) => {
+        .catch((err: any) => {
           if (err.response?.status === 401) {
             toast.warning("이메일 인증이 되지 않았습니다.");
           } else if (err.response?.status === 404) {

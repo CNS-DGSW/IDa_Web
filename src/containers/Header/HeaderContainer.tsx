@@ -4,6 +4,10 @@ import Header from "components/common/Header";
 import useStore from "lib/hooks/useStore";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import { email, isAdmin, login, name, profileBox } from "stores/Auth/AuthAtom";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { UserInfoResponse } from "util/types/Response";
+import AuthApi from "assets/api/AuthApi";
 
 interface HeaderContainerProps {
   theme?: boolean;
@@ -13,19 +17,17 @@ interface HeaderContainerProps {
 const HeaderContainer = ({ theme, style }: HeaderContainerProps) => {
   const { store } = useStore();
   const history = useNavigate();
-
-  const {
-    getInfo,
-    changeLogin,
-    login,
-    name,
-    email,
-    isAdmin,
-    profileBox,
-    tryProfileBox,
-    tryLogout,
-    tryCloseModal,
-  } = store.AuthStore;
+  const changeLoginAtom = useSetRecoilState<boolean>(login);
+  const [isAdminValue, setIsAdminAtom] = useRecoilState(isAdmin);
+  const [emailValue, setEmailAtom] = useRecoilState(email);
+  const [nameValue, setNameAtom] = useRecoilState(name);
+  const [loginValue, setLoginAtom] = useRecoilState(login);
+  const [profileBoxAtom, setProfileBoxAtom] =
+    useRecoilState<boolean>(profileBox);
+  // const {
+  //   tryProfileBox,
+  //   tryCloseModal,
+  // } = store.AuthStore;
 
   const { statusModal, closeStatusModal, tryStatusModal } = store.StatusStore;
 
@@ -33,18 +35,35 @@ const HeaderContainer = ({ theme, style }: HeaderContainerProps) => {
 
   // 로그아웃
   const HandleLogout = () => {
-    tryLogout();
+    setLoginAtom(false);
+    setProfileBoxAtom(false);
+    setNameAtom("");
+    setEmailAtom("");
+    setIsAdminAtom(false);
     removeCookie("refreshToken");
     localStorage.removeItem("accessToken");
     localStorage.removeItem("expireAt");
     history("/");
   };
 
+  const getInfo = async () => {
+    const response: UserInfoResponse = await AuthApi.GetInfo();
+
+    if (response.status === 200) {
+      setLoginAtom(true);
+      setEmailAtom(response.data.email);
+      setNameAtom(response.data.name);
+      setIsAdminAtom(response.data.isAdmin);
+    } else {
+      setLoginAtom(false);
+    }
+  };
+
   // 유저 정보 가져오기
   const getInfoCallback = useCallback(async () => {
     if (localStorage.getItem("accessToken") && !name && !email) {
-      changeLogin(true);
-      await getInfo().catch((err) => {
+      changeLoginAtom(true);
+      await getInfo().catch((err: any) => {
         HandleLogout();
       });
     }
@@ -67,7 +86,7 @@ const HeaderContainer = ({ theme, style }: HeaderContainerProps) => {
 
   useEffect(() => {
     return () => {
-      tryCloseModal();
+      setProfileBoxAtom(false);
     };
   }, []);
 
@@ -80,13 +99,15 @@ const HeaderContainer = ({ theme, style }: HeaderContainerProps) => {
   return (
     <>
       <Header
-        isAdmin={isAdmin}
+        isAdmin={isAdminValue}
         theme={theme}
-        login={login}
-        profileBox={profileBox}
-        tryProfileBox={tryProfileBox}
-        name={name}
-        email={email}
+        login={loginValue}
+        profileBox={profileBoxAtom}
+        tryProfileBox={() => {
+          setProfileBoxAtom(!profileBoxAtom);
+        }}
+        name={nameValue}
+        email={emailValue}
         HandleLogout={HandleLogout}
         style={style}
         statusModal={statusModal}

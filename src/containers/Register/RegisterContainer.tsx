@@ -1,16 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import Register from "components/Register";
-import { Response } from "util/types/Response";
-import useStore from "lib/hooks/useStore";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import Agree from "util/enums/Agree";
+import { tryRegister, trySendEmail, trySendPhone } from "stores/Auth/useAuth";
 
 const RegisterContainer = () => {
-  const { store } = useStore();
-  const { tryRegister, trySendEmail, trySendPhone } = store.AuthStore;
-
   const history = useNavigate();
 
   //모두동의 체크박스
@@ -84,11 +79,11 @@ const RegisterContainer = () => {
       toast.success("메시지 전송중입니다.");
       // makeSecCounter(setCounter,300,1)
       await trySendPhone(phoneNum)
-        .then((res: Response) => {
+        .then((_) => {
           toast.success("메시지가 전송되었습니다");
           setLoading(false);
         })
-        .catch((err) => {
+        .catch((err: any) => {
           setLoading(false);
           const errMsg = err.response?.this.state;
           // 통신할 때 에러핸들링
@@ -104,11 +99,11 @@ const RegisterContainer = () => {
       setLoading(true);
       toast.success("이메일이 전송중입니다.");
       await trySendEmail(email)
-        .then((res: Response) => {
+        .then((_) => {
           toast.success("이메일이 전송되었습니다.");
           setLoading(false);
         })
-        .catch((err) => {
+        .catch((err: any) => {
           setLoading(false);
           if (err.response?.status === 406) {
             toast.warning("현재 요청이 너무 많습니다. 잠시 후에 시도하세요.");
@@ -156,11 +151,11 @@ const RegisterContainer = () => {
       toast.warning("모두 동의를 체크해 주세요");
     } else {
       await tryRegister(name, birth, email, pw, phoneNum, phoneCheck)
-        .then((res: Response) => {
+        .then((_) => {
           toast.success("회원가입이 완료되었습니다.");
           history("login");
         })
-        .catch((err) => {
+        .catch((err: any) => {
           if (err.response?.status === 406) {
             toast.warning(
               "나이 제한으로 인해 가입이 불가능합니다. 본인 명의로 가입해주세요."

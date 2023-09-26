@@ -4,12 +4,15 @@ import useStore from "lib/hooks/useStore";
 import ResultStatus from "components/ResultStatusCheck/ResultStatus";
 import { handleLogin } from "lib/handleErrors";
 import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { applyBox } from "stores/Auth/AuthAtom";
 
 interface ResultStatusContainerPropse {}
 
 const ResultStatusContainer = ({}: ResultStatusContainerPropse) => {
   const history = useNavigate();
 
+  const [applyBoxAtom, setApplyBoxAtom] = useRecoilState<boolean>(applyBox);
   const { store } = useStore();
   const { tryGetStatus } = store.StatusStore;
   const [post, setPost] = useState<boolean | undefined>(undefined);
@@ -20,7 +23,6 @@ const ResultStatusContainer = ({}: ResultStatusContainerPropse) => {
   // // 우편 검토 현황
   const [internet, setInternet] = useState<boolean | undefined>(undefined);
   // 인터넷 원서 접수 현황
-  const { tryCloseModal } = store.AuthStore;
   // 헤더에 있어서 모달을 store에서 관리해줌
 
   // api 받아오기
@@ -57,7 +59,9 @@ const ResultStatusContainer = ({}: ResultStatusContainerPropse) => {
           post={post}
           checkedPost={checkedPost}
           internet={internet}
-          tryCloseModal={tryCloseModal}
+          tryCloseModal={() => {
+            setApplyBoxAtom(!applyBoxAtom);
+          }}
         />
       )}
     </>

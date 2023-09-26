@@ -8,8 +8,13 @@ import { useCookies } from "react-cookie";
 import { toast } from "react-toastify";
 import moment from "moment";
 import asyncLocalStorage from "lib/asyncStorage";
+import { tryLogin } from "stores/Auth/useAuth";
+import { useSetRecoilState } from "recoil";
+import { login } from "stores/Auth/AuthAtom";
 
 const LoginContainer = () => {
+  const setLoginAtom = useSetRecoilState<boolean>(login);
+
   const passwordInput = React.useRef<HTMLInputElement>(null);
   // login focus 주는 useRef
   const [check, setCheck] = useState<boolean>(false);
@@ -20,11 +25,7 @@ const LoginContainer = () => {
   const [id, setId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const { store } = useStore();
   const history = useNavigate();
-
-  //api 불러오기
-  const { tryLogin } = store.AuthStore;
 
   const [cookie, setCookie, removeCookie] = useCookies(["refreshToken"]);
 
@@ -43,6 +44,7 @@ const LoginContainer = () => {
     } else {
       await tryLogin(id, password)
         .then(async (res: LoginResponse) => {
+          setLoginAtom(true);
           toast.success("로그인 되었습니다");
           asyncLocalStorage.setItem("accessToken", res.data.accessToken);
           asyncLocalStorage.setItem(
@@ -53,7 +55,7 @@ const LoginContainer = () => {
           setLoginCheck();
           history("/");
         })
-        .catch((err) => {
+        .catch((err: any) => {
           if (err.response?.status === 401) {
             passwordInput.current?.focus();
             toast.warning("이메일이나 비밀번호가 다릅니다");
