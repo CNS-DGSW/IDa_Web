@@ -137,6 +137,8 @@ class UserApi {
 
     const query = userIdx ? `?userIdx=${userIdx}` : "";
 
+    console.log(body)
+
     const { data } = await Api.patch(`/user/editSchoolInfo${query}`, body);
 
     return data;
@@ -145,7 +147,7 @@ class UserApi {
   async GetSchoolInfo(userIdx?: number | null) {
     const query = userIdx ? `?userIdx=${userIdx}` : "";
 
-    const { data } = await Api.get(`/school/searchschool${query}`);
+    const { data } = await Api.get(`/user/getSchoolInfo${query}`);
     return data;
   }
 

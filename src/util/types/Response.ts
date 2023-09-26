@@ -83,8 +83,8 @@ export interface SchoolInfoResponse extends Response {
     cityName: string;
     gradeType: Grade;
     graduatedDate: string;
-    code: string;
-    name: string;
+    schoolCode: string;
+    schoolName: string;
     schoolTel: string;
     teacherName: string;
     teacherTel: string;
