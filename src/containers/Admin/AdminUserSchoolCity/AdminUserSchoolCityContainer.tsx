@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import UserSchoolCity from "../../../components/Admin/AdminUserSchoolCity";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useStore from "lib/hooks/useStore";
 import { SchoolCity } from "util/types/SchoolCity";
 import { handleAdmin } from "lib/handleErrors";
@@ -12,7 +12,7 @@ const AdminUserSchoolCityContainer = ({}) => {
   let totalGraduatedWomen = 0;
   let totalGraduatedMen = 0;
 
-  const history = useHistory();
+  const history = useNavigate();
   const { store } = useStore();
 
   const [schoolCity, setSchoolCity] = useState<SchoolCity[]>([]);

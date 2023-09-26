@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import SecondTypeScore from "components/Admin/SecondDetailScore";
 import useStore from "lib/hooks/useStore";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ExcelApi from "assets/api/ExcelApi";
 import { SecondScoreResponse } from "util/types/Response";
 import { toast } from "react-toastify";
 import { handleAdmin } from "lib/handleErrors";
 
 const SecondTypeScoreContainer = ({}) => {
-  const history = useHistory();
+  const history = useNavigate();
   const { store } = useStore();
   const {
     GetStu,
@@ -33,6 +33,7 @@ const SecondTypeScoreContainer = ({}) => {
     await getSecondScore()
       .then((res) => {
         setScoreDate(res);
+        console.log(scoreDate);
       })
       .catch((err) => {
         handleAdmin(err, history);
@@ -43,25 +44,25 @@ const SecondTypeScoreContainer = ({}) => {
   const tryDown = (key: string) => {
     switch (key) {
       case "stu":
-        GetStu().catch((err) => {
+        GetStu().catch((err:any) => {
           toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
         });
         break;
 
       case "job":
-        GetJob().catch((err) => {
+        GetJob().catch((err:any) => {
           toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
         });
         break;
 
       case "computing":
-        GetComputing().catch((err) => {
+        GetComputing().catch((err:any) => {
           toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
         });
         break;
 
       case "secondScore":
-        GetSecondScoreExcel().catch((err) => {
+        GetSecondScoreExcel().catch((err:any) => {
           toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
         });
         break;

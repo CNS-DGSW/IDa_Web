@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 import { useBeforeunload } from "react-beforeunload";
 import Write from "components/Write/Write";
 import useStore from "lib/hooks/useStore";
-import { useLocation, useHistory } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import useQuery from "lib/hooks/useQuery";
 
 const WriteContainer = ({}) => {
@@ -12,7 +12,7 @@ const WriteContainer = ({}) => {
   const { login } = store.AuthStore;
   const { search } = useLocation();
   const query = useQuery();
-  const histroy = useHistory();
+  const histroy = useNavigate();
 
   // 웹 사이트에 변경점이 있을 때 뒤로가기, 새로고침 시 경고 띄우기
   useBeforeunload((event) => event.preventDefault());

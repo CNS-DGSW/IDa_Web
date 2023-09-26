@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import ChangePw from "components/ChangePw/ChangePw";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import useStore from "lib/hooks/useStore";
 
@@ -18,7 +18,7 @@ const ChangePwContainer = ({}) => {
   const [checkPw, setCheckPw] = useState<string>("");
   // 바꾸는 비밀번호 확인
 
-  const history = useHistory();
+  const history = useNavigate();
 
   const checkPasswordValidate = () => {
     if (changePw.length >= 8 && checkPw.length >= 8) {
@@ -34,7 +34,7 @@ const ChangePwContainer = ({}) => {
       tryChangePw(changePw, originPw)
         .then(() => {
           toast.success("비밀번호가 변경되었습니다.");
-          history.push("/");
+          history("/");
         })
         .catch((err) => {
           if (err.response?.status === 401) {
@@ -54,7 +54,7 @@ const ChangePwContainer = ({}) => {
   // accessToken이 있으면 헤더에서 자기 자신 accesToken인지 확인
   useEffect(() => {
     if (!localStorage.getItem("accessToken")) {
-      history.push("/");
+      history("/");
     }
   });
 

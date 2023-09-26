@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import UserListPassed from "components/Admin/UserListPassed";
 import useStore from "lib/hooks/useStore";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ListPassed } from "util/types/UserList";
 import { handleAdmin } from "lib/handleErrors";
 import ExcelApi from "assets/api/ExcelApi";
@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 
 const UserListPassedContainer = ({}) => {
   const { store } = useStore();
-  const history = useHistory();
+  const history = useNavigate();
   const {
     getUserListPassed,
     getViewFirstStudent,

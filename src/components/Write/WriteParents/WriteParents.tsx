@@ -134,12 +134,7 @@ const WriteParents = ({
             />
             {isOpen === true && (
               <Modal onClose={() => setIsOpen(false)}>
-                <DaumPostcode
-                  onComplete={handleComplete}
-                  width={"500"}
-                  height={"500"}
-                  autoClose={true}
-                />
+                <DaumPostcode onComplete={handleComplete} autoClose={true} />
               </Modal>
             )}
           </div>

@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import UserListComponent from "components/Admin/UserList";
 import useStore from "lib/hooks/useStore";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { List } from "util/types/UserList";
 import { handleAdmin, handleLogin } from "lib/handleErrors";
 import { CityRatio, DateRatio, SchoolRatio } from "util/types/UserRatio";
@@ -13,7 +13,7 @@ import UserPrintStatus from "util/enums/UserPrintStatus";
 
 const UserListContainer = ({}) => {
   const { store } = useStore();
-  const history = useHistory();
+  const history = useNavigate();
 
   const { getUserList, getAllUserRatio, adminAddUser, adminDeleteUser } =
     store.AdminStore;
@@ -32,16 +32,16 @@ const UserListContainer = ({}) => {
   const [name, setName] = useState<string>("");
   const [modal, setModal] = useState<boolean>(false);
 
-  const [userResult,setUserResult] = useState<{
-    totalValue:number,
-    submiteValue:number,
-    postArrivedValue:number,
-    checkedValue:number
+  const [userResult, setUserResult] = useState<{
+    totalValue: number;
+    submiteValue: number;
+    postArrivedValue: number;
+    checkedValue: number;
   }>({
-    totalValue:0,
-    submiteValue:0,
-    postArrivedValue:0,
-    checkedValue:0,
+    totalValue: 0,
+    submiteValue: 0,
+    postArrivedValue: 0,
+    checkedValue: 0,
   });
 
   const { GetUserList } = ExcelApi;
@@ -97,27 +97,32 @@ const UserListContainer = ({}) => {
   }, []);
 
   useEffect(() => {
-    if (userStatus !== undefined){
-      let submiteValue:number=0;
-      let postArrivedValue:number=0;
-      let checkedValue:number=0;
+    if (userStatus !== undefined) {
+      let submiteValue: number = 0;
+      let postArrivedValue: number = 0;
+      let checkedValue: number = 0;
 
       userStatus.forEach((i) => {
         // 제출 인원
-        if (i.isSubmit) {submiteValue++}
-        if (i.isPrintedApplicationArrived) {postArrivedValue++}
-        if (i.applicationChecked === "SUCCEED") {checkedValue++}
-      })
+        if (i.isSubmit) {
+          submiteValue++;
+        }
+        if (i.isPrintedApplicationArrived) {
+          postArrivedValue++;
+        }
+        if (i.applicationChecked === "SUCCEED") {
+          checkedValue++;
+        }
+      });
 
-        setUserResult({
-          totalValue:userStatus.length,
-          submiteValue:submiteValue,
-          postArrivedValue:postArrivedValue,
-          checkedValue:checkedValue,
-      })
+      setUserResult({
+        totalValue: userStatus.length,
+        submiteValue: submiteValue,
+        postArrivedValue: postArrivedValue,
+        checkedValue: checkedValue,
+      });
     }
-
-  },[userStatus])
+  }, [userStatus]);
 
   // 날짜, 출신학교, 지역 별 비율 받아오기
   const tryGetAllUserRatio = useCallback(() => {

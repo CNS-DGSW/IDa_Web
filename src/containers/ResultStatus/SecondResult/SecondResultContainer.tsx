@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
 import SecondResult from "components/ResultStatusCheck/SecondResult";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { handleLogin } from "lib/handleErrors";
 import { FinalStatusResponse } from "util/types/Response";
 
@@ -17,7 +17,7 @@ const SecondResultContainer = ({
   modalLoading,
   setModalLoading,
 }: SecondResultContainerProps) => {
-  const history = useHistory();
+  const history = useNavigate();
   const { store } = useStore();
   const { tryGetFinalStatus } = store.StatusStore;
   const [comment, setComment] = useState<string>("");

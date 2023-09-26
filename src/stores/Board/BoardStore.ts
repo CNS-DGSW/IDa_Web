@@ -1,4 +1,4 @@
-import { action } from "mobx";
+import { _autoAction } from "mobx";
 import { autobind } from "core-decorators";
 import PostApi from "../../assets/api/PostApi";
 import {
@@ -11,7 +11,7 @@ import Category from "util/enums/Category";
 @autobind
 class BoardStore {
   // 게시글 생성
-  @action
+  @_autoAction
   createPost = async (
     category: Category,
     title: string,
@@ -23,7 +23,7 @@ class BoardStore {
   };
 
   // Q&A 답변 생성
-  @action
+  @_autoAction
   createAnswer = async (
     content: string,
     postIdx: number
@@ -34,7 +34,7 @@ class BoardStore {
   };
 
   // 게시글 목록 받아오기
-  @action
+  @_autoAction
   getPosts = async (category: Category): Promise<GetPostsResponse> => {
     const response: GetPostsResponse = await PostApi.GetPosts(category);
 
@@ -42,7 +42,7 @@ class BoardStore {
   };
 
   // 게시글 상세 조회
-  @action
+  @_autoAction
   getPost = async (idx: number): Promise<GetPostResponse> => {
     const response: GetPostResponse = await PostApi.GetPost(idx);
 
@@ -50,7 +50,7 @@ class BoardStore {
   };
 
   // 게시글 삭제
-  @action
+  @_autoAction
   deletePost = async (idx: number): Promise<Response> => {
     const response = await PostApi.DeletePost(idx);
 
@@ -58,7 +58,7 @@ class BoardStore {
   };
 
   // 게시글 수정
-  @action
+  @_autoAction
   modifyPost = async (
     idx: number,
     title: string,

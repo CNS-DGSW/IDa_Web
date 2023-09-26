@@ -1,4 +1,4 @@
-import { action, observable } from "mobx";
+import { _autoAction, observable } from "mobx";
 import { autobind } from "core-decorators";
 import AdminApi from "../../assets/api/AdminApi";
 import ApplyType from "util/enums/Apply";
@@ -25,7 +25,7 @@ class AdminStore {
   @observable isFinal: boolean = false;
 
   //입학 한 학생 받아오기
-  @action
+  @_autoAction
   getReceiptStatus = async (): Promise<ReceiptResponse> => {
     const response: ReceiptResponse = await AdminApi.GetReceiptStatus();
 
@@ -33,7 +33,7 @@ class AdminStore {
   };
 
   //지역별 출신교별 현황 받기
-  @action
+  @_autoAction
   getUserSchoolCity = async (): Promise<SchoolCityResponse> => {
     const response: SchoolCityResponse = await AdminApi.GetUserSchoolCity();
 
@@ -41,7 +41,7 @@ class AdminStore {
   };
 
   //입학 전형 원부 엑셀 받기
-  @action
+  @_autoAction
   getReceiptStatusExcel = async (): Promise<any> => {
     const response: any = await ExcelApi.GetReceiptStatus();
 
@@ -49,7 +49,7 @@ class AdminStore {
   };
 
   //지역별 출신교별 형황 엑셀 받기
-  @action
+  @_autoAction
   getUserSchoolCityExcel = async (): Promise<any> => {
     const response: any = await ExcelApi.GetUserSchoolCity();
 
@@ -57,49 +57,49 @@ class AdminStore {
   };
 
   //유저별 원서 제출 취소 설정
-  @action
+  @_autoAction
   handleCancelSubmit = async (userIdx: number): Promise<Response> => {
     const response: Response = await StatusApi.cancelSubmit(userIdx);
 
     return response;
   };
 
-  @action
+  @_autoAction
   getReportInfo = async (): Promise<ReportInfo> => {
     const response: ReportInfo = await AdminApi.GetReportInfo();
 
     return response;
   };
 
-  @action
+  @_autoAction
   getUserListPassed = async (isFinal?: boolean): Promise<UserListPassed> => {
     const response: UserListPassed = await AdminApi.GetUserListPassed(isFinal);
 
     return response;
   };
 
-  @action
+  @_autoAction
   getUserRate = async (isFinal?: boolean): Promise<UserRate> => {
     const response: UserRate = await AdminApi.GetUserRate(isFinal);
 
     return response;
   };
 
-  @action
+  @_autoAction
   getUserList = async (): Promise<UserList> => {
     const response: UserList = await AdminApi.GetUserList();
 
     return response;
   };
 
-  @action
+  @_autoAction
   getAllUserRatio = async (): Promise<AllUserRatio> => {
     const response: AllUserRatio = await AdminApi.GetAllUserRadio();
 
     return response;
   };
 
-  @action
+  @_autoAction
   adminAddUser = async (
     email: string,
     name: string,
@@ -118,58 +118,58 @@ class AdminStore {
     return response;
   };
 
-  @action
+  @_autoAction
   adminDeleteUser = async (userIdx: number): Promise<Response> => {
     const response: Response = await AdminApi.DeleteUser(userIdx);
 
     return response;
   };
 
-  @action
+  @_autoAction
   getViewFirstStudent = async (): Promise<ViewFirstStudent> => {
     const response: ViewFirstStudent = await AdminApi.viewFirstStudent();
     return response;
   };
 
-  @action
+  @_autoAction
   adminChangeFirstStudent = async (): Promise<ViewFirstStudent> => {
     const response: ViewFirstStudent = await AdminApi.changeFirstStudent();
     return response;
   };
-  @action
+  @_autoAction
   getViewSecondStudent = async (): Promise<ViewSecondStudent> => {
     const response: ViewSecondStudent = await AdminApi.viewSecondStudent();
     return response;
   };
 
-  @action
+  @_autoAction
   adminChangeSecondStudent = async (): Promise<ViewSecondStudent> => {
     const response: ViewSecondStudent = await AdminApi.changeSecondStudent();
     return response;
   };
 
-  @action
+  @_autoAction
   getUserResultList = async (): Promise<UserReulstListResponse> => {
     const response: UserReulstListResponse = await AdminApi.GetUserResultList();
 
     return response;
   };
 
-  @action
+  @_autoAction
   changeFirstResultStatus = async (userIdx: number) => {
     const response: Response = await AdminApi.ChangeFirstResultStatus(userIdx);
 
     return response;
   };
 
-  @action
+  @_autoAction
   changeSecondResultStatus = async (userIdx: number) => {
     const response: Response = await AdminApi.ChangeSecondResultStatus(userIdx);
 
     return response;
   };
 
-  @action
+  @_autoAction
   changeFirstApplyStatus = async (
     userIdx: number,
     apply: ApplyType,
@@ -183,7 +183,7 @@ class AdminStore {
     return response;
   };
 
-  @action
+  @_autoAction
   changeSecondApplyStatus = async (
     userIdx: number,
     apply: ApplyType,
@@ -197,14 +197,14 @@ class AdminStore {
     return response;
   };
 
-  @action
+  @_autoAction
   setFirstSelection = async () => {
     const response: Response = await AdminApi.SetFirstSelection();
 
     return response;
   };
 
-  @action
+  @_autoAction
   setSecondSelection = async () => {
     const response: Response = await AdminApi.SetSecondSelection();
 

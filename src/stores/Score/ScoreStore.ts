@@ -1,6 +1,6 @@
 import ScoreApi from "assets/api/ScoreApi";
 import { autobind } from "core-decorators";
-import { action } from "mobx";
+import { _autoAction } from "mobx";
 import {
   GetScoreResponse,
   InterViewScoreResponse,
@@ -10,28 +10,28 @@ import {
 
 @autobind
 class ScoreStore {
-  @action
+  @_autoAction
   getScore = async (userIdx?: number | null): Promise<GetScoreResponse> => {
     const response: GetScoreResponse = await ScoreApi.GetScore(userIdx);
 
     return response;
   };
 
-  @action
+  @_autoAction
   getSecondScore = async (): Promise<SecondScoreResponse> => {
     const response: SecondScoreResponse = await ScoreApi.GetSecondScore();
 
     return response;
   };
 
-  @action
+  @_autoAction
   getTeam = async (category: string): Promise<TeamResponse> => {
     const response: TeamResponse = await ScoreApi.getTeam(category);
 
     return response;
   };
 
-  @action
+  @_autoAction
   getInterviewScore = async (
     category: string,
     teamNumber?: string

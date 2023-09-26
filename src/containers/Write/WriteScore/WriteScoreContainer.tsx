@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 import useStore from "lib/hooks/useStore";
 import WriteScore from "components/Write/WriteScore";
 import { handleGetWriteError } from "lib/handleErrors";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useQuery from "lib/hooks/useQuery";
 
 interface WriteScoreContainerProps {
@@ -22,7 +22,7 @@ const WriteScoreContainer = ({
   const { getScore } = store.ScoreStore;
   const { gradeType } = store.WriteStore;
 
-  const history = useHistory();
+  const history = useNavigate();
 
   const query = useQuery();
 

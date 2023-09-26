@@ -13,6 +13,7 @@ class ExcelApi {
     return response;
   }
   async GetJob() {
+    console.log(2)
     const response = await Api.get("/excel/getJobAptitude", {
       responseType: "blob",
     });
@@ -74,11 +75,11 @@ class ExcelApi {
     return response;
   }
 
-  async uploadInterview(file: File) {
+  async uploadStu(file: File) {
     const formData = new FormData();
     formData.append("file", file);
 
-    const response = await Api.post(`/excel/uploadInterviewScore`, formData);
+    const response = await Api.post(`/excel/uploadStudyScore`, formData);
 
     return response;
   }
@@ -88,15 +89,6 @@ class ExcelApi {
     formData.append("file", file);
 
     const response = await Api.post(`/excel/uploadJobAptitude`, formData);
-
-    return response;
-  }
-
-  async uploadStu(file: File) {
-    const formData = new FormData();
-    formData.append("file", file);
-
-    const response = await Api.post(`/excel/uploadStudyScore`, formData);
 
     return response;
   }

@@ -3,14 +3,14 @@ import { observer } from "mobx-react";
 import WriteGrade from "../../../components/Write/WriteGrades";
 import useStore from "lib/hooks/useStore";
 import { toast } from "react-toastify";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Grade from "util/enums/Grade";
 import { handleWriteError } from "lib/handleErrors";
 
 const WriteGradeContainer = ({}) => {
   const { store } = useStore();
 
-  const history = useHistory();
+  const history = useNavigate();
 
   const {
     pageHandle,
