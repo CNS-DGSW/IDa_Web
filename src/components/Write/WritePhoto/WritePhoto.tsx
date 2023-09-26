@@ -18,13 +18,17 @@ const WritePhoto = ({
   return (
     <>
       <WriteContent
-        title="지원자의 사진을 등록해 주세요"
+        title="지원자의 증명사진을 등록해 주세요"
         onSave={onSave}
         isChanged={isChanged}
       >
         <div className="photo">
           {preview ? (
-            <img src={preview.toString()} className="photo-preview" alt="img" />
+            <img
+              src={preview.toString()}
+              className="photo-preview"
+              alt="이미지 등록되지않음."
+            />
           ) : (
             <div className="photo-preview">미리보기</div>
           )}
