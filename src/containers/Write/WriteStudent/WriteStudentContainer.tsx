@@ -19,7 +19,7 @@ const WriteStudentContainer = ({}) => {
   const history = useNavigate();
 
   const [name, setName] = useState<string>("");
-  const [birth, setBirth] = useState<string>("");
+  const [birth, setBirth] = useState<string>("2008");
   const [sex, setSex] = useState<Sex | null>(null);
   const [studentTel, setStudentTel] = useState<string>("");
 
