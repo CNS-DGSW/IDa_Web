@@ -6,11 +6,14 @@ import * as serviceWorker from "./serviceWorker";
 import stores from "./stores";
 import "./util/util.scss";
 import { BrowserRouter } from "react-router-dom";
+import { RecoilRoot } from "recoil";
 
 ReactDOM.render(
   <Provider store={stores}>
     <BrowserRouter>
-      <App />
+      <RecoilRoot>
+        <App />
+      </RecoilRoot>
     </BrowserRouter>
   </Provider>,
   document.getElementById("root")
