@@ -67,7 +67,7 @@ const DefaultAdminHeader = ({ children }: DefaultAdminHeaderProps) => {
             className="Admin-header-link"
             activeClassName="Admin-header-link-active"
           >
-            <span>2차 전형 점수 관리</span>
+            <span>최종 결과</span>
           </NavLink>
 
           <NavLink
