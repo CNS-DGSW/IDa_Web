@@ -1,4 +1,4 @@
-import AuthStore from "./Auth";
+// import AuthStore from "./Auth";
 import WriteStore from "./Write";
 import BoardStore from "./Board";
 import FileStore from "./File";
@@ -7,7 +7,6 @@ import StatusStore from "./Status";
 import AdminStore from "./Admin";
 
 const stores = {
-  AuthStore: new AuthStore(),
   WriteStore: new WriteStore(),
   BoardStore: new BoardStore(),
   FileStore: new FileStore(),

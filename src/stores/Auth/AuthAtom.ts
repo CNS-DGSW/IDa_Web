@@ -1,13 +1,13 @@
 import { atom } from "recoil";
 
 // 로그인인지 확인하는 변수
-const login = atom<boolean>({
+const loginAtom = atom<boolean>({
   key: "login",
   default: false,
 });
 
 // 어드민인지 확인하는 변수
-const isAdmin = atom<boolean>({
+const isAdminAtom = atom<boolean>({
   key: "isAdmin",
   default: false,
 });
@@ -19,13 +19,13 @@ const profileBox = atom<boolean>({
 });
 
 // 이름
-const name = atom<string>({
+const nameAtom = atom<string>({
   key: "name",
   default: "",
 });
 
 // 이메일
-const email = atom<string>({
+const emailAtom = atom<string>({
   key: "email",
   default: "",
 });
@@ -35,4 +35,4 @@ const applyBox = atom<boolean>({
   default: false,
 });
 
-export { login, isAdmin, profileBox, name, email, applyBox };
+export { loginAtom, isAdminAtom, profileBox, nameAtom, emailAtom, applyBox };

@@ -1,4 +1,4 @@
-import AuthStore from "../../stores/Auth";
+// import AuthStore from "../../stores/Auth";
 import WriteStore from "../../stores/Write";
 import BoardStore from "../../stores/Board";
 import FileStore from "stores/File";
@@ -8,7 +8,6 @@ import AdminStore from "stores/Admin";
 
 type StoreType = {
   store: {
-    AuthStore: AuthStore;
     WriteStore: WriteStore;
     BoardStore: BoardStore;
     FileStore: FileStore;

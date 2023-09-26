@@ -9,7 +9,6 @@ import useQuery from "lib/hooks/useQuery";
 const WriteContainer = ({}) => {
   const { store } = useStore();
   const { page, pageHandle, handleUserIdx } = store.WriteStore;
-  const { login } = store.AuthStore;
   const { search } = useLocation();
   const query = useQuery();
   const histroy = useNavigate();

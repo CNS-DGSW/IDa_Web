@@ -10,10 +10,10 @@ import moment from "moment";
 import asyncLocalStorage from "lib/asyncStorage";
 import { tryLogin } from "stores/Auth/useAuth";
 import { useSetRecoilState } from "recoil";
-import { login } from "stores/Auth/AuthAtom";
+import { loginAtom } from "stores/Auth/AuthAtom";
 
 const LoginContainer = () => {
-  const setLoginAtom = useSetRecoilState<boolean>(login);
+  const setLoginAtom = useSetRecoilState<boolean>(loginAtom);
 
   const passwordInput = React.useRef<HTMLInputElement>(null);
   // login focus 주는 useRef

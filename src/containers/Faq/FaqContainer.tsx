@@ -6,6 +6,8 @@ import { GetPostsResponse } from "util/types/Response";
 import Category from "util/enums/Category";
 import { PostType } from "util/types/PostType";
 import { toast } from "react-toastify";
+import { useRecoilValue } from "recoil";
+import { isAdminAtom } from "stores/Auth/AuthAtom";
 
 const FaqContainer = () => {
   const [posts, setPosts] = useState<PostType[]>([]);
@@ -17,8 +19,7 @@ const FaqContainer = () => {
   const { store } = useStore();
 
   const { getPosts } = store.BoardStore;
-  const { isAdmin } = store.AuthStore;
-
+  const isAdmin = useRecoilValue<boolean>(isAdminAtom);
   // 게시글 목록 조회
   const handleGetPosts = useCallback(async () => {
     await getPosts(Category.FAQ)

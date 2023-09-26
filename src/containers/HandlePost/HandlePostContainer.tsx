@@ -8,6 +8,8 @@ import Modal from "components/common/Modal";
 import HandlePost from "components/common/HandlePost";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { useRecoilValue } from "recoil";
+import { emailAtom, isAdminAtom } from "stores/Auth/AuthAtom";
 
 interface HandlePostContainerProps {
   idx?: number;
@@ -30,7 +32,8 @@ const HandlePostContainer = ({
 
   const history = useNavigate();
 
-  const { isAdmin, email } = store.AuthStore;
+  const isAdmin = useRecoilValue<boolean>(isAdminAtom);
+  const email = useRecoilValue<string>(emailAtom);
   const { createPost, createAnswer, getPost, deletePost, modifyPost } =
     store.BoardStore;
 

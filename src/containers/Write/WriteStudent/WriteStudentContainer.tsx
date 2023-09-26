@@ -9,11 +9,13 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { handleWriteError, handleGetWriteError } from "lib/handleErrors";
 import useQuery from "lib/hooks/useQuery";
+import { useSetRecoilState } from "recoil";
+import { nameAtom } from "stores/Auth/AuthAtom";
 
 const WriteStudentContainer = ({}) => {
   const { store } = useStore();
 
-  const { handleName } = store.AuthStore;
+  const setNameAtom = useSetRecoilState<string>(nameAtom);
   const { getStudentInfo, editStudentInfo } = store.WriteStore;
 
   const history = useNavigate();
@@ -72,7 +74,8 @@ const WriteStudentContainer = ({}) => {
         handleWriteError(err, history);
         flag = false;
       });
-      handleName(name);
+
+      setNameAtom(name);
       setIsChanged(false);
     } else {
       toast.warning("빈칸을 채워주세요.");

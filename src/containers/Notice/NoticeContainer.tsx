@@ -6,6 +6,8 @@ import { GetPostsResponse } from "util/types/Response";
 import Category from "util/enums/Category";
 import { PostType } from "util/types/PostType";
 import { toast } from "react-toastify";
+import { useRecoilValue } from "recoil";
+import { isAdminAtom } from "stores/Auth/AuthAtom";
 
 const NoticeContainer = () => {
   const [posts, setPosts] = useState<PostType[]>([]);
@@ -16,8 +18,8 @@ const NoticeContainer = () => {
 
   const { store } = useStore();
 
-  const { isAdmin } = store.AuthStore;
   const { getPosts } = store.BoardStore;
+  const isAdmin = useRecoilValue<boolean>(isAdminAtom);
 
   // 게시글 목록 조회
   const handleGetPosts = useCallback(async () => {

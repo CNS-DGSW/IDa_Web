@@ -4,7 +4,13 @@ import Header from "components/common/Header";
 import useStore from "lib/hooks/useStore";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
-import { email, isAdmin, login, name, profileBox } from "stores/Auth/AuthAtom";
+import {
+  emailAtom,
+  isAdminAtom,
+  loginAtom,
+  nameAtom,
+  profileBox,
+} from "stores/Auth/AuthAtom";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { UserInfoResponse } from "util/types/Response";
 import AuthApi from "assets/api/AuthApi";
@@ -17,11 +23,11 @@ interface HeaderContainerProps {
 const HeaderContainer = ({ theme, style }: HeaderContainerProps) => {
   const { store } = useStore();
   const history = useNavigate();
-  const changeLoginAtom = useSetRecoilState<boolean>(login);
-  const [isAdminValue, setIsAdminAtom] = useRecoilState(isAdmin);
-  const [emailValue, setEmailAtom] = useRecoilState(email);
-  const [nameValue, setNameAtom] = useRecoilState(name);
-  const [loginValue, setLoginAtom] = useRecoilState(login);
+  const changeLoginAtom = useSetRecoilState<boolean>(loginAtom);
+  const [isAdminValue, setIsAdminAtom] = useRecoilState(isAdminAtom);
+  const [emailValue, setEmailAtom] = useRecoilState(emailAtom);
+  const [nameValue, setNameAtom] = useRecoilState(nameAtom);
+  const [loginValue, setLoginAtom] = useRecoilState(loginAtom);
   const [profileBoxAtom, setProfileBoxAtom] =
     useRecoilState<boolean>(profileBox);
   // const {
@@ -61,13 +67,13 @@ const HeaderContainer = ({ theme, style }: HeaderContainerProps) => {
 
   // 유저 정보 가져오기
   const getInfoCallback = useCallback(async () => {
-    if (localStorage.getItem("accessToken") && !name && !email) {
+    if (localStorage.getItem("accessToken") && !nameValue && !emailValue) {
       changeLoginAtom(true);
       await getInfo().catch((err: any) => {
         HandleLogout();
       });
     }
-  }, [login]);
+  }, [loginAtom]);
 
   // 프로필 버튼 눌렀을 때 모달 닫기
   const closeAllModal = () => {
