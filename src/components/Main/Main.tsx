@@ -72,17 +72,17 @@ const Main = ({
               </div>
             </MainContent>
 
-            <MainContent title="모집요강 안내">
+            <MainContent title="전형요강 안내">
               <div>
                 <p className="Content-box-area-small">
-                  모집요강 파일을 다운로드 합니다.
+                  전형요강 파일을 다운로드 합니다.
                 </p>
                 <div className="Content-box-area-btn">
                   <div
                     className="Content-box-area-btn-style"
                     onClick={() => handleDownloadApplyInfo()}
                   >
-                    모집요강
+                    전형요강
                   </div>
                   {/* <div
                     className="Content-box-area-btn-style"
