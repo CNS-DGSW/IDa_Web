@@ -1,6 +1,5 @@
 import StatusApi from "assets/api/StatusApi";
 import { autobind } from "core-decorators";
-import { _autoAction, observable } from "mobx";
 import UserPrintStatus from "util/enums/UserPrintStatus";
 import Apply from "util/enums/Apply";
 import ApplyDetail from "util/enums/ApplyDetail";
@@ -9,6 +8,7 @@ import {
   Response,
   ResultStatusResponse,
 } from "util/types/Response";
+import { _autoAction, observable } from "mobx";
 
 @autobind
 class StatusStore {

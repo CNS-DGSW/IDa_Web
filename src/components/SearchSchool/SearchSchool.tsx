@@ -36,6 +36,9 @@ const SearchSchool = ({
   return (
     <>
       <div className="search">
+        <div className="search-list-load">
+            학교를 검색해 주세요 (엔터 시 검색이 됩니다)
+        </div>
         <select
           name="citys"
           id="city-select"
@@ -110,11 +113,7 @@ const SearchSchool = ({
                 })
               )
             ) : (
-              <div className="search-list-load">
-                학교를 검색해 주세요
-                <br />
-                (엔터 시 검색이 됩니다)
-              </div>
+              <></>
             )}
           </div>
         </div>

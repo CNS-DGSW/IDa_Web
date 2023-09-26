@@ -75,9 +75,9 @@ const WriteGradeContainer = ({}) => {
     });
   }, []);
 
-  useEffect(() => {
-    checkSchool();
-  }, [checkSchool]);
+  // useEffect(() => {
+  //   checkSchool();
+  // }, [checkSchool]);
 
   useEffect(() => {
     handleIsChanged(false);

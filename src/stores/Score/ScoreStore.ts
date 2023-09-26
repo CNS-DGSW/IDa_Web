@@ -1,12 +1,12 @@
 import ScoreApi from "assets/api/ScoreApi";
 import { autobind } from "core-decorators";
-import { _autoAction } from "mobx";
 import {
   GetScoreResponse,
   InterViewScoreResponse,
   SecondScoreResponse,
   TeamResponse,
 } from "util/types/Response";
+import { _autoAction } from "mobx";
 
 @autobind
 class ScoreStore {

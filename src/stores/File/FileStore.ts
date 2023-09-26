@@ -1,6 +1,6 @@
+import { _autoAction } from "mobx";
 import FileApi from "assets/api/FileApi";
 import { autobind } from "core-decorators";
-import { _autoAction } from "mobx";
 
 @autobind
 class FileStore {

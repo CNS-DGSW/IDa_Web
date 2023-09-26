@@ -1,4 +1,4 @@
-import { _autoAction, observable } from "mobx";
+
 import { autobind } from "core-decorators";
 import AuthApi from "assets/api/AuthApi";
 import {
@@ -26,6 +26,7 @@ import Apply from "util/enums/Apply";
 import ApplyDetail from "util/enums/ApplyDetail";
 import FreeSemType from "util/types/FreeSem";
 import ScoreGrade from "util/types/ScoreGrade";
+import { _autoAction, observable } from "mobx";
 
 @autobind
 class WriteStore {

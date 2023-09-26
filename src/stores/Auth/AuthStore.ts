@@ -1,4 +1,3 @@
-import { _autoAction, observable } from "mobx";
 import { autobind } from "core-decorators";
 import AuthApi from "../../assets/api/AuthApi";
 import {
@@ -6,6 +5,7 @@ import {
   Response,
   UserInfoResponse,
 } from "../../util/types/Response";
+import { _autoAction, observable } from "mobx";
 
 @autobind
 class AuthStore {

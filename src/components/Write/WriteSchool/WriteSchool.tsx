@@ -70,7 +70,7 @@ const WriteSchool = ({
             <label className="school-area-label">졸업구분</label>
             <div className="school-area-select">
               <label className="school-area-select-box">
-                졸업예정
+                재학생
                 <input
                   type="radio"
                   name="school"
@@ -98,7 +98,7 @@ const WriteSchool = ({
                 />
               </label>
               <label className="school-area-select-box">
-                고입검정
+                검정고시 합격자
                 <input
                   type="radio"
                   name="school"
