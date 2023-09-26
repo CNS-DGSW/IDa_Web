@@ -145,7 +145,7 @@ class UserApi {
   async GetSchoolInfo(userIdx?: number | null) {
     const query = userIdx ? `?userIdx=${userIdx}` : "";
 
-    const { data } = await Api.get(`/user/getSchoolInfo${query}`);
+    const { data } = await Api.get(`/school/searchschool${query}`);
     return data;
   }
 
@@ -359,9 +359,10 @@ class UserApi {
 
   async SearchSchool(schoolName: string, city: string) {
     const { data } = await Api.get(
-      encodeURI(`/school/searchSchool?orgName=${schoolName}&lctnScCode=${city}`)
+      encodeURI(`/school/searchschool?orgName=${schoolName}&lctnScCode=${city}`)
 
     );
+    console.log(data)
     return data;
   }
 }

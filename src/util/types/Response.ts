@@ -79,12 +79,12 @@ export interface ParentInfoResponse extends Response {
 
 export interface SchoolInfoResponse extends Response {
   data: {
-    cityLocation: string;
+    location: string;
     cityName: string;
     gradeType: Grade;
     graduatedDate: string;
-    schoolCode: string;
-    schoolName: string;
+    code: string;
+    name: string;
     schoolTel: string;
     teacherName: string;
     teacherTel: string;
@@ -186,9 +186,7 @@ export interface VolunteerResponse extends Response {
 }
 
 export interface SchoolResponse extends Response {
-  data: {
-    schools: Schools[];
-  };
+  data: Schools[];
 }
 
 export interface ReceiptResponse extends Response {

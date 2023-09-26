@@ -12,9 +12,9 @@ const SecondTypeScoreContainer = ({}) => {
   const history = useNavigate();
   const { store } = useStore();
   const {
-    GetStudyScore,
+    GetStu,
     GetJob,
-    GetComputingScore,
+    GetComputing,
     GetSecondScoreExcel,
     uploadStu,
     uploadComputing,
@@ -44,25 +44,25 @@ const SecondTypeScoreContainer = ({}) => {
   const tryDown = (key: string) => {
     switch (key) {
       case "stu":
-        GetStudyScore().catch((err) => {
+        GetStu().catch((err:any) => {
           toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
         });
         break;
 
       case "job":
-        GetJob().catch((err) => {
+        GetJob().catch((err:any) => {
           toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
         });
         break;
 
-      case "compputing":
-        GetComputingScore().catch((err) => {
+      case "computing":
+        GetComputing().catch((err:any) => {
           toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
         });
         break;
 
       case "secondScore":
-        GetSecondScoreExcel().catch((err) => {
+        GetSecondScoreExcel().catch((err:any) => {
           toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
         });
         break;

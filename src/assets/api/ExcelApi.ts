@@ -3,8 +3,7 @@ import fileDownload from "js-file-download";
 import FileDown from "lib/FileDown";
 
 class ExcelApi {
-  async GetStudyScore() {
-    console.log(1)
+  async GetStu() {
     const response = await Api.get("/excel/getStudyScore", {
       responseType: "blob",
     });
@@ -23,8 +22,7 @@ class ExcelApi {
 
     return response;
   }
-  async GetComputingScore() {
-    console.log(3)
+  async GetComputing() {
     const response = await Api.get("/excel/getComputingScore", {
       responseType: "blob",
     });
@@ -91,15 +89,6 @@ class ExcelApi {
     formData.append("file", file);
 
     const response = await Api.post(`/excel/uploadJobAptitude`, formData);
-
-    return response;
-  }
-
-  async uploadSw(file: File) {
-    const formData = new FormData();
-    formData.append("file", file);
-
-    const response = await Api.post(`/excel/uploadSwAbility`, formData);
 
     return response;
   }

@@ -67,7 +67,9 @@ const SecondTypeScore = ({
             </div>
           </>
         ) : (
-          <>
+          <></>
+        )}
+{/*          <>
             <div className="SecondScore-buttons-upload">
               <span>직무적성 소양평가</span>
               <label htmlFor="input-file1" className="buttons">
@@ -104,8 +106,7 @@ const SecondTypeScore = ({
                 onChange={(e) => tryUpload(e, "computing")}
               />
             </div>
-          </>
-        )}
+        </>*/}
       </div>
       <div className="SecondScore-table">
         <table className="SecondScore-table-list">
@@ -164,8 +165,10 @@ const SecondTypeScore = ({
                 {/* <td>{i.swAbilityScore}</td>
                 {/* 직무적성 소양평가 */}
                 <td>{i.jobAptitudeScore}</td>
+                {/* 직무적성 소양평가 */}
+                <td>{i.studyScore}</td>
                 {/* 학업 및 진로역량 */}
-                {/* <td>{i.codingTestScore}</td> */}
+                <td>{i.computingScore}</td>
                 {/* 컴퓨팅 사고 역량 */}
                 <td>{i.totalScore}</td>
                 {/* 합계 */}

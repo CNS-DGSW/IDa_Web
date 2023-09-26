@@ -27,10 +27,10 @@ const DefaultAdminHeader = ({ children }: DefaultAdminHeaderProps) => {
           </NavLink>
           <NavLink to="/admin/detailScore" className="Admin-header-link">
             <span style={{ textAlign: "center", display: "flex" }}>
-              2차 전형 점수 관리 <br></br>(직무적성, 학업 및 진로, 컴퓨팅 사고)
+              2차 전형 점수 관리 <br></br>(직무적성, 학업 및 진로역량, 컴퓨팅)
             </span>
           </NavLink>
-          {/* <NavLink
+          {/*<NavLink
             to="/admin/interviewScore"
             className="Admin-header-link"
             
@@ -40,9 +40,12 @@ const DefaultAdminHeader = ({ children }: DefaultAdminHeaderProps) => {
               <br />
               (창의협업, 구술면접)
             </span>
-          </NavLink>*/}
-          <NavLink to="/admin/secondScore" className="Admin-header-link">
-            <span>최종 결과</span>
+  </NavLink>*/}
+          <NavLink
+            to="/admin/secondScore"
+            className="Admin-header-link"
+          >
+            <span>2차 전형 점수 관리</span>
           </NavLink>
 
           <NavLink to="/admin/userListPassed" className="Admin-header-link">

@@ -52,7 +52,7 @@ const SecondTypeScore = ({
             </div>
             <div className="SecondScore-buttons-download">
               <span>컴퓨팅 사고 역량</span>
-              <button className="buttons" onClick={() => tryDown("compputing")}>
+              <button className="buttons" onClick={() => tryDown("computing")}>
                 서식 다운로드
               </button>
             </div>

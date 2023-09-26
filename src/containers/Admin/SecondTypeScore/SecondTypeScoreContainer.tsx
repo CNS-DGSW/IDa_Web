@@ -12,13 +12,7 @@ const SecondTypeScoreContainer = ({}) => {
   const history = useNavigate();
   const { store } = useStore();
   const {
-    GetStudyScore,
-    GetJob,
-    GetComputingScore,
     GetSecondScoreExcel,
-    uploadSw,
-    uploadComputing,
-    uploadJob,
   } = ExcelApi;
 
   const [scoreDate, setScoreDate] = useState<SecondScoreResponse>();
@@ -42,23 +36,23 @@ const SecondTypeScoreContainer = ({}) => {
   // 파일을 다운받는 함수
   const tryDown = (key: string) => {
     switch (key) {
-      case "stu":
-        GetStudyScore().catch((err) => {
-          toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
-        });
-        break;
+      // case "sw":
+      //   GetSoftWare().catch((err) => {
+      //     toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
+      //   });
+      //   break;
 
-      case "job":
-        GetJob().catch((err) => {
-          toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
-        });
-        break;
+      // case "job":
+      //   GetJob().catch((err) => {
+      //     toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
+      //   });
+      //   break;
 
-      case "compputing":
-        GetComputingScore().catch((err) => {
-          toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
-        });
-        break;
+      // case "coding":
+      //   GetCodingTest().catch((err) => {
+      //     toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
+      //   });
+      //   break;
 
       case "secondScore":
         GetSecondScoreExcel().catch((err) => {
@@ -74,42 +68,42 @@ const SecondTypeScoreContainer = ({}) => {
     content: string
   ) => {
     if (e.target.files && e.target.files.length) {
-      let file = e.target.files[0];
-      switch (content) {
-        case "sw":
-          await uploadSw(file)
-            .then(() => {
-              toast.success("파일 업로드 되었습니다");
-            })
-            .catch((err) => {
-              if (err.response?.status === 400) {
-                toast.warning("파일을 잘못선택하였습니다");
-              }
-            });
-          break;
-        case "job":
-          await uploadJob(file)
-            .then(() => {
-              toast.success("파일 업로드 되었습니다");
-            })
-            .catch((err) => {
-              if (err.response?.status === 400) {
-                toast.warning("파일을 잘못선택하였습니다");
-              }
-            });
-          break;
-        case "coding":
-          await uploadComputing(file)
-            .then(() => {
-              toast.success("파일 업로드 되었습니다");
-            })
-            .catch((err) => {
-              if (err.response?.status === 400) {
-                toast.warning("파일을 잘못선택하였습니다");
-              }
-            });
-          break;
-      }
+      // let file = e.target.files[0];
+      // switch (content) {
+      //   case "sw":
+      //     await uploadSw(file)
+      //       .then(() => {
+      //         toast.success("파일 업로드 되었습니다");
+      //       })
+      //       .catch((err) => {
+      //         if (err.response?.status === 400) {
+      //           toast.warning("파일을 잘못선택하였습니다");
+      //         }
+      //       });
+      //     break;
+      //   case "job":
+      //     await uploadJob(file)
+      //       .then(() => {
+      //         toast.success("파일 업로드 되었습니다");
+      //       })
+      //       .catch((err) => {
+      //         if (err.response?.status === 400) {
+      //           toast.warning("파일을 잘못선택하였습니다");
+      //         }
+      //       });
+      //     break;
+      //   case "coding":
+      //     await uploadCodingTest(file)
+      //       .then(() => {
+      //         toast.success("파일 업로드 되었습니다");
+      //       })
+      //       .catch((err) => {
+      //         if (err.response?.status === 400) {
+      //           toast.warning("파일을 잘못선택하였습니다");
+      //         }
+      //       });
+      //     break;
+      // }
       handleSecondScore();
     }
   };

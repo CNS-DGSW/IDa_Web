@@ -130,12 +130,12 @@ const WriteSchoolContainer = ({}) => {
   const getSchoolInfoCallback = useCallback(() => {
     getSchoolInfo()
       .then((res: SchoolInfoResponse) => {
-        setCityLocation(res.data.cityLocation || "");
+        setCityLocation(res.data.location || "");
         setCityName(res.data.cityName || "");
         handleGrade(res.data.gradeType);
         setGraduatedDate(res.data.graduatedDate || "");
-        setSchoolCode(res.data.schoolCode || "");
-        setSchoolName(res.data.schoolName || "");
+        setSchoolCode(res.data.code || "");
+        setSchoolName(res.data.name || "");
         setSchoolTel(res.data.schoolTel || "");
         setTeacherName(res.data.teacherName || "");
         setTeacherTel(res.data.teacherTel || "");
@@ -145,9 +145,9 @@ const WriteSchoolContainer = ({}) => {
       });
   }, []);
 
-  useEffect(() => {
-    getSchoolInfoCallback();
-  }, [getSchoolInfoCallback]);
+  // useEffect(() => {
+  //   getSchoolInfoCallback();
+  // }, [getSchoolInfoCallback]);
 
   useEffect(() => {
     return () => {
