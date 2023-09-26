@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import WriteStudent from "../../containers/Write/WriteStudent/WriteStudentContainer";
 import WriteParent from "../../containers/Write/WriteParent/WriteParentContainer";
 import WritePhoto from "../../containers/Write/WritePhoto/WritePhotoContainer";
@@ -26,23 +26,33 @@ const Write = ({ page, pageHandle }: WriteProps) => {
     "성적 계산",
     "자기소개서",
   ];
+  useEffect(() => {
+    console.log(page);
+  }, [page]);
 
   let nowPage = useMemo(() => {
     let nowPage = <WriteStudent />;
 
     if (page === 0) {
+      console.log("000");
       nowPage = <WriteStudent />;
     } else if (page === 1) {
+      console.log("1111100");
       nowPage = <WriteParent />;
     } else if (page === 2) {
+      console.log("0222200");
       nowPage = <WritePhoto />;
     } else if (page === 3) {
+      console.log("0333300");
       nowPage = <WriteSchool />;
     } else if (page === 4) {
+      console.log("004440");
       nowPage = <WriteAdmission />;
     } else if (page === 5) {
+      console.log("055500");
       nowPage = <WriteGrades />;
     } else if (page === 6) {
+      console.log("06666600");
       nowPage = <WriteIntroduction />;
     }
 
