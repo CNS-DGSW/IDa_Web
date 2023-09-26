@@ -127,23 +127,23 @@ const WriteSchoolContainer = ({}) => {
   ]);
 
   //학교 정보 받아오기
-  const getSchoolInfoCallback = useCallback(() => {
-    getSchoolInfo()
-      .then((res: SchoolInfoResponse) => {
-        setCityLocation(res.data.location || "");
-        setCityName(res.data.cityName || "");
-        handleGrade(res.data.gradeType);
-        setGraduatedDate(res.data.graduatedDate || "");
-        setSchoolCode(res.data.code || "");
-        setSchoolName(res.data.name || "");
-        setSchoolTel(res.data.schoolTel || "");
-        setTeacherName(res.data.teacherName || "");
-        setTeacherTel(res.data.teacherTel || "");
-      })
-      .catch((err) => {
-        handleGetWriteError(err, history);
-      });
-  }, []);
+  // const getSchoolInfoCallback = useCallback(() => {
+  //   getSchoolInfo()
+  //     .then((res: SchoolInfoResponse) => {
+  //       setCityLocation(res.data.location || "");
+  //       setCityName(res.data.cityName || "");
+  //       handleGrade(res.data.gradeType);
+  //       setGraduatedDate(res.data.graduatedDate || "");
+  //       setSchoolCode(res.data.schoolCode || "");
+  //       setSchoolName(res.data.schoolName || "");
+  //       setSchoolTel(res.data.schoolTel || "");
+  //       setTeacherName(res.data.teacherName || "");
+  //       setTeacherTel(res.data.teacherTel || "");
+  //     })
+  //     .catch((err) => {
+  //       handleGetWriteError(err, history);
+  //     });
+  // }, []);
 
   // useEffect(() => {
   //   getSchoolInfoCallback();

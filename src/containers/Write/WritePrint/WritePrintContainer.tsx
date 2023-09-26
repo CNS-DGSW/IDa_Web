@@ -190,12 +190,13 @@ const WritePrintContainer = ({}) => {
     await getSchoolInfo().then((res: SchoolInfoResponse) => {
       setTeacherName(res.data.teacherName || "");
       setCityName(res.data.cityName || "");
-      setSchoolCode(res.data.code || "");
-      setSchoolName(res.data.name || "");
+      setSchoolCode(res.data.schoolCode || "");
+      setSchoolName(res.data.schoolName || "");
       setSchoolTel(res.data.schoolTel || "");
       setGradeType(res.data.gradeType || null);
       setGraduatedDate(res.data.graduatedDate || "");
     });
+    console.log(schoolCode)
   }, []);
 
   //입학전형 받아오기
