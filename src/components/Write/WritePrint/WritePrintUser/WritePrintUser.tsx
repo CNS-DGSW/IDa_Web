@@ -144,7 +144,7 @@ const WritePrintUser = ({
             >
               <div className="write-print-user-profile">
                 { // profileImage && 
-                <img src={`https://${profileImage}`} alt={"profile"} style={{background:'pink'}}/>}
+                <img src={`https://${profileImage}`} alt={"profile"}/>}
                 <div className="write-print-user-profile-mark">
                   <span>
                     학교장
