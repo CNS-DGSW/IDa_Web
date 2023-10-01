@@ -81,6 +81,8 @@ const WritePrintUser = ({
   const finalPassed = moment(finalTime)
     .locale("ko")
     .format("yyyy. MM. DD.(ddd) HH:mm");
+  
+    console.log(profileImage)
   return (
     <div className="write-print-user">
       <div className="write-print-user-title">
@@ -141,7 +143,8 @@ const WritePrintUser = ({
               rowSpan={6}
             >
               <div className="write-print-user-profile">
-                {profileImage && <img src={profileImage} alt={"profile"} />}
+                { // profileImage && 
+                <img src={`https://${profileImage}`} alt={"profile"} style={{background:'pink'}}/>}
                 <div className="write-print-user-profile-mark">
                   <span>
                     학교장

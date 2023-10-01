@@ -388,6 +388,8 @@ const getProfileImage = selector({
         userIdx
       );
 
+      console.log(response)
+
       return response;
     },
 });
