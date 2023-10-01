@@ -171,6 +171,7 @@ const WritePrintContainer = ({}) => {
   const [volunteer3, setVolunteer3] = useState<number>(0);
   const [teacherName, setTeacherName] = useState<string>("");
   const [isSubmit, setIsSubmit] = useState<boolean>(true);
+  const [sex,setSex] = useState<string>("")
 
   useLayoutEffect(() => {
     !search && alert("모든 출력물은 단면 인쇄해 주세요");
@@ -196,6 +197,7 @@ const WritePrintContainer = ({}) => {
             : moment(res.data.birth).format("yyyy. MM. DD.")
         );
         setStudentTel(res.data.studentTel || "");
+        setSex(res.data.sex || "")
       }
     );
   }, []);
@@ -484,6 +486,7 @@ const WritePrintContainer = ({}) => {
         selfIntroduce={selfIntroduce}
         studyPlan={studyPlan}
         componentRef={componentRef}
+        sex={sex}
       />
     </>
   );

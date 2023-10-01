@@ -40,6 +40,7 @@ interface WritePrintUserProps {
   additional: number;
   totalScore1: number;
   totalScore2: number;
+  sex:string;
 }
 
 const WritePrintUser = ({
@@ -72,6 +73,7 @@ const WritePrintUser = ({
   additional,
   totalScore1,
   totalScore2,
+  sex
 }: WritePrintUserProps) => {
   const firstPassed = moment(firstTime)
     .locale("ko")
@@ -164,10 +166,10 @@ const WritePrintUser = ({
             </td>
           </tr>
           <tr className="write-print-user-area">
-            <th className="write-print-user-bottom-left" rowSpan={2}>
+            <th className="write-print-user-bottom-left">
               생년월일
             </th>
-            <td className="write-print-user-bottom-left" rowSpan={2}>
+            <td className="write-print-user-bottom-left">
               {birth}
             </td>
             <th className="write-print-user-bottom write-print-user-area-school-left">
@@ -181,6 +183,12 @@ const WritePrintUser = ({
             </td>
           </tr>
           <tr className="write-print-user-area">
+            <th className="write-print-user-bottom-left">
+              성별
+            </th>
+            <td className="write-print-user-bottom-left">
+              {sex === "M" ? "남자" : "여자"}
+            </td>
             <th className="write-print-user-area-school-bottom-left">구분</th>
             <td
               className="write-print-user-area-school-bottom-right write-print-user-left"
