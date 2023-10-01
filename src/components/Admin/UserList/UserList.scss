@@ -130,12 +130,13 @@
 .allRatio {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   padding: 2rem;
   min-width: 1440px;
   align-content: flex-start;
   font-size: 1rem;
   div {
-    width: 100%;
+    width: 30vw;
   }
   &-list {
     width: 100%;

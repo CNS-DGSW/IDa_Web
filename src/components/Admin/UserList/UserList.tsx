@@ -395,6 +395,8 @@ const UserList = ({
           </tbody>
         </table>
       </div>
+
+
       <div className="allRatio">
         <div>
           <table className="allRatio-list">
@@ -424,6 +426,8 @@ const UserList = ({
             </tbody>
           </table>
         </div>
+
+
         <div>
           <table className="allRatio-list">
             <thead>
@@ -452,6 +456,8 @@ const UserList = ({
             </tbody>
           </table>
         </div>
+
+
         <div>
           <table className="allRatio-list">
             <thead>
