@@ -26,7 +26,7 @@ const WritePhoto = ({
         <div className="photo">
           {preview ? (
             <img
-              src={preview.toString()}
+              src={`https://${preview.toString()}`}
               className="photo-preview"
               alt="이미지 없음"
             />
