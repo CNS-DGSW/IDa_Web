@@ -79,6 +79,7 @@ interface WritePrintProps {
   otherScore: number;
   socialScore: number;
   scienceScore: number;
+  sex:string;
 }
 
 const WritePrint = ({
@@ -147,6 +148,7 @@ const WritePrint = ({
   otherScore,
   scienceScore,
   socialScore,
+  sex,
 }: WritePrintProps) => {
   return (
     <div className="print-area">
@@ -182,6 +184,7 @@ const WritePrint = ({
             additional={additional}
             totalScore1={totalScore1}
             totalScore2={totalScore2}
+            sex={sex}
           />
         </div>
 
