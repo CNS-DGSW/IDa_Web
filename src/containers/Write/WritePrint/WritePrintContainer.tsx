@@ -206,7 +206,9 @@ const WritePrintContainer = ({}) => {
   const getProfileImageCallback = useCallback(async () => {
     await getProfileImageAtom().then((res: ProfileInfoResponse) => {
       setProfileImage(res.data.profileImage || "");
+      console.log(res)
     });
+    console.log(profileImage)
   }, []);
 
   //학부모 정보 받아오는 함수
