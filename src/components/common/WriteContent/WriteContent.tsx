@@ -58,6 +58,24 @@ const WriteContent = ({
     }
   }, [isChanged, page, setPage]);
 
+  const showPreview = useCallback(()=>{
+    if(!isChanged) {
+      window.open(`/print?auto=false${
+        userIdx !== null ? "&userIdx=" + userIdx : ""
+      }`,"_blank")
+    } else {
+      Swal.fire({
+        title: "원서가 저장되지 않았습니다!",
+        html: "수정된 내용이 저장되지 않았습니다.<p style='color:red;font-weight: 700;'>원서 저장을 눌러 주세요</p>",
+        showCancelButton: false,
+        icon: "warning",
+        confirmButtonText: "확인",
+      }).then(async (result) => {});
+    }
+
+    // rel="noopener noeferrer"
+  },[isChanged,userIdx])
+
   const changeSubmitCallback = useCallback(async () => {
     if (isChanged) {
       toast.warning("변경사항이 저장되지 않았습니다.");
@@ -114,16 +132,12 @@ const WriteContent = ({
             >
               원서저장
             </div>
-            <Link
-              to={`/print?auto=false${
-                userIdx !== null ? "&userIdx=" + userIdx : ""
-              }`}
-              target="_blank"
-              rel="noopener noeferrer"
+            <div
               className="writecontent-children-area-btn preview"
+              onClick={() => showPreview()}
             >
               원서 미리보기
-            </Link>
+            </div>
             {page === 6 && (
               <Link
                 to={`/print${userIdx !== null ? "?userIdx=" + userIdx : ""}`}
