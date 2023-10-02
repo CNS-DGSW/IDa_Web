@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import Grade from "util/enums/Grade";
 import { handleWriteError } from "lib/handleErrors";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { editSchoolInfo, gradeTypeAtom } from "stores/Write/WriteAtom";
+import { editSchoolInfo, getSchoolInfo, gradeTypeAtom } from "stores/Write/WriteAtom";
 
 const WriteSchoolContainer = ({}) => {
   const history = useNavigate();
@@ -24,6 +24,7 @@ const WriteSchoolContainer = ({}) => {
 
   const [gradeType, setGradeType] = useRecoilState(gradeTypeAtom);
   const editSchoolInfoAtom = useRecoilValue(editSchoolInfo);
+  // const getSchoolInfoAtom = useRecoilState(getSchoolInfo)
 
   useEffect(() => {
     if (schoolTel) {
@@ -126,27 +127,29 @@ const WriteSchoolContainer = ({}) => {
   ]);
 
   //학교 정보 받아오기
-  // const getSchoolInfoCallback = useCallback(() => {
-  //   getSchoolInfo()
-  //     .then((res: SchoolInfoResponse) => {
-  //       setCityLocation(res.data.location || "");
-  //       setCityName(res.data.cityName || "");
-  //       handleGrade(res.data.gradeType);
-  //       setGraduatedDate(res.data.graduatedDate || "");
-  //       setSchoolCode(res.data.schoolCode || "");
-  //       setSchoolName(res.data.schoolName || "");
-  //       setSchoolTel(res.data.schoolTel || "");
-  //       setTeacherName(res.data.teacherName || "");
-  //       setTeacherTel(res.data.teacherTel || "");
-  //     })
-  //     .catch((err:any) => {
-  //       handleGetWriteError(err, history);
-  //     });
-  // }, []);
+  /*
+  const getSchoolInfoCallback = useCallback(() => {
+    getSchoolInfo()
+      .then((res: SchoolInfoResponse) => {
+        setCityLocation(res.data.location || "");
+        setCityName(res.data.cityName || "");
+        handleGrade(res.data.gradeType);
+        setGraduatedDate(res.data.graduatedDate || "");
+        setSchoolCode(res.data.schoolCode || "");
+        setSchoolName(res.data.schoolName || "");
+        setSchoolTel(res.data.schoolTel || "");
+        setTeacherName(res.data.teacherName || "");
+        setTeacherTel(res.data.teacherTel || "");
+      })
+      .catch((err:any) => {
+        handleGetWriteError(err, history);
+      });
+  }, []);
 
-  // useEffect(() => {
-  //   getSchoolInfoCallback();
-  // }, [getSchoolInfoCallback]);
+  useEffect(() => {
+    getSchoolInfoCallback();
+  }, [getSchoolInfoCallback]);
+  */
 
   useEffect(() => {
     return () => {
@@ -167,8 +170,8 @@ const WriteSchoolContainer = ({}) => {
       <WriteSchool
         isChanged={isChanged}
         gradeType={gradeType}
-        handleGrade={() => {
-          setGradeType(gradeType);
+        handleGrade={(props) => {
+          setGradeType(props);
         }}
         cityLocation={cityLocation}
         setCityLocation={setCityLocation}
