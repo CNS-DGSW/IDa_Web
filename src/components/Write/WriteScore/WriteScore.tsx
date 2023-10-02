@@ -75,9 +75,9 @@ const WriteScore = ({
               <th>총점</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="grade-allList-body">
             <tr>
-              <td style={{ paddingTop: "30px" }}>점수확인</td>
+              <td>점수확인</td>
               <td>{grade1}</td>
               {!isGed && (
                 <>
@@ -87,18 +87,6 @@ const WriteScore = ({
                 </>
               )}
               <td>{totalScore1}</td>
-            </tr>
-            <tr>
-              <td></td>
-              <td>{grade2}</td>
-              {!isGed && (
-                <>
-                  <td>{absence}</td>
-                  <td>{volunteer}</td>
-                  <td>{additional}</td>
-                </>
-              )}
-              <td>{totalScore2}</td>
             </tr>
           </tbody>
         </table>
