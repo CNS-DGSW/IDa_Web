@@ -50,21 +50,21 @@ const Main = ({
                 <p className="Content-box-area-bold">
                   {`${moment(submitStartTime)
                     .locale("ko")
-                    .format("yyyy. MM. DD(ddd) HH:mm")} ~ ${moment(
+                    .format("yyyy. MM. DD.(ddd) HH:mm")} ~ ${moment(
                     submitEndTime
                   )
                     .locale("ko")
-                    .format("yyyy. MM. DD(ddd) HH:mm")}`}
+                    .format("yyyy. MM. DD.(ddd) HH:mm")}`}
                 </p>
                 <p className="Content-box-area-small">원서 및 서류제출</p>
                 <p className="Content-box-area-bold">
                   {`${moment(submitStartTime)
                     .locale("ko")
-                    .format("yyyy. MM. DD(ddd) HH:mm")} ~ ${moment(
+                    .format("yyyy. MM. DD.(ddd) HH:mm")} ~ ${moment(
                     submitEndTime
                   )
                     .locale("ko")
-                    .format("yyyy. MM. DD(ddd) HH:mm")}`}
+                    .format("yyyy. MM. DD.(ddd) HH:mm")}`}
                 </p>
                 <p className="Content-box-area-small">
                   서류는 반드시 원서접수 마감 시간 이내에 도착해야 합니다.
@@ -112,7 +112,7 @@ const Main = ({
                 <p className="Content-box-area-bold">
                   {moment(finalTime)
                     .locale("ko")
-                    .format("yyyy. MM. DD(ddd) HH:mm")}
+                    .format("yyyy. MM. DD.(ddd) HH:mm")}
                 </p>
                 <div className="Content-box-area-btns">
                   <div
