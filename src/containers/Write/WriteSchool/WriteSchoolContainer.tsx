@@ -4,9 +4,10 @@ import WriteSchool from "../../../components/Write/WriteSchool";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Grade from "util/enums/Grade";
-import { handleWriteError } from "lib/handleErrors";
+import { handleGetWriteError, handleWriteError } from "lib/handleErrors";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { editSchoolInfo, getSchoolInfo, gradeTypeAtom } from "stores/Write/WriteAtom";
+import { SchoolInfoResponse } from "util/types/Response";
 
 const WriteSchoolContainer = ({}) => {
   const history = useNavigate();
@@ -24,7 +25,7 @@ const WriteSchoolContainer = ({}) => {
 
   const [gradeType, setGradeType] = useRecoilState(gradeTypeAtom);
   const editSchoolInfoAtom = useRecoilValue(editSchoolInfo);
-  // const getSchoolInfoAtom = useRecoilState(getSchoolInfo)
+  const getSchoolInfoAtom = useRecoilValue(getSchoolInfo)
 
   useEffect(() => {
     if (schoolTel) {
@@ -127,13 +128,12 @@ const WriteSchoolContainer = ({}) => {
   ]);
 
   //학교 정보 받아오기
-  /*
   const getSchoolInfoCallback = useCallback(() => {
-    getSchoolInfo()
+    getSchoolInfoAtom()
       .then((res: SchoolInfoResponse) => {
         setCityLocation(res.data.location || "");
         setCityName(res.data.cityName || "");
-        handleGrade(res.data.gradeType);
+        setGradeType(res.data.gradeType);
         setGraduatedDate(res.data.graduatedDate || "");
         setSchoolCode(res.data.schoolCode || "");
         setSchoolName(res.data.schoolName || "");
@@ -149,7 +149,7 @@ const WriteSchoolContainer = ({}) => {
   useEffect(() => {
     getSchoolInfoCallback();
   }, [getSchoolInfoCallback]);
-  */
+
 
   useEffect(() => {
     return () => {
