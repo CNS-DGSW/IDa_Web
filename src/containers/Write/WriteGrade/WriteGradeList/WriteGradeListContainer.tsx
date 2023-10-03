@@ -128,10 +128,11 @@ const WriteGradeListContainer = ({
     <>
       <WriteGradeList
         grades={grades}
+        setGrades={setGrades}
         gradeType={gradeType}
         freeSem={freeSem}
+        setFreeSem={setFreeSem}
         handleGradesCallback={handleGradesCallback}
-        handleFreeSem={(value: FreeSemType) => setFreeSem(value)}
         addNewGrade={addNewGrade}
       />
     </>
