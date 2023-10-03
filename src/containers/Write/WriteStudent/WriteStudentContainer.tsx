@@ -29,6 +29,10 @@ const WriteStudentContainer = ({}) => {
 
   const [isChanged, setIsChanged] = useState<boolean>(false);
 
+  const StudentBirthDateClick = useCallback(() => {
+    setBirth("2008-01-01"); // 클릭할 때 원하는 동작 수행
+  }, []);
+
   const getStudentInfoCallback = useCallback(async () => {
     await getStudentInfo(Number(query.get("userIdx")))
       .then((res: UserInfoResponse) => {
@@ -113,6 +117,7 @@ const WriteStudentContainer = ({}) => {
         setStudentTel={setStudentTel}
         isChanged={isChanged}
         setIsChanged={setIsChanged}
+        StudentBirthDateClick={StudentBirthDateClick}
       />
     </>
   );

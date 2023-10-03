@@ -15,6 +15,7 @@ interface WriteStudentProps {
   setStudentTel: React.Dispatch<React.SetStateAction<string>>;
   isChanged: boolean;
   setIsChanged: React.Dispatch<React.SetStateAction<boolean>>;
+  StudentBirthDateClick: () => void;
 }
 
 const WriteStudent = ({
@@ -29,6 +30,7 @@ const WriteStudent = ({
   setStudentTel,
   isChanged,
   setIsChanged,
+  StudentBirthDateClick,
 }: WriteStudentProps) => {
   return (
     <>
@@ -60,12 +62,11 @@ const WriteStudent = ({
                   className="student-select-box-area-textInput"
                   value={birth}
                   onClick={() => {
-                    setBirth("2008-01-01");
+                    StudentBirthDateClick();
                   }}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                     setBirth(e.target.value);
                     setIsChanged(true);
-                    // console.log(e.target.value);
                   }}
                 />
               </div>
