@@ -142,7 +142,7 @@ class UserApi {
 
     const query = userIdx ? `?userIdx=${userIdx}` : "";
 
-    console.log(body)
+    // console.log(body)
 
     const { data } = await Api.patch(`/user/editSchoolInfo${query}`, body);
 
@@ -211,8 +211,7 @@ class UserApi {
       freeSem,
       grade,
     };
-    console.log(11)
-    console.log(body)
+    // console.log(body);
 
     const query = userIdx ? `?userIdx=${userIdx}` : "";
 
@@ -277,10 +276,10 @@ class UserApi {
     absenceLecture1: number,
     absenceLecture2: number,
     absenceLecture3: number, */
-    attend:AttendType,
+    attend: AttendType,
     userIdx?: number | null
   ) {
-    const body = attend
+    const body = attend;
     /* {
       absence1,
       absence2,
@@ -295,7 +294,7 @@ class UserApi {
       absenceLecture2,
       absenceLecture3,
     }; */
-    console.log(body)
+    // console.log(body);
 
     const query = userIdx ? `?userIdx=${userIdx}` : "";
 
@@ -312,7 +311,7 @@ class UserApi {
   }
 
   async EditAdditional(
-    additional:additionalType,
+    additional: additionalType,
     userIdx?: number | null
     /*leadership11: boolean,
     leadership12: boolean,
@@ -322,7 +321,7 @@ class UserApi {
     leadership32: boolean,
     prize: number,*/
   ) {
-    const body = additional
+    const body = additional;
     /* {
       leadership11,
       leadership12,
@@ -333,7 +332,7 @@ class UserApi {
       prize,
     }; */
 
-    console.log(body)
+    // console.log(body);
 
     const query = userIdx ? `?userIdx=${userIdx}` : "";
 
@@ -353,16 +352,16 @@ class UserApi {
     /* volunteer1: number,
     volunteer2: number,
     volunteer3: number, */
-    volunteer:volunteerType,
+    volunteer: volunteerType,
     userIdx?: number | null
   ) {
-    const body = volunteer
+    const body = volunteer;
     /* {
       volunteer1,
       volunteer2,
       volunteer3,
     }; */
-    console.log(body)
+    // console.log(body);
 
     const query = userIdx ? `?userIdx=${userIdx}` : "";
 
@@ -378,11 +377,9 @@ class UserApi {
     return data;
   }
 
-
   async SearchSchool(schoolName: string, city: string) {
     const { data } = await Api.get(
       encodeURI(`/school/searchschool?orgName=${schoolName}&lctnScCode=${city}`)
-
     );
     return data;
   }

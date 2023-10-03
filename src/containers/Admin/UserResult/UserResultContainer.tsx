@@ -23,7 +23,7 @@ const UserRateContainer = ({}) => {
   const tryGetUserResultList = useCallback(() => {
     getUserResultList()
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setUserResultList(res.data);
       })
       .catch((err) => {

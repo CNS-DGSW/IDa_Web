@@ -65,7 +65,7 @@ const WriteStudent = ({
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                     setBirth(e.target.value);
                     setIsChanged(true);
-                    console.log(e.target.value);
+                    // console.log(e.target.value);
                   }}
                 />
               </div>

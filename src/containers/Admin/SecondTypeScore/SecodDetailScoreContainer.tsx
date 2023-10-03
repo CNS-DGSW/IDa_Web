@@ -33,7 +33,7 @@ const SecondTypeScoreContainer = ({}) => {
     await getSecondScore()
       .then((res) => {
         setScoreDate(res);
-        console.log(scoreDate);
+        // console.log(scoreDate);
       })
       .catch((err) => {
         handleAdmin(err, history);
@@ -44,25 +44,25 @@ const SecondTypeScoreContainer = ({}) => {
   const tryDown = (key: string) => {
     switch (key) {
       case "stu":
-        GetStu().catch((err:any) => {
+        GetStu().catch((err: any) => {
           toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
         });
         break;
 
       case "job":
-        GetJob().catch((err:any) => {
+        GetJob().catch((err: any) => {
           toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
         });
         break;
 
       case "computing":
-        GetComputing().catch((err:any) => {
+        GetComputing().catch((err: any) => {
           toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
         });
         break;
 
       case "secondScore":
-        GetSecondScoreExcel().catch((err:any) => {
+        GetSecondScoreExcel().catch((err: any) => {
           toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
         });
         break;

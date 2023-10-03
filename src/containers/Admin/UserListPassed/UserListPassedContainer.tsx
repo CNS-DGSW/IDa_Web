@@ -79,7 +79,7 @@ const UserListPassedContainer = ({}) => {
   const tryChangeFirstStudent = useCallback(() => {
     adminChangeFirstStudent().then((res: any) => {
       tryViewFirstStudent();
-      console.log(res);
+      // console.log(res);
     });
   }, [adminChangeFirstStudent, tryViewFirstStudent]);
 
@@ -92,7 +92,7 @@ const UserListPassedContainer = ({}) => {
   const tryChangeSecondStudent = useCallback(() => {
     adminChangeSecondStudent().then((res: any) => {
       tryViewSecondStudent();
-      console.log(res);
+      // console.log(res);
     });
   }, [adminChangeSecondStudent, tryViewSecondStudent]);
 

@@ -41,10 +41,7 @@ const DefaultAdminHeader = ({ children }: DefaultAdminHeaderProps) => {
               (창의협업, 구술면접)
             </span>
   </NavLink>*/}
-          <NavLink
-            to="/admin/secondScore"
-            className="Admin-header-link"
-          >
+          <NavLink to="/admin/secondScore" className="Admin-header-link">
             <span>2차 전형 점수 관리</span>
           </NavLink>
 
