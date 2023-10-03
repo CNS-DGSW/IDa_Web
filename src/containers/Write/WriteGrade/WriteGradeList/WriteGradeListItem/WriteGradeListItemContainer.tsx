@@ -12,6 +12,7 @@ import {
   gradesAtom,
   isChangedAtom,
 } from "stores/Write/WriteAtom";
+import FreeSemType from "util/types/FreeSem";
 
 interface WriteGradeListItemContainer {
   model: string;
@@ -22,6 +23,10 @@ interface WriteGradeListItemContainer {
     subjectName: string
   ) => void;
   filtered?: ScoreGrade;
+  grades: ScoreGrade[];
+  setGrades:React.Dispatch<React.SetStateAction<ScoreGrade[]>>;
+  freeSem:FreeSemType;
+  setFreeSem:React.Dispatch<React.SetStateAction<FreeSemType>>;
 }
 
 const WriteGradeListItemContainer = ({
@@ -29,11 +34,15 @@ const WriteGradeListItemContainer = ({
   handleGradesCallback,
   model,
   filtered,
+  grades,
+  setGrades,
+  freeSem,
+  setFreeSem,
 }: WriteGradeListItemContainer) => {
   const gradeType = useRecoilValue(gradeTypeAtom);
   const setIsChanged = useSetRecoilState(isChangedAtom);
-  const [grades, setGraeds] = useRecoilState(gradesAtom);
-  const freeSem = useRecoilValue(freeSemAtom);
+  // const [grades, setGraeds] = useRecoilState(gradesAtom);
+  // const freeSem = useRecoilValue(freeSemAtom);
 
   const [value, setValue] = useState<string>("");
 
@@ -45,7 +54,7 @@ const WriteGradeListItemContainer = ({
 
     if (gradeIdx === -1) return;
 
-    setGraeds([
+    setGrades([
       ...grades.slice(0, gradeIdx),
       ...grades.slice(gradeIdx + 1, grades.length),
     ]);
@@ -88,7 +97,7 @@ const WriteGradeListItemContainer = ({
 
     if (grade && gradeIdx !== -1) {
       grade.subjectName = name;
-      setGraeds([
+      setGrades([
         ...grades.slice(0, gradeIdx),
         grade,
         ...grades.slice(gradeIdx + 1, grades.length),

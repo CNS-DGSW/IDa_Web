@@ -6,9 +6,11 @@ import Score from "util/enums/Score";
 import FreeSem from "util/types/FreeSem";
 import ScoreGrade from "util/types/ScoreGrade";
 import "./WriteGradeList.scss";
+import FreeSemType from "util/types/FreeSem";
 
 interface WriteGradeListProps {
   grades: ScoreGrade[];
+  setGrades:React.Dispatch<React.SetStateAction<ScoreGrade[]>>;
   freeSem: FreeSem;
   gradeType: Grade | null;
   addNewGrade: () => void;
@@ -17,16 +19,17 @@ interface WriteGradeListProps {
     value: Score,
     subjectName: string
   ) => void;
-  handleFreeSem: (freeSem: FreeSem) => void;
+  setFreeSem:React.Dispatch<React.SetStateAction<FreeSemType>>;
 }
 
 const WriteGradeList = ({
   grades,
-  gradeType,
+  setGrades,
   freeSem,
+  setFreeSem,
+  gradeType,
   addNewGrade,
   handleGradesCallback,
-  handleFreeSem,
 }: WriteGradeListProps) => {
   return (
     <>
@@ -79,7 +82,7 @@ const WriteGradeList = ({
               <button
                 className={freeSem.freeSem11 ? "on" : "off"}
                 onClick={() =>
-                  handleFreeSem({ ...freeSem, freeSem11: !freeSem.freeSem11 })
+                  setFreeSem({ ...freeSem, freeSem11: !freeSem.freeSem11 })
                 }
               >
                 자유학기제
@@ -90,7 +93,7 @@ const WriteGradeList = ({
               <button
                 className={freeSem.freeSem12 ? "on" : "off"}
                 onClick={() =>
-                  handleFreeSem({ ...freeSem, freeSem12: !freeSem.freeSem12 })
+                  setFreeSem({ ...freeSem, freeSem12: !freeSem.freeSem12 })
                 }
               >
                 자유학기제
@@ -101,7 +104,7 @@ const WriteGradeList = ({
               <button
                 className={freeSem.freeSem21 ? "on" : "off"}
                 onClick={() =>
-                  handleFreeSem({ ...freeSem, freeSem21: !freeSem.freeSem21 })
+                  setFreeSem({ ...freeSem, freeSem21: !freeSem.freeSem21 })
                 }
               >
                 자유학기제
@@ -112,7 +115,7 @@ const WriteGradeList = ({
               <button
                 className={freeSem.freeSem22 ? "on" : "off"}
                 onClick={() =>
-                  handleFreeSem({ ...freeSem, freeSem22: !freeSem.freeSem22 })
+                  setFreeSem({ ...freeSem, freeSem22: !freeSem.freeSem22 })
                 }
               >
                 자유학기제
@@ -123,7 +126,7 @@ const WriteGradeList = ({
               <button
                 className={freeSem.freeSem31 ? "on" : "off"}
                 onClick={() =>
-                  handleFreeSem({ ...freeSem, freeSem31: !freeSem.freeSem31 })
+                  setFreeSem({ ...freeSem, freeSem31: !freeSem.freeSem31 })
                 }
               >
                 자유학기제
@@ -134,7 +137,7 @@ const WriteGradeList = ({
               <button
                 className={freeSem.freeSem32 ? "on" : "off"}
                 onClick={() =>
-                  handleFreeSem({
+                  setFreeSem({
                     ...freeSem,
                     freeSem32:
                       gradeType === Grade.UNGRADUATED || !freeSem.freeSem32,
@@ -155,6 +158,10 @@ const WriteGradeList = ({
             return (
               <React.Fragment key={index}>
                 <WriteGradeListItemContainer
+                  grades={grades}
+                  setGrades={setGrades}
+                  freeSem={freeSem}
+                  setFreeSem={setFreeSem}
                   filtered={filtered}
                   model={model}
                   handleGradesCallback={handleGradesCallback}
@@ -174,6 +181,10 @@ const WriteGradeList = ({
               return (
                 <React.Fragment key={index}>
                   <WriteGradeListItemContainer
+                    grades={grades}
+                    setGrades={setGrades}
+                    freeSem={freeSem}
+                    setFreeSem={setFreeSem}
                     filtered={grade}
                     isNew={true}
                     model={grade.subjectName}
