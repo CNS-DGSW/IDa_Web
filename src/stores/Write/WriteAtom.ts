@@ -24,6 +24,7 @@ import ScoreGrade from "util/types/ScoreGrade";
 import AttendType from "util/types/Attend";
 import volunteerType from "util/types/Volunteer";
 import additionalType from "util/types/Additional";
+import GedScoreType from "util/types/GedScore";
 
 const userIdxAtom = atom<number | null>({
   key: "userIdx",
@@ -206,23 +207,28 @@ const editGed = selector({
   key: "editGed",
   get:
     ({ get }) =>
-    async () => {
+    async (
+      gedScore:GedScoreType
+    ) => {
+      /*
       const englishScore = get(englishScoreAtom);
       const koreanScore = get(koreanScoreAtom);
       const mathScore = get(mathScoreAtom);
       const otherScore = get(otherScoreAtom);
       const scienceScore = get(scienceScoreAtom);
-      const socialScore = get(socialScoreAtom);
+      const socialScore = get(socialScoreAtom); */
       const userIdx = get(userIdxAtom);
 
       const response: Response = await UserApi.EditGed(
-        englishScore,
+        gedScore,
+        userIdx 
+        /* englishScore,
         koreanScore,
         mathScore,
         otherScore,
         scienceScore,
         socialScore,
-        userIdx
+        */
       );
       return response;
     },

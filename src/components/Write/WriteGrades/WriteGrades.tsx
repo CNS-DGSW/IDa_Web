@@ -12,6 +12,7 @@ import FreeSemType from "util/types/FreeSem";
 import AttendType from "util/types/Attend";
 import volunteerType from "util/types/Volunteer";
 import additionalType from "util/types/Additional";
+import GedScoreType from "util/types/GedScore";
 
 interface WriteGradesProps {
   saved: boolean;
@@ -29,6 +30,8 @@ interface WriteGradesProps {
   setVolunteer:React.Dispatch<React.SetStateAction<volunteerType>>;
   additional:additionalType;
   setAdditional:React.Dispatch<React.SetStateAction<additionalType>>;
+  gedScore:GedScoreType;
+  setGedScore:React.Dispatch<React.SetStateAction<GedScoreType>>;
 }
 
 const WriteGrades = ({
@@ -50,7 +53,10 @@ const WriteGrades = ({
   setVolunteer,
 
   additional,
-  setAdditional
+  setAdditional,
+
+  gedScore,
+  setGedScore
 }: WriteGradesProps) => {
   return (
     <>
@@ -87,7 +93,10 @@ const WriteGrades = ({
               />
             </>
           ) : (
-            <WriteGedContainer />
+            <WriteGedContainer 
+              gedScore={gedScore}
+              setGedScore={setGedScore}
+            />
           )}
         </div>
       </WriteContent>

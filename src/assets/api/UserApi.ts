@@ -7,6 +7,7 @@ import Sex from "util/enums/Sex";
 import additionalType from "util/types/Additional";
 import AttendType from "util/types/Attend";
 import FreeSemType from "util/types/FreeSem";
+import GedScoreType from "util/types/GedScore";
 import ScoreGrade from "util/types/ScoreGrade";
 import volunteerType from "util/types/Volunteer";
 
@@ -228,22 +229,24 @@ class UserApi {
   }
 
   async EditGed(
-    englishScore: number,
+    gedScore:GedScoreType,
+    userIdx?: number | null
+    /* englishScore: number,
     koreanScore: number,
     mathScore: number,
     otherScore: number,
     scienceScore: number,
-    socialScore: number,
-    userIdx?: number | null
+    socialScore: number, */
   ) {
-    const body = {
+    const body = gedScore
+    /* {
       englishScore,
       koreanScore,
       mathScore,
       otherScore,
       scienceScore,
       socialScore,
-    };
+    }; */
 
     const query = userIdx ? `?userIdx=${userIdx}` : "";
 

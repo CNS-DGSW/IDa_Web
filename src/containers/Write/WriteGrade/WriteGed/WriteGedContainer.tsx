@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import { useNavigate } from "react-router-dom";
 import WriteGed from "components/Write/WriteGed";
@@ -14,17 +14,27 @@ import {
   scienceScoreAtom,
   socialScoreAtom,
 } from "stores/Write/WriteAtom";
+import GedScoreType from "util/types/GedScore";
+
+interface writeGedProps {
+  gedScore:GedScoreType;
+  setGedScore:React.Dispatch<React.SetStateAction<GedScoreType>>;
+}
 
 // 검정고시 성적 입력
-const WriteGedContainer = ({}) => {
+const WriteGedContainer = ({
+  gedScore,
+  setGedScore
+}:writeGedProps) => {
   const history = useNavigate();
 
-  const [koreanScore, setKoreanScore] = useRecoilState(koreanScoreAtom);
+  /* const [koreanScore, setKoreanScore] = useRecoilState(koreanScoreAtom);
   const [mathScore, setMathScore] = useRecoilState(mathScoreAtom);
   const [socialScore, setSocialScore] = useRecoilState(socialScoreAtom);
   const [scienceScore, setScienceScore] = useRecoilState(scienceScoreAtom);
   const [englishScore, setEnglishScore] = useRecoilState(englishScoreAtom);
-  const [otherScore, setOtherScore] = useRecoilState(otherScoreAtom);
+  const [otherScore, setOtherScore] = useRecoilState(otherScoreAtom); */
+
   const setIsChanged = useSetRecoilState(isChangedAtom);
   const getGedAtom = useRecoilValue(getGed);
 
@@ -32,12 +42,7 @@ const WriteGedContainer = ({}) => {
   const getGedCallback = useCallback(async () => {
     await getGedAtom()
       .then((res: any) => {
-        setKoreanScore(res.data.score.koreanScore);
-        setMathScore(res.data.score.mathScore);
-        setSocialScore(res.data.score.socialScore);
-        setScienceScore(res.data.score.scienceScore);
-        setEnglishScore(res.data.score.englishScore);
-        setOtherScore(res.data.score.otherScore);
+        setGedScore(res.data.score);
       })
       .catch((err) => {
         handleGetWriteError(err, history);
@@ -51,18 +56,8 @@ const WriteGedContainer = ({}) => {
   return (
     <>
       <WriteGed
-        koreanScore={koreanScore}
-        handleKoreanScore={(value: number) => setKoreanScore(value)}
-        englishScore={englishScore}
-        handleEnglishScore={(value: number) => setEnglishScore(value)}
-        mathScore={mathScore}
-        handleMathScore={(value: number) => setMathScore(value)}
-        socialScore={socialScore}
-        handleSocialScore={(value: number) => setSocialScore(value)}
-        scienceScore={scienceScore}
-        handleScienceScore={(value: number) => setScienceScore(value)}
-        otherScore={otherScore}
-        handleOtherScore={(value: number) => setKoreanScore(value)}
+        gedScore={gedScore}
+        setGedScore={setGedScore}
         handleIsChanged={(value: boolean) => setIsChanged(value)}
       />
     </>

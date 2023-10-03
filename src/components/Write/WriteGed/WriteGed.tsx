@@ -1,37 +1,18 @@
 import React from "react";
 import "./WriteGed.scss";
 import numberCheck from "lib/numberCheck";
+import GedScoreType from "util/types/GedScore";
 
 interface WriteGedProps {
-  koreanScore: number;
-  handleKoreanScore: (koreanScore: number) => void;
-  englishScore: number;
-  handleEnglishScore: (englishScore: number) => void;
-  mathScore: number;
-  handleMathScore: (mathScore: number) => void;
-  socialScore: number;
-  handleSocialScore: (socialScore: number) => void;
-  scienceScore: number;
-  handleScienceScore: (scienceScore: number) => void;
-  otherScore: number;
-  handleOtherScore: (otherScore: number) => void;
+  gedScore: GedScoreType;
+  setGedScore:React.Dispatch<React.SetStateAction<GedScoreType>>;
   handleIsChanged: (value: boolean) => void;
 }
 
 const WriteGed = ({
-  koreanScore,
-  handleKoreanScore,
-  englishScore,
-  handleEnglishScore,
-  mathScore,
-  handleMathScore,
-  socialScore,
-  handleSocialScore,
-  scienceScore,
-  handleScienceScore,
-  otherScore,
-  handleOtherScore,
-  handleIsChanged,
+  gedScore,
+  setGedScore,
+  handleIsChanged
 }: WriteGedProps) => {
   return (
     <div className="ged">
@@ -53,55 +34,65 @@ const WriteGed = ({
             <td>
               <input
                 type="number"
-                value={koreanScore.toString()}
+                value={gedScore.koreanScore.toString()}
                 step="0.1"
                 onChange={(e) => {
                   handleIsChanged(true);
-                  handleKoreanScore(numberCheck(e.target.value || "0"));
+                  setGedScore((score) => {
+                    return {...score, koreanScore:numberCheck(e.target.value || "0")}
+                  })
                 }}
               />
             </td>
             <td>
               <input
                 type="number"
-                value={englishScore.toString()}
+                value={gedScore.englishScore.toString()}
                 step="0.1"
                 onChange={(e) => {
                   handleIsChanged(true);
-                  handleEnglishScore(numberCheck(e.target.value || "0"));
+                  setGedScore((score) => {
+                    return {...score, englishScore:numberCheck(e.target.value || "0")}
+                  })
                 }}
               />
             </td>
             <td>
               <input
                 type="number"
-                value={mathScore.toString()}
+                value={gedScore.mathScore.toString()}
                 step="0.1"
                 onChange={(e) => {
                   handleIsChanged(true);
-                  handleMathScore(numberCheck(e.target.value || "0"));
+                  setGedScore((score) => {
+                    return {...score, mathScore:numberCheck(e.target.value || "0")}
+                  })
                 }}
               />
             </td>
             <td>
               <input
                 type="number"
-                value={socialScore.toString()}
+                value={gedScore.socialScore.toString()}
                 step="0.1"
                 onChange={(e) => {
                   handleIsChanged(true);
-                  handleSocialScore(numberCheck(e.target.value || "0"));
+                  setGedScore((score) => {
+                    return {...score, socialScore:numberCheck(e.target.value || "0")}
+                  })
                 }}
               />
             </td>
             <td>
               <input
                 type="number"
-                value={scienceScore.toString()}
+                value={gedScore.scienceScore.toString()}
                 step="0.1"
                 onChange={(e) => {
                   handleIsChanged(true);
-                  handleScienceScore(numberCheck(e.target.value || "0"));
+                  setGedScore((score) => {
+                    return {...score, scienceScore:numberCheck(e.target.value || "0")}
+                  })
                 }}
               />
             </td>
@@ -109,10 +100,12 @@ const WriteGed = ({
               <input
                 type="number"
                 step="0.1"
-                value={otherScore.toString()}
+                value={gedScore.otherScore.toString()}
                 onChange={(e) => {
                   handleIsChanged(true);
-                  handleOtherScore(numberCheck(e.target.value || "0"));
+                  setGedScore((score) => {
+                    return {...score, otherScore:numberCheck(e.target.value || "0")}
+                  })
                 }}
               />
             </td>
