@@ -22,6 +22,7 @@ const UserRateContainer = ({}) => {
     getUserRate(true)
       .then((res: any) => {
         setRateStatus(res.data);
+        console.log(res.data)
       })
       .catch((err: any) => {
         handleAdmin(err, history);

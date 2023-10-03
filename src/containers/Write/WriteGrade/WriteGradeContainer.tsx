@@ -93,11 +93,19 @@ const WriteGradeContainer = ({}) => {
     prize: 0,
   });
 
+  // 검정고시 점수
+  const [gedScore,SetGedScore] = useState({
+    englishScore: 0,
+    koreanScore: 0,
+    mathScore: 0,
+    otherScore: 0,
+    scienceScore: 0,
+    socialScore: 0
+  })
+
   //변경사항 저장 함수
   const onSave = useCallback(async () => {
     let flag = true;
-
-    // console.log(grades)
 
     if (gradeType !== Grade.GED) {
       const promises = [
@@ -117,7 +125,9 @@ const WriteGradeContainer = ({}) => {
           flag = false;
         });
     } else {
-      await editGedAtom()
+      await editGedAtom(
+        gedScore
+      )
         .then(() => {
           setIsChanged(false);
           setSaved(true);
@@ -128,8 +138,8 @@ const WriteGradeContainer = ({}) => {
         });
     }
 
-    return flag;
-  }, [gradeType, grades, freeSem, attend, volunteer, additional]);
+    return flag; 
+  }, [gradeType,grades,freeSem,attend,volunteer,additional,gedScore]); 
 
   //학교정보 확인 함수
   const checkSchool = useCallback(async () => {
@@ -179,6 +189,9 @@ const WriteGradeContainer = ({}) => {
         setVolunteer={setVolunteer}
         additional={additional}
         setAdditional={setAdditional}
+
+        gedScore={gedScore}
+        setGedScore={SetGedScore}
       />
     </>
   );
