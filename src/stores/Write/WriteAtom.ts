@@ -1,5 +1,6 @@
 import UserApi from "assets/api/UserApi";
-import { atom, selector } from "recoil";
+import { atom, selector, useRecoilValue } from "recoil";
+import Score from "util/enums/Score";
 import Apply from "util/enums/Apply";
 import ApplyDetail from "util/enums/ApplyDetail";
 import Grade from "util/enums/Grade";
@@ -20,6 +21,9 @@ import {
   VolunteerResponse,
 } from "util/types/Response";
 import ScoreGrade from "util/types/ScoreGrade";
+import AttendType from "util/types/Attend";
+import volunteerType from "util/types/Volunteer";
+import additionalType from "util/types/Additional";
 
 const userIdxAtom = atom<number | null>({
   key: "userIdx",
@@ -73,7 +77,15 @@ const socialScoreAtom = atom<number>({
 
 const gradesAtom = atom<ScoreGrade[]>({
   key: "grades",
-  default: [],
+  default: [{
+    score11: Score.NONE,
+    score12: Score.NONE,
+    score21: Score.NONE,
+    score22: Score.NONE,
+    score31: Score.NONE,
+    score32: Score.NONE,
+    subjectName: "",
+  }],
 });
 
 const freeSemAtom = atom<FreeSemType>({
@@ -462,9 +474,13 @@ const editGrade = selector({
   key: "editGrade",
   get:
     ({ get }) =>
-    async (): Promise<Response> => {
-      const grades = get(gradesAtom);
-      const freeSem = get(freeSemAtom);
+    async (
+      grades:ScoreGrade[],
+      freeSem:FreeSemType
+    ): Promise<Response> => {
+      // const grades = get(gradesAtom);
+      // const freeSem = get(freeSemAtom);
+      
       const userIdx = get(userIdxAtom);
       const response: Response = await UserApi.EditGrade(
         freeSem,
@@ -480,7 +496,10 @@ const editAttend = selector({
   key: "editAttend",
   get:
     ({ get }) =>
-    async (): Promise<Response> => {
+    async (
+      attend : AttendType
+    ): Promise<Response> => {
+      /*
       const absence1 = get(absence1Atom);
       const absence2 = get(absence2Atom);
       const absence3 = get(absence3Atom);
@@ -493,9 +512,10 @@ const editAttend = selector({
       const absenceLecture1 = get(absenceLecture1Atom);
       const absenceLecture2 = get(absenceLecture2Atom);
       const absenceLecture3 = get(absenceLecture3Atom);
+      */
       const userIdx = get(userIdxAtom);
       const response: Response = await UserApi.EditAttend(
-        absence1,
+        /* absence1,
         absence2,
         absence3,
         lateness1,
@@ -506,7 +526,8 @@ const editAttend = selector({
         earlyLeave3,
         absenceLecture1,
         absenceLecture2,
-        absenceLecture3,
+        absenceLecture3, */
+        attend,
         userIdx
       );
 
@@ -518,24 +539,27 @@ const editAdditional = selector({
   key: "editAdditional",
   get:
     ({ get }) =>
-    async (): Promise<Response> => {
-      const leadership11 = get(leadership11Atom);
+    async (
+      additional:additionalType
+    ): Promise<Response> => {
+      /* const leadership11 = get(leadership11Atom);
       const leadership12 = get(leadership12Atom);
       const leadership21 = get(leadership21Atom);
       const leadership22 = get(leadership22Atom);
       const leadership31 = get(leadership31Atom);
       const leadership32 = get(leadership32Atom);
-      const prize = get(prizeAtom);
+      const prize = get(prizeAtom); */
       const userIdx = get(userIdxAtom);
       const response: Response = await UserApi.EditAdditional(
-        leadership11,
+        additional,
+        userIdx
+        /* leadership11,
         leadership12,
         leadership21,
         leadership22,
         leadership31,
         leadership32,
-        prize,
-        userIdx
+        prize, */
       );
 
       return response;
@@ -546,16 +570,19 @@ const editVolunteer = selector({
   key: "editVolunteer",
   get:
     ({ get }) =>
-    async (): Promise<Response> => {
-      const volunteer1 = get(volunteer1Atom);
+    async (
+      volunteer : volunteerType
+    ): Promise<Response> => {
+      /* const volunteer1 = get(volunteer1Atom);
       const volunteer2 = get(volunteer2Atom);
-      const volunteer3 = get(volunteer3Atom);
+      const volunteer3 = get(volunteer3Atom); */
       const userIdx = get(userIdxAtom);
       const response: Response = await UserApi.EditVolunteer(
-        volunteer1,
-        volunteer2,
-        volunteer3,
+        volunteer,
         userIdx
+        /* volunteer1,
+        volunteer2,
+        volunteer3, */
       );
 
       return response;

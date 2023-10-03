@@ -1,9 +1,14 @@
 import React from "react";
 import "./WriteAttend.scss";
 import numberCheck from "lib/numberCheck";
+import AttendType from "util/types/Attend";
 
 interface WriteAdmissionProps {
-  absence1: number;
+  attend:AttendType;
+  setAttend:React.Dispatch<React.SetStateAction<AttendType>>;
+  handleIsChanged: (value: boolean) => void;
+
+  /* absence1: number;
   absence2: number;
   absence3: number;
   lateness1: number;
@@ -15,7 +20,6 @@ interface WriteAdmissionProps {
   absenceLecture1: number;
   absenceLecture2: number;
   absenceLecture3: number;
-  handleIsChanged: (value: boolean) => void;
   handleAbsence1: (absence1: number) => void;
   handleAbsence2: (absence2: number) => void;
   handleAbsence3: (absence3: number) => void;
@@ -27,11 +31,14 @@ interface WriteAdmissionProps {
   handleEarlyLeave3: (earlyLeave3: number) => void;
   handleAbsenceLecture1: (absenceLecture1: number) => void;
   handleAbsenceLecture2: (absenceLecture2: number) => void;
-  handleAbsenceLecture3: (absenceLecture3: number) => void;
+  handleAbsenceLecture3: (absenceLecture3: number) => void; */
 }
 
 const WriteAttend = ({
-  absence1,
+  attend,
+  setAttend,
+  handleIsChanged,
+  /* absence1,
   absence2,
   absence3,
   lateness1,
@@ -43,7 +50,6 @@ const WriteAttend = ({
   absenceLecture1,
   absenceLecture2,
   absenceLecture3,
-  handleIsChanged,
   handleAbsence1,
   handleAbsence2,
   handleAbsence3,
@@ -55,7 +61,7 @@ const WriteAttend = ({
   handleEarlyLeave3,
   handleAbsenceLecture1,
   handleAbsenceLecture2,
-  handleAbsenceLecture3,
+  handleAbsenceLecture3, */
 }: WriteAdmissionProps) => {
   return (
     <>
@@ -72,9 +78,11 @@ const WriteAttend = ({
           <div>
             <input
               type="number"
-              value={absence1.toString()}
+              value={attend.absence1.toString()}
               onChange={(e) => {
-                handleAbsence1(numberCheck(e.target.value, 0, 365));
+                setAttend((attend) => {
+                  return {...attend,absence1:numberCheck(e.target.value, 0, 365)}
+                })
                 handleIsChanged(true);
               }}
             />
@@ -82,9 +90,11 @@ const WriteAttend = ({
           <div>
             <input
               type="number"
-              value={absence2.toString()}
+              value={attend.absence2.toString()}
               onChange={(e) => {
-                handleAbsence2(numberCheck(e.target.value, 0, 365));
+                setAttend((attend) => {
+                  return {...attend,absence2:numberCheck(e.target.value, 0, 365)}
+                })
                 handleIsChanged(true);
               }}
             />
@@ -92,9 +102,11 @@ const WriteAttend = ({
           <div>
             <input
               type="number"
-              value={absence3.toString()}
+              value={attend.absence3.toString()}
               onChange={(e) => {
-                handleAbsence3(numberCheck(e.target.value, 0, 365));
+                setAttend((attend) => {
+                  return {...attend,absence3:numberCheck(e.target.value, 0, 365)}
+                })
                 handleIsChanged(true);
               }}
             />
@@ -106,9 +118,11 @@ const WriteAttend = ({
           <div>
             <input
               type="number"
-              value={lateness1.toString()}
+              value={attend.lateness1.toString()}
               onChange={(e) => {
-                handleLateness1(numberCheck(e.target.value, 0, 365));
+                setAttend((attend) => {
+                  return {...attend,lateness1:numberCheck(e.target.value, 0, 365)}
+                })
                 handleIsChanged(true);
               }}
             />
@@ -116,9 +130,11 @@ const WriteAttend = ({
           <div>
             <input
               type="number"
-              value={lateness2.toString()}
+              value={attend.lateness2.toString()}
               onChange={(e) => {
-                handleLateness2(numberCheck(e.target.value, 0, 365));
+                setAttend((attend) => {
+                  return {...attend,lateness2:numberCheck(e.target.value, 0, 365)}
+                })
                 handleIsChanged(true);
               }}
             />
@@ -126,9 +142,11 @@ const WriteAttend = ({
           <div>
             <input
               type="number"
-              value={lateness3.toString()}
+              value={attend.lateness3.toString()}
               onChange={(e) => {
-                handleLateness3(numberCheck(e.target.value, 0, 365));
+                setAttend((attend) => {
+                  return {...attend,lateness3:numberCheck(e.target.value, 0, 365)}
+                })
                 handleIsChanged(true);
               }}
             />
@@ -140,9 +158,11 @@ const WriteAttend = ({
           <div>
             <input
               type="number"
-              value={earlyLeave1.toString()}
+              value={attend.earlyLeave1.toString()}
               onChange={(e) => {
-                handleEarlyLeave1(numberCheck(e.target.value, 0, 365));
+                setAttend((attend) => {
+                  return {...attend,earlyLeave1:numberCheck(e.target.value, 0, 365)}
+                })
                 handleIsChanged(true);
               }}
             />
@@ -150,9 +170,11 @@ const WriteAttend = ({
           <div>
             <input
               type="number"
-              value={earlyLeave2.toString()}
+              value={attend.earlyLeave2.toString()}
               onChange={(e) => {
-                handleEarlyLeave2(numberCheck(e.target.value, 0, 365));
+                setAttend((attend) => {
+                  return {...attend,earlyLeave2:numberCheck(e.target.value, 0, 365)}
+                })
                 handleIsChanged(true);
               }}
             />
@@ -160,9 +182,11 @@ const WriteAttend = ({
           <div>
             <input
               type="number"
-              value={earlyLeave3.toString()}
+              value={attend.earlyLeave3.toString()}
               onChange={(e) => {
-                handleEarlyLeave3(numberCheck(e.target.value, 0, 365));
+                setAttend((attend) => {
+                  return {...attend,earlyLeave3:numberCheck(e.target.value, 0, 365)}
+                })
                 handleIsChanged(true);
               }}
             />
@@ -174,9 +198,11 @@ const WriteAttend = ({
           <div>
             <input
               type="number"
-              value={absenceLecture1.toString()}
+              value={attend.absenceLecture1.toString()}
               onChange={(e) => {
-                handleAbsenceLecture1(numberCheck(e.target.value, 0, 365));
+                setAttend((attend) => {
+                  return {...attend,absenceLecture1:numberCheck(e.target.value, 0, 365)}
+                })
                 handleIsChanged(true);
               }}
             />
@@ -184,9 +210,11 @@ const WriteAttend = ({
           <div>
             <input
               type="number"
-              value={absenceLecture2.toString()}
+              value={attend.absenceLecture2.toString()}
               onChange={(e) => {
-                handleAbsenceLecture2(numberCheck(e.target.value, 0, 365));
+                setAttend((attend) => {
+                  return {...attend,absenceLecture2:numberCheck(e.target.value, 0, 365)}
+                })
                 handleIsChanged(true);
               }}
             />
@@ -194,9 +222,11 @@ const WriteAttend = ({
           <div>
             <input
               type="number"
-              value={absenceLecture3.toString()}
+              value={attend.absenceLecture3.toString()}
               onChange={(e) => {
-                handleAbsenceLecture3(numberCheck(e.target.value, 0, 365));
+                setAttend((attend) => {
+                  return {...attend,absenceLecture3:numberCheck(e.target.value, 0, 365)}
+                })
                 handleIsChanged(true);
               }}
             />

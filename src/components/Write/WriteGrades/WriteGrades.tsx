@@ -7,6 +7,11 @@ import Grade from "util/enums/Grade";
 import WriteScoreContainer from "containers/Write/WriteScore/WriteScoreContainer";
 import WriteGradeListContainer from "containers/Write/WriteGrade/WriteGradeList/WriteGradeListContainer";
 import WriteGedContainer from "containers/Write/WriteGrade/WriteGed/WriteGedContainer";
+import ScoreGrade from "util/types/ScoreGrade";
+import FreeSemType from "util/types/FreeSem";
+import AttendType from "util/types/Attend";
+import volunteerType from "util/types/Volunteer";
+import additionalType from "util/types/Additional";
 
 interface WriteGradesProps {
   saved: boolean;
@@ -14,6 +19,16 @@ interface WriteGradesProps {
   gradeType: Grade | null;
   isChanged: boolean;
   onSave: () => Promise<boolean>;
+  grades:ScoreGrade[];
+  setGrades:React.Dispatch<React.SetStateAction<ScoreGrade[]>>;
+  freeSem:FreeSemType;
+  setFreeSem:React.Dispatch<React.SetStateAction<FreeSemType>>;
+  attend:AttendType;
+  setAttend:React.Dispatch<React.SetStateAction<AttendType>>;
+  volunteer:volunteerType;
+  setVolunteer:React.Dispatch<React.SetStateAction<volunteerType>>;
+  additional:additionalType;
+  setAdditional:React.Dispatch<React.SetStateAction<additionalType>>;
 }
 
 const WriteGrades = ({
@@ -22,6 +37,20 @@ const WriteGrades = ({
   gradeType,
   onSave,
   isChanged,
+
+  grades,
+  setGrades,
+  freeSem,
+  setFreeSem,
+
+  attend,
+  setAttend,
+
+  volunteer,
+  setVolunteer,
+
+  additional,
+  setAdditional
 }: WriteGradesProps) => {
   return (
     <>
@@ -39,9 +68,23 @@ const WriteGrades = ({
 
           {gradeType !== Grade.GED ? (
             <>
-              <WriteGradeListContainer />
-              <WriteGradeAttendContainer />
-              <WriteGradeAdditionalContainer />
+              <WriteGradeListContainer 
+                grades={grades}
+                setGrades={setGrades}
+                freeSem={freeSem}
+                setFreeSem={setFreeSem}
+              />
+              <WriteGradeAttendContainer 
+                attend={attend}
+                setAttend={setAttend}
+              />
+              <WriteGradeAdditionalContainer 
+                volunteer={volunteer}
+                setVolunteer={setVolunteer}
+
+                additional={additional}
+                setAdditional={setAdditional}
+              />
             </>
           ) : (
             <WriteGedContainer />

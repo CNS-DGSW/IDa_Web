@@ -2,55 +2,25 @@ import React from "react";
 import Grade from "util/enums/Grade";
 import "./WriteAdditional.scss";
 import numberCheck from "lib/numberCheck";
+import volunteerType from "util/types/Volunteer";
+import additionalType from "util/types/Additional";
 
 interface WriteAdditionalProps {
-  leadership11: boolean;
-  leadership12: boolean;
-  leadership21: boolean;
-  leadership22: boolean;
-  leadership31: boolean;
-  leadership32: boolean;
-  prize: number;
-  volunteer1: number;
-  volunteer2: number;
-  volunteer3: number;
   gradeType: Grade | null;
   handleIsChanged: (value: boolean) => void;
-  handleLeadership11: (leadership11: boolean) => void;
-  handleLeadership12: (leadership11: boolean) => void;
-  handleLeadership21: (leadership11: boolean) => void;
-  handleLeadership22: (leadership11: boolean) => void;
-  handleLeadership31: (leadership11: boolean) => void;
-  handleLeadership32: (leadership11: boolean) => void;
-  handlePrize: (prize: number) => void;
-  handleVolunteer1: (volunteer1: number) => void;
-  handleVolunteer2: (volunteer2: number) => void;
-  handleVolunteer3: (volunteer3: number) => void;
+  volunteer:volunteerType;
+  setVolunteer:React.Dispatch<React.SetStateAction<volunteerType>>;
+  additional:additionalType;
+  setAdditional:React.Dispatch<React.SetStateAction<additionalType>>;
 }
 
 const WriteAdditional = ({
-  leadership11,
-  leadership12,
-  leadership21,
-  leadership22,
-  leadership31,
-  leadership32,
-  prize,
-  volunteer1,
-  volunteer2,
-  volunteer3,
   gradeType,
   handleIsChanged,
-  handleLeadership11,
-  handleLeadership12,
-  handleLeadership21,
-  handleLeadership22,
-  handleLeadership31,
-  handleLeadership32,
-  handleVolunteer1,
-  handleVolunteer2,
-  handleVolunteer3,
-  handlePrize,
+  volunteer,
+  setVolunteer,
+  additional,
+  setAdditional
 }: WriteAdditionalProps) => {
   return (
     <>
@@ -67,9 +37,11 @@ const WriteAdditional = ({
           <div>
             <input
               type="number"
-              value={volunteer1.toString()}
+              value={volunteer.volunteer1.toString()}
               onChange={(e) => {
-                handleVolunteer1(numberCheck(e.target.value, 0, 500));
+                setVolunteer((volunteer) => {
+                  return {...volunteer,volunteer1:numberCheck(e.target.value, 0, 500)}
+                })
                 handleIsChanged(true);
               }}
             />
@@ -77,9 +49,11 @@ const WriteAdditional = ({
           <div>
             <input
               type="number"
-              value={volunteer2.toString()}
+              value={volunteer.volunteer2.toString()}
               onChange={(e) => {
-                handleVolunteer2(numberCheck(e.target.value, 0, 500));
+                setVolunteer((volunteer) => {
+                  return {...volunteer,volunteer2:numberCheck(e.target.value, 0, 500)}
+                })
                 handleIsChanged(true);
               }}
             />
@@ -87,9 +61,11 @@ const WriteAdditional = ({
           <div>
             <input
               type="number"
-              value={volunteer3.toString()}
+              value={volunteer.volunteer3.toString()}
               onChange={(e) => {
-                handleVolunteer3(numberCheck(e.target.value, 0, 500));
+                setVolunteer((volunteer) => {
+                  return {...volunteer,volunteer3:numberCheck(e.target.value, 0, 500)}
+                })
                 handleIsChanged(true);
               }}
             />
@@ -145,9 +121,11 @@ const WriteAdditional = ({
               <div className="leader-content-head-check-box">
                 <input
                   type="checkbox"
-                  checked={leadership11 === true}
+                  checked={additional.leadership11 === true}
                   onChange={(e) => {
-                    handleLeadership11(e.target.checked);
+                    setAdditional((additional) => {
+                      return {...additional,leadership11:e.target.checked}
+                    })
                     handleIsChanged(true);
                   }}
                 />
@@ -155,9 +133,11 @@ const WriteAdditional = ({
               <div className="leader-content-head-check-box">
                 <input
                   type="checkbox"
-                  checked={leadership12 === true}
+                  checked={additional.leadership12 === true}
                   onChange={(e) => {
-                    handleLeadership12(e.target.checked);
+                    setAdditional((additional) => {
+                      return {...additional,leadership12:e.target.checked}
+                    })
                     handleIsChanged(true);
                   }}
                 />
@@ -168,9 +148,11 @@ const WriteAdditional = ({
               <div className="leader-content-head-check-box">
                 <input
                   type="checkbox"
-                  checked={leadership21 === true}
+                  checked={additional.leadership21 === true}
                   onChange={(e) => {
-                    handleLeadership21(e.target.checked);
+                    setAdditional((additional) => {
+                      return {...additional,leadership21:e.target.checked}
+                    })
                     handleIsChanged(true);
                   }}
                 />
@@ -178,9 +160,11 @@ const WriteAdditional = ({
               <div className="leader-content-head-check-box">
                 <input
                   type="checkbox"
-                  checked={leadership22 === true}
+                  checked={additional.leadership22 === true}
                   onChange={(e) => {
-                    handleLeadership22(e.target.checked);
+                    setAdditional((additional) => {
+                      return {...additional,leadership22:e.target.checked}
+                    })
                     handleIsChanged(true);
                   }}
                 />
@@ -190,9 +174,11 @@ const WriteAdditional = ({
               <div className="leader-content-head-check-box">
                 <input
                   type="checkbox"
-                  checked={leadership31 === true}
+                  checked={additional.leadership31 === true}
                   onChange={(e) => {
-                    handleLeadership31(e.target.checked);
+                    setAdditional((additional) => {
+                      return {...additional,leadership31:e.target.checked}
+                    })
                     handleIsChanged(true);
                   }}
                 />
@@ -200,10 +186,12 @@ const WriteAdditional = ({
               <div className="leader-content-head-check-box">
                 <input
                   type="checkbox"
-                  checked={leadership32 === true}
+                  checked={additional.leadership32 === true}
                   disabled={gradeType === Grade.UNGRADUATED}
                   onChange={(e) => {
-                    handleLeadership32(e.target.checked);
+                    setAdditional((additional) => {
+                      return {...additional,leadership32:e.target.checked}
+                    })
                     handleIsChanged(true);
                   }}
                 />
@@ -213,9 +201,11 @@ const WriteAdditional = ({
           <div className="leader-content-select">
             <input
               type="number"
-              value={prize.toString()}
+              value={additional.prize.toString()}
               onChange={(e) => {
-                handlePrize(numberCheck(e.target.value, 0, 100));
+                setAdditional((additional) => {
+                  return {...additional,prize:numberCheck(e.target.value, 0, 100)}
+                })
                 handleIsChanged(true);
               }}
             />
