@@ -153,7 +153,7 @@ const RegisterContainer = () => {
       await tryRegister(name, birth, email, pw, phoneNum, phoneCheck)
         .then((_) => {
           toast.success("회원가입이 완료되었습니다.");
-          history("login");
+          history("/login");
         })
         .catch((err: any) => {
           if (err.response?.status === 406) {
@@ -179,7 +179,7 @@ const RegisterContainer = () => {
   }, [name, birth, email, pw, checkPw, phoneNum, allCheck]);
 
   useEffect(() => {
-    console.log(loading);
+    // console.log(loading);
   }, [loading]);
 
   //이메일인증 enter처리
