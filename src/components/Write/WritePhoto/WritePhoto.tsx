@@ -15,7 +15,6 @@ const WritePhoto = ({
   onSave,
   isChanged,
 }: WritePhotoProps) => {
-  console.log(preview);
   return (
     <>
       <WriteContent

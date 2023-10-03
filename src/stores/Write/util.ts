@@ -23,7 +23,7 @@ const searchSchool = async (
   city: string
 ): Promise<SchoolResponse> => {
   const response: SchoolResponse = await UserApi.SearchSchool(schoolName, city);
-  console.log(response);
+  // console.log(response);
   return response;
 };
 

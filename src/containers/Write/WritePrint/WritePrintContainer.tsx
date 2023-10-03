@@ -64,7 +64,7 @@ const WritePrintContainer = ({}) => {
     // 1차 합격 여부 및 우편 원서 접수, 인터넷 원서 접수 현황
     const response: ResultStatusResponse = await StatusApi.GetStatus(userIdx);
 
-    console.log(">>", response.data.isPassedFirstApply);
+    // console.log(">>", response.data.isPassedFirstApply);
     // if (response.status === 200) {
     setSubmit(response.data.isSubmit); // 인터넷 원서 접수 현홍
     setPrint(response.data.isPrintedApplicationArrived); //  우편 원서 접수 현황
@@ -171,7 +171,7 @@ const WritePrintContainer = ({}) => {
   const [volunteer3, setVolunteer3] = useState<number>(0);
   const [teacherName, setTeacherName] = useState<string>("");
   const [isSubmit, setIsSubmit] = useState<boolean>(true);
-  const [sex,setSex] = useState<string>("")
+  const [sex, setSex] = useState<string>("");
 
   useLayoutEffect(() => {
     !search && alert("모든 출력물은 단면 인쇄해 주세요");
@@ -197,7 +197,7 @@ const WritePrintContainer = ({}) => {
             : moment(res.data.birth).format("yyyy. MM. DD.")
         );
         setStudentTel(res.data.studentTel || "");
-        setSex(res.data.sex || "")
+        setSex(res.data.sex || "");
       }
     );
   }, []);
@@ -206,9 +206,9 @@ const WritePrintContainer = ({}) => {
   const getProfileImageCallback = useCallback(async () => {
     await getProfileImageAtom().then((res: ProfileInfoResponse) => {
       setProfileImage(res.data.profileImage || "");
-      console.log(res)
+      // console.log(res)
     });
-    console.log(profileImage)
+    // console.log(profileImage)
   }, []);
 
   //학부모 정보 받아오는 함수
@@ -243,7 +243,7 @@ const WritePrintContainer = ({}) => {
       setGradeType(res.data.gradeType || null);
       setGraduatedDate(res.data.graduatedDate || "");
     });
-    console.log(schoolCode);
+    // console.log(schoolCode);
   }, []);
 
   //입학전형 받아오기

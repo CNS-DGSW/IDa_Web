@@ -91,7 +91,7 @@ const SecondResultContainer = ({
     // pass 여부 받아오기
     tryGetFinalStatusAtom()
       .then((res) => {
-        console.log("=>>", res.data);
+        // console.log("=>>", res.data);
         selectComment(res.data.isPassed);
         setModalLoading(false);
       })

@@ -77,15 +77,17 @@ const socialScoreAtom = atom<number>({
 
 const gradesAtom = atom<ScoreGrade[]>({
   key: "grades",
-  default: [{
-    score11: Score.NONE,
-    score12: Score.NONE,
-    score21: Score.NONE,
-    score22: Score.NONE,
-    score31: Score.NONE,
-    score32: Score.NONE,
-    subjectName: "",
-  }],
+  default: [
+    {
+      score11: Score.NONE,
+      score12: Score.NONE,
+      score21: Score.NONE,
+      score22: Score.NONE,
+      score31: Score.NONE,
+      score32: Score.NONE,
+      subjectName: "",
+    },
+  ],
 });
 
 const freeSemAtom = atom<FreeSemType>({
@@ -400,7 +402,7 @@ const getProfileImage = selector({
         userIdx
       );
 
-      console.log(response)
+      // console.log(response)
 
       return response;
     },
@@ -474,13 +476,10 @@ const editGrade = selector({
   key: "editGrade",
   get:
     ({ get }) =>
-    async (
-      grades:ScoreGrade[],
-      freeSem:FreeSemType
-    ): Promise<Response> => {
+    async (grades: ScoreGrade[], freeSem: FreeSemType): Promise<Response> => {
       // const grades = get(gradesAtom);
       // const freeSem = get(freeSemAtom);
-      
+
       const userIdx = get(userIdxAtom);
       const response: Response = await UserApi.EditGrade(
         freeSem,
@@ -496,9 +495,7 @@ const editAttend = selector({
   key: "editAttend",
   get:
     ({ get }) =>
-    async (
-      attend : AttendType
-    ): Promise<Response> => {
+    async (attend: AttendType): Promise<Response> => {
       /*
       const absence1 = get(absence1Atom);
       const absence2 = get(absence2Atom);
@@ -539,9 +536,7 @@ const editAdditional = selector({
   key: "editAdditional",
   get:
     ({ get }) =>
-    async (
-      additional:additionalType
-    ): Promise<Response> => {
+    async (additional: additionalType): Promise<Response> => {
       /* const leadership11 = get(leadership11Atom);
       const leadership12 = get(leadership12Atom);
       const leadership21 = get(leadership21Atom);
@@ -570,9 +565,7 @@ const editVolunteer = selector({
   key: "editVolunteer",
   get:
     ({ get }) =>
-    async (
-      volunteer : volunteerType
-    ): Promise<Response> => {
+    async (volunteer: volunteerType): Promise<Response> => {
       /* const volunteer1 = get(volunteer1Atom);
       const volunteer2 = get(volunteer2Atom);
       const volunteer3 = get(volunteer3Atom); */

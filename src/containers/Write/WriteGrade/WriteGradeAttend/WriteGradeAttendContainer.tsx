@@ -19,19 +19,19 @@ import {
   lateness3Atom, */
   getAttend,
   isChangedAtom,
-} from "stores/Write/WriteAtom"; 
+} from "stores/Write/WriteAtom";
 import AttendType from "util/types/Attend";
 
 interface WriteGradeAttendProps {
-  attend:AttendType;
-  setAttend:React.Dispatch<React.SetStateAction<AttendType>>;
+  attend: AttendType;
+  setAttend: React.Dispatch<React.SetStateAction<AttendType>>;
 }
 
 // 출결 입력
 const WriteGradeAttendContainer = ({
   attend,
-  setAttend
-}:WriteGradeAttendProps) => {
+  setAttend,
+}: WriteGradeAttendProps) => {
   const history = useNavigate();
   const setIsChanged = useSetRecoilState(isChangedAtom);
   /* const [absence1, setAbsence1] = useRecoilState(absence1Atom);
@@ -66,8 +66,8 @@ const WriteGradeAttendContainer = ({
         setAbsenceLecture1(res.data.absenceLecture1);
         setAbsenceLecture2(res.data.absenceLecture2);
         setAbsenceLecture3(res.data.absenceLecture3); */
-        setAttend(res.data)
-        console.log(res)
+        setAttend(res.data);
+        // console.log(res)
       })
       .catch((err: any) => {
         handleGetWriteError(err, history);
@@ -105,11 +105,10 @@ const WriteGradeAttendContainer = ({
         handleAbsenceLecture1={(value: number) => setAbsenceLecture1(value)}
         handleAbsenceLecture2={(value: number) => setAbsenceLecture2(value)}
         handleAbsenceLecture3={(value: number) => setAbsenceLecture3(value)} */
-        
+
         handleIsChanged={(value: boolean) => setIsChanged(value)}
         attend={attend}
         setAttend={setAttend}
-
       />
     </>
   );

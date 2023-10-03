@@ -13,7 +13,6 @@ class ExcelApi {
     return response;
   }
   async GetJob() {
-    console.log(2)
     const response = await Api.get("/excel/getJobAptitude", {
       responseType: "blob",
     });
@@ -94,7 +93,7 @@ class ExcelApi {
   }
 
   async GetUserList() {
-    const response = await Api.get("/excel/getReceiptStatus", {
+    const response = await Api.get("/excel/getUserInfo", {
       responseType: "blob",
     });
 
@@ -104,7 +103,7 @@ class ExcelApi {
   }
 
   async GetReceiptStatus() {
-    const response = await Api.get("/excel/getUserInfo", {
+    const response = await Api.get("/excel/getReceiptStatus", {
       responseType: "blob",
     });
 

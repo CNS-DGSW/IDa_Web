@@ -30,11 +30,11 @@ interface UserListProps {
   modal: boolean;
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
   tryChangeReview: (userIdx: number, status: string) => void;
-  userResult:{
-    totalValue:number,
-    submiteValue:number,
-    postArrivedValue:number,
-    checkedValue:number
+  userResult: {
+    totalValue: number;
+    submiteValue: number;
+    postArrivedValue: number;
+    checkedValue: number;
   };
 }
 
@@ -60,7 +60,7 @@ const UserList = ({
   modal,
   setModal,
   tryChangeReview,
-  userResult
+  userResult,
 }: UserListProps) => {
   return (
     <>
@@ -128,22 +128,22 @@ const UserList = ({
         </div>
         <div className="userList-resultWrapper">
           <table className="userList-list">
-              <thead>
-                <tr className="userList-list-title">
-                  <th>총 가입인원</th>
-                  <th>제출 인원</th>
-                  <th>우편 도착 인원</th>
-                  <th>검토 완료 인원</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>{userResult.totalValue}</td>
-                  <td>{userResult.submiteValue}</td>
-                  <td>{userResult.postArrivedValue}</td>
-                  <td>{userResult.checkedValue}</td>
-                </tr>
-              </tbody>
+            <thead>
+              <tr className="userList-list-title">
+                <th>총 가입인원</th>
+                <th>제출 인원</th>
+                <th>우편 도착 인원</th>
+                <th>검토 완료 인원</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{userResult.totalValue}</td>
+                <td>{userResult.submiteValue}</td>
+                <td>{userResult.postArrivedValue}</td>
+                <td>{userResult.checkedValue}</td>
+              </tr>
+            </tbody>
           </table>
         </div>
         <div className="userList-subtitle">
@@ -396,7 +396,6 @@ const UserList = ({
         </table>
       </div>
 
-
       <div className="allRatio">
         <div>
           <table className="allRatio-list">
@@ -427,7 +426,6 @@ const UserList = ({
           </table>
         </div>
 
-
         <div>
           <table className="allRatio-list">
             <thead>
@@ -456,7 +454,6 @@ const UserList = ({
             </tbody>
           </table>
         </div>
-
 
         <div>
           <table className="allRatio-list">
