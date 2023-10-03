@@ -47,7 +47,7 @@ const WriteIntroduction = ({
           <textarea
             className="intro-inputBox"
             value={selfIntroduce}
-            maxLength={1500}
+            maxLength={1499}
             onChange={(e) => {
               setSelfIntroduce(e.target.value);
               setIsChanged(true);
@@ -58,7 +58,7 @@ const WriteIntroduction = ({
           <textarea
             className="intro-inputBox"
             value={studyPlan}
-            maxLength={1500}
+            maxLength={1499}
             onChange={(e) => {
               setStudyPlan(e.target.value);
               setIsChanged(true);
