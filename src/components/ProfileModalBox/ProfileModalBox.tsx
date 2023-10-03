@@ -40,6 +40,7 @@ const ProfileModalBox = ({
           <PaperSvg className="ProfileModalSVG" />
           <span className="box-text">원서접수 현황</span>
         </div>
+
         <div
           onClick={() => history("/changepw")}
           className="ProfileModalBox-modify box pointer"

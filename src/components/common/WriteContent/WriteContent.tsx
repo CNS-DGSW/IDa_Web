@@ -58,11 +58,12 @@ const WriteContent = ({
     }
   }, [isChanged, page, setPage]);
 
-  const showPreview = useCallback(()=>{
-    if(!isChanged) {
-      window.open(`/print?auto=false${
-        userIdx !== null ? "&userIdx=" + userIdx : ""
-      }`,"_blank")
+  const showPreview = useCallback(() => {
+    if (!isChanged) {
+      window.open(
+        `/print?auto=false${userIdx !== null ? "&userIdx=" + userIdx : ""}`,
+        "_blank"
+      );
     } else {
       Swal.fire({
         title: "원서가 저장되지 않았습니다!",
@@ -74,7 +75,7 @@ const WriteContent = ({
     }
 
     // rel="noopener noeferrer"
-  },[isChanged,userIdx])
+  }, [isChanged, userIdx]);
 
   const changeSubmitCallback = useCallback(async () => {
     if (isChanged) {
