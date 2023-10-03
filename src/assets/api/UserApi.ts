@@ -4,8 +4,11 @@ import ApplyDetail from "util/enums/ApplyDetail";
 import Grade from "util/enums/Grade";
 import Relation from "util/enums/Relation";
 import Sex from "util/enums/Sex";
+import additionalType from "util/types/Additional";
+import AttendType from "util/types/Attend";
 import FreeSemType from "util/types/FreeSem";
 import ScoreGrade from "util/types/ScoreGrade";
+import volunteerType from "util/types/Volunteer";
 
 class UserApi {
   async EditUserInfo(
@@ -206,6 +209,8 @@ class UserApi {
       freeSem,
       grade,
     };
+    console.log(11)
+    console.log(body)
 
     const query = userIdx ? `?userIdx=${userIdx}` : "";
 
@@ -255,6 +260,7 @@ class UserApi {
   }
 
   async EditAttend(
+    /*
     absence1: number,
     absence2: number,
     absence3: number,
@@ -266,10 +272,12 @@ class UserApi {
     earlyLeave3: number,
     absenceLecture1: number,
     absenceLecture2: number,
-    absenceLecture3: number,
+    absenceLecture3: number, */
+    attend:AttendType,
     userIdx?: number | null
   ) {
-    const body = {
+    const body = attend
+    /* {
       absence1,
       absence2,
       absence3,
@@ -282,7 +290,8 @@ class UserApi {
       absenceLecture1,
       absenceLecture2,
       absenceLecture3,
-    };
+    }; */
+    console.log(body)
 
     const query = userIdx ? `?userIdx=${userIdx}` : "";
 
@@ -299,16 +308,18 @@ class UserApi {
   }
 
   async EditAdditional(
-    leadership11: boolean,
+    additional:additionalType,
+    userIdx?: number | null
+    /*leadership11: boolean,
     leadership12: boolean,
     leadership21: boolean,
     leadership22: boolean,
     leadership31: boolean,
     leadership32: boolean,
-    prize: number,
-    userIdx?: number | null
+    prize: number,*/
   ) {
-    const body = {
+    const body = additional
+    /* {
       leadership11,
       leadership12,
       leadership21,
@@ -316,7 +327,9 @@ class UserApi {
       leadership31,
       leadership32,
       prize,
-    };
+    }; */
+
+    console.log(body)
 
     const query = userIdx ? `?userIdx=${userIdx}` : "";
 
@@ -333,16 +346,19 @@ class UserApi {
   }
 
   async EditVolunteer(
-    volunteer1: number,
+    /* volunteer1: number,
     volunteer2: number,
-    volunteer3: number,
+    volunteer3: number, */
+    volunteer:volunteerType,
     userIdx?: number | null
   ) {
-    const body = {
+    const body = volunteer
+    /* {
       volunteer1,
       volunteer2,
       volunteer3,
-    };
+    }; */
+    console.log(body)
 
     const query = userIdx ? `?userIdx=${userIdx}` : "";
 
@@ -364,7 +380,6 @@ class UserApi {
       encodeURI(`/school/searchschool?orgName=${schoolName}&lctnScCode=${city}`)
 
     );
-    console.log(data)
     return data;
   }
 }

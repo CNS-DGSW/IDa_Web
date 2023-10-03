@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { handleGetWriteError } from "lib/handleErrors";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import {
-  absence1Atom,
+  /* absence1Atom,
   absence2Atom,
   absence3Atom,
   absenceLecture1Atom,
@@ -14,18 +14,27 @@ import {
   earlyLeave1Atom,
   earlyLeave2Atom,
   earlyLeave3Atom,
-  getAttend,
-  isChangedAtom,
   lateness1Atom,
   lateness2Atom,
-  lateness3Atom,
-} from "stores/Write/WriteAtom";
+  lateness3Atom, */
+  getAttend,
+  isChangedAtom,
+} from "stores/Write/WriteAtom"; 
+import AttendType from "util/types/Attend";
+
+interface WriteGradeAttendProps {
+  attend:AttendType;
+  setAttend:React.Dispatch<React.SetStateAction<AttendType>>;
+}
 
 // 출결 입력
-const WriteGradeAttendContainer = ({}) => {
+const WriteGradeAttendContainer = ({
+  attend,
+  setAttend
+}:WriteGradeAttendProps) => {
   const history = useNavigate();
   const setIsChanged = useSetRecoilState(isChangedAtom);
-  const [absence1, setAbsence1] = useRecoilState(absence1Atom);
+  /* const [absence1, setAbsence1] = useRecoilState(absence1Atom);
   const [absence2, setAbsence2] = useRecoilState(absence2Atom);
   const [absence3, setAbsence3] = useRecoilState(absence3Atom);
   const [lateness1, setLateness1] = useRecoilState(lateness1Atom);
@@ -39,13 +48,13 @@ const WriteGradeAttendContainer = ({}) => {
   const [absenceLecture2, setAbsenceLecture2] =
     useRecoilState(absenceLecture2Atom);
   const [absenceLecture3, setAbsenceLecture3] =
-    useRecoilState(absenceLecture3Atom);
+    useRecoilState(absenceLecture3Atom); */
   const getAttendAtom = useRecoilValue(getAttend);
   // 출결 조회
   const getAttendCallback = useCallback(async () => {
     await getAttendAtom()
       .then((res: any) => {
-        setAbsence1(res.data.absence1);
+        /* setAbsence1(res.data.absence1);
         setAbsence2(res.data.absence2);
         setAbsence3(res.data.absence3);
         setLateness1(res.data.lateness1);
@@ -56,7 +65,9 @@ const WriteGradeAttendContainer = ({}) => {
         setEarlyLeave3(res.data.earlyLeave3);
         setAbsenceLecture1(res.data.absenceLecture1);
         setAbsenceLecture2(res.data.absenceLecture2);
-        setAbsenceLecture3(res.data.absenceLecture3);
+        setAbsenceLecture3(res.data.absenceLecture3); */
+        setAttend(res.data)
+        console.log(res)
       })
       .catch((err: any) => {
         handleGetWriteError(err, history);
@@ -70,7 +81,7 @@ const WriteGradeAttendContainer = ({}) => {
   return (
     <>
       <WriteAttend
-        absence1={absence1}
+        /* absence1={absence1}
         absence2={absence2}
         absence3={absence3}
         lateness1={lateness1}
@@ -82,7 +93,6 @@ const WriteGradeAttendContainer = ({}) => {
         absenceLecture1={absenceLecture1}
         absenceLecture2={absenceLecture2}
         absenceLecture3={absenceLecture3}
-        handleIsChanged={(value: boolean) => setIsChanged(value)}
         handleAbsence1={(value: number) => setAbsence1(value)}
         handleAbsence2={(value: number) => setAbsence2(value)}
         handleAbsence3={(value: number) => setAbsence3(value)}
@@ -94,7 +104,12 @@ const WriteGradeAttendContainer = ({}) => {
         handleEarlyLeave3={(value: number) => setEarlyLeave3(value)}
         handleAbsenceLecture1={(value: number) => setAbsenceLecture1(value)}
         handleAbsenceLecture2={(value: number) => setAbsenceLecture2(value)}
-        handleAbsenceLecture3={(value: number) => setAbsenceLecture3(value)}
+        handleAbsenceLecture3={(value: number) => setAbsenceLecture3(value)} */
+        
+        handleIsChanged={(value: boolean) => setIsChanged(value)}
+        attend={attend}
+        setAttend={setAttend}
+
       />
     </>
   );

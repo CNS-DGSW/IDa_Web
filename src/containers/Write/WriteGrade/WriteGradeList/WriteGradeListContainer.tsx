@@ -9,6 +9,7 @@ import updateSemGrade from "lib/updateSemGrade";
 import { handleGetWriteError } from "lib/handleErrors";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import {
+  editGrade,
   freeSemAtom,
   getGradeList,
   gradeTypeAtom,
@@ -16,16 +17,31 @@ import {
   isChangedAtom,
 } from "stores/Write/WriteAtom";
 import FreeSemType from "util/types/FreeSem";
+import ScoreGrade from "util/types/ScoreGrade";
+
+interface WriteGradeListContainer {
+  grades:ScoreGrade[];
+  setGrades:React.Dispatch<React.SetStateAction<ScoreGrade[]>>;
+  freeSem:FreeSemType;
+  setFreeSem:React.Dispatch<React.SetStateAction<FreeSemType>>;
+}
 
 // 성적 리스트
-const WriteGradeListContainer = ({}) => {
+const WriteGradeListContainer = ({
+  grades,
+  setGrades,
+  freeSem,
+  setFreeSem
+}:WriteGradeListContainer) => {
   const history = useNavigate();
 
   const gradeType = useRecoilValue(gradeTypeAtom);
   const getGradeListAtom = useRecoilValue(getGradeList);
-  const [grades, setGrades] = useRecoilState(gradesAtom);
-  const [freeSem, setFreeSem] = useRecoilState(freeSemAtom);
+  //const [grades, setGrades] = useRecoilState(gradesAtom);
+  //const [freeSem, setFreeSem] = useRecoilState(freeSemAtom);
   const setIsChanged = useSetRecoilState(isChangedAtom);
+  const gr = useRecoilValue(gradesAtom)
+  const editGradeAtom = useRecoilValue(editGrade);
 
   // 성적 리스트 조회
   const getGradeListCallback = useCallback(async () => {
@@ -64,12 +80,14 @@ const WriteGradeListContainer = ({}) => {
       subjectName: "",
     };
 
+
     setGrades([...grades, grade]);
   };
 
   // 해당 과목 성적 수정
   const handleGradesCallback = useCallback(
     (idx: number, value: Score, subjectName: string) => {
+      console.log(grades)
       const gradeIdx = grades.findIndex((grade: any) => {
         return grade.subjectName === subjectName;
       });
@@ -87,6 +105,7 @@ const WriteGradeListContainer = ({}) => {
           score32: Score.NONE,
           subjectName,
         };
+
       if (gradeIdx !== -1) {
         setGrades([
           ...grades.slice(0, gradeIdx),
