@@ -34,7 +34,7 @@ const UserListPassed = ({
           <button onClick={() => tryDownExcel("first")} className="header-btn">
             1차 합격 엑셀
           </button>
-          {firstData ? (
+          {/* firstData ? (
             <>
               <button
                 className="header-btn true"
@@ -52,13 +52,13 @@ const UserListPassed = ({
                 1차 합격 확인 불가능
               </button>
             </>
-          )}
+          ) */}
         </div>
         <div className="listPassed-finalBtn">
           <button onClick={() => tryDownExcel("final")} className="header-btn">
             최종 합격 엑셀
           </button>
-          {secondData ? (
+          {/* secondData ? (
             <>
               <button
                 className="header-btn true"
@@ -80,7 +80,7 @@ const UserListPassed = ({
                 최종 합격 확인 불가능
               </button>
             </>
-          )}
+              ) */}
         </div>
         <select
           className="listPassed-select"
