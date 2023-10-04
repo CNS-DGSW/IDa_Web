@@ -40,6 +40,7 @@ const WriteStudentContainer = ({}) => {
         );
         setSex(res.data.sex);
         setStudentTel(res.data.studentTel || "");
+        console.log(res.data)
       })
       .catch((err: any) => {
         handleGetWriteError(err, history);
