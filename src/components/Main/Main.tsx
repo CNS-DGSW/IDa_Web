@@ -46,17 +46,7 @@ const Main = ({
           <div className="Content-box-area">
             <MainContent title="원서 접수 일정">
               <div>
-                <p className="Content-box-area-small">특별/일반전형 원서접수</p>
-                <p className="Content-box-area-bold">
-                  {`${moment(submitStartTime)
-                    .locale("ko")
-                    .format("yyyy. MM. DD.(ddd) HH:mm")} ~ ${moment(
-                    submitEndTime
-                  )
-                    .locale("ko")
-                    .format("yyyy. MM. DD.(ddd) HH:mm")}`}
-                </p>
-                <p className="Content-box-area-small">원서 및 서류제출</p>
+                <p className="Content-box-area-small">원서 접수 및 서류 제출</p>
                 <p className="Content-box-area-bold">
                   {`${moment(submitStartTime)
                     .locale("ko")
@@ -67,7 +57,7 @@ const Main = ({
                     .format("yyyy. MM. DD.(ddd) HH:mm")}`}
                 </p>
                 <p className="Content-box-area-small">
-                  서류는 반드시 원서접수 마감 시간 이내에 도착해야 합니다.
+                입학 원서 접수 사이트에서 원서를 접수하고, 원서를 출력하여 서류와 함께 제출해야 합니다.<br/>우편 또는 방문 제출 가능하며, 반드시 원서 접수 마감 시간 이내에 도착해야 합니다. 
                 </p>
               </div>
             </MainContent>
