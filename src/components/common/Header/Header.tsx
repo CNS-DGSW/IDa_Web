@@ -70,7 +70,7 @@ const Header = ({
             <span>홈</span>
           </NavLink>
           <NavLink to="/write" className="header-menu-content-item">
-            <span>원서접수</span>
+            <span>원서 접수</span>
           </NavLink>
           <NavLink to="/notice" className="header-menu-content-item">
             <span>공지사항</span>
@@ -112,7 +112,7 @@ const Header = ({
             <span>홈</span>
           </NavLink>
           <NavLink to="/write" className="header-container-link-item">
-            <span>원서접수 </span>
+            <span>원서 접수 </span>
           </NavLink>
           <NavLink to="/notice" className="header-container-link-item">
             <span>공지사항</span>
