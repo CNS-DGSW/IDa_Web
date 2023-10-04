@@ -101,6 +101,7 @@ const RegisterContainer = () => {
       await trySendEmail(email)
         .then((_) => {
           toast.success("이메일이 전송되었습니다.");
+          toast.success("받으신 이메일을 열어 인증 버튼을 눌러주세요.");
           setLoading(false);
         })
         .catch((err: any) => {
