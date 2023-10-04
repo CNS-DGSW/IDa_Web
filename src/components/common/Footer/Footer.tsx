@@ -9,7 +9,7 @@ const Footer = ({}: FooterProps) => {
       <div className="footer">
         <div className="footer-wrap">
           <span className="footer-wrap-address">
-            원서접수처 주소:(43010)대구광역시 달성군 구지면 창리로 11길 93
+            원서 접수처 주소: (43010)대구광역시 달성군 구지면 창리로 11길 93
             대구소프트웨어마이스터고등학교
           </span>
         </div>

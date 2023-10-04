@@ -34,7 +34,7 @@ const Login = ({
       <AuthContent
         title={"Welcome"}
         description={
-          "대구소프트웨어마이스터고등학교 원서 작성 사이트에 오신 것을 환영합니다."
+          "대구소프트웨어마이스터고등학교 입학 원서 접수 사이트에 오신 것을 환영합니다."
         }
         contentTitle={"로그인"}
         footers={

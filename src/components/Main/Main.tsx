@@ -28,7 +28,7 @@ const Main = ({
                 대구소프트웨어마이스터고등학교
               </p>
               <p className="Main-content-Title-Main">
-                {new Date().getFullYear() + 1}학년도 신입생 입학원서 접수
+                {new Date().getFullYear() + 1}학년도 신입생 입학 원서 접수
               </p>
               <div
                 className="Main-content-btn"
@@ -46,17 +46,7 @@ const Main = ({
           <div className="Content-box-area">
             <MainContent title="원서 접수 일정">
               <div>
-                <p className="Content-box-area-small">특별/일반전형 원서접수</p>
-                <p className="Content-box-area-bold">
-                  {`${moment(submitStartTime)
-                    .locale("ko")
-                    .format("yyyy. MM. DD.(ddd) HH:mm")} ~ ${moment(
-                    submitEndTime
-                  )
-                    .locale("ko")
-                    .format("yyyy. MM. DD.(ddd) HH:mm")}`}
-                </p>
-                <p className="Content-box-area-small">원서 및 서류제출</p>
+                <p className="Content-box-area-small">원서 접수 및 서류 제출</p>
                 <p className="Content-box-area-bold">
                   {`${moment(submitStartTime)
                     .locale("ko")
@@ -67,7 +57,7 @@ const Main = ({
                     .format("yyyy. MM. DD.(ddd) HH:mm")}`}
                 </p>
                 <p className="Content-box-area-small">
-                  서류는 반드시 원서접수 마감 시간 이내에 도착해야 합니다.
+                원서 접수 사이트에서 원서 접수 후 출력하여 서류와 함께 제출해야 합니다.<br/>우편 또는 방문 제출 가능하며, 반드시 마감 시간 이내에 도착해야 합니다. 
                 </p>
               </div>
             </MainContent>
@@ -106,9 +96,9 @@ const Main = ({
               </div>
             </MainContent>
 
-            <MainContent title="최종결과 확인">
+            <MainContent title="최종 결과 확인">
               <div>
-                <p className="Content-box-area-small">최종결과 발표</p>
+                <p className="Content-box-area-small">최종 결과 발표</p>
                 <p className="Content-box-area-bold">
                   {moment(finalTime)
                     .locale("ko")
@@ -125,7 +115,7 @@ const Main = ({
                     className="Content-box-area-btn-style"
                     onClick={() => secondOpenModal()}
                   >
-                    최종결과확인
+                    최종 결과 확인
                   </div>
                 </div>
               </div>
