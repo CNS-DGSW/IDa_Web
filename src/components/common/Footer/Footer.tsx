@@ -15,7 +15,7 @@ const Footer = ({}: FooterProps) => {
         </div>
         <div className="footer-wrap">
           <span className="footer-wrap-tel">
-            교무실: 053-231-9218 | 행정실: 053-231-9219 / FAX{")"}
+            교무실: 053-231-9218 | 행정실: 053-231-9215 / FAX{")"}
             053-614-0709
           </span>
         </div>
