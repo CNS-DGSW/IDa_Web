@@ -111,7 +111,7 @@ const Register = ({
         }
       >
         <div className="Register-box-form">
-          <div className="Register-box-form-temp-small">이름</div>
+          <div className="Register-box-form-temp-small">학생 이름</div>
           <CustomInput
             placeholder="이름"
             type="text"
@@ -120,7 +120,7 @@ const Register = ({
             maxLength={45}
             style={{ width: "100%" }}
           />
-          <div className="Register-box-form-temp-small">생년월일</div>
+          <div className="Register-box-form-temp-small">학생 생년월일</div>
           <CustomInput
             placeholder={`생년월일 ${new Date().getFullYear() - 15}0101`}
             type="text"
