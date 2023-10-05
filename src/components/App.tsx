@@ -13,6 +13,7 @@ import FindPage from "pages/FindPage";
 import WritePrintPage from "pages/WritePrintPage";
 import NoticePage from "pages/NoticePage";
 import WritePage from "pages/WritePage";
+import NotFoundPage from "pages/NotFoundPage";
 
 const SecondTypeScorePage = React.lazy(
   () => import("pages/AdminPage/SecondTypeScorePage")
@@ -70,6 +71,7 @@ const App = () => {
           />
           <Route path="/admin/userResultPage" element={<UserResultPage />} />
           <Route path="/admin/detailScore" element={<SecondDetailSocre />} />
+          <Route path={"*"} element={<NotFoundPage />} />
         </Routes>
       </Suspense>
     </div>

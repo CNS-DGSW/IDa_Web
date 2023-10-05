@@ -1,0 +1,43 @@
+.MainContainer {
+  background-image: url("../../assets/images/background.svg");
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  height: 100vh;
+}
+
+.SubContainer {
+  margin-left: -30rem;
+}
+
+.Title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #4861ff;
+}
+
+.SubTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 0.1rem;
+  color: #465ae1;
+}
+
+.Context {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-top: 2rem;
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  color: white;
+  background-color: #d5d8e9;
+  &:hover {
+    background-color: #bcc1e4;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
