@@ -40,7 +40,7 @@ const WriteIntroductionContainer = ({}) => {
         ),
       ];
 
-      console.log(studyPlan);
+      // console.log(studyPlan);
 
       await Promise.all(promises)
         .then(() => {

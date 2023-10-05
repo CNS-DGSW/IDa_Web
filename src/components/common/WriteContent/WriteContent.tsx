@@ -78,6 +78,8 @@ const WriteContent = ({
   }, [isChanged, userIdx]);
 
   const changeSubmitCallback = useCallback(async () => {
+    toast.warning("현재 원서 접수 기간이 아닙니다.");
+    return;
     if (isChanged) {
       toast.warning("변경사항이 저장되지 않았습니다.");
       return;
