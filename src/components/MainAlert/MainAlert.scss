@@ -39,8 +39,8 @@
 
 .AlertHeaderIcon {
   margin-left: 1rem;
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 1.75rem;
+  height: 1.75rem;
   background-image: url("../../assets/images/infoIcon.svg");
   background-size: cover;
 }
@@ -55,6 +55,7 @@
 }
 
 .AlertHeaderContext {
+  font-size: 1.5rem;
   margin-left: 0.75rem;
   color: white;
 }
