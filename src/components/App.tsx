@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import { Route, Routes } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
@@ -45,10 +45,11 @@ const UserResultPage = React.lazy(
 );
 
 const App = () => {
+  const [isTest] = useState<boolean>(true);
   return (
-    <div className="App">
-      <MainAlert />
-      <div className="BlurContainer">
+    <div className={!isTest ? "App" : ""}>
+      {!isTest && <MainAlert />}
+      <div className={!isTest ? "BlurContainer" : ""}>
         <ToastContainer />
         <Suspense fallback={<></>}>
           <Routes>
