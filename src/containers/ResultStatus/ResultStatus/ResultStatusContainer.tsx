@@ -61,10 +61,10 @@ const ResultStatusContainer = ({}: ResultStatusContainerPropse) => {
         // console.log("from getStatus() ", res);
         // console.log(submit, res.data.isSubmit);
         // console.log(print, res.data.isPrintedApplicationArrived);
-        // console.log(checkedPrint, res.data.applicationChecked);
+        console.log(checkedPrint, res.data.applicationChecked);
         setInternet(submit); // 인터넷 원서 접수 현황
         setPost(print); // 우편 원서 접수 현황
-        setCheckedPost(checkedPrint); // 우편 원서 검토 현황
+        setCheckedPost(res.data.applicationChecked); // 우편 원서 검토 현황
         // setInternet(res.data.isSubmit); // 인터넷 원서 접수 현황
         // setPost(res.data.isPrintedApplicationArrived); // 우편 원서 접수 현황
         // setCheckedPost(res.data.isPrintedApplicationCheck); // 우편 원서 검토 현황
