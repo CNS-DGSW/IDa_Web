@@ -27,10 +27,10 @@ const WritePhoto = ({
             <img
               src={preview.toString()}
               className="photo-preview"
-              alt="이미지 없음"
+              alt="이미지없음"
             />
           ) : (
-            <div className="photo-preview">등록된 이미지 없음.</div>
+            <div className="photo-preview">등록된 이미지 없음</div>
           )}
           <label htmlFor="preview">사진 선택</label>
           <input

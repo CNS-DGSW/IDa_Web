@@ -57,7 +57,7 @@ const SecondTypeScore = ({
               </button>
             </div> */}
             <div className="SecondScore-buttons-download">
-              <span>최종 결과 다운로드</span>
+              <span>최종 결과</span>
               <button
                 className="buttons"
                 onClick={() => tryDown("secondScore")}
@@ -69,7 +69,7 @@ const SecondTypeScore = ({
         ) : (
           <></>
         )}
-{/*          <>
+        {/*          <>
             <div className="SecondScore-buttons-upload">
               <span>직무적성 소양평가</span>
               <label htmlFor="input-file1" className="buttons">
