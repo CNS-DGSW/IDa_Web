@@ -1,0 +1,60 @@
+.MainAlert {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.AlertContainer {
+  position: relative;
+  width: 30%;
+  height: 30%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  font-size: 1.75rem;
+  font-weight: 600;
+  overflow: hidden;
+}
+
+.AlertCotents {
+  text-align: center;
+}
+
+.AlertHeader {
+  background-color: #0d2a65;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+}
+
+.AlertHeaderIcon {
+  margin-left: 1rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  background-image: url("../../assets/images/infoIcon.svg");
+  background-size: cover;
+}
+
+.Alerttjdgnsdl {
+  position: absolute;
+  width: 23rem;
+  height: 13rem;
+  background-image: url("../../assets/images/tjdgnsdl.png");
+  background-size: cover;
+  margin-bottom: -8rem;
+}
+
+.AlertHeaderContext {
+  margin-left: 0.75rem;
+  color: white;
+}

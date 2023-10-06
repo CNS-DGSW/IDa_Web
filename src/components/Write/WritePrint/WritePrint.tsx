@@ -79,7 +79,7 @@ interface WritePrintProps {
   otherScore: number;
   socialScore: number;
   scienceScore: number;
-  sex:string;
+  sex: string;
 }
 
 const WritePrint = ({
