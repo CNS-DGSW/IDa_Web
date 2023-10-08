@@ -62,7 +62,7 @@ const SecondResultContainer = ({
   };
 
   const history = useNavigate();
-  const [comment, setComment] = useState<string>("값이 없습니다.");
+  const [comment, setComment] = useState<string>("");
 
 
   // 합격 여부 불합격 여부 등 멘트를 useState로 관리
@@ -83,8 +83,6 @@ const SecondResultContainer = ({
     // pass 여부 받아오기
     tryGetFinalStatusAtom()
       .then((res) => {
-        console.log("=>>", res.data);
-        console.log(school)
         selectComment(res.data.isPassed);
         setModalLoading(false);
       })
