@@ -55,7 +55,7 @@ const FirstResultContainer = ({
   const history = useNavigate();
   const [errStatus, setErrStatus] = useState<number>(0);
   const status: number = 403;
-  const [comment, setComment] = useState<string | undefined>("");
+  const [comment, setComment] = useState<string | undefined>("값이 없습니다.");
   // 합격 불합격 채점중 등등 멘트를 관리하는 state
   const [applyCheck, setApplyCheck] = useState<Apply | null>();
   const [applyComment, setApplyComment] = useState<string>("");
@@ -74,22 +74,20 @@ const FirstResultContainer = ({
       print
     );
 
-    if (canAccess) {
-      if (pass) {
-        setComment("축하드립니다 합격되었습니다.");
-        if (applyCheck === Apply.SPECIAL) {
-          setApplyComment("특별전형");
-        } else if (applyCheck === Apply.COMMON) {
-          setApplyComment("일반전형");
-        } else if (applyCheck === Apply.OTHER) {
-          setApplyComment("특례입학");
-        }
-      } else if (pass === false) {
-        setComment("안타깝게도 불합격 되었습니다.");
-      } 
-    } else {
-      setComment("기다려주세요. 아직 결과가 나오지 않았습니다.");
-    }
+    // if (canAccess) {
+    if (pass) {
+      setComment("축하드립니다 합격되었습니다.");
+      if (applyCheck === Apply.SPECIAL) {
+        setApplyComment("특별전형");
+      } else if (applyCheck === Apply.COMMON) {
+        setApplyComment("일반전형");
+      } else if (applyCheck === Apply.OTHER) {
+        setApplyComment("특례입학");
+      }
+    } else if (pass === false) {
+      setComment("안타깝게도 불합격 되었습니다.");
+    } 
+    // }
       /* else if (pass === null) {
         if (!submit || !print) {
           setComment("미제출 또는 우편미도착 입니다.");
@@ -112,11 +110,11 @@ const FirstResultContainer = ({
       })
       .catch((err) => {
         setErrStatus(err.response.status);
-        // if (errStatus === 403) {
-        //   setComment("아직 확인 불가능 합니다.");
-        // } else {
-        handleLogin(err, history);
-        // }
+        if (err.response?.status === 400) {
+          setComment("합격 발표일시는 2023. 10. 25.(수) 10:00입니다.");
+        } else {
+          handleLogin(err, history);
+        }
       });
   }, [applyCheck, errStatus, modalLoading, setModalLoading]);
 
