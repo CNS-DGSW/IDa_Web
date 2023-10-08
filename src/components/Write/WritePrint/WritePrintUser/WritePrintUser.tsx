@@ -82,7 +82,6 @@ const WritePrintUser = ({
     .locale("ko")
     .format("yyyy. MM. DD.(ddd) HH:mm");
   
-    console.log(profileImage)
   return (
     <div className="write-print-user">
       <div className="write-print-user-title">

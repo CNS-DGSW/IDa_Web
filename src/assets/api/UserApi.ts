@@ -383,6 +383,13 @@ class UserApi {
     );
     return data;
   }
+
+  async GetNumber(userIdx?: number | null) {
+    const query = userIdx ? `?userIdx=${userIdx}` : "";
+
+    const { data } = await Api.get(`/user/getNumber${query}`);
+    return data;
+  }
 }
 
 export default new UserApi();
