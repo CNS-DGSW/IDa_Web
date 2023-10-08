@@ -39,7 +39,7 @@ const ApplicantCompetitionRate = ({
     <>
       <div>
         <div className="rates">
-          <span className="rates-title">입학지원자 경쟁률</span>
+          <span className="rates-title">지원자 경쟁률</span>
           <button onClick={() => tryDownExcel()} className="rates-btn">
             엑셀 다운로드
           </button>

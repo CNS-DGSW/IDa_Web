@@ -15,6 +15,7 @@ export type List = {
   schoolName: string;
   studentTel: string;
   applicationChecked: string;
+  sex:string;
 };
 
 export type ListPassed = {
@@ -32,6 +33,7 @@ export type ListPassed = {
   studentTel: string;
   submitCode: string;
   applyType: string;
+  sex: string;
 };
 
 export type Rate = {

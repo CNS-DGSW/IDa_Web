@@ -115,6 +115,7 @@ const SecondTypeScore = ({
               <th>순번</th>
               <th>수험번호</th>
               <th>이름</th>
+              <th>성별</th>
               <th>학력</th>
               <th>지역</th>
               <th>학교</th>
@@ -140,6 +141,8 @@ const SecondTypeScore = ({
                 {/* 수험번호 */}
                 <td>{i.userName}</td>
                 {/* 이름 */}
+                <td>{i.sex}</td>
+                {/* 성별 */}
                 <td>
                   {i.gradeType === "UNGRADUATED" && "졸업예정"}
                   {i.gradeType === "GRADUATED" && "졸업"}

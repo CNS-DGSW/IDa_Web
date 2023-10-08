@@ -14,20 +14,20 @@ const DefaultAdminHeader = ({ children }: DefaultAdminHeaderProps) => {
       <div className="Admin">
         <div className="Admin-header">
           <NavLink to="/admin/userList" className="Admin-header-link">
-            <span>지원자 현황</span>
+            <span>지원자 정보</span>
           </NavLink>
           <NavLink to="/admin/schoolCity" className="Admin-header-link">
-            <span>출신교별 현황</span>
+            <span>지역·출신교별 현황</span>
           </NavLink>
           <NavLink to="/admin/userRate" className="Admin-header-link">
-            <span>입학지원자경쟁률</span>
+            <span>지원자 경쟁률</span>
           </NavLink>
           <NavLink to="/admin/receiptStatus" className="Admin-header-link">
             <span>신입생 입학 전형 원부</span>
           </NavLink>
           <NavLink to="/admin/detailScore" className="Admin-header-link">
             <span style={{ textAlign: "center", display: "flex" }}>
-              2차 전형 점수 관리 <br></br>(직무적성, 학업 및 진로역량, 컴퓨팅)
+              2차 전형 점수 관리 <br></br>(직무적성, 학업 및 진로, 컴퓨팅)
             </span>
           </NavLink>
           {/*<NavLink

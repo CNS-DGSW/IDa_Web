@@ -19,7 +19,7 @@ const SecondTypeScore = ({
 }: SecondTypeScoreProps) => {
   return (
     <div className="SecondScore">
-      <span className="SecondScore-title" style={{textAlign:"center"}}>2차 전형 점수 관리 <br></br>(직무적성, 학업 및 진로, 컴퓨팅 사고)</span>
+      <span className="SecondScore-title" style={{textAlign:"center"}}>2차 전형 점수 관리 <br></br>(직무적성, 학업 및 진로, 컴퓨팅)</span>
       <div className="SecondScore-buttons">
         <select
           className="SecondScore-buttons-s-op"
@@ -105,6 +105,7 @@ const SecondTypeScore = ({
               <th>순번</th>
               <th>수험번호</th>
               <th>이름</th>
+              <th>성별</th>
               <th>학력</th>
               <th>지역</th>
               <th>1차합격전형</th>
@@ -132,6 +133,8 @@ const SecondTypeScore = ({
                 {/* 수험번호 */}
                 <td>{i.userName}</td>
                 {/* 이름 */}
+                <td>{i.sex}</td>
+                {/* 성별 */}
                 <td>
                   {i.gradeType === "UNGRADUATED" && "졸업예정"}
                   {i.gradeType === "GRADUATED" && "졸업"}

@@ -43,6 +43,7 @@ const AdminReceiptStatus = ({
               <th>접수번호</th>
               <th>수험번호</th>
               <th>성명</th>
+              <th>성별</th>
               <th>생년월일</th>
               <th>지역명</th>
               <th>출신학교</th>
@@ -82,6 +83,7 @@ const AdminReceiptStatus = ({
                       <td>{filteredName.submitCode}</td>
                       <td>{filteredName.examCode}</td>
                       <td>{filteredName.name}</td>
+                      <td>{filteredName.sex}</td>
                       <td>
                         {filteredName.birth &&
                           moment(filteredName.birth).format("yyyy-MM-DD")}
@@ -124,6 +126,7 @@ const AdminReceiptStatus = ({
                     <td>{res.submitCode}</td>
                     <td>{res.examCode}</td>
                     <td>{res.name}</td>
+                    <td>{res.sex}</td>
                     <td>
                       {res.birth && moment(res.birth).format("yyyy-MM-DD")}
                     </td>
