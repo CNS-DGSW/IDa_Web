@@ -171,6 +171,7 @@ const Register = ({
               value={phoneNum}
               setValue={setPhoneNum}
               style={{ width: "100%" }}
+              maxLength={13}
             />
             {/* <CustomInput
               type="button"
