@@ -27,6 +27,7 @@ const UserListContainer = ({}) => {
 
   const [id, setId] = useState<string>("");
   const [pw, setPw] = useState<string>("");
+  const [sex, setSex] = useState<string>("");
   const [birth, setBirth] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [modal, setModal] = useState<boolean>(false);
@@ -130,6 +131,7 @@ const UserListContainer = ({}) => {
         setCityStatus(res.data.userCityRatio);
         setDateStatus(res.data.userDateRatio);
         setSchoolStatus(res.data.userSchoolRatio);
+        console.log(res)
       })
       .catch((err: any) => {
         handleLogin(err, history);
@@ -204,6 +206,8 @@ const UserListContainer = ({}) => {
       setName={setName}
       birth={birth}
       setBirth={setBirth}
+      sex={sex}
+      setSex={setSex}
       tryAddUser={tryAddUser}
       deleteUser={deleteUser}
       modal={modal}

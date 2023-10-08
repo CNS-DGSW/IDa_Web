@@ -25,6 +25,8 @@ interface UserListProps {
   setName: React.Dispatch<React.SetStateAction<string>>;
   birth: string;
   setBirth: React.Dispatch<React.SetStateAction<string>>;
+  sex: string;
+  setSex: React.Dispatch<React.SetStateAction<string>>;
   tryAddUser: () => void;
   deleteUser: (userIdx: number) => void;
   modal: boolean;
@@ -55,6 +57,8 @@ const UserList = ({
   setName,
   birth,
   setBirth,
+  sex,
+  setSex,
   tryAddUser,
   deleteUser,
   modal,
@@ -105,7 +109,7 @@ const UserList = ({
             </Button>
           </Modal>
         )}
-        <div className="userList-title">지원자 현황</div>
+        <div className="userList-title">지원자 정보</div>
         <div className="userList-search">
           <input
             type="text"
@@ -157,6 +161,7 @@ const UserList = ({
               <th>아이디</th>
               <th>출신학교</th>
               <th>지역</th>
+              <th>성별</th>
               <th>생년월일</th>
               <th>연락처</th>
               <th>원서작성</th>
@@ -182,7 +187,9 @@ const UserList = ({
                       (typeof name.email === "string" &&
                         name.email.includes(search)) ||
                       (typeof name.studentTel === "string" &&
-                        name.studentTel.includes(search))
+                        name.studentTel.includes(search)) ||
+                      (typeof name.sex === "string" &&
+                        name.sex.includes(search))
                   )
                   .map((filter, idx) => (
                     <tr key={idx}>
@@ -215,6 +222,9 @@ const UserList = ({
                         ) : (
                           <>{filter.cityName}</>
                         )}
+                      </td>
+                      <td>
+                        {filter.sex}
                       </td>
                       <td>
                         {filter.birth === null ? (
@@ -315,6 +325,9 @@ const UserList = ({
                     </td>
                     <td>
                       {i.cityName === null ? <>지정안됨</> : <>{i.cityName}</>}
+                    </td>
+                    <td>
+                        {i.sex}
                     </td>
                     <td>
                       {i.birth === null ? (

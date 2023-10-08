@@ -32,7 +32,7 @@ const UserListPassed = ({
         <span className="listPassed-title">1차 / 최종 합격 여부</span>
         <div className="listPassed-firstBtn">
           <button onClick={() => tryDownExcel("first")} className="header-btn">
-            1차 합격 엑셀
+            1차 전형 결과 엑셀
           </button>
           {/* firstData ? (
             <>
@@ -56,7 +56,7 @@ const UserListPassed = ({
         </div>
         <div className="listPassed-finalBtn">
           <button onClick={() => tryDownExcel("final")} className="header-btn">
-            최종 합격 엑셀
+            최종 결과 엑셀
           </button>
           {/* secondData ? (
             <>
@@ -102,6 +102,7 @@ const UserListPassed = ({
                 <>
                   <th>순번</th>
                   <th>이름</th>
+                  <th>성별</th>
                   <th>출신학교</th>
                   <th>지역</th>
                   <th>전화번호</th>
@@ -117,6 +118,7 @@ const UserListPassed = ({
                 <>
                   <th>순번</th>
                   <th>이름</th>
+                  <th>성별</th>
                   <th>출신학교</th>
                   <th>지역</th>
                   <th>전화번호</th>
@@ -142,6 +144,7 @@ const UserListPassed = ({
                           {i.name}
                         </a>
                       </td>
+                      <td>{i.sex}</td>
                       <td>{i.schoolName}</td>
                       <td>{i.cityName}</td>
                       <td>{i.studentTel}</td>
@@ -161,6 +164,7 @@ const UserListPassed = ({
                           {i.name}
                         </a>
                       </td>
+                      <td>{i.sex}</td>
                       <td>{i.schoolName}</td>
                       <td>{i.cityName}</td>
                       <td>{i.studentTel}</td>

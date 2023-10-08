@@ -22,4 +22,5 @@ export type Receipt = {
   specialTotalScore: number;
   userIdx: number;
   volunteerScore: number;
+  sex:string
 };

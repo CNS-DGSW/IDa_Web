@@ -22,7 +22,7 @@ const AdminUserSchoolCity = ({
   return (
     <>
       <div className="schoolcity">
-        <div className="schoolcity-title">지역별 출신교별 현황</div>
+        <div className="schoolcity-title">지역·출신교별 현황</div>
         <div
           className="schoolcity-btn"
           onClick={() => getUserSchoolCityExcel()}

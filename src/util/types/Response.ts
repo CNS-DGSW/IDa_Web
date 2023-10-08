@@ -295,6 +295,7 @@ export interface SecondScoreResponse extends Response {
       // 봉사
       volunteerScore: number;
       isPassed: boolean | null;
+      sex:string
     }
   ];
 }
