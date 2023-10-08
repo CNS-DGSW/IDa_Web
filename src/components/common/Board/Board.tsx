@@ -71,7 +71,7 @@ const Board = ({
                     setShow(true);
                   }}
                 >
-                  <td className="Board-list-container-idx">{post.idx}</td>
+                  <td className="Board-list-container-idx">{posts.length - idx}</td>
                   <td className="Board-list-container-title">{post.title}</td>
                   <td className="Board-list-container-user">{post.user.name}</td>
                   <td className="Board-list-container-date">
