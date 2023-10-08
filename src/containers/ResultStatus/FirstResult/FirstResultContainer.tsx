@@ -109,9 +109,10 @@ const FirstResultContainer = ({
         setModalLoading(false);
       })
       .catch((err) => {
-        setErrStatus(err.response.status);
+        // setErrStatus(err.response.status);
         if (err.response?.status === 400) {
           setComment("합격 발표일시는 2023. 10. 25.(수) 10:00입니다.");
+          setModalLoading(false);
         } else {
           handleLogin(err, history);
         }
