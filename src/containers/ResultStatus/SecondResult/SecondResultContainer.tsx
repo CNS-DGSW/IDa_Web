@@ -50,13 +50,13 @@ const SecondResultContainer = ({
     setIsPassed(response.data.isPassed || null);
     setFinalApplyType(response.data.finalApplyType || null);
     setFinalApplyDetailType(response.data.finalApplyDetailType || null);
-    setExamCode(response.data.examCode || null);
+    /* setExamCode(response.data.examCode || null);
     setName(response.data.name || "");
     setSex(response.data.sex || null);
     setBirth(response.data.birth || null);
     setGradeType(response.data.gradeType || null);
     setArea(response.data.area || null);
-    setSchool(response.data.school || null);
+    setSchool(response.data.school || null); */
 
     return response;
   };
@@ -114,15 +114,15 @@ const SecondResultContainer = ({
             <br />
             <hr />
             <br />
-            <div>수험번호 :{examCode} </div>
+            {/* <div>수험번호 :{examCode} </div>
             <div>성명 : {name}</div>
             <div>성별 : {sex}</div>
             <div>생년월일 : {birth?.split("T")[0]}</div>
             <div>지역 : {area}</div>
             <div>출신학교 : {school}</div>
-            <div>학력 : {gradeType}</div>
-            {isPassed && <div>합격 전형 : {finalApplyType}</div>}
+            <div>학력 : {gradeType}</div> */}
             <div>최종합격여부 : {isPassed ? "합격" : "불합격"}</div>
+            {isPassed && <div>합격 전형 : {finalApplyType}</div>}
           </div>
         )}
       </SecondResult>
