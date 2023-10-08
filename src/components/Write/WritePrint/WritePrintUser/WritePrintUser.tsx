@@ -319,22 +319,22 @@ const WritePrintUser = ({
           </tr>
           <tr>
             <th
-              className="write-print-user-top-left"
+              className="write-print-user-top-left write-print-user-bottom-left"
               // id={applyType === Apply.COMMON ? "selected-apply" : ""}
             >
               성적
             </th>
-            <td className="write-print-user-top-left">{grade1.toFixed(3)}</td>
-            <td className="write-print-user-top-left">
+            <td className="write-print-user-top-left write-print-user-bottom-left">{grade1.toFixed(3)}</td>
+            <td className="write-print-user-top-left write-print-user-bottom-left">
               {gradeType === Grade.GED ? "X" : absence}
             </td>
-            <td className="write-print-user-top-left">
+            <td className="write-print-user-top-left write-print-user-bottom-left">
               {gradeType === Grade.GED ? "X" : volunteer}
             </td>
-            <td className="write-print-user-top-left">
+            <td className="write-print-user-top-left write-print-user-bottom-left">
               {gradeType === Grade.GED ? "X" : additional}
             </td>
-            <td className="write-print-user-top-left write-print-user-right">
+            <td className="write-print-user-top-left write-print-user-bottom-right">
               {totalScore1.toFixed(3)}
             </td>
           </tr>
