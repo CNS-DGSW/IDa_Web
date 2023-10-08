@@ -13,6 +13,7 @@ import {
   setFirstSelection,
   setSecondSelection,
 } from "stores/Admin/util";
+import { toast } from "react-toastify";
 
 const UserRateContainer = ({}) => {
   const history = useNavigate();
@@ -74,7 +75,15 @@ const UserRateContainer = ({}) => {
   const onClickSetSecondSelection = useCallback(() => {
     setSecondSelection().then(() => {
       tryGetUserResultList();
-    });
+    })
+    .catch((err)=>{
+      console.log(err.response?.state)
+      if(err.response?.status === 500) {
+        toast.warning('정원 미달입니다.')
+      } else {
+        handleAdmin(err, history);
+      }
+    })
   }, []);
 
   return (

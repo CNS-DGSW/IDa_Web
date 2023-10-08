@@ -25,7 +25,17 @@ const AdminReceiptStatus = ({
     <>
       <div className="receipt">
         <div className="receipt-title">신입생 입학 전형 원부</div>
-        <div className="receipt-btn" onClick={() => getReceiptStatusExcel()}>
+        <div className="receipt-btn" onClick={() => {
+          getReceiptStatusExcel()
+          .then((res)=>{
+            console.log(res)
+            console.log('okay')
+          })
+          .catch((err)=>{
+            console.log(err)
+            console.log('error')
+          })
+        }}>
           현자료 엑셀 내려받기
         </div>
 

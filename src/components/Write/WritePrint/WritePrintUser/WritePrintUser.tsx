@@ -325,13 +325,13 @@ const WritePrintUser = ({
             </th>
             <td className="write-print-user-top-left write-print-user-bottom-left">{grade1.toFixed(3)}</td>
             <td className="write-print-user-top-left write-print-user-bottom-left">
-              {gradeType === Grade.GED ? "X" : absence}
+              {gradeType === Grade.GED ? "X" : absence.toFixed(3)}
             </td>
             <td className="write-print-user-top-left write-print-user-bottom-left">
-              {gradeType === Grade.GED ? "X" : volunteer}
+              {gradeType === Grade.GED ? "X" : volunteer.toFixed(3)}
             </td>
             <td className="write-print-user-top-left write-print-user-bottom-left">
-              {gradeType === Grade.GED ? "X" : additional}
+              {gradeType === Grade.GED ? "X" : additional.toFixed(3)}
             </td>
             <td className="write-print-user-top-left write-print-user-bottom-right">
               {totalScore1.toFixed(3)}
