@@ -62,7 +62,7 @@ const SecondResultContainer = ({
   };
 
   const history = useNavigate();
-  const [comment, setComment] = useState<string>("");
+  const [comment, setComment] = useState<string>("값이 없습니다.");
 
 
   // 합격 여부 불합격 여부 등 멘트를 useState로 관리
@@ -74,8 +74,6 @@ const SecondResultContainer = ({
         setComment("합격하셨습니다. 축하드립니다.");
       } else if (pass === false) {
         setComment("불합격입니다. 수고하셨습니다.");
-      } else if (pass === null) {
-        setComment("합격 발표일은 11월 1일(수) 오전 10시입니다.");
       }
     },
     [comment]
@@ -91,7 +89,11 @@ const SecondResultContainer = ({
         setModalLoading(false);
       })
       .catch((err) => {
-        handleLogin(err, history);
+        if (err.response?.status === 400) {
+          setComment("합격 발표일시는 2023. 11. 1.(수) 10:00입니다.");
+        } else {
+          handleLogin(err, history);
+        }
       });
   }, [history]);
 

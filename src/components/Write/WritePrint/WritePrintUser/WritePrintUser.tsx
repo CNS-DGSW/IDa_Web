@@ -143,7 +143,7 @@ const WritePrintUser = ({
               rowSpan={6}
             >
               <div className="write-print-user-profile">
-                { profileImage && <img src={profileImage} alt={"profile"}/>}
+                { profileImage && <img src={profileImage} alt={"사진이 등록되지 않았습니다."}/>}
                 <div className="write-print-user-profile-mark">
                   <span>
                     학교장
@@ -424,7 +424,7 @@ const WritePrintUser = ({
                   style={{ textAlign: "center" }}
                   rowSpan={6}
                 >
-                  {profileImage && <img src={profileImage} alt={"profile"} />}
+                  {profileImage && <img src={profileImage} alt={"사진이 등록되지 않았습니다."} />}
                 </td>
                 <th className="write-print-user-top-left">
                   수&nbsp;험&nbsp;번&nbsp;호

@@ -19,11 +19,11 @@
 
   &-page {
     width: 216mm;
-    min-height: 279mm;
+    min-height: 297mm;
     padding: 15mm;
     display: block;
     @media print {
-      page-break-after: always;
+      page-break-before: always;
     }
   }
 
