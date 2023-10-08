@@ -55,7 +55,7 @@ const FirstResultContainer = ({
   const history = useNavigate();
   const [errStatus, setErrStatus] = useState<number>(0);
   const status: number = 403;
-  const [comment, setComment] = useState<string | undefined>("값이 없습니다.");
+  const [comment, setComment] = useState<string | undefined>("");
   // 합격 불합격 채점중 등등 멘트를 관리하는 state
   const [applyCheck, setApplyCheck] = useState<Apply | null>();
   const [applyComment, setApplyComment] = useState<string>("");
@@ -123,9 +123,9 @@ const FirstResultContainer = ({
     getStatus();
   }, [getStatus]);
 
-  useEffect(() => {
-    setCommented();
-  }, [setCommented, applyCheck]);
+  // useEffect(() => {
+  //   setCommented();
+  // }, [setCommented, applyCheck]);
 
   if (modalLoading) {
     return <></>;
