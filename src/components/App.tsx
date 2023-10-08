@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import { Route, Routes } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
@@ -16,6 +16,8 @@ import NoticePage from "pages/NoticePage";
 import WritePage from "pages/WritePage";
 import NotFoundPage from "pages/NotFoundPage";
 import MainAlert from "./MainAlert/MainAlert";
+
+const currentDate = new Date();
 
 const SecondTypeScorePage = React.lazy(
   () => import("pages/AdminPage/SecondTypeScorePage")
@@ -45,7 +47,16 @@ const UserResultPage = React.lazy(
 );
 
 const App = () => {
-  const [isTest] = useState<boolean>(true);
+  const [isTest, setIsTest] = useState<boolean>(true);
+  useEffect(() => {
+    const targetDate = new Date(currentDate.getFullYear(), 9, 10, 9, 0, 0);
+    if (currentDate >= targetDate) {
+      console.log("10월 10일 9시 이후입니다.");
+      setIsTest(false);
+    } else {
+      setIsTest(true);
+    }
+  }, []);
   return (
     <div className={!isTest ? "App" : ""}>
       {!isTest && <MainAlert />}
