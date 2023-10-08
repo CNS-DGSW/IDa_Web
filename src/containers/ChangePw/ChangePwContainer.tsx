@@ -18,10 +18,12 @@ const ChangePwContainer = ({}) => {
   const history = useNavigate();
 
   const checkPasswordValidate = () => {
-    if (changePw.length >= 8 && checkPw.length >= 8) {
-      handleTryChangePw();
-    } else {
+    if (changePw.length < 8 && checkPw.length < 8 ) {
       toast.warning("비밀번호는 8자리 이상이어야 합니다.");
+    } else if(/[^ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/.test(changePw) === false || /\s/.test(changePw) === true){
+      toast.warning("비밀번호에 공백 또는 한글을 입력할 수 없습니다.")
+    } else{
+      handleTryChangePw();
     }
   };
 
