@@ -51,6 +51,7 @@ import {
   printAtom,
   submitAtom,
 } from "stores/Status/StatusAtom";
+import UserApi from "assets/api/UserApi";
 
 const WritePrintContainer = ({}) => {
   const setSubmit = useSetRecoilState(submitAtom);
@@ -58,20 +59,17 @@ const WritePrintContainer = ({}) => {
   const setCheckedPrint = useSetRecoilState(checkedPrintAtom);
   const setPass = useSetRecoilState(passAtom);
   const setCanAccess = useSetRecoilState(canAccessAtom);
-  const tryGetStatus = async (
+  const tryGetNumber = async (
     userIdx?: number | null
   ): Promise<ResultStatusResponse> => {
-    // 1차 합격 여부 및 우편 원서 접수, 인터넷 원서 접수 현황
-    const response: ResultStatusResponse = await StatusApi.GetStatus(userIdx);
+    // 수험번호, 접수번호 가져오기
+    const response: ResultStatusResponse = await UserApi.GetNumber(userIdx);
 
-    // console.log(">>", response.data.isPassedFirstApply);
-    // if (response.status === 200) {
-    setSubmit(response.data.isSubmit); // 인터넷 원서 접수 현홍
+    /* setSubmit(response.data.isSubmit); // 인터넷 원서 접수 현홍
     setPrint(response.data.isPrintedApplicationArrived); //  우편 원서 접수 현황
     setCheckedPrint(response.data.applicationChecked); //  우편 원서 검토 현황
     setPass(response.data.isPassedFirstApply); // 1차 합격 여부
-    setCanAccess(response.data.canAccess);
-    // }
+    setCanAccess(response.data.canAccess); */
 
     return response;
   };
@@ -177,12 +175,14 @@ const WritePrintContainer = ({}) => {
     !search && alert("모든 출력물은 단면 인쇄해 주세요");
   }, []);
   //수험 번호 받아오는 함수
-  const tryGetStatusCallback = useCallback(async () => {
+  const tryGetNumberCallback = useCallback(async () => {
     setIsSubmit(false);
-    await tryGetStatus(Number(query.get("userIdx"))).then((res: any) => {
-      setExamCode(res.data.examCode || "");
-      setSubmitCode(res.data.submitCode || "");
-      setIsSubmit(res.data.isSubmit);
+    await tryGetNumber(Number(query.get("userIdx"))).then((res: any) => {
+      setExamCode(res.data.examCode);
+      setSubmitCode(res.data.submitCode);
+    })
+    .catch((err)=>{
+      console.error(err)
     });
   }, []);
 
@@ -371,7 +371,7 @@ const WritePrintContainer = ({}) => {
       getProfileImageCallback(),
       getSchoolInfoCallback(),
       getScoreCallback(),
-      tryGetStatusCallback(),
+      tryGetNumberCallback(),
       getSelfIntroduceCallBack(),
       getStudyPlanCallBack(),
     ];
@@ -391,7 +391,7 @@ const WritePrintContainer = ({}) => {
     getProfileImageCallback,
     getSchoolInfoCallback,
     getScoreCallback,
-    tryGetStatusCallback,
+    tryGetNumberCallback,
     getSelfIntroduceCallBack,
     getStudyPlanCallBack,
     getStudentInfoCallback,

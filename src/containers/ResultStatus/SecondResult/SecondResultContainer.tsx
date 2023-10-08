@@ -48,15 +48,15 @@ const SecondResultContainer = ({
     const response: FinalStatusResponse = await StatusApi.GetFinalStatus();
 
     setIsPassed(response.data.isPassed || null);
-    setExamCode(response.data.examCode || null);
+    setFinalApplyType(response.data.finalApplyType || null);
+    setFinalApplyDetailType(response.data.finalApplyDetailType || null);
+    /* setExamCode(response.data.examCode || null);
     setName(response.data.name || "");
     setSex(response.data.sex || null);
     setBirth(response.data.birth || null);
     setGradeType(response.data.gradeType || null);
     setArea(response.data.area || null);
-    setSchool(response.data.school || null);
-    setFinalApplyType(response.data.finalApplyType || null);
-    setFinalApplyDetailType(response.data.finalApplyDetailType || null);
+    setSchool(response.data.school || null); */
 
     return response;
   };
