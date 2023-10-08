@@ -39,15 +39,18 @@ const WriteIntroductionContainer = ({}) => {
           editSelfIntroduceAtom(selfIntroduce)
         ),
       ];
-
-      // console.log(studyPlan);
-
+      
       await Promise.all(promises)
-        .then(() => {
-          flag = true;
-        })
-        .catch((err: any) => {
+      .then(() => {
+        flag = true;
+      })
+      .catch((err: any) => {
+
+        if(err.response?.status === 400){
+          toast.error("자기소개서 또는 학업계획서를 1500자 이하로 적어주세요.")
+        } else{
           handleWriteError(err, history);
+        }
           flag = false;
         });
       setIsChanged(false);
