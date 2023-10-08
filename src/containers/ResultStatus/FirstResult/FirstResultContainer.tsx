@@ -4,7 +4,7 @@ import FirstResult from "components/ResultStatusCheck/FirstResult";
 import { useNavigate } from "react-router-dom";
 import Apply from "util/enums/Apply";
 import { handleLogin } from "lib/handleErrors";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import {
   canAccessAtom,
   checkedPrintAtom,
@@ -26,11 +26,12 @@ const FirstResultContainer = ({
   modalLoading,
   setModalLoading,
 }: FirstResultContainerProps) => {
-  const setSubmit = useSetRecoilState(submitAtom);
-  const setPrint = useSetRecoilState(printAtom);
-  const setCheckedPrint = useSetRecoilState(checkedPrintAtom);
-  const setPass = useSetRecoilState(passAtom);
-  const setCanAccess = useSetRecoilState(canAccessAtom);
+  const [submit,setSubmit] = useRecoilState(submitAtom);
+  const [print,setPrint] = useRecoilState(printAtom);
+  const [checkedPrint,setCheckedPrint] = useRecoilState(checkedPrintAtom);
+  const [pass,setPass] = useRecoilState(passAtom);
+  const [canAccess,setCanAccess] = useRecoilState(canAccessAtom);
+
   const tryGetStatus = async (
     userIdx?: number | null
   ): Promise<ResultStatusResponse> => {
@@ -45,16 +46,13 @@ const FirstResultContainer = ({
     setCheckedPrint(response.data.applicationChecked); //  우편 원서 검토 현황
     setPass(response.data.isPassedFirstApply); // 1차 합격 여부
     setCanAccess(response.data.canAccess);
+    setApplyCheck(response.data.firstApplyType);
     // }
 
     return response;
   };
 
   const history = useNavigate();
-  const canAccess = useRecoilValue(canAccessAtom);
-  const pass = useRecoilValue(passAtom);
-  const submit = useRecoilValue(submitAtom);
-  const print = useRecoilValue(printAtom);
   const [errStatus, setErrStatus] = useState<number>(0);
   const status: number = 403;
   const [comment, setComment] = useState<string | undefined>("");
@@ -88,7 +86,11 @@ const FirstResultContainer = ({
         }
       } else if (pass === false) {
         setComment("안타깝게도 불합격 되었습니다.");
-      } else if (pass === null) {
+      } 
+    } else {
+      setComment("기다려주세요. 아직 결과가 나오지 않았습니다.");
+    }
+      /* else if (pass === null) {
         if (!submit || !print) {
           setComment("미제출 또는 우편미도착 입니다.");
         } else {
@@ -96,18 +98,15 @@ const FirstResultContainer = ({
         }
       } else {
         setComment("점수 채점중입니다.");
-      }
-    } else {
-      setComment("기다려주세요. 아직 결과가 나오지 않았습니다.");
-    }
+      } */
     // setModalLoading(false);
   }, [pass, submit, print, applyCheck, canAccess, modalLoading]);
+  
   // api 받아와서 처리하기
   const getStatus = useCallback(() => {
     // setModalLoading(true);
     tryGetStatus()
       .then((res) => {
-        setApplyCheck(res.data.firstApplyType);
         setCommented();
         setModalLoading(false);
       })

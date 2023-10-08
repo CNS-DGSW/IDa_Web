@@ -1,4 +1,4 @@
-import { useSetRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import SecondResult from "components/ResultStatusCheck/SecondResult";
@@ -32,20 +32,21 @@ const SecondResultContainer = ({
   modalLoading,
   setModalLoading,
 }: SecondResultContainerProps) => {
-  const setIsPassed = useSetRecoilState(isPassedAtom);
-  const setExamCode = useSetRecoilState(examCodeAtom);
-  const setName = useSetRecoilState(nameAtom);
-  const setSex = useSetRecoilState(sexAtom);
-  const setBirth = useSetRecoilState(birthAtom);
-  const setGradeType = useSetRecoilState(gradeTypeAtom);
-  const setArea = useSetRecoilState(areaAtom);
-  const setSchool = useSetRecoilState(schoolAtom);
-  const setFinalApplyType = useSetRecoilState(finalApplyTypeAtom);
-  const setFinalApplyDetailType = useSetRecoilState(finalApplyDetailTypeAtom);
+  const [isPassed,setIsPassed] = useRecoilState(isPassedAtom);
+  const [examCode,setExamCode] = useRecoilState(examCodeAtom);
+  const [name,setName] = useRecoilState(nameAtom);
+  const [sex,setSex] = useRecoilState(sexAtom);
+  const [birth,setBirth] = useRecoilState(birthAtom);
+  const [gradeType,setGradeType] = useRecoilState(gradeTypeAtom);
+  const [area,setArea] = useRecoilState(areaAtom);
+  const [school,setSchool] = useRecoilState(schoolAtom);
+  const [finalApplyType,setFinalApplyType] = useRecoilState(finalApplyTypeAtom);
+  const [finalApplyDetailType,setFinalApplyDetailType] = useRecoilState(finalApplyDetailTypeAtom);
 
   const tryGetFinalStatusAtom = async (): Promise<FinalStatusResponse> => {
     // 2차(최종) 합격 여부
     const response: FinalStatusResponse = await StatusApi.GetFinalStatus();
+
     setIsPassed(response.data.isPassed || null);
     setExamCode(response.data.examCode || null);
     setName(response.data.name || "");
@@ -56,20 +57,13 @@ const SecondResultContainer = ({
     setSchool(response.data.school || null);
     setFinalApplyType(response.data.finalApplyType || null);
     setFinalApplyDetailType(response.data.finalApplyDetailType || null);
+
     return response;
   };
+
   const history = useNavigate();
   const [comment, setComment] = useState<string>("");
 
-  const isPassed = useRecoilValue(isPassedAtom);
-  const examCode = useRecoilValue(examCodeAtom);
-  const name = useRecoilValue(nameAtom);
-  const sex = useRecoilValue(sexAtom);
-  const birth = useRecoilValue(birthAtom);
-  const area = useRecoilValue(areaAtom);
-  const school = useRecoilValue(schoolAtom);
-  const finalApplyType = useRecoilValue(finalApplyTypeAtom);
-  const gradeType = useRecoilValue(gradeTypeAtom);
 
   // 합격 여부 불합격 여부 등 멘트를 useState로 관리
 
@@ -91,7 +85,8 @@ const SecondResultContainer = ({
     // pass 여부 받아오기
     tryGetFinalStatusAtom()
       .then((res) => {
-        // console.log("=>>", res.data);
+        console.log("=>>", res.data);
+        console.log(school)
         selectComment(res.data.isPassed);
         setModalLoading(false);
       })
