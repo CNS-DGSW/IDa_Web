@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Header.scss";
 import { ReactComponent as Profile } from "assets/images/profile.svg";
 import ProfileModalBox from "components/ProfileModalBox";
@@ -6,6 +6,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { ReactComponent as Logo1 } from "assets/images/logo-1.svg";
 import { ReactComponent as Logo2 } from "assets/images/logo-2.svg";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
+import useTimeLimit from "lib/hooks/useTimeLimit";
 
 interface HeaderProps {
   isApplyPeriod?: boolean;
@@ -39,6 +40,17 @@ const Header = ({
   closeStatusModal,
 }: HeaderProps) => {
   const history = useNavigate();
+  const {
+    canAccessWrite,
+    WriteLimitControl,
+    canAccessSignup,
+    SignupLimitControl
+  } = useTimeLimit()
+
+  useEffect(()=>{
+    WriteLimitControl()
+    SignupLimitControl()
+  },[])
 
   const menuToggle = () => {
     const header = document.getElementById("header");
@@ -71,7 +83,7 @@ const Header = ({
           <NavLink to="/" className="header-menu-content-item">
             <span>홈</span>
           </NavLink>
-          {!isApplyPeriod && (
+          {canAccessWrite && (
             <NavLink to="/write" className="header-menu-content-item">
               <span>원서 접수</span>
             </NavLink>
@@ -88,7 +100,7 @@ const Header = ({
               >
                 로그인
               </button>
-              {!isApplyPeriod && (
+              {canAccessSignup && (
                 <button
                   className="header-menu-content-sign"
                   onClick={() => history("/register")}
@@ -101,6 +113,7 @@ const Header = ({
           )}
         </div>
       </div>
+      
       <div className="header-container">
         <div className="header-container-link">
           {theme ? (
@@ -117,12 +130,10 @@ const Header = ({
           <NavLink to="/" className="header-container-link-item">
             <span>홈</span>
           </NavLink>
-          {isAdmin === false && !isApplyPeriod ? (
+          {(isAdmin === false && canAccessWrite) && (
             <NavLink to="/write" className="header-container-link-item">
               <span>원서 접수 </span>
             </NavLink>
-          ) : (
-            <></>
           )}
           <NavLink to="/notice" className="header-container-link-item">
             <span>공지사항</span>
@@ -164,7 +175,7 @@ const Header = ({
               >
                 로그인
               </button>
-              {!isApplyPeriod && (
+              {canAccessSignup && (
                 <button
                   className="headerButton"
                   onClick={() => history("/register")}
