@@ -142,14 +142,14 @@ const Header = ({
             />
           )}
           <button
-            className="header-container-button-item"
+            className="header-container-link-item"
             onClick={() => history("/", { state: { isValid: true } })}
           >
             <span>홈</span>
           </button>
           {isAdmin === false && canAccessWrite ? (
             <button
-            className="header-container-button-item"
+            className="header-container-link-item"
             onClick={() => {
               history("/write", { state: { isValid: true } })
               window.location.reload()
@@ -161,7 +161,7 @@ const Header = ({
             <></>
           )}
           <button
-            className="header-container-button-item"
+            className="header-container-link-item"
             onClick={() => history("/notice", { state: { isValid: true } })}
           >
             <span>공지사항</span>
