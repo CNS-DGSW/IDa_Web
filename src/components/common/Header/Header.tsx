@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Header.scss";
 import { ReactComponent as Profile } from "assets/images/profile.svg";
 import ProfileModalBox from "components/ProfileModalBox";
@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { ReactComponent as Logo1 } from "assets/images/logo-1.svg";
 import { ReactComponent as Logo2 } from "assets/images/logo-2.svg";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
+import useTimeLimit from "lib/hooks/useTimeLimit";
 
 interface HeaderProps {
   isApplyPeriod?: boolean;
@@ -39,6 +40,17 @@ const Header = ({
   closeStatusModal,
 }: HeaderProps) => {
   const history = useNavigate();
+  const {
+    canAccessWrite,
+    WriteLimitControl,
+    canAccessSignup,
+    SignupLimitControl
+  } = useTimeLimit()
+
+  useEffect(()=>{
+    WriteLimitControl()
+    SignupLimitControl()
+  },[])
 
   const menuToggle = () => {
     const header = document.getElementById("header");
@@ -74,7 +86,7 @@ const Header = ({
           >
             <span>홈</span>
           </button>
-          {!isApplyPeriod && (
+          {canAccessWrite && (
             <button
               className="header-menu-content-item"
               onClick={() => history("/write", { state: { isValid: true } })}
@@ -96,7 +108,7 @@ const Header = ({
               >
                 로그인
               </button>
-              {!isApplyPeriod && (
+              {canAccessSignup && (
                 <button
                   className="header-menu-content-sign"
                   onClick={() =>
@@ -111,6 +123,7 @@ const Header = ({
           )}
         </div>
       </div>
+      
       <div className="header-container">
         <div className="header-container-link">
           {theme ? (
@@ -130,13 +143,13 @@ const Header = ({
           >
             <span>홈</span>
           </button>
-          {isAdmin === false && !isApplyPeriod ? (
+          {isAdmin === false && canAccessWrite ? (
             <button
-              className="header-container-button-item"
-              onClick={() => history("/write", { state: { isValid: true } })}
-            >
-              <span>원서 접수 </span>
-            </button>
+            className="header-menu-content-item"
+            onClick={() => history("/write", { state: { isValid: true } })}
+          >
+            <span>원서 접수</span>
+          </button>
           ) : (
             <></>
           )}
@@ -185,7 +198,7 @@ const Header = ({
               >
                 로그인
               </button>
-              {!isApplyPeriod && (
+              {canAccessSignup && (
                 <button
                   className="headerButton"
                   onClick={() =>

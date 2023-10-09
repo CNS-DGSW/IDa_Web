@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MainContent from "components/common/MainContent";
 import "./Main.scss";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import { submitEndTime, submitStartTime, finalTime } from "models/submitTime";
+import useTimeLimit from "lib/hooks/useTimeLimit";
+import { toast } from "react-toastify";
 
 interface MainProps {
   handleDownloadApplyInfo: () => void;
@@ -17,6 +19,14 @@ const Main = ({
   secondOpenModal,
 }: MainProps) => {
   const history = useNavigate();
+  const {
+    canAccessWrite,
+    WriteLimitControl
+  } = useTimeLimit()
+
+  useEffect(()=>{
+    WriteLimitControl()
+  },[])
 
   return (
     <>
@@ -30,12 +40,15 @@ const Main = ({
               <p className="Main-content-Title-Main">
                 {new Date().getFullYear() + 1}학년도 신입생 입학 원서 접수
               </p>
-              <div
-                className="Main-content-btn"
-                onClick={() => history("/Write", { state: { isValid: true } })}
-              >
-                원서 접수하기
-              </div>
+              {
+                canAccessWrite &&
+                (<div
+                  className="Main-content-btn"
+                  onClick={() => history("/Write", { state: { isValid: true } })}
+                >
+                  원서 접수하기
+                </div>)
+              }
             </div>
           </div>
         </div>
