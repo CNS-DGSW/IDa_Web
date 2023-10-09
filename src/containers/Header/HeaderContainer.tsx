@@ -14,6 +14,7 @@ import { useRecoilState, useSetRecoilState } from "recoil";
 import { UserInfoResponse } from "util/types/Response";
 import AuthApi from "assets/api/AuthApi";
 import { statusModalAtom } from "stores/Status/StatusAtom";
+import useIsApplyPeriod from "lib/hooks/useIsApplyPeriod";
 
 interface HeaderContainerProps {
   theme?: boolean;
@@ -21,6 +22,7 @@ interface HeaderContainerProps {
 }
 
 const HeaderContainer = ({ theme, style }: HeaderContainerProps) => {
+  const isTest = useIsApplyPeriod();
   const history = useNavigate();
   const changeLoginAtom = useSetRecoilState<boolean>(loginAtom);
   const [isAdminValue, setIsAdminAtom] = useRecoilState(isAdminAtom);
@@ -104,6 +106,7 @@ const HeaderContainer = ({ theme, style }: HeaderContainerProps) => {
   return (
     <>
       <Header
+        isApplyPeriod={isTest}
         isAdmin={isAdminValue}
         theme={theme}
         login={loginValue}

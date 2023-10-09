@@ -8,6 +8,7 @@ import { ReactComponent as Logo2 } from "assets/images/logo-2.svg";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 
 interface HeaderProps {
+  isApplyPeriod: boolean;
   login: boolean;
   isAdmin: boolean;
   profileBox: boolean;
@@ -23,6 +24,7 @@ interface HeaderProps {
 }
 
 const Header = ({
+  isApplyPeriod,
   login,
   profileBox,
   isAdmin,
@@ -69,9 +71,11 @@ const Header = ({
           <NavLink to="/" className="header-menu-content-item">
             <span>홈</span>
           </NavLink>
-          <NavLink to="/write" className="header-menu-content-item">
-            <span>원서 접수</span>
-          </NavLink>
+          {!isApplyPeriod && (
+            <NavLink to="/write" className="header-menu-content-item">
+              <span>원서 접수</span>
+            </NavLink>
+          )}
           <NavLink to="/notice" className="header-menu-content-item">
             <span>공지사항</span>
           </NavLink>
@@ -84,13 +88,15 @@ const Header = ({
               >
                 로그인
               </button>
-              <button
-                className="header-menu-content-sign"
-                onClick={() => history("/register")}
-                style={{ marginTop: "1.2rem" }}
-              >
-                회원가입
-              </button>
+              {!isApplyPeriod && (
+                <button
+                  className="header-menu-content-sign"
+                  onClick={() => history("/register")}
+                  style={{ marginTop: "1.2rem" }}
+                >
+                  회원가입
+                </button>
+              )}
             </>
           )}
         </div>
@@ -111,15 +117,13 @@ const Header = ({
           <NavLink to="/" className="header-container-link-item">
             <span>홈</span>
           </NavLink>
-          {
-            isAdmin === false ? (
-              <NavLink to="/write" className="header-container-link-item">
-                <span>원서 접수 </span>
-              </NavLink>
-            ) : (
-              <></>
-            )
-          }
+          {isAdmin === false && isApplyPeriod ? (
+            <NavLink to="/write" className="header-container-link-item">
+              <span>원서 접수 </span>
+            </NavLink>
+          ) : (
+            <></>
+          )}
           <NavLink to="/notice" className="header-container-link-item">
             <span>공지사항</span>
           </NavLink>
@@ -160,13 +164,15 @@ const Header = ({
               >
                 로그인
               </button>
-              <button
-                className="headerButton"
-                onClick={() => history("/register")}
-                style={{ marginLeft: "1rem" }}
-              >
-                회원가입
-              </button>
+              {isApplyPeriod && (
+                <button
+                  className="headerButton"
+                  onClick={() => history("/register")}
+                  style={{ marginLeft: "1rem" }}
+                >
+                  회원가입
+                </button>
+              )}
             </>
           )}
           <HiOutlineMenuAlt3 className="header-toggle" onClick={menuToggle} />

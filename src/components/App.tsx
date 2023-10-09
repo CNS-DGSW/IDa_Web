@@ -17,8 +17,6 @@ import WritePage from "pages/WritePage";
 import NotFoundPage from "pages/NotFoundPage";
 import MainAlert from "./MainAlert/MainAlert";
 
-const currentDate = new Date();
-
 const SecondTypeScorePage = React.lazy(
   () => import("pages/AdminPage/SecondTypeScorePage")
 );
@@ -47,20 +45,9 @@ const UserResultPage = React.lazy(
 );
 
 const App = () => {
-  const [isTest, setIsTest] = useState<boolean>(true);
-  useEffect(() => {
-    const targetDate = new Date(currentDate.getFullYear(), 9, 10, 9, 0, 0);
-    if (currentDate >= targetDate) {
-      // console.log("10월 10일 9시 이후입니다.");
-      setIsTest(false);
-    } else {
-      setIsTest(true);
-    }
-  }, []);
   return (
-    <div className={!isTest ? "App" : ""}>
-      {!isTest && <MainAlert />}
-      <div className={!isTest ? "BlurContainer" : ""}>
+    <div>
+      <div>
         <ToastContainer />
         <Suspense fallback={<></>}>
           <Routes>
@@ -106,3 +93,7 @@ const App = () => {
           <Route  path="/faq" element={FaqPage} /> */
 }
 export default App;
+
+// <div className={!isTest ? "App" : ""}>
+// {!isTest && <MainAlert />}
+// <div className={!isTest ? "BlurContainer" : ""}>
