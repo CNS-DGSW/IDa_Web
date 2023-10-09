@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./DefaultAdminHeader.scss";
 import HeaderContainer from "containers/Header/HeaderContainer";
 
@@ -8,28 +8,54 @@ interface DefaultAdminHeaderProps {
 }
 
 const DefaultAdminHeader = ({ children }: DefaultAdminHeaderProps) => {
+  const history = useNavigate();
   return (
     <>
       <HeaderContainer theme={true} />
       <div className="Admin">
         <div className="Admin-header">
-          <NavLink to="/admin/userList" className="Admin-header-link">
+          <button
+            className="Admin-header-link"
+            onClick={() =>
+              history("/admin/userList", { state: { isValid: true } })
+            }
+          >
             <span>지원자 정보</span>
-          </NavLink>
-          <NavLink to="/admin/schoolCity" className="Admin-header-link">
+          </button>
+          <button
+            className="Admin-header-link"
+            onClick={() =>
+              history("/admin/schoolCity", { state: { isValid: true } })
+            }
+          >
             <span>지역·출신교별 현황</span>
-          </NavLink>
-          <NavLink to="/admin/userRate" className="Admin-header-link">
+          </button>
+          <button
+            className="Admin-header-link"
+            onClick={() =>
+              history("/admin/userRate", { state: { isValid: true } })
+            }
+          >
             <span>지원자 경쟁률</span>
-          </NavLink>
-          <NavLink to="/admin/receiptStatus" className="Admin-header-link">
+          </button>
+          <button
+            className="Admin-header-link"
+            onClick={() =>
+              history("/admin/receiptStatus", { state: { isValid: true } })
+            }
+          >
             <span>신입생 입학 전형 원부</span>
-          </NavLink>
-          <NavLink to="/admin/detailScore" className="Admin-header-link">
+          </button>
+          <button
+            className="Admin-header-link"
+            onClick={() =>
+              history("/admin/detailScore", { state: { isValid: true } })
+            }
+          >
             <span style={{ textAlign: "center", display: "flex" }}>
               2차 전형 점수 관리 <br></br>(직무적성, 학업 및 진로, 컴퓨팅)
             </span>
-          </NavLink>
+          </button>
           {/*<NavLink
             to="/admin/interviewScore"
             className="Admin-header-link"
@@ -41,17 +67,32 @@ const DefaultAdminHeader = ({ children }: DefaultAdminHeaderProps) => {
               (창의협업, 구술면접)
             </span>
   </NavLink>*/}
-          <NavLink to="/admin/secondScore" className="Admin-header-link">
+          <button
+            className="Admin-header-link"
+            onClick={() =>
+              history("/admin/secondScore", { state: { isValid: true } })
+            }
+          >
             <span>최종 결과</span>
-          </NavLink>
+          </button>
 
-          <NavLink to="/admin/userListPassed" className="Admin-header-link">
+          <button
+            className="Admin-header-link"
+            onClick={() =>
+              history("/admin/userListPassed", { state: { isValid: true } })
+            }
+          >
             <span>1차/최종 합격 여부</span>
-          </NavLink>
+          </button>
 
-          <NavLink to="/admin/userResultPage" className="Admin-header-link">
+          <button
+            className="Admin-header-link"
+            onClick={() =>
+              history("/admin/userResultPage", { state: { isValid: true } })
+            }
+          >
             <span>결과 변경</span>
-          </NavLink>
+          </button>
         </div>
       </div>
       {children}

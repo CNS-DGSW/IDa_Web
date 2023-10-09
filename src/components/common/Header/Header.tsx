@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./Header.scss";
 import { ReactComponent as Profile } from "assets/images/profile.svg";
 import ProfileModalBox from "components/ProfileModalBox";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ReactComponent as Logo1 } from "assets/images/logo-1.svg";
 import { ReactComponent as Logo2 } from "assets/images/logo-2.svg";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
@@ -79,19 +79,25 @@ const Header = ({
       <div className="header-close" onClick={closeMenu} />
       <div className="header-menu">
         <div className="header-menu-content">
-          <div className="header-menu-content-category">카테고리</div>
-          <NavLink to="/" className="header-menu-content-item">
+          <div className="header-menu-content-category">카테고리</div>{" "}
+          <button
+            className="header-menu-content-item"
+            onClick={() => history("/", { state: { isValid: true } })}
+          >
             <span>홈</span>
           </NavLink>
           {canAccessWrite && (
             <NavLink to="/write" className="header-menu-content-item">
+              onClick={() => history("/write", { state: { isValid: true } })}
               <span>원서 접수</span>
-            </NavLink>
-          )}
-          <NavLink to="/notice" className="header-menu-content-item">
+            </button>
+          )}{" "}
+          <button
+            className="header-menu-content-item"
+            onClick={() => history("/notice", { state: { isValid: true } })}
+          >
             <span>공지사항</span>
-          </NavLink>
-
+          </button>
           {!login && (
             <>
               <button
@@ -129,17 +135,25 @@ const Header = ({
               onClick={() => history("/", { state: { isValid: true } })}
             />
           )}
-          <NavLink to="/" className="header-container-link-item">
+          <button
+            className="header-container-button-item"
+            onClick={() => history("/", { state: { isValid: true } })}
+          >
             <span>홈</span>
           </NavLink>
-          {(isAdmin === false && canAccessWrite) && (
+          {isAdmin === false && !isApplyPeriod ? (
             <NavLink to="/write" className="header-container-link-item">
               <span>원서 접수 </span>
             </NavLink>
+          ) : (
+            <></>
           )}
-          <NavLink to="/notice" className="header-container-link-item">
+          <button
+            className="header-container-button-item"
+            onClick={() => history("/notice", { state: { isValid: true } })}
+          >
             <span>공지사항</span>
-          </NavLink>
+          </button>
         </div>
         <div className="header-container-button">
           {login ? (

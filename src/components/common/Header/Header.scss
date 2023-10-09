@@ -123,6 +123,27 @@
     }
     &-button {
       display: flex;
+      align-items: center;
+      &-item {
+        margin-left: 3rem;
+        color: white;
+        font-size: 1.1rem;
+        text-decoration: none;
+        padding: 0.5rem;
+        @media screen and (max-width: 767px) {
+          display: none;
+        }
+        &-active {
+          border-bottom: 5px solid #dde0ee;
+          @media screen and (max-width: 970px) {
+            border-bottom: 3px solid #dde0ee;
+          }
+        }
+        @media screen and (max-width: 970px) {
+          font-size: 1rem;
+          margin-left: 1.5rem;
+        }
+      }
     }
   }
 
