@@ -1,4 +1,17 @@
 .Login {
+  &-Email_Inquiry {
+    text-align: center;
+    width: 100%;
+    font-size: 12px;
+  }
+  @media screen and (max-width: 380px) {
+    &-Email_Inquiry {
+      text-align: center;
+      width: 89%;
+      font-size: 12px;
+    }
+  }
+
   &-box {
     &-text {
       font-size: 1.9rem;
@@ -45,18 +58,5 @@
         }
       }
     }
-  }
-}
-
-#Email_Inquiry {
-  text-align: center;
-  width: 100%;
-  font-size: 12px;
-}
-@media screen and (max-width: 380px) {
-  #Email_Inquiry {
-    text-align: center;
-    width: 89%;
-    font-size: 12px;
   }
 }
