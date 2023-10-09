@@ -2,7 +2,6 @@ import React, { Suspense, useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import { Route, Routes } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
-import "./AppStyle.scss";
 
 import LoginPage from "pages/LoginPage";
 import MainPage from "pages/MainPage";
@@ -15,7 +14,6 @@ import WritePrintPage from "pages/WritePrintPage";
 import NoticePage from "pages/NoticePage";
 import WritePage from "pages/WritePage";
 import NotFoundPage from "pages/NotFoundPage";
-import MainAlert from "./MainAlert/MainAlert";
 
 const SecondTypeScorePage = React.lazy(
   () => import("pages/AdminPage/SecondTypeScorePage")
@@ -46,45 +44,37 @@ const UserResultPage = React.lazy(
 
 const App = () => {
   return (
-    <div>
-      <div>
-        <ToastContainer />
-        <Suspense fallback={<></>}>
-          <Routes>
-            <Route path="/" element={<MainPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/write" element={<WritePage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/changepw" element={<ChangePwPage />} />
-            <Route path="/find" element={<FindPage />} />
-            <Route path="/notice" element={<NoticePage />} />
-            <Route
-              path="/admin/receiptStatus"
-              element={<ReceiptStatusPage />}
-            />
-            <Route path="/admin/schoolCity" element={<SchoolCityPage />} />
-            <Route
-              path="/admin/secondScore"
-              element={<SecondTypeScorePage />}
-            />
-            <Route
-              path="/admin/interviewScore"
-              element={<InterViewScorePage />}
-            />
-            <Route path="/print" element={<WritePrintPage />} />
-            <Route path="/admin/userList" element={<UserListPage />} />
-            <Route path="/admin/userRate" element={<UserRatePage />} />
-            <Route
-              path="/admin/userListPassed"
-              element={<UserListPassedPage />}
-            />
-            <Route path="/admin/userResultPage" element={<UserResultPage />} />
-            <Route path="/admin/detailScore" element={<SecondDetailSocre />} />
-            <Route path={"*"} element={<NotFoundPage />} />
-          </Routes>
-        </Suspense>
-      </div>
-    </div>
+    <>
+      <ToastContainer />
+      <Suspense fallback={<></>}>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/write" element={<WritePage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/changepw" element={<ChangePwPage />} />
+          <Route path="/find" element={<FindPage />} />
+          <Route path="/notice" element={<NoticePage />} />
+          <Route path="/admin/receiptStatus" element={<ReceiptStatusPage />} />
+          <Route path="/admin/schoolCity" element={<SchoolCityPage />} />
+          <Route path="/admin/secondScore" element={<SecondTypeScorePage />} />
+          <Route
+            path="/admin/interviewScore"
+            element={<InterViewScorePage />}
+          />
+          <Route path="/print" element={<WritePrintPage />} />
+          <Route path="/admin/userList" element={<UserListPage />} />
+          <Route path="/admin/userRate" element={<UserRatePage />} />
+          <Route
+            path="/admin/userListPassed"
+            element={<UserListPassedPage />}
+          />
+          <Route path="/admin/userResultPage" element={<UserResultPage />} />
+          <Route path="/admin/detailScore" element={<SecondDetailSocre />} />
+          <Route path={"*"} element={<NotFoundPage />} />
+        </Routes>
+      </Suspense>
+    </>
   );
 };
 
@@ -94,6 +84,8 @@ const App = () => {
 }
 export default App;
 
-// <div className={!isTest ? "App" : ""}>
-// {!isTest && <MainAlert />}
-// <div className={!isTest ? "BlurContainer" : ""}>
+{
+  /* <div className={!isTest ? "App" : ""}>
+{!isTest && <MainAlert />}
+<div className={!isTest ? "BlurContainer" : ""}></div> */
+}

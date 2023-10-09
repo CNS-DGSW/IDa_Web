@@ -2,13 +2,37 @@ import DefaultTemplate from "components/common/Template/DefaultTemplate";
 import React from "react";
 import MainContainer from "../containers/Main/MainContainer";
 import Footer from "components/common/Footer";
+import useIsApplyPeriod from "lib/hooks/useIsApplyPeriod";
+import BlurTemplate from "components/common/Template/BlurTemplate";
+import MainAlert from "components/MainAlert/MainAlert";
 
-const MainPage = () => {
+const Contents = () => {
   return (
-    <DefaultTemplate>
+    <>
       <MainContainer />
       <Footer />
-    </DefaultTemplate>
+    </>
+  );
+};
+
+const MainPage = () => {
+  const isTest = useIsApplyPeriod();
+
+  return (
+    <>
+      {!isTest ? (
+        <>
+          <MainAlert />
+          <BlurTemplate>
+            <Contents />
+          </BlurTemplate>
+        </>
+      ) : (
+        <DefaultTemplate>
+          <Contents />
+        </DefaultTemplate>
+      )}
+    </>
   );
 };
 

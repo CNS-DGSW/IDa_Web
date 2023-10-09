@@ -8,7 +8,7 @@ import { ReactComponent as Logo2 } from "assets/images/logo-2.svg";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 
 interface HeaderProps {
-  isApplyPeriod: boolean;
+  isApplyPeriod?: boolean;
   login: boolean;
   isAdmin: boolean;
   profileBox: boolean;
@@ -80,9 +80,9 @@ const Header = ({
             <span>공지사항</span>
           </NavLink>
 
-          { 
-          // 이거 주석처리해도 똑같음....
-          /* !login && (
+          {
+            // 이거 주석처리해도 똑같음....
+            /* !login && (
             <>
               <button
                 className="header-menu-content-sign"
@@ -102,7 +102,8 @@ const Header = ({
                 </button>
               )} 
             </>
-          ) */}
+          ) */
+          }
         </div>
       </div>
       <div className="header-container">

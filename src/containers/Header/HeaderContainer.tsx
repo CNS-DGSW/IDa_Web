@@ -22,7 +22,6 @@ interface HeaderContainerProps {
 }
 
 const HeaderContainer = ({ theme, style }: HeaderContainerProps) => {
-  const isTest = useIsApplyPeriod();
   const history = useNavigate();
   const changeLoginAtom = useSetRecoilState<boolean>(loginAtom);
   const [isAdminValue, setIsAdminAtom] = useRecoilState(isAdminAtom);
@@ -39,6 +38,8 @@ const HeaderContainer = ({ theme, style }: HeaderContainerProps) => {
   const [statusModal, setStatusModal] = useRecoilState(statusModalAtom);
 
   const [cookie, setCookie, removeCookie] = useCookies(["refreshToken"]);
+
+  const isApplyPeriod = useIsApplyPeriod();
 
   // 로그아웃
   const HandleLogout = () => {
@@ -106,7 +107,7 @@ const HeaderContainer = ({ theme, style }: HeaderContainerProps) => {
   return (
     <>
       <Header
-        isApplyPeriod={isTest}
+        isApplyPeriod={!isApplyPeriod}
         isAdmin={isAdminValue}
         theme={theme}
         login={loginValue}
