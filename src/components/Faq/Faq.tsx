@@ -41,7 +41,7 @@ const Faq = ({
         setShow={setShow}
       >
         {!isAdmin ? (
-          <Link to="/qna">
+          <Link to="/qna" state={{ isValid: true }}>
             <p className="Board-text-button">Q&A</p>
           </Link>
         ) : (
