@@ -44,7 +44,10 @@ const Main = ({
                 canAccessWrite &&
                 (<div
                   className="Main-content-btn"
-                  onClick={() => history("/Write", { state: { isValid: true } })}
+                  onClick={() => {
+                    history("/write", { state: { isValid: true } })
+                    window.location.reload()
+                  }}
                 >
                   원서 접수하기
                 </div>)

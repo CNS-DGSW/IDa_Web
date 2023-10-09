@@ -89,7 +89,10 @@ const Header = ({
           {canAccessWrite && (
             <button
               className="header-menu-content-item"
-              onClick={() => history("/write", { state: { isValid: true } })}
+              onClick={() => {
+                history("/write", { state: { isValid: true } })
+                window.location.reload()
+              }}
             >
               <span>원서 접수</span>
             </button>
@@ -111,9 +114,10 @@ const Header = ({
               {canAccessSignup && (
                 <button
                   className="header-menu-content-sign"
-                  onClick={() =>
+                  onClick={() =>{
                     history("/register", { state: { isValid: true } })
-                  }
+                    window.location.reload() 
+                  }}
                   style={{ marginTop: "1.2rem" }}
                 >
                   회원가입
@@ -145,8 +149,11 @@ const Header = ({
           </button>
           {isAdmin === false && canAccessWrite ? (
             <button
-            className="header-menu-content-item"
-            onClick={() => history("/write", { state: { isValid: true } })}
+            className="header-container-button-item"
+            onClick={() => {
+              history("/write", { state: { isValid: true } })
+              window.location.reload()
+            }}
           >
             <span>원서 접수</span>
           </button>
@@ -201,9 +208,10 @@ const Header = ({
               {canAccessSignup && (
                 <button
                   className="headerButton"
-                  onClick={() =>
+                  onClick={() =>{
                     history("/register", { state: { isValid: true } })
-                  }
+                    window.location.reload()
+                  }}
                   style={{ marginLeft: "1rem" }}
                 >
                   회원가입
