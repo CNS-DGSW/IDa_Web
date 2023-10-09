@@ -142,10 +142,10 @@ const RegisterContainer = () => {
 
   //회원가입하기
   const handleRegister = useCallback(async () => {
-    if(/[^ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/.test(pw) === false || /\s/.test(pw) === true){
-      toast.warning("비밀번호에 공백 또는 한글을 입력할 수 없습니다.")
-    } else if (!email || !pw || !checkPw || !name || !birth || !phoneNum) {
+    if (!email || !pw || !checkPw || !name || !birth || !phoneNum) {
       toast.warning("빈칸이 있습니다.");
+    } else if(/[^ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/.test(pw) === false || /\s/.test(pw) === true){
+      toast.warning("비밀번호에 공백 또는 한글을 입력할 수 없습니다.")
     } else if (pw.length < 8) {
       toast.warning("비밀번호가 8자리 이상이여야 합니다.");
     } else if (pw !== checkPw) {
@@ -171,7 +171,7 @@ const RegisterContainer = () => {
             // toast.warning(`${err.response?.data.message}`);
             toast.warning("이메일 인증이 진행되지 않았습니다.");
           } else if (err.response?.status === 400) {
-            toast.warning("올바르지 않은 값이 있습니다.");
+            toast.warning("이미 사용중인 전화번호입니다.")
           } else if (err.response?.status === 410) {
             toast.warning("이미 사용중인 실명인증입니다.");
           } else {

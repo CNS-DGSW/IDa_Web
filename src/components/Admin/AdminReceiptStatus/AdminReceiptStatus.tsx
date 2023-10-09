@@ -25,17 +25,7 @@ const AdminReceiptStatus = ({
     <>
       <div className="receipt">
         <div className="receipt-title">신입생 입학 전형 원부</div>
-        <div className="receipt-btn" onClick={() => {
-          getReceiptStatusExcel()
-          .then((res)=>{
-            console.log(res)
-            console.log('okay')
-          })
-          .catch((err)=>{
-            console.log(err)
-            console.log('error')
-          })
-        }}>
+        <div className="receipt-btn" onClick={() => getReceiptStatusExcel()}>
           현자료 엑셀 내려받기
         </div>
 
@@ -100,7 +90,7 @@ const AdminReceiptStatus = ({
                       </td>
                       <td>{filteredName.cityName}</td>
                       <td>{filteredName.schoolName}</td>
-                      <td>{Convertor.GradeType(filteredName.gradeType)}</td>
+                      <td>{filteredName.gradeType}</td>
                       <td>{filteredName.applyTypeString}</td>
                       <td>{filteredName.gradeScore}</td>
                       <td>{filteredName.absenceScore}</td>
@@ -142,7 +132,7 @@ const AdminReceiptStatus = ({
                     </td>
                     <td>{res.cityName}</td>
                     <td>{res.schoolName}</td>
-                    <td>{Convertor.GradeType(res.gradeType)}</td>
+                    <td>{res.gradeType}</td>
                     <td>{res.applyTypeString}</td>
                     <td>{res.gradeScore}</td>
                     <td>{res.absenceScore}</td>
