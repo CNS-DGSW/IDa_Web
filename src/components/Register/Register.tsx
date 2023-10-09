@@ -144,7 +144,7 @@ const Register = ({
               type="button"
               value="인증"
               className="Register-box-form-btn"
-              style={{ width: "29%", outline: "none" }}
+              style={{ width: "29%", height: "45px", outline: "none" }}
               onClick={() => handleEmailSend()}
             />
           </div>
