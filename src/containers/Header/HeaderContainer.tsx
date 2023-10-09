@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useLayoutEffect, useEffect } from "react";
 import { observer } from "mobx-react";
 import Header from "components/common/Header";
 import { useNavigate } from "react-router-dom";
@@ -84,7 +84,7 @@ const HeaderContainer = ({ theme, style }: HeaderContainerProps) => {
     }
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     getInfoCallback();
   }, [getInfoCallback]);
 

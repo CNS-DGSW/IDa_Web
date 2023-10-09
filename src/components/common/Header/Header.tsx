@@ -129,6 +129,7 @@ const Header = ({
           </NavLink>
         </div>
         <div className="header-container-button">
+          <button onClick={() => console.log(isAdmin)}>dd</button>
           {login ? (
             <>
               {isAdmin && (
