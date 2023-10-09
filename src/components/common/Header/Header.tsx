@@ -71,12 +71,11 @@ const Header = ({
           <NavLink to="/" className="header-menu-content-item">
             <span>홈</span>
           </NavLink>
-          {
-            // !isApplyPeriod &&
+          { !isApplyPeriod && (
             <NavLink to="/write" className="header-menu-content-item">
               <span>원서 접수</span>
             </NavLink>
-          }
+          )}
           <NavLink to="/notice" className="header-menu-content-item">
             <span>공지사항</span>
           </NavLink>
@@ -123,11 +122,13 @@ const Header = ({
           <NavLink to="/" className="header-container-link-item">
             <span>홈</span>
           </NavLink>
-          {isAdmin === false && (
-            // && isApplyPeriod ?
+          {isAdmin === false && isApplyPeriod ? 
+            (
             <NavLink to="/write" className="header-container-link-item">
               <span>원서 접수 </span>
             </NavLink>
+          ):(
+            <></>
           )}
           <NavLink to="/notice" className="header-container-link-item">
             <span>공지사항</span>
@@ -169,8 +170,7 @@ const Header = ({
               >
                 로그인
               </button>
-              {
-                // isApplyPeriod &&
+              { isApplyPeriod && (
                 <button
                   className="headerButton"
                   onClick={() => history("/register")}
@@ -178,7 +178,7 @@ const Header = ({
                 >
                   회원가입
                 </button>
-              }
+              )}
             </>
           )}
           <HiOutlineMenuAlt3 className="header-toggle" onClick={menuToggle} />

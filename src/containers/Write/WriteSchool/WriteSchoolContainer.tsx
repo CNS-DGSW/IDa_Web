@@ -131,7 +131,7 @@ const WriteSchoolContainer = ({}) => {
   const getSchoolInfoCallback = useCallback(() => {
     getSchoolInfoAtom()
       .then((res: SchoolInfoResponse) => {
-        setCityLocation(res.data.location || "");
+        setCityLocation(res.data.cityLocation || "");
         setCityName(res.data.cityName || "");
         setGradeType(res.data.gradeType);
         setGraduatedDate(res.data.graduatedDate || "");

@@ -79,7 +79,7 @@ export interface ParentInfoResponse extends Response {
 
 export interface SchoolInfoResponse extends Response {
   data: {
-    location: string;
+    cityLocation: string;
     cityName: string;
     gradeType: Grade;
     graduatedDate: string;
