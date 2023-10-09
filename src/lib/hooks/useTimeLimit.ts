@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-const currentDate = new Date()
+const currentDate = new Date();
 
 const useTimeLimit = () => {
-    // 원서접수 접근 시간 관리
+  // 원서접수 접근 시간 관리
 
     // 10/11(수) 9시 ~ 10/13(금) 17시 (시범운영)
     // 10/16(월) 9시 ~ 10/19(목) 17시 (정식운영)
@@ -22,8 +22,8 @@ const useTimeLimit = () => {
         } else {
             setCanAccessWrite(false)
         } */
-        return canAccessWrite
-    }
+    return canAccessWrite;
+  };
 
     // 원서 최종 제출 접근 시간 관리
     // 서버에서 처리
