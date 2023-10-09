@@ -33,43 +33,43 @@ const canAccessAtom = atom<boolean>({
 });
 
 const isPassedAtom = atom<boolean | null>({
-  key: "",
+  key: "isPassedAtom",
   default: null,
 });
 const examCodeAtom = atom<number | null>({
-  key: "",
+  key: "examCodeAtom",
   default: null,
 });
 const nameAtom = atom<string | null>({
-  key: "",
+  key: "nameAtom",
   default: null,
 });
 const sexAtom = atom<string | null>({
-  key: "",
+  key: "sexAtom",
   default: null,
 });
 const birthAtom = atom<string | null>({
-  key: "",
+  key: "birthAtom",
   default: null,
 });
 const areaAtom = atom<string | null>({
-  key: "",
+  key: "areaAtom",
   default: null,
 });
 const schoolAtom = atom<string | null>({
-  key: "",
+  key: "schoolAtom",
   default: null,
 });
 const gradeTypeAtom = atom<string | null>({
-  key: "",
+  key: "gradeTypeAtom",
   default: null,
 });
 const finalApplyTypeAtom = atom<string | null>({
-  key: "",
+  key: "finalApplyTypeAtom",
   default: null,
 });
 const finalApplyDetailTypeAtom = atom<string | null>({
-  key: "",
+  key: "finalApplyDetailTypeAtom",
   default: null,
 });
 
