@@ -144,8 +144,11 @@ const RegisterContainer = () => {
   const handleRegister = useCallback(async () => {
     if (!email || !pw || !checkPw || !name || !birth || !phoneNum) {
       toast.warning("빈칸이 있습니다.");
-    } else if(/[^ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/.test(pw) === false || /\s/.test(pw) === true){
-      toast.warning("비밀번호에 공백 또는 한글을 입력할 수 없습니다.")
+    } else if (
+      /[^ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/.test(pw) === false ||
+      /\s/.test(pw) === true
+    ) {
+      toast.warning("비밀번호에 공백 또는 한글을 입력할 수 없습니다.");
     } else if (pw.length < 8) {
       toast.warning("비밀번호가 8자리 이상이여야 합니다.");
     } else if (pw !== checkPw) {
@@ -156,7 +159,7 @@ const RegisterContainer = () => {
       await tryRegister(name, birth, email, pw, phoneNum, phoneCheck)
         .then((_) => {
           toast.success("회원가입이 완료되었습니다.");
-          history("/login");
+          history("/login", { state: { isValid: true } });
         })
         .catch((err: any) => {
           if (err.response?.status === 406) {
@@ -171,7 +174,7 @@ const RegisterContainer = () => {
             // toast.warning(`${err.response?.data.message}`);
             toast.warning("이메일 인증이 진행되지 않았습니다.");
           } else if (err.response?.status === 400) {
-            toast.warning("이미 사용중인 전화번호입니다.")
+            toast.warning("이미 사용중인 전화번호입니다.");
           } else if (err.response?.status === 410) {
             toast.warning("이미 사용중인 실명인증입니다.");
           } else {

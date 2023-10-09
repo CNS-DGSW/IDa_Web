@@ -1,4 +1,4 @@
-import React, { useCallback, useLayoutEffect, useEffect } from "react";
+import React, { useLayoutEffect, useEffect } from "react";
 import { observer } from "mobx-react";
 import Header from "components/common/Header";
 import { useNavigate } from "react-router-dom";
@@ -51,10 +51,12 @@ const HeaderContainer = ({ theme, style }: HeaderContainerProps) => {
     removeCookie("refreshToken");
     localStorage.removeItem("accessToken");
     localStorage.removeItem("expireAt");
-    history("/");
+    history("/", { state: { isValid: true } });
   };
 
   const getInfo = async () => {
+    console.log("log를 찍어보는거시와요");
+
     const response: UserInfoResponse = await AuthApi.GetInfo();
 
     if (response.status === 200) {
@@ -68,14 +70,14 @@ const HeaderContainer = ({ theme, style }: HeaderContainerProps) => {
   };
 
   // 유저 정보 가져오기
-  const getInfoCallback = useCallback(async () => {
+  const getInfoCallback = async () => {
     if (localStorage.getItem("accessToken") && !nameValue && !emailValue) {
       changeLoginAtom(true);
       await getInfo().catch((err: any) => {
         HandleLogout();
       });
     }
-  }, [loginAtom]);
+  };
 
   // 프로필 버튼 눌렀을 때 모달 닫기
   const closeAllModal = () => {

@@ -44,25 +44,25 @@ const SecondTypeScoreContainer = ({}) => {
   const tryDown = (key: string) => {
     switch (key) {
       case "stu":
-        GetStu().catch((err: any) => {
+        GetStu().catch((_) => {
           toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
         });
         break;
 
       case "job":
-        GetJob().catch((err: any) => {
+        GetJob().catch((_) => {
           toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
         });
         break;
 
       case "computing":
-        GetComputing().catch((err: any) => {
+        GetComputing().catch((_) => {
           toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
         });
         break;
 
       case "secondScore":
-        GetSecondScoreExcel().catch((err: any) => {
+        GetSecondScoreExcel().catch((_) => {
           toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요");
         });
         break;
@@ -90,7 +90,7 @@ const SecondTypeScoreContainer = ({}) => {
           break;
         case "stu":
           await uploadStu(file)
-            .then(() => {
+            .then((_) => {
               toast.success("파일 업로드 되었습니다");
             })
             .catch((err) => {
@@ -101,7 +101,7 @@ const SecondTypeScoreContainer = ({}) => {
           break;
         case "computing":
           await uploadComputing(file)
-            .then(() => {
+            .then((_) => {
               toast.success("파일 업로드 되었습니다");
             })
             .catch((err) => {

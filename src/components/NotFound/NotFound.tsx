@@ -9,7 +9,10 @@ const NotFound = () => {
       <div className="SubContainer">
         <p className="Title">404 : Page Not Found</p>
         <p className="SubTitle">찾으시는 페이지가 없습니다!</p>
-        <p className="Context" onClick={() => Navigate("/")}>
+        <p
+          className="Context"
+          onClick={() => Navigate("/", { state: { isValid: true } })}
+        >
           메인으로 돌아가기
         </p>
       </div>
