@@ -29,7 +29,7 @@
           width: 33%;
         }
       }
-      &-phone{
+      &-phone {
         position: relative;
         display: flex;
         align-items: center;
@@ -42,19 +42,24 @@
         justify-content: space-between;
       }
       &-btn {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         background-color: $bg-blue;
         color: $ft-white;
         cursor: pointer;
         height: 100%;
+        outline: none;
         &:hover {
           background-color: $bg-light-bule;
         }
       }
-      &-temp{
-        &-big{
+      &-temp {
+        &-big {
           margin-top: 30px;
         }
-        &-small{
+        &-small {
           margin-top: 5px;
         }
       }
