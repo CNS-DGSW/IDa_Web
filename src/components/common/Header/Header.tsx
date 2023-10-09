@@ -8,7 +8,7 @@ import { ReactComponent as Logo2 } from "assets/images/logo-2.svg";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 
 interface HeaderProps {
-  isApplyPeriod: boolean;
+  isApplyPeriod?: boolean;
   login: boolean;
   isAdmin: boolean;
   profileBox: boolean;
@@ -72,19 +72,18 @@ const Header = ({
             <span>홈</span>
           </NavLink>
           {
-          // !isApplyPeriod && 
-          (
+            // !isApplyPeriod &&
             <NavLink to="/write" className="header-menu-content-item">
               <span>원서 접수</span>
             </NavLink>
-          )}
+          }
           <NavLink to="/notice" className="header-menu-content-item">
             <span>공지사항</span>
           </NavLink>
 
-          { 
-          // 이거 주석처리해도 똑같음....
-          /* !login && (
+          {
+            // 이거 주석처리해도 똑같음....
+            /* !login && (
             <>
               <button
                 className="header-menu-content-sign"
@@ -104,7 +103,8 @@ const Header = ({
                 </button>
               )} 
             </>
-          ) */}
+          ) */
+          }
         </div>
       </div>
       <div className="header-container">
@@ -123,9 +123,8 @@ const Header = ({
           <NavLink to="/" className="header-container-link-item">
             <span>홈</span>
           </NavLink>
-          {isAdmin === false &&
-            // && isApplyPeriod ? 
-            (
+          {isAdmin === false && (
+            // && isApplyPeriod ?
             <NavLink to="/write" className="header-container-link-item">
               <span>원서 접수 </span>
             </NavLink>
@@ -171,8 +170,7 @@ const Header = ({
                 로그인
               </button>
               {
-              // isApplyPeriod && 
-              (
+                // isApplyPeriod &&
                 <button
                   className="headerButton"
                   onClick={() => history("/register")}
@@ -180,7 +178,7 @@ const Header = ({
                 >
                   회원가입
                 </button>
-              )}
+              }
             </>
           )}
           <HiOutlineMenuAlt3 className="header-toggle" onClick={menuToggle} />
