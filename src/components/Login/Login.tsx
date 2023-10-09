@@ -42,7 +42,7 @@ const Login = ({
             <Button onClick={() => handleLogin()}>로그인</Button>
             <span
               className="Login-box-button-find"
-              onClick={() => history("/find")}
+              onClick={() => history("/find", { state: { isValid: true } })}
             >
               비밀번호를 잊으셨나요?
             </span>

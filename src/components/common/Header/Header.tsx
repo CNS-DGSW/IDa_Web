@@ -84,14 +84,16 @@ const Header = ({
             <>
               <button
                 className="header-menu-content-sign"
-                onClick={() => history("/login")}
+                onClick={() => history("/login", { state: { isValid: true } })}
               >
                 로그인
               </button>
               {!isApplyPeriod && (
                 <button
                   className="header-menu-content-sign"
-                  onClick={() => history("/register")}
+                  onClick={() =>
+                    history("/register", { state: { isValid: true } })
+                  }
                   style={{ marginTop: "1.2rem" }}
                 >
                   회원가입
@@ -106,12 +108,12 @@ const Header = ({
           {theme ? (
             <Logo2
               className="pointer header-container-logo"
-              onClick={() => history("/")}
+              onClick={() => history("/", { state: { isValid: true } })}
             />
           ) : (
             <Logo1
               className="pointer header-container-logo"
-              onClick={() => history("/")}
+              onClick={() => history("/", { state: { isValid: true } })}
             />
           )}
           <NavLink to="/" className="header-container-link-item">
@@ -134,7 +136,9 @@ const Header = ({
               {isAdmin && (
                 <button
                   className="headerButton header-admin"
-                  onClick={() => history("/admin/userList")}
+                  onClick={() =>
+                    history("/admin/userList", { state: { isValid: true } })
+                  }
                 >
                   관리자
                 </button>
@@ -160,14 +164,16 @@ const Header = ({
             <>
               <button
                 className="headerButton"
-                onClick={() => history("/login")}
+                onClick={() => history("/login", { state: { isValid: true } })}
               >
                 로그인
               </button>
               {!isApplyPeriod && (
                 <button
                   className="headerButton"
-                  onClick={() => history("/register")}
+                  onClick={() =>
+                    history("/register", { state: { isValid: true } })
+                  }
                   style={{ marginLeft: "1rem" }}
                 >
                   회원가입

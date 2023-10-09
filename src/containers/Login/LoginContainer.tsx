@@ -53,7 +53,7 @@ const LoginContainer = () => {
           );
           setCookie("refreshToken", res.data.refreshToken, { path: "/" });
           setLoginCheck();
-          history("/");
+          history("/", { state: { isValid: true } });
         })
         .catch((err: any) => {
           if (err.response?.status === 401) {

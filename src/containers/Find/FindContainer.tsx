@@ -56,7 +56,7 @@ const FindContainer = () => {
     } else {
       tryChangePwByEmail(code, newPw)
         .then((_) => {
-          history("/login");
+          history("/login", { state: { isValid: true } });
           toast.success("변경되었습니다.");
         })
         .catch((err: any) => {

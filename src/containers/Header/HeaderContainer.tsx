@@ -51,7 +51,7 @@ const HeaderContainer = ({ theme, style }: HeaderContainerProps) => {
     removeCookie("refreshToken");
     localStorage.removeItem("accessToken");
     localStorage.removeItem("expireAt");
-    history("/");
+    history("/", { state: { isValid: true } });
   };
 
   const getInfo = async () => {

@@ -102,7 +102,7 @@ const Register = ({
               )}
               <span
                 className="Register-box-button-find"
-                onClick={() => history("/login")}
+                onClick={() => history("/login", { state: { isValid: true } })}
               >
                 이미 회원이신가요?
               </span>

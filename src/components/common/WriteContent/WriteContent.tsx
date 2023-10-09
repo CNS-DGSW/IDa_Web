@@ -93,12 +93,12 @@ const WriteContent = ({
       if (result.isConfirmed) {
         await changeSubmit(userIdx)
           .then(() => {
-            history("/");
+            history("/", { state: { isValid: true } });
             toast.success("제출되었습니다.");
           })
           .catch((err) => {
             if (err.response?.status === 401 || err.response?.status === 410) {
-              history("/login");
+              history("/login", { state: { isValid: true } });
               toast.warning("로그인이 필요합니다.");
             } else if (err.response?.status === 406) {
               toast.warning("원서를 모두 작성하지 않았습니다.");

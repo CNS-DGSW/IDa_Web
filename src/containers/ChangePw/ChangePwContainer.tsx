@@ -18,11 +18,14 @@ const ChangePwContainer = ({}) => {
   const history = useNavigate();
 
   const checkPasswordValidate = () => {
-    if (changePw.length < 8 && checkPw.length < 8 ) {
+    if (changePw.length < 8 && checkPw.length < 8) {
       toast.warning("비밀번호는 8자리 이상이어야 합니다.");
-    } else if(/[^ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/.test(changePw) === false || /\s/.test(changePw) === true){
-      toast.warning("비밀번호에 공백 또는 한글을 입력할 수 없습니다.")
-    } else{
+    } else if (
+      /[^ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/.test(changePw) === false ||
+      /\s/.test(changePw) === true
+    ) {
+      toast.warning("비밀번호에 공백 또는 한글을 입력할 수 없습니다.");
+    } else {
       handleTryChangePw();
     }
   };
@@ -33,7 +36,7 @@ const ChangePwContainer = ({}) => {
       tryChangePw(changePw, originPw)
         .then(() => {
           toast.success("비밀번호가 변경되었습니다.");
-          history("/");
+          history("/", { state: { isValid: true } });
         })
         .catch((err: any) => {
           if (err.response?.status === 401) {
@@ -53,7 +56,7 @@ const ChangePwContainer = ({}) => {
   // accessToken이 있으면 헤더에서 자기 자신 accesToken인지 확인
   useEffect(() => {
     if (!localStorage.getItem("accessToken")) {
-      history("/");
+      history("/", { state: { isValid: true } });
     }
   });
 

@@ -32,7 +32,7 @@ const Main = ({
               </p>
               <div
                 className="Main-content-btn"
-                onClick={() => history("/Write")}
+                onClick={() => history("/Write", { state: { isValid: true } })}
               >
                 원서 접수하기
               </div>
@@ -57,7 +57,11 @@ const Main = ({
                     .format("yyyy. MM. DD.(ddd) HH:mm")}`}
                 </p>
                 <p className="Content-box-area-small">
-                원서 접수 사이트에서 원서 접수 후 출력하여 서류와 함께 제출해야 합니다.<br/>우편 또는 방문 제출 가능하며, 반드시 마감 시간 이내에 도착해야 합니다. 
+                  원서 접수 사이트에서 원서 접수 후 출력하여 서류와 함께
+                  제출해야 합니다.
+                  <br />
+                  우편 또는 방문 제출 가능하며, 반드시 마감 시간 이내에 도착해야
+                  합니다.
                 </p>
               </div>
             </MainContent>
