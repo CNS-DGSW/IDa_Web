@@ -4,6 +4,7 @@ import Register from "components/Register";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { tryRegister, trySendEmail, trySendPhone } from "stores/Auth/useAuth";
+import useTimeLimit from "lib/hooks/useTimeLimit";
 
 const RegisterContainer = () => {
   const history = useNavigate();
@@ -184,6 +185,21 @@ const RegisterContainer = () => {
         });
     }
   }, [name, birth, email, pw, checkPw, phoneNum, allCheck]);
+
+  // 시간 설정
+  const {
+    canAccessSignup,
+    SignupLimitControl
+  } = useTimeLimit()
+
+  useEffect(()=>{
+    SignupLimitControl()
+
+    if(canAccessSignup === false){
+      history("/", { state: { isValid: true } })
+      toast.error('회원가입 기간이 아닙니다.')
+    }
+  },[canAccessSignup])
 
   useEffect(() => {
     // console.log(loading);

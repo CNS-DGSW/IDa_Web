@@ -6,13 +6,15 @@ import { useLocation, useNavigate } from "react-router-dom";
 import useQuery from "lib/hooks/useQuery";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { pageAtom, userIdxAtom } from "stores/Write/WriteAtom";
+import useTimeLimit from "lib/hooks/useTimeLimit";
+import { toast } from "react-toastify";
 
 const WriteContainer = ({}) => {
   const [page, setPage] = useRecoilState(pageAtom);
   const setUserIdx = useSetRecoilState(userIdxAtom);
   const { search } = useLocation();
   const query = useQuery();
-  const histroy = useNavigate();
+  const history = useNavigate();
 
   // 웹 사이트에 변경점이 있을 때 뒤로가기, 새로고침 시 경고 띄우기
   useBeforeunload((event) => event.preventDefault());
@@ -27,6 +29,21 @@ const WriteContainer = ({}) => {
       setUserIdx(null);
     }
   }, [search]);
+
+  // 접근 시간 이외에는 접근 금지
+  const {
+    canAccessWrite,
+    WriteLimitControl,
+  } = useTimeLimit()
+
+  useEffect(()=>{
+    WriteLimitControl()
+
+    if(canAccessWrite === false){
+      history("/", { state: { isValid: true } })
+      toast.error('원서 입력 기간이 아닙니다.')
+    }
+  },[canAccessWrite])
 
   useEffect(() => {
     return () => {

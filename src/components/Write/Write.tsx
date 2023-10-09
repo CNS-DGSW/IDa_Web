@@ -10,9 +10,6 @@ import "react-step-progress/dist/index.css";
 import "./Write.scss";
 import Steps from "rc-steps";
 import "rc-steps/assets/index.css";
-import useTimeLimit from "lib/hooks/useTimeLimit";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 
 interface WriteProps {
   page: number;
@@ -20,7 +17,6 @@ interface WriteProps {
 }
 
 const Write = ({ page, pageHandle }: WriteProps) => {
-  const history = useNavigate();
   const pages = [
     "지원자 정보",
     "보호자 정보",
@@ -45,25 +41,6 @@ const Write = ({ page, pageHandle }: WriteProps) => {
     return nowPage;
   }, [page]);
 
-  /* 
-  const {
-    canAccessWrite,
-    WriteLimitControl,
-  } = useTimeLimit()
-
-  const WriteLimitControlFun = async() => {
-    const data = await WriteLimitControl()
-
-    if( data === false){
-      history('/')
-      toast.warning('원서 입력 기간이 아닙니다.')
-    }
-  }
-
-  useEffect(()=>{
-    WriteLimitControlFun()
-  },[]) 
-  */
 
   return (
     <>
