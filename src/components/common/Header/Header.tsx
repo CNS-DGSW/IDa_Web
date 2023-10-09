@@ -71,7 +71,7 @@ const Header = ({
           <NavLink to="/" className="header-menu-content-item">
             <span>홈</span>
           </NavLink>
-          { !isApplyPeriod && (
+          {!isApplyPeriod && (
             <NavLink to="/write" className="header-menu-content-item">
               <span>원서 접수</span>
             </NavLink>
@@ -80,9 +80,7 @@ const Header = ({
             <span>공지사항</span>
           </NavLink>
 
-          {
-            // 이거 주석처리해도 똑같음....
-            /* !login && (
+          {!login && (
             <>
               <button
                 className="header-menu-content-sign"
@@ -90,9 +88,7 @@ const Header = ({
               >
                 로그인
               </button>
-              {
-              // !isApplyPeriod && 
-              (
+              {!isApplyPeriod && (
                 <button
                   className="header-menu-content-sign"
                   onClick={() => history("/register")}
@@ -100,10 +96,9 @@ const Header = ({
                 >
                   회원가입
                 </button>
-              )} 
+              )}
             </>
-          ) */
-          }
+          )}
         </div>
       </div>
       <div className="header-container">
@@ -122,12 +117,11 @@ const Header = ({
           <NavLink to="/" className="header-container-link-item">
             <span>홈</span>
           </NavLink>
-          {isAdmin === false && isApplyPeriod ? 
-            (
+          {isAdmin === false && !isApplyPeriod ? (
             <NavLink to="/write" className="header-container-link-item">
               <span>원서 접수 </span>
             </NavLink>
-          ):(
+          ) : (
             <></>
           )}
           <NavLink to="/notice" className="header-container-link-item">
@@ -170,7 +164,7 @@ const Header = ({
               >
                 로그인
               </button>
-              { isApplyPeriod && (
+              {!isApplyPeriod && (
                 <button
                   className="headerButton"
                   onClick={() => history("/register")}
