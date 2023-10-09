@@ -14,6 +14,7 @@ interface ProfileModalBoxProps {
   email: string | undefined;
   HandleLogout: () => void;
   closeStatusModal: () => void;
+  isAdmin:boolean;
 }
 
 const ProfileModalBox = ({
@@ -21,6 +22,7 @@ const ProfileModalBox = ({
   name,
   email,
   HandleLogout,
+  isAdmin
 }: ProfileModalBoxProps) => {
   const history = useNavigate();
   const [applyAtom, setApplyAtom] = useRecoilState<boolean>(applyBox);
@@ -33,13 +35,19 @@ const ProfileModalBox = ({
           <span className="ProfileModalBox-title-email">{email}</span>
         </div>
         <hr />
-        <div
-          className="ProfileModalBox-status box pointer"
-          onClick={() => setApplyAtom(true)}
-        >
-          <PaperSvg className="ProfileModalSVG" />
-          <span className="box-text">원서접수 현황</span>
-        </div>
+        {
+          isAdmin === false ? (
+            <div
+              className="ProfileModalBox-status box pointer"
+              onClick={() => setApplyAtom(true)}
+            >
+              <PaperSvg className="ProfileModalSVG" />
+              <span className="box-text">원서접수 현황</span>
+            </div>
+          ) : (
+            <></>
+          )
+        }
 
         <div
           onClick={() => history("/changepw")}

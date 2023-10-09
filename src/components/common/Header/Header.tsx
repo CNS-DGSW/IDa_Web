@@ -111,9 +111,15 @@ const Header = ({
           <NavLink to="/" className="header-container-link-item">
             <span>홈</span>
           </NavLink>
-          <NavLink to="/write" className="header-container-link-item">
-            <span>원서 접수 </span>
-          </NavLink>
+          {
+            isAdmin === false ? (
+              <NavLink to="/write" className="header-container-link-item">
+                <span>원서 접수 </span>
+              </NavLink>
+            ) : (
+              <></>
+            )
+          }
           <NavLink to="/notice" className="header-container-link-item">
             <span>공지사항</span>
           </NavLink>
@@ -141,6 +147,7 @@ const Header = ({
                     email={email}
                     HandleLogout={HandleLogout}
                     closeStatusModal={closeStatusModal}
+                    isAdmin={isAdmin}
                   />
                 </>
               )}
