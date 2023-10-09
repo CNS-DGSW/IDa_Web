@@ -50,12 +50,7 @@ const Find = ({
     >
       <div className="FindPw-form">
         <div className="FindPw-form-email">
-          <CustomInput
-            placeholder="이메일"
-            setValue={setEmail}
-            value={email}
-            style={{ width: "78%" }}
-          />
+          <CustomInput placeholder="이메일" setValue={setEmail} value={email} />
           <CustomInput
             type="button"
             value="인증"
@@ -63,6 +58,7 @@ const Find = ({
             onClick={() => {
               handlePwCode();
             }}
+            style={{ width: "22%" }}
           />
         </div>
         <CustomInput
