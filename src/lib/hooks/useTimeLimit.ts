@@ -12,10 +12,10 @@ const useTimeLimit = () => {
     const WriteSecondPeriodStart = new Date(2023, 9, 16, 9)
     const WriteSecondPeriodEnd = new Date(2023, 9, 19, 17)
 
-    const WriteFirstTestTimeStart = new Date(2023,9,9,22,14)
+    /* const WriteFirstTestTimeStart = new Date(2023,9,9,22,14)
     const WriteFirstTestTimeEnd = new Date(2023,9,9,22,30)
     const WriteSecondTestTimeStart = new Date(2023,9,9,22,56)
-    const WriteSecondTestTimeEnd = new Date(2023,9,9,22,57)
+    const WriteSecondTestTimeEnd = new Date(2023,9,9,22,57) */
 
     const [canAccessWrite,setCanAccessWrite] = useState<boolean>(false)
     const WriteLimitControl = () => {
