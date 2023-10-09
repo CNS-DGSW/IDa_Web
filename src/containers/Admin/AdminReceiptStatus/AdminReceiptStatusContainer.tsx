@@ -28,7 +28,6 @@ const AdminReceiptStatusContainer = ({}) => {
         //     .map((user) => user.totalScore)
         // );
         setReceiptStatus(res.data);
-        console.log(res.data)
       })
       .catch((err) => {
         handleAdmin(err, history);
