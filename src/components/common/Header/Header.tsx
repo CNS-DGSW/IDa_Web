@@ -142,11 +142,14 @@ const Header = ({
             onClick={() => history("/", { state: { isValid: true } })}
           >
             <span>홈</span>
-          </NavLink>
-          {isAdmin === false && !isApplyPeriod ? (
-            <NavLink to="/write" className="header-container-link-item">
-              <span>원서 접수 </span>
-            </NavLink>
+          </button>
+          {isAdmin === false && canAccessWrite ? (
+            <button
+            className="header-menu-content-item"
+            onClick={() => history("/write", { state: { isValid: true } })}
+          >
+            <span>원서 접수</span>
+          </button>
           ) : (
             <></>
           )}
