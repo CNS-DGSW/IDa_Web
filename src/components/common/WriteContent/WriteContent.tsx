@@ -142,6 +142,7 @@ const WriteContent = ({
             {page === 6 && (
               <Link
                 to={`/print${userIdx !== null ? "?userIdx=" + userIdx : ""}`}
+                state={{ isValid: true }}
                 target="_blank"
                 rel="noopener noeferrer"
                 className="writecontent-children-area-btn prev"

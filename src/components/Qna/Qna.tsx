@@ -46,6 +46,7 @@ const Qna = ({
       >
         <Link
           to="/qna"
+          state={{ isValid: true }}
           onClick={() => {
             setSelectedIdx(undefined);
             setShow(true);
