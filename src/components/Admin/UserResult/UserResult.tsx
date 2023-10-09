@@ -6,7 +6,6 @@ import { findNameByValue } from "models/ApplyDetailModel";
 import { findApplyByString } from "util/enums/Apply";
 import { UserResult as UserResultType } from "util/types/UserResult";
 import applyDetailModel from "models/ApplyDetailModel";
-import { NavLink } from "react-router-dom";
 
 interface UserResultProps {
   userResultList: UserResultType[];
