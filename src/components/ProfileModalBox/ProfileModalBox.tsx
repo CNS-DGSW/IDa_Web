@@ -1,5 +1,5 @@
 import ResultStatusContainer from "containers/ResultStatus/ResultStatus/ResultStatusContainer";
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./ProfileModalBox.scss";
 import { ReactComponent as LogoutSvg } from "assets/images/logout.svg";
