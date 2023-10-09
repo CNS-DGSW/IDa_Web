@@ -8,27 +8,27 @@ const submitAtom = atom<boolean>({
 });
 
 const printAtom = atom<boolean>({
-  key: "submitAtom",
+  key: "printAtom",
   default: false,
 });
 
 const checkedPrintAtom = atom<boolean | string>({
-  key: "submitAtom",
+  key: "checkedPrintAtom",
   default: false,
 });
 
 const passAtom = atom<boolean | null | undefined | string>({
-  key: "submitAtom",
+  key: "passAtom",
   default: undefined,
 });
 
 const statusModalAtom = atom<boolean>({
-  key: "submitAtom",
+  key: "statusModalAtom",
   default: false,
 });
 
 const canAccessAtom = atom<boolean>({
-  key: "submitAtom",
+  key: "canAccessAtom",
   default: false,
 });
 
