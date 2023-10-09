@@ -13,10 +13,11 @@ interface DefaultTemplateProps {
 const DefaultTemplate = ({ children, theme, style }: DefaultTemplateProps) => {
   const location = useLocation();
   const { state } = location as unknown as ILocationState;
+  console.log(location)
   return (
     <div className="default-template">
       <HeaderContainer theme={theme} style={style} />
-      {state?.isValid ? <>{children}</> : <NotFound />}
+      {state?.isValid || location.pathname === '/' ? <>{children}</> : <NotFound />}
     </div>
   );
 };
