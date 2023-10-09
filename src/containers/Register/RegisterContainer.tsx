@@ -171,7 +171,7 @@ const RegisterContainer = () => {
             // toast.warning(`${err.response?.data.message}`);
             toast.warning("이메일 인증이 진행되지 않았습니다.");
           } else if (err.response?.status === 400) {
-            toast.warning("올바르지 않은 값이 있습니다.");
+            toast.warning("이미 사용중인 전화번호입니다.")
           } else if (err.response?.status === 410) {
             toast.warning("이미 사용중인 실명인증입니다.");
           } else {
