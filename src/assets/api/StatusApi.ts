@@ -9,6 +9,13 @@ class StatusApi {
     return data;
   }
 
+  async GetStatusFirst(userIdx?: number | null) {
+    const query = userIdx ? `?userIdx=${userIdx}` : "";
+
+    const { data } = await Api.get(`/status/getStatus/first${query}`);
+    return data;
+  }
+
   async ChangeSubmit(userIdx?: number | null) {
     const { data } = await Api.post(
       `/status/changeSubmit${userIdx !== null ? "?userIdx=" + userIdx : ""}`

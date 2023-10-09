@@ -82,7 +82,7 @@ const ResultStatusContainer = ({}: ResultStatusContainerPropse) => {
     <>
       {/* api를 받고 난후 데이터가 오면 보여줌 */}
       {post !== undefined && internet !== undefined && (
-        // !post로 안하는 이유는 우편 접수가 아직 안되있으면 서버에서 false로 주기 때문
+        // !post로 안하는 이유는 우편- 접수가 아직 안되있으면 서버에서 false로 주기 때문
         <ResultStatus
           post={post}
           checkedPost={checkedPost}
