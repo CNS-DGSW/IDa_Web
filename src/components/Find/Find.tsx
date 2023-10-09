@@ -60,7 +60,6 @@ const Find = ({
             type="button"
             value="인증"
             className="FindPw-form-email-btn"
-            style={{ width: "21%" }}
             onClick={() => {
               handlePwCode();
             }}
