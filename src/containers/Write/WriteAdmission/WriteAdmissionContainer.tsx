@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { handleGetWriteError, handleWriteError } from "lib/handleErrors";
 import { useRecoilValue } from "recoil";
 import { editApplyType, getApplyType } from "stores/Write/WriteAtom";
+import { toast } from "react-toastify";
 
 const WriteAdmissionContainer = ({}) => {
   const getApplyTypeAtom = useRecoilValue(getApplyType);
@@ -35,6 +36,7 @@ const WriteAdmissionContainer = ({}) => {
       ) {
         flag = false;
       }
+      console.log(verteransCity,verteransNumber)
       await editApplyTypeAtom(
         applyType,
         applyDetailType,
@@ -46,6 +48,7 @@ const WriteAdmissionContainer = ({}) => {
       });
       setIsChanged(false);
     } else {
+      toast.warning("빈 값이 있습니다.")
       flag = false;
     }
     return flag;

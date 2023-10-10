@@ -7,6 +7,7 @@ import Modal from "components/common/Modal";
 import Button from "components/common/Button";
 import { ReactComponent as Delete } from "assets/images/delete.svg";
 import UserPrintStatus from "util/enums/UserPrintStatus";
+import { useNavigate } from "react-router-dom";
 
 interface UserListProps {
   userStatus: List[] | undefined;
@@ -66,6 +67,7 @@ const UserList = ({
   tryChangeReview,
   userResult,
 }: UserListProps) => {
+  const history = useNavigate();
   return (
     <>
       <div className="userList">
@@ -197,7 +199,7 @@ const UserList = ({
                       <td
                         className="pointer"
                         onClick={() =>
-                          window.open(`/write?userIdx=${filter.idx}`)
+                          history(`/write?userIdx=${filter.idx}`, { state: { isValid: true } })
                         }
                       >
                         {filter.name}
@@ -310,7 +312,7 @@ const UserList = ({
                   <tr key={idx}>
                     <td>{idx + 1}</td>
                     <td
-                      onClick={() => window.open(`/write?userIdx=${i.idx}`)}
+                      onClick={() => history(`/write?userIdx=${i.idx}`,{state:{isValid:true}})}
                       className="pointer"
                     >
                       {i.name}
