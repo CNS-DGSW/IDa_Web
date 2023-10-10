@@ -31,7 +31,7 @@ const WriteStudentContainer = ({}) => {
   const [isChanged, setIsChanged] = useState<boolean>(false);
 
   const getStudentInfoCallback = useCallback(async () => {
-    await getStudentInfo(Number(query.get("userIdx")))
+    await getStudentInfo({userIdx})
       .then((res: UserInfoResponse) => {
         setName(res.data.name || "");
         setBirth(
