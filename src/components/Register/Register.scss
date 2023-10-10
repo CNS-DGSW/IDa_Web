@@ -42,10 +42,6 @@
         justify-content: space-between;
       }
       &-btn {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         background-color: $bg-blue;
         color: $ft-white;
         cursor: pointer;
@@ -125,4 +121,10 @@
   background-color: rgb(232, 240, 254);
   padding: 0.7rem 0.8rem;
   text-align: center;
+}
+
+@media screen and (max-width: 380px) {
+  .Register-box-form-btn {
+    height: 33px;
+  }
 }
