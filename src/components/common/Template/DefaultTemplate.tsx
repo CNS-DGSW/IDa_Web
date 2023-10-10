@@ -16,7 +16,11 @@ const DefaultTemplate = ({ children, theme, style }: DefaultTemplateProps) => {
   return (
     <div className="default-template">
       <HeaderContainer theme={theme} style={style} />
-      {state?.isValid || location.pathname === '/' ? <>{children}</> : <NotFound />}
+      {location.pathname === "/" || state?.isValid ? (
+        <>{children}</>
+      ) : (
+        <NotFound />
+      )}
     </div>
   );
 };
