@@ -21,7 +21,6 @@ const Main = ({
   secondOpenModal,
 }: MainProps) => {
   const history = useNavigate();
-  const { canAccessWrite, WriteLimitControl } = useTimeLimit();
   const [isAdminValue, setIsAdminAtom] = useRecoilState(isAdminAtom);
   const {
     canAccessWrite,
@@ -54,14 +53,9 @@ const Main = ({
               <p className="Main-content-Title-Main">
                 {new Date().getFullYear() + 1}학년도 신입생 입학 원서 접수
               </p>
-<<<<<<< HEAD
               {
                 (canAccessWrite && !isAdminValue) &&
                 (<div
-=======
-              {canAccessWrite && (
-                <div
->>>>>>> 983a36295465f6243470bb872c9c949f67225aa7
                   className="Main-content-btn"
                   onClick={() => {
                     history("/write", { state: { isValid: true } });
