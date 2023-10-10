@@ -17,15 +17,12 @@ import {
 import GedScoreType from "util/types/GedScore";
 
 interface writeGedProps {
-  gedScore:GedScoreType;
-  setGedScore:React.Dispatch<React.SetStateAction<GedScoreType>>;
+  gedScore: GedScoreType;
+  setGedScore: React.Dispatch<React.SetStateAction<GedScoreType>>;
 }
 
 // 검정고시 성적 입력
-const WriteGedContainer = ({
-  gedScore,
-  setGedScore
-}:writeGedProps) => {
+const WriteGedContainer = ({ gedScore, setGedScore }: writeGedProps) => {
   const history = useNavigate();
 
   /* const [koreanScore, setKoreanScore] = useRecoilState(koreanScoreAtom);
