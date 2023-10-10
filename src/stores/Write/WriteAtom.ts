@@ -238,8 +238,8 @@ const getGed = selector({
   key: "getGed",
   get:
     ({ get }) =>
-    async (): Promise<GedResponse> => {
-      const userIdx = get(userIdxAtom);
+    async (userIdx?:number|null): Promise<GedResponse> => {
+      // const userIdx = get(userIdxAtom);
       const response: GedResponse = await UserApi.GetGed(userIdx);
 
       return response;
@@ -250,8 +250,8 @@ const getApplyType = selector({
   key: "getApplyType",
   get:
     ({ get }) =>
-    async (): Promise<ApplyTypeResponse> => {
-      const userIdx = get(userIdxAtom);
+    async (userIdx?:number|null): Promise<ApplyTypeResponse> => {
+      // const userIdx = get(userIdxAtom);
       const response: ApplyTypeResponse = await UserApi.GetApplyType(userIdx);
 
       return response;
@@ -262,8 +262,8 @@ const getParentInfo = selector({
   key: "getParentInfo",
   get:
     ({ get }) =>
-    async (): Promise<ParentInfoResponse> => {
-      const userIdx = get(userIdxAtom);
+    async (userIdx?:number|null): Promise<ParentInfoResponse> => {
+      // const userIdx = get(userIdxAtom);
       const response: ParentInfoResponse = await UserApi.GetParentInfo(userIdx);
 
       return response;
@@ -326,8 +326,8 @@ const getSchoolInfo = selector({
   key: "getSchoolInfo",
   get:
     ({ get }) =>
-    async (): Promise<SchoolInfoResponse> => {
-      const userIdx = get(userIdxAtom);
+    async (userIdx?:number|null): Promise<SchoolInfoResponse> => {
+      // const userIdx = get(userIdxAtom);
       const response: SchoolInfoResponse = await UserApi.GetSchoolInfo(userIdx);
 
       return response;
@@ -400,8 +400,8 @@ const getProfileImage = selector({
   key: "getProfileImage",
   get:
     ({ get }) =>
-    async (): Promise<ProfileInfoResponse> => {
-      const userIdx = get(userIdxAtom);
+    async (userIdx?:number|null): Promise<ProfileInfoResponse> => {
+      // const userIdx = get(userIdxAtom);
       const response: ProfileInfoResponse = await UserApi.GetProfileImage(
         userIdx
       );
@@ -439,8 +439,8 @@ const getSelfIntroduce = selector({
   key: "getSelfIntroduce",
   get:
     ({ get }) =>
-    async (): Promise<SelfIntroductionResponse> => {
-      const userIdx = get(userIdxAtom);
+    async (userIdx?:number|null): Promise<SelfIntroductionResponse> => {
+      // const userIdx = get(userIdxAtom);
       const response: SelfIntroductionResponse = await UserApi.GetSelfIntroduce(
         userIdx
       );
@@ -468,8 +468,8 @@ const getStudyPlan = selector({
   key: "getStudyPlan",
   get:
     ({ get }) =>
-    async (): Promise<StudyPlanResponse> => {
-      const userIdx = get(userIdxAtom);
+    async (userIdx?:number|null): Promise<StudyPlanResponse> => {
+      // const userIdx = get(userIdxAtom);
       const response: StudyPlanResponse = await UserApi.GetStudyPlan(userIdx);
 
       return response;
@@ -590,8 +590,8 @@ const getAttend = selector({
   key: "getAttend",
   get:
     ({ get }) =>
-    async (): Promise<AttendResponse> => {
-      const userIdx = get(userIdxAtom);
+    async (userIdx?:number|null): Promise<AttendResponse> => {
+      // const userIdx = get(userIdxAtom);
       const response: AttendResponse = await UserApi.GetAttend(userIdx);
 
       return response;
@@ -602,8 +602,8 @@ const getAdditional = selector({
   key: "getAdditional",
   get:
     ({ get }) =>
-    async (): Promise<AdditionalResponse> => {
-      const userIdx = get(userIdxAtom);
+    async (userIdx?:number|null): Promise<AdditionalResponse> => {
+      // const userIdx = get(userIdxAtom);
       const response: AdditionalResponse = await UserApi.GetAdditional(userIdx);
 
       return response;
@@ -614,8 +614,8 @@ const getVolunteer = selector({
   key: "getVolunteer",
   get:
     ({ get }) =>
-    async (): Promise<VolunteerResponse> => {
-      const userIdx = get(userIdxAtom);
+    async (userIdx?:number|null): Promise<VolunteerResponse> => {
+      // const userIdx = get(userIdxAtom);
       const response: VolunteerResponse = await UserApi.GetVolunteer(userIdx);
 
       return response;
@@ -626,8 +626,8 @@ const getGradeList = selector({
   key: "getGradeList",
   get:
     ({ get }) =>
-    async (): Promise<GetGradeList> => {
-      const userIdx = get(userIdxAtom);
+    async (userIdx?:number|null): Promise<GetGradeList> => {
+      // const userIdx = get(userIdxAtom);
       const response: GetGradeList = await UserApi.GetGrade(userIdx);
 
       return response;

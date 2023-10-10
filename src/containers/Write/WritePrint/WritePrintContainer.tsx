@@ -204,7 +204,7 @@ const WritePrintContainer = ({}) => {
 
   //프로필 이미지 받아오는 함수
   const getProfileImageCallback = useCallback(async () => {
-    await getProfileImageAtom().then((res: ProfileInfoResponse) => {
+    await getProfileImageAtom(Number(query.get("userIdx"))).then((res: ProfileInfoResponse) => {
       setProfileImage(res.data.profileImage || "");
       // console.log(res)
     });
@@ -213,7 +213,7 @@ const WritePrintContainer = ({}) => {
 
   //학부모 정보 받아오는 함수
   const getParentInfoCallback = useCallback(async () => {
-    await getParentInfoAtom().then((res: ParentInfoResponse) => {
+    await getParentInfoAtom(Number(query.get("userIdx"))).then((res: ParentInfoResponse) => {
       setAddress(res.data.address || "");
       setDetailAddress(res.data.detailAddress || "");
       setParentName(res.data.parentName || "");
@@ -234,7 +234,7 @@ const WritePrintContainer = ({}) => {
 
   //학교 정보 받아오는 함수
   const getSchoolInfoCallback = useCallback(async () => {
-    await getSchoolInfoAtom().then((res: SchoolInfoResponse) => {
+    await getSchoolInfoAtom(Number(query.get("userIdx"))).then((res: SchoolInfoResponse) => {
       setTeacherName(res.data.teacherName || "");
       setCityName(res.data.cityName || "");
       setSchoolCode(res.data.schoolCode || "");
@@ -248,7 +248,7 @@ const WritePrintContainer = ({}) => {
 
   //입학전형 받아오기
   const getApplyTypeCallback = useCallback(async () => {
-    await getApplyTypeAtom().then((res: any) => {
+    await getApplyTypeAtom(Number(query.get("userIdx"))).then((res: any) => {
       setApplyType(res.data.applyType);
       setApplyDetailType(res.data.applyDetailType);
       setVerteransCity(res.data.verteransCity || "");
@@ -286,29 +286,29 @@ const WritePrintContainer = ({}) => {
 
   //자기소개서 받아오기
   const getSelfIntroduceCallBack = useCallback(async () => {
-    await getSelfIntroduceAtom().then((res: SelfIntroductionResponse) => {
+    await getSelfIntroduceAtom(Number(query.get("userIdx"))).then((res: SelfIntroductionResponse) => {
       setSelfIntroduce(res.data.selfIntroduction || "");
     });
   }, []);
 
   //학업계획서 받아오기
   const getStudyPlanCallBack = useCallback(async () => {
-    await getStudyPlanAtom().then((res: StudyPlanResponse) => {
+    await getStudyPlanAtom(Number(query.get("userIdx"))).then((res: StudyPlanResponse) => {
       setStudyPlan(res.data.studyPlan || "");
     });
   }, []);
 
   //자유힉기제 여부 받아오기
   const getGradeCallback = useCallback(async () => {
-    await getGradeListAtom().then((res: any) => {
+    await getGradeListAtom(Number(query.get("userIdx"))).then((res: any) => {
       setFreeSem(res.data.freeSem);
       setGrades(res.data.grade);
     });
   }, []);
 
-  //졸업 방식 받아오기
+  // 성적 받아오기
   const getGedCallback = useCallback(async () => {
-    await getGedAtom().then((res: any) => {
+    await getGedAtom(Number(query.get("userIdx"))).then((res: any) => {
       setKoreanScore(res.data.score.koreanScore);
       setEnglishScore(res.data.score.englishScore);
       setMathScore(res.data.score.mathScore);
@@ -320,7 +320,7 @@ const WritePrintContainer = ({}) => {
 
   //출결상황 받아오기
   const getAbttendCallback = useCallback(async () => {
-    await getAttendAtom().then((res: any) => {
+    await getAttendAtom(Number(query.get("userIdx"))).then((res: any) => {
       setAbsence1(res.data.absence1);
       setAbsence2(res.data.absence2);
       setAbsence3(res.data.absence3);
@@ -338,7 +338,7 @@ const WritePrintContainer = ({}) => {
 
   //가산점 목록 받아오기
   const getAdditionalCallback = useCallback(async () => {
-    await getAdditionalAtom().then((res: any) => {
+    await getAdditionalAtom(Number(query.get("userIdx"))).then((res: any) => {
       setLeadership11(res.data.leadership11);
       setLeadership12(res.data.leadership12);
       setLeadership21(res.data.leadership21);
@@ -351,7 +351,7 @@ const WritePrintContainer = ({}) => {
 
   //봉사활동 받아오기
   const getVolunteerCallback = useCallback(async () => {
-    await getVolunteerAtom().then((res: any) => {
+    await getVolunteerAtom(Number(query.get("userIdx"))).then((res: any) => {
       setVolunteer1(res.data.volunteer1);
       setVolunteer2(res.data.volunteer2);
       setVolunteer3(res.data.volunteer3);
