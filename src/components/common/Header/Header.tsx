@@ -7,6 +7,7 @@ import { ReactComponent as Logo1 } from "assets/images/logo-1.svg";
 import { ReactComponent as Logo2 } from "assets/images/logo-2.svg";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import useTimeLimit from "lib/hooks/useTimeLimit";
+import { toast } from "react-toastify";
 
 interface HeaderProps {
   isApplyPeriod?: boolean;
@@ -44,13 +45,22 @@ const Header = ({
     canAccessWrite,
     WriteLimitControl,
     canAccessSignup,
-    SignupLimitControl
-  } = useTimeLimit()
+    SignupLimitControl,
+  } = useTimeLimit();
 
-  useEffect(()=>{
-    WriteLimitControl()
-    SignupLimitControl()
-  },[])
+  useEffect(() => {
+    WriteLimitControl();
+    SignupLimitControl();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const isWriteDate = () => {
+    WriteLimitControl();
+    if (!canAccessWrite) {
+      history("/", { state: { isValid: true } });
+      toast.error("원서 입력 기간이 아닙니다.");
+    }
+  };
 
   const menuToggle = () => {
     const header = document.getElementById("header");
@@ -90,8 +100,8 @@ const Header = ({
             <button
               className="header-menu-content-item"
               onClick={() => {
-                history("/write", { state: { isValid: true } })
-                window.location.reload()
+                history("/write", { state: { isValid: true } });
+                isWriteDate();
               }}
             >
               <span>원서 접수</span>
@@ -114,9 +124,9 @@ const Header = ({
               {canAccessSignup && (
                 <button
                   className="header-menu-content-sign"
-                  onClick={() =>{
-                    history("/register", { state: { isValid: true } })
-                    window.location.reload() 
+                  onClick={() => {
+                    history("/register", { state: { isValid: true } });
+                    window.location.reload();
                   }}
                   style={{ marginTop: "1.2rem" }}
                 >
@@ -127,7 +137,7 @@ const Header = ({
           )}
         </div>
       </div>
-      
+
       <div className="header-container">
         <div className="header-container-link">
           {theme ? (
@@ -148,15 +158,17 @@ const Header = ({
             <span>홈</span>
           </button>
           {isAdmin === false && canAccessWrite ? (
-            <button
-            className="header-container-link-item"
-            onClick={() => {
-              history("/write", { state: { isValid: true } })
-              window.location.reload()
-            }}
-          >
-            <span>원서 접수</span>
-          </button>
+            <>
+              <button
+                className="header-container-link-item"
+                onClick={() => {
+                  history("/write", { state: { isValid: true } });
+                  isWriteDate();
+                }}
+              >
+                <span>원서 접수</span>
+              </button>
+            </>
           ) : (
             <></>
           )}
@@ -208,9 +220,9 @@ const Header = ({
               {canAccessSignup && (
                 <button
                   className="headerButton"
-                  onClick={() =>{
-                    history("/register", { state: { isValid: true } })
-                    window.location.reload()
+                  onClick={() => {
+                    history("/register", { state: { isValid: true } });
+                    window.location.reload();
                   }}
                   style={{ marginLeft: "1rem" }}
                 >

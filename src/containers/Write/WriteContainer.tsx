@@ -7,7 +7,6 @@ import useQuery from "lib/hooks/useQuery";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { pageAtom, userIdxAtom } from "stores/Write/WriteAtom";
 import useTimeLimit from "lib/hooks/useTimeLimit";
-import { toast } from "react-toastify";
 
 const WriteContainer = ({}) => {
   const [page, setPage] = useRecoilState(pageAtom);
@@ -31,19 +30,15 @@ const WriteContainer = ({}) => {
   }, [search]);
 
   // 접근 시간 이외에는 접근 금지
-  const {
-    canAccessWrite,
-    WriteLimitControl,
-  } = useTimeLimit()
+  const { canAccessWrite, WriteLimitControl } = useTimeLimit();
 
-  useEffect(()=>{
-    WriteLimitControl()
-
-    if(canAccessWrite === false){
-      history("/", { state: { isValid: true } })
-      toast.error('원서 입력 기간이 아닙니다.')
-    }
-  },[canAccessWrite])
+  useEffect(() => {
+    // WriteLimitControl();
+    // if (canAccessWrite === false) {
+    //   history("/", { state: { isValid: true } });
+    //   toast.error("원서 입력 기간이 아닙니다.");
+    // }
+  }, [canAccessWrite]);
 
   useEffect(() => {
     return () => {

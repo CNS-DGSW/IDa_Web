@@ -21,6 +21,7 @@ const Main = ({
   secondOpenModal,
 }: MainProps) => {
   const history = useNavigate();
+  const { canAccessWrite, WriteLimitControl } = useTimeLimit();
   const [isAdminValue, setIsAdminAtom] = useRecoilState(isAdminAtom);
   const {
     canAccessWrite,
@@ -31,6 +32,16 @@ const Main = ({
     WriteLimitControl()
   },[])
 
+  useEffect(() => {
+    WriteLimitControl();
+  }, []);
+  const isWriteDate = () => {
+    WriteLimitControl();
+    if (!canAccessWrite) {
+      history("/", { state: { isValid: true } });
+      toast.error("원서 입력 기간이 아닙니다.");
+    }
+  };
   return (
     <>
       <div className="Main">
@@ -43,18 +54,23 @@ const Main = ({
               <p className="Main-content-Title-Main">
                 {new Date().getFullYear() + 1}학년도 신입생 입학 원서 접수
               </p>
+<<<<<<< HEAD
               {
                 (canAccessWrite && !isAdminValue) &&
                 (<div
+=======
+              {canAccessWrite && (
+                <div
+>>>>>>> 983a36295465f6243470bb872c9c949f67225aa7
                   className="Main-content-btn"
                   onClick={() => {
-                    history("/write", { state: { isValid: true } })
-                    window.location.reload()
+                    history("/write", { state: { isValid: true } });
+                    isWriteDate();
                   }}
                 >
                   원서 접수하기
-                </div>)
-              }
+                </div>
+              )}
             </div>
           </div>
         </div>

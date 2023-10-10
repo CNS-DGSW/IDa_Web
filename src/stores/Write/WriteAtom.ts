@@ -1,5 +1,5 @@
 import UserApi from "assets/api/UserApi";
-import { atom, selector, useRecoilValue } from "recoil";
+import { atom, selector } from "recoil";
 import Score from "util/enums/Score";
 import Apply from "util/enums/Apply";
 import ApplyDetail from "util/enums/ApplyDetail";
@@ -209,9 +209,7 @@ const editGed = selector({
   key: "editGed",
   get:
     ({ get }) =>
-    async (
-      gedScore:GedScoreType
-    ) => {
+    async (gedScore: GedScoreType) => {
       /*
       const englishScore = get(englishScoreAtom);
       const koreanScore = get(koreanScoreAtom);
@@ -223,7 +221,7 @@ const editGed = selector({
 
       const response: Response = await UserApi.EditGed(
         gedScore,
-        userIdx 
+        userIdx
         /* englishScore,
         koreanScore,
         mathScore,
