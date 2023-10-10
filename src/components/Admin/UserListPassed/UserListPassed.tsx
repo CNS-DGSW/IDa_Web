@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useRef } from "react";
 import { ListPassed } from "util/types/UserList";
 import "./UserListPassed.scss";
 import ListPassedCategory from "util/enums/ListPassedCategory";
 import moment from "moment";
 import applyDetailModel from "models/ApplyDetailModel";
+import { useNavigate } from "react-router-dom";
 
 interface UserListPassedProps {
   tryDownExcel: (key: string) => void;
@@ -26,6 +27,8 @@ const UserListPassed = ({
   tryChangeFirstStudent,
   tryChangeSecondStudent,
 }: UserListPassedProps) => {
+  const history = useNavigate();
+  // const newPopupWrite = useRef()
   return (
     <>
       <div className="listPassed">
@@ -140,9 +143,16 @@ const UserListPassed = ({
                     <>
                       <td>{idx + 1}</td>
                       <td>
-                        <a target="_blank" href={`/write?userIdx=${i.idx}`}>
+                      <button 
+                          className="link"
+                          onClick={() => {
+                            history(`/write?userIdx=${i.idx}`, { state: { isValid: true } })
+                            // newPopupWrite.current = window.open(`/write?userIdx=${i.idx}`, "_blank"); // "noopener, noreferrer"
+                            // newPopupWrite.current.param = { state: { isValid: true } }
+                          }}
+                        >
                           {i.name}
-                        </a>
+                        </button>
                       </td>
                       <td>{i.sex}</td>
                       <td>{i.schoolName}</td>
@@ -160,9 +170,16 @@ const UserListPassed = ({
                     <>
                       <td>{idx + 1}</td>
                       <td>
-                        <a target="_blank" href={`/write?userIdx=${i.idx}`}>
+                        <button 
+                          className="link"
+                          onClick={() => {
+                            history(`/write?userIdx=${i.idx}`, { state: { isValid: true } })
+                            // newPopupWrite.current = window.open(`/write?userIdx=${i.idx}`, "_blank"); // "noopener, noreferrer"
+                            // newPopupWrite.current.param = { state: { isValid: true } }
+                          }}
+                        >
                           {i.name}
-                        </a>
+                        </button>
                       </td>
                       <td>{i.sex}</td>
                       <td>{i.schoolName}</td>
