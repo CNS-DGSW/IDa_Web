@@ -55,8 +55,6 @@ const HeaderContainer = ({ theme, style }: HeaderContainerProps) => {
   };
 
   const getInfo = async () => {
-    console.log("log를 찍어보는거시와요");
-
     const response: UserInfoResponse = await AuthApi.GetInfo();
 
     if (response.status === 200) {

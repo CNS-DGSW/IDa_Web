@@ -162,7 +162,6 @@ const Header = ({
               <button
                 className="header-container-link-item"
                 onClick={() => {
-                  console.log("로그를 띄워보는거시와요");
                   history("/write", { state: { isValid: true } });
                   isWriteDate();
                 }}
