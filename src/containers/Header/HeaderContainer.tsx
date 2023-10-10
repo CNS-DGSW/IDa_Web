@@ -8,7 +8,7 @@ import {
   isAdminAtom,
   loginAtom,
   nameAtom,
-  profileBox,
+  profileBox, 
 } from "stores/Auth/AuthAtom";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { UserInfoResponse } from "util/types/Response";
