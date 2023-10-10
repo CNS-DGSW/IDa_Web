@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 const handleWriteError = (err: AxiosError, history?: any) => {
   if (err.response?.status === 401 || err.response?.status === 410) {
     if (history) history("/login", { state: { isValid: true } });
-    toast.warning("로그인이111 필요합니다.");
+    toast.warning("로그인이 필요합니다.");
   } else if (err.response?.status === 403) {
     toast.warning("이미 제출하셨습니다.");
   } else if (err.response?.status === 400) {
