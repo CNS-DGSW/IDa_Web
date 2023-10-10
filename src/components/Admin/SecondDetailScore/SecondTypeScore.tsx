@@ -19,7 +19,9 @@ const SecondTypeScore = ({
 }: SecondTypeScoreProps) => {
   return (
     <div className="SecondScore">
-      <span className="SecondScore-title" style={{textAlign:"center"}}>2차 전형 점수 관리 <br></br>(직무적성, 학업 및 진로, 컴퓨팅)</span>
+      <span className="SecondScore-title" style={{ textAlign: "center" }}>
+        2차 전형 점수 관리 <br></br>(직무적성, 학업 및 진로, 컴퓨팅)
+      </span>
       <div className="SecondScore-buttons">
         <select
           className="SecondScore-buttons-s-op"
@@ -125,47 +127,48 @@ const SecondTypeScore = ({
             </tr>
           </thead>
           <tbody>
-            {scoreDate?.data.map((i, key) => (
-              <tr key={key}>
-                <td>{key + 1}</td>
-                {/* 순번 */}
-                <td>{i.examCode}</td>
-                {/* 수험번호 */}
-                <td>{i.userName}</td>
-                {/* 이름 */}
-                <td>{i.sex}</td>
-                {/* 성별 */}
-                <td>
-                  {i.gradeType === "UNGRADUATED" && "졸업예정"}
-                  {i.gradeType === "GRADUATED" && "졸업"}
-                </td>
-                {/* 학력 */}
-                <td>{i.cityName}</td>
-                {/* 지역 */}
-                <td>
-                  {i.applyType === "COMMON" && "일반전형"}
-                  {i.applyType === "SPECIAL" && "특별전형"}
-                  {i.applyType === "OTHER" && "특례입학"}
-                </td>
-                {/* 1차 합격전형 */}
-                <td>{i.gradeScore}</td>
-                {/* 교과*/}
-                <td>{i.absenceScore}</td>
-                {/* 출결 */}
-                <td>{i.volunteerScore}</td>
-                {/* 봉사 */}
-                <td>{i.additionalScore}</td>
-                {/* 가산점 */}
-                <td>{i.jobAptitudeScore}</td>
-                {/* 직무적성 소양평가 */}
-                <td>{i.studyScore}</td>
-                {/* 학업 및 진로역량 */}
-                <td>{i.computingScore}</td>
-                {/* 컴퓨팅 사고 역량 */}
-                <td>{i.totalScore}</td>
-                {/* 합계 */}
-              </tr>
-            ))}
+            {scoreDate?.data.map((i, key) => {
+              console.log(scoreDate);
+
+              return (
+                <tr key={key}>
+                  <td>{key + 1}</td>
+                  {/* 순번 */}
+                  <td>{i.examCode}</td>
+                  {/* 수험번호 */}
+                  <td>{i.userName}</td>
+                  {/* 이름 */}
+                  <td>{i.sex}</td>
+                  {/* 성별 */}
+                  <td>{i.gradeType}</td>
+                  {/* 학력 */}
+                  <td>{i.cityName}</td>
+                  {/* 지역 */}
+                  <td>
+                    {i.applyType === "COMMON" && "일반전형"}
+                    {i.applyType === "SPECIAL" && "특별전형"}
+                    {i.applyType === "OTHER" && "특례입학"}
+                  </td>
+                  {/* 1차 합격전형 */}
+                  <td>{i.gradeScore}</td>
+                  {/* 교과*/}
+                  <td>{i.absenceScore}</td>
+                  {/* 출결 */}
+                  <td>{i.volunteerScore}</td>
+                  {/* 봉사 */}
+                  <td>{i.additionalScore}</td>
+                  {/* 가산점 */}
+                  <td>{i.jobAptitude}</td>
+                  {/* 직무적성 소양평가 */}
+                  <td>{i.studyScore}</td>
+                  {/* 학업 및 진로역량 */}
+                  <td>{i.computingScore}</td>
+                  {/* 컴퓨팅 사고 역량 */}
+                  <td>{i.totalScore}</td>
+                  {/* 합계 */}
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>

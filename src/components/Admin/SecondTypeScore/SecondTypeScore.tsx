@@ -167,7 +167,7 @@ const SecondTypeScore = ({
                 {/* 가산점 */}
                 {/* <td>{i.swAbilityScore}</td>
                 {/* 직무적성 소양평가 */}
-                <td>{i.jobAptitudeScore}</td>
+                <td>{i.jobAptitude}</td>
                 {/* 직무적성 소양평가 */}
                 <td>{i.studyScore}</td>
                 {/* 학업 및 진로역량 */}

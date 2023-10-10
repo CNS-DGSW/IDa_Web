@@ -286,7 +286,7 @@ export interface SecondScoreResponse extends Response {
       // 학업 및 진로역량
       studyScore: number;
       // 직무적성 소양평가
-      jobAptitudeScore: number;
+      jobAptitude: number;
       schoolName: string;
       totalInterviewScore: number;
       totalScore: number;
@@ -295,7 +295,7 @@ export interface SecondScoreResponse extends Response {
       // 봉사
       volunteerScore: number;
       isPassed: boolean | null;
-      sex:string
+      sex: string;
     }
   ];
 }
