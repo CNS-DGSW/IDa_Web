@@ -6,6 +6,8 @@ import moment from "moment";
 import { submitEndTime, submitStartTime, finalTime } from "models/submitTime";
 import useTimeLimit from "lib/hooks/useTimeLimit";
 import { toast } from "react-toastify";
+import { useRecoilState } from "recoil";
+import { isAdminAtom } from "stores/Auth/AuthAtom";
 
 interface MainProps {
   handleDownloadApplyInfo: () => void;
@@ -19,6 +21,7 @@ const Main = ({
   secondOpenModal,
 }: MainProps) => {
   const history = useNavigate();
+  const [isAdminValue, setIsAdminAtom] = useRecoilState(isAdminAtom);
   const {
     canAccessWrite,
     WriteLimitControl
@@ -41,7 +44,7 @@ const Main = ({
                 {new Date().getFullYear() + 1}학년도 신입생 입학 원서 접수
               </p>
               {
-                canAccessWrite &&
+                (canAccessWrite && !isAdminValue) &&
                 (<div
                   className="Main-content-btn"
                   onClick={() => {
