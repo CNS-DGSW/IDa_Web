@@ -224,7 +224,7 @@ export interface FinalStatusResponse extends Response {
     birth?: string | null;
     area?: string | null;
     school?: string | null;
-    finalApplyType?: string | null;
+    finalApplyType?: Apply | null;
     finalApplyDetailType?: string | null;
   };
 }

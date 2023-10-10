@@ -6,19 +6,21 @@ interface FirstResultProps {
   comment: string | undefined;
   firstOpenModal: () => void;
   applyComment: string;
+  pass:boolean | null;
 }
 
 const FirstResult = ({
   comment,
   firstOpenModal,
   applyComment,
+  pass
 }: FirstResultProps) => {
   return (
     <>
       <div className="FirstResult-comment">
         <div className="FirstResult-comment-top">
           <span className="FirstResult-comment-top-result">{comment}</span>
-          <span className="FirstResult-comment-top-apply">{applyComment}</span>
+          <span className="FirstResult-comment-top-apply">{pass && "합격 전형 : "+applyComment}</span>
         </div>
         <div className="FirstResult-comment-bottom">
           <Button

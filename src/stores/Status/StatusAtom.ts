@@ -1,5 +1,6 @@
 import StatusApi from "assets/api/StatusApi";
 import { atom, selector } from "recoil";
+import Apply from "util/enums/Apply";
 import { FinalStatusResponse } from "util/types/Response";
 
 const submitAtom = atom<boolean>({
@@ -17,7 +18,7 @@ const checkedPrintAtom = atom<boolean | string>({
   default: false,
 });
 
-const passAtom = atom<boolean | null | undefined | string>({
+const passAtom = atom<boolean | null>({
   key: "passAtom",
   default: undefined,
 });
@@ -64,7 +65,7 @@ const gradeTypeAtom = atom<string | null>({
   key: "gradeTypeAtom",
   default: null,
 });
-const finalApplyTypeAtom = atom<string | null>({
+const finalApplyTypeAtom = atom<Apply | null>({
   key: "finalApplyTypeAtom",
   default: null,
 });
