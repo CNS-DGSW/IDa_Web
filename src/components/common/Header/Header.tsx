@@ -44,13 +44,14 @@ const Header = ({
     canAccessWrite,
     WriteLimitControl,
     canAccessSignup,
-    SignupLimitControl
-  } = useTimeLimit()
+    SignupLimitControl,
+  } = useTimeLimit();
 
-  useEffect(()=>{
-    WriteLimitControl()
-    SignupLimitControl()
-  },[])
+  useEffect(() => {
+    WriteLimitControl();
+    SignupLimitControl();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const menuToggle = () => {
     const header = document.getElementById("header");
@@ -90,8 +91,8 @@ const Header = ({
             <button
               className="header-menu-content-item"
               onClick={() => {
-                history("/write", { state: { isValid: true } })
-                window.location.reload()
+                history("/write", { state: { isValid: true } });
+                window.location.reload();
               }}
             >
               <span>원서 접수</span>
@@ -114,9 +115,9 @@ const Header = ({
               {canAccessSignup && (
                 <button
                   className="header-menu-content-sign"
-                  onClick={() =>{
-                    history("/register", { state: { isValid: true } })
-                    window.location.reload() 
+                  onClick={() => {
+                    history("/register", { state: { isValid: true } });
+                    window.location.reload();
                   }}
                   style={{ marginTop: "1.2rem" }}
                 >
@@ -127,7 +128,7 @@ const Header = ({
           )}
         </div>
       </div>
-      
+
       <div className="header-container">
         <div className="header-container-link">
           {theme ? (
@@ -149,14 +150,14 @@ const Header = ({
           </button>
           {isAdmin === false && canAccessWrite ? (
             <button
-            className="header-container-link-item"
-            onClick={() => {
-              history("/write", { state: { isValid: true } })
-              window.location.reload()
-            }}
-          >
-            <span>원서 접수</span>
-          </button>
+              className="header-container-link-item"
+              onClick={() => {
+                history("/write", { state: { isValid: true } });
+                window.location.reload();
+              }}
+            >
+              <span>원서 접수</span>
+            </button>
           ) : (
             <></>
           )}
@@ -208,9 +209,9 @@ const Header = ({
               {canAccessSignup && (
                 <button
                   className="headerButton"
-                  onClick={() =>{
-                    history("/register", { state: { isValid: true } })
-                    window.location.reload()
+                  onClick={() => {
+                    history("/register", { state: { isValid: true } });
+                    window.location.reload();
                   }}
                   style={{ marginLeft: "1rem" }}
                 >
