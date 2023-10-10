@@ -6,8 +6,6 @@ import { useNavigate } from "react-router-dom";
 import { handleGetWriteError } from "lib/handleErrors";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import {
-  getAdditional,
-  getVolunteer,
   gradeTypeAtom,
   isChangedAtom,
   leadership11Atom,
@@ -17,18 +15,20 @@ import {
   leadership31Atom,
   leadership32Atom,
   prizeAtom,
+  userIdxAtom,
   /* volunteer1Atom,
   volunteer2Atom,
   volunteer3Atom, */
 } from "stores/Write/WriteAtom";
 import volunteerType from "util/types/Volunteer";
 import additionalType from "util/types/Additional";
+import { getAdditional, getVolunteer } from "stores/Write/util";
 
-interface WriteGradeAdditionalProps{
-  volunteer:volunteerType;
-  setVolunteer:React.Dispatch<React.SetStateAction<volunteerType>>;
-  additional:additionalType;
-  setAdditional:React.Dispatch<React.SetStateAction<additionalType>>;
+interface WriteGradeAdditionalProps {
+  volunteer: volunteerType;
+  setVolunteer: React.Dispatch<React.SetStateAction<volunteerType>>;
+  additional: additionalType;
+  setAdditional: React.Dispatch<React.SetStateAction<additionalType>>;
 }
 
 // 성적 가산점 입력
@@ -36,11 +36,12 @@ const WriteGradeAdditionalContainer = ({
   volunteer,
   setVolunteer,
   additional,
-  setAdditional
-}:WriteGradeAdditionalProps) => {
+  setAdditional,
+}: WriteGradeAdditionalProps) => {
   const { store } = useStore();
 
   const history = useNavigate();
+  const userIdx = useRecoilValue(userIdxAtom);
 
   /* const [leadership11, setLeadership11] = useRecoilState(leadership11Atom);
   const [leadership12, setLeadership12] = useRecoilState(leadership12Atom);
@@ -54,14 +55,14 @@ const WriteGradeAdditionalContainer = ({
   const [prize, setPrize] = useRecoilState(prizeAtom); */
   const setIsChanged = useSetRecoilState(isChangedAtom);
   const gradeType = useRecoilValue(gradeTypeAtom);
-  const getVolunteerAtom = useRecoilValue(getVolunteer);
-  const getAdditionalAtom = useRecoilValue(getAdditional);
+  const getVolunteerAtom = getVolunteer;
+  const getAdditionalAtom = getAdditional;
 
   // 가산점 조회
   const getAdditionalCallback = useCallback(async () => {
-    await getAdditionalAtom()
+    await getAdditionalAtom({ userIdx })
       .then((res: any) => {
-        setAdditional(res.data)
+        setAdditional(res.data);
         /* setLeadership11(res.data.leadership11);
         setLeadership12(res.data.leadership12);
         setLeadership21(res.data.leadership21);
@@ -77,11 +78,11 @@ const WriteGradeAdditionalContainer = ({
 
   // 봉사시간 조회
   const getVolunteerCallback = useCallback(() => {
-    getVolunteerAtom().then((res: any) => {
+    getVolunteerAtom({ userIdx }).then((res: any) => {
       /* setVolunteer1(res.data.volunteer1);
       setVolunteer2(res.data.volunteer2);
       setVolunteer3(res.data.volunteer3); */
-      setVolunteer(res.data)
+      setVolunteer(res.data);
     });
   }, []);
 

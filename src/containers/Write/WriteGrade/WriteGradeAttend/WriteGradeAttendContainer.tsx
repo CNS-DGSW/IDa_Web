@@ -17,10 +17,11 @@ import {
   lateness1Atom,
   lateness2Atom,
   lateness3Atom, */
-  getAttend,
   isChangedAtom,
+  userIdxAtom,
 } from "stores/Write/WriteAtom";
 import AttendType from "util/types/Attend";
+import { getAttend } from "stores/Write/util";
 
 interface WriteGradeAttendProps {
   attend: AttendType;
@@ -49,10 +50,11 @@ const WriteGradeAttendContainer = ({
     useRecoilState(absenceLecture2Atom);
   const [absenceLecture3, setAbsenceLecture3] =
     useRecoilState(absenceLecture3Atom); */
-  const getAttendAtom = useRecoilValue(getAttend);
+  const getAttendAtom = getAttend;
+  const userIdx = useRecoilValue(userIdxAtom);
   // 출결 조회
   const getAttendCallback = useCallback(async () => {
-    await getAttendAtom()
+    await getAttendAtom({ userIdx })
       .then((res: any) => {
         /* setAbsence1(res.data.absence1);
         setAbsence2(res.data.absence2);

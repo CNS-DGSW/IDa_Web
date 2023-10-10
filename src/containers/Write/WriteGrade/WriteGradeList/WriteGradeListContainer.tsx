@@ -7,17 +7,16 @@ import { useNavigate } from "react-router-dom";
 import Score from "util/enums/Score";
 import updateSemGrade from "lib/updateSemGrade";
 import { handleGetWriteError } from "lib/handleErrors";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import {
-  editGrade,
-  freeSemAtom,
-  getGradeList,
   gradeTypeAtom,
   gradesAtom,
   isChangedAtom,
+  userIdxAtom,
 } from "stores/Write/WriteAtom";
 import FreeSemType from "util/types/FreeSem";
 import ScoreGrade from "util/types/ScoreGrade";
+import { editGrade, getGradeList } from "stores/Write/util";
 
 interface WriteGradeListContainer {
   grades: ScoreGrade[];
@@ -36,16 +35,17 @@ const WriteGradeListContainer = ({
   const history = useNavigate();
 
   const gradeType = useRecoilValue(gradeTypeAtom);
-  const getGradeListAtom = useRecoilValue(getGradeList);
+  const getGradeListAtom = getGradeList;
   //const [grades, setGrades] = useRecoilState(gradesAtom);
   //const [freeSem, setFreeSem] = useRecoilState(freeSemAtom);
   const setIsChanged = useSetRecoilState(isChangedAtom);
   const gr = useRecoilValue(gradesAtom);
-  const editGradeAtom = useRecoilValue(editGrade);
+  const editGradeAtom = editGrade;
+  const userIdx = useRecoilValue(userIdxAtom);
 
   // 성적 리스트 조회
   const getGradeListCallback = useCallback(async () => {
-    await getGradeListAtom()
+    await getGradeListAtom({ userIdx })
       .then((res: any) => {
         setGrades(res.data.grade);
         setFreeSem(res.data.freeSem);

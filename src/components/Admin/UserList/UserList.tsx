@@ -199,7 +199,9 @@ const UserList = ({
                       <td
                         className="pointer"
                         onClick={() =>
-                          history(`/write?userIdx=${filter.idx}`, { state: { isValid: true } })
+                          history(`/write?userIdx=${filter.idx}`, {
+                            state: { isValid: true },
+                          })
                         }
                       >
                         {filter.name}
@@ -225,9 +227,7 @@ const UserList = ({
                           <>{filter.cityName}</>
                         )}
                       </td>
-                      <td>
-                        {filter.sex}
-                      </td>
+                      <td>{filter.sex}</td>
                       <td>
                         {filter.birth === null ? (
                           <>지정안됨</>
@@ -312,7 +312,11 @@ const UserList = ({
                   <tr key={idx}>
                     <td>{idx + 1}</td>
                     <td
-                      onClick={() => history(`/write?userIdx=${i.idx}`,{state:{isValid:true}})}
+                      onClick={() =>
+                        history(`/write?userIdx=${i.idx}`, {
+                          state: { isValid: true },
+                        })
+                      }
                       className="pointer"
                     >
                       {i.name}
@@ -328,9 +332,7 @@ const UserList = ({
                     <td>
                       {i.cityName === null ? <>지정안됨</> : <>{i.cityName}</>}
                     </td>
-                    <td>
-                        {i.sex}
-                    </td>
+                    <td>{i.sex}</td>
                     <td>
                       {i.birth === null ? (
                         <>지정안됨</>

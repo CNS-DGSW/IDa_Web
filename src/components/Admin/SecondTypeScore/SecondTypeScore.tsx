@@ -143,10 +143,7 @@ const SecondTypeScore = ({
                 {/* 이름 */}
                 <td>{i.sex}</td>
                 {/* 성별 */}
-                <td>
-                  {i.gradeType === "UNGRADUATED" && "졸업예정"}
-                  {i.gradeType === "GRADUATED" && "졸업"}
-                </td>
+                <td>{i.gradeType}</td>
                 {/* 학력 */}
                 <td>{i.cityName}</td>
                 {/* 지역 */}

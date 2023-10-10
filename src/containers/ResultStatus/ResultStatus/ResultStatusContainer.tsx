@@ -58,15 +58,12 @@ const ResultStatusContainer = ({}: ResultStatusContainerPropse) => {
   const getStatus = useCallback(async () => {
     await tryGetStatus()
       .then((res) => {
-        // console.log("from getStatus() ", res);
-        // console.log(submit, res.data.isSubmit);
-        // console.log(print, res.data.isPrintedApplicationArrived);
-        console.log(checkedPrint, res.data.applicationChecked);
-        setInternet(submit); // 인터넷 원서 접수 현황
-        setPost(print); // 우편 원서 접수 현황
-        setCheckedPost(res.data.applicationChecked); // 우편 원서 검토 현황
-        // setInternet(res.data.isSubmit); // 인터넷 원서 접수 현황
-        // setPost(res.data.isPrintedApplicationArrived); // 우편 원서 접수 현황
+        setInternet(res.data.isSubmit); // 인터넷 원서 접수 현황
+        setPost(res.data.isPrintedApplicationArrived); // 우편 원서 접수 현황
+        setCheckedPost(res.data.applicationChecked); // 서류 검토
+
+        // setInternet(submit); // 인터넷 원서 접수 현황
+        // setPost(print); // 우편 원서 접수 현황
         // setCheckedPost(res.data.isPrintedApplicationCheck); // 우편 원서 검토 현황
       })
       .catch((err) => {

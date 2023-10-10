@@ -6,27 +6,26 @@ import { handleGetWriteError } from "lib/handleErrors";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import {
   englishScoreAtom,
-  getGed,
   isChangedAtom,
   koreanScoreAtom,
   mathScoreAtom,
   otherScoreAtom,
   scienceScoreAtom,
   socialScoreAtom,
+  userIdxAtom,
 } from "stores/Write/WriteAtom";
 import GedScoreType from "util/types/GedScore";
+import { getGed } from "stores/Write/util";
 
 interface writeGedProps {
-  gedScore:GedScoreType;
-  setGedScore:React.Dispatch<React.SetStateAction<GedScoreType>>;
+  gedScore: GedScoreType;
+  setGedScore: React.Dispatch<React.SetStateAction<GedScoreType>>;
 }
 
 // 검정고시 성적 입력
-const WriteGedContainer = ({
-  gedScore,
-  setGedScore
-}:writeGedProps) => {
+const WriteGedContainer = ({ gedScore, setGedScore }: writeGedProps) => {
   const history = useNavigate();
+  const userIdx = useRecoilValue(userIdxAtom);
 
   /* const [koreanScore, setKoreanScore] = useRecoilState(koreanScoreAtom);
   const [mathScore, setMathScore] = useRecoilState(mathScoreAtom);
@@ -36,11 +35,11 @@ const WriteGedContainer = ({
   const [otherScore, setOtherScore] = useRecoilState(otherScoreAtom); */
 
   const setIsChanged = useSetRecoilState(isChangedAtom);
-  const getGedAtom = useRecoilValue(getGed);
+  const getGedAtom = getGed;
 
   // 검정고시 점수 받아오기
   const getGedCallback = useCallback(async () => {
-    await getGedAtom()
+    await getGedAtom({ userIdx })
       .then((res: any) => {
         setGedScore(res.data.score);
       })
