@@ -60,7 +60,7 @@ const WritePrintContainer = ({}) => {
   const setPass = useSetRecoilState(passAtom);
   const setCanAccess = useSetRecoilState(canAccessAtom);
   const tryGetNumber = async (
-    userIdx?: number | null
+    userIdx: number | null
   ): Promise<ResultStatusResponse> => {
     // 수험번호, 접수번호 가져오기
     const response: ResultStatusResponse = await UserApi.GetNumber(userIdx);
@@ -178,7 +178,7 @@ const WritePrintContainer = ({}) => {
   //수험 번호 받아오는 함수
   const tryGetNumberCallback = useCallback(async () => {
     setIsSubmit(false);
-    await tryGetNumber(Number(query.get("userIdx")))
+    await tryGetNumber(userIdx)
       .then((res: any) => {
         setExamCode(res.data.examCode);
         setSubmitCode(res.data.submitCode);
@@ -190,7 +190,7 @@ const WritePrintContainer = ({}) => {
 
   //유저 정보 받아오는 함수
   const getStudentInfoCallback = useCallback(async () => {
-    await getStudentInfo(Number(query.get("userIdx"))).then(
+    await getStudentInfo({userIdx}).then(
       (res: UserInfoResponse) => {
         setName(res.data.name || "");
         setBirth(
@@ -310,7 +310,7 @@ const WritePrintContainer = ({}) => {
     });
   }, []);
 
-  //졸업 방식 받아오기
+  // 성적 받아오기
   const getGedCallback = useCallback(async () => {
     await getGedAtom({ userIdx }).then((res: any) => {
       setKoreanScore(res.data.score.koreanScore);

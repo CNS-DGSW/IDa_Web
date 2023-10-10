@@ -1,8 +1,6 @@
 import AuthApi from "assets/api/AuthApi";
 import UserApi from "assets/api/UserApi";
 import Grade from "util/enums/Grade";
-import { useRecoilState } from "recoil";
-import { userIdxAtom } from "./WriteAtom";
 import {
   SchoolResponse,
   UploadResponse,
@@ -31,7 +29,9 @@ import ApplyDetail from "util/enums/ApplyDetail";
 import FreeSemType from "util/types/FreeSem";
 
 const getStudentInfo = async (
-  userIdx?: number | null
+ {
+  userIdx
+ }:{ userIdx: number | null}
 ): Promise<UserInfoResponse> => {
   const response: UserInfoResponse = await AuthApi.GetInfo(userIdx);
   return response;

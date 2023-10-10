@@ -1,9 +1,11 @@
 @import "../../../util/colors.scss";
 
-a {
+td {
   color: black;
+  padding: 3px;
 }
 
-td {
-  padding: 3px;
+td.link{
+  text-decoration: underline;
+  cursor: pointer;
 }

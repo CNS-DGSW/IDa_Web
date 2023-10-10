@@ -6,6 +6,7 @@ import { findNameByValue } from "models/ApplyDetailModel";
 import { findApplyByString } from "util/enums/Apply";
 import { UserResult as UserResultType } from "util/types/UserResult";
 import applyDetailModel from "models/ApplyDetailModel";
+import { useNavigate } from "react-router-dom";
 
 interface UserResultProps {
   userResultList: UserResultType[];
@@ -26,6 +27,7 @@ const UserResult = ({
   onClickSetFirstSelection,
   onClickSetSecondSelection,
 }: UserResultProps) => {
+  const history = useNavigate();
   return (
     <>
       <div>
@@ -53,20 +55,18 @@ const UserResult = ({
           {userResultList.map((userResult, idx) => (
             <tr key={idx}>
               <td>
-                <a target="_blank" href={`/write?userIdx=${userResult.idx}`}>
                   {userResult.examCode}
                   {/* 보이는 id와 실제 이동되는 쿼리의 값이 다름 */}
-                </a>
               </td>
-              <td>
-                <a target="_blank" href={`/write?userIdx=${userResult.idx}`}>
+              <td
+                className="link"
+                onClick={() =>
+                  history(`/write?userIdx=${userResult.idx}`, { state: { isValid: true } })
+              }>
                   {userResult.name}
-                </a>
               </td>
               <td>
-                <a target="_blank" href={`/write?userIdx=${userResult.idx}`}>
                   {userResult.email}
-                </a>
               </td>
 
               {/* 1차 전형 */}
