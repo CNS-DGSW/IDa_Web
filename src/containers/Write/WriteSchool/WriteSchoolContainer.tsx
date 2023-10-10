@@ -6,11 +6,13 @@ import { toast } from "react-toastify";
 import Grade from "util/enums/Grade";
 import { handleGetWriteError, handleWriteError } from "lib/handleErrors";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { editSchoolInfo, getSchoolInfo, gradeTypeAtom } from "stores/Write/WriteAtom";
+import { gradeTypeAtom, userIdxAtom } from "stores/Write/WriteAtom";
 import { SchoolInfoResponse } from "util/types/Response";
+import { editSchoolInfo, getSchoolInfo } from "stores/Write/util";
 
 const WriteSchoolContainer = ({}) => {
   const history = useNavigate();
+  const userIdx = useRecoilValue(userIdxAtom);
 
   const [cityLocation, setCityLocation] = useState<string>("");
   const [cityName, setCityName] = useState<string>("");
@@ -24,8 +26,8 @@ const WriteSchoolContainer = ({}) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const [gradeType, setGradeType] = useRecoilState(gradeTypeAtom);
-  const editSchoolInfoAtom = useRecoilValue(editSchoolInfo);
-  const getSchoolInfoAtom = useRecoilValue(getSchoolInfo)
+  const editSchoolInfoAtom = editSchoolInfo;
+  const getSchoolInfoAtom = getSchoolInfo;
 
   useEffect(() => {
     if (schoolTel) {
@@ -91,7 +93,7 @@ const WriteSchoolContainer = ({}) => {
         toast.warning("올바른 년도를 입력해주세요.");
         flag = false;
       }
-      await editSchoolInfoAtom(
+      await editSchoolInfoAtom({
         cityLocation,
         cityName,
         gradeType,
@@ -100,8 +102,9 @@ const WriteSchoolContainer = ({}) => {
         schoolName,
         schoolTel,
         teacherName,
-        teacherTel
-      )
+        teacherTel,
+        userIdx,
+      })
         .then(() => {
           setGradeType(gradeType);
         })
@@ -129,7 +132,7 @@ const WriteSchoolContainer = ({}) => {
 
   //학교 정보 받아오기
   const getSchoolInfoCallback = useCallback(() => {
-    getSchoolInfoAtom()
+    getSchoolInfoAtom({ userIdx })
       .then((res: SchoolInfoResponse) => {
         setCityLocation(res.data.cityLocation || "");
         setCityName(res.data.cityName || "");
@@ -141,7 +144,7 @@ const WriteSchoolContainer = ({}) => {
         setTeacherName(res.data.teacherName || "");
         setTeacherTel(res.data.teacherTel || "");
       })
-      .catch((err:any) => {
+      .catch((err: any) => {
         handleGetWriteError(err, history);
       });
   }, []);
@@ -149,7 +152,6 @@ const WriteSchoolContainer = ({}) => {
   useEffect(() => {
     getSchoolInfoCallback();
   }, [getSchoolInfoCallback]);
-
 
   useEffect(() => {
     return () => {

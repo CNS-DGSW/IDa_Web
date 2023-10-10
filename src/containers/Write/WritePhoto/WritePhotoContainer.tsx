@@ -6,19 +6,19 @@ import { ProfileInfoResponse } from "util/types/Response";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { handleGetWriteError, handleWriteError } from "lib/handleErrors";
-import { upload } from "stores/Write/util";
+import { editProfileImage, getProfileImage, upload } from "stores/Write/util";
 import { useRecoilValue } from "recoil";
-import { editProfileImage, getProfileImage } from "stores/Write/WriteAtom";
+import { userIdxAtom } from "stores/Write/WriteAtom";
 
 const WritePhotoContainer = () => {
   const history = useNavigate();
-
+  const userIdx = useRecoilValue(userIdxAtom);
   const [preview, setPreview] = useState<string | ArrayBuffer | null>("");
   const [image, setImage] = useState<File | Blob | null>();
   const [isChanged, setIsChanged] = useState<boolean>(false);
 
-  const getProfileImageAtom = useRecoilValue(getProfileImage);
-  const editProfileImageAtom = useRecoilValue(editProfileImage);
+  const getProfileImageAtom = getProfileImage;
+  const editProfileImageAtom = editProfileImage;
   //프로필 미리보기 함수
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let reader = new FileReader();
@@ -64,7 +64,7 @@ const WritePhotoContainer = () => {
 
   //프로필 이미지 받아오기
   const getProfileImageCallback = useCallback(() => {
-    getProfileImageAtom()
+    getProfileImageAtom({ userIdx })
       .then((res: ProfileInfoResponse) => {
         setPreview(res.data.profileImage);
       })

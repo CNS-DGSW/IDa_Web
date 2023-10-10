@@ -29,6 +29,13 @@ class UserApi {
     const query = userIdx ? `?userIdx=${userIdx}` : "";
 
     const { data } = await Api.patch(`/user/editInfo${query}`, body);
+    console.log(
+      `/user/editInfo${query}`,
+      query,
+      "dfdf",
+      `?userIdx=${userIdx}`,
+      data
+    );
 
     return data;
   }
@@ -228,7 +235,7 @@ class UserApi {
   }
 
   async EditGed(
-    gedScore:GedScoreType,
+    gedScore: GedScoreType,
     userIdx?: number | null
     /* englishScore: number,
     koreanScore: number,
@@ -237,7 +244,7 @@ class UserApi {
     scienceScore: number,
     socialScore: number, */
   ) {
-    const body = gedScore
+    const body = gedScore;
     /* {
       englishScore,
       koreanScore,

@@ -10,7 +10,7 @@ import useTimeLimit from "lib/hooks/useTimeLimit";
 
 const WriteContainer = ({}) => {
   const [page, setPage] = useRecoilState(pageAtom);
-  const setUserIdx = useSetRecoilState(userIdxAtom);
+  const [userIdx, setUserIdx] = useRecoilState(userIdxAtom);
   const { search } = useLocation();
   const query = useQuery();
   const history = useNavigate();
@@ -22,12 +22,14 @@ const WriteContainer = ({}) => {
   // 서버에 요청도 userIdx를 포함하여 보내야 하기 때문에 전역으로 userIdx를 관리
   // 하지만 403 오류 발생시 "/"" 경로로 이동
   useEffect(() => {
-    if (Number(query.get("userIdx"))) {
+    console.log(userIdx);
+    if (query) {
       setUserIdx(Number(query.get("userIdx")));
+      console.log(query.get("userIdx"), "dfdf", userIdx);
     } else {
       setUserIdx(null);
     }
-  }, [search]);
+  }, [search, history]);
 
   // 접근 시간 이외에는 접근 금지
   const { canAccessWrite, WriteLimitControl } = useTimeLimit();

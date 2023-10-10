@@ -7,14 +7,16 @@ import { findNameByValue } from "models/ApplyDetailModel";
 import { useNavigate } from "react-router-dom";
 import { handleGetWriteError, handleWriteError } from "lib/handleErrors";
 import { useRecoilValue } from "recoil";
-import { editApplyType, getApplyType } from "stores/Write/WriteAtom";
 import { toast } from "react-toastify";
+import { editApplyType, getApplyType } from "stores/Write/util";
+import { userIdxAtom } from "stores/Write/WriteAtom";
 
 const WriteAdmissionContainer = ({}) => {
-  const getApplyTypeAtom = useRecoilValue(getApplyType);
-  const editApplyTypeAtom = useRecoilValue(editApplyType);
+  const getApplyTypeAtom = getApplyType;
+  const editApplyTypeAtom = editApplyType;
 
   const history = useNavigate();
+  const userIdx = useRecoilValue(userIdxAtom);
 
   const [applyType, setApplyType] = useState<Apply | null>(null);
   const [special, setSpecial] = useState<string>("");
@@ -36,19 +38,20 @@ const WriteAdmissionContainer = ({}) => {
       ) {
         flag = false;
       }
-      console.log(verteransCity,verteransNumber)
-      await editApplyTypeAtom(
+      console.log(verteransCity, verteransNumber);
+      await editApplyTypeAtom({
+        userIdx,
         applyType,
         applyDetailType,
         verteransCity,
-        verteransNumber
-      ).catch((err: any) => {
+        verteransNumber,
+      }).catch((err: any) => {
         handleWriteError(err, history);
         flag = false;
       });
       setIsChanged(false);
     } else {
-      toast.warning("빈 값이 있습니다.")
+      toast.warning("빈 값이 있습니다.");
       flag = false;
     }
     return flag;
@@ -56,7 +59,7 @@ const WriteAdmissionContainer = ({}) => {
 
   //유저 정보 받아오는 함수
   const getApplyTypeCallback = useCallback(() => {
-    getApplyTypeAtom()
+    getApplyTypeAtom({ userIdx })
       .then((res: any) => {
         setApplyType(res.data.applyType);
         setApplyDetailType(res.data.applyDetailType);

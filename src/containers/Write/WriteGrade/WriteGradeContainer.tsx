@@ -8,21 +8,24 @@ import Grade from "util/enums/Grade";
 import { handleWriteError } from "lib/handleErrors";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import {
+  freeSemAtom,
+  gradeTypeAtom,
+  gradesAtom,
+  isChangedAtom,
+  pageAtom,
+  userIdxAtom,
+} from "stores/Write/WriteAtom";
+import ScoreGrade from "util/types/ScoreGrade";
+import FreeSemType from "util/types/FreeSem";
+import Score from "util/enums/Score";
+import {
   editAdditional,
   editAttend,
   editGed,
   editGrade,
   editVolunteer,
-  freeSemAtom,
   getSchoolInfo,
-  gradeTypeAtom,
-  gradesAtom,
-  isChangedAtom,
-  pageAtom,
-} from "stores/Write/WriteAtom";
-import ScoreGrade from "util/types/ScoreGrade";
-import FreeSemType from "util/types/FreeSem";
-import Score from "util/enums/Score";
+} from "stores/Write/util";
 
 const WriteGradeContainer = ({}) => {
   const history = useNavigate();
@@ -30,15 +33,16 @@ const WriteGradeContainer = ({}) => {
   const [page, setPage] = useRecoilState(pageAtom);
   const gradeType = useRecoilValue(gradeTypeAtom);
   const [isChanged, setIsChanged] = useRecoilState(isChangedAtom);
-  const editVolunteerAtom = useRecoilValue(editVolunteer);
-  const editGradeAtom = useRecoilValue(editGrade);
-  const editAdditionalAtom = useRecoilValue(editAdditional);
-  const editAttendAtom = useRecoilValue(editAttend);
-  const editGedAtom = useRecoilValue(editGed);
-  const getSchoolInfoAtom = useRecoilValue(getSchoolInfo);
+  const editVolunteerAtom = editVolunteer;
+  const editGradeAtom = editGrade;
+  const editAdditionalAtom = editAdditional;
+  const editAttendAtom = editAttend;
+  const editGedAtom = editGed;
+  const getSchoolInfoAtom = getSchoolInfo;
   // const setGrades = useSetRecoilState(gradesAtom);
   const [saved, setSaved] = useState<boolean>(false);
   const [isSchoolChecked, setIsSchoolChecked] = useState<boolean>(false);
+  const userIdx = useRecoilValue(userIdxAtom);
 
   // const freeSem = useRecoilValue(freeSemAtom)
 
@@ -109,10 +113,10 @@ const WriteGradeContainer = ({}) => {
 
     if (gradeType !== Grade.GED) {
       const promises = [
-        editGradeAtom(grades, freeSem),
-        editAttendAtom(attend),
-        editVolunteerAtom(volunteer),
-        editAdditionalAtom(additional),
+        editGradeAtom({ grades, freeSem, userIdx }),
+        editAttendAtom({ attend, userIdx }),
+        editVolunteerAtom({ volunteer, userIdx }),
+        editAdditionalAtom({ additional, userIdx }),
       ];
 
       await Promise.all(promises)
@@ -125,7 +129,7 @@ const WriteGradeContainer = ({}) => {
           flag = false;
         });
     } else {
-      await editGedAtom(gedScore)
+      await editGedAtom({ gedScore, userIdx })
         .then(() => {
           setIsChanged(false);
           setSaved(true);
@@ -141,7 +145,7 @@ const WriteGradeContainer = ({}) => {
 
   //학교정보 확인 함수
   const checkSchool = useCallback(async () => {
-    await getSchoolInfoAtom()
+    await getSchoolInfoAtom({ userIdx })
       .then((res: any) => {
         //setGrades(res.data.gradeType);
         if (!res.data.gradeType) {

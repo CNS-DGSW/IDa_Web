@@ -10,12 +10,13 @@ import { handleWriteError, handleGetWriteError } from "lib/handleErrors";
 import useQuery from "lib/hooks/useQuery";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { nameAtom } from "stores/Auth/AuthAtom";
-import { editStudentInfo } from "stores/Write/WriteAtom";
-import { getStudentInfo } from "stores/Write/util";
+import { editStudentInfo, getStudentInfo } from "stores/Write/util";
+import { userIdxAtom } from "stores/Write/WriteAtom";
 
 const WriteStudentContainer = ({}) => {
   const setNameAtom = useSetRecoilState<string>(nameAtom);
-  const editStudentInfoAtom = useRecoilValue(editStudentInfo);
+  const userIdx = useRecoilValue(userIdxAtom);
+  const editStudentInfoAtom = editStudentInfo;
   // const { getStudentInfo, editStudentInfo } = store.WriteStore;
 
   const history = useNavigate();
@@ -70,12 +71,16 @@ const WriteStudentContainer = ({}) => {
       toast.warning("올바르지 않은 전화번호입니다. '-' 를 포함하여주세요.");
       flag = false;
     } else if (name !== "" && birth !== "" && sex !== null) {
-      await editStudentInfoAtom(name, birth, sex, studentTel).catch(
-        (err: any) => {
-          handleWriteError(err, history);
-          flag = false;
-        }
-      );
+      await editStudentInfoAtom({
+        name,
+        birth,
+        sex,
+        studentTel,
+        userIdx,
+      }).catch((err: any) => {
+        handleWriteError(err, history);
+        flag = false;
+      });
 
       setNameAtom(name);
       setIsChanged(false);

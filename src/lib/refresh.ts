@@ -15,7 +15,7 @@ const refresh = async (
     const body = {
       refreshToken,
     };
-    const { data } = await axios.post(`${server}auth/token`, body);
+    const { data } = await axios.post(`${server}/auth/token`, body);
     const res: RefreshTokenResponse = data;
 
     token = res.data.accessToken;
