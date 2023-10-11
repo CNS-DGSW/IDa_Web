@@ -41,7 +41,7 @@ import {
   getStudyPlan,
   getVolunteer,
 } from "stores/Write/util";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { userIdxAtom } from "stores/Write/WriteAtom";
 import StatusApi from "assets/api/StatusApi";
 import {
@@ -73,7 +73,6 @@ const WritePrintContainer = ({}) => {
 
     return response;
   };
-  const userIdx = useRecoilValue(userIdxAtom);
 
   const history = useNavigate();
   const { store } = useStore();
