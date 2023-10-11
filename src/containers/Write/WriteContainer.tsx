@@ -25,7 +25,7 @@ const WriteContainer = ({}) => {
     console.log(userIdx);
     if (query) {
       setUserIdx(Number(query.get("userIdx")));
-      console.log(query.get("userIdx"), "dfdf", userIdx);
+      // console.log(query.get("userIdx"), "dfdf", userIdx);
     } else {
       setUserIdx(null);
     }

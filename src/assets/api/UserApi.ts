@@ -29,13 +29,6 @@ class UserApi {
     const query = userIdx ? `?userIdx=${userIdx}` : "";
 
     const { data } = await Api.patch(`/user/editInfo${query}`, body);
-    console.log(
-      `/user/editInfo${query}`,
-      query,
-      "dfdf",
-      `?userIdx=${userIdx}`,
-      data
-    );
 
     return data;
   }
