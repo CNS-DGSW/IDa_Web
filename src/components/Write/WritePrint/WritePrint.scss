@@ -18,6 +18,7 @@
   }
 
   &-page {
+    overflow: auto;
     width: 216mm;
     min-height: 297mm;
     padding: 15mm;
@@ -43,6 +44,7 @@
     border-collapse: collapse;
     text-align: center;
     font-size: 12px;
+    white-space: pre;
     td,
     th {
       border: $bd-gray 1px solid;
@@ -68,6 +70,16 @@
     }
     &-left {
       text-align: left;
+    }
+
+    &-selfIntroduce {
+      width: 100%;
+      display: inline-block;
+    }
+    &-studyPlan {
+      width: 70%;
+      display: inline-block;
+      white-space: normal;
     }
   }
 }

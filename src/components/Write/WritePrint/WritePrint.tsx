@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import Apply from "util/enums/Apply";
 import ApplyDetail from "util/enums/ApplyDetail";
 import Relation from "util/enums/Relation";
@@ -150,6 +150,8 @@ const WritePrint = ({
   socialScore,
   sex,
 }: WritePrintProps) => {
+  const selfIntroduceTitleRef = useRef<any>(null);
+  const selfIntroduceRef = useRef<any>(null);
   return (
     <div className="print-area">
       <div className="print" id="print" ref={componentRef}>
@@ -251,63 +253,105 @@ const WritePrint = ({
         </div>
 
         <div className="print-page">
-          <table className="print-table">
-            <colgroup>
-              <col width="initial" />
-              <col width="70" />
-              <col width="100" />
-              <col width="70" />
-              <col width="100" />
-              <col width="70" />
-              <col width="100" />
-            </colgroup>
-            <tbody>
-              <tr>
-                <td colSpan={7} className="print-table-title print-table-none">
-                  <div style={{ marginBottom: "15px" }}>
-                    자기소개서 및 학업계획서
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>{gradeType === Grade.GED ? "고입검정" : schoolName}</td>
-                <th>접수번호</th>
-                <td>{submitCode}</td>
-                <th>수험번호</th>
-                <td>{examCode}</td>
-                <th>성명</th>
-                <td>{name} &nbsp; (인)</td>
-              </tr>
-              <tr>
-                <td colSpan={7} className="print-table-none empty"></td>
-              </tr>
-              <tr>
-                <th style={{ textAlign: "left" }} colSpan={7}>
-                  자기소개서
-                </th>
-              </tr>
-              <tr>
-                <td style={{ textAlign: "left" }} colSpan={7}>
-                  {selfIntroduce}
-                </td>
-              </tr>
-              <tr>
-                <td colSpan={7} className="print-table-none empty"></td>
-              </tr>
-              <tr>
-                <th style={{ textAlign: "left" }} colSpan={7}>
-                  학업계획서
-                </th>
-              </tr>
-
-              <tr>
-                <td style={{ textAlign: "left" }} colSpan={7}>
-                  {studyPlan}
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div style={{ width: "100%" }}>
+            <table className="print-table">
+              <colgroup>
+                <col width="initial" />
+                <col width="70" />
+                <col width="100" />
+                <col width="70" />
+                <col width="100" />
+                <col width="70" />
+                <col width="100" />
+              </colgroup>
+              <tbody>
+                <tr>
+                  <td
+                    colSpan={7}
+                    className="print-table-title print-table-none"
+                  >
+                    <div style={{ marginBottom: "15px" }}>
+                      자기소개서 및 학업계획서
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>{gradeType === Grade.GED ? "고입검정" : schoolName}</td>
+                  <th>접수번호</th>
+                  <td>{submitCode}</td>
+                  <th>수험번호</th>
+                  <td>{examCode}</td>
+                  <th>성명</th>
+                  <td>{name} &nbsp; (인)</td>
+                </tr>
+                <tr>
+                  <td colSpan={7} className="print-table-none empty"></td>
+                </tr>
+                <tr>
+                  <th
+                    style={{ textAlign: "left" }}
+                    colSpan={7}
+                    ref={selfIntroduceTitleRef}
+                  >
+                    자기소개서
+                  </th>
+                </tr>
+                <tr>
+                  <td
+                    style={{
+                      position: "absolute",
+                      whiteSpace: "normal",
+                      display: "block",
+                      wordWrap: "break-word",
+                      textAlign: "left",
+                      width: `${
+                        selfIntroduceTitleRef.current
+                          ? selfIntroduceTitleRef.current.clientWidth
+                          : 0
+                      }px`,
+                    }}
+                    colSpan={7}
+                    ref={selfIntroduceRef}
+                  >
+                    {selfIntroduce}
+                  </td>
+                </tr>
+                <tr>
+                  <td colSpan={7} className="print-table-none empty"></td>
+                </tr>
+                <div
+                  style={{
+                    width: "1rem",
+                    height: `${
+                      selfIntroduceRef.current
+                        ? selfIntroduceRef.current.clientHeight
+                        : 0
+                    }px`,
+                  }}
+                ></div>
+                <tr>
+                  <th style={{ textAlign: "left" }} colSpan={7}>
+                    학업계획서
+                  </th>
+                </tr>
+                <tr style={{ position: "relative" }}>
+                  <td
+                    style={{
+                      position: "absolute",
+                      whiteSpace: "normal",
+                      display: "block",
+                      wordWrap: "break-word",
+                      textAlign: "left",
+                      width: "100%",
+                    }}
+                    colSpan={7}
+                  >
+                    {studyPlan}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
         {applyType === Apply.SPECIAL &&
