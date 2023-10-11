@@ -2,13 +2,14 @@ import Button from "components/common/Button";
 import CheckBox from "components/common/CheckBox";
 import CustomInput from "components/common/CustomInput";
 import { useNavigate } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react";
 import "./Register.scss";
 import AuthContent from "components/common/AuthContent";
 import Agree from "util/enums/Agree";
 import Modal from "components/common/Modal";
 import agreeContract from "models/AgreeContract";
 import VerificationNumber from "components/VerificationNumber";
+import { toast } from "react-toastify";
 
 interface RegisterProps {
   allCheck: boolean;
@@ -38,9 +39,14 @@ interface RegisterProps {
   toggleUsingPersonelInfoModal: () => void;
   toggleUsingSiteModal: () => void;
   toggleHandlingPersonelInfoModal: () => void;
+  setDisabledEmailCheck: React.Dispatch<React.SetStateAction<boolean>>;
+  disabledEmailCheck: boolean;
+  timer: number;
+  setTimer: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const Register = ({
+  timer,
   allCheck,
   setAllCheck,
   name,
@@ -68,8 +74,12 @@ const Register = ({
   toggleUsingPersonelInfoModal,
   toggleUsingSiteModal,
   toggleHandlingPersonelInfoModal,
+  setDisabledEmailCheck,
+  disabledEmailCheck,
+  setTimer,
 }: RegisterProps) => {
   const history = useNavigate();
+  const [isFirst, setIsFirst] = useState<boolean>(true);
 
   return (
     <>
@@ -142,10 +152,34 @@ const Register = ({
             />
             <CustomInput
               type="button"
-              value="인증"
+              value={
+                isFirst
+                  ? "인증"
+                  : timer >= 0
+                  ? `${Math.floor(timer / 60)}:${
+                      String(timer % 60).length < 2
+                        ? `0${timer % 60}`
+                        : timer % 60
+                    }`
+                  : "인증"
+              }
               className="Register-box-form-btn"
               style={{ width: "29%" }}
-              onClick={() => handleEmailSend()}
+              onClick={() => {
+                if (timer < 0) {
+                  if (!disabledEmailCheck) {
+                    setIsFirst(false);
+                    setTimer(180);
+                    handleEmailSend();
+                  }
+                } else {
+                  if (!disabledEmailCheck) {
+                    setIsFirst(false);
+                    setTimer(180);
+                    handleEmailSend();
+                  }
+                }
+              }}
             />
           </div>
 

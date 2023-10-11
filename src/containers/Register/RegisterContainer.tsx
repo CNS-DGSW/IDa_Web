@@ -25,8 +25,8 @@ const RegisterContainer = () => {
   // 휴대폰 인증 로직이 생긴다면 state추가 필요
 
   //이메일 인증 막기
-  const [blockEmailCh, setBlockEmailCh] = useState<boolean>(false);
   const [timer, setTimer] = useState<number>(TimerSeconds);
+  const [disabledEmailCheck, setDisabledEmailCheck] = useState<boolean>(false);
 
   // 휴대폰 인증 카운터
   const [counter, setCounter] = useState<string>("0:00");
@@ -72,9 +72,15 @@ const RegisterContainer = () => {
   //   }, runningTime * 1000);
   // };
   const timerHandler = () => {
-    setInterval(() => {
+    const interval = setInterval(() => {
       if (timer >= 0) {
-        setTimer((prev) => prev - 1);
+        setTimer((prev) => {
+          if (prev === 0) {
+            setDisabledEmailCheck(false);
+            clearInterval(interval);
+          }
+          return prev - 1;
+        });
       }
     }, 1000);
   };
@@ -126,14 +132,10 @@ const RegisterContainer = () => {
 
   //email 인증 보내기
   const handleEmailSend = useCallback(async () => {
-    if (blockEmailCh) {
-      toast.warning(`${counter}이 지난 뒤 다시 요청해주세요.`);
-      return;
-    }
     if (!email) {
       toast.warning("이메일을 입력해 주세요");
     } else {
-      setBlockEmailCh(true);
+      setDisabledEmailCheck(true);
       timerHandler();
       setLoading(true);
       toast.success("이메일이 전송중입니다.");
@@ -145,6 +147,7 @@ const RegisterContainer = () => {
         })
         .catch((err: any) => {
           setLoading(false);
+          setTimer(-1);
           if (err.response?.status === 406) {
             toast.warning("현재 요청이 너무 많습니다. 잠시 후에 시도하세요.");
           } else if (err.response?.status === 400) {
@@ -279,6 +282,10 @@ const RegisterContainer = () => {
   return (
     <>
       <Register
+        disabledEmailCheck={disabledEmailCheck}
+        setDisabledEmailCheck={setDisabledEmailCheck}
+        timer={timer}
+        setTimer={setTimer}
         allCheck={allCheck}
         setAllCheck={setAllCheck}
         name={name}
