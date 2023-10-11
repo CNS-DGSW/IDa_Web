@@ -455,8 +455,6 @@ const editProfileImage = async ({
   userIdx: number | null;
   ProfileImgage: string;
 }): Promise<Response> => {
-  console.log(ProfileImgage, userIdx);
-
   const response: Response = await UserApi.EditProfileImage(
     ProfileImgage,
     userIdx

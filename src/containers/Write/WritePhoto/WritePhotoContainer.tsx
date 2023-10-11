@@ -41,10 +41,8 @@ const WritePhotoContainer = () => {
     if ((preview !== "" && !isChanged) || image) {
       setIsChanged(false);
       if (image) {
-        console.log("image  : ", image);
         await upload(image)
           .then(async (res: any) => {
-            console.log("dfd", res.data.fileName);
             await editProfileImageAtom({
               ProfileImgage: res.data.fileName,
               userIdx: null,
@@ -55,7 +53,7 @@ const WritePhotoContainer = () => {
           })
           .catch((err: any) => {
             handleWriteError(err, history);
-            console.log("dfd", err);
+            console.log(err);
             flag = false;
           });
       } else {
