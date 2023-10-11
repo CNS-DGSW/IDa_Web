@@ -11,9 +11,9 @@ const MainAlert = () => {
         </div>
         <div className="Alerttjdgnsdl"></div>
         <div className="AlertCotents">
-          원서 접수 및 사이트 시범 운영은
+          원서 접수 및 사이트 운영은
           <br />
-          10월 11일(수) 9시부터 가능합니다.
+          10월 16일(월) 9시부터 가능합니다.
         </div>
       </div>
     </div>
