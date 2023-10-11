@@ -28,17 +28,19 @@ import ScoreGrade from "util/types/ScoreGrade";
 import ApplyDetail from "util/enums/ApplyDetail";
 import FreeSemType from "util/types/FreeSem";
 
-const getStudentInfo = async (
- {
-  userIdx
- }:{ userIdx: number | null}
-): Promise<UserInfoResponse> => {
+const getStudentInfo = async ({
+  userIdx,
+}: {
+  userIdx: number | null;
+}): Promise<UserInfoResponse> => {
   const response: UserInfoResponse = await AuthApi.GetInfo(userIdx);
   return response;
 };
 
-const upload = async (fileName: File | Blob): Promise<UploadResponse> => {
+const upload = async (fileName: File): Promise<UploadResponse> => {
+  console.log("dfdfdfd", fileName);
   const response: UploadResponse = await UserApi.upload(fileName);
+
   return response;
 };
 
@@ -453,6 +455,8 @@ const editProfileImage = async ({
   userIdx: number | null;
   ProfileImgage: string;
 }): Promise<Response> => {
+  console.log(ProfileImgage, userIdx);
+
   const response: Response = await UserApi.EditProfileImage(
     ProfileImgage,
     userIdx

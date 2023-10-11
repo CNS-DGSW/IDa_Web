@@ -42,7 +42,7 @@ class UserApi {
 
   async EditProfileImage(profileImage: string, userIdx?: number | null) {
     const body = {
-      profileImage,
+      profileImage: profileImage,
     };
 
     const query = userIdx ? `?userIdx=${userIdx}` : "";
@@ -163,9 +163,10 @@ class UserApi {
     return data;
   }
 
-  async upload(fileName: File | Blob) {
+  async upload(fileName: File) {
     const formData = new FormData();
     formData.append("file", fileName);
+    console.log(fileName);
 
     const { data } = await Api.post(`/file/upload`, formData);
     return data;

@@ -14,7 +14,7 @@ const WritePhotoContainer = () => {
   const history = useNavigate();
   const userIdx = useRecoilValue(userIdxAtom);
   const [preview, setPreview] = useState<string | ArrayBuffer | null>("");
-  const [image, setImage] = useState<File | Blob | null>();
+  const [image, setImage] = useState<File | null>();
   const [isChanged, setIsChanged] = useState<boolean>(false);
 
   const getProfileImageAtom = getProfileImage;
@@ -41,15 +41,21 @@ const WritePhotoContainer = () => {
     if ((preview !== "" && !isChanged) || image) {
       setIsChanged(false);
       if (image) {
+        console.log("image  : ", image);
         await upload(image)
           .then(async (res: any) => {
-            await editProfileImageAtom(res.data.fileName).catch((err: any) => {
+            console.log("dfd", res.data.fileName);
+            await editProfileImageAtom({
+              ProfileImgage: res.data.fileName,
+              userIdx: null,
+            }).catch((err: any) => {
               handleWriteError(err, history);
               flag = false;
             });
           })
           .catch((err: any) => {
             handleWriteError(err, history);
+            console.log("dfd", err);
             flag = false;
           });
       } else {
