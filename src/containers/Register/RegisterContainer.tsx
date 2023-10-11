@@ -134,6 +134,7 @@ const RegisterContainer = () => {
   const handleEmailSend = useCallback(async () => {
     if (!email) {
       toast.warning("이메일을 입력해 주세요");
+      setTimer(-1);
     } else {
       setDisabledEmailCheck(true);
       timerHandler();
