@@ -178,7 +178,7 @@ const WritePrintContainer = ({}) => {
   //수험 번호 받아오는 함수
   const tryGetNumberCallback = useCallback(async () => {
     setIsSubmit(false);
-    await tryGetNumber(userIdx)
+    await tryGetNumber(Number(query.get("userIdx")))
       .then((res: any) => {
         setExamCode(res.data.examCode);
         setSubmitCode(res.data.submitCode);
@@ -190,7 +190,7 @@ const WritePrintContainer = ({}) => {
 
   //유저 정보 받아오는 함수
   const getStudentInfoCallback = useCallback(async () => {
-    await getStudentInfo({userIdx}).then(
+    await getStudentInfo({ userIdx: Number(query.get("userIdx")) }).then(
       (res: UserInfoResponse) => {
         setName(res.data.name || "");
         setBirth(
@@ -206,56 +206,64 @@ const WritePrintContainer = ({}) => {
 
   //프로필 이미지 받아오는 함수
   const getProfileImageCallback = useCallback(async () => {
-    await getProfileImageAtom({ userIdx }).then((res: ProfileInfoResponse) => {
-      setProfileImage(res.data.profileImage || "");
-      // console.log(res)
-    });
+    await getProfileImageAtom({ userIdx: Number(query.get("userIdx")) }).then(
+      (res: ProfileInfoResponse) => {
+        setProfileImage(res.data.profileImage || "");
+        // console.log(res)
+      }
+    );
     // console.log(profileImage)
   }, []);
 
   //학부모 정보 받아오는 함수
   const getParentInfoCallback = useCallback(async () => {
-    await getParentInfoAtom({ userIdx }).then((res: ParentInfoResponse) => {
-      setAddress(res.data.address || "");
-      setDetailAddress(res.data.detailAddress || "");
-      setParentName(res.data.parentName || "");
-      setParentRelation(res.data.parentRelation);
-      setParentTel(res.data.parentTel || "");
-      setParentBirth(
-        isNaN(
-          Date.parse(
-            res.data.parentBirth ? res.data.parentBirth.toString() : ""
+    await getParentInfoAtom({ userIdx: Number(query.get("userIdx")) }).then(
+      (res: ParentInfoResponse) => {
+        setAddress(res.data.address || "");
+        setDetailAddress(res.data.detailAddress || "");
+        setParentName(res.data.parentName || "");
+        setParentRelation(res.data.parentRelation);
+        setParentTel(res.data.parentTel || "");
+        setParentBirth(
+          isNaN(
+            Date.parse(
+              res.data.parentBirth ? res.data.parentBirth.toString() : ""
+            )
           )
-        )
-          ? ""
-          : moment(res.data.parentBirth).format("yyyy. MM. DD.")
-      );
-      setPostCode(res.data.postCode || "");
-    });
+            ? ""
+            : moment(res.data.parentBirth).format("yyyy. MM. DD.")
+        );
+        setPostCode(res.data.postCode || "");
+      }
+    );
   }, []);
 
   //학교 정보 받아오는 함수
   const getSchoolInfoCallback = useCallback(async () => {
-    await getSchoolInfoAtom({ userIdx }).then((res: SchoolInfoResponse) => {
-      setTeacherName(res.data.teacherName || "");
-      setCityName(res.data.cityName || "");
-      setSchoolCode(res.data.schoolCode || "");
-      setSchoolName(res.data.schoolName || "");
-      setSchoolTel(res.data.schoolTel || "");
-      setGradeType(res.data.gradeType || null);
-      setGraduatedDate(res.data.graduatedDate || "");
-    });
+    await getSchoolInfoAtom({ userIdx: Number(query.get("userIdx")) }).then(
+      (res: SchoolInfoResponse) => {
+        setTeacherName(res.data.teacherName || "");
+        setCityName(res.data.cityName || "");
+        setSchoolCode(res.data.schoolCode || "");
+        setSchoolName(res.data.schoolName || "");
+        setSchoolTel(res.data.schoolTel || "");
+        setGradeType(res.data.gradeType || null);
+        setGraduatedDate(res.data.graduatedDate || "");
+      }
+    );
     // console.log(schoolCode);
   }, []);
 
   //입학전형 받아오기
   const getApplyTypeCallback = useCallback(async () => {
-    await getApplyTypeAtom({ userIdx }).then((res: any) => {
-      setApplyType(res.data.applyType);
-      setApplyDetailType(res.data.applyDetailType);
-      setVerteransCity(res.data.verteransCity || "");
-      setVerteransNumber(res.data.verteransNumber || "");
-    });
+    await getApplyTypeAtom({ userIdx: Number(query.get("userIdx")) }).then(
+      (res: any) => {
+        setApplyType(res.data.applyType);
+        setApplyDetailType(res.data.applyDetailType);
+        setVerteransCity(res.data.verteransCity || "");
+        setVerteransNumber(res.data.verteransNumber || "");
+      }
+    );
   }, []);
 
   //점수 받아오기
@@ -288,7 +296,7 @@ const WritePrintContainer = ({}) => {
 
   //자기소개서 받아오기
   const getSelfIntroduceCallBack = useCallback(async () => {
-    await getSelfIntroduceAtom({ userIdx }).then(
+    await getSelfIntroduceAtom({ userIdx: Number(query.get("userIdx")) }).then(
       (res: SelfIntroductionResponse) => {
         setSelfIntroduce(res.data.selfIntroduction || "");
       }
@@ -297,69 +305,81 @@ const WritePrintContainer = ({}) => {
 
   //학업계획서 받아오기
   const getStudyPlanCallBack = useCallback(async () => {
-    await getStudyPlanAtom({ userIdx }).then((res: StudyPlanResponse) => {
-      setStudyPlan(res.data.studyPlan || "");
-    });
+    await getStudyPlanAtom({ userIdx: Number(query.get("userIdx")) }).then(
+      (res: StudyPlanResponse) => {
+        setStudyPlan(res.data.studyPlan || "");
+      }
+    );
   }, []);
 
   //자유힉기제 여부 받아오기
   const getGradeCallback = useCallback(async () => {
-    await getGradeListAtom({ userIdx }).then((res: any) => {
-      setFreeSem(res.data.freeSem);
-      setGrades(res.data.grade);
-    });
+    await getGradeListAtom({ userIdx: Number(query.get("userIdx")) }).then(
+      (res: any) => {
+        setFreeSem(res.data.freeSem);
+        setGrades(res.data.grade);
+      }
+    );
   }, []);
 
   // 성적 받아오기
   const getGedCallback = useCallback(async () => {
-    await getGedAtom({ userIdx }).then((res: any) => {
-      setKoreanScore(res.data.score.koreanScore);
-      setEnglishScore(res.data.score.englishScore);
-      setMathScore(res.data.score.mathScore);
-      setOtherScore(res.data.score.otherScore);
-      setScienceScore(res.data.score.scienceScore);
-      setSocialScore(res.data.score.socialScore);
-    });
+    await getGedAtom({ userIdx: Number(query.get("userIdx")) }).then(
+      (res: any) => {
+        setKoreanScore(res.data.score.koreanScore);
+        setEnglishScore(res.data.score.englishScore);
+        setMathScore(res.data.score.mathScore);
+        setOtherScore(res.data.score.otherScore);
+        setScienceScore(res.data.score.scienceScore);
+        setSocialScore(res.data.score.socialScore);
+      }
+    );
   }, []);
 
   //출결상황 받아오기
   const getAbttendCallback = useCallback(async () => {
-    await getAttendAtom({ userIdx }).then((res: any) => {
-      setAbsence1(res.data.absence1);
-      setAbsence2(res.data.absence2);
-      setAbsence3(res.data.absence3);
-      setLateness1(res.data.lateness1);
-      setLateness2(res.data.lateness2);
-      setLateness3(res.data.lateness3);
-      setAbsenceLecture1(res.data.absenceLecture1);
-      setAbsenceLecture2(res.data.absenceLecture2);
-      setAbsenceLecture3(res.data.absenceLecture3);
-      setEarlyLeave1(res.data.earlyLeave1);
-      setEarlyLeave2(res.data.earlyLeave2);
-      setEarlyLeave3(res.data.earlyLeave3);
-    });
+    await getAttendAtom({ userIdx: Number(query.get("userIdx")) }).then(
+      (res: any) => {
+        setAbsence1(res.data.absence1);
+        setAbsence2(res.data.absence2);
+        setAbsence3(res.data.absence3);
+        setLateness1(res.data.lateness1);
+        setLateness2(res.data.lateness2);
+        setLateness3(res.data.lateness3);
+        setAbsenceLecture1(res.data.absenceLecture1);
+        setAbsenceLecture2(res.data.absenceLecture2);
+        setAbsenceLecture3(res.data.absenceLecture3);
+        setEarlyLeave1(res.data.earlyLeave1);
+        setEarlyLeave2(res.data.earlyLeave2);
+        setEarlyLeave3(res.data.earlyLeave3);
+      }
+    );
   }, []);
 
   //가산점 목록 받아오기
   const getAdditionalCallback = useCallback(async () => {
-    await getAdditionalAtom({ userIdx }).then((res: any) => {
-      setLeadership11(res.data.leadership11);
-      setLeadership12(res.data.leadership12);
-      setLeadership21(res.data.leadership21);
-      setLeadership22(res.data.leadership22);
-      setLeadership31(res.data.leadership31);
-      setLeadership32(res.data.leadership32);
-      setPrize(res.data.prize);
-    });
+    await getAdditionalAtom({ userIdx: Number(query.get("userIdx")) }).then(
+      (res: any) => {
+        setLeadership11(res.data.leadership11);
+        setLeadership12(res.data.leadership12);
+        setLeadership21(res.data.leadership21);
+        setLeadership22(res.data.leadership22);
+        setLeadership31(res.data.leadership31);
+        setLeadership32(res.data.leadership32);
+        setPrize(res.data.prize);
+      }
+    );
   }, []);
 
   //봉사활동 받아오기
   const getVolunteerCallback = useCallback(async () => {
-    await getVolunteerAtom({ userIdx }).then((res: any) => {
-      setVolunteer1(res.data.volunteer1);
-      setVolunteer2(res.data.volunteer2);
-      setVolunteer3(res.data.volunteer3);
-    });
+    await getVolunteerAtom({ userIdx: Number(query.get("userIdx")) }).then(
+      (res: any) => {
+        setVolunteer1(res.data.volunteer1);
+        setVolunteer2(res.data.volunteer2);
+        setVolunteer3(res.data.volunteer3);
+      }
+    );
   }, []);
 
   const getAllStates = useCallback(async () => {

@@ -31,8 +31,10 @@ const WriteStudentContainer = ({}) => {
   const [isChanged, setIsChanged] = useState<boolean>(false);
 
   const getStudentInfoCallback = useCallback(async () => {
-    await getStudentInfo({ userIdx })
+    await getStudentInfo({ userIdx: Number(query.get("userIdx")) })
       .then((res: UserInfoResponse) => {
+        console.log("dfdf", res, userIdx);
+
         setName(res.data.name || "");
         setBirth(
           isNaN(Date.parse(res.data.birth ? res.data.birth.toString() : ""))

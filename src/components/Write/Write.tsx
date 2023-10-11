@@ -41,7 +41,6 @@ const Write = ({ page, pageHandle }: WriteProps) => {
     return nowPage;
   }, [page]);
 
-
   return (
     <>
       <div className="write">
