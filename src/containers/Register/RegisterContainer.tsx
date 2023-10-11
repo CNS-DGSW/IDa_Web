@@ -6,6 +6,8 @@ import { toast } from "react-toastify";
 import { tryRegister, trySendEmail, trySendPhone } from "stores/Auth/useAuth";
 import useTimeLimit from "lib/hooks/useTimeLimit";
 
+const TimerSeconds: number = 180;
+
 const RegisterContainer = () => {
   const history = useNavigate();
 
@@ -24,6 +26,7 @@ const RegisterContainer = () => {
 
   //이메일 인증 막기
   const [blockEmailCh, setBlockEmailCh] = useState<boolean>(false);
+  const [timer, setTimer] = useState<number>(TimerSeconds);
 
   // 휴대폰 인증 카운터
   const [counter, setCounter] = useState<string>("0:00");
@@ -68,6 +71,32 @@ const RegisterContainer = () => {
   //     }
   //   }, runningTime * 1000);
   // };
+  const timerHandler = () => {
+    setInterval(() => {
+      if (timer >= 0) {
+        setTimer((prev) => prev - 1);
+      }
+    }, 1000);
+  };
+
+  /** 전화번호 인증을 눌렀을 때 카운터 생성 함수(초단위계산) */
+  // const makeSecCounter = (
+  //   counterSetter: React.Dispatch<React.SetStateAction<string>>,
+  //   limitTime: number,
+  //   runningTime: number
+  // ) => {
+  //   let limitT = limitTime;
+  //   let timerId = setInterval(() => {
+  //     counterSetter(
+  //       `${Math.floor(limitT / 60)}:${`${limitT % 60}`.padStart(2, "0")}`
+  //     );
+  //     limitT -= runningTime;
+  //     if (limitT < 0) {
+  //       counterSetter("0:00");
+  //       clearInterval(timerId);
+  //     }
+  //   }, runningTime * 1000);
+  // };
 
   // 전화번호로 인증번호 요청
   const handlePhoneNumSend = async () => {
@@ -79,7 +108,7 @@ const RegisterContainer = () => {
       for (var i = 0; i < highestIntervalId; i++) {
         clearInterval(i);
       }
-      makeSecCounter(setCounter, 300, 1);
+      // makeSecCounter(setCounter, 300, 1);
       toast.success("메시지 전송중입니다.");
       // makeSecCounter(setCounter,300,1)
       await trySendPhone(phoneNum)
@@ -105,7 +134,7 @@ const RegisterContainer = () => {
       toast.warning("이메일을 입력해 주세요");
     } else {
       setBlockEmailCh(true);
-      makeSecCounter(setCounter, 300, 1);
+      timerHandler();
       setLoading(true);
       toast.success("이메일이 전송중입니다.");
       await trySendEmail(email)
