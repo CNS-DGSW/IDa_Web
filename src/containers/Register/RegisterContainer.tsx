@@ -22,6 +22,9 @@ const RegisterContainer = () => {
   const [birth, setBirth] = useState<string>("");
   // 휴대폰 인증 로직이 생긴다면 state추가 필요
 
+  //이메일 인증 막기
+  const [blockEmailCh, setBlockEmailCh] = useState<boolean>(false);
+
   // 휴대폰 인증 카운터
   const [counter, setCounter] = useState<string>("0:00");
 
@@ -48,23 +51,23 @@ const RegisterContainer = () => {
   }, []);
 
   /** 전화번호 인증을 눌렀을 때 카운터 생성 함수(초단위계산) */
-  const makeSecCounter = (
-    counterSetter: React.Dispatch<React.SetStateAction<string>>,
-    limitTime: number,
-    runningTime: number
-  ) => {
-    let limitT = limitTime;
-    let timerId = setInterval(() => {
-      counterSetter(
-        `${Math.floor(limitT / 60)}:${`${limitT % 60}`.padStart(2, "0")}`
-      );
-      limitT -= runningTime;
-      if (limitT < 0) {
-        counterSetter("0:00");
-        clearInterval(timerId);
-      }
-    }, runningTime * 1000);
-  };
+  // const makeSecCounter = (
+  //   counterSetter: React.Dispatch<React.SetStateAction<string>>,
+  //   limitTime: number,
+  //   runningTime: number
+  // ) => {
+  //   let limitT = limitTime;
+  //   let timerId = setInterval(() => {
+  //     counterSetter(
+  //       `${Math.floor(limitT / 60)}:${`${limitT % 60}`.padStart(2, "0")}`
+  //     );
+  //     limitT -= runningTime;
+  //     if (limitT < 0) {
+  //       counterSetter("0:00");
+  //       clearInterval(timerId);
+  //     }
+  //   }, runningTime * 1000);
+  // };
 
   // 전화번호로 인증번호 요청
   const handlePhoneNumSend = async () => {
@@ -94,9 +97,15 @@ const RegisterContainer = () => {
 
   //email 인증 보내기
   const handleEmailSend = useCallback(async () => {
+    if (blockEmailCh) {
+      toast.warning(`${counter}이 지난 뒤 다시 요청해주세요.`);
+      return;
+    }
     if (!email) {
       toast.warning("이메일을 입력해 주세요");
     } else {
+      setBlockEmailCh(true);
+      makeSecCounter(setCounter, 300, 1);
       setLoading(true);
       toast.success("이메일이 전송중입니다.");
       await trySendEmail(email)
@@ -187,19 +196,16 @@ const RegisterContainer = () => {
   }, [name, birth, email, pw, checkPw, phoneNum, allCheck]);
 
   // 시간 설정
-  const {
-    canAccessSignup,
-    SignupLimitControl
-  } = useTimeLimit()
+  const { canAccessSignup, SignupLimitControl } = useTimeLimit();
 
-  useEffect(()=>{
-    SignupLimitControl()
+  useEffect(() => {
+    SignupLimitControl();
 
-    if(canAccessSignup === false){
-      history("/", { state: { isValid: true } })
-      toast.error('회원가입 기간이 아닙니다.')
+    if (canAccessSignup === false) {
+      history("/", { state: { isValid: true } });
+      toast.error("회원가입 기간이 아닙니다.");
     }
-  },[canAccessSignup])
+  }, [canAccessSignup]);
 
   useEffect(() => {
     // console.log(loading);
