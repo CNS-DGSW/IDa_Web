@@ -6,6 +6,7 @@ import Modal from "components/common/Modal";
 import City from "models/City";
 import SearchSchoolContainer from "containers/SearchSchool/SearchSchoolContainer";
 import numberCheck from "lib/numberCheck";
+import cityHandler from "lib/cityHandler";
 
 interface WriteSchoolProps {
   gradeType: Grade | null;
@@ -177,13 +178,19 @@ const WriteSchool = ({
                       className="school-schedule-box-area-selectinput"
                     >
                       <option value={""}>선택해주세요</option>
-                      {City.map((res, idx) => {
-                        return (
-                          <option key={idx} value={res.cityName}>
-                            {res.cityName}
-                          </option>
-                        );
-                      })}
+                      {cityHandler(cityName) ? (
+                        <option value={cityName}>{cityName}</option>
+                      ) : (
+                        <>
+                          {City.map((res, idx) => {
+                            return (
+                              <option key={idx} value={res.cityName}>
+                                {res.cityName}
+                              </option>
+                            );
+                          })}
+                        </>
+                      )}
                     </select>
                   </div>
 
@@ -198,7 +205,9 @@ const WriteSchool = ({
                       className="school-schedule-box-area-selectinput"
                     >
                       <option value={""}>선택해주세요</option>
-                      {cityName && (
+                      {cityHandler(cityName) ? (
+                        <option value={cityLocation}>{cityLocation}</option>
+                      ) : (
                         <>
                           {City.find((city) => {
                             if (cityName === city.cityName) {
