@@ -178,7 +178,7 @@ const WriteSchool = ({
                       className="school-schedule-box-area-selectinput"
                     >
                       <option value={""}>선택해주세요</option>
-                      {cityHandler(cityName) ? (
+                      {cityName && cityHandler(cityName) ? (
                         <option value={cityName}>{cityName}</option>
                       ) : (
                         <>
@@ -205,7 +205,7 @@ const WriteSchool = ({
                       className="school-schedule-box-area-selectinput"
                     >
                       <option value={""}>선택해주세요</option>
-                      {cityHandler(cityName) ? (
+                      {cityName && cityHandler(cityName) ? (
                         <option value={cityLocation}>{cityLocation}</option>
                       ) : (
                         <>
