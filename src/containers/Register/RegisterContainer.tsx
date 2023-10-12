@@ -219,9 +219,7 @@ const RegisterContainer = () => {
             // toast.warning(`${err.response?.data.message}`);
             toast.warning("이메일 인증이 진행되지 않았습니다.");
           } else if (err.response?.status === 400) {
-            toast.warning(
-              "전화번호 혹은 이메일 양식을 다시 한 번 확인해주세요."
-            );
+            toast.warning("개인정보 양식을 다시 한 번 확인해주세요.");
             console.log(err.response);
           } else if (err.response?.status === 410) {
             toast.warning("이미 사용중인 실명인증입니다.");
