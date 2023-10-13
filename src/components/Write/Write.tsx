@@ -50,8 +50,8 @@ const Write = ({ page, pageHandle }: WriteProps) => {
               <Steps.Step
                 title={title}
                 key={idx}
-                onClick={() => pageHandle(idx)}
-                className="pointer"
+                // onClick={() => pageHandle(idx)}
+                // className="pointer"
               />
             ))}
           </Steps>
