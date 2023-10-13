@@ -10,6 +10,7 @@ export type CityRatio = {
 
 export type DateRatio = {
   date: Date;
+  period: "오전" | "오후";
   registered: number;
   registeredRatio: number;
   submitted: number;

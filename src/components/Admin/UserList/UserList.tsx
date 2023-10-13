@@ -419,6 +419,7 @@ const UserList = ({
             <thead>
               <tr className="allRatio-list-title">
                 <th>날짜</th>
+                <th>오전/오후</th>
                 <th>가입</th>
                 <th>비율</th>
                 <th>작성</th>
@@ -431,6 +432,7 @@ const UserList = ({
               {dateStatus.map((i, idx) => (
                 <tr key={idx}>
                   <td>{i.date}</td>
+                  <td>{i.period}</td>
                   <td>{i.registered}</td>
                   <td>{i.registeredRatio}</td>
                   <td>{i.writing}</td>
