@@ -128,10 +128,11 @@ const UserListContainer = ({}) => {
   const tryGetAllUserRatio = useCallback(() => {
     getAllUserRatio()
       .then((res: any) => {
+        console.log(res.data);
         setCityStatus(res.data.userCityRatio);
         setDateStatus(res.data.userDateRatio);
         setSchoolStatus(res.data.userSchoolRatio);
-        console.log(res)
+        console.log(res);
       })
       .catch((err: any) => {
         handleLogin(err, history);
