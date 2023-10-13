@@ -19,8 +19,16 @@ const WritePhotoContainer = () => {
 
   const getProfileImageAtom = getProfileImage;
   const editProfileImageAtom = editProfileImage;
-  //프로필 미리보기 함수
+  //사진 용량 제한 및 프로필 미리보기 함수
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const maxSize:number = 10 * 1024 * 1024
+    const currentSize:number = (e.target.files !== null ? e.target.files[0].size : 0)
+    
+    if(currentSize > maxSize){
+      toast.error('사진 크기가 10MB를 초과하였습니다.')
+    }
+
+
     let reader = new FileReader();
     if (e.target.files && e.target.files.length) {
       let file = e.target.files[0];
