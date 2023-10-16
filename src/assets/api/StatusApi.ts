@@ -17,9 +17,10 @@ class StatusApi {
   }
 
   async ChangeSubmit(userIdx?: number | null) {
-    const { data } = await Api.post(
-      `/status/changeSubmit${userIdx !== null ? "?userIdx=" + userIdx : ""}`
-    );
+    //userIdx <- 이거 문제로 권한없음 뜸 userIdx ? `?userIdx=${userIdx}` : ""
+    const query = "";
+
+    const { data } = await Api.post(`/status/changeSubmit${query}`);
 
     return data;
   }

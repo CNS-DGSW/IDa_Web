@@ -183,7 +183,6 @@ const volunteer3Atom = atom<number>({
   default: 0,
 });
 
-
 export {
   userIdxAtom,
   pageAtom,
