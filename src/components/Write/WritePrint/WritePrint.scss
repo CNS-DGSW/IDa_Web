@@ -10,6 +10,10 @@
     top: 0;
     background: url("../../../assets/images/sample.gif") 50% repeat-y;
     z-index: -2;
+    @media print {
+      page-break-before: always;
+      background: none;
+    }
   }
   &-area {
     width: 100%;

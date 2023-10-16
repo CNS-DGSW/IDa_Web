@@ -25,8 +25,7 @@ class UserApi {
       sex,
       studentTel,
     };
-
-    const query = userIdx ? `?userIdx=${userIdx}` : "";
+    const query = userIdx && userIdx !== 0 ? `?userIdx=${userIdx}` : "";
 
     const { data } = await Api.patch(`/user/editInfo${query}`, body);
 
@@ -38,24 +37,21 @@ class UserApi {
       profileImage: profileImage,
     };
 
-    const query = userIdx ? `?userIdx=${userIdx}` : "";
-
+    const query = userIdx && userIdx !== 0 ? `?userIdx=${userIdx}` : "";
     const { data } = await Api.patch(`/user/editProfileImage${query}`, body);
 
     return data;
   }
 
   async GetProfileImage(userIdx?: number | null) {
-    const query = userIdx ? `?userIdx=${userIdx}` : "";
-
+    const query = userIdx && userIdx !== 0 ? `?userIdx=${userIdx}` : "";
     const { data } = await Api.get(`/user/getProfileImage${query}`);
 
     return data;
   }
 
   async GetApplyType(userIdx?: number | null) {
-    const query = userIdx ? `?userIdx=${userIdx}` : "";
-
+    const query = userIdx && userIdx !== 0 ? `?userIdx=${userIdx}` : "";
     const { data } = await Api.get(`/user/getApplyType${query}`);
 
     return data;
@@ -74,7 +70,7 @@ class UserApi {
       verteransCity,
       verteransNumber,
     };
-    const query = userIdx ? `?userIdx=${userIdx}` : "";
+    const query = userIdx && userIdx !== 0 ? `?userIdx=${userIdx}` : "";
 
     const { data } = await Api.patch(`/user/editApplyType${query}`, body);
     return data;
@@ -99,8 +95,7 @@ class UserApi {
       detailAddress,
       postCode,
     };
-
-    const query = userIdx ? `?userIdx=${userIdx}` : "";
+    const query = userIdx && userIdx !== 0 ? `?userIdx=${userIdx}` : "";
 
     const { data } = await Api.patch(`/user/editParentInfo${query}`, body);
 
@@ -108,8 +103,7 @@ class UserApi {
   }
 
   async GetParentInfo(userIdx?: number | null) {
-    const query = userIdx ? `?userIdx=${userIdx}` : "";
-
+    const query = userIdx && userIdx !== 0 ? `?userIdx=${userIdx}` : "";
     const { data } = await Api.get(`/user/getParentInfo${query}`);
 
     return data;
@@ -140,9 +134,8 @@ class UserApi {
       teacherTel,
     };
 
-    const query = userIdx ? `?userIdx=${userIdx}` : "";
-
     // console.log(body)
+    const query = userIdx && userIdx !== 0 ? `?userIdx=${userIdx}` : "";
 
     const { data } = await Api.patch(`/user/editSchoolInfo${query}`, body);
 
@@ -150,8 +143,7 @@ class UserApi {
   }
 
   async GetSchoolInfo(userIdx?: number | null) {
-    const query = userIdx ? `?userIdx=${userIdx}` : "";
-
+    const query = userIdx && userIdx !== 0 ? `?userIdx=${userIdx}` : "";
     const { data } = await Api.get(`/user/getSchoolInfo${query}`);
     return data;
   }
@@ -169,8 +161,7 @@ class UserApi {
     const body = {
       selfIntroduction,
     };
-
-    const query = userIdx ? `?userIdx=${userIdx}` : "";
+    const query = userIdx && userIdx !== 0 ? `?userIdx=${userIdx}` : "";
 
     const { data } = await Api.patch(`/user/editSelfIntroduce${query}`, body);
 
@@ -178,8 +169,7 @@ class UserApi {
   }
 
   async GetSelfIntroduce(userIdx?: number | null) {
-    const query = userIdx ? `?userIdx=${userIdx}` : "";
-
+    const query = userIdx && userIdx !== 0 ? `?userIdx=${userIdx}` : "";
     const { data } = await Api.get(`/user/getSelfIntroduce${query}`);
     return data;
   }
@@ -188,8 +178,7 @@ class UserApi {
     const body = {
       studyPlan,
     };
-
-    const query = userIdx ? `?userIdx=${userIdx}` : "";
+    const query = userIdx && userIdx !== 0 ? `?userIdx=${userIdx}` : "";
 
     const { data } = await Api.patch(`/user/editStudyPlan${query}`, body);
 
@@ -197,8 +186,7 @@ class UserApi {
   }
 
   async GetStudyPlan(userIdx?: number | null) {
-    const query = userIdx ? `?userIdx=${userIdx}` : "";
-
+    const query = userIdx && userIdx !== 0 ? `?userIdx=${userIdx}` : "";
     const { data } = await Api.get(`/user/getStudyPlan${query}`);
     return data;
   }
@@ -213,8 +201,7 @@ class UserApi {
       grade,
     };
     // console.log(body);
-
-    const query = userIdx ? `?userIdx=${userIdx}` : "";
+    const query = userIdx && userIdx !== 0 ? `?userIdx=${userIdx}` : "";
 
     const { data } = await Api.patch(`/grade/editGrade${query}`, body);
 
@@ -222,8 +209,7 @@ class UserApi {
   }
 
   async GetGrade(userIdx?: number | null) {
-    const query = userIdx ? `?userIdx=${userIdx}` : "";
-
+    const query = userIdx && userIdx !== 0 ? `?userIdx=${userIdx}` : "";
     const { data } = await Api.get(`/grade/getGrade${query}`);
     return data;
   }
@@ -247,8 +233,7 @@ class UserApi {
       scienceScore,
       socialScore,
     }; */
-
-    const query = userIdx ? `?userIdx=${userIdx}` : "";
+    const query = userIdx && userIdx !== 0 ? `?userIdx=${userIdx}` : "";
 
     const { data } = await Api.patch(`/grade/editGed${query}`, body);
 
@@ -256,8 +241,7 @@ class UserApi {
   }
 
   async GetGed(userIdx?: number | null) {
-    const query = userIdx ? `?userIdx=${userIdx}` : "";
-
+    const query = userIdx && userIdx !== 0 ? `?userIdx=${userIdx}` : "";
     const { data } = await Api.get(`/grade/getGed${query}`);
 
     return data;
@@ -296,8 +280,7 @@ class UserApi {
       absenceLecture3,
     }; */
     // console.log(body);
-
-    const query = userIdx ? `?userIdx=${userIdx}` : "";
+    const query = userIdx && userIdx !== 0 ? `?userIdx=${userIdx}` : "";
 
     const { data } = await Api.patch(`/attend/editAttend${query}`, body);
 
@@ -305,8 +288,7 @@ class UserApi {
   }
 
   async GetAttend(userIdx?: number | null) {
-    const query = userIdx ? `?userIdx=${userIdx}` : "";
-
+    const query = userIdx && userIdx !== 0 ? `?userIdx=${userIdx}` : "";
     const { data } = await Api.get(`/attend/getAttend${query}`);
     return data;
   }
@@ -334,8 +316,7 @@ class UserApi {
     }; */
 
     // console.log(body);
-
-    const query = userIdx ? `?userIdx=${userIdx}` : "";
+    const query = userIdx && userIdx !== 0 ? `?userIdx=${userIdx}` : "";
 
     const { data } = await Api.patch(`/attend/editAdditional${query}`, body);
 
@@ -343,8 +324,7 @@ class UserApi {
   }
 
   async GetAdditional(userIdx?: number | null) {
-    const query = userIdx ? `?userIdx=${userIdx}` : "";
-
+    const query = userIdx && userIdx !== 0 ? `?userIdx=${userIdx}` : "";
     const { data } = await Api.get(`/attend/getAdditional${query}`);
     return data;
   }
@@ -363,8 +343,7 @@ class UserApi {
       volunteer3,
     }; */
     // console.log(body);
-
-    const query = userIdx ? `?userIdx=${userIdx}` : "";
+    const query = userIdx && userIdx !== 0 ? `?userIdx=${userIdx}` : "";
 
     const { data } = await Api.patch(`/attend/editVolunteer${query}`, body);
 
@@ -372,8 +351,7 @@ class UserApi {
   }
 
   async GetVolunteer(userIdx?: number | null) {
-    const query = userIdx ? `?userIdx=${userIdx}` : "";
-
+    const query = userIdx && userIdx !== 0 ? `?userIdx=${userIdx}` : "";
     const { data } = await Api.get(`/attend/getVolunteer${query}`);
     return data;
   }
@@ -386,7 +364,7 @@ class UserApi {
   }
 
   async GetNumber(userIdx?: number | null) {
-    const query = userIdx ? `?userIdx=${userIdx}` : "";
+    const query = userIdx && userIdx !== 0 ? `?userIdx=${userIdx}` : "";
 
     const { data } = await Api.get(`/user/getNumber${query}`);
     return data;

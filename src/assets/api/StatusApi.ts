@@ -3,14 +3,14 @@ import UserPrintStatus from "util/enums/UserPrintStatus";
 
 class StatusApi {
   async GetStatus(userIdx?: number | null) {
-    const query = userIdx ? `?userIdx=${userIdx}` : "";
+    const query = userIdx && userIdx !== 0 ? `?userIdx=${userIdx}` : "";
 
     const { data } = await Api.get(`/status/getStatus${query}`);
     return data;
   }
 
   async GetStatusFirst(userIdx?: number | null) {
-    const query = userIdx ? `?userIdx=${userIdx}` : "";
+    const query = userIdx && userIdx !== 0 ? `?userIdx=${userIdx}` : "";
 
     const { data } = await Api.get(`/status/getStatus/first${query}`);
     return data;
