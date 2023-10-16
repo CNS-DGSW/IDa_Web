@@ -34,7 +34,7 @@ const ResultStatusContainer = ({}: ResultStatusContainerPropse) => {
     // if (response.status === 200) {
     setSubmit(response.data.isSubmit); // 인터넷 원서 접수 현홍
     setPrint(response.data.isPrintedApplicationArrived); //  우편 원서 접수 현황
-    setCheckedPrint(response.data.applicationChecked); //  우편 원서 검토 현황
+    setCheckedPrint(response.data.applicationChecked); //  서류 검토 현황
     setPass(response.data.isPassedFirstApply); // 1차 합격 여부
     setCanAccess(response.data.canAccess);
     // }
@@ -60,7 +60,7 @@ const ResultStatusContainer = ({}: ResultStatusContainerPropse) => {
       .then((res) => {
         setInternet(res.data.isSubmit); // 인터넷 원서 접수 현황
         setPost(res.data.isPrintedApplicationArrived); // 우편 원서 접수 현황
-        setCheckedPost(res.data.applicationChecked); // 서류 검토
+        setCheckedPost(res.data.applicationChecked); // 서류 검토 현황
 
         // setInternet(submit); // 인터넷 원서 접수 현황
         // setPost(print); // 우편 원서 접수 현황
