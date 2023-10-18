@@ -168,7 +168,7 @@ const UserList = ({
               <th>연락처</th>
               <th>원서작성</th>
               <th>원서제출</th>
-              <th>우편 도착 여부</th>
+              <th>서류 도착 여부</th>
               <th>서류 검토</th>
               <th>가입날짜</th>
               <th>삭제</th>

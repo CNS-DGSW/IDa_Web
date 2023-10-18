@@ -36,7 +36,7 @@ const ResultStatus = ({
           </div>
           <div className="ResultStatus-status-post check">
             <div className="ResultStatus-status-post-span check-span">
-              <span>우편 원서 접수</span>
+              <span>서류 도착 여부</span>
             </div>
             {post ? (
               <div className="ResultStatus-status-web-result check-result-success">
