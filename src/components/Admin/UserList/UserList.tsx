@@ -146,7 +146,7 @@ const UserList = ({
               <tr className="userList-list-title">
                 <th>총 가입인원</th>
                 <th>제출 인원</th>
-                <th>우편 도착 인원</th>
+                <th>서류 도착 인원</th>
                 <th>검토 완료 인원</th>
               </tr>
             </thead>

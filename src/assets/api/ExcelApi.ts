@@ -103,7 +103,7 @@ class ExcelApi {
   }
 
   async GetAdmissionUserList() {
-    const response = await Api.get("/excel/getUserInfo", {
+    const response = await Api.get("/excel/getApplicantStatus", {
       responseType: "blob",
     });
 
