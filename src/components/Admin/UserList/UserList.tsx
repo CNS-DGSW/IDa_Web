@@ -18,6 +18,7 @@ interface UserListProps {
   search: string;
   tryChangeArrived: (userIdx: number, status: boolean) => void;
   tryDownExcel: () => void;
+  tryAdmissionDownExcel: () => void;
   id: string;
   setId: React.Dispatch<React.SetStateAction<string>>;
   pw: string;
@@ -49,6 +50,7 @@ const UserList = ({
   setSearch,
   search,
   tryDownExcel,
+  tryAdmissionDownExcel,
   tryChangeArrived,
   id,
   setId,
@@ -127,6 +129,12 @@ const UserList = ({
           </button>
           <button
             className="userList-search-btn"
+            onClick={() => tryAdmissionDownExcel()}
+          >
+            입학전형 지원자 현황 엑셀 다운로드
+          </button>
+          <button
+            className="userList-search-btn"
             onClick={() => setModal((prev) => !prev)}
           >
             회원 추가
@@ -138,7 +146,7 @@ const UserList = ({
               <tr className="userList-list-title">
                 <th>총 가입인원</th>
                 <th>제출 인원</th>
-                <th>우편 도착 인원</th>
+                <th>서류 도착 인원</th>
                 <th>검토 완료 인원</th>
               </tr>
             </thead>

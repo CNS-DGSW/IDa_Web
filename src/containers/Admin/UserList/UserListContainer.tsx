@@ -44,7 +44,7 @@ const UserListContainer = ({}) => {
     checkedValue: 0,
   });
 
-  const { GetUserList } = ExcelApi;
+  const { GetUserList,GetAdmissionUserList } = ExcelApi;
 
   const tryAddUser = () => {
     if (!id || !pw || !birth || !name) {
@@ -160,6 +160,13 @@ const UserListContainer = ({}) => {
     });
   };
 
+  // 입학전형 지원자 현황 엑셀 다운로드
+  const tryAdmissionDownExcel = () => {
+    GetAdmissionUserList().catch((err: any) => {
+      toast.error("서버 오류입니다. 잠시 후 다시 시도해주세요.");
+    });
+  };
+
   useEffect(() => {
     const listener = (e: KeyboardEvent) => {
       if (e.key === "Enter" || e.key === "NumpadEnter") {
@@ -198,6 +205,7 @@ const UserListContainer = ({}) => {
       cityStatus={cityStatus}
       userStatus={userStatus}
       tryDownExcel={tryDownExcel}
+      tryAdmissionDownExcel={tryAdmissionDownExcel}
       tryChangeArrived={tryChangeArrived}
       id={id}
       setId={setId}
