@@ -34,6 +34,7 @@ export type ListPassed = {
   submitCode: string;
   applyType: string;
   sex: string;
+  gradeType:string;
 };
 
 export type Rate = {

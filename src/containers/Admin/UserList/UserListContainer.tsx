@@ -132,7 +132,6 @@ const UserListContainer = ({}) => {
         setCityStatus(res.data.userCityRatio);
         setDateStatus(res.data.userDateRatio);
         setSchoolStatus(res.data.userSchoolRatio);
-        console.log(res);
       })
       .catch((err: any) => {
         handleLogin(err, history);
