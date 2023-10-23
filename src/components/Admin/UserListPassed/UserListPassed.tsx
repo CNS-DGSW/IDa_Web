@@ -107,6 +107,7 @@ const UserListPassed = ({
                   <th>이름</th>
                   <th>성별</th>
                   <th>출신학교</th>
+                  <th>학력</th>
                   <th>지역</th>
                   <th>전화번호</th>
                   <th>이메일</th>
@@ -123,6 +124,7 @@ const UserListPassed = ({
                   <th>이름</th>
                   <th>성별</th>
                   <th>출신학교</th>
+                  <th>학력</th>
                   <th>지역</th>
                   <th>전화번호</th>
                   <th>이메일</th>
@@ -156,6 +158,7 @@ const UserListPassed = ({
                       </td>
                       <td>{i.sex}</td>
                       <td>{i.schoolName}</td>
+                      <td>{i.gradeType}</td>
                       <td>{i.cityName}</td>
                       <td>{i.studentTel}</td>
                       <td>{i.email}</td>
@@ -183,6 +186,7 @@ const UserListPassed = ({
                       </td>
                       <td>{i.sex}</td>
                       <td>{i.schoolName}</td>
+                      <td>{i.gradeType}</td>
                       <td>{i.cityName}</td>
                       <td>{i.studentTel}</td>
                       <td>{i.email}</td>

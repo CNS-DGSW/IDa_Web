@@ -10,7 +10,7 @@ const useTimeLimit = () => {
   const WriteFirstPeriodStart = new Date(2023, 9, 11, 9, 0, 0);
   const WriteFirstPeriodEnd = new Date(2023, 9, 15, 17, 0, 0);
   const WriteSecondPeriodStart = new Date(2023, 9, 16, 9, 0, 0);
-  // const WriteSecondPeriodEnd = new Date(2023, 9, 19, 17, 0, 0);
+  const WriteSecondPeriodEnd = new Date(2023, 9, 19, 17, 0, 0);
 
   const [canAccessWrite, setCanAccessWrite] = useState<boolean>(true);
   const WriteLimitControl = () => {
@@ -21,7 +21,7 @@ const useTimeLimit = () => {
       setCanAccessWrite(true);
     } else if (
       currentDate >= WriteSecondPeriodStart 
-      // && currentDate <= WriteSecondPeriodEnd
+      && currentDate <= WriteSecondPeriodEnd
     ) {
       setCanAccessWrite(true);
     } else {
