@@ -13,4 +13,4 @@ export const finalTime = moment("2023-11-01 10:00:00");
 export const secondaryStartTime = moment("2023-10-27 10:00:00");
 
 //2차 전형 마감 날짜
-export const secondaryEndTime = moment("2023-10-27 16:40:00");
+
