@@ -75,7 +75,7 @@ const Main = ({
           <div className="Content-box-area">
             <MainContent title="2차 전형 일정">
               <div>
-                <p className="Content-box-area-small"></p>
+                {/* <p className="Content-box-area-small"></p> */}
                 <p className="Content-box-area-bold">
                   {`${moment(secondaryStartTime)
                     .locale("ko")
