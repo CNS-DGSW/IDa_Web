@@ -3,7 +3,11 @@ import MainContent from "components/common/MainContent";
 import "./Main.scss";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
-import { submitEndTime, submitStartTime, finalTime } from "models/submitTime";
+import {
+  secondaryStartTime,
+  secondaryEndTime,
+  finalTime,
+} from "models/submitTime";
 import useTimeLimit from "lib/hooks/useTimeLimit";
 import { toast } from "react-toastify";
 import { useRecoilState } from "recoil";
@@ -22,14 +26,11 @@ const Main = ({
 }: MainProps) => {
   const history = useNavigate();
   const [isAdminValue, setIsAdminAtom] = useRecoilState(isAdminAtom);
-  const {
-    canAccessWrite,
-    WriteLimitControl
-  } = useTimeLimit()
+  const { canAccessWrite, WriteLimitControl } = useTimeLimit();
 
-  useEffect(()=>{
-    WriteLimitControl()
-  },[])
+  useEffect(() => {
+    WriteLimitControl();
+  }, []);
 
   useEffect(() => {
     WriteLimitControl();
@@ -53,9 +54,8 @@ const Main = ({
               <p className="Main-content-Title-Main">
                 {new Date().getFullYear() + 1}학년도 신입생 입학 원서 접수
               </p>
-              {
-                (canAccessWrite && !isAdminValue) &&
-                (<div
+              {canAccessWrite && !isAdminValue && (
+                <div
                   className="Main-content-btn"
                   onClick={() => {
                     history("/write", { state: { isValid: true } });
@@ -73,24 +73,24 @@ const Main = ({
       <div className="Content">
         <div className="Content-box">
           <div className="Content-box-area">
-            <MainContent title="원서 접수 일정">
+            <MainContent title="2차 전형 일정">
               <div>
-                <p className="Content-box-area-small">원서 접수 및 서류 제출</p>
+                <p className="Content-box-area-small"></p>
                 <p className="Content-box-area-bold">
-                  {`${moment(submitStartTime)
+                  {`${moment(secondaryStartTime)
                     .locale("ko")
                     .format("yyyy. MM. DD.(ddd) HH:mm")} ~ ${moment(
-                    submitEndTime
+                    secondaryEndTime
                   )
                     .locale("ko")
-                    .format("yyyy. MM. DD.(ddd) HH:mm")}`}
+                    .format("HH:mm")}`}
                 </p>
                 <p className="Content-box-area-small">
-                  원서 접수 사이트에서 원서 접수 후 출력하여 서류와 함께
-                  제출해야 합니다.
-                  <br />
-                  우편 또는 방문 제출 가능하며, 반드시 마감 시간 이내에 도착해야
+                  준비물(수험표, 신분증)을 지참하고 10시까지 본교에 도착해야
                   합니다.
+                  <br />
+                  자세한 일정은 본교 학교홈페이지 공지사항 및 입학안내 메뉴를
+                  확인해 주세요.
                 </p>
               </div>
             </MainContent>
