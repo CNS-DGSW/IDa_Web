@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { pageAtom, userIdxAtom } from "stores/Write/WriteAtom";
 import { changeSubmit } from "stores/Status/util";
+import { isAdminAtom } from "stores/Auth/AuthAtom";
 
 interface WriteContentProps {
   title: string;
@@ -24,6 +25,7 @@ const WriteContent = ({
   const [page, setPage] = useRecoilState(pageAtom);
   const userIdx = useRecoilValue(userIdxAtom);
   const history = useNavigate();
+  const isAdminValue = useRecoilValue(isAdminAtom)
 
   const nextPage = useCallback(
     (skip?: boolean) => {
@@ -123,6 +125,7 @@ const WriteContent = ({
         <div className="writecontent-children">
           <div className="writecontent-children-box">{children}</div>
           <div className="writecontent-children-area">
+            { isAdminValue && 
             <div
               className="writecontent-children-area-btn save"
               onClick={async () => {
@@ -132,7 +135,7 @@ const WriteContent = ({
               }}
             >
               원서저장
-            </div>
+            </div>}
             <div
               className="writecontent-children-area-btn preview"
               onClick={() => showPreview()}
