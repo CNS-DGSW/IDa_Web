@@ -2,6 +2,7 @@
   "name": "ida_web",
   "version": "0.1.0",
   "private": true,
+  "engines": { "node": "18.x" },
   "dependencies": {
     "@babel/runtime": "^7.22.15",
     "@testing-library/jest-dom": "^4.2.4",
